@@ -4,6 +4,7 @@ import Tournaments from './pages/Tournaments'
 import HandList from './pages/HandList'
 import HandDetail from './pages/HandDetail'
 import Replayer from './pages/Replayer'
+import Summary from './pages/Summary'
 import './App.css'
 
 export default function App() {
@@ -18,14 +19,18 @@ export default function App() {
           <NavLink to="/tournaments" className={({ isActive }) => isActive ? 'nav-item active' : 'nav-item'}>
             ☰ Tournois
           </NavLink>
+          <NavLink to="/summary" className={({ isActive }) => isActive ? 'nav-item active' : 'nav-item'}>
+            ◉ Summary
+          </NavLink>
         </nav>
         <main className="content">
           <Routes>
             <Route path="/" element={<Import />} />
             <Route path="/tournaments" element={<Tournaments />} />
+            <Route path="/summary" element={<Summary />} />
             <Route path="/tournaments/:id/hands" element={<HandList />} />
             <Route path="/hands/:handId" element={<HandDetail />} />
-                      <Route path="/hands/:handId/replay" element={<Replayer />} />
+            <Route path="/hands/:handId/replay" element={<Replayer />} />
           </Routes>
         </main>
       </div>

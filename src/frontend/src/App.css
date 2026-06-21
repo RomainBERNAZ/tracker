@@ -311,6 +311,60 @@ tr:hover td {
   border-color: #7f89b8;
 }
 
+/* ─ Summary ─ */
+.summary-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.summary-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.summary-card h3 {
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.summary-line {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 12px;
+  align-items: center;
+  color: var(--text-dim);
+  padding: 5px 0;
+}
+
+.summary-list {
+  display: grid;
+  gap: 8px;
+}
+
+.summary-item {
+  border: 1px solid var(--border);
+  background: #202536;
+  color: var(--text);
+  border-radius: 6px;
+  padding: 8px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.summary-item:hover {
+  border-color: #7f89b8;
+}
+
+@media (max-width: 980px) {
+  .summary-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ─ Tag ─ */
 .tag {
   display: inline-block;
