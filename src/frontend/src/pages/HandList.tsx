@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { api, HandRow } from '../api'
 
@@ -18,6 +18,10 @@ export default function HandList() {
   const navigate = useNavigate()
   const [hands, setHands] = useState<HandRow[]>([])
   const [loading, setLoading] = useState(true)
+  const [query, setQuery] = useState('')
+  const [cevFilter, setCevFilter] = useState<'all' | 'win' | 'loss' | 'even'>('all')
+  const [sortBy, setSortBy] = useState<'order' | 'cev' | 'netev' | 'pot' | 'level'>('order')
+  const [sortDir, setSortDir] = useState<'asc' | 'desc'>('asc')
 
   useEffect(() => {
     if (!id) return
@@ -26,6 +30,43 @@ export default function HandList() {
       .catch(console.error)
       .finally(() => setLoading(false))
   }, [id])
+
+  const filteredHands = useMemo(() => {
+    const q = query.trim().toLowerCase()
+    return hands.filter((h) => {
+      if (q) {
+        const searchable = `${h.id} ${h.hero_cards ?? ''}`.toLowerCase()
+        if (!searchable.includes(q)) return false
+      }
+
+      if (cevFilter === 'win' && h.hero_cev <= 0) return false
+      if (cevFilter === 'loss' && h.hero_cev >= 0) return false
+      if (cevFilter === 'even' && h.hero_cev !== 0) return false
+
+      return true
+    })
+  }, [hands, query, cevFilter])
+
+  const displayedHands = useMemo(() => {
+    if (sortBy === 'order') {
+      return sortDir === 'asc' ? filteredHands : [...filteredHands].reverse()
+    }
+
+    const factor = sortDir === 'asc' ? 1 : -1
+    return [...filteredHands].sort((a, b) => {
+      const aVal =
+        sortBy === 'cev' ? a.hero_cev :
+        sortBy === 'netev' ? (a.hero_net_ev ?? 0) :
+        sortBy === 'pot' ? a.total_pot :
+        a.level
+      const bVal =
+        sortBy === 'cev' ? b.hero_cev :
+        sortBy === 'netev' ? (b.hero_net_ev ?? 0) :
+        sortBy === 'pot' ? b.total_pot :
+        b.level
+      return (aVal - bVal) * factor
+    })
+  }, [filteredHands, sortBy, sortDir])
 
   // Cumulative cEV
   let cumCev = 0
@@ -41,7 +82,51 @@ export default function HandList() {
 
       <div className="page-header">
         <h1>Tournoi {id}</h1>
-        <p>{hands.length} mains</p>
+        <p>{filteredHands.length} / {hands.length} mains</p>
+      </div>
+
+      <div className="filters-bar">
+        <input
+          className="filter-input"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Rechercher (id, cartes)"
+        />
+
+        <select className="filter-select" value={cevFilter} onChange={(e) => setCevFilter(e.target.value as 'all' | 'win' | 'loss' | 'even')}>
+          <option value="all">cEV: tous</option>
+          <option value="win">cEV: gagnantes</option>
+          <option value="loss">cEV: perdantes</option>
+          <option value="even">cEV: neutres</option>
+        </select>
+
+        <select
+          className="filter-select"
+          value={sortBy}
+          onChange={(e) => setSortBy(e.target.value as 'order' | 'cev' | 'netev' | 'pot' | 'level')}
+        >
+          <option value="order">Tri: ordre des mains</option>
+          <option value="cev">Tri: cEV</option>
+          <option value="netev">Tri: Net EV</option>
+          <option value="pot">Tri: Pot</option>
+          <option value="level">Tri: Niveau</option>
+        </select>
+
+        <button className="sort-toggle" onClick={() => setSortDir((d) => (d === 'asc' ? 'desc' : 'asc'))}>
+          {sortDir === 'asc' ? '↑ Asc' : '↓ Desc'}
+        </button>
+
+        <button
+          className="filter-reset"
+          onClick={() => {
+            setQuery('')
+            setCevFilter('all')
+            setSortBy('order')
+            setSortDir('asc')
+          }}
+        >
+          Reset
+        </button>
       </div>
 
       <div className="table-wrap">
@@ -58,11 +143,10 @@ export default function HandList() {
               <th>cEV cumulé</th>
               <th>Net EV</th>
               <th>Net EV cumulé</th>
-              <th>✓</th>
             </tr>
           </thead>
           <tbody>
-            {hands.map((h, i) => {
+            {displayedHands.map((h, i) => {
               cumCev += h.hero_cev
               cumNetEv += h.hero_net_ev ?? 0
               return (
@@ -85,17 +169,11 @@ export default function HandList() {
                   <td className={cevClass(cumNetEv)}>
                     {cumNetEv > 0 ? '+' : ''}{cumNetEv}
                   </td>
-                  <td>
-                    {h.invariants_ok
-                      ? <span className="positive">✓</span>
-                      : <span className="negative">✗</span>
-                    }
-                  </td>
                 </tr>
               )
             })}
-            {hands.length === 0 && (
-              <tr><td colSpan={11} style={{ textAlign: 'center', color: 'var(--text-dim)', padding: 32 }}>
+            {displayedHands.length === 0 && (
+              <tr><td colSpan={10} style={{ textAlign: 'center', color: 'var(--text-dim)', padding: 32 }}>
                 Aucune main
               </td></tr>
             )}
