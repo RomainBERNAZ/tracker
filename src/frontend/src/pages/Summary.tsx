@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { api, SessionStats } from '../api'
+import { api, SessionStats, TournamentRow } from '../api'
 
 function fmtEur(n: number) {
   const sign = n >= 0 ? '+' : ''
@@ -26,14 +26,28 @@ const WINAMAX_2EUR_MULTIPLIER_MODEL: Array<{ mult: number; tickets: number }> = 
 
 export default function Summary() {
   const [stats, setStats] = useState<SessionStats | null>(null)
+  const [tournaments, setTournaments] = useState<TournamentRow[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    api.getStats()
-      .then((s) => setStats(s))
+    Promise.all([api.getStats(), api.getTournaments()])
+      .then(([s, t]) => {
+        setStats(s)
+        setTournaments(t)
+      })
       .catch(console.error)
       .finally(() => setLoading(false))
   }, [])
+
+  const netEvEurTotal = useMemo(
+    () => tournaments.reduce((acc, t) => acc + t.hero_net_ev_eur_sum, 0),
+    [tournaments],
+  )
+
+  const netEvEurAvg = useMemo(() => {
+    if (stats == null || stats.total_tournaments <= 0) return 0
+    return netEvEurTotal / stats.total_tournaments
+  }, [netEvEurTotal, stats])
 
   const multiplierComparison = useMemo(() => {
     if (!stats) return []
@@ -94,6 +108,18 @@ export default function Summary() {
           <div className="label">Moyenne / tournoi</div>
           <div className={`value ${stats.avg_net_eur_per_tournament >= 0 ? 'positive' : 'negative'}`}>
             {fmtEur(stats.avg_net_eur_per_tournament)}
+          </div>
+        </div>
+        <div className="stat-card">
+          <div className="label">Net EV all-in (€)</div>
+          <div className={`value ${netEvEurTotal >= 0 ? 'positive' : 'negative'}`}>
+            {fmtEur(netEvEurTotal)}
+          </div>
+        </div>
+        <div className="stat-card">
+          <div className="label">Net EV all-in / tournoi (€)</div>
+          <div className={`value ${netEvEurAvg >= 0 ? 'positive' : 'negative'}`}>
+            {fmtEur(netEvEurAvg)}
           </div>
         </div>
       </div>

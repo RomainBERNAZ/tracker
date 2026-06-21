@@ -30,6 +30,7 @@ export interface TournamentRow {
   net_eur: number
   hand_count: number
   hero_cev_sum: number
+  hero_net_ev_eur_sum: number
 }
 
 export interface HandRow {

@@ -16,6 +16,8 @@ pub struct TournamentRow {
     pub net_eur: f64,
     pub hand_count: i64,
     pub hero_cev_sum: i64,
+    /// Sum of hero all-in Net EV converted to euros for this tournament (V1 proportional)
+    pub hero_net_ev_eur_sum: f64,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -142,7 +144,13 @@ pub fn list_tournaments(
                   t.multiplier, t.finish_position, t.started_at,
                   t.duration_secs, t.net_eur,
                   COUNT(h.id) as hand_count,
-                COALESCE(SUM(COALESCE(hp.net_ev, hp.realized_cev)), 0) as hero_cev_sum
+                COALESCE(SUM(COALESCE(hp.net_ev, hp.realized_cev)), 0) as hero_cev_sum,
+                COALESCE(SUM(
+                    CASE WHEN hp.net_ev IS NULL THEN NULL
+                         ELSE CAST(hp.net_ev AS REAL) * t.prizepool_euros /
+                              NULLIF((SELECT SUM(hp2.starting_stack) FROM hand_players hp2 WHERE hp2.hand_id = h.id), 0)
+                    END
+                ), 0.0) as hero_net_ev_eur_sum
            FROM tournaments t
            LEFT JOIN hands h ON h.tournament_id = t.id
            LEFT JOIN hand_players hp ON hp.hand_id = h.id AND hp.hero = 1
@@ -164,6 +172,7 @@ pub fn list_tournaments(
             net_eur: row.get(8)?,
             hand_count: row.get(9)?,
             hero_cev_sum: row.get(10)?,
+            hero_net_ev_eur_sum: row.get(11)?,
         })
     })?;
 
