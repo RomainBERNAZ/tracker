@@ -13,6 +13,18 @@ function fmtCards(cards: string | null) {
   return cards
 }
 
+function fmtEvEur(v: number | null) {
+  if (v == null) return '-'
+  const sign = v > 0 ? '+' : ''
+  return `${sign}${v.toFixed(4)}€`
+}
+
+function fmtEvChips(v: number | null) {
+  if (v == null) return '-'
+  const sign = v > 0 ? '+' : ''
+  return `${sign}${v}`
+}
+
 export default function HandList() {
   const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
@@ -54,16 +66,16 @@ export default function HandList() {
 
     const factor = sortDir === 'asc' ? 1 : -1
     return [...filteredHands].sort((a, b) => {
-      const aVal =
-        sortBy === 'cev' ? a.hero_cev :
-        sortBy === 'netev' ? (a.hero_net_ev ?? 0) :
-        sortBy === 'pot' ? a.total_pot :
-        a.level
-      const bVal =
-        sortBy === 'cev' ? b.hero_cev :
-        sortBy === 'netev' ? (b.hero_net_ev ?? 0) :
-        sortBy === 'pot' ? b.total_pot :
-        b.level
+      let aVal = a.hero_cev
+      if (sortBy === 'netev') aVal = a.hero_net_ev ?? 0
+      else if (sortBy === 'pot') aVal = a.total_pot
+      else if (sortBy === 'level') aVal = a.level
+
+      let bVal = b.hero_cev
+      if (sortBy === 'netev') bVal = b.hero_net_ev ?? 0
+      else if (sortBy === 'pot') bVal = b.total_pot
+      else if (sortBy === 'level') bVal = b.level
+
       return (aVal - bVal) * factor
     })
   }, [filteredHands, sortBy, sortDir])
@@ -143,6 +155,7 @@ export default function HandList() {
               <th>cEV cumulé</th>
               <th>Net EV</th>
               <th>Net EV cumulé</th>
+              <th>Net EV €</th>
             </tr>
           </thead>
           <tbody>
@@ -164,10 +177,13 @@ export default function HandList() {
                     {cumCev > 0 ? '+' : ''}{cumCev}
                   </td>
                   <td className={cevClass(h.hero_net_ev ?? 0)}>
-                    {h.hero_net_ev == null ? '-' : `${h.hero_net_ev > 0 ? '+' : ''}${h.hero_net_ev}`}
+                    {fmtEvChips(h.hero_net_ev)}
                   </td>
                   <td className={cevClass(cumNetEv)}>
                     {cumNetEv > 0 ? '+' : ''}{cumNetEv}
+                  </td>
+                  <td className={cevClass(h.hero_net_ev_eur ?? 0)}>
+                    {fmtEvEur(h.hero_net_ev_eur)}
                   </td>
                 </tr>
               )

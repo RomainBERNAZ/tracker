@@ -46,6 +46,7 @@ export interface HandRow {
   total_pot: number
   seat_count: number
   invariants_ok: boolean
+  hero_net_ev_eur: number | null
 }
 
 export interface PlayerDetailRow {

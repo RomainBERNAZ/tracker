@@ -3,9 +3,9 @@
   "version": "0.0.1",
   "identifier": "dev.expresso.review",
   "build": {
-    "beforeDevCommand": "cd ../src/frontend && pnpm dev",
+    "beforeDevCommand": "cd /app/src/frontend 2>/dev/null || cd ../src/frontend 2>/dev/null || cd src/frontend && pnpm dev",
     "devUrl": "http://localhost:5173",
-    "beforeBuildCommand": "cd ../src/frontend && pnpm build",
+    "beforeBuildCommand": "cd /app/src/frontend 2>/dev/null || cd ../src/frontend 2>/dev/null || cd src/frontend && pnpm build",
     "frontendDist": "../src/frontend/dist"
   },
   "app": {

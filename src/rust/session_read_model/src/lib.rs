@@ -33,6 +33,8 @@ pub struct HandRow {
     pub total_pot: i64,
     pub seat_count: i64,
     pub invariants_ok: bool,
+    /// Net EV converted to euros: net_ev_chips * prizepool_eur / total_chips (proportional V1)
+    pub hero_net_ev_eur: Option<f64>,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -178,9 +180,14 @@ pub fn list_hands_for_tournament(
                   h.timestamp, h.total_pot, h.seat_count,
                   hp.realized_cev, hp.net_ev, hp.allin_equity,
                   hc.card1 || ' ' || hc.card2,
-                  (ic.sum_invariant AND ic.chip_conservation AND ic.pot_match)
+                  (ic.sum_invariant AND ic.chip_conservation AND ic.pot_match),
+                  CASE WHEN hp.net_ev IS NULL THEN NULL
+                       ELSE CAST(hp.net_ev AS REAL) * t.prizepool_euros /
+                            NULLIF((SELECT SUM(hp2.starting_stack) FROM hand_players hp2 WHERE hp2.hand_id = h.id), 0)
+                  END AS net_ev_eur
            FROM hands h
            JOIN hand_players hp ON hp.hand_id = h.id AND hp.hero = 1
+           JOIN tournaments t ON t.id = h.tournament_id
            LEFT JOIN hole_cards hc ON hc.hand_id = h.id
            LEFT JOIN invariant_checks ic ON ic.hand_id = h.id
            WHERE h.tournament_id = ?1
@@ -202,6 +209,7 @@ pub fn list_hands_for_tournament(
             hero_allin_equity: row.get(10)?,
             hero_cards: row.get(11)?,
             invariants_ok: row.get::<_, i64>(12).map(|v| v != 0).unwrap_or(true),
+            hero_net_ev_eur: row.get(13)?,
         })
     })?;
 
@@ -220,9 +228,14 @@ pub fn get_hand_detail(
                       h.timestamp, h.total_pot, h.seat_count,
                       hp.realized_cev, hp.net_ev, hp.allin_equity,
                       hc.card1 || ' ' || hc.card2,
-                      (ic.sum_invariant AND ic.chip_conservation AND ic.pot_match)
+                      (ic.sum_invariant AND ic.chip_conservation AND ic.pot_match),
+                      CASE WHEN hp.net_ev IS NULL THEN NULL
+                           ELSE CAST(hp.net_ev AS REAL) * t.prizepool_euros /
+                                NULLIF((SELECT SUM(hp2.starting_stack) FROM hand_players hp2 WHERE hp2.hand_id = h.id), 0)
+                      END AS net_ev_eur
                FROM hands h
                JOIN hand_players hp ON hp.hand_id = h.id AND hp.hero = 1
+               JOIN tournaments t ON t.id = h.tournament_id
                LEFT JOIN hole_cards hc ON hc.hand_id = h.id
                LEFT JOIN invariant_checks ic ON ic.hand_id = h.id
                WHERE h.id = ?1"#,
@@ -242,6 +255,7 @@ pub fn get_hand_detail(
                     hero_allin_equity: row.get(10)?,
                     hero_cards: row.get(11)?,
                     invariants_ok: row.get::<_, i64>(12).map(|v| v != 0).unwrap_or(true),
+                    hero_net_ev_eur: row.get(13)?,
                 })
             },
         )
@@ -389,9 +403,13 @@ pub fn load_hand_for_replay(
 
     // Load all players for this hand
     let mut players_stmt = conn.prepare(
-        r#"SELECT seat_number, player_name, starting_stack, ending_stack, hole_cards
-           FROM hand_players hp
-           LEFT JOIN hole_cards hc ON hc.hand_id = hp.hand_id
+         r#"SELECT hp.seat_number,
+                hp.player_name,
+                hp.starting_stack,
+                hp.ending_stack,
+                (hc.card1 || ' ' || hc.card2) AS hole_cards
+            FROM hand_players hp
+            LEFT JOIN hole_cards hc ON hc.hand_id = hp.hand_id AND hc.player_name = hp.player_name
            WHERE hp.hand_id = ?1
            ORDER BY hp.seat_number"#,
     )?;
@@ -450,7 +468,7 @@ pub fn load_hand_for_replay(
     let mut steps: Vec<ReplayerStep> = Vec::new();
     let mut player_stacks = players_map.clone();
 
-    for (step_num, (street, action_idx, actor_name, action_type, amount, incr, to_amt)) in
+    for (step_num, (street, _action_idx, actor_name, action_type, amount, incr, to_amt)) in
         raw_actions.iter().enumerate()
     {
         let description = format!(

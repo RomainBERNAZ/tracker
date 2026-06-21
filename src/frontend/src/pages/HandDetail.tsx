@@ -19,6 +19,18 @@ function heroRow(players: PlayerDetailRow[]) {
   return players.find(p => p.hero)
 }
 
+function fmtEvEur(v: number | null) {
+  if (v == null) return '-'
+  const sign = v > 0 ? '+' : ''
+  return `${sign}${v.toFixed(4)}€`
+}
+
+function fmtEvChips(v: number | null) {
+  if (v == null) return '-'
+  const sign = v > 0 ? '+' : ''
+  return `${sign}${v}`
+}
+
 function fmtActionLabel(
   actionType: string,
   amount: number | null,
@@ -128,9 +140,15 @@ export default function HandDetail() {
           </div>
         </div>
         <div className="stat-card">
-          <div className="label">Net EV hero (all-in)</div>
+          <div className="label">Net EV hero (chips)</div>
           <div className={`value ${cevClass(h.hero_net_ev ?? 0)}`}>
-            {h.hero_net_ev == null ? '-' : `${h.hero_net_ev > 0 ? '+' : ''}${h.hero_net_ev}`}
+            {fmtEvChips(h.hero_net_ev)}
+          </div>
+        </div>
+        <div className="stat-card">
+          <div className="label">Net EV hero (€)</div>
+          <div className={`value ${cevClass(h.hero_net_ev_eur ?? 0)}`}>
+            {fmtEvEur(h.hero_net_ev_eur)}
           </div>
         </div>
         <div className="stat-card">
@@ -157,7 +175,7 @@ export default function HandDetail() {
             <dt>Collecté</dt><dd>{hero.collected}</dd>
             <dt>Stack fin</dt><dd>{hero.ending_stack}</dd>
             <dt>Formule</dt><dd>cEV = stack_fin - stack_debut = {hero.ending_stack - hero.starting_stack}</dd>
-            <dt>Net EV</dt><dd>{hero.net_ev == null ? '-' : hero.net_ev}</dd>
+            <dt>Net EV</dt><dd>{hero.net_ev ?? '-'}</dd>
             <dt>Equité all-in</dt><dd>{hero.allin_equity == null ? '-' : `${(hero.allin_equity * 100).toFixed(1)}%`}</dd>
           </dl>
         </div>
@@ -189,7 +207,7 @@ export default function HandDetail() {
                 <td>{p.collected}</td>
                 <td>{p.ending_stack}</td>
                 <td className={cevClass(p.realized_cev)}>{p.realized_cev > 0 ? '+' : ''}{p.realized_cev}</td>
-                <td className={cevClass(p.net_ev ?? 0)}>{p.net_ev == null ? '-' : `${p.net_ev > 0 ? '+' : ''}${p.net_ev}`}</td>
+                <td className={cevClass(p.net_ev ?? 0)}>{fmtEvChips(p.net_ev)}</td>
                 <td>{p.allin_equity == null ? '-' : `${(p.allin_equity * 100).toFixed(1)}%`}</td>
                 <td>{p.hero ? '✓' : ''}</td>
               </tr>

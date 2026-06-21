@@ -359,6 +359,60 @@ tr:hover td {
   border-color: #7f89b8;
 }
 
+.mult-chart {
+  display: grid;
+  gap: 10px;
+}
+
+.mult-row {
+  border: 1px solid rgba(42, 45, 62, 0.9);
+  border-radius: 6px;
+  padding: 8px;
+  background: rgba(17, 20, 30, 0.5);
+}
+
+.mult-row-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+  font-size: 12px;
+}
+
+.mult-bar-group {
+  display: grid;
+  grid-template-columns: 92px 1fr;
+  gap: 8px;
+  align-items: center;
+  margin: 4px 0;
+}
+
+.mult-bar-label {
+  color: var(--text-dim);
+  font-size: 11px;
+}
+
+.mult-bar-track {
+  width: 100%;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+}
+
+.mult-bar {
+  height: 100%;
+  border-radius: 999px;
+}
+
+.mult-bar-expected {
+  background: #7f89b8;
+}
+
+.mult-bar-real {
+  background: #5bc0ff;
+}
+
 @media (max-width: 980px) {
   .summary-grid {
     grid-template-columns: 1fr;

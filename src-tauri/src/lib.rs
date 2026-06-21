@@ -292,6 +292,7 @@ pub fn run() {
 			commands::get_tournaments,
 			commands::get_hands_for_tournament,
 			commands::get_hand,
+			commands::get_hand_for_replay,
 			commands::get_stats,
 			commands::clear_all_data,
 		])

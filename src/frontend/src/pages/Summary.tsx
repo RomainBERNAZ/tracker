@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { api, SessionStats, TournamentRow } from '../api'
+import { api, SessionStats } from '../api'
 
 function fmtEur(n: number) {
   const sign = n >= 0 ? '+' : ''
@@ -12,36 +11,59 @@ function pct(part: number, total: number) {
   return `${((part / total) * 100).toFixed(1)}%`
 }
 
+// Winamax Expresso 2 EUR public distribution provided by user (tickets / 10,000,000 draws).
+const WINAMAX_2EUR_MULTIPLIER_MODEL: Array<{ mult: number; tickets: number }> = [
+  { mult: 500000, tickets: 1 },
+  { mult: 1000, tickets: 100 },
+  { mult: 100, tickets: 2000 },
+  { mult: 20, tickets: 10000 },
+  { mult: 10, tickets: 100000 },
+  { mult: 5, tickets: 400000 },
+  { mult: 4, tickets: 800000 },
+  { mult: 3, tickets: 3324202 },
+  { mult: 2, tickets: 5363697 },
+]
+
 export default function Summary() {
-  const navigate = useNavigate()
   const [stats, setStats] = useState<SessionStats | null>(null)
-  const [rows, setRows] = useState<TournamentRow[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    Promise.all([api.getStats(), api.getTournaments()])
-      .then(([s, t]) => {
-        setStats(s)
-        setRows(t)
-      })
+    api.getStats()
+      .then((s) => setStats(s))
       .catch(console.error)
       .finally(() => setLoading(false))
   }, [])
 
-  const bestWorst = useMemo(() => {
-    if (rows.length === 0) {
-      return {
-        topNet: [] as TournamentRow[],
-        bottomNet: [] as TournamentRow[],
-      }
-    }
+  const multiplierComparison = useMemo(() => {
+    if (!stats) return []
 
-    const sortedByNet = [...rows].sort((a, b) => b.net_eur - a.net_eur)
-    return {
-      topNet: sortedByNet.slice(0, 5),
-      bottomNet: [...sortedByNet].reverse().slice(0, 5),
-    }
-  }, [rows])
+    const total = stats.total_tournaments
+    const realMap = new Map<number, number>(stats.multiplier_dist)
+    const totalTickets = WINAMAX_2EUR_MULTIPLIER_MODEL.reduce((acc, r) => acc + r.tickets, 0)
+
+    const modeledRows = WINAMAX_2EUR_MULTIPLIER_MODEL.map((r) => {
+      const expectedCount = total > 0 ? (total * r.tickets) / totalTickets : 0
+      const realCount = realMap.get(r.mult) ?? 0
+      return {
+        mult: r.mult,
+        expectedCount,
+        realCount,
+      }
+    })
+
+    const otherObserved = stats.multiplier_dist
+      .filter(([mult]) => !WINAMAX_2EUR_MULTIPLIER_MODEL.some((r) => r.mult === mult))
+      .map(([mult, realCount]) => ({
+        mult,
+        expectedCount: 0,
+        realCount,
+      }))
+
+    return [...modeledRows, ...otherObserved].filter(
+      (row) => row.expectedCount >= 1 || row.realCount >= 1,
+    )
+  }, [stats])
 
   if (loading) return <p style={{ color: 'var(--text-dim)' }}>Chargement…</p>
   if (!stats) return <p style={{ color: 'var(--text-dim)' }}>Aucune statistique disponible</p>
@@ -50,7 +72,7 @@ export default function Summary() {
     <div>
       <div className="page-header">
         <h1>Session Summary</h1>
-        <p>Vue globale rapide sans charts</p>
+        <p>Vue globale rapide sans charts · Multiplicateurs calibrés Expresso 2€</p>
       </div>
 
       <div className="stats-bar">
@@ -97,46 +119,53 @@ export default function Summary() {
         </div>
 
         <div className="summary-card">
-          <h3>Multiplicateurs</h3>
-          {stats.multiplier_dist.length === 0 ? (
+          <h3>Multiplicateurs: attendus vs reels</h3>
+          {multiplierComparison.length === 0 ? (
             <p style={{ color: 'var(--text-dim)' }}>Aucune donnee</p>
           ) : (
-            <div style={{ display: 'grid', gap: 6 }}>
-              {stats.multiplier_dist.map(([mult, count]) => (
-                <div key={mult} className="summary-line">
-                  <span>x{mult}</span>
-                  <strong>{count}</strong>
-                  <span>{pct(count, stats.total_tournaments)}</span>
-                </div>
-              ))}
+            <div className="mult-chart">
+              {multiplierComparison.map((row) => {
+                const delta = row.realCount - row.expectedCount
+                const rowMax = Math.max(row.expectedCount, row.realCount, 1)
+                const expectedWidth = (row.expectedCount / rowMax) * 100
+                const realWidth = (row.realCount / rowMax) * 100
+                let deltaClass = 'neutral'
+                if (delta > 0) {
+                  deltaClass = 'positive'
+                } else if (delta < 0) {
+                  deltaClass = 'negative'
+                }
+
+                return (
+                  <div key={row.mult} className="mult-row">
+                    <div className="mult-row-head">
+                      <strong>x{row.mult}</strong>
+                      <span className={deltaClass}>
+                        {delta > 0 ? '+' : ''}{delta.toFixed(2)}
+                      </span>
+                    </div>
+
+                    <div className="mult-bar-group">
+                      <div className="mult-bar-label">Attendu {row.expectedCount.toFixed(2)}</div>
+                      <div className="mult-bar-track">
+                        <div className="mult-bar mult-bar-expected" style={{ width: `${expectedWidth}%` }} />
+                      </div>
+                    </div>
+
+                    <div className="mult-bar-group">
+                      <div className="mult-bar-label">Reel {row.realCount}</div>
+                      <div className="mult-bar-track">
+                        <div className="mult-bar mult-bar-real" style={{ width: `${realWidth}%` }} />
+                      </div>
+                    </div>
+                  </div>
+                )
+              })}
             </div>
           )}
-        </div>
-      </div>
-
-      <div className="summary-grid" style={{ marginTop: 16 }}>
-        <div className="summary-card">
-          <h3>Top 5 Net</h3>
-          <div className="summary-list">
-            {bestWorst.topNet.map((t) => (
-              <button key={t.id} className="summary-item" onClick={() => navigate(`/tournaments/${t.id}/hands`)}>
-                <span>{t.id}</span>
-                <strong className={t.net_eur >= 0 ? 'positive' : 'negative'}>{fmtEur(t.net_eur)}</strong>
-              </button>
-            ))}
-          </div>
-        </div>
-
-        <div className="summary-card">
-          <h3>Bottom 5 Net</h3>
-          <div className="summary-list">
-            {bestWorst.bottomNet.map((t) => (
-              <button key={t.id} className="summary-item" onClick={() => navigate(`/tournaments/${t.id}/hands`)}>
-                <span>{t.id}</span>
-                <strong className={t.net_eur >= 0 ? 'positive' : 'negative'}>{fmtEur(t.net_eur)}</strong>
-              </button>
-            ))}
-          </div>
+          <p style={{ color: 'var(--text-dim)', fontSize: 12, marginTop: 8 }}>
+            Source: grille publique Expresso 2€ (tickets sur 10 000 000 tirages). Si Winamax modifie la grille, mettre a jour ce modele.
+          </p>
         </div>
       </div>
     </div>
