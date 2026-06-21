@@ -6,7 +6,7 @@ use hh_ingest::{db, import_tournament_with_conn, ImportProgress, ImportResult, D
 use rusqlite::Connection;
 use session_read_model::{
 	get_hand_detail, get_session_stats, list_hands_for_tournament, list_tournaments, HandDetail,
-	HandRow, SessionStats, TournamentRow,
+	HandRow, SessionStats, TournamentRow, load_hand_for_replay, ReplayerState,
 };
 use tauri::{Emitter, Manager};
 
@@ -234,6 +234,15 @@ pub mod commands {
 	) -> Result<Option<HandDetail>, String> {
 		let conn = state.db.lock().map_err(|e| e.to_string())?;
 		get_hand_detail(&conn, &hand_id).map_err(|e| e.to_string())
+	}
+
+	#[tauri::command]
+	pub async fn get_hand_for_replay(
+		hand_id: String,
+		state: tauri::State<'_, AppState>,
+	) -> Result<Option<ReplayerState>, String> {
+		let conn = state.db.lock().map_err(|e| e.to_string())?;
+		load_hand_for_replay(&conn, &hand_id).map_err(|e| e.to_string())
 	}
 
 	#[tauri::command]

@@ -82,6 +82,48 @@ pub struct SessionStats {
     pub multiplier_dist: Vec<(i64, i64)>,
 }
 
+// ─── Replayer models ─────────────────────────────────────────────────────────
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct ReplayerState {
+    pub hand_id: String,
+    pub tournament_id: String,
+    pub table_name: String,
+    pub timestamp: String,
+    pub level: i64,
+    pub small_blind: i64,
+    pub big_blind: i64,
+    pub players: Vec<ReplayerPlayer>,
+    pub button_pos: usize,
+    pub board: Vec<String>,  // Cards as "As", "Kh", etc. Progressive per street
+    pub current_step: usize,
+    pub total_steps: usize,
+    pub steps: Vec<ReplayerStep>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct ReplayerPlayer {
+    pub seat_number: i64,
+    pub name: String,
+    pub starting_stack: i64,
+    pub current_stack: i64,  // At current_step
+    pub hole_cards: Option<String>,  // "As Kd" format or null
+    pub folded: bool,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct ReplayerStep {
+    pub step_number: usize,
+    pub street: String,
+    pub actor_name: String,
+    pub action_type: String,
+    pub amount: Option<i64>,
+    pub increment_amount: Option<i64>,
+    pub to_amount: Option<i64>,
+    pub pot_size_after: i64,
+    pub description: String,  // Human-readable: "PlayerA bets 50" etc.
+}
+
 // ─── Queries ─────────────────────────────────────────────────────────────────
 
 /// List all tournaments, newest first.
@@ -310,6 +352,177 @@ pub fn get_session_stats(conn: &Connection) -> Result<SessionStats, rusqlite::Er
         third_place: third,
         multiplier_dist,
     })
+}
+
+/// Load a hand with action timeline for replay visualization.
+pub fn load_hand_for_replay(
+    conn: &Connection,
+    hand_id: &str,
+) -> Result<Option<ReplayerState>, rusqlite::Error> {
+    // Load hand info
+    let hand_info = conn
+        .query_row(
+            r#"SELECT h.id, h.tournament_id, h.table_name, h.timestamp, h.level, 
+                      h.small_blind, h.big_blind
+               FROM hands h
+               WHERE h.id = ?1"#,
+            params![hand_id],
+            |row| {
+                Ok((
+                    row.get::<_, String>(0)?,
+                    row.get::<_, String>(1)?,
+                    row.get::<_, String>(2)?,
+                    row.get::<_, String>(3)?,
+                    row.get::<_, i64>(4)?,
+                    row.get::<_, i64>(5)?,
+                    row.get::<_, i64>(6)?,
+                ))
+            },
+        )
+        .ok();
+
+    let (hand_id_val, tournament_id, table_name, timestamp, level, sb, bb) =
+        match hand_info {
+            None => return Ok(None),
+            Some(h) => h,
+        };
+
+    // Load all players for this hand
+    let mut players_stmt = conn.prepare(
+        r#"SELECT seat_number, player_name, starting_stack, ending_stack, hole_cards
+           FROM hand_players hp
+           LEFT JOIN hole_cards hc ON hc.hand_id = hp.hand_id
+           WHERE hp.hand_id = ?1
+           ORDER BY hp.seat_number"#,
+    )?;
+
+    let mut players_map: std::collections::HashMap<String, ReplayerPlayer> = players_stmt
+        .query_map(params![hand_id], |row| {
+            let seat: i64 = row.get(0)?;
+            let name: String = row.get(1)?;
+            let starting: i64 = row.get(2)?;
+            let hole_card_str: Option<String> = row.get(4)?;
+
+            Ok((
+                name.clone(),
+                ReplayerPlayer {
+                    seat_number: seat,
+                    name,
+                    starting_stack: starting,
+                    current_stack: starting,
+                    hole_cards: hole_card_str,
+                    folded: false,
+                },
+            ))
+        })?
+        .collect::<Result<_, _>>()?;
+
+    let mut players_vec: Vec<ReplayerPlayer> = players_map.values().cloned().collect();
+    players_vec.sort_by_key(|p| p.seat_number);
+
+    let button_pos = 0; // V0.1 always 3-handed, SB=0, BB=1, BTN=2
+
+    // Load all actions for this hand
+    let mut actions_stmt = conn.prepare(
+        r#"SELECT street, action_index, player_name, action_type,
+                  amount, increment_amount, to_amount
+           FROM hand_actions
+           WHERE hand_id = ?1
+           ORDER BY street_order ASC, action_index ASC"#,
+    )?;
+
+    let raw_actions: Vec<(String, i64, String, String, Option<i64>, Option<i64>, Option<i64>)> =
+        actions_stmt
+            .query_map(params![hand_id], |row| {
+                Ok((
+                    row.get(0)?,
+                    row.get(1)?,
+                    row.get(2)?,
+                    row.get(3)?,
+                    row.get(4)?,
+                    row.get(5)?,
+                    row.get(6)?,
+                ))
+            })?
+            .collect::<Result<_, _>>()?;
+
+    // Build replayer steps (with stacks at each step)
+    let mut steps: Vec<ReplayerStep> = Vec::new();
+    let mut player_stacks = players_map.clone();
+
+    for (step_num, (street, action_idx, actor_name, action_type, amount, incr, to_amt)) in
+        raw_actions.iter().enumerate()
+    {
+        let description = format!(
+            "{} {} {} chips",
+            actor_name,
+            action_type,
+            amount.unwrap_or(0)
+        );
+
+        // Update player stack if bet/raise/call/fold
+        if let Some(player) = player_stacks.get_mut(actor_name) {
+            match action_type.as_str() {
+                "Fold" => {
+                    player.folded = true;
+                }
+                "AllIn" => {
+                    player.current_stack = 0;
+                }
+                _ => {
+                    if let Some(amt) = amount {
+                        player.current_stack -= amt;
+                    }
+                }
+            }
+        }
+
+        // Compute pot after this action (simplified: look at hand_players ending stacks)
+        let pot_size_after = players_vec
+            .iter()
+            .map(|p| p.starting_stack)
+            .sum::<i64>()
+            - player_stacks
+                .values()
+                .map(|p| p.current_stack)
+                .sum::<i64>();
+
+        steps.push(ReplayerStep {
+            step_number: step_num,
+            street: street.clone(),
+            actor_name: actor_name.clone(),
+            action_type: action_type.clone(),
+            amount: *amount,
+            increment_amount: *incr,
+            to_amount: *to_amt,
+            pot_size_after,
+            description,
+        });
+    }
+
+    // Update players vec with final state from steps
+    for (name, player) in player_stacks.iter() {
+        if let Some(p) = players_vec.iter_mut().find(|x| x.name == *name) {
+            p.current_stack = player.current_stack;
+            p.folded = player.folded;
+        }
+    }
+
+    Ok(Some(ReplayerState {
+        hand_id: hand_id_val,
+        tournament_id,
+        table_name,
+        timestamp,
+        level,
+        small_blind: sb,
+        big_blind: bb,
+        players: players_vec,
+        button_pos,
+        board: vec![], // Will be populated from board_cards table if we have it
+        current_step: 0,
+        total_steps: steps.len(),
+        steps,
+    }))
 }
 
 #[cfg(test)]
