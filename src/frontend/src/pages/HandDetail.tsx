@@ -111,6 +111,9 @@ export default function HandDetail() {
         <p>
           Tournoi {h.tournament_id} · Niveau {h.level} · {h.small_blind}/{h.big_blind} · {fmtTs(h.timestamp)}
         </p>
+              <button className="back-link" onClick={() => navigate(`/hands/${h.id}/replay`)} style={{ marginTop: '10px' }}>
+                ▶ Replay
+              </button>
       </div>
 
       <div className="stats-bar">

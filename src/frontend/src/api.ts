@@ -89,6 +89,43 @@ export interface SessionStats {
   multiplier_dist: [number, number][]
 }
 
+export interface ReplayerPlayer {
+  seat_number: number
+  name: string
+  starting_stack: number
+  current_stack: number
+  hole_cards: string | null
+  folded: boolean
+}
+
+export interface ReplayerStep {
+  step_number: number
+  street: string
+  actor_name: string
+  action_type: string
+  amount: number | null
+  increment_amount: number | null
+  to_amount: number | null
+  pot_size_after: number
+  description: string
+}
+
+export interface ReplayerState {
+  hand_id: string
+  tournament_id: string
+  table_name: string
+  timestamp: string
+  level: number
+  small_blind: number
+  big_blind: number
+  players: ReplayerPlayer[]
+  button_pos: number
+  board: string[]
+  current_step: number
+  total_steps: number
+  steps: ReplayerStep[]
+}
+
 export interface ImportResult {
   session_id: string
   total_hands: number
@@ -150,6 +187,9 @@ export const api = {
 
   getHand: (handId: string): Promise<HandDetail | null> =>
     invokeTauri('get_hand', { handId }),
+
+  getHandForReplay: (handId: string): Promise<ReplayerState | null> =>
+    invokeTauri('get_hand_for_replay', { handId }),
 
   getStats: (): Promise<SessionStats> =>
     invokeTauri('get_stats'),
