@@ -695,6 +695,25 @@ mod tests {
         assert_eq!(rows[0].hero_cards.as_deref(), Some("Jd Kd"));
 
         let detail = get_hand_detail(&conn, "H29").expect("detail query").expect("detail exists");
+
+            #[test]
+            fn load_hand_for_replay_returns_state() {
+                let conn = Connection::open_in_memory().expect("open");
+                seed(&conn);
+
+                let replay = load_hand_for_replay(&conn, "H29").expect("replay query");
+                assert!(replay.is_some(), "Hand should exist");
+
+                let state = replay.unwrap();
+                assert_eq!(state.hand_id, "H29");
+                assert_eq!(state.total_steps, 2);
+                assert_eq!(state.players.len(), 3);
+        
+                // Check first player
+                let p1 = &state.players[0];
+                assert_eq!(p1.seat_number, 1);
+                assert_eq!(p1.starting_stack, 600);
+            }
         assert_eq!(detail.actions.len(), 2);
     }
 }
