@@ -1,0 +1,189 @@
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830734156591792129-1-1781002086 - Holdem no limit (10/20) - 2026/06/09 10:48:06 UTC
+Table: 'Expresso(1124742943)#0' 3-max (real money) Seat #3 is the button
+Seat 1: MRZO (500)
+Seat 2: BelKeuColoss (500)
+Seat 3: elpadreww29 (500)
+*** ANTE/BLINDS ***
+MRZO posts small blind 10
+BelKeuColoss posts big blind 20
+Dealt to MRZO [Ah 3s]
+*** PRE-FLOP *** 
+elpadreww29 folds
+MRZO raises 20 to 40
+BelKeuColoss raises 20 to 60
+MRZO calls 20
+*** FLOP *** [2h 4h 6d]
+MRZO checks
+BelKeuColoss bets 120
+MRZO folds
+BelKeuColoss collected 240 from pot
+*** SUMMARY ***
+Total pot 240 | No rake
+Board: [2h 4h 6d]
+Seat 2: BelKeuColoss (big blind) won 240
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830734156591792129-2-1781002108 - Holdem no limit (10/20) - 2026/06/09 10:48:28 UTC
+Table: 'Expresso(1124742943)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (440)
+Seat 2: BelKeuColoss (560)
+Seat 3: elpadreww29 (500)
+*** ANTE/BLINDS ***
+BelKeuColoss posts small blind 10
+elpadreww29 posts big blind 20
+Dealt to MRZO [Tc Jd]
+*** PRE-FLOP *** 
+MRZO raises 20 to 40
+BelKeuColoss calls 30
+elpadreww29 calls 20
+*** FLOP *** [8c 2c 7c]
+BelKeuColoss checks
+elpadreww29 checks
+MRZO bets 42
+BelKeuColoss calls 42
+elpadreww29 folds
+*** TURN *** [8c 2c 7c][Kh]
+BelKeuColoss checks
+MRZO bets 71
+BelKeuColoss calls 71
+*** RIVER *** [8c 2c 7c Kh][Ac]
+BelKeuColoss checks
+MRZO checks
+*** SHOW DOWN ***
+BelKeuColoss shows [Ks 6s] (One pair : Kings)
+MRZO shows [Tc Jd] (Flush Ace high)
+MRZO collected 346 from pot
+*** SUMMARY ***
+Total pot 346 | No rake
+Board: [8c 2c 7c Kh Ac]
+Seat 1: MRZO (button) showed [Tc Jd] and won 346 with Flush Ace high
+Seat 2: BelKeuColoss (small blind) showed [Ks 6s] and lost with One pair : Kings
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830734156591792129-3-1781002138 - Holdem no limit (10/20) - 2026/06/09 10:48:58 UTC
+Table: 'Expresso(1124742943)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (633)
+Seat 2: BelKeuColoss (407)
+Seat 3: elpadreww29 (460)
+*** ANTE/BLINDS ***
+elpadreww29 posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [Ks Jh]
+*** PRE-FLOP *** 
+BelKeuColoss calls 20
+elpadreww29 calls 10
+MRZO checks
+*** FLOP *** [Qh Kh Ah]
+elpadreww29 checks
+MRZO checks
+BelKeuColoss bets 20
+elpadreww29 folds
+MRZO raises 76 to 96
+BelKeuColoss raises 76 to 172
+MRZO raises 441 to 613 and is all-in
+BelKeuColoss calls 215 and is all-in
+*** TURN *** [Qh Kh Ah][6d]
+*** RIVER *** [Qh Kh Ah 6d][5c]
+*** SHOW DOWN ***
+MRZO shows [Ks Jh] (One pair : Kings)
+BelKeuColoss shows [Kd Ad] (Two pairs : Aces and Kings)
+BelKeuColoss collected 834 from main pot
+MRZO collected 226 from side pot 1
+*** SUMMARY ***
+Total pot 1060 | No rake
+Board: [Qh Kh Ah 6d 5c]
+Seat 1: MRZO (big blind) showed [Ks Jh] and won 226 with One pair : Kings
+Seat 2: BelKeuColoss (button) showed [Kd Ad] and won 834 with Two pairs : Aces and Kings
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830734156591792129-4-1781002170 - Holdem no limit (10/20) - 2026/06/09 10:49:30 UTC
+Table: 'Expresso(1124742943)#0' 3-max (real money) Seat #3 is the button
+Seat 1: MRZO (226)
+Seat 2: BelKeuColoss (834)
+Seat 3: elpadreww29 (440)
+*** ANTE/BLINDS ***
+MRZO posts small blind 10
+BelKeuColoss posts big blind 20
+Dealt to MRZO [Qc 2s]
+*** PRE-FLOP *** 
+elpadreww29 folds
+MRZO folds
+BelKeuColoss collected 30 from pot
+*** SUMMARY ***
+Total pot 30 | No rake
+Seat 2: BelKeuColoss (big blind) won 30
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830734156591792129-5-1781002174 - Holdem no limit (15/30) - 2026/06/09 10:49:34 UTC
+Table: 'Expresso(1124742943)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (216)
+Seat 2: BelKeuColoss (844)
+Seat 3: elpadreww29 (440)
+*** ANTE/BLINDS ***
+BelKeuColoss posts small blind 15
+elpadreww29 posts big blind 30
+Dealt to MRZO [Td 5c]
+*** PRE-FLOP *** 
+MRZO folds
+BelKeuColoss calls 15
+elpadreww29 checks
+*** FLOP *** [8s 9h Tc]
+BelKeuColoss bets 30
+elpadreww29 calls 30
+*** TURN *** [8s 9h Tc][Qh]
+BelKeuColoss bets 30
+elpadreww29 folds
+BelKeuColoss collected 150 from pot
+*** SUMMARY ***
+Total pot 150 | No rake
+Board: [8s 9h Tc Qh]
+Seat 2: BelKeuColoss (small blind) won 150
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830734156591792129-6-1781002193 - Holdem no limit (15/30) - 2026/06/09 10:49:53 UTC
+Table: 'Expresso(1124742943)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (216)
+Seat 2: BelKeuColoss (904)
+Seat 3: elpadreww29 (380)
+*** ANTE/BLINDS ***
+elpadreww29 posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [Jd 4h]
+*** PRE-FLOP *** 
+BelKeuColoss calls 30
+elpadreww29 raises 350 to 380 and is all-in
+MRZO folds
+BelKeuColoss folds
+elpadreww29 collected 440 from pot
+*** SUMMARY ***
+Total pot 440 | No rake
+Seat 3: elpadreww29 (small blind) won 440
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830734156591792129-7-1781002205 - Holdem no limit (15/30) - 2026/06/09 10:50:05 UTC
+Table: 'Expresso(1124742943)#0' 3-max (real money) Seat #3 is the button
+Seat 1: MRZO (186)
+Seat 2: BelKeuColoss (874)
+Seat 3: elpadreww29 (440)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+BelKeuColoss posts big blind 30
+Dealt to MRZO [3s Ac]
+*** PRE-FLOP *** 
+elpadreww29 folds
+MRZO raises 156 to 186 and is all-in
+BelKeuColoss calls 156
+*** FLOP *** [9d 5h 7s]
+*** TURN *** [9d 5h 7s][Qd]
+*** RIVER *** [9d 5h 7s Qd][Jd]
+*** SHOW DOWN ***
+MRZO shows [3s Ac] (High card : Ace)
+BelKeuColoss shows [7c 7d] (Trips of 7)
+BelKeuColoss collected 372 from pot
+*** SUMMARY ***
+Total pot 372 | No rake
+Board: [9d 5h 7s Qd Jd]
+Seat 1: MRZO (small blind) showed [3s Ac] and lost with High card : Ace
+Seat 2: BelKeuColoss (big blind) showed [7c 7d] and won 372 with Trips of 7
+
+

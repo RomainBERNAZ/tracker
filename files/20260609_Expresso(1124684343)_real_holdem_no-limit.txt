@@ -1,0 +1,428 @@
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830482471508246529-1-1780995207 - Holdem no limit (10/20) - 2026/06/09 08:53:27 UTC
+Table: 'Expresso(1124684343)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MyDaughters (500)
+Seat 2: ternascoarag (500)
+Seat 3: MRZO (500)
+*** ANTE/BLINDS ***
+MRZO posts small blind 10
+MyDaughters posts big blind 20
+Dealt to MRZO [Ad Td]
+*** PRE-FLOP *** 
+ternascoarag folds
+MRZO raises 30 to 50
+MyDaughters folds
+MRZO collected 70 from pot
+*** SUMMARY ***
+Total pot 70 | No rake
+Seat 3: MRZO (small blind) won 70
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830482471508246529-2-1780995216 - Holdem no limit (10/20) - 2026/06/09 08:53:36 UTC
+Table: 'Expresso(1124684343)#0' 3-max (real money) Seat #3 is the button
+Seat 1: MyDaughters (480)
+Seat 2: ternascoarag (500)
+Seat 3: MRZO (520)
+*** ANTE/BLINDS ***
+MyDaughters posts small blind 10
+ternascoarag posts big blind 20
+Dealt to MRZO [Kd Qc]
+*** PRE-FLOP *** 
+MRZO raises 20 to 40
+MyDaughters folds
+ternascoarag folds
+MRZO collected 70 from pot
+*** SUMMARY ***
+Total pot 70 | No rake
+Seat 3: MRZO (button) won 70
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830482471508246529-3-1780995227 - Holdem no limit (10/20) - 2026/06/09 08:53:47 UTC
+Table: 'Expresso(1124684343)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MyDaughters (470)
+Seat 2: ternascoarag (480)
+Seat 3: MRZO (550)
+*** ANTE/BLINDS ***
+ternascoarag posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [5c Jh]
+*** PRE-FLOP *** 
+MyDaughters folds
+ternascoarag folds
+MRZO collected 30 from pot
+*** SUMMARY ***
+Total pot 30 | No rake
+Seat 3: MRZO (big blind) won 30
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830482471508246529-4-1780995232 - Holdem no limit (10/20) - 2026/06/09 08:53:52 UTC
+Table: 'Expresso(1124684343)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MyDaughters (470)
+Seat 2: ternascoarag (470)
+Seat 3: MRZO (560)
+*** ANTE/BLINDS ***
+MRZO posts small blind 10
+MyDaughters posts big blind 20
+Dealt to MRZO [8c 7d]
+*** PRE-FLOP *** 
+ternascoarag raises 20 to 40
+MRZO folds
+MyDaughters folds
+ternascoarag collected 70 from pot
+*** SUMMARY ***
+Total pot 70 | No rake
+Seat 2: ternascoarag (button) won 70
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830482471508246529-5-1780995250 - Holdem no limit (10/20) - 2026/06/09 08:54:10 UTC
+Table: 'Expresso(1124684343)#0' 3-max (real money) Seat #3 is the button
+Seat 1: MyDaughters (450)
+Seat 2: ternascoarag (500)
+Seat 3: MRZO (550)
+*** ANTE/BLINDS ***
+MyDaughters posts small blind 10
+ternascoarag posts big blind 20
+Dealt to MRZO [2h 3c]
+*** PRE-FLOP *** 
+MRZO folds
+MyDaughters folds
+ternascoarag collected 30 from pot
+*** SUMMARY ***
+Total pot 30 | No rake
+Seat 2: ternascoarag (big blind) won 30
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830482471508246529-6-1780995257 - Holdem no limit (10/20) - 2026/06/09 08:54:17 UTC
+Table: 'Expresso(1124684343)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MyDaughters (440)
+Seat 2: ternascoarag (510)
+Seat 3: MRZO (550)
+*** ANTE/BLINDS ***
+ternascoarag posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [Kh Ad]
+*** PRE-FLOP *** 
+MyDaughters folds
+ternascoarag folds
+MRZO collected 30 from pot
+*** SUMMARY ***
+Total pot 30 | No rake
+Seat 3: MRZO (big blind) won 30
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830482471508246529-7-1780995264 - Holdem no limit (10/20) - 2026/06/09 08:54:24 UTC
+Table: 'Expresso(1124684343)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MyDaughters (440)
+Seat 2: ternascoarag (500)
+Seat 3: MRZO (560)
+*** ANTE/BLINDS ***
+MRZO posts small blind 10
+MyDaughters posts big blind 20
+Dealt to MRZO [4h 6c]
+*** PRE-FLOP *** 
+ternascoarag folds
+MRZO folds
+MyDaughters collected 30 from pot
+*** SUMMARY ***
+Total pot 30 | No rake
+Seat 1: MyDaughters (big blind) won 30
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830482471508246529-8-1780995269 - Holdem no limit (10/20) - 2026/06/09 08:54:29 UTC
+Table: 'Expresso(1124684343)#0' 3-max (real money) Seat #3 is the button
+Seat 1: MyDaughters (450)
+Seat 2: ternascoarag (500)
+Seat 3: MRZO (550)
+*** ANTE/BLINDS ***
+MyDaughters posts small blind 10
+ternascoarag posts big blind 20
+Dealt to MRZO [9s 4s]
+*** PRE-FLOP *** 
+MRZO folds
+MyDaughters folds
+ternascoarag collected 30 from pot
+*** SUMMARY ***
+Total pot 30 | No rake
+Seat 2: ternascoarag (big blind) won 30
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830482471508246529-9-1780995279 - Holdem no limit (10/20) - 2026/06/09 08:54:39 UTC
+Table: 'Expresso(1124684343)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MyDaughters (440)
+Seat 2: ternascoarag (510)
+Seat 3: MRZO (550)
+*** ANTE/BLINDS ***
+ternascoarag posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [3s Qc]
+*** PRE-FLOP *** 
+MyDaughters folds
+ternascoarag folds
+MRZO collected 30 from pot
+*** SUMMARY ***
+Total pot 30 | No rake
+Seat 3: MRZO (big blind) won 30
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830482471508246529-10-1780995286 - Holdem no limit (10/20) - 2026/06/09 08:54:46 UTC
+Table: 'Expresso(1124684343)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MyDaughters (440)
+Seat 2: ternascoarag (500)
+Seat 3: MRZO (560)
+*** ANTE/BLINDS ***
+MRZO posts small blind 10
+MyDaughters posts big blind 20
+Dealt to MRZO [2s 3c]
+*** PRE-FLOP *** 
+ternascoarag raises 20 to 40
+MRZO folds
+MyDaughters folds
+ternascoarag collected 70 from pot
+*** SUMMARY ***
+Total pot 70 | No rake
+Seat 2: ternascoarag (button) won 70
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830482471508246529-11-1780995297 - Holdem no limit (15/30) - 2026/06/09 08:54:57 UTC
+Table: 'Expresso(1124684343)#0' 3-max (real money) Seat #3 is the button
+Seat 1: MyDaughters (420)
+Seat 2: ternascoarag (530)
+Seat 3: MRZO (550)
+*** ANTE/BLINDS ***
+MyDaughters posts small blind 15
+ternascoarag posts big blind 30
+Dealt to MRZO [4s 8c]
+*** PRE-FLOP *** 
+MRZO folds
+MyDaughters folds
+ternascoarag collected 45 from pot
+*** SUMMARY ***
+Total pot 45 | No rake
+Seat 2: ternascoarag (big blind) won 45
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830482471508246529-12-1780995303 - Holdem no limit (15/30) - 2026/06/09 08:55:03 UTC
+Table: 'Expresso(1124684343)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MyDaughters (405)
+Seat 2: ternascoarag (545)
+Seat 3: MRZO (550)
+*** ANTE/BLINDS ***
+ternascoarag posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [Ks 5s]
+*** PRE-FLOP *** 
+MyDaughters raises 30 to 60
+ternascoarag folds
+MRZO calls 30
+*** FLOP *** [4s Jh Tc]
+MRZO checks
+MyDaughters bets 47
+MRZO folds
+MyDaughters collected 182 from pot
+*** SUMMARY ***
+Total pot 182 | No rake
+Board: [4s Jh Tc]
+Seat 1: MyDaughters (button) won 182
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830482471508246529-13-1780995329 - Holdem no limit (15/30) - 2026/06/09 08:55:29 UTC
+Table: 'Expresso(1124684343)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MyDaughters (480)
+Seat 2: ternascoarag (530)
+Seat 3: MRZO (490)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+MyDaughters posts big blind 30
+Dealt to MRZO [2c 5c]
+*** PRE-FLOP *** 
+ternascoarag folds
+MRZO folds
+MyDaughters collected 45 from pot
+*** SUMMARY ***
+Total pot 45 | No rake
+Seat 1: MyDaughters (big blind) won 45
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830482471508246529-14-1780995343 - Holdem no limit (15/30) - 2026/06/09 08:55:43 UTC
+Table: 'Expresso(1124684343)#0' 3-max (real money) Seat #3 is the button
+Seat 1: MyDaughters (495)
+Seat 2: ternascoarag (530)
+Seat 3: MRZO (475)
+*** ANTE/BLINDS ***
+MyDaughters posts small blind 15
+ternascoarag posts big blind 30
+Dealt to MRZO [Jh Qc]
+*** PRE-FLOP *** 
+MRZO raises 53 to 83
+MyDaughters folds
+ternascoarag folds
+MRZO collected 128 from pot
+*** SUMMARY ***
+Total pot 128 | No rake
+Seat 3: MRZO (button) won 128
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830482471508246529-15-1780995356 - Holdem no limit (15/30) - 2026/06/09 08:55:56 UTC
+Table: 'Expresso(1124684343)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MyDaughters (480)
+Seat 2: ternascoarag (500)
+Seat 3: MRZO (520)
+*** ANTE/BLINDS ***
+ternascoarag posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [Kd Qc]
+*** PRE-FLOP *** 
+MyDaughters folds
+ternascoarag calls 15
+MRZO raises 490 to 520 and is all-in
+ternascoarag folds
+MRZO collected 550 from pot
+*** SUMMARY ***
+Total pot 550 | No rake
+Seat 3: MRZO (big blind) won 550
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830482471508246529-16-1780995366 - Holdem no limit (15/30) - 2026/06/09 08:56:06 UTC
+Table: 'Expresso(1124684343)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MyDaughters (480)
+Seat 2: ternascoarag (470)
+Seat 3: MRZO (550)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+MyDaughters posts big blind 30
+Dealt to MRZO [Jc 8c]
+*** PRE-FLOP *** 
+ternascoarag raises 440 to 470 and is all-in
+MRZO folds
+MyDaughters folds
+ternascoarag collected 515 from pot
+*** SUMMARY ***
+Total pot 515 | No rake
+Seat 2: ternascoarag (button) won 515
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830482471508246529-17-1780995377 - Holdem no limit (15/30) - 2026/06/09 08:56:17 UTC
+Table: 'Expresso(1124684343)#0' 3-max (real money) Seat #3 is the button
+Seat 1: MyDaughters (450)
+Seat 2: ternascoarag (515)
+Seat 3: MRZO (535)
+*** ANTE/BLINDS ***
+MyDaughters posts small blind 15
+ternascoarag posts big blind 30
+Dealt to MRZO [Js 4s]
+*** PRE-FLOP *** 
+MRZO folds
+MyDaughters calls 15
+ternascoarag checks
+*** FLOP *** [4h Tc 6h]
+MyDaughters checks
+ternascoarag checks
+*** TURN *** [4h Tc 6h][6d]
+MyDaughters checks
+ternascoarag checks
+*** RIVER *** [4h Tc 6h 6d][2h]
+MyDaughters checks
+ternascoarag checks
+*** SHOW DOWN ***
+MyDaughters shows [9d Jh] (One pair : 6)
+ternascoarag shows [9s Kh] (One pair : 6)
+ternascoarag collected 60 from pot
+*** SUMMARY ***
+Total pot 60 | No rake
+Board: [4h Tc 6h 6d 2h]
+Seat 1: MyDaughters (small blind) showed [9d Jh] and lost with One pair : 6
+Seat 2: ternascoarag (big blind) showed [9s Kh] and won 60 with One pair : 6
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830482471508246529-18-1780995406 - Holdem no limit (20/40) - 2026/06/09 08:56:46 UTC
+Table: 'Expresso(1124684343)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MyDaughters (420)
+Seat 2: ternascoarag (545)
+Seat 3: MRZO (535)
+*** ANTE/BLINDS ***
+ternascoarag posts small blind 20
+MRZO posts big blind 40
+Dealt to MRZO [4d 5d]
+*** PRE-FLOP *** 
+MyDaughters folds
+ternascoarag folds
+MRZO collected 60 from pot
+*** SUMMARY ***
+Total pot 60 | No rake
+Seat 3: MRZO (big blind) won 60
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830482471508246529-19-1780995412 - Holdem no limit (20/40) - 2026/06/09 08:56:52 UTC
+Table: 'Expresso(1124684343)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MyDaughters (420)
+Seat 2: ternascoarag (525)
+Seat 3: MRZO (555)
+*** ANTE/BLINDS ***
+MRZO posts small blind 20
+MyDaughters posts big blind 40
+Dealt to MRZO [Ah Jc]
+*** PRE-FLOP *** 
+ternascoarag folds
+MRZO raises 515 to 555 and is all-in
+MyDaughters folds
+MRZO collected 595 from pot
+*** SUMMARY ***
+Total pot 595 | No rake
+Seat 3: MRZO (small blind) won 595
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830482471508246529-20-1780995420 - Holdem no limit (20/40) - 2026/06/09 08:57:00 UTC
+Table: 'Expresso(1124684343)#0' 3-max (real money) Seat #3 is the button
+Seat 1: MyDaughters (380)
+Seat 2: ternascoarag (525)
+Seat 3: MRZO (595)
+*** ANTE/BLINDS ***
+MyDaughters posts small blind 20
+ternascoarag posts big blind 40
+Dealt to MRZO [Qh Js]
+*** PRE-FLOP *** 
+MRZO raises 40 to 80
+MyDaughters raises 300 to 380 and is all-in
+ternascoarag folds
+MRZO raises 215 to 595 and is all-in
+*** FLOP *** [9s 2c 8s]
+*** TURN *** [9s 2c 8s][2h]
+*** RIVER *** [9s 2c 8s 2h][8h]
+*** SHOW DOWN ***
+MyDaughters shows [2d Ad] (Full of 2 and 8)
+MRZO shows [Qh Js] (Two pairs : 8 and 2)
+MRZO collected 215 from side pot 1
+MyDaughters collected 800 from main pot
+*** SUMMARY ***
+Total pot 1015 | No rake
+Board: [9s 2c 8s 2h 8h]
+Seat 1: MyDaughters (small blind) showed [2d Ad] and won 800 with Full of 2 and 8
+Seat 3: MRZO (button) showed [Qh Js] and won 215 with Two pairs : 8 and 2
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830482471508246529-21-1780995438 - Holdem no limit (20/40) - 2026/06/09 08:57:18 UTC
+Table: 'Expresso(1124684343)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MyDaughters (800)
+Seat 2: ternascoarag (485)
+Seat 3: MRZO (215)
+*** ANTE/BLINDS ***
+ternascoarag posts small blind 20
+MRZO posts big blind 40
+Dealt to MRZO [Qd 3d]
+*** PRE-FLOP *** 
+MyDaughters raises 760 to 800 and is all-in
+ternascoarag folds
+MRZO calls 175 and is all-in
+*** FLOP *** [4s 9s 9c]
+*** TURN *** [4s 9s 9c][Ad]
+*** RIVER *** [4s 9s 9c Ad][6h]
+*** SHOW DOWN ***
+MRZO shows [Qd 3d] (One pair : 9)
+MyDaughters shows [2s 2c] (Two pairs : 9 and 2)
+MyDaughters collected 1035 from pot
+*** SUMMARY ***
+Total pot 1035 | No rake
+Board: [4s 9s 9c Ad 6h]
+Seat 1: MyDaughters (button) showed [2s 2c] and won 1035 with Two pairs : 9 and 2
+Seat 3: MRZO (big blind) showed [Qd 3d] and lost with One pair : 9
+
+

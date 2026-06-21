@@ -1,0 +1,503 @@
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830463659551490049-1-1780994268 - Holdem no limit (10/20) - 2026/06/09 08:37:48 UTC
+Table: 'Expresso(1124679963)#0' 3-max (real money) Seat #1 is the button
+Seat 1: Sbacallao (500)
+Seat 2: RoyalKing811 (500)
+Seat 3: MRZO (500)
+*** ANTE/BLINDS ***
+RoyalKing811 posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [Kd 5h]
+*** PRE-FLOP *** 
+Sbacallao calls 20
+RoyalKing811 raises 30 to 50
+MRZO folds
+Sbacallao calls 30
+*** FLOP *** [Jh 3d Jc]
+RoyalKing811 checks
+Sbacallao checks
+*** TURN *** [Jh 3d Jc][Qc]
+RoyalKing811 bets 42
+Sbacallao calls 42
+*** RIVER *** [Jh 3d Jc Qc][9h]
+RoyalKing811 bets 133
+Sbacallao calls 133
+*** SHOW DOWN ***
+Sbacallao shows [Qd 7c] (Two pairs : Queens and Jacks)
+RoyalKing811 shows [As Jd] (Trips of Jacks)
+RoyalKing811 collected 470 from pot
+*** SUMMARY ***
+Total pot 470 | No rake
+Board: [Jh 3d Jc Qc 9h]
+Seat 1: Sbacallao (button) showed [Qd 7c] and lost with Two pairs : Queens and Jacks
+Seat 2: RoyalKing811 (small blind) showed [As Jd] and won 470 with Trips of Jacks
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830463659551490049-2-1780994297 - Holdem no limit (10/20) - 2026/06/09 08:38:17 UTC
+Table: 'Expresso(1124679963)#0' 3-max (real money) Seat #2 is the button
+Seat 1: Sbacallao (275)
+Seat 2: RoyalKing811 (745)
+Seat 3: MRZO (480)
+*** ANTE/BLINDS ***
+MRZO posts small blind 10
+Sbacallao posts big blind 20
+Dealt to MRZO [4s 5c]
+*** PRE-FLOP *** 
+RoyalKing811 folds
+MRZO folds
+Sbacallao collected 30 from pot
+*** SUMMARY ***
+Total pot 30 | No rake
+Seat 1: Sbacallao (big blind) won 30
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830463659551490049-3-1780994305 - Holdem no limit (10/20) - 2026/06/09 08:38:25 UTC
+Table: 'Expresso(1124679963)#0' 3-max (real money) Seat #3 is the button
+Seat 1: Sbacallao (285)
+Seat 2: RoyalKing811 (745)
+Seat 3: MRZO (470)
+*** ANTE/BLINDS ***
+Sbacallao posts small blind 10
+RoyalKing811 posts big blind 20
+Dealt to MRZO [7s Kc]
+*** PRE-FLOP *** 
+MRZO folds
+Sbacallao raises 40 to 60
+RoyalKing811 folds
+Sbacallao collected 80 from pot
+*** SUMMARY ***
+Total pot 80 | No rake
+Seat 1: Sbacallao (small blind) won 80
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830463659551490049-4-1780994313 - Holdem no limit (10/20) - 2026/06/09 08:38:33 UTC
+Table: 'Expresso(1124679963)#0' 3-max (real money) Seat #1 is the button
+Seat 1: Sbacallao (305)
+Seat 2: RoyalKing811 (725)
+Seat 3: MRZO (470)
+*** ANTE/BLINDS ***
+RoyalKing811 posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [9d 9c]
+*** PRE-FLOP *** 
+Sbacallao calls 20
+RoyalKing811 folds
+MRZO raises 450 to 470 and is all-in
+Sbacallao folds
+MRZO collected 500 from pot
+*** SUMMARY ***
+Total pot 500 | No rake
+Seat 3: MRZO (big blind) won 500
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830463659551490049-5-1780994321 - Holdem no limit (10/20) - 2026/06/09 08:38:41 UTC
+Table: 'Expresso(1124679963)#0' 3-max (real money) Seat #2 is the button
+Seat 1: Sbacallao (285)
+Seat 2: RoyalKing811 (715)
+Seat 3: MRZO (500)
+*** ANTE/BLINDS ***
+MRZO posts small blind 10
+Sbacallao posts big blind 20
+Dealt to MRZO [Js 6d]
+*** PRE-FLOP *** 
+RoyalKing811 folds
+MRZO folds
+Sbacallao collected 30 from pot
+*** SUMMARY ***
+Total pot 30 | No rake
+Seat 1: Sbacallao (big blind) won 30
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830463659551490049-6-1780994326 - Holdem no limit (10/20) - 2026/06/09 08:38:46 UTC
+Table: 'Expresso(1124679963)#0' 3-max (real money) Seat #3 is the button
+Seat 1: Sbacallao (295)
+Seat 2: RoyalKing811 (715)
+Seat 3: MRZO (490)
+*** ANTE/BLINDS ***
+Sbacallao posts small blind 10
+RoyalKing811 posts big blind 20
+Dealt to MRZO [Jd 6c]
+*** PRE-FLOP *** 
+MRZO folds
+Sbacallao raises 20 to 40
+RoyalKing811 folds
+Sbacallao collected 60 from pot
+*** SUMMARY ***
+Total pot 60 | No rake
+Seat 1: Sbacallao (small blind) won 60
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830463659551490049-7-1780994334 - Holdem no limit (10/20) - 2026/06/09 08:38:54 UTC
+Table: 'Expresso(1124679963)#0' 3-max (real money) Seat #1 is the button
+Seat 1: Sbacallao (315)
+Seat 2: RoyalKing811 (695)
+Seat 3: MRZO (490)
+*** ANTE/BLINDS ***
+RoyalKing811 posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [Jh 3d]
+*** PRE-FLOP *** 
+Sbacallao calls 20
+RoyalKing811 calls 10
+MRZO checks
+*** FLOP *** [7c 6s 6c]
+RoyalKing811 checks
+MRZO checks
+Sbacallao checks
+*** TURN *** [7c 6s 6c][Ts]
+RoyalKing811 checks
+MRZO checks
+Sbacallao checks
+*** RIVER *** [7c 6s 6c Ts][7h]
+RoyalKing811 checks
+MRZO checks
+Sbacallao checks
+*** SHOW DOWN ***
+Sbacallao shows [4h 8h] (Two pairs : 7 and 6)
+RoyalKing811 shows [Js 9d] (Two pairs : 7 and 6)
+MRZO shows [Jh 3d] (Two pairs : 7 and 6)
+MRZO collected 30 from pot
+RoyalKing811 collected 30 from pot
+*** SUMMARY ***
+Total pot 60 | No rake
+Board: [7c 6s 6c Ts 7h]
+Seat 1: Sbacallao (button) showed [4h 8h] and lost with Two pairs : 7 and 6
+Seat 2: RoyalKing811 (small blind) showed [Js 9d] and won 30 with Two pairs : 7 and 6
+Seat 3: MRZO (big blind) showed [Jh 3d] and won 30 with Two pairs : 7 and 6
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830463659551490049-8-1780994358 - Holdem no limit (15/30) - 2026/06/09 08:39:18 UTC
+Table: 'Expresso(1124679963)#0' 3-max (real money) Seat #2 is the button
+Seat 1: Sbacallao (295)
+Seat 2: RoyalKing811 (705)
+Seat 3: MRZO (500)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+Sbacallao posts big blind 30
+Dealt to MRZO [3d Ad]
+*** PRE-FLOP *** 
+RoyalKing811 folds
+MRZO raises 470 to 500 and is all-in
+Sbacallao folds
+MRZO collected 530 from pot
+*** SUMMARY ***
+Total pot 530 | No rake
+Seat 3: MRZO (small blind) won 530
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830463659551490049-9-1780994365 - Holdem no limit (15/30) - 2026/06/09 08:39:25 UTC
+Table: 'Expresso(1124679963)#0' 3-max (real money) Seat #3 is the button
+Seat 1: Sbacallao (265)
+Seat 2: RoyalKing811 (705)
+Seat 3: MRZO (530)
+*** ANTE/BLINDS ***
+Sbacallao posts small blind 15
+RoyalKing811 posts big blind 30
+Dealt to MRZO [5h Ts]
+*** PRE-FLOP *** 
+MRZO folds
+Sbacallao raises 60 to 90
+RoyalKing811 folds
+Sbacallao collected 120 from pot
+*** SUMMARY ***
+Total pot 120 | No rake
+Seat 1: Sbacallao (small blind) won 120
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830463659551490049-10-1780994376 - Holdem no limit (15/30) - 2026/06/09 08:39:36 UTC
+Table: 'Expresso(1124679963)#0' 3-max (real money) Seat #1 is the button
+Seat 1: Sbacallao (295)
+Seat 2: RoyalKing811 (675)
+Seat 3: MRZO (530)
+*** ANTE/BLINDS ***
+RoyalKing811 posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [8c Th]
+*** PRE-FLOP *** 
+Sbacallao folds
+RoyalKing811 raises 30 to 60
+MRZO calls 30
+*** FLOP *** [Td Qs Kd]
+RoyalKing811 bets 42
+MRZO folds
+RoyalKing811 collected 162 from pot
+*** SUMMARY ***
+Total pot 162 | No rake
+Board: [Td Qs Kd]
+Seat 2: RoyalKing811 (small blind) won 162
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830463659551490049-11-1780994391 - Holdem no limit (15/30) - 2026/06/09 08:39:51 UTC
+Table: 'Expresso(1124679963)#0' 3-max (real money) Seat #2 is the button
+Seat 1: Sbacallao (295)
+Seat 2: RoyalKing811 (735)
+Seat 3: MRZO (470)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+Sbacallao posts big blind 30
+Dealt to MRZO [7d 9h]
+*** PRE-FLOP *** 
+RoyalKing811 raises 30 to 60
+MRZO folds
+Sbacallao folds
+RoyalKing811 collected 105 from pot
+*** SUMMARY ***
+Total pot 105 | No rake
+Seat 2: RoyalKing811 (button) won 105
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830463659551490049-12-1780994397 - Holdem no limit (15/30) - 2026/06/09 08:39:57 UTC
+Table: 'Expresso(1124679963)#0' 3-max (real money) Seat #3 is the button
+Seat 1: Sbacallao (265)
+Seat 2: RoyalKing811 (780)
+Seat 3: MRZO (455)
+*** ANTE/BLINDS ***
+Sbacallao posts small blind 15
+RoyalKing811 posts big blind 30
+Dealt to MRZO [6h As]
+*** PRE-FLOP *** 
+MRZO raises 30 to 60
+Sbacallao calls 45
+RoyalKing811 calls 30
+*** FLOP *** [Ac 9d 8h]
+Sbacallao checks
+RoyalKing811 checks
+MRZO bets 117
+Sbacallao folds
+RoyalKing811 folds
+MRZO collected 297 from pot
+*** SUMMARY ***
+Total pot 297 | No rake
+Board: [Ac 9d 8h]
+Seat 3: MRZO (button) won 297
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830463659551490049-13-1780994417 - Holdem no limit (15/30) - 2026/06/09 08:40:17 UTC
+Table: 'Expresso(1124679963)#0' 3-max (real money) Seat #1 is the button
+Seat 1: Sbacallao (205)
+Seat 2: RoyalKing811 (720)
+Seat 3: MRZO (575)
+*** ANTE/BLINDS ***
+RoyalKing811 posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [4s 5s]
+*** PRE-FLOP *** 
+Sbacallao raises 75 to 105
+RoyalKing811 folds
+MRZO folds
+Sbacallao collected 150 from pot
+*** SUMMARY ***
+Total pot 150 | No rake
+Seat 1: Sbacallao (button) won 150
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830463659551490049-14-1780994431 - Holdem no limit (15/30) - 2026/06/09 08:40:31 UTC
+Table: 'Expresso(1124679963)#0' 3-max (real money) Seat #2 is the button
+Seat 1: Sbacallao (250)
+Seat 2: RoyalKing811 (705)
+Seat 3: MRZO (545)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+Sbacallao posts big blind 30
+Dealt to MRZO [7s 6d]
+*** PRE-FLOP *** 
+RoyalKing811 folds
+MRZO calls 15
+Sbacallao raises 60 to 90
+MRZO folds
+Sbacallao collected 120 from pot
+*** SUMMARY ***
+Total pot 120 | No rake
+Seat 1: Sbacallao (big blind) won 120
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830463659551490049-15-1780994445 - Holdem no limit (15/30) - 2026/06/09 08:40:45 UTC
+Table: 'Expresso(1124679963)#0' 3-max (real money) Seat #3 is the button
+Seat 1: Sbacallao (280)
+Seat 2: RoyalKing811 (705)
+Seat 3: MRZO (515)
+*** ANTE/BLINDS ***
+Sbacallao posts small blind 15
+RoyalKing811 posts big blind 30
+Dealt to MRZO [2d 8s]
+*** PRE-FLOP *** 
+MRZO folds
+Sbacallao raises 30 to 60
+RoyalKing811 calls 30
+*** FLOP *** [2s 4h Jh]
+Sbacallao bets 220 and is all-in
+RoyalKing811 folds
+Sbacallao collected 340 from pot
+*** SUMMARY ***
+Total pot 340 | No rake
+Board: [2s 4h Jh]
+Seat 1: Sbacallao (small blind) won 340
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830463659551490049-16-1780994473 - Holdem no limit (20/40) - 2026/06/09 08:41:13 UTC
+Table: 'Expresso(1124679963)#0' 3-max (real money) Seat #1 is the button
+Seat 1: Sbacallao (340)
+Seat 2: RoyalKing811 (645)
+Seat 3: MRZO (515)
+*** ANTE/BLINDS ***
+RoyalKing811 posts small blind 20
+MRZO posts big blind 40
+Dealt to MRZO [4s As]
+*** PRE-FLOP *** 
+Sbacallao folds
+RoyalKing811 calls 20
+MRZO raises 475 to 515 and is all-in
+RoyalKing811 folds
+MRZO collected 555 from pot
+*** SUMMARY ***
+Total pot 555 | No rake
+Seat 3: MRZO (big blind) won 555
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830463659551490049-17-1780994499 - Holdem no limit (20/40) - 2026/06/09 08:41:39 UTC
+Table: 'Expresso(1124679963)#0' 3-max (real money) Seat #2 is the button
+Seat 1: Sbacallao (340)
+Seat 2: RoyalKing811 (605)
+Seat 3: MRZO (555)
+*** ANTE/BLINDS ***
+MRZO posts small blind 20
+Sbacallao posts big blind 40
+Dealt to MRZO [Jc Qd]
+*** PRE-FLOP *** 
+RoyalKing811 folds
+MRZO raises 515 to 555 and is all-in
+Sbacallao folds
+MRZO collected 595 from pot
+*** SUMMARY ***
+Total pot 595 | No rake
+Seat 3: MRZO (small blind) won 595
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830463659551490049-18-1780994507 - Holdem no limit (20/40) - 2026/06/09 08:41:47 UTC
+Table: 'Expresso(1124679963)#0' 3-max (real money) Seat #3 is the button
+Seat 1: Sbacallao (300)
+Seat 2: RoyalKing811 (605)
+Seat 3: MRZO (595)
+*** ANTE/BLINDS ***
+Sbacallao posts small blind 20
+RoyalKing811 posts big blind 40
+Dealt to MRZO [Ah 5h]
+*** PRE-FLOP *** 
+MRZO raises 555 to 595 and is all-in
+Sbacallao calls 280 and is all-in
+RoyalKing811 folds
+*** FLOP *** [5s 3c 2s]
+*** TURN *** [5s 3c 2s][4c]
+*** RIVER *** [5s 3c 2s 4c][Js]
+*** SHOW DOWN ***
+Sbacallao shows [Ad Qh] (Straight 5 high)
+MRZO shows [Ah 5h] (Straight 5 high)
+MRZO collected 615 from side pot 1
+Sbacallao collected 320 from main pot
+*** SUMMARY ***
+Total pot 935 | No rake
+Board: [5s 3c 2s 4c Js]
+Seat 1: Sbacallao (small blind) showed [Ad Qh] and won 320 with Straight 5 high
+Seat 3: MRZO (button) showed [Ah 5h] and won 615 with Straight 5 high
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830463659551490049-19-1780994522 - Holdem no limit (20/40) - 2026/06/09 08:42:02 UTC
+Table: 'Expresso(1124679963)#0' 3-max (real money) Seat #1 is the button
+Seat 1: Sbacallao (320)
+Seat 2: RoyalKing811 (565)
+Seat 3: MRZO (615)
+*** ANTE/BLINDS ***
+RoyalKing811 posts small blind 20
+MRZO posts big blind 40
+Dealt to MRZO [6c 2d]
+*** PRE-FLOP *** 
+Sbacallao raises 40 to 80
+RoyalKing811 raises 120 to 200
+MRZO folds
+Sbacallao calls 120
+*** FLOP *** [6h 4d 4c]
+RoyalKing811 bets 365 and is all-in
+Sbacallao calls 120 and is all-in
+*** TURN *** [6h 4d 4c][Qh]
+*** RIVER *** [6h 4d 4c Qh][8c]
+*** SHOW DOWN ***
+Sbacallao shows [8s 8d] (Full of 8 and 4)
+RoyalKing811 shows [Kd Ad] (One pair : 4)
+RoyalKing811 collected 245 from side pot 1
+Sbacallao collected 680 from main pot
+*** SUMMARY ***
+Total pot 925 | No rake
+Board: [6h 4d 4c Qh 8c]
+Seat 1: Sbacallao (button) showed [8s 8d] and won 680 with Full of 8 and 4
+Seat 2: RoyalKing811 (small blind) showed [Kd Ad] and won 245 with One pair : 4
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830463659551490049-20-1780994562 - Holdem no limit (30/60) - 2026/06/09 08:42:42 UTC
+Table: 'Expresso(1124679963)#0' 3-max (real money) Seat #2 is the button
+Seat 1: Sbacallao (680)
+Seat 2: RoyalKing811 (245)
+Seat 3: MRZO (575)
+*** ANTE/BLINDS ***
+MRZO posts small blind 30
+Sbacallao posts big blind 60
+Dealt to MRZO [7c 7h]
+*** PRE-FLOP *** 
+RoyalKing811 raises 185 to 245 and is all-in
+MRZO raises 330 to 575 and is all-in
+Sbacallao calls 515
+*** FLOP *** [Qd 2h Qc]
+*** TURN *** [Qd 2h Qc][Ks]
+*** RIVER *** [Qd 2h Qc Ks][3s]
+*** SHOW DOWN ***
+Sbacallao shows [9s Ad] (One pair : Queens)
+RoyalKing811 shows [9d 7d] (One pair : Queens)
+MRZO shows [7c 7h] (Two pairs : Queens and 7)
+MRZO collected 1395 from pot
+*** SUMMARY ***
+Total pot 1395 | No rake
+Board: [Qd 2h Qc Ks 3s]
+Seat 1: Sbacallao (big blind) showed [9s Ad] and lost with One pair : Queens
+Seat 2: RoyalKing811 (button) showed [9d 7d] and lost with One pair : Queens
+Seat 3: MRZO (small blind) showed [7c 7h] and won 1395 with Two pairs : Queens and 7
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830463659551490049-21-1780994574 - Holdem no limit (30/60) - 2026/06/09 08:42:54 UTC
+Table: 'Expresso(1124679963)#0' 3-max (real money) Seat #1 is the button
+Seat 1: Sbacallao (105)
+Seat 3: MRZO (1395)
+*** ANTE/BLINDS ***
+Sbacallao posts small blind 30
+MRZO posts big blind 60
+Dealt to MRZO [2c 5s]
+*** PRE-FLOP *** 
+Sbacallao folds
+MRZO collected 90 from pot
+*** SUMMARY ***
+Total pot 90 | No rake
+Seat 3: MRZO (big blind) won 90
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830463659551490049-22-1780994578 - Holdem no limit (30/60) - 2026/06/09 08:42:58 UTC
+Table: 'Expresso(1124679963)#0' 3-max (real money) Seat #3 is the button
+Seat 1: Sbacallao (75)
+Seat 3: MRZO (1425)
+*** ANTE/BLINDS ***
+MRZO posts small blind 30
+Sbacallao posts big blind 60
+Dealt to MRZO [Kd 4h]
+*** PRE-FLOP *** 
+MRZO raises 60 to 120
+Sbacallao calls 15 and is all-in
+*** FLOP *** [Ac 2h 5c]
+*** TURN *** [Ac 2h 5c][Qh]
+*** RIVER *** [Ac 2h 5c Qh][6c]
+*** SHOW DOWN ***
+Sbacallao shows [8s 9h] (High card : Ace)
+MRZO shows [Kd 4h] (High card : Ace)
+MRZO collected 195 from pot
+*** SUMMARY ***
+Total pot 195 | No rake
+Board: [Ac 2h 5c Qh 6c]
+Seat 1: Sbacallao (big blind) showed [8s 9h] and lost with High card : Ace
+Seat 3: MRZO (small blind) (button) showed [Kd 4h] and won 195 with High card : Ace
+
+

@@ -1,0 +1,435 @@
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830462126248165377-1-1780994231 - Holdem no limit (10/20) - 2026/06/09 08:37:11 UTC
+Table: 'Expresso(1124679606)#0' 3-max (real money) Seat #1 is the button
+Seat 1: Anna.0608 (500)
+Seat 2: MRZO (500)
+Seat 3: FO_Pichichi8 (500)
+*** ANTE/BLINDS ***
+MRZO posts small blind 10
+FO_Pichichi8 posts big blind 20
+Dealt to MRZO [6c Ts]
+*** PRE-FLOP *** 
+Anna.0608 folds
+MRZO folds
+FO_Pichichi8 collected 30 from pot
+*** SUMMARY ***
+Total pot 30 | No rake
+Seat 3: FO_Pichichi8 (big blind) won 30
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830462126248165377-2-1780994241 - Holdem no limit (10/20) - 2026/06/09 08:37:21 UTC
+Table: 'Expresso(1124679606)#0' 3-max (real money) Seat #2 is the button
+Seat 1: Anna.0608 (500)
+Seat 2: MRZO (490)
+Seat 3: FO_Pichichi8 (510)
+*** ANTE/BLINDS ***
+FO_Pichichi8 posts small blind 10
+Anna.0608 posts big blind 20
+Dealt to MRZO [7h Qh]
+*** PRE-FLOP *** 
+MRZO raises 20 to 40
+FO_Pichichi8 folds
+Anna.0608 calls 20
+*** FLOP *** [8c 2s 2d]
+Anna.0608 checks
+MRZO checks
+*** TURN *** [8c 2s 2d][4h]
+Anna.0608 checks
+MRZO checks
+*** RIVER *** [8c 2s 2d 4h][2c]
+Anna.0608 checks
+MRZO checks
+*** SHOW DOWN ***
+Anna.0608 shows [9c Ts] (Trips of 2)
+MRZO shows [7h Qh] (Trips of 2)
+MRZO collected 90 from pot
+*** SUMMARY ***
+Total pot 90 | No rake
+Board: [8c 2s 2d 4h 2c]
+Seat 1: Anna.0608 (big blind) showed [9c Ts] and lost with Trips of 2
+Seat 2: MRZO (button) showed [7h Qh] and won 90 with Trips of 2
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830462126248165377-3-1780994262 - Holdem no limit (10/20) - 2026/06/09 08:37:42 UTC
+Table: 'Expresso(1124679606)#0' 3-max (real money) Seat #3 is the button
+Seat 1: Anna.0608 (460)
+Seat 2: MRZO (540)
+Seat 3: FO_Pichichi8 (500)
+*** ANTE/BLINDS ***
+Anna.0608 posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [8s 2h]
+*** PRE-FLOP *** 
+FO_Pichichi8 calls 20
+Anna.0608 calls 10
+MRZO checks
+*** FLOP *** [3d 5c As]
+Anna.0608 checks
+MRZO checks
+FO_Pichichi8 checks
+*** TURN *** [3d 5c As][Th]
+Anna.0608 checks
+MRZO checks
+FO_Pichichi8 checks
+*** RIVER *** [3d 5c As Th][2s]
+Anna.0608 checks
+MRZO checks
+FO_Pichichi8 checks
+*** SHOW DOWN ***
+MRZO shows [8s 2h] (One pair : 2)
+FO_Pichichi8 shows [9c Js] (High card : Ace)
+Anna.0608 shows [3s Kh] (One pair : 3)
+Anna.0608 collected 60 from pot
+*** SUMMARY ***
+Total pot 60 | No rake
+Board: [3d 5c As Th 2s]
+Seat 1: Anna.0608 (small blind) showed [3s Kh] and won 60 with One pair : 3
+Seat 2: MRZO (big blind) showed [8s 2h] and lost with One pair : 2
+Seat 3: FO_Pichichi8 (button) showed [9c Js] and lost with High card : Ace
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830462126248165377-4-1780994294 - Holdem no limit (10/20) - 2026/06/09 08:38:14 UTC
+Table: 'Expresso(1124679606)#0' 3-max (real money) Seat #1 is the button
+Seat 1: Anna.0608 (500)
+Seat 2: MRZO (520)
+Seat 3: FO_Pichichi8 (480)
+*** ANTE/BLINDS ***
+MRZO posts small blind 10
+FO_Pichichi8 posts big blind 20
+Dealt to MRZO [8d 2h]
+*** PRE-FLOP *** 
+Anna.0608 raises 20 to 40
+MRZO folds
+FO_Pichichi8 folds
+Anna.0608 collected 70 from pot
+*** SUMMARY ***
+Total pot 70 | No rake
+Seat 1: Anna.0608 (button) won 70
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830462126248165377-5-1780994306 - Holdem no limit (10/20) - 2026/06/09 08:38:26 UTC
+Table: 'Expresso(1124679606)#0' 3-max (real money) Seat #2 is the button
+Seat 1: Anna.0608 (530)
+Seat 2: MRZO (510)
+Seat 3: FO_Pichichi8 (460)
+*** ANTE/BLINDS ***
+FO_Pichichi8 posts small blind 10
+Anna.0608 posts big blind 20
+Dealt to MRZO [Tc 7s]
+*** PRE-FLOP *** 
+MRZO folds
+FO_Pichichi8 raises 440 to 460 and is all-in
+Anna.0608 folds
+FO_Pichichi8 collected 480 from pot
+*** SUMMARY ***
+Total pot 480 | No rake
+Seat 3: FO_Pichichi8 (small blind) won 480
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830462126248165377-6-1780994312 - Holdem no limit (10/20) - 2026/06/09 08:38:32 UTC
+Table: 'Expresso(1124679606)#0' 3-max (real money) Seat #3 is the button
+Seat 1: Anna.0608 (510)
+Seat 2: MRZO (510)
+Seat 3: FO_Pichichi8 (480)
+*** ANTE/BLINDS ***
+Anna.0608 posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [8s 4s]
+*** PRE-FLOP *** 
+FO_Pichichi8 folds
+Anna.0608 calls 10
+MRZO checks
+*** FLOP *** [Tc 5h Ac]
+Anna.0608 checks
+MRZO checks
+*** TURN *** [Tc 5h Ac][2c]
+Anna.0608 bets 20
+MRZO folds
+Anna.0608 collected 60 from pot
+*** SUMMARY ***
+Total pot 60 | No rake
+Board: [Tc 5h Ac 2c]
+Seat 1: Anna.0608 (small blind) won 60
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830462126248165377-7-1780994329 - Holdem no limit (15/30) - 2026/06/09 08:38:49 UTC
+Table: 'Expresso(1124679606)#0' 3-max (real money) Seat #1 is the button
+Seat 1: Anna.0608 (530)
+Seat 2: MRZO (490)
+Seat 3: FO_Pichichi8 (480)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+FO_Pichichi8 posts big blind 30
+Dealt to MRZO [8h 7c]
+*** PRE-FLOP *** 
+Anna.0608 calls 30
+MRZO folds
+FO_Pichichi8 checks
+*** FLOP *** [Ac 5d Ks]
+FO_Pichichi8 checks
+Anna.0608 bets 30
+FO_Pichichi8 folds
+Anna.0608 collected 105 from pot
+*** SUMMARY ***
+Total pot 105 | No rake
+Board: [Ac 5d Ks]
+Seat 1: Anna.0608 (button) won 105
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830462126248165377-8-1780994339 - Holdem no limit (15/30) - 2026/06/09 08:38:59 UTC
+Table: 'Expresso(1124679606)#0' 3-max (real money) Seat #2 is the button
+Seat 1: Anna.0608 (575)
+Seat 2: MRZO (475)
+Seat 3: FO_Pichichi8 (450)
+*** ANTE/BLINDS ***
+FO_Pichichi8 posts small blind 15
+Anna.0608 posts big blind 30
+Dealt to MRZO [2s Ad]
+*** PRE-FLOP *** 
+MRZO raises 30 to 60
+FO_Pichichi8 raises 390 to 450 and is all-in
+Anna.0608 raises 125 to 575 and is all-in
+MRZO folds
+*** FLOP *** [Qc 7c As]
+*** TURN *** [Qc 7c As][9h]
+*** RIVER *** [Qc 7c As 9h][7s]
+*** SHOW DOWN ***
+FO_Pichichi8 shows [Ks 9d] (Two pairs : 9 and 7)
+Anna.0608 shows [Jh Jc] (Two pairs : Jacks and 7)
+Anna.0608 collected 1085 from pot
+*** SUMMARY ***
+Total pot 1085 | No rake
+Board: [Qc 7c As 9h 7s]
+Seat 1: Anna.0608 (big blind) showed [Jh Jc] and won 1085 with Two pairs : Jacks and 7
+Seat 3: FO_Pichichi8 (small blind) showed [Ks 9d] and lost with Two pairs : 9 and 7
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830462126248165377-9-1780994355 - Holdem no limit (15/30) - 2026/06/09 08:39:15 UTC
+Table: 'Expresso(1124679606)#0' 3-max (real money) Seat #1 is the button
+Seat 1: Anna.0608 (1085)
+Seat 2: MRZO (415)
+*** ANTE/BLINDS ***
+Anna.0608 posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [5s 4d]
+*** PRE-FLOP *** 
+Anna.0608 folds
+MRZO collected 45 from pot
+*** SUMMARY ***
+Total pot 45 | No rake
+Seat 2: MRZO (big blind) won 45
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830462126248165377-10-1780994361 - Holdem no limit (15/30) - 2026/06/09 08:39:21 UTC
+Table: 'Expresso(1124679606)#0' 3-max (real money) Seat #2 is the button
+Seat 1: Anna.0608 (1070)
+Seat 2: MRZO (430)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+Anna.0608 posts big blind 30
+Dealt to MRZO [Jh 3s]
+*** PRE-FLOP *** 
+MRZO folds
+Anna.0608 collected 45 from pot
+*** SUMMARY ***
+Total pot 45 | No rake
+Seat 1: Anna.0608 (big blind) won 45
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830462126248165377-11-1780994367 - Holdem no limit (15/30) - 2026/06/09 08:39:27 UTC
+Table: 'Expresso(1124679606)#0' 3-max (real money) Seat #1 is the button
+Seat 1: Anna.0608 (1085)
+Seat 2: MRZO (415)
+*** ANTE/BLINDS ***
+Anna.0608 posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [Ah Ac]
+*** PRE-FLOP *** 
+Anna.0608 raises 30 to 60
+MRZO raises 355 to 415 and is all-in
+Anna.0608 raises 670 to 1085 and is all-in
+*** FLOP *** [6s 3h Kc]
+*** TURN *** [6s 3h Kc][As]
+*** RIVER *** [6s 3h Kc As][5d]
+*** SHOW DOWN ***
+Anna.0608 shows [Jd Kd] (One pair : Kings)
+MRZO shows [Ah Ac] (Trips of Aces)
+MRZO collected 830 from main pot
+Anna.0608 collected 670 from side pot 1
+*** SUMMARY ***
+Total pot 1500 | No rake
+Board: [6s 3h Kc As 5d]
+Seat 1: Anna.0608 (small blind) (button) showed [Jd Kd] and won 670 with One pair : Kings
+Seat 2: MRZO (big blind) showed [Ah Ac] and won 830 with Trips of Aces
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830462126248165377-12-1780994381 - Holdem no limit (15/30) - 2026/06/09 08:39:41 UTC
+Table: 'Expresso(1124679606)#0' 3-max (real money) Seat #2 is the button
+Seat 1: Anna.0608 (670)
+Seat 2: MRZO (830)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+Anna.0608 posts big blind 30
+Dealt to MRZO [4d Ah]
+*** PRE-FLOP *** 
+MRZO raises 45 to 75
+Anna.0608 folds
+MRZO collected 105 from pot
+*** SUMMARY ***
+Total pot 105 | No rake
+Seat 2: MRZO (small blind) (button) won 105
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830462126248165377-13-1780994387 - Holdem no limit (15/30) - 2026/06/09 08:39:47 UTC
+Table: 'Expresso(1124679606)#0' 3-max (real money) Seat #1 is the button
+Seat 1: Anna.0608 (640)
+Seat 2: MRZO (860)
+*** ANTE/BLINDS ***
+Anna.0608 posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [Qd 8h]
+*** PRE-FLOP *** 
+Anna.0608 raises 30 to 60
+MRZO calls 30
+*** FLOP *** [Qc 2s 4h]
+MRZO checks
+Anna.0608 bets 30
+MRZO raises 75 to 105
+Anna.0608 folds
+MRZO collected 255 from pot
+*** SUMMARY ***
+Total pot 255 | No rake
+Board: [Qc 2s 4h]
+Seat 2: MRZO (big blind) won 255
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830462126248165377-14-1780994400 - Holdem no limit (15/30) - 2026/06/09 08:40:00 UTC
+Table: 'Expresso(1124679606)#0' 3-max (real money) Seat #2 is the button
+Seat 1: Anna.0608 (550)
+Seat 2: MRZO (950)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+Anna.0608 posts big blind 30
+Dealt to MRZO [4s 8s]
+*** PRE-FLOP *** 
+MRZO calls 15
+Anna.0608 checks
+*** FLOP *** [6d 9h Kc]
+Anna.0608 checks
+MRZO checks
+*** TURN *** [6d 9h Kc][8h]
+Anna.0608 bets 30
+MRZO calls 30
+*** RIVER *** [6d 9h Kc 8h][9s]
+Anna.0608 bets 490 and is all-in
+MRZO folds
+Anna.0608 collected 610 from pot
+*** SUMMARY ***
+Total pot 610 | No rake
+Board: [6d 9h Kc 8h 9s]
+Seat 1: Anna.0608 (big blind) won 610
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830462126248165377-15-1780994421 - Holdem no limit (20/40) - 2026/06/09 08:40:21 UTC
+Table: 'Expresso(1124679606)#0' 3-max (real money) Seat #1 is the button
+Seat 1: Anna.0608 (610)
+Seat 2: MRZO (890)
+*** ANTE/BLINDS ***
+Anna.0608 posts small blind 20
+MRZO posts big blind 40
+Dealt to MRZO [8h 8c]
+*** PRE-FLOP *** 
+Anna.0608 calls 20
+MRZO raises 850 to 890 and is all-in
+Anna.0608 folds
+MRZO collected 930 from pot
+*** SUMMARY ***
+Total pot 930 | No rake
+Seat 2: MRZO (big blind) won 930
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830462126248165377-16-1780994428 - Holdem no limit (20/40) - 2026/06/09 08:40:28 UTC
+Table: 'Expresso(1124679606)#0' 3-max (real money) Seat #2 is the button
+Seat 1: Anna.0608 (570)
+Seat 2: MRZO (930)
+*** ANTE/BLINDS ***
+MRZO posts small blind 20
+Anna.0608 posts big blind 40
+Dealt to MRZO [3s 7d]
+*** PRE-FLOP *** 
+MRZO folds
+Anna.0608 collected 60 from pot
+*** SUMMARY ***
+Total pot 60 | No rake
+Seat 1: Anna.0608 (big blind) won 60
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830462126248165377-17-1780994431 - Holdem no limit (20/40) - 2026/06/09 08:40:31 UTC
+Table: 'Expresso(1124679606)#0' 3-max (real money) Seat #1 is the button
+Seat 1: Anna.0608 (590)
+Seat 2: MRZO (910)
+*** ANTE/BLINDS ***
+Anna.0608 posts small blind 20
+MRZO posts big blind 40
+Dealt to MRZO [9s Qs]
+*** PRE-FLOP *** 
+Anna.0608 raises 550 to 590 and is all-in
+MRZO folds
+Anna.0608 collected 630 from pot
+*** SUMMARY ***
+Total pot 630 | No rake
+Seat 1: Anna.0608 (small blind) (button) won 630
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830462126248165377-18-1780994438 - Holdem no limit (20/40) - 2026/06/09 08:40:38 UTC
+Table: 'Expresso(1124679606)#0' 3-max (real money) Seat #2 is the button
+Seat 1: Anna.0608 (630)
+Seat 2: MRZO (870)
+*** ANTE/BLINDS ***
+MRZO posts small blind 20
+Anna.0608 posts big blind 40
+Dealt to MRZO [3d 4d]
+*** PRE-FLOP *** 
+MRZO calls 20
+Anna.0608 checks
+*** FLOP *** [5c Jh 8s]
+Anna.0608 checks
+MRZO checks
+*** TURN *** [5c Jh 8s][2c]
+Anna.0608 bets 40
+MRZO calls 40
+*** RIVER *** [5c Jh 8s 2c][6s]
+Anna.0608 bets 40
+MRZO raises 750 to 790 and is all-in
+Anna.0608 folds
+MRZO collected 990 from pot
+*** SUMMARY ***
+Total pot 990 | No rake
+Board: [5c Jh 8s 2c 6s]
+Seat 2: MRZO (small blind) (button) won 990
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830462126248165377-19-1780994464 - Holdem no limit (20/40) - 2026/06/09 08:41:04 UTC
+Table: 'Expresso(1124679606)#0' 3-max (real money) Seat #1 is the button
+Seat 1: Anna.0608 (510)
+Seat 2: MRZO (990)
+*** ANTE/BLINDS ***
+Anna.0608 posts small blind 20
+MRZO posts big blind 40
+Dealt to MRZO [4s 4d]
+*** PRE-FLOP *** 
+Anna.0608 raises 470 to 510 and is all-in
+MRZO raises 480 to 990 and is all-in
+*** FLOP *** [9h 3d 8d]
+*** TURN *** [9h 3d 8d][5h]
+*** RIVER *** [9h 3d 8d 5h][8c]
+*** SHOW DOWN ***
+Anna.0608 shows [Qh Th] (One pair : 8)
+MRZO shows [4s 4d] (Two pairs : 8 and 4)
+MRZO collected 1500 from pot
+*** SUMMARY ***
+Total pot 1500 | No rake
+Board: [9h 3d 8d 5h 8c]
+Seat 1: Anna.0608 (small blind) (button) showed [Qh Th] and lost with One pair : 8
+Seat 2: MRZO (big blind) showed [4s 4d] and won 1500 with Two pairs : 8 and 4
+
+

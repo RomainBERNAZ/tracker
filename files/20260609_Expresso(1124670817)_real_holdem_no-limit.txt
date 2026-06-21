@@ -1,0 +1,919 @@
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830424377780600833-1-1780992961 - Holdem no limit (10/20) - 2026/06/09 08:16:01 UTC
+Table: 'Expresso(1124670817)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (500)
+Seat 2: lalex9471 (500)
+Seat 3: mechant111 (500)
+*** ANTE/BLINDS ***
+lalex9471 posts small blind 10
+mechant111 posts big blind 20
+Dealt to MRZO [Kc Jd]
+*** PRE-FLOP *** 
+MRZO raises 20 to 40
+lalex9471 folds
+mechant111 calls 20
+*** FLOP *** [6d 9d Tc]
+mechant111 checks
+MRZO bets 32
+mechant111 raises 58 to 90
+MRZO calls 58
+*** TURN *** [6d 9d Tc][Th]
+mechant111 checks
+MRZO checks
+*** RIVER *** [6d 9d Tc Th][2d]
+mechant111 bets 370 and is all-in
+MRZO folds
+mechant111 collected 640 from pot
+*** SUMMARY ***
+Total pot 640 | No rake
+Board: [6d 9d Tc Th 2d]
+Seat 3: mechant111 (big blind) won 640
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830424377780600833-2-1780993013 - Holdem no limit (10/20) - 2026/06/09 08:16:53 UTC
+Table: 'Expresso(1124670817)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (370)
+Seat 2: lalex9471 (490)
+Seat 3: mechant111 (640)
+*** ANTE/BLINDS ***
+mechant111 posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [9c 9h]
+*** PRE-FLOP *** 
+lalex9471 folds
+mechant111 folds
+MRZO collected 30 from pot
+*** SUMMARY ***
+Total pot 30 | No rake
+Seat 1: MRZO (big blind) won 30
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830424377780600833-3-1780993019 - Holdem no limit (10/20) - 2026/06/09 08:16:59 UTC
+Table: 'Expresso(1124670817)#0' 3-max (real money) Seat #3 is the button
+Seat 1: MRZO (380)
+Seat 2: lalex9471 (490)
+Seat 3: mechant111 (630)
+*** ANTE/BLINDS ***
+MRZO posts small blind 10
+lalex9471 posts big blind 20
+Dealt to MRZO [Qd 4d]
+*** PRE-FLOP *** 
+mechant111 folds
+MRZO calls 10
+lalex9471 checks
+*** FLOP *** [3h 2s Qs]
+MRZO bets 26
+lalex9471 calls 26
+*** TURN *** [3h 2s Qs][Td]
+MRZO bets 46
+lalex9471 folds
+MRZO collected 138 from pot
+*** SUMMARY ***
+Total pot 138 | No rake
+Board: [3h 2s Qs Td]
+Seat 1: MRZO (small blind) won 138
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830424377780600833-4-1780993047 - Holdem no limit (10/20) - 2026/06/09 08:17:27 UTC
+Table: 'Expresso(1124670817)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (426)
+Seat 2: lalex9471 (444)
+Seat 3: mechant111 (630)
+*** ANTE/BLINDS ***
+lalex9471 posts small blind 10
+mechant111 posts big blind 20
+Dealt to MRZO [3c Tc]
+*** PRE-FLOP *** 
+MRZO folds
+lalex9471 raises 30 to 50
+mechant111 folds
+lalex9471 collected 70 from pot
+*** SUMMARY ***
+Total pot 70 | No rake
+Seat 2: lalex9471 (small blind) won 70
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830424377780600833-5-1780993056 - Holdem no limit (15/30) - 2026/06/09 08:17:36 UTC
+Table: 'Expresso(1124670817)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (426)
+Seat 2: lalex9471 (464)
+Seat 3: mechant111 (610)
+*** ANTE/BLINDS ***
+mechant111 posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [8c 4d]
+*** PRE-FLOP *** 
+lalex9471 folds
+mechant111 folds
+MRZO collected 45 from pot
+*** SUMMARY ***
+Total pot 45 | No rake
+Seat 1: MRZO (big blind) won 45
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830424377780600833-6-1780993065 - Holdem no limit (15/30) - 2026/06/09 08:17:45 UTC
+Table: 'Expresso(1124670817)#0' 3-max (real money) Seat #3 is the button
+Seat 1: MRZO (441)
+Seat 2: lalex9471 (464)
+Seat 3: mechant111 (595)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+lalex9471 posts big blind 30
+Dealt to MRZO [Ks Jd]
+*** PRE-FLOP *** 
+mechant111 folds
+MRZO raises 45 to 75
+lalex9471 folds
+MRZO collected 105 from pot
+*** SUMMARY ***
+Total pot 105 | No rake
+Seat 1: MRZO (small blind) won 105
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830424377780600833-7-1780993077 - Holdem no limit (15/30) - 2026/06/09 08:17:57 UTC
+Table: 'Expresso(1124670817)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (471)
+Seat 2: lalex9471 (434)
+Seat 3: mechant111 (595)
+*** ANTE/BLINDS ***
+lalex9471 posts small blind 15
+mechant111 posts big blind 30
+Dealt to MRZO [Th Jd]
+*** PRE-FLOP *** 
+MRZO folds
+lalex9471 folds
+mechant111 collected 45 from pot
+*** SUMMARY ***
+Total pot 45 | No rake
+Seat 3: mechant111 (big blind) won 45
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830424377780600833-8-1780993087 - Holdem no limit (15/30) - 2026/06/09 08:18:07 UTC
+Table: 'Expresso(1124670817)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (471)
+Seat 2: lalex9471 (419)
+Seat 3: mechant111 (610)
+*** ANTE/BLINDS ***
+mechant111 posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [5h Qd]
+*** PRE-FLOP *** 
+lalex9471 folds
+mechant111 folds
+MRZO collected 45 from pot
+*** SUMMARY ***
+Total pot 45 | No rake
+Seat 1: MRZO (big blind) won 45
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830424377780600833-9-1780993098 - Holdem no limit (15/30) - 2026/06/09 08:18:18 UTC
+Table: 'Expresso(1124670817)#0' 3-max (real money) Seat #3 is the button
+Seat 1: MRZO (486)
+Seat 2: lalex9471 (419)
+Seat 3: mechant111 (595)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+lalex9471 posts big blind 30
+Dealt to MRZO [8s 6c]
+*** PRE-FLOP *** 
+mechant111 raises 30 to 60
+MRZO folds
+lalex9471 folds
+mechant111 collected 105 from pot
+*** SUMMARY ***
+Total pot 105 | No rake
+Seat 3: mechant111 (button) won 105
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830424377780600833-10-1780993112 - Holdem no limit (15/30) - 2026/06/09 08:18:32 UTC
+Table: 'Expresso(1124670817)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (471)
+Seat 2: lalex9471 (389)
+Seat 3: mechant111 (640)
+*** ANTE/BLINDS ***
+lalex9471 posts small blind 15
+mechant111 posts big blind 30
+Dealt to MRZO [7c Jd]
+*** PRE-FLOP *** 
+MRZO folds
+lalex9471 raises 359 to 389 and is all-in
+mechant111 folds
+lalex9471 collected 419 from pot
+*** SUMMARY ***
+Total pot 419 | No rake
+Seat 2: lalex9471 (small blind) won 419
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830424377780600833-11-1780993121 - Holdem no limit (15/30) - 2026/06/09 08:18:41 UTC
+Table: 'Expresso(1124670817)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (471)
+Seat 2: lalex9471 (419)
+Seat 3: mechant111 (610)
+*** ANTE/BLINDS ***
+mechant111 posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [Jc 8d]
+*** PRE-FLOP *** 
+lalex9471 raises 30 to 60
+mechant111 folds
+MRZO calls 30
+*** FLOP *** [5d 7c 2h]
+MRZO checks
+lalex9471 bets 30
+MRZO folds
+lalex9471 collected 165 from pot
+*** SUMMARY ***
+Total pot 165 | No rake
+Board: [5d 7c 2h]
+Seat 2: lalex9471 (button) won 165
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830424377780600833-12-1780993142 - Holdem no limit (20/40) - 2026/06/09 08:19:02 UTC
+Table: 'Expresso(1124670817)#0' 3-max (real money) Seat #3 is the button
+Seat 1: MRZO (411)
+Seat 2: lalex9471 (494)
+Seat 3: mechant111 (595)
+*** ANTE/BLINDS ***
+MRZO posts small blind 20
+lalex9471 posts big blind 40
+Dealt to MRZO [8h 9c]
+*** PRE-FLOP *** 
+mechant111 folds
+MRZO calls 20
+lalex9471 checks
+*** FLOP *** [2h Ac Ks]
+MRZO checks
+lalex9471 checks
+*** TURN *** [2h Ac Ks][4h]
+MRZO checks
+lalex9471 checks
+*** RIVER *** [2h Ac Ks 4h][Jd]
+MRZO checks
+lalex9471 checks
+*** SHOW DOWN ***
+MRZO shows [8h 9c] (High card : Ace)
+lalex9471 shows [Th 9s] (High card : Ace)
+lalex9471 collected 80 from pot
+*** SUMMARY ***
+Total pot 80 | No rake
+Board: [2h Ac Ks 4h Jd]
+Seat 1: MRZO (small blind) showed [8h 9c] and lost with High card : Ace
+Seat 2: lalex9471 (big blind) showed [Th 9s] and won 80 with High card : Ace
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830424377780600833-13-1780993161 - Holdem no limit (20/40) - 2026/06/09 08:19:21 UTC
+Table: 'Expresso(1124670817)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (371)
+Seat 2: lalex9471 (534)
+Seat 3: mechant111 (595)
+*** ANTE/BLINDS ***
+lalex9471 posts small blind 20
+mechant111 posts big blind 40
+Dealt to MRZO [3d 4c]
+*** PRE-FLOP *** 
+MRZO folds
+lalex9471 folds
+mechant111 collected 60 from pot
+*** SUMMARY ***
+Total pot 60 | No rake
+Seat 3: mechant111 (big blind) won 60
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830424377780600833-14-1780993168 - Holdem no limit (20/40) - 2026/06/09 08:19:28 UTC
+Table: 'Expresso(1124670817)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (371)
+Seat 2: lalex9471 (514)
+Seat 3: mechant111 (615)
+*** ANTE/BLINDS ***
+mechant111 posts small blind 20
+MRZO posts big blind 40
+Dealt to MRZO [5d Th]
+*** PRE-FLOP *** 
+lalex9471 raises 474 to 514 and is all-in
+mechant111 folds
+MRZO folds
+lalex9471 collected 574 from pot
+*** SUMMARY ***
+Total pot 574 | No rake
+Seat 2: lalex9471 (button) won 574
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830424377780600833-15-1780993175 - Holdem no limit (20/40) - 2026/06/09 08:19:35 UTC
+Table: 'Expresso(1124670817)#0' 3-max (real money) Seat #3 is the button
+Seat 1: MRZO (331)
+Seat 2: lalex9471 (574)
+Seat 3: mechant111 (595)
+*** ANTE/BLINDS ***
+MRZO posts small blind 20
+lalex9471 posts big blind 40
+Dealt to MRZO [Jh Jc]
+*** PRE-FLOP *** 
+mechant111 folds
+MRZO raises 291 to 331 and is all-in
+lalex9471 folds
+MRZO collected 371 from pot
+*** SUMMARY ***
+Total pot 371 | No rake
+Seat 1: MRZO (small blind) won 371
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830424377780600833-16-1780993182 - Holdem no limit (20/40) - 2026/06/09 08:19:42 UTC
+Table: 'Expresso(1124670817)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (371)
+Seat 2: lalex9471 (534)
+Seat 3: mechant111 (595)
+*** ANTE/BLINDS ***
+lalex9471 posts small blind 20
+mechant111 posts big blind 40
+Dealt to MRZO [4c 9c]
+*** PRE-FLOP *** 
+MRZO folds
+lalex9471 raises 494 to 534 and is all-in
+mechant111 folds
+lalex9471 collected 574 from pot
+*** SUMMARY ***
+Total pot 574 | No rake
+Seat 2: lalex9471 (small blind) won 574
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830424377780600833-17-1780993196 - Holdem no limit (20/40) - 2026/06/09 08:19:56 UTC
+Table: 'Expresso(1124670817)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (371)
+Seat 2: lalex9471 (574)
+Seat 3: mechant111 (555)
+*** ANTE/BLINDS ***
+mechant111 posts small blind 20
+MRZO posts big blind 40
+Dealt to MRZO [2d 4s]
+*** PRE-FLOP *** 
+lalex9471 folds
+mechant111 raises 515 to 555 and is all-in
+MRZO folds
+mechant111 collected 595 from pot
+*** SUMMARY ***
+Total pot 595 | No rake
+Seat 3: mechant111 (small blind) won 595
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830424377780600833-18-1780993206 - Holdem no limit (20/40) - 2026/06/09 08:20:06 UTC
+Table: 'Expresso(1124670817)#0' 3-max (real money) Seat #3 is the button
+Seat 1: MRZO (331)
+Seat 2: lalex9471 (574)
+Seat 3: mechant111 (595)
+*** ANTE/BLINDS ***
+MRZO posts small blind 20
+lalex9471 posts big blind 40
+Dealt to MRZO [7h 4h]
+*** PRE-FLOP *** 
+mechant111 folds
+MRZO folds
+lalex9471 collected 60 from pot
+*** SUMMARY ***
+Total pot 60 | No rake
+Seat 2: lalex9471 (big blind) won 60
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830424377780600833-19-1780993214 - Holdem no limit (20/40) - 2026/06/09 08:20:14 UTC
+Table: 'Expresso(1124670817)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (311)
+Seat 2: lalex9471 (594)
+Seat 3: mechant111 (595)
+*** ANTE/BLINDS ***
+lalex9471 posts small blind 20
+mechant111 posts big blind 40
+Dealt to MRZO [8h 2c]
+*** PRE-FLOP *** 
+MRZO folds
+lalex9471 folds
+mechant111 collected 60 from pot
+*** SUMMARY ***
+Total pot 60 | No rake
+Seat 3: mechant111 (big blind) won 60
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830424377780600833-20-1780993221 - Holdem no limit (20/40) - 2026/06/09 08:20:21 UTC
+Table: 'Expresso(1124670817)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (311)
+Seat 2: lalex9471 (574)
+Seat 3: mechant111 (615)
+*** ANTE/BLINDS ***
+mechant111 posts small blind 20
+MRZO posts big blind 40
+Dealt to MRZO [7c 6c]
+*** PRE-FLOP *** 
+lalex9471 folds
+mechant111 raises 575 to 615 and is all-in
+MRZO folds
+mechant111 collected 655 from pot
+*** SUMMARY ***
+Total pot 655 | No rake
+Seat 3: mechant111 (small blind) won 655
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830424377780600833-21-1780993228 - Holdem no limit (20/40) - 2026/06/09 08:20:28 UTC
+Table: 'Expresso(1124670817)#0' 3-max (real money) Seat #3 is the button
+Seat 1: MRZO (271)
+Seat 2: lalex9471 (574)
+Seat 3: mechant111 (655)
+*** ANTE/BLINDS ***
+MRZO posts small blind 20
+lalex9471 posts big blind 40
+Dealt to MRZO [Qc Ac]
+*** PRE-FLOP *** 
+mechant111 folds
+MRZO raises 231 to 271 and is all-in
+lalex9471 folds
+MRZO collected 311 from pot
+*** SUMMARY ***
+Total pot 311 | No rake
+Seat 1: MRZO (small blind) won 311
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830424377780600833-22-1780993234 - Holdem no limit (30/60) - 2026/06/09 08:20:34 UTC
+Table: 'Expresso(1124670817)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (311)
+Seat 2: lalex9471 (534)
+Seat 3: mechant111 (655)
+*** ANTE/BLINDS ***
+lalex9471 posts small blind 30
+mechant111 posts big blind 60
+Dealt to MRZO [2s Qh]
+*** PRE-FLOP *** 
+MRZO folds
+lalex9471 raises 474 to 534 and is all-in
+mechant111 raises 121 to 655 and is all-in
+*** FLOP *** [8d Qd 8s]
+*** TURN *** [8d Qd 8s][5h]
+*** RIVER *** [8d Qd 8s 5h][5d]
+*** SHOW DOWN ***
+lalex9471 shows [Qs 9c] (Two pairs : Queens and 8)
+mechant111 shows [7c Ah] (Two pairs : 8 and 5)
+mechant111 collected 121 from side pot 1
+lalex9471 collected 1068 from main pot
+*** SUMMARY ***
+Total pot 1189 | No rake
+Board: [8d Qd 8s 5h 5d]
+Seat 2: lalex9471 (small blind) showed [Qs 9c] and won 1068 with Two pairs : Queens and 8
+Seat 3: mechant111 (big blind) showed [7c Ah] and won 121 with Two pairs : 8 and 5
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830424377780600833-23-1780993247 - Holdem no limit (30/60) - 2026/06/09 08:20:47 UTC
+Table: 'Expresso(1124670817)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (311)
+Seat 2: lalex9471 (1068)
+Seat 3: mechant111 (121)
+*** ANTE/BLINDS ***
+mechant111 posts small blind 30
+MRZO posts big blind 60
+Dealt to MRZO [Ad 2h]
+*** PRE-FLOP *** 
+lalex9471 folds
+mechant111 raises 61 to 121 and is all-in
+MRZO raises 190 to 311 and is all-in
+*** FLOP *** [4c 7h Qh]
+*** TURN *** [4c 7h Qh][8s]
+*** RIVER *** [4c 7h Qh 8s][4h]
+*** SHOW DOWN ***
+MRZO shows [Ad 2h] (One pair : 4)
+mechant111 shows [5s Ac] (One pair : 4)
+mechant111 collected 121 from main pot
+MRZO collected 311 from side pot 1
+*** SUMMARY ***
+Total pot 432 | No rake
+Board: [4c 7h Qh 8s 4h]
+Seat 1: MRZO (big blind) showed [Ad 2h] and won 311 with One pair : 4
+Seat 3: mechant111 (small blind) showed [5s Ac] and won 121 with One pair : 4
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830424377780600833-24-1780993264 - Holdem no limit (30/60) - 2026/06/09 08:21:04 UTC
+Table: 'Expresso(1124670817)#0' 3-max (real money) Seat #3 is the button
+Seat 1: MRZO (311)
+Seat 2: lalex9471 (1068)
+Seat 3: mechant111 (121)
+*** ANTE/BLINDS ***
+MRZO posts small blind 30
+lalex9471 posts big blind 60
+Dealt to MRZO [Js 2s]
+*** PRE-FLOP *** 
+mechant111 raises 61 to 121 and is all-in
+MRZO folds
+lalex9471 folds
+mechant111 collected 211 from pot
+*** SUMMARY ***
+Total pot 211 | No rake
+Seat 3: mechant111 (button) won 211
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830424377780600833-25-1780993271 - Holdem no limit (30/60) - 2026/06/09 08:21:11 UTC
+Table: 'Expresso(1124670817)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (281)
+Seat 2: lalex9471 (1008)
+Seat 3: mechant111 (211)
+*** ANTE/BLINDS ***
+lalex9471 posts small blind 30
+mechant111 posts big blind 60
+Dealt to MRZO [Tc Qs]
+*** PRE-FLOP *** 
+MRZO raises 221 to 281 and is all-in
+lalex9471 folds
+mechant111 calls 151 and is all-in
+*** FLOP *** [9h 4c 7s]
+*** TURN *** [9h 4c 7s][6d]
+*** RIVER *** [9h 4c 7s 6d][8s]
+*** SHOW DOWN ***
+mechant111 shows [8h 9d] (Two pairs : 9 and 8)
+MRZO shows [Tc Qs] (Straight Ten high)
+MRZO collected 522 from pot
+*** SUMMARY ***
+Total pot 522 | No rake
+Board: [9h 4c 7s 6d 8s]
+Seat 1: MRZO (button) showed [Tc Qs] and won 522 with Straight Ten high
+Seat 3: mechant111 (big blind) showed [8h 9d] and lost with Two pairs : 9 and 8
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830424377780600833-26-1780993287 - Holdem no limit (30/60) - 2026/06/09 08:21:27 UTC
+Table: 'Expresso(1124670817)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (522)
+Seat 2: lalex9471 (978)
+*** ANTE/BLINDS ***
+MRZO posts small blind 30
+lalex9471 posts big blind 60
+Dealt to MRZO [6d 4c]
+*** PRE-FLOP *** 
+MRZO folds
+lalex9471 collected 90 from pot
+*** SUMMARY ***
+Total pot 90 | No rake
+Seat 2: lalex9471 (big blind) won 90
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830424377780600833-27-1780993291 - Holdem no limit (30/60) - 2026/06/09 08:21:31 UTC
+Table: 'Expresso(1124670817)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (492)
+Seat 2: lalex9471 (1008)
+*** ANTE/BLINDS ***
+lalex9471 posts small blind 30
+MRZO posts big blind 60
+Dealt to MRZO [Kc 2d]
+*** PRE-FLOP *** 
+lalex9471 folds
+MRZO collected 90 from pot
+*** SUMMARY ***
+Total pot 90 | No rake
+Seat 1: MRZO (big blind) won 90
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830424377780600833-28-1780993297 - Holdem no limit (30/60) - 2026/06/09 08:21:37 UTC
+Table: 'Expresso(1124670817)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (522)
+Seat 2: lalex9471 (978)
+*** ANTE/BLINDS ***
+MRZO posts small blind 30
+lalex9471 posts big blind 60
+Dealt to MRZO [5c 8c]
+*** PRE-FLOP *** 
+MRZO calls 30
+lalex9471 checks
+*** FLOP *** [7s 8s Qh]
+lalex9471 checks
+MRZO bets 60
+lalex9471 folds
+MRZO collected 180 from pot
+*** SUMMARY ***
+Total pot 180 | No rake
+Board: [7s 8s Qh]
+Seat 1: MRZO (small blind) (button) won 180
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830424377780600833-29-1780993309 - Holdem no limit (30/60) - 2026/06/09 08:21:49 UTC
+Table: 'Expresso(1124670817)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (582)
+Seat 2: lalex9471 (918)
+*** ANTE/BLINDS ***
+lalex9471 posts small blind 30
+MRZO posts big blind 60
+Dealt to MRZO [2s 5h]
+*** PRE-FLOP *** 
+lalex9471 raises 858 to 918 and is all-in
+MRZO folds
+lalex9471 collected 978 from pot
+*** SUMMARY ***
+Total pot 978 | No rake
+Seat 2: lalex9471 (small blind) (button) won 978
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830424377780600833-30-1780993317 - Holdem no limit (30/60) - 2026/06/09 08:21:57 UTC
+Table: 'Expresso(1124670817)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (522)
+Seat 2: lalex9471 (978)
+*** ANTE/BLINDS ***
+MRZO posts small blind 30
+lalex9471 posts big blind 60
+Dealt to MRZO [7d 4c]
+*** PRE-FLOP *** 
+MRZO folds
+lalex9471 collected 90 from pot
+*** SUMMARY ***
+Total pot 90 | No rake
+Seat 2: lalex9471 (big blind) won 90
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 5 - HandId: #4830424377780600833-31-1780993321 - Holdem no limit (40/80) - 2026/06/09 08:22:01 UTC
+Table: 'Expresso(1124670817)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (492)
+Seat 2: lalex9471 (1008)
+*** ANTE/BLINDS ***
+lalex9471 posts small blind 40
+MRZO posts big blind 80
+Dealt to MRZO [6d 7d]
+*** PRE-FLOP *** 
+lalex9471 folds
+MRZO collected 120 from pot
+*** SUMMARY ***
+Total pot 120 | No rake
+Seat 1: MRZO (big blind) won 120
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 5 - HandId: #4830424377780600833-32-1780993327 - Holdem no limit (40/80) - 2026/06/09 08:22:07 UTC
+Table: 'Expresso(1124670817)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (532)
+Seat 2: lalex9471 (968)
+*** ANTE/BLINDS ***
+MRZO posts small blind 40
+lalex9471 posts big blind 80
+Dealt to MRZO [Ac 9d]
+*** PRE-FLOP *** 
+MRZO raises 452 to 532 and is all-in
+lalex9471 folds
+MRZO collected 612 from pot
+*** SUMMARY ***
+Total pot 612 | No rake
+Seat 1: MRZO (small blind) (button) won 612
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 5 - HandId: #4830424377780600833-33-1780993333 - Holdem no limit (40/80) - 2026/06/09 08:22:13 UTC
+Table: 'Expresso(1124670817)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (612)
+Seat 2: lalex9471 (888)
+*** ANTE/BLINDS ***
+lalex9471 posts small blind 40
+MRZO posts big blind 80
+Dealt to MRZO [Ad 9d]
+*** PRE-FLOP *** 
+lalex9471 folds
+MRZO collected 120 from pot
+*** SUMMARY ***
+Total pot 120 | No rake
+Seat 1: MRZO (big blind) won 120
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 5 - HandId: #4830424377780600833-34-1780993338 - Holdem no limit (40/80) - 2026/06/09 08:22:18 UTC
+Table: 'Expresso(1124670817)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (652)
+Seat 2: lalex9471 (848)
+*** ANTE/BLINDS ***
+MRZO posts small blind 40
+lalex9471 posts big blind 80
+Dealt to MRZO [Td 2d]
+*** PRE-FLOP *** 
+MRZO calls 40
+lalex9471 raises 768 to 848 and is all-in
+MRZO folds
+lalex9471 collected 928 from pot
+*** SUMMARY ***
+Total pot 928 | No rake
+Seat 2: lalex9471 (big blind) won 928
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 5 - HandId: #4830424377780600833-35-1780993346 - Holdem no limit (40/80) - 2026/06/09 08:22:26 UTC
+Table: 'Expresso(1124670817)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (572)
+Seat 2: lalex9471 (928)
+*** ANTE/BLINDS ***
+lalex9471 posts small blind 40
+MRZO posts big blind 80
+Dealt to MRZO [Kc 6h]
+*** PRE-FLOP *** 
+lalex9471 folds
+MRZO collected 120 from pot
+*** SUMMARY ***
+Total pot 120 | No rake
+Seat 1: MRZO (big blind) won 120
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 5 - HandId: #4830424377780600833-36-1780993350 - Holdem no limit (40/80) - 2026/06/09 08:22:30 UTC
+Table: 'Expresso(1124670817)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (612)
+Seat 2: lalex9471 (888)
+*** ANTE/BLINDS ***
+MRZO posts small blind 40
+lalex9471 posts big blind 80
+Dealt to MRZO [4d 6s]
+*** PRE-FLOP *** 
+MRZO folds
+lalex9471 collected 120 from pot
+*** SUMMARY ***
+Total pot 120 | No rake
+Seat 2: lalex9471 (big blind) won 120
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 5 - HandId: #4830424377780600833-37-1780993354 - Holdem no limit (40/80) - 2026/06/09 08:22:34 UTC
+Table: 'Expresso(1124670817)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (572)
+Seat 2: lalex9471 (928)
+*** ANTE/BLINDS ***
+lalex9471 posts small blind 40
+MRZO posts big blind 80
+Dealt to MRZO [3h 4d]
+*** PRE-FLOP *** 
+lalex9471 raises 848 to 928 and is all-in
+MRZO folds
+lalex9471 collected 1008 from pot
+*** SUMMARY ***
+Total pot 1008 | No rake
+Seat 2: lalex9471 (small blind) (button) won 1008
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 5 - HandId: #4830424377780600833-38-1780993363 - Holdem no limit (40/80) - 2026/06/09 08:22:43 UTC
+Table: 'Expresso(1124670817)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (492)
+Seat 2: lalex9471 (1008)
+*** ANTE/BLINDS ***
+MRZO posts small blind 40
+lalex9471 posts big blind 80
+Dealt to MRZO [8s 7s]
+*** PRE-FLOP *** 
+MRZO raises 412 to 492 and is all-in
+lalex9471 folds
+MRZO collected 572 from pot
+*** SUMMARY ***
+Total pot 572 | No rake
+Seat 1: MRZO (small blind) (button) won 572
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 5 - HandId: #4830424377780600833-39-1780993369 - Holdem no limit (40/80) - 2026/06/09 08:22:49 UTC
+Table: 'Expresso(1124670817)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (572)
+Seat 2: lalex9471 (928)
+*** ANTE/BLINDS ***
+lalex9471 posts small blind 40
+MRZO posts big blind 80
+Dealt to MRZO [8s Tc]
+*** PRE-FLOP *** 
+lalex9471 folds
+MRZO collected 120 from pot
+*** SUMMARY ***
+Total pot 120 | No rake
+Seat 1: MRZO (big blind) won 120
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 5 - HandId: #4830424377780600833-40-1780993376 - Holdem no limit (40/80) - 2026/06/09 08:22:56 UTC
+Table: 'Expresso(1124670817)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (612)
+Seat 2: lalex9471 (888)
+*** ANTE/BLINDS ***
+MRZO posts small blind 40
+lalex9471 posts big blind 80
+Dealt to MRZO [Qh Ah]
+*** PRE-FLOP *** 
+MRZO raises 532 to 612 and is all-in
+lalex9471 folds
+MRZO collected 692 from pot
+*** SUMMARY ***
+Total pot 692 | No rake
+Seat 1: MRZO (small blind) (button) won 692
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 5 - HandId: #4830424377780600833-41-1780993382 - Holdem no limit (40/80) - 2026/06/09 08:23:02 UTC
+Table: 'Expresso(1124670817)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (692)
+Seat 2: lalex9471 (808)
+*** ANTE/BLINDS ***
+lalex9471 posts small blind 40
+MRZO posts big blind 80
+Dealt to MRZO [Tc 9h]
+*** PRE-FLOP *** 
+lalex9471 folds
+MRZO collected 120 from pot
+*** SUMMARY ***
+Total pot 120 | No rake
+Seat 1: MRZO (big blind) won 120
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 5 - HandId: #4830424377780600833-42-1780993386 - Holdem no limit (40/80) - 2026/06/09 08:23:06 UTC
+Table: 'Expresso(1124670817)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (732)
+Seat 2: lalex9471 (768)
+*** ANTE/BLINDS ***
+MRZO posts small blind 40
+lalex9471 posts big blind 80
+Dealt to MRZO [Ac Tc]
+*** PRE-FLOP *** 
+MRZO raises 652 to 732 and is all-in
+lalex9471 folds
+MRZO collected 812 from pot
+*** SUMMARY ***
+Total pot 812 | No rake
+Seat 1: MRZO (small blind) (button) won 812
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 5 - HandId: #4830424377780600833-43-1780993393 - Holdem no limit (40/80) - 2026/06/09 08:23:13 UTC
+Table: 'Expresso(1124670817)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (812)
+Seat 2: lalex9471 (688)
+*** ANTE/BLINDS ***
+lalex9471 posts small blind 40
+MRZO posts big blind 80
+Dealt to MRZO [Jh Qh]
+*** PRE-FLOP *** 
+lalex9471 raises 608 to 688 and is all-in
+MRZO raises 124 to 812 and is all-in
+*** FLOP *** [7d 6s 8h]
+*** TURN *** [7d 6s 8h][4h]
+*** RIVER *** [7d 6s 8h 4h][8s]
+*** SHOW DOWN ***
+MRZO shows [Jh Qh] (One pair : 8)
+lalex9471 shows [2d 2s] (Two pairs : 8 and 2)
+lalex9471 collected 1376 from main pot
+MRZO collected 124 from side pot 1
+*** SUMMARY ***
+Total pot 1500 | No rake
+Board: [7d 6s 8h 4h 8s]
+Seat 1: MRZO (big blind) showed [Jh Qh] and won 124 with One pair : 8
+Seat 2: lalex9471 (small blind) (button) showed [2d 2s] and won 1376 with Two pairs : 8 and 2
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 5 - HandId: #4830424377780600833-44-1780993404 - Holdem no limit (40/80) - 2026/06/09 08:23:24 UTC
+Table: 'Expresso(1124670817)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (124)
+Seat 2: lalex9471 (1376)
+*** ANTE/BLINDS ***
+MRZO posts small blind 40
+lalex9471 posts big blind 80
+Dealt to MRZO [Qs 2c]
+*** PRE-FLOP *** 
+MRZO raises 44 to 124 and is all-in
+lalex9471 folds
+MRZO collected 204 from pot
+*** SUMMARY ***
+Total pot 204 | No rake
+Seat 1: MRZO (small blind) (button) won 204
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 6 - HandId: #4830424377780600833-45-1780993412 - Holdem no limit (50/100) - 2026/06/09 08:23:32 UTC
+Table: 'Expresso(1124670817)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (204)
+Seat 2: lalex9471 (1296)
+*** ANTE/BLINDS ***
+lalex9471 posts small blind 50
+MRZO posts big blind 100
+Dealt to MRZO [3s Qh]
+*** PRE-FLOP *** 
+lalex9471 folds
+MRZO collected 150 from pot
+*** SUMMARY ***
+Total pot 150 | No rake
+Seat 1: MRZO (big blind) won 150
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 6 - HandId: #4830424377780600833-46-1780993416 - Holdem no limit (50/100) - 2026/06/09 08:23:36 UTC
+Table: 'Expresso(1124670817)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (254)
+Seat 2: lalex9471 (1246)
+*** ANTE/BLINDS ***
+MRZO posts small blind 50
+lalex9471 posts big blind 100
+Dealt to MRZO [3h Jd]
+*** PRE-FLOP *** 
+MRZO raises 154 to 254 and is all-in
+lalex9471 folds
+MRZO collected 354 from pot
+*** SUMMARY ***
+Total pot 354 | No rake
+Seat 1: MRZO (small blind) (button) won 354
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 6 - HandId: #4830424377780600833-47-1780993423 - Holdem no limit (50/100) - 2026/06/09 08:23:43 UTC
+Table: 'Expresso(1124670817)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (354)
+Seat 2: lalex9471 (1146)
+*** ANTE/BLINDS ***
+lalex9471 posts small blind 50
+MRZO posts big blind 100
+Dealt to MRZO [4d 7h]
+*** PRE-FLOP *** 
+lalex9471 raises 1046 to 1146 and is all-in
+MRZO calls 254 and is all-in
+*** FLOP *** [Kh 6h 2c]
+*** TURN *** [Kh 6h 2c][5c]
+*** RIVER *** [Kh 6h 2c 5c][Ks]
+*** SHOW DOWN ***
+MRZO shows [4d 7h] (One pair : Kings)
+lalex9471 shows [Th Jh] (One pair : Kings)
+lalex9471 collected 1500 from pot
+*** SUMMARY ***
+Total pot 1500 | No rake
+Board: [Kh 6h 2c 5c Ks]
+Seat 1: MRZO (big blind) showed [4d 7h] and lost with One pair : Kings
+Seat 2: lalex9471 (small blind) (button) showed [Th Jh] and won 1500 with One pair : Kings
+
+

@@ -1,0 +1,356 @@
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830787203732865025-1-1781003284 - Holdem no limit (10/20) - 2026/06/09 11:08:04 UTC
+Table: 'Expresso(1124755294)#0' 3-max (real money) Seat #2 is the button
+Seat 1: Maenat.1973 (500)
+Seat 2: nathandt (500)
+Seat 3: MRZO (500)
+*** ANTE/BLINDS ***
+MRZO posts small blind 10
+Maenat.1973 posts big blind 20
+Dealt to MRZO [Ac 8c]
+*** PRE-FLOP *** 
+nathandt calls 20
+MRZO raises 50 to 70
+Maenat.1973 calls 50
+nathandt calls 50
+*** FLOP *** [3s Jd 9c]
+MRZO checks
+Maenat.1973 bets 137
+nathandt folds
+MRZO folds
+Maenat.1973 collected 347 from pot
+*** SUMMARY ***
+Total pot 347 | No rake
+Board: [3s Jd 9c]
+Seat 1: Maenat.1973 (big blind) won 347
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830787203732865025-2-1781003305 - Holdem no limit (10/20) - 2026/06/09 11:08:25 UTC
+Table: 'Expresso(1124755294)#0' 3-max (real money) Seat #3 is the button
+Seat 1: Maenat.1973 (640)
+Seat 2: nathandt (430)
+Seat 3: MRZO (430)
+*** ANTE/BLINDS ***
+Maenat.1973 posts small blind 10
+nathandt posts big blind 20
+Dealt to MRZO [Jd Qs]
+*** PRE-FLOP *** 
+MRZO raises 20 to 40
+Maenat.1973 folds
+nathandt raises 390 to 430 and is all-in
+MRZO folds
+nathandt collected 480 from pot
+*** SUMMARY ***
+Total pot 480 | No rake
+Seat 2: nathandt (big blind) won 480
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830787203732865025-3-1781003314 - Holdem no limit (10/20) - 2026/06/09 11:08:34 UTC
+Table: 'Expresso(1124755294)#0' 3-max (real money) Seat #1 is the button
+Seat 1: Maenat.1973 (630)
+Seat 2: nathandt (480)
+Seat 3: MRZO (390)
+*** ANTE/BLINDS ***
+nathandt posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [4d 9h]
+*** PRE-FLOP *** 
+Maenat.1973 folds
+nathandt calls 10
+MRZO checks
+*** FLOP *** [Ad 9s 8c]
+nathandt bets 26
+MRZO calls 26
+*** TURN *** [Ad 9s 8c][Tc]
+nathandt checks
+MRZO checks
+*** RIVER *** [Ad 9s 8c Tc][3s]
+nathandt checks
+MRZO checks
+*** SHOW DOWN ***
+nathandt shows [6d 8h] (One pair : 8)
+MRZO shows [4d 9h] (One pair : 9)
+MRZO collected 92 from pot
+*** SUMMARY ***
+Total pot 92 | No rake
+Board: [Ad 9s 8c Tc 3s]
+Seat 2: nathandt (small blind) showed [6d 8h] and lost with One pair : 8
+Seat 3: MRZO (big blind) showed [4d 9h] and won 92 with One pair : 9
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830787203732865025-4-1781003329 - Holdem no limit (10/20) - 2026/06/09 11:08:49 UTC
+Table: 'Expresso(1124755294)#0' 3-max (real money) Seat #2 is the button
+Seat 1: Maenat.1973 (630)
+Seat 2: nathandt (434)
+Seat 3: MRZO (436)
+*** ANTE/BLINDS ***
+MRZO posts small blind 10
+Maenat.1973 posts big blind 20
+Dealt to MRZO [7c Kc]
+*** PRE-FLOP *** 
+nathandt folds
+MRZO raises 20 to 40
+Maenat.1973 calls 20
+*** FLOP *** [Jc Kh 7h]
+MRZO bets 52
+Maenat.1973 folds
+MRZO collected 132 from pot
+*** SUMMARY ***
+Total pot 132 | No rake
+Board: [Jc Kh 7h]
+Seat 3: MRZO (small blind) won 132
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830787203732865025-5-1781003345 - Holdem no limit (10/20) - 2026/06/09 11:09:05 UTC
+Table: 'Expresso(1124755294)#0' 3-max (real money) Seat #3 is the button
+Seat 1: Maenat.1973 (590)
+Seat 2: nathandt (434)
+Seat 3: MRZO (476)
+*** ANTE/BLINDS ***
+Maenat.1973 posts small blind 10
+nathandt posts big blind 20
+Dealt to MRZO [Js 4d]
+*** PRE-FLOP *** 
+MRZO folds
+Maenat.1973 folds
+nathandt collected 30 from pot
+*** SUMMARY ***
+Total pot 30 | No rake
+Seat 2: nathandt (big blind) won 30
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830787203732865025-6-1781003356 - Holdem no limit (10/20) - 2026/06/09 11:09:16 UTC
+Table: 'Expresso(1124755294)#0' 3-max (real money) Seat #1 is the button
+Seat 1: Maenat.1973 (580)
+Seat 2: nathandt (444)
+Seat 3: MRZO (476)
+*** ANTE/BLINDS ***
+nathandt posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [Js Td]
+*** PRE-FLOP *** 
+Maenat.1973 folds
+nathandt folds
+MRZO collected 30 from pot
+*** SUMMARY ***
+Total pot 30 | No rake
+Seat 3: MRZO (big blind) won 30
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830787203732865025-7-1781003361 - Holdem no limit (10/20) - 2026/06/09 11:09:21 UTC
+Table: 'Expresso(1124755294)#0' 3-max (real money) Seat #2 is the button
+Seat 1: Maenat.1973 (580)
+Seat 2: nathandt (434)
+Seat 3: MRZO (486)
+*** ANTE/BLINDS ***
+MRZO posts small blind 10
+Maenat.1973 posts big blind 20
+Dealt to MRZO [9d 3s]
+*** PRE-FLOP *** 
+nathandt folds
+MRZO folds
+Maenat.1973 collected 30 from pot
+*** SUMMARY ***
+Total pot 30 | No rake
+Seat 1: Maenat.1973 (big blind) won 30
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830787203732865025-8-1781003366 - Holdem no limit (10/20) - 2026/06/09 11:09:26 UTC
+Table: 'Expresso(1124755294)#0' 3-max (real money) Seat #3 is the button
+Seat 1: Maenat.1973 (590)
+Seat 2: nathandt (434)
+Seat 3: MRZO (476)
+*** ANTE/BLINDS ***
+Maenat.1973 posts small blind 10
+nathandt posts big blind 20
+Dealt to MRZO [Qh 7h]
+*** PRE-FLOP *** 
+MRZO folds
+Maenat.1973 calls 10
+nathandt checks
+*** FLOP *** [4s Jd Ad]
+Maenat.1973 bets 20
+nathandt folds
+Maenat.1973 collected 60 from pot
+*** SUMMARY ***
+Total pot 60 | No rake
+Board: [4s Jd Ad]
+Seat 1: Maenat.1973 (small blind) won 60
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830787203732865025-9-1781003377 - Holdem no limit (15/30) - 2026/06/09 11:09:37 UTC
+Table: 'Expresso(1124755294)#0' 3-max (real money) Seat #1 is the button
+Seat 1: Maenat.1973 (610)
+Seat 2: nathandt (414)
+Seat 3: MRZO (476)
+*** ANTE/BLINDS ***
+nathandt posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [Ts 5s]
+*** PRE-FLOP *** 
+Maenat.1973 folds
+nathandt raises 60 to 90
+MRZO folds
+nathandt collected 120 from pot
+*** SUMMARY ***
+Total pot 120 | No rake
+Seat 2: nathandt (small blind) won 120
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830787203732865025-10-1781003385 - Holdem no limit (15/30) - 2026/06/09 11:09:45 UTC
+Table: 'Expresso(1124755294)#0' 3-max (real money) Seat #2 is the button
+Seat 1: Maenat.1973 (610)
+Seat 2: nathandt (444)
+Seat 3: MRZO (446)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+Maenat.1973 posts big blind 30
+Dealt to MRZO [4h 4s]
+*** PRE-FLOP *** 
+nathandt folds
+MRZO raises 416 to 446 and is all-in
+Maenat.1973 raises 164 to 610 and is all-in
+*** FLOP *** [5h Qd Qc]
+*** TURN *** [5h Qd Qc][4c]
+*** RIVER *** [5h Qd Qc 4c][6c]
+*** SHOW DOWN ***
+Maenat.1973 shows [Kc Ah] (One pair : Queens)
+MRZO shows [4h 4s] (Full of 4 and Queens)
+MRZO collected 892 from main pot
+Maenat.1973 collected 164 from side pot 1
+*** SUMMARY ***
+Total pot 1056 | No rake
+Board: [5h Qd Qc 4c 6c]
+Seat 1: Maenat.1973 (big blind) showed [Kc Ah] and won 164 with One pair : Queens
+Seat 3: MRZO (small blind) showed [4h 4s] and won 892 with Full of 4 and Queens
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830787203732865025-11-1781003399 - Holdem no limit (15/30) - 2026/06/09 11:09:59 UTC
+Table: 'Expresso(1124755294)#0' 3-max (real money) Seat #3 is the button
+Seat 1: Maenat.1973 (164)
+Seat 2: nathandt (444)
+Seat 3: MRZO (892)
+*** ANTE/BLINDS ***
+Maenat.1973 posts small blind 15
+nathandt posts big blind 30
+Dealt to MRZO [7h 7s]
+*** PRE-FLOP *** 
+MRZO raises 30 to 60
+Maenat.1973 raises 104 to 164 and is all-in
+nathandt folds
+MRZO raises 728 to 892 and is all-in
+*** FLOP *** [As 4d Qd]
+*** TURN *** [As 4d Qd][6s]
+*** RIVER *** [As 4d Qd 6s][Td]
+*** SHOW DOWN ***
+Maenat.1973 shows [Kc 6h] (One pair : 6)
+MRZO shows [7h 7s] (One pair : 7)
+MRZO collected 1086 from pot
+*** SUMMARY ***
+Total pot 1086 | No rake
+Board: [As 4d Qd 6s Td]
+Seat 1: Maenat.1973 (small blind) showed [Kc 6h] and lost with One pair : 6
+Seat 3: MRZO (button) showed [7h 7s] and won 1086 with One pair : 7
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830787203732865025-12-1781003413 - Holdem no limit (15/30) - 2026/06/09 11:10:13 UTC
+Table: 'Expresso(1124755294)#0' 3-max (real money) Seat #2 is the button
+Seat 2: nathandt (414)
+Seat 3: MRZO (1086)
+*** ANTE/BLINDS ***
+nathandt posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [Kh As]
+*** PRE-FLOP *** 
+nathandt folds
+MRZO collected 45 from pot
+*** SUMMARY ***
+Total pot 45 | No rake
+Seat 3: MRZO (big blind) won 45
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830787203732865025-13-1781003417 - Holdem no limit (15/30) - 2026/06/09 11:10:17 UTC
+Table: 'Expresso(1124755294)#0' 3-max (real money) Seat #3 is the button
+Seat 2: nathandt (399)
+Seat 3: MRZO (1101)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+nathandt posts big blind 30
+Dealt to MRZO [6h Qc]
+*** PRE-FLOP *** 
+MRZO calls 15
+nathandt raises 30 to 60
+MRZO calls 30
+*** FLOP *** [9c 8d Td]
+nathandt bets 78
+MRZO calls 78
+*** TURN *** [9c 8d Td][Ah]
+nathandt checks
+MRZO checks
+*** RIVER *** [9c 8d Td Ah][2c]
+nathandt checks
+MRZO bets 276
+nathandt folds
+MRZO collected 552 from pot
+*** SUMMARY ***
+Total pot 552 | No rake
+Board: [9c 8d Td Ah 2c]
+Seat 3: MRZO (small blind) (button) won 552
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830787203732865025-14-1781003435 - Holdem no limit (15/30) - 2026/06/09 11:10:35 UTC
+Table: 'Expresso(1124755294)#0' 3-max (real money) Seat #2 is the button
+Seat 2: nathandt (261)
+Seat 3: MRZO (1239)
+*** ANTE/BLINDS ***
+nathandt posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [8c 9s]
+*** PRE-FLOP *** 
+nathandt folds
+MRZO collected 45 from pot
+*** SUMMARY ***
+Total pot 45 | No rake
+Seat 3: MRZO (big blind) won 45
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830787203732865025-15-1781003438 - Holdem no limit (15/30) - 2026/06/09 11:10:38 UTC
+Table: 'Expresso(1124755294)#0' 3-max (real money) Seat #3 is the button
+Seat 2: nathandt (246)
+Seat 3: MRZO (1254)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+nathandt posts big blind 30
+Dealt to MRZO [3d 2d]
+*** PRE-FLOP *** 
+MRZO folds
+nathandt collected 45 from pot
+*** SUMMARY ***
+Total pot 45 | No rake
+Seat 2: nathandt (big blind) won 45
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830787203732865025-16-1781003447 - Holdem no limit (15/30) - 2026/06/09 11:10:47 UTC
+Table: 'Expresso(1124755294)#0' 3-max (real money) Seat #2 is the button
+Seat 2: nathandt (261)
+Seat 3: MRZO (1239)
+*** ANTE/BLINDS ***
+nathandt posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [8d Kd]
+*** PRE-FLOP *** 
+nathandt raises 231 to 261 and is all-in
+MRZO raises 978 to 1239 and is all-in
+*** FLOP *** [8h Qc 6d]
+*** TURN *** [8h Qc 6d][2d]
+*** RIVER *** [8h Qc 6d 2d][5h]
+*** SHOW DOWN ***
+nathandt shows [Kh 5d] (One pair : 5)
+MRZO shows [8d Kd] (One pair : 8)
+MRZO collected 1500 from pot
+*** SUMMARY ***
+Total pot 1500 | No rake
+Board: [8h Qc 6d 2d 5h]
+Seat 2: nathandt (small blind) (button) showed [Kh 5d] and lost with One pair : 5
+Seat 3: MRZO (big blind) showed [8d Kd] and won 1500 with One pair : 8
+
+

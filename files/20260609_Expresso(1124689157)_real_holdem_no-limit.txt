@@ -1,0 +1,288 @@
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830503147480809473-1-1780995477 - Holdem no limit (10/20) - 2026/06/09 08:57:57 UTC
+Table: 'Expresso(1124689157)#0' 3-max (real money) Seat #3 is the button
+Seat 1: MRZO (500)
+Seat 2: Meum52 (500)
+Seat 3: Soso97411 (500)
+*** ANTE/BLINDS ***
+MRZO posts small blind 10
+Meum52 posts big blind 20
+Dealt to MRZO [6c 7h]
+*** PRE-FLOP *** 
+Soso97411 calls 20
+MRZO folds
+Meum52 checks
+*** FLOP *** [Jh Kd 8h]
+Meum52 bets 20
+Soso97411 calls 20
+*** TURN *** [Jh Kd 8h][Qh]
+Meum52 bets 20
+Soso97411 calls 20
+*** RIVER *** [Jh Kd 8h Qh][3h]
+Meum52 checks
+Soso97411 bets 130
+Meum52 folds
+Soso97411 collected 260 from pot
+*** SUMMARY ***
+Total pot 260 | No rake
+Board: [Jh Kd 8h Qh 3h]
+Seat 3: Soso97411 (button) won 260
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830503147480809473-2-1780995500 - Holdem no limit (10/20) - 2026/06/09 08:58:20 UTC
+Table: 'Expresso(1124689157)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (490)
+Seat 2: Meum52 (440)
+Seat 3: Soso97411 (570)
+*** ANTE/BLINDS ***
+Meum52 posts small blind 10
+Soso97411 posts big blind 20
+Dealt to MRZO [Jc 6d]
+*** PRE-FLOP *** 
+MRZO folds
+Meum52 calls 10
+Soso97411 checks
+*** FLOP *** [3d 5c Kc]
+Meum52 checks
+Soso97411 checks
+*** TURN *** [3d 5c Kc][7d]
+Meum52 checks
+Soso97411 checks
+*** RIVER *** [3d 5c Kc 7d][2c]
+Meum52 checks
+Soso97411 bets 40
+Meum52 folds
+Soso97411 collected 80 from pot
+*** SUMMARY ***
+Total pot 80 | No rake
+Board: [3d 5c Kc 7d 2c]
+Seat 3: Soso97411 (big blind) won 80
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830503147480809473-3-1780995528 - Holdem no limit (10/20) - 2026/06/09 08:58:48 UTC
+Table: 'Expresso(1124689157)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (490)
+Seat 2: Meum52 (420)
+Seat 3: Soso97411 (590)
+*** ANTE/BLINDS ***
+Soso97411 posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [6h 3s]
+*** PRE-FLOP *** 
+Meum52 calls 20
+Soso97411 calls 10
+MRZO checks
+*** FLOP *** [Td 2s 7h]
+Soso97411 checks
+MRZO checks
+Meum52 checks
+*** TURN *** [Td 2s 7h][6d]
+Soso97411 checks
+MRZO checks
+Meum52 checks
+*** RIVER *** [Td 2s 7h 6d][7d]
+Soso97411 checks
+MRZO bets 21
+Meum52 folds
+Soso97411 folds
+MRZO collected 81 from pot
+*** SUMMARY ***
+Total pot 81 | No rake
+Board: [Td 2s 7h 6d 7d]
+Seat 1: MRZO (big blind) won 81
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830503147480809473-4-1780995566 - Holdem no limit (15/30) - 2026/06/09 08:59:26 UTC
+Table: 'Expresso(1124689157)#0' 3-max (real money) Seat #3 is the button
+Seat 1: MRZO (530)
+Seat 2: Meum52 (400)
+Seat 3: Soso97411 (570)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+Meum52 posts big blind 30
+Dealt to MRZO [7s Jc]
+*** PRE-FLOP *** 
+Soso97411 calls 30
+MRZO folds
+Meum52 checks
+*** FLOP *** [8s 5h 6h]
+Meum52 bets 30
+Soso97411 calls 30
+*** TURN *** [8s 5h 6h][Tc]
+Meum52 bets 30
+Soso97411 calls 30
+*** RIVER *** [8s 5h 6h Tc][Qs]
+Meum52 bets 30
+Soso97411 folds
+Meum52 collected 225 from pot
+*** SUMMARY ***
+Total pot 225 | No rake
+Board: [8s 5h 6h Tc Qs]
+Seat 2: Meum52 (big blind) won 225
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830503147480809473-5-1780995586 - Holdem no limit (15/30) - 2026/06/09 08:59:46 UTC
+Table: 'Expresso(1124689157)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (515)
+Seat 2: Meum52 (505)
+Seat 3: Soso97411 (480)
+*** ANTE/BLINDS ***
+Meum52 posts small blind 15
+Soso97411 posts big blind 30
+Dealt to MRZO [As 8d]
+*** PRE-FLOP *** 
+MRZO raises 30 to 60
+Meum52 raises 445 to 505 and is all-in
+Soso97411 calls 450 and is all-in
+MRZO folds
+*** FLOP *** [4c 8h 6h]
+*** TURN *** [4c 8h 6h][3s]
+*** RIVER *** [4c 8h 6h 3s][Jh]
+*** SHOW DOWN ***
+Meum52 shows [6c 6d] (Trips of 6)
+Soso97411 shows [5h Ah] (Flush Ace high)
+Soso97411 collected 1020 from main pot
+Meum52 collected 25 from side pot 1
+*** SUMMARY ***
+Total pot 1045 | No rake
+Board: [4c 8h 6h 3s Jh]
+Seat 2: Meum52 (small blind) showed [6c 6d] and won 25 with Trips of 6
+Seat 3: Soso97411 (big blind) showed [5h Ah] and won 1020 with Flush Ace high
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830503147480809473-6-1780995601 - Holdem no limit (15/30) - 2026/06/09 09:00:01 UTC
+Table: 'Expresso(1124689157)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (455)
+Seat 2: Meum52 (25)
+Seat 3: Soso97411 (1020)
+*** ANTE/BLINDS ***
+Soso97411 posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [Th 9c]
+*** PRE-FLOP *** 
+Meum52 calls 25 and is all-in
+Soso97411 calls 15
+MRZO checks
+*** FLOP *** [Ac 8d 7c]
+Soso97411 checks
+MRZO bets 43
+Soso97411 calls 43
+*** TURN *** [Ac 8d 7c][9s]
+Soso97411 checks
+MRZO bets 86
+Soso97411 folds
+*** RIVER *** [Ac 8d 7c 9s][Js]
+*** SHOW DOWN ***
+Meum52 shows [3c 6h] (High card : Ace)
+MRZO shows [Th 9c] (Straight Jack high)
+MRZO collected 257 from pot
+*** SUMMARY ***
+Total pot 257 | No rake
+Board: [Ac 8d 7c 9s Js]
+Seat 1: MRZO (big blind) showed [Th 9c] and won 257 with Straight Jack high
+Seat 2: Meum52 (button) showed [3c 6h] and lost with High card : Ace
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830503147480809473-7-1780995631 - Holdem no limit (15/30) - 2026/06/09 09:00:31 UTC
+Table: 'Expresso(1124689157)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (553)
+Seat 3: Soso97411 (947)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+Soso97411 posts big blind 30
+Dealt to MRZO [8d Td]
+*** PRE-FLOP *** 
+MRZO calls 15
+Soso97411 checks
+*** FLOP *** [4c Jc Jd]
+Soso97411 checks
+MRZO checks
+*** TURN *** [4c Jc Jd][6h]
+Soso97411 checks
+MRZO checks
+*** RIVER *** [4c Jc Jd 6h][4s]
+Soso97411 checks
+MRZO checks
+*** SHOW DOWN ***
+Soso97411 shows [3s 7h] (Two pairs : Jacks and 4)
+MRZO shows [8d Td] (Two pairs : Jacks and 4)
+MRZO collected 60 from pot
+*** SUMMARY ***
+Total pot 60 | No rake
+Board: [4c Jc Jd 6h 4s]
+Seat 1: MRZO (small blind) (button) showed [8d Td] and won 60 with Two pairs : Jacks and 4
+Seat 3: Soso97411 (big blind) showed [3s 7h] and lost with Two pairs : Jacks and 4
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830503147480809473-8-1780995650 - Holdem no limit (15/30) - 2026/06/09 09:00:50 UTC
+Table: 'Expresso(1124689157)#0' 3-max (real money) Seat #3 is the button
+Seat 1: MRZO (583)
+Seat 3: Soso97411 (917)
+*** ANTE/BLINDS ***
+Soso97411 posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [3h Kd]
+*** PRE-FLOP *** 
+Soso97411 calls 15
+MRZO checks
+*** FLOP *** [Jh 4d Ks]
+MRZO checks
+Soso97411 bets 30
+MRZO raises 90 to 120
+Soso97411 calls 90
+*** TURN *** [Jh 4d Ks][5c]
+MRZO bets 433 and is all-in
+Soso97411 calls 433
+*** RIVER *** [Jh 4d Ks 5c][9c]
+*** SHOW DOWN ***
+Soso97411 shows [Ac Jc] (One pair : Jacks)
+MRZO shows [3h Kd] (One pair : Kings)
+MRZO collected 1166 from pot
+*** SUMMARY ***
+Total pot 1166 | No rake
+Board: [Jh 4d Ks 5c 9c]
+Seat 1: MRZO (big blind) showed [3h Kd] and won 1166 with One pair : Kings
+Seat 3: Soso97411 (small blind) (button) showed [Ac Jc] and lost with One pair : Jacks
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830503147480809473-9-1780995670 - Holdem no limit (20/40) - 2026/06/09 09:01:10 UTC
+Table: 'Expresso(1124689157)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (1166)
+Seat 3: Soso97411 (334)
+*** ANTE/BLINDS ***
+MRZO posts small blind 20
+Soso97411 posts big blind 40
+Dealt to MRZO [8h 4d]
+*** PRE-FLOP *** 
+MRZO folds
+Soso97411 collected 60 from pot
+*** SUMMARY ***
+Total pot 60 | No rake
+Seat 3: Soso97411 (big blind) won 60
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830503147480809473-10-1780995674 - Holdem no limit (20/40) - 2026/06/09 09:01:14 UTC
+Table: 'Expresso(1124689157)#0' 3-max (real money) Seat #3 is the button
+Seat 1: MRZO (1146)
+Seat 3: Soso97411 (354)
+*** ANTE/BLINDS ***
+Soso97411 posts small blind 20
+MRZO posts big blind 40
+Dealt to MRZO [6h 6s]
+*** PRE-FLOP *** 
+Soso97411 calls 20
+MRZO raises 1106 to 1146 and is all-in
+Soso97411 calls 314 and is all-in
+*** FLOP *** [6d 4s Jh]
+*** TURN *** [6d 4s Jh][Jc]
+*** RIVER *** [6d 4s Jh Jc][As]
+*** SHOW DOWN ***
+Soso97411 shows [2s Kh] (One pair : Jacks)
+MRZO shows [6h 6s] (Full of 6 and Jacks)
+MRZO collected 1500 from pot
+*** SUMMARY ***
+Total pot 1500 | No rake
+Board: [6d 4s Jh Jc As]
+Seat 1: MRZO (big blind) showed [6h 6s] and won 1500 with Full of 6 and Jacks
+Seat 3: Soso97411 (small blind) (button) showed [2s Kh] and lost with One pair : Jacks
+
+

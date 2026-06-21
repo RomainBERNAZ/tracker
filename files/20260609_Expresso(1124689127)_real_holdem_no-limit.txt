@@ -1,0 +1,674 @@
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830503018631790593-1-1780995472 - Holdem no limit (10/20) - 2026/06/09 08:57:52 UTC
+Table: 'Expresso(1124689127)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (500)
+Seat 2: P3rcym3rcy (500)
+Seat 3: CodeCaller (500)
+*** ANTE/BLINDS ***
+CodeCaller posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [2d 9c]
+*** PRE-FLOP *** 
+P3rcym3rcy folds
+CodeCaller folds
+MRZO collected 30 from pot
+*** SUMMARY ***
+Total pot 30 | No rake
+Seat 1: MRZO (big blind) won 30
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830503018631790593-2-1780995479 - Holdem no limit (10/20) - 2026/06/09 08:57:59 UTC
+Table: 'Expresso(1124689127)#0' 3-max (real money) Seat #3 is the button
+Seat 1: MRZO (510)
+Seat 2: P3rcym3rcy (500)
+Seat 3: CodeCaller (490)
+*** ANTE/BLINDS ***
+MRZO posts small blind 10
+P3rcym3rcy posts big blind 20
+Dealt to MRZO [5c 2c]
+*** PRE-FLOP *** 
+CodeCaller folds
+MRZO calls 10
+P3rcym3rcy checks
+*** FLOP *** [4c 4h Kh]
+MRZO checks
+P3rcym3rcy bets 20
+MRZO folds
+P3rcym3rcy collected 60 from pot
+*** SUMMARY ***
+Total pot 60 | No rake
+Board: [4c 4h Kh]
+Seat 2: P3rcym3rcy (big blind) won 60
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830503018631790593-3-1780995490 - Holdem no limit (10/20) - 2026/06/09 08:58:10 UTC
+Table: 'Expresso(1124689127)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (490)
+Seat 2: P3rcym3rcy (520)
+Seat 3: CodeCaller (490)
+*** ANTE/BLINDS ***
+P3rcym3rcy posts small blind 10
+CodeCaller posts big blind 20
+Dealt to MRZO [3c 3s]
+*** PRE-FLOP *** 
+MRZO raises 20 to 40
+P3rcym3rcy folds
+CodeCaller raises 450 to 490 and is all-in
+MRZO folds
+CodeCaller collected 540 from pot
+*** SUMMARY ***
+Total pot 540 | No rake
+Seat 3: CodeCaller (big blind) won 540
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830503018631790593-4-1780995504 - Holdem no limit (10/20) - 2026/06/09 08:58:24 UTC
+Table: 'Expresso(1124689127)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (450)
+Seat 2: P3rcym3rcy (510)
+Seat 3: CodeCaller (540)
+*** ANTE/BLINDS ***
+CodeCaller posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [8c Tc]
+*** PRE-FLOP *** 
+P3rcym3rcy raises 20 to 40
+CodeCaller folds
+MRZO calls 20
+*** FLOP *** [8s As Qh]
+MRZO checks
+P3rcym3rcy bets 23
+MRZO calls 23
+*** TURN *** [8s As Qh][8d]
+MRZO checks
+P3rcym3rcy checks
+*** RIVER *** [8s As Qh 8d][3c]
+MRZO bets 204
+P3rcym3rcy calls 204
+*** SHOW DOWN ***
+P3rcym3rcy shows [7s 7d] (Two pairs : 8 and 7)
+MRZO shows [8c Tc] (Trips of 8)
+MRZO collected 544 from pot
+*** SUMMARY ***
+Total pot 544 | No rake
+Board: [8s As Qh 8d 3c]
+Seat 1: MRZO (big blind) showed [8c Tc] and won 544 with Trips of 8
+Seat 2: P3rcym3rcy (button) showed [7s 7d] and lost with Two pairs : 8 and 7
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830503018631790593-5-1780995532 - Holdem no limit (10/20) - 2026/06/09 08:58:52 UTC
+Table: 'Expresso(1124689127)#0' 3-max (real money) Seat #3 is the button
+Seat 1: MRZO (727)
+Seat 2: P3rcym3rcy (243)
+Seat 3: CodeCaller (530)
+*** ANTE/BLINDS ***
+MRZO posts small blind 10
+P3rcym3rcy posts big blind 20
+Dealt to MRZO [2c 4d]
+*** PRE-FLOP *** 
+CodeCaller raises 20 to 40
+MRZO folds
+P3rcym3rcy raises 203 to 243 and is all-in
+CodeCaller raises 287 to 530 and is all-in
+*** FLOP *** [5d Jc Kh]
+*** TURN *** [5d Jc Kh][Qh]
+*** RIVER *** [5d Jc Kh Qh][Th]
+*** SHOW DOWN ***
+P3rcym3rcy shows [5h Ad] (Straight Ace high)
+CodeCaller shows [Kc Kd] (Trips of Kings)
+CodeCaller collected 287 from side pot 1
+P3rcym3rcy collected 496 from main pot
+*** SUMMARY ***
+Total pot 783 | No rake
+Board: [5d Jc Kh Qh Th]
+Seat 2: P3rcym3rcy (big blind) showed [5h Ad] and won 496 with Straight Ace high
+Seat 3: CodeCaller (button) showed [Kc Kd] and won 287 with Trips of Kings
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830503018631790593-6-1780995549 - Holdem no limit (10/20) - 2026/06/09 08:59:09 UTC
+Table: 'Expresso(1124689127)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (717)
+Seat 2: P3rcym3rcy (496)
+Seat 3: CodeCaller (287)
+*** ANTE/BLINDS ***
+P3rcym3rcy posts small blind 10
+CodeCaller posts big blind 20
+Dealt to MRZO [3c 8d]
+*** PRE-FLOP *** 
+MRZO folds
+P3rcym3rcy folds
+CodeCaller collected 30 from pot
+*** SUMMARY ***
+Total pot 30 | No rake
+Seat 3: CodeCaller (big blind) won 30
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830503018631790593-7-1780995554 - Holdem no limit (10/20) - 2026/06/09 08:59:14 UTC
+Table: 'Expresso(1124689127)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (717)
+Seat 2: P3rcym3rcy (486)
+Seat 3: CodeCaller (297)
+*** ANTE/BLINDS ***
+CodeCaller posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [5h Jd]
+*** PRE-FLOP *** 
+P3rcym3rcy raises 20 to 40
+CodeCaller folds
+MRZO folds
+P3rcym3rcy collected 70 from pot
+*** SUMMARY ***
+Total pot 70 | No rake
+Seat 2: P3rcym3rcy (button) won 70
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830503018631790593-8-1780995562 - Holdem no limit (15/30) - 2026/06/09 08:59:22 UTC
+Table: 'Expresso(1124689127)#0' 3-max (real money) Seat #3 is the button
+Seat 1: MRZO (697)
+Seat 2: P3rcym3rcy (516)
+Seat 3: CodeCaller (287)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+P3rcym3rcy posts big blind 30
+Dealt to MRZO [As Qc]
+*** PRE-FLOP *** 
+CodeCaller raises 257 to 287 and is all-in
+MRZO raises 410 to 697 and is all-in
+P3rcym3rcy folds
+*** FLOP *** [9c 5h 7h]
+*** TURN *** [9c 5h 7h][3s]
+*** RIVER *** [9c 5h 7h 3s][Ah]
+*** SHOW DOWN ***
+MRZO shows [As Qc] (One pair : Aces)
+CodeCaller shows [Kh Ad] (One pair : Aces)
+CodeCaller collected 604 from main pot
+MRZO collected 410 from side pot 1
+*** SUMMARY ***
+Total pot 1014 | No rake
+Board: [9c 5h 7h 3s Ah]
+Seat 1: MRZO (small blind) showed [As Qc] and won 410 with One pair : Aces
+Seat 3: CodeCaller (button) showed [Kh Ad] and won 604 with One pair : Aces
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830503018631790593-9-1780995577 - Holdem no limit (15/30) - 2026/06/09 08:59:37 UTC
+Table: 'Expresso(1124689127)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (410)
+Seat 2: P3rcym3rcy (486)
+Seat 3: CodeCaller (604)
+*** ANTE/BLINDS ***
+P3rcym3rcy posts small blind 15
+CodeCaller posts big blind 30
+Dealt to MRZO [5s 4d]
+*** PRE-FLOP *** 
+MRZO folds
+P3rcym3rcy calls 15
+CodeCaller checks
+*** FLOP *** [Ks 5h 6c]
+P3rcym3rcy bets 30
+CodeCaller folds
+P3rcym3rcy collected 90 from pot
+*** SUMMARY ***
+Total pot 90 | No rake
+Board: [Ks 5h 6c]
+Seat 2: P3rcym3rcy (small blind) won 90
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830503018631790593-10-1780995596 - Holdem no limit (15/30) - 2026/06/09 08:59:56 UTC
+Table: 'Expresso(1124689127)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (410)
+Seat 2: P3rcym3rcy (516)
+Seat 3: CodeCaller (574)
+*** ANTE/BLINDS ***
+CodeCaller posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [Ks 9c]
+*** PRE-FLOP *** 
+P3rcym3rcy folds
+CodeCaller raises 544 to 574 and is all-in
+MRZO folds
+CodeCaller collected 604 from pot
+*** SUMMARY ***
+Total pot 604 | No rake
+Seat 3: CodeCaller (small blind) won 604
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830503018631790593-11-1780995606 - Holdem no limit (15/30) - 2026/06/09 09:00:06 UTC
+Table: 'Expresso(1124689127)#0' 3-max (real money) Seat #3 is the button
+Seat 1: MRZO (380)
+Seat 2: P3rcym3rcy (516)
+Seat 3: CodeCaller (604)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+P3rcym3rcy posts big blind 30
+Dealt to MRZO [As Qs]
+*** PRE-FLOP *** 
+CodeCaller folds
+MRZO raises 350 to 380 and is all-in
+P3rcym3rcy folds
+MRZO collected 410 from pot
+*** SUMMARY ***
+Total pot 410 | No rake
+Seat 1: MRZO (small blind) won 410
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830503018631790593-12-1780995614 - Holdem no limit (15/30) - 2026/06/09 09:00:14 UTC
+Table: 'Expresso(1124689127)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (410)
+Seat 2: P3rcym3rcy (486)
+Seat 3: CodeCaller (604)
+*** ANTE/BLINDS ***
+P3rcym3rcy posts small blind 15
+CodeCaller posts big blind 30
+Dealt to MRZO [As 4s]
+*** PRE-FLOP *** 
+MRZO raises 380 to 410 and is all-in
+P3rcym3rcy folds
+CodeCaller folds
+MRZO collected 455 from pot
+*** SUMMARY ***
+Total pot 455 | No rake
+Seat 1: MRZO (button) won 455
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830503018631790593-13-1780995628 - Holdem no limit (15/30) - 2026/06/09 09:00:28 UTC
+Table: 'Expresso(1124689127)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (455)
+Seat 2: P3rcym3rcy (471)
+Seat 3: CodeCaller (574)
+*** ANTE/BLINDS ***
+CodeCaller posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [6s 4c]
+*** PRE-FLOP *** 
+P3rcym3rcy raises 30 to 60
+CodeCaller folds
+MRZO folds
+P3rcym3rcy collected 105 from pot
+*** SUMMARY ***
+Total pot 105 | No rake
+Seat 2: P3rcym3rcy (button) won 105
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830503018631790593-14-1780995644 - Holdem no limit (15/30) - 2026/06/09 09:00:44 UTC
+Table: 'Expresso(1124689127)#0' 3-max (real money) Seat #3 is the button
+Seat 1: MRZO (425)
+Seat 2: P3rcym3rcy (516)
+Seat 3: CodeCaller (559)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+P3rcym3rcy posts big blind 30
+Dealt to MRZO [3d 7c]
+*** PRE-FLOP *** 
+CodeCaller folds
+MRZO folds
+P3rcym3rcy collected 45 from pot
+*** SUMMARY ***
+Total pot 45 | No rake
+Seat 2: P3rcym3rcy (big blind) won 45
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830503018631790593-15-1780995650 - Holdem no limit (20/40) - 2026/06/09 09:00:50 UTC
+Table: 'Expresso(1124689127)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (410)
+Seat 2: P3rcym3rcy (531)
+Seat 3: CodeCaller (559)
+*** ANTE/BLINDS ***
+P3rcym3rcy posts small blind 20
+CodeCaller posts big blind 40
+Dealt to MRZO [Ac Ad]
+*** PRE-FLOP *** 
+MRZO raises 40 to 80
+P3rcym3rcy folds
+CodeCaller folds
+MRZO collected 140 from pot
+*** SUMMARY ***
+Total pot 140 | No rake
+Seat 1: MRZO (button) won 140
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830503018631790593-16-1780995658 - Holdem no limit (20/40) - 2026/06/09 09:00:58 UTC
+Table: 'Expresso(1124689127)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (470)
+Seat 2: P3rcym3rcy (511)
+Seat 3: CodeCaller (519)
+*** ANTE/BLINDS ***
+CodeCaller posts small blind 20
+MRZO posts big blind 40
+Dealt to MRZO [6h 9d]
+*** PRE-FLOP *** 
+P3rcym3rcy folds
+CodeCaller raises 479 to 519 and is all-in
+MRZO folds
+CodeCaller collected 559 from pot
+*** SUMMARY ***
+Total pot 559 | No rake
+Seat 3: CodeCaller (small blind) won 559
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830503018631790593-17-1780995665 - Holdem no limit (20/40) - 2026/06/09 09:01:05 UTC
+Table: 'Expresso(1124689127)#0' 3-max (real money) Seat #3 is the button
+Seat 1: MRZO (430)
+Seat 2: P3rcym3rcy (511)
+Seat 3: CodeCaller (559)
+*** ANTE/BLINDS ***
+MRZO posts small blind 20
+P3rcym3rcy posts big blind 40
+Dealt to MRZO [7c Td]
+*** PRE-FLOP *** 
+CodeCaller folds
+MRZO calls 20
+P3rcym3rcy checks
+*** FLOP *** [6h 9d Ad]
+MRZO checks
+P3rcym3rcy bets 40
+MRZO folds
+P3rcym3rcy collected 120 from pot
+*** SUMMARY ***
+Total pot 120 | No rake
+Board: [6h 9d Ad]
+Seat 2: P3rcym3rcy (big blind) won 120
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830503018631790593-18-1780995680 - Holdem no limit (20/40) - 2026/06/09 09:01:20 UTC
+Table: 'Expresso(1124689127)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (390)
+Seat 2: P3rcym3rcy (551)
+Seat 3: CodeCaller (559)
+*** ANTE/BLINDS ***
+P3rcym3rcy posts small blind 20
+CodeCaller posts big blind 40
+Dealt to MRZO [As 6s]
+*** PRE-FLOP *** 
+MRZO raises 350 to 390 and is all-in
+P3rcym3rcy folds
+CodeCaller folds
+MRZO collected 450 from pot
+*** SUMMARY ***
+Total pot 450 | No rake
+Seat 1: MRZO (button) won 450
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830503018631790593-19-1780995687 - Holdem no limit (20/40) - 2026/06/09 09:01:27 UTC
+Table: 'Expresso(1124689127)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (450)
+Seat 2: P3rcym3rcy (531)
+Seat 3: CodeCaller (519)
+*** ANTE/BLINDS ***
+CodeCaller posts small blind 20
+MRZO posts big blind 40
+Dealt to MRZO [2h 3h]
+*** PRE-FLOP *** 
+P3rcym3rcy folds
+CodeCaller raises 479 to 519 and is all-in
+MRZO folds
+CodeCaller collected 559 from pot
+*** SUMMARY ***
+Total pot 559 | No rake
+Seat 3: CodeCaller (small blind) won 559
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830503018631790593-20-1780995695 - Holdem no limit (20/40) - 2026/06/09 09:01:35 UTC
+Table: 'Expresso(1124689127)#0' 3-max (real money) Seat #3 is the button
+Seat 1: MRZO (410)
+Seat 2: P3rcym3rcy (531)
+Seat 3: CodeCaller (559)
+*** ANTE/BLINDS ***
+MRZO posts small blind 20
+P3rcym3rcy posts big blind 40
+Dealt to MRZO [2d 7d]
+*** PRE-FLOP *** 
+CodeCaller folds
+MRZO folds
+P3rcym3rcy collected 60 from pot
+*** SUMMARY ***
+Total pot 60 | No rake
+Seat 2: P3rcym3rcy (big blind) won 60
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830503018631790593-21-1780995700 - Holdem no limit (20/40) - 2026/06/09 09:01:40 UTC
+Table: 'Expresso(1124689127)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (390)
+Seat 2: P3rcym3rcy (551)
+Seat 3: CodeCaller (559)
+*** ANTE/BLINDS ***
+P3rcym3rcy posts small blind 20
+CodeCaller posts big blind 40
+Dealt to MRZO [Td 2c]
+*** PRE-FLOP *** 
+MRZO folds
+P3rcym3rcy calls 20
+CodeCaller checks
+*** FLOP *** [2h As Jc]
+P3rcym3rcy bets 40
+CodeCaller folds
+P3rcym3rcy collected 120 from pot
+*** SUMMARY ***
+Total pot 120 | No rake
+Board: [2h As Jc]
+Seat 2: P3rcym3rcy (small blind) won 120
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830503018631790593-22-1780995715 - Holdem no limit (20/40) - 2026/06/09 09:01:55 UTC
+Table: 'Expresso(1124689127)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (390)
+Seat 2: P3rcym3rcy (591)
+Seat 3: CodeCaller (519)
+*** ANTE/BLINDS ***
+CodeCaller posts small blind 20
+MRZO posts big blind 40
+Dealt to MRZO [4d Jc]
+*** PRE-FLOP *** 
+P3rcym3rcy raises 40 to 80
+CodeCaller folds
+MRZO folds
+P3rcym3rcy collected 140 from pot
+*** SUMMARY ***
+Total pot 140 | No rake
+Seat 2: P3rcym3rcy (button) won 140
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830503018631790593-23-1780995727 - Holdem no limit (20/40) - 2026/06/09 09:02:07 UTC
+Table: 'Expresso(1124689127)#0' 3-max (real money) Seat #3 is the button
+Seat 1: MRZO (350)
+Seat 2: P3rcym3rcy (651)
+Seat 3: CodeCaller (499)
+*** ANTE/BLINDS ***
+MRZO posts small blind 20
+P3rcym3rcy posts big blind 40
+Dealt to MRZO [Kc Td]
+*** PRE-FLOP *** 
+CodeCaller folds
+MRZO raises 310 to 350 and is all-in
+P3rcym3rcy calls 310
+*** FLOP *** [Kh 7s Js]
+*** TURN *** [Kh 7s Js][6c]
+*** RIVER *** [Kh 7s Js 6c][5d]
+*** SHOW DOWN ***
+P3rcym3rcy shows [Qs Jc] (One pair : Jacks)
+MRZO shows [Kc Td] (One pair : Kings)
+MRZO collected 700 from pot
+*** SUMMARY ***
+Total pot 700 | No rake
+Board: [Kh 7s Js 6c 5d]
+Seat 1: MRZO (small blind) showed [Kc Td] and won 700 with One pair : Kings
+Seat 2: P3rcym3rcy (big blind) showed [Qs Jc] and lost with One pair : Jacks
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830503018631790593-24-1780995740 - Holdem no limit (30/60) - 2026/06/09 09:02:20 UTC
+Table: 'Expresso(1124689127)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (700)
+Seat 2: P3rcym3rcy (301)
+Seat 3: CodeCaller (499)
+*** ANTE/BLINDS ***
+P3rcym3rcy posts small blind 30
+CodeCaller posts big blind 60
+Dealt to MRZO [Td 9s]
+*** PRE-FLOP *** 
+MRZO folds
+P3rcym3rcy calls 30
+CodeCaller raises 439 to 499 and is all-in
+P3rcym3rcy folds
+CodeCaller collected 559 from pot
+*** SUMMARY ***
+Total pot 559 | No rake
+Seat 3: CodeCaller (big blind) won 559
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830503018631790593-25-1780995752 - Holdem no limit (30/60) - 2026/06/09 09:02:32 UTC
+Table: 'Expresso(1124689127)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (700)
+Seat 2: P3rcym3rcy (241)
+Seat 3: CodeCaller (559)
+*** ANTE/BLINDS ***
+CodeCaller posts small blind 30
+MRZO posts big blind 60
+Dealt to MRZO [7d 4h]
+*** PRE-FLOP *** 
+P3rcym3rcy folds
+CodeCaller raises 499 to 559 and is all-in
+MRZO folds
+CodeCaller collected 619 from pot
+*** SUMMARY ***
+Total pot 619 | No rake
+Seat 3: CodeCaller (small blind) won 619
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830503018631790593-26-1780995762 - Holdem no limit (30/60) - 2026/06/09 09:02:42 UTC
+Table: 'Expresso(1124689127)#0' 3-max (real money) Seat #3 is the button
+Seat 1: MRZO (640)
+Seat 2: P3rcym3rcy (241)
+Seat 3: CodeCaller (619)
+*** ANTE/BLINDS ***
+MRZO posts small blind 30
+P3rcym3rcy posts big blind 60
+Dealt to MRZO [2c 7s]
+*** PRE-FLOP *** 
+CodeCaller raises 559 to 619 and is all-in
+MRZO folds
+P3rcym3rcy calls 181 and is all-in
+*** FLOP *** [Ks 4s 2h]
+*** TURN *** [Ks 4s 2h][7c]
+*** RIVER *** [Ks 4s 2h 7c][Ac]
+*** SHOW DOWN ***
+P3rcym3rcy shows [Kc As] (Two pairs : Aces and Kings)
+CodeCaller shows [5d Ah] (One pair : Aces)
+CodeCaller collected 378 from side pot 1
+P3rcym3rcy collected 512 from main pot
+*** SUMMARY ***
+Total pot 890 | No rake
+Board: [Ks 4s 2h 7c Ac]
+Seat 2: P3rcym3rcy (big blind) showed [Kc As] and won 512 with Two pairs : Aces and Kings
+Seat 3: CodeCaller (button) showed [5d Ah] and won 378 with One pair : Aces
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830503018631790593-27-1780995776 - Holdem no limit (30/60) - 2026/06/09 09:02:56 UTC
+Table: 'Expresso(1124689127)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (610)
+Seat 2: P3rcym3rcy (512)
+Seat 3: CodeCaller (378)
+*** ANTE/BLINDS ***
+P3rcym3rcy posts small blind 30
+CodeCaller posts big blind 60
+Dealt to MRZO [6d 8s]
+*** PRE-FLOP *** 
+MRZO folds
+P3rcym3rcy calls 30
+CodeCaller raises 318 to 378 and is all-in
+P3rcym3rcy folds
+CodeCaller collected 438 from pot
+*** SUMMARY ***
+Total pot 438 | No rake
+Seat 3: CodeCaller (big blind) won 438
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830503018631790593-28-1780995785 - Holdem no limit (30/60) - 2026/06/09 09:03:05 UTC
+Table: 'Expresso(1124689127)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (610)
+Seat 2: P3rcym3rcy (452)
+Seat 3: CodeCaller (438)
+*** ANTE/BLINDS ***
+CodeCaller posts small blind 30
+MRZO posts big blind 60
+Dealt to MRZO [3h As]
+*** PRE-FLOP *** 
+P3rcym3rcy folds
+CodeCaller raises 378 to 438 and is all-in
+MRZO raises 172 to 610 and is all-in
+*** FLOP *** [2c Jh Qc]
+*** TURN *** [2c Jh Qc][8s]
+*** RIVER *** [2c Jh Qc 8s][5c]
+*** SHOW DOWN ***
+MRZO shows [3h As] (High card : Ace)
+CodeCaller shows [9s Tc] (Straight Queen high)
+CodeCaller collected 876 from main pot
+MRZO collected 172 from side pot 1
+*** SUMMARY ***
+Total pot 1048 | No rake
+Board: [2c Jh Qc 8s 5c]
+Seat 1: MRZO (big blind) showed [3h As] and won 172 with High card : Ace
+Seat 3: CodeCaller (small blind) showed [9s Tc] and won 876 with Straight Queen high
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830503018631790593-29-1780995799 - Holdem no limit (30/60) - 2026/06/09 09:03:19 UTC
+Table: 'Expresso(1124689127)#0' 3-max (real money) Seat #3 is the button
+Seat 1: MRZO (172)
+Seat 2: P3rcym3rcy (452)
+Seat 3: CodeCaller (876)
+*** ANTE/BLINDS ***
+MRZO posts small blind 30
+P3rcym3rcy posts big blind 60
+Dealt to MRZO [7d 4c]
+*** PRE-FLOP *** 
+CodeCaller raises 816 to 876 and is all-in
+MRZO folds
+P3rcym3rcy folds
+CodeCaller collected 966 from pot
+*** SUMMARY ***
+Total pot 966 | No rake
+Seat 3: CodeCaller (button) won 966
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830503018631790593-30-1780995806 - Holdem no limit (30/60) - 2026/06/09 09:03:26 UTC
+Table: 'Expresso(1124689127)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (142)
+Seat 2: P3rcym3rcy (392)
+Seat 3: CodeCaller (966)
+*** ANTE/BLINDS ***
+P3rcym3rcy posts small blind 30
+CodeCaller posts big blind 60
+Dealt to MRZO [5s 2h]
+*** PRE-FLOP *** 
+MRZO folds
+P3rcym3rcy raises 332 to 392 and is all-in
+CodeCaller folds
+P3rcym3rcy collected 452 from pot
+*** SUMMARY ***
+Total pot 452 | No rake
+Seat 2: P3rcym3rcy (small blind) won 452
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830503018631790593-31-1780995817 - Holdem no limit (30/60) - 2026/06/09 09:03:37 UTC
+Table: 'Expresso(1124689127)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (142)
+Seat 2: P3rcym3rcy (452)
+Seat 3: CodeCaller (906)
+*** ANTE/BLINDS ***
+CodeCaller posts small blind 30
+MRZO posts big blind 60
+Dealt to MRZO [Jh 8d]
+*** PRE-FLOP *** 
+P3rcym3rcy folds
+CodeCaller raises 846 to 906 and is all-in
+MRZO calls 82 and is all-in
+*** FLOP *** [7c Ks 4h]
+*** TURN *** [7c Ks 4h][3h]
+*** RIVER *** [7c Ks 4h 3h][9s]
+*** SHOW DOWN ***
+MRZO shows [Jh 8d] (High card : King)
+CodeCaller shows [Qc Qs] (One pair : Queens)
+CodeCaller collected 1048 from pot
+*** SUMMARY ***
+Total pot 1048 | No rake
+Board: [7c Ks 4h 3h 9s]
+Seat 1: MRZO (big blind) showed [Jh 8d] and lost with High card : King
+Seat 3: CodeCaller (small blind) showed [Qc Qs] and won 1048 with One pair : Queens
+
+

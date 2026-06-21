@@ -1,0 +1,741 @@
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830741977727238145-1-1781002204 - Holdem no limit (10/20) - 2026/06/09 10:50:04 UTC
+Table: 'Expresso(1124744764)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MozzArt11 (500)
+Seat 2: Bibbledu16 (500)
+Seat 3: MRZO (500)
+*** ANTE/BLINDS ***
+Bibbledu16 posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [9h 6d]
+*** PRE-FLOP *** 
+MozzArt11 raises 30 to 50
+Bibbledu16 folds
+MRZO folds
+MozzArt11 collected 80 from pot
+*** SUMMARY ***
+Total pot 80 | No rake
+Seat 1: MozzArt11 (button) won 80
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830741977727238145-2-1781002212 - Holdem no limit (10/20) - 2026/06/09 10:50:12 UTC
+Table: 'Expresso(1124744764)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MozzArt11 (530)
+Seat 2: Bibbledu16 (490)
+Seat 3: MRZO (480)
+*** ANTE/BLINDS ***
+MRZO posts small blind 10
+MozzArt11 posts big blind 20
+Dealt to MRZO [Kh Ac]
+*** PRE-FLOP *** 
+Bibbledu16 folds
+MRZO raises 40 to 60
+MozzArt11 folds
+MRZO collected 80 from pot
+*** SUMMARY ***
+Total pot 80 | No rake
+Seat 3: MRZO (small blind) won 80
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830741977727238145-3-1781002221 - Holdem no limit (10/20) - 2026/06/09 10:50:21 UTC
+Table: 'Expresso(1124744764)#0' 3-max (real money) Seat #3 is the button
+Seat 1: MozzArt11 (510)
+Seat 2: Bibbledu16 (490)
+Seat 3: MRZO (500)
+*** ANTE/BLINDS ***
+MozzArt11 posts small blind 10
+Bibbledu16 posts big blind 20
+Dealt to MRZO [2c 3c]
+*** PRE-FLOP *** 
+MRZO folds
+MozzArt11 calls 10
+Bibbledu16 checks
+*** FLOP *** [5c 9d 6d]
+MozzArt11 checks
+Bibbledu16 checks
+*** TURN *** [5c 9d 6d][6h]
+MozzArt11 bets 30
+Bibbledu16 calls 30
+*** RIVER *** [5c 9d 6d 6h][Jh]
+MozzArt11 bets 55
+Bibbledu16 folds
+MozzArt11 collected 155 from pot
+*** SUMMARY ***
+Total pot 155 | No rake
+Board: [5c 9d 6d 6h Jh]
+Seat 1: MozzArt11 (small blind) won 155
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830741977727238145-4-1781002258 - Holdem no limit (10/20) - 2026/06/09 10:50:58 UTC
+Table: 'Expresso(1124744764)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MozzArt11 (560)
+Seat 2: Bibbledu16 (440)
+Seat 3: MRZO (500)
+*** ANTE/BLINDS ***
+Bibbledu16 posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [3d 5h]
+*** PRE-FLOP *** 
+MozzArt11 folds
+Bibbledu16 calls 10
+MRZO checks
+*** FLOP *** [6h Ks 6c]
+Bibbledu16 bets 20
+MRZO folds
+Bibbledu16 collected 60 from pot
+*** SUMMARY ***
+Total pot 60 | No rake
+Board: [6h Ks 6c]
+Seat 2: Bibbledu16 (small blind) won 60
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830741977727238145-5-1781002273 - Holdem no limit (10/20) - 2026/06/09 10:51:13 UTC
+Table: 'Expresso(1124744764)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MozzArt11 (560)
+Seat 2: Bibbledu16 (460)
+Seat 3: MRZO (480)
+*** ANTE/BLINDS ***
+MRZO posts small blind 10
+MozzArt11 posts big blind 20
+Dealt to MRZO [2d 5s]
+*** PRE-FLOP *** 
+Bibbledu16 raises 20 to 40
+MRZO folds
+MozzArt11 calls 20
+*** FLOP *** [Ac 6s Th]
+MozzArt11 checks
+Bibbledu16 bets 23
+MozzArt11 calls 23
+*** TURN *** [Ac 6s Th][5c]
+MozzArt11 checks
+Bibbledu16 bets 68
+MozzArt11 calls 68
+*** RIVER *** [Ac 6s Th 5c][5h]
+MozzArt11 checks
+Bibbledu16 bets 329 and is all-in
+MozzArt11 calls 329
+*** SHOW DOWN ***
+MozzArt11 shows [Qd Tc] (Two pairs : Tens and 5)
+Bibbledu16 shows [Ah 4d] (Two pairs : Aces and 5)
+Bibbledu16 collected 930 from pot
+*** SUMMARY ***
+Total pot 930 | No rake
+Board: [Ac 6s Th 5c 5h]
+Seat 1: MozzArt11 (big blind) showed [Qd Tc] and lost with Two pairs : Tens and 5
+Seat 2: Bibbledu16 (button) showed [Ah 4d] and won 930 with Two pairs : Aces and 5
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830741977727238145-6-1781002324 - Holdem no limit (15/30) - 2026/06/09 10:52:04 UTC
+Table: 'Expresso(1124744764)#0' 3-max (real money) Seat #3 is the button
+Seat 1: MozzArt11 (100)
+Seat 2: Bibbledu16 (930)
+Seat 3: MRZO (470)
+*** ANTE/BLINDS ***
+MozzArt11 posts small blind 15
+Bibbledu16 posts big blind 30
+Dealt to MRZO [Qh 7s]
+*** PRE-FLOP *** 
+MRZO folds
+MozzArt11 raises 70 to 100 and is all-in
+Bibbledu16 folds
+MozzArt11 collected 130 from pot
+*** SUMMARY ***
+Total pot 130 | No rake
+Seat 1: MozzArt11 (small blind) won 130
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830741977727238145-7-1781002333 - Holdem no limit (15/30) - 2026/06/09 10:52:13 UTC
+Table: 'Expresso(1124744764)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MozzArt11 (130)
+Seat 2: Bibbledu16 (900)
+Seat 3: MRZO (470)
+*** ANTE/BLINDS ***
+Bibbledu16 posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [9s 8s]
+*** PRE-FLOP *** 
+MozzArt11 raises 100 to 130 and is all-in
+Bibbledu16 folds
+MRZO raises 340 to 470 and is all-in
+*** FLOP *** [2s 7d Kd]
+*** TURN *** [2s 7d Kd][As]
+*** RIVER *** [2s 7d Kd As][4s]
+*** SHOW DOWN ***
+MozzArt11 shows [4h Jh] (One pair : 4)
+MRZO shows [9s 8s] (Flush Ace high)
+MRZO collected 615 from pot
+*** SUMMARY ***
+Total pot 615 | No rake
+Board: [2s 7d Kd As 4s]
+Seat 1: MozzArt11 (button) showed [4h Jh] and lost with One pair : 4
+Seat 3: MRZO (big blind) showed [9s 8s] and won 615 with Flush Ace high
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830741977727238145-8-1781002354 - Holdem no limit (15/30) - 2026/06/09 10:52:34 UTC
+Table: 'Expresso(1124744764)#0' 3-max (real money) Seat #3 is the button
+Seat 2: Bibbledu16 (885)
+Seat 3: MRZO (615)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+Bibbledu16 posts big blind 30
+Dealt to MRZO [Qd Td]
+*** PRE-FLOP *** 
+MRZO raises 30 to 60
+Bibbledu16 calls 30
+*** FLOP *** [7c 6d 2d]
+Bibbledu16 checks
+MRZO bets 78
+Bibbledu16 calls 78
+*** TURN *** [7c 6d 2d][5d]
+Bibbledu16 checks
+MRZO bets 179
+Bibbledu16 folds
+MRZO collected 455 from pot
+*** SUMMARY ***
+Total pot 455 | No rake
+Board: [7c 6d 2d 5d]
+Seat 3: MRZO (small blind) (button) won 455
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830741977727238145-9-1781002380 - Holdem no limit (15/30) - 2026/06/09 10:53:00 UTC
+Table: 'Expresso(1124744764)#0' 3-max (real money) Seat #2 is the button
+Seat 2: Bibbledu16 (747)
+Seat 3: MRZO (753)
+*** ANTE/BLINDS ***
+Bibbledu16 posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [2h Kh]
+*** PRE-FLOP *** 
+Bibbledu16 raises 30 to 60
+MRZO calls 30
+*** FLOP *** [9h 5c Th]
+MRZO checks
+Bibbledu16 bets 30
+MRZO raises 107 to 137
+Bibbledu16 folds
+MRZO collected 287 from pot
+*** SUMMARY ***
+Total pot 287 | No rake
+Board: [9h 5c Th]
+Seat 3: MRZO (big blind) won 287
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830741977727238145-10-1781002393 - Holdem no limit (20/40) - 2026/06/09 10:53:13 UTC
+Table: 'Expresso(1124744764)#0' 3-max (real money) Seat #3 is the button
+Seat 2: Bibbledu16 (657)
+Seat 3: MRZO (843)
+*** ANTE/BLINDS ***
+MRZO posts small blind 20
+Bibbledu16 posts big blind 40
+Dealt to MRZO [Tc Qd]
+*** PRE-FLOP *** 
+MRZO raises 40 to 80
+Bibbledu16 folds
+MRZO collected 120 from pot
+*** SUMMARY ***
+Total pot 120 | No rake
+Seat 3: MRZO (small blind) (button) won 120
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830741977727238145-11-1781002398 - Holdem no limit (20/40) - 2026/06/09 10:53:18 UTC
+Table: 'Expresso(1124744764)#0' 3-max (real money) Seat #2 is the button
+Seat 2: Bibbledu16 (617)
+Seat 3: MRZO (883)
+*** ANTE/BLINDS ***
+Bibbledu16 posts small blind 20
+MRZO posts big blind 40
+Dealt to MRZO [Ks Ts]
+*** PRE-FLOP *** 
+Bibbledu16 calls 20
+MRZO raises 843 to 883 and is all-in
+Bibbledu16 folds
+MRZO collected 923 from pot
+*** SUMMARY ***
+Total pot 923 | No rake
+Seat 3: MRZO (big blind) won 923
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830741977727238145-12-1781002411 - Holdem no limit (20/40) - 2026/06/09 10:53:31 UTC
+Table: 'Expresso(1124744764)#0' 3-max (real money) Seat #3 is the button
+Seat 2: Bibbledu16 (577)
+Seat 3: MRZO (923)
+*** ANTE/BLINDS ***
+MRZO posts small blind 20
+Bibbledu16 posts big blind 40
+Dealt to MRZO [8c Ts]
+*** PRE-FLOP *** 
+MRZO calls 20
+Bibbledu16 checks
+*** FLOP *** [6s Qh Ks]
+Bibbledu16 checks
+MRZO checks
+*** TURN *** [6s Qh Ks][9h]
+Bibbledu16 checks
+MRZO checks
+*** RIVER *** [6s Qh Ks 9h][9c]
+Bibbledu16 bets 52
+MRZO folds
+Bibbledu16 collected 132 from pot
+*** SUMMARY ***
+Total pot 132 | No rake
+Board: [6s Qh Ks 9h 9c]
+Seat 2: Bibbledu16 (big blind) won 132
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830741977727238145-13-1781002437 - Holdem no limit (20/40) - 2026/06/09 10:53:57 UTC
+Table: 'Expresso(1124744764)#0' 3-max (real money) Seat #2 is the button
+Seat 2: Bibbledu16 (617)
+Seat 3: MRZO (883)
+*** ANTE/BLINDS ***
+Bibbledu16 posts small blind 20
+MRZO posts big blind 40
+Dealt to MRZO [8d Qs]
+*** PRE-FLOP *** 
+Bibbledu16 raises 577 to 617 and is all-in
+MRZO folds
+Bibbledu16 collected 657 from pot
+*** SUMMARY ***
+Total pot 657 | No rake
+Seat 2: Bibbledu16 (small blind) (button) won 657
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830741977727238145-14-1781002446 - Holdem no limit (20/40) - 2026/06/09 10:54:06 UTC
+Table: 'Expresso(1124744764)#0' 3-max (real money) Seat #3 is the button
+Seat 2: Bibbledu16 (657)
+Seat 3: MRZO (843)
+*** ANTE/BLINDS ***
+MRZO posts small blind 20
+Bibbledu16 posts big blind 40
+Dealt to MRZO [5d 6h]
+*** PRE-FLOP *** 
+MRZO calls 20
+Bibbledu16 checks
+*** FLOP *** [Ts 7c Ks]
+Bibbledu16 checks
+MRZO checks
+*** TURN *** [Ts 7c Ks][Qc]
+Bibbledu16 checks
+MRZO checks
+*** RIVER *** [Ts 7c Ks Qc][Td]
+Bibbledu16 bets 52
+MRZO folds
+Bibbledu16 collected 132 from pot
+*** SUMMARY ***
+Total pot 132 | No rake
+Board: [Ts 7c Ks Qc Td]
+Seat 2: Bibbledu16 (big blind) won 132
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830741977727238145-15-1781002469 - Holdem no limit (20/40) - 2026/06/09 10:54:29 UTC
+Table: 'Expresso(1124744764)#0' 3-max (real money) Seat #2 is the button
+Seat 2: Bibbledu16 (697)
+Seat 3: MRZO (803)
+*** ANTE/BLINDS ***
+Bibbledu16 posts small blind 20
+MRZO posts big blind 40
+Dealt to MRZO [5d 2c]
+*** PRE-FLOP *** 
+Bibbledu16 calls 20
+MRZO checks
+*** FLOP *** [4h 3d 7d]
+MRZO bets 52
+Bibbledu16 calls 52
+*** TURN *** [4h 3d 7d][Kh]
+MRZO bets 120
+Bibbledu16 calls 120
+*** RIVER *** [4h 3d 7d Kh][6h]
+MRZO bets 591 and is all-in
+Bibbledu16 folds
+MRZO collected 1015 from pot
+*** SUMMARY ***
+Total pot 1015 | No rake
+Board: [4h 3d 7d Kh 6h]
+Seat 3: MRZO (big blind) won 1015
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830741977727238145-16-1781002498 - Holdem no limit (30/60) - 2026/06/09 10:54:58 UTC
+Table: 'Expresso(1124744764)#0' 3-max (real money) Seat #3 is the button
+Seat 2: Bibbledu16 (485)
+Seat 3: MRZO (1015)
+*** ANTE/BLINDS ***
+MRZO posts small blind 30
+Bibbledu16 posts big blind 60
+Dealt to MRZO [9d 4c]
+*** PRE-FLOP *** 
+MRZO calls 30
+Bibbledu16 raises 425 to 485 and is all-in
+MRZO folds
+Bibbledu16 collected 545 from pot
+*** SUMMARY ***
+Total pot 545 | No rake
+Seat 2: Bibbledu16 (big blind) won 545
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830741977727238145-17-1781002506 - Holdem no limit (30/60) - 2026/06/09 10:55:06 UTC
+Table: 'Expresso(1124744764)#0' 3-max (real money) Seat #2 is the button
+Seat 2: Bibbledu16 (545)
+Seat 3: MRZO (955)
+*** ANTE/BLINDS ***
+Bibbledu16 posts small blind 30
+MRZO posts big blind 60
+Dealt to MRZO [5c 3s]
+*** PRE-FLOP *** 
+Bibbledu16 calls 30
+MRZO checks
+*** FLOP *** [Tc 9d Jc]
+MRZO checks
+Bibbledu16 bets 60
+MRZO folds
+Bibbledu16 collected 180 from pot
+*** SUMMARY ***
+Total pot 180 | No rake
+Board: [Tc 9d Jc]
+Seat 2: Bibbledu16 (small blind) (button) won 180
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830741977727238145-18-1781002520 - Holdem no limit (30/60) - 2026/06/09 10:55:20 UTC
+Table: 'Expresso(1124744764)#0' 3-max (real money) Seat #3 is the button
+Seat 2: Bibbledu16 (605)
+Seat 3: MRZO (895)
+*** ANTE/BLINDS ***
+MRZO posts small blind 30
+Bibbledu16 posts big blind 60
+Dealt to MRZO [6h Ah]
+*** PRE-FLOP *** 
+MRZO raises 835 to 895 and is all-in
+Bibbledu16 calls 545 and is all-in
+*** FLOP *** [2s Jh 3d]
+*** TURN *** [2s Jh 3d][4c]
+*** RIVER *** [2s Jh 3d 4c][8c]
+*** SHOW DOWN ***
+Bibbledu16 shows [Ac Th] (High card : Ace)
+MRZO shows [6h Ah] (High card : Ace)
+MRZO collected 290 from side pot 1
+Bibbledu16 collected 1210 from main pot
+*** SUMMARY ***
+Total pot 1500 | No rake
+Board: [2s Jh 3d 4c 8c]
+Seat 2: Bibbledu16 (big blind) showed [Ac Th] and won 1210 with High card : Ace
+Seat 3: MRZO (small blind) (button) showed [6h Ah] and won 290 with High card : Ace
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830741977727238145-19-1781002531 - Holdem no limit (30/60) - 2026/06/09 10:55:31 UTC
+Table: 'Expresso(1124744764)#0' 3-max (real money) Seat #2 is the button
+Seat 2: Bibbledu16 (1210)
+Seat 3: MRZO (290)
+*** ANTE/BLINDS ***
+Bibbledu16 posts small blind 30
+MRZO posts big blind 60
+Dealt to MRZO [Jh 9s]
+*** PRE-FLOP *** 
+Bibbledu16 calls 30
+MRZO raises 230 to 290 and is all-in
+Bibbledu16 folds
+MRZO collected 350 from pot
+*** SUMMARY ***
+Total pot 350 | No rake
+Seat 3: MRZO (big blind) won 350
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830741977727238145-20-1781002541 - Holdem no limit (30/60) - 2026/06/09 10:55:41 UTC
+Table: 'Expresso(1124744764)#0' 3-max (real money) Seat #3 is the button
+Seat 2: Bibbledu16 (1150)
+Seat 3: MRZO (350)
+*** ANTE/BLINDS ***
+MRZO posts small blind 30
+Bibbledu16 posts big blind 60
+Dealt to MRZO [Jd Kd]
+*** PRE-FLOP *** 
+MRZO raises 290 to 350 and is all-in
+Bibbledu16 folds
+MRZO collected 410 from pot
+*** SUMMARY ***
+Total pot 410 | No rake
+Seat 3: MRZO (small blind) (button) won 410
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830741977727238145-21-1781002548 - Holdem no limit (30/60) - 2026/06/09 10:55:48 UTC
+Table: 'Expresso(1124744764)#0' 3-max (real money) Seat #2 is the button
+Seat 2: Bibbledu16 (1090)
+Seat 3: MRZO (410)
+*** ANTE/BLINDS ***
+Bibbledu16 posts small blind 30
+MRZO posts big blind 60
+Dealt to MRZO [3d Jc]
+*** PRE-FLOP *** 
+Bibbledu16 raises 1030 to 1090 and is all-in
+MRZO folds
+Bibbledu16 collected 1150 from pot
+*** SUMMARY ***
+Total pot 1150 | No rake
+Seat 2: Bibbledu16 (small blind) (button) won 1150
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830741977727238145-22-1781002555 - Holdem no limit (30/60) - 2026/06/09 10:55:55 UTC
+Table: 'Expresso(1124744764)#0' 3-max (real money) Seat #3 is the button
+Seat 2: Bibbledu16 (1150)
+Seat 3: MRZO (350)
+*** ANTE/BLINDS ***
+MRZO posts small blind 30
+Bibbledu16 posts big blind 60
+Dealt to MRZO [3s 2d]
+*** PRE-FLOP *** 
+MRZO folds
+Bibbledu16 collected 90 from pot
+*** SUMMARY ***
+Total pot 90 | No rake
+Seat 2: Bibbledu16 (big blind) won 90
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830741977727238145-23-1781002559 - Holdem no limit (30/60) - 2026/06/09 10:55:59 UTC
+Table: 'Expresso(1124744764)#0' 3-max (real money) Seat #2 is the button
+Seat 2: Bibbledu16 (1180)
+Seat 3: MRZO (320)
+*** ANTE/BLINDS ***
+Bibbledu16 posts small blind 30
+MRZO posts big blind 60
+Dealt to MRZO [Ks 9s]
+*** PRE-FLOP *** 
+Bibbledu16 calls 30
+MRZO raises 260 to 320 and is all-in
+Bibbledu16 folds
+MRZO collected 380 from pot
+*** SUMMARY ***
+Total pot 380 | No rake
+Seat 3: MRZO (big blind) won 380
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 5 - HandId: #4830741977727238145-24-1781002571 - Holdem no limit (40/80) - 2026/06/09 10:56:11 UTC
+Table: 'Expresso(1124744764)#0' 3-max (real money) Seat #3 is the button
+Seat 2: Bibbledu16 (1120)
+Seat 3: MRZO (380)
+*** ANTE/BLINDS ***
+MRZO posts small blind 40
+Bibbledu16 posts big blind 80
+Dealt to MRZO [9d 6d]
+*** PRE-FLOP *** 
+MRZO raises 300 to 380 and is all-in
+Bibbledu16 folds
+MRZO collected 460 from pot
+*** SUMMARY ***
+Total pot 460 | No rake
+Seat 3: MRZO (small blind) (button) won 460
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 5 - HandId: #4830741977727238145-25-1781002578 - Holdem no limit (40/80) - 2026/06/09 10:56:18 UTC
+Table: 'Expresso(1124744764)#0' 3-max (real money) Seat #2 is the button
+Seat 2: Bibbledu16 (1040)
+Seat 3: MRZO (460)
+*** ANTE/BLINDS ***
+Bibbledu16 posts small blind 40
+MRZO posts big blind 80
+Dealt to MRZO [Qd 3s]
+*** PRE-FLOP *** 
+Bibbledu16 raises 960 to 1040 and is all-in
+MRZO folds
+Bibbledu16 collected 1120 from pot
+*** SUMMARY ***
+Total pot 1120 | No rake
+Seat 2: Bibbledu16 (small blind) (button) won 1120
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 5 - HandId: #4830741977727238145-26-1781002595 - Holdem no limit (40/80) - 2026/06/09 10:56:35 UTC
+Table: 'Expresso(1124744764)#0' 3-max (real money) Seat #3 is the button
+Seat 2: Bibbledu16 (1120)
+Seat 3: MRZO (380)
+*** ANTE/BLINDS ***
+MRZO posts small blind 40
+Bibbledu16 posts big blind 80
+Dealt to MRZO [5c Ac]
+*** PRE-FLOP *** 
+MRZO raises 300 to 380 and is all-in
+Bibbledu16 folds
+MRZO collected 460 from pot
+*** SUMMARY ***
+Total pot 460 | No rake
+Seat 3: MRZO (small blind) (button) won 460
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 5 - HandId: #4830741977727238145-27-1781002600 - Holdem no limit (40/80) - 2026/06/09 10:56:40 UTC
+Table: 'Expresso(1124744764)#0' 3-max (real money) Seat #2 is the button
+Seat 2: Bibbledu16 (1040)
+Seat 3: MRZO (460)
+*** ANTE/BLINDS ***
+Bibbledu16 posts small blind 40
+MRZO posts big blind 80
+Dealt to MRZO [7s 6s]
+*** PRE-FLOP *** 
+Bibbledu16 raises 960 to 1040 and is all-in
+MRZO folds
+Bibbledu16 collected 1120 from pot
+*** SUMMARY ***
+Total pot 1120 | No rake
+Seat 2: Bibbledu16 (small blind) (button) won 1120
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 5 - HandId: #4830741977727238145-28-1781002615 - Holdem no limit (40/80) - 2026/06/09 10:56:55 UTC
+Table: 'Expresso(1124744764)#0' 3-max (real money) Seat #3 is the button
+Seat 2: Bibbledu16 (1120)
+Seat 3: MRZO (380)
+*** ANTE/BLINDS ***
+MRZO posts small blind 40
+Bibbledu16 posts big blind 80
+Dealt to MRZO [Td 3d]
+*** PRE-FLOP *** 
+MRZO raises 300 to 380 and is all-in
+Bibbledu16 folds
+MRZO collected 460 from pot
+*** SUMMARY ***
+Total pot 460 | No rake
+Seat 3: MRZO (small blind) (button) won 460
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 5 - HandId: #4830741977727238145-29-1781002621 - Holdem no limit (40/80) - 2026/06/09 10:57:01 UTC
+Table: 'Expresso(1124744764)#0' 3-max (real money) Seat #2 is the button
+Seat 2: Bibbledu16 (1040)
+Seat 3: MRZO (460)
+*** ANTE/BLINDS ***
+Bibbledu16 posts small blind 40
+MRZO posts big blind 80
+Dealt to MRZO [3s 7h]
+*** PRE-FLOP *** 
+Bibbledu16 raises 960 to 1040 and is all-in
+MRZO folds
+Bibbledu16 collected 1120 from pot
+*** SUMMARY ***
+Total pot 1120 | No rake
+Seat 2: Bibbledu16 (small blind) (button) won 1120
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 5 - HandId: #4830741977727238145-30-1781002627 - Holdem no limit (40/80) - 2026/06/09 10:57:07 UTC
+Table: 'Expresso(1124744764)#0' 3-max (real money) Seat #3 is the button
+Seat 2: Bibbledu16 (1120)
+Seat 3: MRZO (380)
+*** ANTE/BLINDS ***
+MRZO posts small blind 40
+Bibbledu16 posts big blind 80
+Dealt to MRZO [Th 8c]
+*** PRE-FLOP *** 
+MRZO raises 300 to 380 and is all-in
+Bibbledu16 calls 300
+*** FLOP *** [Jh 9d 7s]
+*** TURN *** [Jh 9d 7s][4h]
+*** RIVER *** [Jh 9d 7s 4h][3d]
+*** SHOW DOWN ***
+Bibbledu16 shows [6d 6s] (One pair : 6)
+MRZO shows [Th 8c] (Straight Jack high)
+MRZO collected 760 from pot
+*** SUMMARY ***
+Total pot 760 | No rake
+Board: [Jh 9d 7s 4h 3d]
+Seat 2: Bibbledu16 (big blind) showed [6d 6s] and lost with One pair : 6
+Seat 3: MRZO (small blind) (button) showed [Th 8c] and won 760 with Straight Jack high
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 5 - HandId: #4830741977727238145-31-1781002639 - Holdem no limit (40/80) - 2026/06/09 10:57:19 UTC
+Table: 'Expresso(1124744764)#0' 3-max (real money) Seat #2 is the button
+Seat 2: Bibbledu16 (740)
+Seat 3: MRZO (760)
+*** ANTE/BLINDS ***
+Bibbledu16 posts small blind 40
+MRZO posts big blind 80
+Dealt to MRZO [7h 5d]
+*** PRE-FLOP *** 
+Bibbledu16 calls 40
+MRZO checks
+*** FLOP *** [9c 7s Ts]
+MRZO checks
+Bibbledu16 bets 80
+MRZO folds
+Bibbledu16 collected 240 from pot
+*** SUMMARY ***
+Total pot 240 | No rake
+Board: [9c 7s Ts]
+Seat 2: Bibbledu16 (small blind) (button) won 240
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 6 - HandId: #4830741977727238145-32-1781002657 - Holdem no limit (50/100) - 2026/06/09 10:57:37 UTC
+Table: 'Expresso(1124744764)#0' 3-max (real money) Seat #3 is the button
+Seat 2: Bibbledu16 (820)
+Seat 3: MRZO (680)
+*** ANTE/BLINDS ***
+MRZO posts small blind 50
+Bibbledu16 posts big blind 100
+Dealt to MRZO [Ks 2d]
+*** PRE-FLOP *** 
+MRZO raises 580 to 680 and is all-in
+Bibbledu16 folds
+MRZO collected 780 from pot
+*** SUMMARY ***
+Total pot 780 | No rake
+Seat 3: MRZO (small blind) (button) won 780
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 6 - HandId: #4830741977727238145-33-1781002663 - Holdem no limit (50/100) - 2026/06/09 10:57:43 UTC
+Table: 'Expresso(1124744764)#0' 3-max (real money) Seat #2 is the button
+Seat 2: Bibbledu16 (720)
+Seat 3: MRZO (780)
+*** ANTE/BLINDS ***
+Bibbledu16 posts small blind 50
+MRZO posts big blind 100
+Dealt to MRZO [4h 8d]
+*** PRE-FLOP *** 
+Bibbledu16 calls 50
+MRZO checks
+*** FLOP *** [Jh Ad 6h]
+MRZO checks
+Bibbledu16 checks
+*** TURN *** [Jh Ad 6h][Qs]
+MRZO checks
+Bibbledu16 checks
+*** RIVER *** [Jh Ad 6h Qs][6d]
+MRZO checks
+Bibbledu16 bets 100
+MRZO folds
+Bibbledu16 collected 300 from pot
+*** SUMMARY ***
+Total pot 300 | No rake
+Board: [Jh Ad 6h Qs 6d]
+Seat 2: Bibbledu16 (small blind) (button) won 300
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 6 - HandId: #4830741977727238145-34-1781002675 - Holdem no limit (50/100) - 2026/06/09 10:57:55 UTC
+Table: 'Expresso(1124744764)#0' 3-max (real money) Seat #3 is the button
+Seat 2: Bibbledu16 (820)
+Seat 3: MRZO (680)
+*** ANTE/BLINDS ***
+MRZO posts small blind 50
+Bibbledu16 posts big blind 100
+Dealt to MRZO [5s 8c]
+*** PRE-FLOP *** 
+MRZO folds
+Bibbledu16 collected 150 from pot
+*** SUMMARY ***
+Total pot 150 | No rake
+Seat 2: Bibbledu16 (big blind) won 150
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 6 - HandId: #4830741977727238145-35-1781002678 - Holdem no limit (50/100) - 2026/06/09 10:57:58 UTC
+Table: 'Expresso(1124744764)#0' 3-max (real money) Seat #2 is the button
+Seat 2: Bibbledu16 (870)
+Seat 3: MRZO (630)
+*** ANTE/BLINDS ***
+Bibbledu16 posts small blind 50
+MRZO posts big blind 100
+Dealt to MRZO [Ac 5h]
+*** PRE-FLOP *** 
+Bibbledu16 raises 770 to 870 and is all-in
+MRZO calls 530 and is all-in
+*** FLOP *** [9d Qh 7h]
+*** TURN *** [9d Qh 7h][Kd]
+*** RIVER *** [9d Qh 7h Kd][Jc]
+*** SHOW DOWN ***
+MRZO shows [Ac 5h] (High card : Ace)
+Bibbledu16 shows [8c Ks] (One pair : Kings)
+Bibbledu16 collected 1500 from pot
+*** SUMMARY ***
+Total pot 1500 | No rake
+Board: [9d Qh 7h Kd Jc]
+Seat 2: Bibbledu16 (small blind) (button) showed [8c Ks] and won 1500 with One pair : Kings
+Seat 3: MRZO (big blind) showed [Ac 5h] and lost with High card : Ace
+
+

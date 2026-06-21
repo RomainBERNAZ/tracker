@@ -1,0 +1,536 @@
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830463002421493761-1-1780994282 - Holdem no limit (10/20) - 2026/06/09 08:38:02 UTC
+Table: 'Expresso(1124679810)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (500)
+Seat 2: elturbinas18 (500)
+Seat 3: athalber (500)
+*** ANTE/BLINDS ***
+athalber posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [6c 5h]
+*** PRE-FLOP *** 
+elturbinas18 calls 20
+athalber raises 480 to 500 and is all-in
+MRZO folds
+elturbinas18 folds
+athalber collected 540 from pot
+*** SUMMARY ***
+Total pot 540 | No rake
+Seat 3: athalber (small blind) won 540
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830463002421493761-2-1780994291 - Holdem no limit (10/20) - 2026/06/09 08:38:11 UTC
+Table: 'Expresso(1124679810)#0' 3-max (real money) Seat #3 is the button
+Seat 1: MRZO (480)
+Seat 2: elturbinas18 (480)
+Seat 3: athalber (540)
+*** ANTE/BLINDS ***
+MRZO posts small blind 10
+elturbinas18 posts big blind 20
+Dealt to MRZO [Kd 3h]
+*** PRE-FLOP *** 
+athalber folds
+MRZO folds
+elturbinas18 collected 30 from pot
+*** SUMMARY ***
+Total pot 30 | No rake
+Seat 2: elturbinas18 (big blind) won 30
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830463002421493761-3-1780994299 - Holdem no limit (10/20) - 2026/06/09 08:38:19 UTC
+Table: 'Expresso(1124679810)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (470)
+Seat 2: elturbinas18 (490)
+Seat 3: athalber (540)
+*** ANTE/BLINDS ***
+elturbinas18 posts small blind 10
+athalber posts big blind 20
+Dealt to MRZO [3c 9c]
+*** PRE-FLOP *** 
+MRZO folds
+elturbinas18 calls 10
+athalber checks
+*** FLOP *** [2d 6h Jd]
+elturbinas18 bets 40
+athalber calls 40
+*** TURN *** [2d 6h Jd][8d]
+elturbinas18 bets 120
+athalber folds
+elturbinas18 collected 240 from pot
+*** SUMMARY ***
+Total pot 240 | No rake
+Board: [2d 6h Jd 8d]
+Seat 2: elturbinas18 (small blind) won 240
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830463002421493761-4-1780994322 - Holdem no limit (10/20) - 2026/06/09 08:38:42 UTC
+Table: 'Expresso(1124679810)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (470)
+Seat 2: elturbinas18 (550)
+Seat 3: athalber (480)
+*** ANTE/BLINDS ***
+athalber posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [9c 7h]
+*** PRE-FLOP *** 
+elturbinas18 calls 20
+athalber raises 460 to 480 and is all-in
+MRZO folds
+elturbinas18 folds
+athalber collected 520 from pot
+*** SUMMARY ***
+Total pot 520 | No rake
+Seat 3: athalber (small blind) won 520
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830463002421493761-5-1780994333 - Holdem no limit (10/20) - 2026/06/09 08:38:53 UTC
+Table: 'Expresso(1124679810)#0' 3-max (real money) Seat #3 is the button
+Seat 1: MRZO (450)
+Seat 2: elturbinas18 (530)
+Seat 3: athalber (520)
+*** ANTE/BLINDS ***
+MRZO posts small blind 10
+elturbinas18 posts big blind 20
+Dealt to MRZO [Ad 5h]
+*** PRE-FLOP *** 
+athalber raises 20 to 40
+MRZO folds
+elturbinas18 calls 20
+*** FLOP *** [6s 8d 3c]
+elturbinas18 checks
+athalber bets 23
+elturbinas18 raises 33 to 56
+athalber folds
+elturbinas18 collected 169 from pot
+*** SUMMARY ***
+Total pot 169 | No rake
+Board: [6s 8d 3c]
+Seat 2: elturbinas18 (big blind) won 169
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830463002421493761-6-1780994350 - Holdem no limit (10/20) - 2026/06/09 08:39:10 UTC
+Table: 'Expresso(1124679810)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (440)
+Seat 2: elturbinas18 (603)
+Seat 3: athalber (457)
+*** ANTE/BLINDS ***
+elturbinas18 posts small blind 10
+athalber posts big blind 20
+Dealt to MRZO [5d Ac]
+*** PRE-FLOP *** 
+MRZO raises 20 to 40
+elturbinas18 folds
+athalber calls 20
+*** FLOP *** [Th Ks 8c]
+athalber checks
+MRZO bets 32
+athalber folds
+MRZO collected 122 from pot
+*** SUMMARY ***
+Total pot 122 | No rake
+Board: [Th Ks 8c]
+Seat 1: MRZO (button) won 122
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830463002421493761-7-1780994385 - Holdem no limit (15/30) - 2026/06/09 08:39:45 UTC
+Table: 'Expresso(1124679810)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (490)
+Seat 2: elturbinas18 (593)
+Seat 3: athalber (417)
+*** ANTE/BLINDS ***
+athalber posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [9s 5c]
+*** PRE-FLOP *** 
+elturbinas18 calls 30
+athalber folds
+MRZO checks
+*** FLOP *** [2s 3h 7h]
+MRZO checks
+elturbinas18 checks
+*** TURN *** [2s 3h 7h][7s]
+MRZO checks
+elturbinas18 checks
+*** RIVER *** [2s 3h 7h 7s][Kh]
+MRZO checks
+elturbinas18 bets 49
+MRZO folds
+elturbinas18 collected 124 from pot
+*** SUMMARY ***
+Total pot 124 | No rake
+Board: [2s 3h 7h 7s Kh]
+Seat 2: elturbinas18 (button) won 124
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830463002421493761-8-1780994416 - Holdem no limit (15/30) - 2026/06/09 08:40:16 UTC
+Table: 'Expresso(1124679810)#0' 3-max (real money) Seat #3 is the button
+Seat 1: MRZO (460)
+Seat 2: elturbinas18 (638)
+Seat 3: athalber (402)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+elturbinas18 posts big blind 30
+Dealt to MRZO [Ah 3s]
+*** PRE-FLOP *** 
+athalber raises 30 to 60
+MRZO raises 400 to 460 and is all-in
+elturbinas18 folds
+athalber folds
+MRZO collected 550 from pot
+*** SUMMARY ***
+Total pot 550 | No rake
+Seat 1: MRZO (small blind) won 550
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830463002421493761-9-1780994438 - Holdem no limit (15/30) - 2026/06/09 08:40:38 UTC
+Table: 'Expresso(1124679810)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (550)
+Seat 2: elturbinas18 (608)
+Seat 3: athalber (342)
+*** ANTE/BLINDS ***
+elturbinas18 posts small blind 15
+athalber posts big blind 30
+Dealt to MRZO [Kh As]
+*** PRE-FLOP *** 
+MRZO raises 30 to 60
+elturbinas18 calls 45
+athalber folds
+*** FLOP *** [Qd 2h 2d]
+elturbinas18 bets 98
+MRZO calls 98
+*** TURN *** [Qd 2h 2d][4d]
+elturbinas18 bets 121
+MRZO folds
+elturbinas18 collected 467 from pot
+*** SUMMARY ***
+Total pot 467 | No rake
+Board: [Qd 2h 2d 4d]
+Seat 2: elturbinas18 (small blind) won 467
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830463002421493761-10-1780994452 - Holdem no limit (15/30) - 2026/06/09 08:40:52 UTC
+Table: 'Expresso(1124679810)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (392)
+Seat 2: elturbinas18 (796)
+Seat 3: athalber (312)
+*** ANTE/BLINDS ***
+athalber posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [6c Jc]
+*** PRE-FLOP *** 
+elturbinas18 calls 30
+athalber raises 282 to 312 and is all-in
+MRZO folds
+elturbinas18 folds
+athalber collected 372 from pot
+*** SUMMARY ***
+Total pot 372 | No rake
+Seat 3: athalber (small blind) won 372
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830463002421493761-11-1780994470 - Holdem no limit (20/40) - 2026/06/09 08:41:10 UTC
+Table: 'Expresso(1124679810)#0' 3-max (real money) Seat #3 is the button
+Seat 1: MRZO (362)
+Seat 2: elturbinas18 (766)
+Seat 3: athalber (372)
+*** ANTE/BLINDS ***
+MRZO posts small blind 20
+elturbinas18 posts big blind 40
+Dealt to MRZO [4c 3d]
+*** PRE-FLOP *** 
+athalber folds
+MRZO folds
+elturbinas18 collected 60 from pot
+*** SUMMARY ***
+Total pot 60 | No rake
+Seat 2: elturbinas18 (big blind) won 60
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830463002421493761-12-1780994476 - Holdem no limit (20/40) - 2026/06/09 08:41:16 UTC
+Table: 'Expresso(1124679810)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (342)
+Seat 2: elturbinas18 (786)
+Seat 3: athalber (372)
+*** ANTE/BLINDS ***
+elturbinas18 posts small blind 20
+athalber posts big blind 40
+Dealt to MRZO [7d 4h]
+*** PRE-FLOP *** 
+MRZO folds
+elturbinas18 calls 20
+athalber raises 332 to 372 and is all-in
+elturbinas18 folds
+athalber collected 412 from pot
+*** SUMMARY ***
+Total pot 412 | No rake
+Seat 3: athalber (big blind) won 412
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830463002421493761-13-1780994489 - Holdem no limit (20/40) - 2026/06/09 08:41:29 UTC
+Table: 'Expresso(1124679810)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (342)
+Seat 2: elturbinas18 (746)
+Seat 3: athalber (412)
+*** ANTE/BLINDS ***
+athalber posts small blind 20
+MRZO posts big blind 40
+Dealt to MRZO [Ah Th]
+*** PRE-FLOP *** 
+elturbinas18 calls 40
+athalber folds
+MRZO raises 302 to 342 and is all-in
+elturbinas18 folds
+MRZO collected 402 from pot
+*** SUMMARY ***
+Total pot 402 | No rake
+Seat 1: MRZO (big blind) won 402
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830463002421493761-14-1780994499 - Holdem no limit (20/40) - 2026/06/09 08:41:39 UTC
+Table: 'Expresso(1124679810)#0' 3-max (real money) Seat #3 is the button
+Seat 1: MRZO (402)
+Seat 2: elturbinas18 (706)
+Seat 3: athalber (392)
+*** ANTE/BLINDS ***
+MRZO posts small blind 20
+elturbinas18 posts big blind 40
+Dealt to MRZO [5c 3d]
+*** PRE-FLOP *** 
+athalber raises 352 to 392 and is all-in
+MRZO folds
+elturbinas18 folds
+athalber collected 452 from pot
+*** SUMMARY ***
+Total pot 452 | No rake
+Seat 3: athalber (button) won 452
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830463002421493761-15-1780994513 - Holdem no limit (20/40) - 2026/06/09 08:41:53 UTC
+Table: 'Expresso(1124679810)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (382)
+Seat 2: elturbinas18 (666)
+Seat 3: athalber (452)
+*** ANTE/BLINDS ***
+elturbinas18 posts small blind 20
+athalber posts big blind 40
+Dealt to MRZO [6d 9s]
+*** PRE-FLOP *** 
+MRZO folds
+elturbinas18 calls 20
+athalber checks
+*** FLOP *** [6h 3c 8s]
+elturbinas18 checks
+athalber checks
+*** TURN *** [6h 3c 8s][7c]
+elturbinas18 checks
+athalber checks
+*** RIVER *** [6h 3c 8s 7c][2c]
+elturbinas18 checks
+athalber bets 72
+elturbinas18 folds
+athalber collected 152 from pot
+*** SUMMARY ***
+Total pot 152 | No rake
+Board: [6h 3c 8s 7c 2c]
+Seat 3: athalber (big blind) won 152
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830463002421493761-16-1780994567 - Holdem no limit (30/60) - 2026/06/09 08:42:47 UTC
+Table: 'Expresso(1124679810)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (382)
+Seat 2: elturbinas18 (626)
+Seat 3: athalber (492)
+*** ANTE/BLINDS ***
+athalber posts small blind 30
+MRZO posts big blind 60
+Dealt to MRZO [Js 4d]
+*** PRE-FLOP *** 
+elturbinas18 folds
+athalber folds
+MRZO collected 90 from pot
+*** SUMMARY ***
+Total pot 90 | No rake
+Seat 1: MRZO (big blind) won 90
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830463002421493761-17-1780994576 - Holdem no limit (30/60) - 2026/06/09 08:42:56 UTC
+Table: 'Expresso(1124679810)#0' 3-max (real money) Seat #3 is the button
+Seat 1: MRZO (412)
+Seat 2: elturbinas18 (626)
+Seat 3: athalber (462)
+*** ANTE/BLINDS ***
+MRZO posts small blind 30
+elturbinas18 posts big blind 60
+Dealt to MRZO [Ac 6h]
+*** PRE-FLOP *** 
+athalber folds
+MRZO raises 352 to 412 and is all-in
+elturbinas18 calls 352
+*** FLOP *** [8c As 4c]
+*** TURN *** [8c As 4c][9c]
+*** RIVER *** [8c As 4c 9c][9s]
+*** SHOW DOWN ***
+elturbinas18 shows [3d Kd] (One pair : 9)
+MRZO shows [Ac 6h] (Two pairs : Aces and 9)
+MRZO collected 824 from pot
+*** SUMMARY ***
+Total pot 824 | No rake
+Board: [8c As 4c 9c 9s]
+Seat 1: MRZO (small blind) showed [Ac 6h] and won 824 with Two pairs : Aces and 9
+Seat 2: elturbinas18 (big blind) showed [3d Kd] and lost with One pair : 9
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830463002421493761-18-1780994597 - Holdem no limit (30/60) - 2026/06/09 08:43:17 UTC
+Table: 'Expresso(1124679810)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (824)
+Seat 2: elturbinas18 (214)
+Seat 3: athalber (462)
+*** ANTE/BLINDS ***
+elturbinas18 posts small blind 30
+athalber posts big blind 60
+Dealt to MRZO [Js 2d]
+*** PRE-FLOP *** 
+MRZO folds
+elturbinas18 raises 154 to 214 and is all-in
+athalber folds
+elturbinas18 collected 274 from pot
+*** SUMMARY ***
+Total pot 274 | No rake
+Seat 2: elturbinas18 (small blind) won 274
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830463002421493761-19-1780994605 - Holdem no limit (30/60) - 2026/06/09 08:43:25 UTC
+Table: 'Expresso(1124679810)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (824)
+Seat 2: elturbinas18 (274)
+Seat 3: athalber (402)
+*** ANTE/BLINDS ***
+athalber posts small blind 30
+MRZO posts big blind 60
+Dealt to MRZO [4d 3h]
+*** PRE-FLOP *** 
+elturbinas18 raises 214 to 274 and is all-in
+athalber folds
+MRZO folds
+elturbinas18 collected 364 from pot
+*** SUMMARY ***
+Total pot 364 | No rake
+Seat 2: elturbinas18 (button) won 364
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830463002421493761-20-1780994613 - Holdem no limit (30/60) - 2026/06/09 08:43:33 UTC
+Table: 'Expresso(1124679810)#0' 3-max (real money) Seat #3 is the button
+Seat 1: MRZO (764)
+Seat 2: elturbinas18 (364)
+Seat 3: athalber (372)
+*** ANTE/BLINDS ***
+MRZO posts small blind 30
+elturbinas18 posts big blind 60
+Dealt to MRZO [Kh 2h]
+*** PRE-FLOP *** 
+athalber folds
+MRZO raises 704 to 764 and is all-in
+elturbinas18 calls 304 and is all-in
+*** FLOP *** [5c Td Ts]
+*** TURN *** [5c Td Ts][Js]
+*** RIVER *** [5c Td Ts Js][Jd]
+*** SHOW DOWN ***
+elturbinas18 shows [6d 4d] (Two pairs : Jacks and Tens)
+MRZO shows [Kh 2h] (Two pairs : Jacks and Tens)
+MRZO collected 1128 from pot
+*** SUMMARY ***
+Total pot 1128 | No rake
+Board: [5c Td Ts Js Jd]
+Seat 1: MRZO (small blind) showed [Kh 2h] and won 1128 with Two pairs : Jacks and Tens
+Seat 2: elturbinas18 (big blind) showed [6d 4d] and lost with Two pairs : Jacks and Tens
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830463002421493761-21-1780994626 - Holdem no limit (30/60) - 2026/06/09 08:43:46 UTC
+Table: 'Expresso(1124679810)#0' 3-max (real money) Seat #3 is the button
+Seat 1: MRZO (1128)
+Seat 3: athalber (372)
+*** ANTE/BLINDS ***
+athalber posts small blind 30
+MRZO posts big blind 60
+Dealt to MRZO [4s Qc]
+*** PRE-FLOP *** 
+athalber raises 312 to 372 and is all-in
+MRZO folds
+athalber collected 432 from pot
+*** SUMMARY ***
+Total pot 432 | No rake
+Seat 3: athalber (small blind) (button) won 432
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 5 - HandId: #4830463002421493761-22-1780994656 - Holdem no limit (40/80) - 2026/06/09 08:44:16 UTC
+Table: 'Expresso(1124679810)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (1068)
+Seat 3: athalber (432)
+*** ANTE/BLINDS ***
+MRZO posts small blind 40
+athalber posts big blind 80
+Dealt to MRZO [2h 6s]
+*** PRE-FLOP *** 
+MRZO folds
+athalber collected 120 from pot
+*** SUMMARY ***
+Total pot 120 | No rake
+Seat 3: athalber (big blind) won 120
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 5 - HandId: #4830463002421493761-23-1780994661 - Holdem no limit (40/80) - 2026/06/09 08:44:21 UTC
+Table: 'Expresso(1124679810)#0' 3-max (real money) Seat #3 is the button
+Seat 1: MRZO (1028)
+Seat 3: athalber (472)
+*** ANTE/BLINDS ***
+athalber posts small blind 40
+MRZO posts big blind 80
+Dealt to MRZO [4s 4d]
+*** PRE-FLOP *** 
+athalber folds
+MRZO collected 120 from pot
+*** SUMMARY ***
+Total pot 120 | No rake
+Seat 1: MRZO (big blind) won 120
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 5 - HandId: #4830463002421493761-24-1780994666 - Holdem no limit (40/80) - 2026/06/09 08:44:26 UTC
+Table: 'Expresso(1124679810)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (1068)
+Seat 3: athalber (432)
+*** ANTE/BLINDS ***
+MRZO posts small blind 40
+athalber posts big blind 80
+Dealt to MRZO [9s 2s]
+*** PRE-FLOP *** 
+MRZO folds
+athalber collected 120 from pot
+*** SUMMARY ***
+Total pot 120 | No rake
+Seat 3: athalber (big blind) won 120
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 5 - HandId: #4830463002421493761-25-1780994669 - Holdem no limit (40/80) - 2026/06/09 08:44:29 UTC
+Table: 'Expresso(1124679810)#0' 3-max (real money) Seat #3 is the button
+Seat 1: MRZO (1028)
+Seat 3: athalber (472)
+*** ANTE/BLINDS ***
+athalber posts small blind 40
+MRZO posts big blind 80
+Dealt to MRZO [Ah Ts]
+*** PRE-FLOP *** 
+athalber raises 392 to 472 and is all-in
+MRZO raises 556 to 1028 and is all-in
+*** FLOP *** [7c 4c 2h]
+*** TURN *** [7c 4c 2h][Qd]
+*** RIVER *** [7c 4c 2h Qd][Qs]
+*** SHOW DOWN ***
+athalber shows [Ks Js] (One pair : Queens)
+MRZO shows [Ah Ts] (One pair : Queens)
+MRZO collected 1500 from pot
+*** SUMMARY ***
+Total pot 1500 | No rake
+Board: [7c 4c 2h Qd Qs]
+Seat 1: MRZO (big blind) showed [Ah Ts] and won 1500 with One pair : Queens
+Seat 3: athalber (small blind) (button) showed [Ks Js] and lost with One pair : Queens
+
+

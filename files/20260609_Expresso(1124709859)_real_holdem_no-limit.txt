@@ -1,0 +1,381 @@
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830592061893771265-1-1780998226 - Holdem no limit (10/20) - 2026/06/09 09:43:46 UTC
+Table: 'Expresso(1124709859)#0' 3-max (real money) Seat #1 is the button
+Seat 1: ali1994dz (500)
+Seat 2: MRZO (500)
+Seat 3: -27- (500)
+*** ANTE/BLINDS ***
+MRZO posts small blind 10
+-27- posts big blind 20
+Dealt to MRZO [3c 2c]
+*** PRE-FLOP *** 
+ali1994dz folds
+MRZO folds
+-27- collected 30 from pot
+*** SUMMARY ***
+Total pot 30 | No rake
+Seat 3: -27- (big blind) won 30
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830592061893771265-2-1780998231 - Holdem no limit (10/20) - 2026/06/09 09:43:51 UTC
+Table: 'Expresso(1124709859)#0' 3-max (real money) Seat #2 is the button
+Seat 1: ali1994dz (500)
+Seat 2: MRZO (490)
+Seat 3: -27- (510)
+*** ANTE/BLINDS ***
+-27- posts small blind 10
+ali1994dz posts big blind 20
+Dealt to MRZO [9d 3c]
+*** PRE-FLOP *** 
+MRZO folds
+-27- folds
+ali1994dz collected 30 from pot
+*** SUMMARY ***
+Total pot 30 | No rake
+Seat 1: ali1994dz (big blind) won 30
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830592061893771265-3-1780998246 - Holdem no limit (10/20) - 2026/06/09 09:44:06 UTC
+Table: 'Expresso(1124709859)#0' 3-max (real money) Seat #3 is the button
+Seat 1: ali1994dz (510)
+Seat 2: MRZO (490)
+Seat 3: -27- (500)
+*** ANTE/BLINDS ***
+ali1994dz posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [8c Ah]
+*** PRE-FLOP *** 
+-27- raises 20 to 40
+ali1994dz folds
+MRZO calls 20
+*** FLOP *** [5h Td 6h]
+MRZO checks
+-27- checks
+*** TURN *** [5h Td 6h][Ac]
+MRZO checks
+-27- bets 45
+MRZO calls 45
+*** RIVER *** [5h Td 6h Ac][4c]
+MRZO checks
+-27- bets 90
+MRZO calls 90
+*** SHOW DOWN ***
+MRZO shows [8c Ah] (One pair : Aces)
+-27- shows [3d 7d] (Straight 7 high)
+-27- collected 360 from pot
+*** SUMMARY ***
+Total pot 360 | No rake
+Board: [5h Td 6h Ac 4c]
+Seat 2: MRZO (big blind) showed [8c Ah] and lost with One pair : Aces
+Seat 3: -27- (button) showed [3d 7d] and won 360 with Straight 7 high
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830592061893771265-4-1780998267 - Holdem no limit (10/20) - 2026/06/09 09:44:27 UTC
+Table: 'Expresso(1124709859)#0' 3-max (real money) Seat #1 is the button
+Seat 1: ali1994dz (500)
+Seat 2: MRZO (315)
+Seat 3: -27- (685)
+*** ANTE/BLINDS ***
+MRZO posts small blind 10
+-27- posts big blind 20
+Dealt to MRZO [8d 7h]
+*** PRE-FLOP *** 
+ali1994dz calls 20
+MRZO folds
+-27- checks
+*** FLOP *** [4h 3d 6c]
+-27- checks
+ali1994dz checks
+*** TURN *** [4h 3d 6c][Kd]
+-27- bets 20
+ali1994dz folds
+-27- collected 70 from pot
+*** SUMMARY ***
+Total pot 70 | No rake
+Board: [4h 3d 6c Kd]
+Seat 3: -27- (big blind) won 70
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830592061893771265-5-1780998282 - Holdem no limit (10/20) - 2026/06/09 09:44:42 UTC
+Table: 'Expresso(1124709859)#0' 3-max (real money) Seat #2 is the button
+Seat 1: ali1994dz (480)
+Seat 2: MRZO (305)
+Seat 3: -27- (715)
+*** ANTE/BLINDS ***
+-27- posts small blind 10
+ali1994dz posts big blind 20
+Dealt to MRZO [Qc 8c]
+*** PRE-FLOP *** 
+MRZO raises 20 to 40
+-27- folds
+ali1994dz calls 20
+*** FLOP *** [Js 5s 9d]
+ali1994dz checks
+MRZO bets 23
+ali1994dz folds
+MRZO collected 113 from pot
+*** SUMMARY ***
+Total pot 113 | No rake
+Board: [Js 5s 9d]
+Seat 2: MRZO (button) won 113
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830592061893771265-6-1780998293 - Holdem no limit (10/20) - 2026/06/09 09:44:53 UTC
+Table: 'Expresso(1124709859)#0' 3-max (real money) Seat #3 is the button
+Seat 1: ali1994dz (440)
+Seat 2: MRZO (355)
+Seat 3: -27- (705)
+*** ANTE/BLINDS ***
+ali1994dz posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [7c 8d]
+*** PRE-FLOP *** 
+-27- folds
+ali1994dz calls 10
+MRZO checks
+*** FLOP *** [Kh 7d 2c]
+ali1994dz checks
+MRZO bets 26
+ali1994dz folds
+MRZO collected 66 from pot
+*** SUMMARY ***
+Total pot 66 | No rake
+Board: [Kh 7d 2c]
+Seat 2: MRZO (big blind) won 66
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830592061893771265-7-1780998307 - Holdem no limit (10/20) - 2026/06/09 09:45:07 UTC
+Table: 'Expresso(1124709859)#0' 3-max (real money) Seat #1 is the button
+Seat 1: ali1994dz (420)
+Seat 2: MRZO (375)
+Seat 3: -27- (705)
+*** ANTE/BLINDS ***
+MRZO posts small blind 10
+-27- posts big blind 20
+Dealt to MRZO [5h Kc]
+*** PRE-FLOP *** 
+ali1994dz folds
+MRZO raises 30 to 50
+-27- calls 30
+*** FLOP *** [Ad 6d 8c]
+MRZO checks
+-27- checks
+*** TURN *** [Ad 6d 8c][7s]
+MRZO checks
+-27- checks
+*** RIVER *** [Ad 6d 8c 7s][Ts]
+MRZO checks
+-27- checks
+*** SHOW DOWN ***
+MRZO shows [5h Kc] (High card : Ace)
+-27- shows [Ks Qh] (High card : Ace)
+-27- collected 100 from pot
+*** SUMMARY ***
+Total pot 100 | No rake
+Board: [Ad 6d 8c 7s Ts]
+Seat 2: MRZO (small blind) showed [5h Kc] and lost with High card : Ace
+Seat 3: -27- (big blind) showed [Ks Qh] and won 100 with High card : Ace
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830592061893771265-8-1780998344 - Holdem no limit (15/30) - 2026/06/09 09:45:44 UTC
+Table: 'Expresso(1124709859)#0' 3-max (real money) Seat #2 is the button
+Seat 1: ali1994dz (420)
+Seat 2: MRZO (325)
+Seat 3: -27- (755)
+*** ANTE/BLINDS ***
+-27- posts small blind 15
+ali1994dz posts big blind 30
+Dealt to MRZO [2c 6s]
+*** PRE-FLOP *** 
+MRZO folds
+-27- folds
+ali1994dz collected 45 from pot
+*** SUMMARY ***
+Total pot 45 | No rake
+Seat 1: ali1994dz (big blind) won 45
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830592061893771265-9-1780998351 - Holdem no limit (15/30) - 2026/06/09 09:45:51 UTC
+Table: 'Expresso(1124709859)#0' 3-max (real money) Seat #3 is the button
+Seat 1: ali1994dz (435)
+Seat 2: MRZO (325)
+Seat 3: -27- (740)
+*** ANTE/BLINDS ***
+ali1994dz posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [6c 9d]
+*** PRE-FLOP *** 
+-27- raises 710 to 740 and is all-in
+ali1994dz folds
+MRZO folds
+-27- collected 785 from pot
+*** SUMMARY ***
+Total pot 785 | No rake
+Seat 3: -27- (button) won 785
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830592061893771265-10-1780998357 - Holdem no limit (15/30) - 2026/06/09 09:45:57 UTC
+Table: 'Expresso(1124709859)#0' 3-max (real money) Seat #1 is the button
+Seat 1: ali1994dz (420)
+Seat 2: MRZO (295)
+Seat 3: -27- (785)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+-27- posts big blind 30
+Dealt to MRZO [Qh 3d]
+*** PRE-FLOP *** 
+ali1994dz folds
+MRZO folds
+-27- collected 45 from pot
+*** SUMMARY ***
+Total pot 45 | No rake
+Seat 3: -27- (big blind) won 45
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830592061893771265-11-1780998363 - Holdem no limit (15/30) - 2026/06/09 09:46:03 UTC
+Table: 'Expresso(1124709859)#0' 3-max (real money) Seat #2 is the button
+Seat 1: ali1994dz (420)
+Seat 2: MRZO (280)
+Seat 3: -27- (800)
+*** ANTE/BLINDS ***
+-27- posts small blind 15
+ali1994dz posts big blind 30
+Dealt to MRZO [Ad 9s]
+*** PRE-FLOP *** 
+MRZO raises 250 to 280 and is all-in
+-27- folds
+ali1994dz calls 250
+*** FLOP *** [8c 5h 5d]
+*** TURN *** [8c 5h 5d][Kh]
+*** RIVER *** [8c 5h 5d Kh][Jc]
+*** SHOW DOWN ***
+ali1994dz shows [Ac 4h] (One pair : 5)
+MRZO shows [Ad 9s] (One pair : 5)
+MRZO collected 288 from pot
+ali1994dz collected 287 from pot
+*** SUMMARY ***
+Total pot 575 | No rake
+Board: [8c 5h 5d Kh Jc]
+Seat 1: ali1994dz (big blind) showed [Ac 4h] and won 287 with One pair : 5
+Seat 2: MRZO (button) showed [Ad 9s] and won 288 with One pair : 5
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830592061893771265-12-1780998386 - Holdem no limit (15/30) - 2026/06/09 09:46:26 UTC
+Table: 'Expresso(1124709859)#0' 3-max (real money) Seat #3 is the button
+Seat 1: ali1994dz (427)
+Seat 2: MRZO (288)
+Seat 3: -27- (785)
+*** ANTE/BLINDS ***
+ali1994dz posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [Ts 7h]
+*** PRE-FLOP *** 
+-27- raises 755 to 785 and is all-in
+ali1994dz folds
+MRZO folds
+-27- collected 830 from pot
+*** SUMMARY ***
+Total pot 830 | No rake
+Seat 3: -27- (button) won 830
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830592061893771265-13-1780998394 - Holdem no limit (15/30) - 2026/06/09 09:46:34 UTC
+Table: 'Expresso(1124709859)#0' 3-max (real money) Seat #1 is the button
+Seat 1: ali1994dz (412)
+Seat 2: MRZO (258)
+Seat 3: -27- (830)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+-27- posts big blind 30
+Dealt to MRZO [8d 2c]
+*** PRE-FLOP *** 
+ali1994dz calls 30
+MRZO folds
+-27- checks
+*** FLOP *** [8s Qs 2s]
+-27- checks
+ali1994dz checks
+*** TURN *** [8s Qs 2s][Jc]
+-27- checks
+ali1994dz checks
+*** RIVER *** [8s Qs 2s Jc][Jh]
+-27- checks
+ali1994dz bets 382 and is all-in
+-27- folds
+ali1994dz collected 457 from pot
+*** SUMMARY ***
+Total pot 457 | No rake
+Board: [8s Qs 2s Jc Jh]
+Seat 1: ali1994dz (button) won 457
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830592061893771265-14-1780998413 - Holdem no limit (20/40) - 2026/06/09 09:46:53 UTC
+Table: 'Expresso(1124709859)#0' 3-max (real money) Seat #2 is the button
+Seat 1: ali1994dz (457)
+Seat 2: MRZO (243)
+Seat 3: -27- (800)
+*** ANTE/BLINDS ***
+-27- posts small blind 20
+ali1994dz posts big blind 40
+Dealt to MRZO [6d 9s]
+*** PRE-FLOP *** 
+MRZO folds
+-27- raises 760 to 800 and is all-in
+ali1994dz folds
+-27- collected 840 from pot
+*** SUMMARY ***
+Total pot 840 | No rake
+Seat 3: -27- (small blind) won 840
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830592061893771265-15-1780998419 - Holdem no limit (20/40) - 2026/06/09 09:46:59 UTC
+Table: 'Expresso(1124709859)#0' 3-max (real money) Seat #3 is the button
+Seat 1: ali1994dz (417)
+Seat 2: MRZO (243)
+Seat 3: -27- (840)
+*** ANTE/BLINDS ***
+ali1994dz posts small blind 20
+MRZO posts big blind 40
+Dealt to MRZO [8d 9c]
+*** PRE-FLOP *** 
+-27- raises 800 to 840 and is all-in
+ali1994dz calls 397 and is all-in
+MRZO folds
+*** FLOP *** [3h 5d 4h]
+*** TURN *** [3h 5d 4h][3s]
+*** RIVER *** [3h 5d 4h 3s][7c]
+*** SHOW DOWN ***
+ali1994dz shows [Ks Tc] (One pair : 3)
+-27- shows [5h Kc] (Two pairs : 5 and 3)
+-27- collected 1297 from pot
+*** SUMMARY ***
+Total pot 1297 | No rake
+Board: [3h 5d 4h 3s 7c]
+Seat 1: ali1994dz (small blind) showed [Ks Tc] and lost with One pair : 3
+Seat 3: -27- (button) showed [5h Kc] and won 1297 with Two pairs : 5 and 3
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830592061893771265-16-1780998447 - Holdem no limit (20/40) - 2026/06/09 09:47:27 UTC
+Table: 'Expresso(1124709859)#0' 3-max (real money) Seat #2 is the button
+Seat 2: MRZO (203)
+Seat 3: -27- (1297)
+*** ANTE/BLINDS ***
+MRZO posts small blind 20
+-27- posts big blind 40
+Dealt to MRZO [Qc 5s]
+*** PRE-FLOP *** 
+MRZO raises 163 to 203 and is all-in
+-27- calls 163
+*** FLOP *** [Tc Kd 4h]
+*** TURN *** [Tc Kd 4h][7s]
+*** RIVER *** [Tc Kd 4h 7s][4s]
+*** SHOW DOWN ***
+MRZO shows [Qc 5s] (One pair : 4)
+-27- shows [Kc 7h] (Two pairs : Kings and 7)
+-27- collected 406 from pot
+*** SUMMARY ***
+Total pot 406 | No rake
+Board: [Tc Kd 4h 7s 4s]
+Seat 2: MRZO (small blind) (button) showed [Qc 5s] and lost with One pair : 4
+Seat 3: -27- (big blind) showed [Kc 7h] and won 406 with Two pairs : Kings and 7
+
+

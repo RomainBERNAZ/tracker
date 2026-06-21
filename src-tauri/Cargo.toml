@@ -1,0 +1,19 @@
+[package]
+name    = "expresso-review"
+version = "0.0.1"
+edition = "2021"
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri       = { version = "2", features = [] }
+tauri-plugin-dialog = "2"
+serde       = { workspace = true }
+serde_json  = { workspace = true }
+tokio       = { workspace = true }
+thiserror   = { workspace = true }
+rusqlite    = { workspace = true }
+
+hh_ingest          = { workspace = true }
+session_read_model = { workspace = true }

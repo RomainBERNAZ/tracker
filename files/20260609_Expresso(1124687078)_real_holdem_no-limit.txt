@@ -1,0 +1,275 @@
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830494218243801089-1-1780995205 - Holdem no limit (10/20) - 2026/06/09 08:53:25 UTC
+Table: 'Expresso(1124687078)#0' 3-max (real money) Seat #3 is the button
+Seat 1: MRZO (500)
+Seat 2: Miikk (500)
+Seat 3: ciko75 (500)
+*** ANTE/BLINDS ***
+MRZO posts small blind 10
+Miikk posts big blind 20
+Dealt to MRZO [4d Ks]
+*** PRE-FLOP *** 
+ciko75 folds
+MRZO raises 20 to 40
+Miikk calls 20
+*** FLOP *** [9h Jc Qc]
+MRZO checks
+Miikk checks
+*** TURN *** [9h Jc Qc][8c]
+MRZO checks
+Miikk checks
+*** RIVER *** [9h Jc Qc 8c][6c]
+MRZO checks
+Miikk checks
+*** SHOW DOWN ***
+MRZO shows [4d Ks] (High card : King)
+Miikk shows [Js 3s] (One pair : Jacks)
+Miikk collected 80 from pot
+*** SUMMARY ***
+Total pot 80 | No rake
+Board: [9h Jc Qc 8c 6c]
+Seat 1: MRZO (small blind) showed [4d Ks] and lost with High card : King
+Seat 2: Miikk (big blind) showed [Js 3s] and won 80 with One pair : Jacks
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830494218243801089-2-1780995247 - Holdem no limit (10/20) - 2026/06/09 08:54:07 UTC
+Table: 'Expresso(1124687078)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (460)
+Seat 2: Miikk (540)
+Seat 3: ciko75 (500)
+*** ANTE/BLINDS ***
+Miikk posts small blind 10
+ciko75 posts big blind 20
+Dealt to MRZO [Ah Qc]
+*** PRE-FLOP *** 
+MRZO raises 30 to 50
+Miikk folds
+ciko75 raises 450 to 500 and is all-in
+MRZO calls 410 and is all-in
+*** FLOP *** [Qs 9c 7d]
+*** TURN *** [Qs 9c 7d][Kh]
+*** RIVER *** [Qs 9c 7d Kh][7c]
+*** SHOW DOWN ***
+MRZO shows [Ah Qc] (Two pairs : Queens and 7)
+ciko75 shows [5c 5d] (Two pairs : 7 and 5)
+ciko75 collected 40 from side pot 1
+MRZO collected 930 from main pot
+*** SUMMARY ***
+Total pot 970 | No rake
+Board: [Qs 9c 7d Kh 7c]
+Seat 1: MRZO (button) showed [Ah Qc] and won 930 with Two pairs : Queens and 7
+Seat 3: ciko75 (big blind) showed [5c 5d] and won 40 with Two pairs : 7 and 5
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830494218243801089-3-1780995264 - Holdem no limit (10/20) - 2026/06/09 08:54:24 UTC
+Table: 'Expresso(1124687078)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (930)
+Seat 2: Miikk (530)
+Seat 3: ciko75 (40)
+*** ANTE/BLINDS ***
+ciko75 posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [3s Ac]
+*** PRE-FLOP *** 
+Miikk raises 20 to 40
+ciko75 calls 30 and is all-in
+MRZO calls 20
+*** FLOP *** [Kh Qc Ks]
+MRZO checks
+Miikk checks
+*** TURN *** [Kh Qc Ks][Jd]
+MRZO checks
+Miikk checks
+*** RIVER *** [Kh Qc Ks Jd][9s]
+MRZO checks
+Miikk checks
+*** SHOW DOWN ***
+ciko75 shows [4d 7c] (One pair : Kings)
+MRZO shows [3s Ac] (One pair : Kings)
+Miikk shows [6s Ad] (One pair : Kings)
+Miikk collected 60 from pot
+MRZO collected 60 from pot
+*** SUMMARY ***
+Total pot 120 | No rake
+Board: [Kh Qc Ks Jd 9s]
+Seat 1: MRZO (big blind) showed [3s Ac] and won 60 with One pair : Kings
+Seat 2: Miikk (button) showed [6s Ad] and won 60 with One pair : Kings
+Seat 3: ciko75 (small blind) showed [4d 7c] and lost with One pair : Kings
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830494218243801089-4-1780995298 - Holdem no limit (15/30) - 2026/06/09 08:54:58 UTC
+Table: 'Expresso(1124687078)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (950)
+Seat 2: Miikk (550)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+Miikk posts big blind 30
+Dealt to MRZO [Ac 4s]
+*** PRE-FLOP *** 
+MRZO raises 45 to 75
+Miikk folds
+MRZO collected 105 from pot
+*** SUMMARY ***
+Total pot 105 | No rake
+Seat 1: MRZO (small blind) (button) won 105
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830494218243801089-5-1780995308 - Holdem no limit (15/30) - 2026/06/09 08:55:08 UTC
+Table: 'Expresso(1124687078)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (980)
+Seat 2: Miikk (520)
+*** ANTE/BLINDS ***
+Miikk posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [5c 9s]
+*** PRE-FLOP *** 
+Miikk calls 15
+MRZO checks
+*** FLOP *** [8d 7c 8c]
+MRZO checks
+Miikk bets 30
+MRZO calls 30
+*** TURN *** [8d 7c 8c][4h]
+MRZO checks
+Miikk checks
+*** RIVER *** [8d 7c 8c 4h][6c]
+MRZO bets 96
+Miikk folds
+MRZO collected 216 from pot
+*** SUMMARY ***
+Total pot 216 | No rake
+Board: [8d 7c 8c 4h 6c]
+Seat 1: MRZO (big blind) won 216
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830494218243801089-6-1780995334 - Holdem no limit (15/30) - 2026/06/09 08:55:34 UTC
+Table: 'Expresso(1124687078)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (1040)
+Seat 2: Miikk (460)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+Miikk posts big blind 30
+Dealt to MRZO [Ah Ac]
+*** PRE-FLOP *** 
+MRZO raises 60 to 90
+Miikk folds
+MRZO collected 120 from pot
+*** SUMMARY ***
+Total pot 120 | No rake
+Seat 1: MRZO (small blind) (button) won 120
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830494218243801089-7-1780995342 - Holdem no limit (15/30) - 2026/06/09 08:55:42 UTC
+Table: 'Expresso(1124687078)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (1070)
+Seat 2: Miikk (430)
+*** ANTE/BLINDS ***
+Miikk posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [9c 4h]
+*** PRE-FLOP *** 
+Miikk calls 15
+MRZO checks
+*** FLOP *** [2c 3s Ad]
+MRZO checks
+Miikk checks
+*** TURN *** [2c 3s Ad][Jh]
+MRZO checks
+Miikk checks
+*** RIVER *** [2c 3s Ad Jh][3c]
+MRZO checks
+Miikk checks
+*** SHOW DOWN ***
+MRZO shows [9c 4h] (One pair : 3)
+Miikk shows [9d Qh] (One pair : 3)
+Miikk collected 60 from pot
+*** SUMMARY ***
+Total pot 60 | No rake
+Board: [2c 3s Ad Jh 3c]
+Seat 1: MRZO (big blind) showed [9c 4h] and lost with One pair : 3
+Seat 2: Miikk (small blind) (button) showed [9d Qh] and won 60 with One pair : 3
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830494218243801089-8-1780995388 - Holdem no limit (20/40) - 2026/06/09 08:56:28 UTC
+Table: 'Expresso(1124687078)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (1040)
+Seat 2: Miikk (460)
+*** ANTE/BLINDS ***
+MRZO posts small blind 20
+Miikk posts big blind 40
+Dealt to MRZO [Qh Kd]
+*** PRE-FLOP *** 
+MRZO raises 1000 to 1040 and is all-in
+Miikk folds
+MRZO collected 1080 from pot
+*** SUMMARY ***
+Total pot 1080 | No rake
+Seat 1: MRZO (small blind) (button) won 1080
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830494218243801089-9-1780995396 - Holdem no limit (20/40) - 2026/06/09 08:56:36 UTC
+Table: 'Expresso(1124687078)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (1080)
+Seat 2: Miikk (420)
+*** ANTE/BLINDS ***
+Miikk posts small blind 20
+MRZO posts big blind 40
+Dealt to MRZO [8c 2d]
+*** PRE-FLOP *** 
+Miikk calls 20
+MRZO checks
+*** FLOP *** [8d 8h Ad]
+MRZO checks
+Miikk checks
+*** TURN *** [8d 8h Ad][Tc]
+MRZO bets 64
+Miikk folds
+MRZO collected 144 from pot
+*** SUMMARY ***
+Total pot 144 | No rake
+Board: [8d 8h Ad Tc]
+Seat 1: MRZO (big blind) won 144
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830494218243801089-10-1780995430 - Holdem no limit (20/40) - 2026/06/09 08:57:10 UTC
+Table: 'Expresso(1124687078)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (1120)
+Seat 2: Miikk (380)
+*** ANTE/BLINDS ***
+MRZO posts small blind 20
+Miikk posts big blind 40
+Dealt to MRZO [Jh Jc]
+*** PRE-FLOP *** 
+MRZO raises 80 to 120
+Miikk folds
+MRZO collected 160 from pot
+*** SUMMARY ***
+Total pot 160 | No rake
+Seat 1: MRZO (small blind) (button) won 160
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830494218243801089-11-1780995436 - Holdem no limit (20/40) - 2026/06/09 08:57:16 UTC
+Table: 'Expresso(1124687078)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (1160)
+Seat 2: Miikk (340)
+*** ANTE/BLINDS ***
+Miikk posts small blind 20
+MRZO posts big blind 40
+Dealt to MRZO [Js Ts]
+*** PRE-FLOP *** 
+Miikk calls 20
+MRZO raises 1120 to 1160 and is all-in
+Miikk calls 300 and is all-in
+*** FLOP *** [Ks Jd 2d]
+*** TURN *** [Ks Jd 2d][8s]
+*** RIVER *** [Ks Jd 2d 8s][2c]
+*** SHOW DOWN ***
+Miikk shows [Td 9d] (One pair : 2)
+MRZO shows [Js Ts] (Two pairs : Jacks and 2)
+MRZO collected 1500 from pot
+*** SUMMARY ***
+Total pot 1500 | No rake
+Board: [Ks Jd 2d 8s 2c]
+Seat 1: MRZO (big blind) showed [Js Ts] and won 1500 with Two pairs : Jacks and 2
+Seat 2: Miikk (small blind) (button) showed [Td 9d] and lost with One pair : 2
+
+

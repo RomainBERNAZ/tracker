@@ -1,0 +1,637 @@
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4831166513769611265-1-1781012856 - Holdem no limit (10/20) - 2026/06/09 13:47:36 UTC
+Table: 'Expresso(1124843609)#0' 3-max (real money) Seat #2 is the button
+Seat 1: Cocochanel23 (500)
+Seat 2: MRZO (500)
+Seat 3: KrtASmuertAS (500)
+*** ANTE/BLINDS ***
+KrtASmuertAS posts small blind 10
+Cocochanel23 posts big blind 20
+Dealt to MRZO [4c 7s]
+*** PRE-FLOP *** 
+MRZO folds
+KrtASmuertAS raises 25 to 45
+Cocochanel23 folds
+KrtASmuertAS collected 65 from pot
+*** SUMMARY ***
+Total pot 65 | No rake
+Seat 3: KrtASmuertAS (small blind) won 65
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4831166513769611265-2-1781012867 - Holdem no limit (10/20) - 2026/06/09 13:47:47 UTC
+Table: 'Expresso(1124843609)#0' 3-max (real money) Seat #3 is the button
+Seat 1: Cocochanel23 (480)
+Seat 2: MRZO (500)
+Seat 3: KrtASmuertAS (520)
+*** ANTE/BLINDS ***
+Cocochanel23 posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [6s Td]
+*** PRE-FLOP *** 
+KrtASmuertAS folds
+Cocochanel23 calls 10
+MRZO checks
+*** FLOP *** [Qh Js 6d]
+Cocochanel23 checks
+MRZO checks
+*** TURN *** [Qh Js 6d][9h]
+Cocochanel23 checks
+MRZO bets 32
+Cocochanel23 calls 32
+*** RIVER *** [Qh Js 6d 9h][Ks]
+Cocochanel23 bets 36
+MRZO raises 70 to 106
+Cocochanel23 folds
+MRZO collected 246 from pot
+*** SUMMARY ***
+Total pot 246 | No rake
+Board: [Qh Js 6d 9h Ks]
+Seat 2: MRZO (big blind) won 246
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4831166513769611265-3-1781012900 - Holdem no limit (10/20) - 2026/06/09 13:48:20 UTC
+Table: 'Expresso(1124843609)#0' 3-max (real money) Seat #1 is the button
+Seat 1: Cocochanel23 (392)
+Seat 2: MRZO (588)
+Seat 3: KrtASmuertAS (520)
+*** ANTE/BLINDS ***
+MRZO posts small blind 10
+KrtASmuertAS posts big blind 20
+Dealt to MRZO [Jc 5d]
+*** PRE-FLOP *** 
+Cocochanel23 raises 372 to 392 and is all-in
+MRZO folds
+KrtASmuertAS folds
+Cocochanel23 collected 422 from pot
+*** SUMMARY ***
+Total pot 422 | No rake
+Seat 1: Cocochanel23 (button) won 422
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4831166513769611265-4-1781012906 - Holdem no limit (10/20) - 2026/06/09 13:48:26 UTC
+Table: 'Expresso(1124843609)#0' 3-max (real money) Seat #2 is the button
+Seat 1: Cocochanel23 (422)
+Seat 2: MRZO (578)
+Seat 3: KrtASmuertAS (500)
+*** ANTE/BLINDS ***
+KrtASmuertAS posts small blind 10
+Cocochanel23 posts big blind 20
+Dealt to MRZO [5d 5c]
+*** PRE-FLOP *** 
+MRZO raises 20 to 40
+KrtASmuertAS calls 30
+Cocochanel23 raises 382 to 422 and is all-in
+MRZO folds
+KrtASmuertAS calls 382
+*** FLOP *** [Qs 3d 8h]
+*** TURN *** [Qs 3d 8h][7c]
+*** RIVER *** [Qs 3d 8h 7c][Ah]
+*** SHOW DOWN ***
+KrtASmuertAS shows [Ks Td] (High card : Ace)
+Cocochanel23 shows [Ad 3s] (Two pairs : Aces and 3)
+Cocochanel23 collected 884 from pot
+*** SUMMARY ***
+Total pot 884 | No rake
+Board: [Qs 3d 8h 7c Ah]
+Seat 1: Cocochanel23 (big blind) showed [Ad 3s] and won 884 with Two pairs : Aces and 3
+Seat 3: KrtASmuertAS (small blind) showed [Ks Td] and lost with High card : Ace
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4831166513769611265-5-1781012923 - Holdem no limit (10/20) - 2026/06/09 13:48:43 UTC
+Table: 'Expresso(1124843609)#0' 3-max (real money) Seat #3 is the button
+Seat 1: Cocochanel23 (884)
+Seat 2: MRZO (538)
+Seat 3: KrtASmuertAS (78)
+*** ANTE/BLINDS ***
+Cocochanel23 posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [7d 4d]
+*** PRE-FLOP *** 
+KrtASmuertAS folds
+Cocochanel23 calls 10
+MRZO checks
+*** FLOP *** [5s Qh Tc]
+Cocochanel23 checks
+MRZO checks
+*** TURN *** [5s Qh Tc][8h]
+Cocochanel23 bets 40
+MRZO folds
+Cocochanel23 collected 80 from pot
+*** SUMMARY ***
+Total pot 80 | No rake
+Board: [5s Qh Tc 8h]
+Seat 1: Cocochanel23 (small blind) won 80
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4831166513769611265-6-1781012942 - Holdem no limit (10/20) - 2026/06/09 13:49:02 UTC
+Table: 'Expresso(1124843609)#0' 3-max (real money) Seat #1 is the button
+Seat 1: Cocochanel23 (904)
+Seat 2: MRZO (518)
+Seat 3: KrtASmuertAS (78)
+*** ANTE/BLINDS ***
+MRZO posts small blind 10
+KrtASmuertAS posts big blind 20
+Dealt to MRZO [Ad Js]
+*** PRE-FLOP *** 
+Cocochanel23 raises 30 to 50
+MRZO calls 40
+KrtASmuertAS raises 28 to 78 and is all-in
+Cocochanel23 calls 28
+MRZO calls 28
+*** FLOP *** [9c 3h 5d]
+MRZO checks
+Cocochanel23 checks
+*** TURN *** [9c 3h 5d][5c]
+MRZO checks
+Cocochanel23 checks
+*** RIVER *** [9c 3h 5d 5c][6d]
+MRZO checks
+Cocochanel23 bets 826 and is all-in
+MRZO folds
+*** SHOW DOWN ***
+KrtASmuertAS shows [Ah Th] (One pair : 5)
+Cocochanel23 shows [7h 4h] (Straight 7 high)
+Cocochanel23 collected 1060 from pot
+*** SUMMARY ***
+Total pot 1060 | No rake
+Board: [9c 3h 5d 5c 6d]
+Seat 1: Cocochanel23 (button) showed [7h 4h] and won 1060 with Straight 7 high
+Seat 3: KrtASmuertAS (big blind) showed [Ah Th] and lost with One pair : 5
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4831166513769611265-7-1781012965 - Holdem no limit (15/30) - 2026/06/09 13:49:25 UTC
+Table: 'Expresso(1124843609)#0' 3-max (real money) Seat #1 is the button
+Seat 1: Cocochanel23 (1060)
+Seat 2: MRZO (440)
+*** ANTE/BLINDS ***
+Cocochanel23 posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [Ad 4c]
+*** PRE-FLOP *** 
+Cocochanel23 calls 15
+MRZO raises 410 to 440 and is all-in
+Cocochanel23 calls 410
+*** FLOP *** [5h Qh 2h]
+*** TURN *** [5h Qh 2h][3s]
+*** RIVER *** [5h Qh 2h 3s][Th]
+*** SHOW DOWN ***
+Cocochanel23 shows [Qs 9s] (One pair : Queens)
+MRZO shows [Ad 4c] (Straight 5 high)
+MRZO collected 880 from pot
+*** SUMMARY ***
+Total pot 880 | No rake
+Board: [5h Qh 2h 3s Th]
+Seat 1: Cocochanel23 (small blind) (button) showed [Qs 9s] and lost with One pair : Queens
+Seat 2: MRZO (big blind) showed [Ad 4c] and won 880 with Straight 5 high
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4831166513769611265-8-1781012978 - Holdem no limit (15/30) - 2026/06/09 13:49:38 UTC
+Table: 'Expresso(1124843609)#0' 3-max (real money) Seat #2 is the button
+Seat 1: Cocochanel23 (620)
+Seat 2: MRZO (880)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+Cocochanel23 posts big blind 30
+Dealt to MRZO [9d Jc]
+*** PRE-FLOP *** 
+MRZO calls 15
+Cocochanel23 raises 590 to 620 and is all-in
+MRZO folds
+Cocochanel23 collected 650 from pot
+*** SUMMARY ***
+Total pot 650 | No rake
+Seat 1: Cocochanel23 (big blind) won 650
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4831166513769611265-9-1781012985 - Holdem no limit (15/30) - 2026/06/09 13:49:45 UTC
+Table: 'Expresso(1124843609)#0' 3-max (real money) Seat #1 is the button
+Seat 1: Cocochanel23 (650)
+Seat 2: MRZO (850)
+*** ANTE/BLINDS ***
+Cocochanel23 posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [5c 2h]
+*** PRE-FLOP *** 
+Cocochanel23 raises 620 to 650 and is all-in
+MRZO folds
+Cocochanel23 collected 680 from pot
+*** SUMMARY ***
+Total pot 680 | No rake
+Seat 1: Cocochanel23 (small blind) (button) won 680
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4831166513769611265-10-1781012990 - Holdem no limit (15/30) - 2026/06/09 13:49:50 UTC
+Table: 'Expresso(1124843609)#0' 3-max (real money) Seat #2 is the button
+Seat 1: Cocochanel23 (680)
+Seat 2: MRZO (820)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+Cocochanel23 posts big blind 30
+Dealt to MRZO [Ts 5d]
+*** PRE-FLOP *** 
+MRZO calls 15
+Cocochanel23 raises 650 to 680 and is all-in
+MRZO folds
+Cocochanel23 collected 710 from pot
+*** SUMMARY ***
+Total pot 710 | No rake
+Seat 1: Cocochanel23 (big blind) won 710
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4831166513769611265-11-1781013005 - Holdem no limit (15/30) - 2026/06/09 13:50:05 UTC
+Table: 'Expresso(1124843609)#0' 3-max (real money) Seat #1 is the button
+Seat 1: Cocochanel23 (710)
+Seat 2: MRZO (790)
+*** ANTE/BLINDS ***
+Cocochanel23 posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [5s 5d]
+*** PRE-FLOP *** 
+Cocochanel23 calls 15
+MRZO raises 760 to 790 and is all-in
+Cocochanel23 folds
+MRZO collected 820 from pot
+*** SUMMARY ***
+Total pot 820 | No rake
+Seat 2: MRZO (big blind) won 820
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4831166513769611265-12-1781013022 - Holdem no limit (15/30) - 2026/06/09 13:50:22 UTC
+Table: 'Expresso(1124843609)#0' 3-max (real money) Seat #2 is the button
+Seat 1: Cocochanel23 (680)
+Seat 2: MRZO (820)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+Cocochanel23 posts big blind 30
+Dealt to MRZO [5h 7s]
+*** PRE-FLOP *** 
+MRZO folds
+Cocochanel23 collected 45 from pot
+*** SUMMARY ***
+Total pot 45 | No rake
+Seat 1: Cocochanel23 (big blind) won 45
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4831166513769611265-13-1781013027 - Holdem no limit (15/30) - 2026/06/09 13:50:27 UTC
+Table: 'Expresso(1124843609)#0' 3-max (real money) Seat #1 is the button
+Seat 1: Cocochanel23 (695)
+Seat 2: MRZO (805)
+*** ANTE/BLINDS ***
+Cocochanel23 posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [4c Jc]
+*** PRE-FLOP *** 
+Cocochanel23 raises 665 to 695 and is all-in
+MRZO folds
+Cocochanel23 collected 725 from pot
+*** SUMMARY ***
+Total pot 725 | No rake
+Seat 1: Cocochanel23 (small blind) (button) won 725
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4831166513769611265-14-1781013040 - Holdem no limit (20/40) - 2026/06/09 13:50:40 UTC
+Table: 'Expresso(1124843609)#0' 3-max (real money) Seat #2 is the button
+Seat 1: Cocochanel23 (725)
+Seat 2: MRZO (775)
+*** ANTE/BLINDS ***
+MRZO posts small blind 20
+Cocochanel23 posts big blind 40
+Dealt to MRZO [6s Kd]
+*** PRE-FLOP *** 
+MRZO calls 20
+Cocochanel23 raises 685 to 725 and is all-in
+MRZO folds
+Cocochanel23 collected 765 from pot
+*** SUMMARY ***
+Total pot 765 | No rake
+Seat 1: Cocochanel23 (big blind) won 765
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4831166513769611265-15-1781013049 - Holdem no limit (20/40) - 2026/06/09 13:50:49 UTC
+Table: 'Expresso(1124843609)#0' 3-max (real money) Seat #1 is the button
+Seat 1: Cocochanel23 (765)
+Seat 2: MRZO (735)
+*** ANTE/BLINDS ***
+Cocochanel23 posts small blind 20
+MRZO posts big blind 40
+Dealt to MRZO [8h 3s]
+*** PRE-FLOP *** 
+Cocochanel23 raises 725 to 765 and is all-in
+MRZO folds
+Cocochanel23 collected 805 from pot
+*** SUMMARY ***
+Total pot 805 | No rake
+Seat 1: Cocochanel23 (small blind) (button) won 805
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4831166513769611265-16-1781013054 - Holdem no limit (20/40) - 2026/06/09 13:50:54 UTC
+Table: 'Expresso(1124843609)#0' 3-max (real money) Seat #2 is the button
+Seat 1: Cocochanel23 (805)
+Seat 2: MRZO (695)
+*** ANTE/BLINDS ***
+MRZO posts small blind 20
+Cocochanel23 posts big blind 40
+Dealt to MRZO [7h Ts]
+*** PRE-FLOP *** 
+MRZO calls 20
+Cocochanel23 checks
+*** FLOP *** [Qd 4s 6h]
+Cocochanel23 bets 80
+MRZO folds
+Cocochanel23 collected 160 from pot
+*** SUMMARY ***
+Total pot 160 | No rake
+Board: [Qd 4s 6h]
+Seat 1: Cocochanel23 (big blind) won 160
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4831166513769611265-17-1781013061 - Holdem no limit (20/40) - 2026/06/09 13:51:01 UTC
+Table: 'Expresso(1124843609)#0' 3-max (real money) Seat #1 is the button
+Seat 1: Cocochanel23 (845)
+Seat 2: MRZO (655)
+*** ANTE/BLINDS ***
+Cocochanel23 posts small blind 20
+MRZO posts big blind 40
+Dealt to MRZO [Jd 5c]
+*** PRE-FLOP *** 
+Cocochanel23 calls 20
+MRZO checks
+*** FLOP *** [Tc 9h 9d]
+MRZO checks
+Cocochanel23 checks
+*** TURN *** [Tc 9h 9d][5d]
+MRZO checks
+Cocochanel23 checks
+*** RIVER *** [Tc 9h 9d 5d][7s]
+MRZO checks
+Cocochanel23 bets 80
+MRZO calls 80
+*** SHOW DOWN ***
+Cocochanel23 shows [4c 6h] (One pair : 9)
+MRZO shows [Jd 5c] (Two pairs : 9 and 5)
+MRZO collected 240 from pot
+*** SUMMARY ***
+Total pot 240 | No rake
+Board: [Tc 9h 9d 5d 7s]
+Seat 1: Cocochanel23 (small blind) (button) showed [4c 6h] and lost with One pair : 9
+Seat 2: MRZO (big blind) showed [Jd 5c] and won 240 with Two pairs : 9 and 5
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4831166513769611265-18-1781013072 - Holdem no limit (20/40) - 2026/06/09 13:51:12 UTC
+Table: 'Expresso(1124843609)#0' 3-max (real money) Seat #2 is the button
+Seat 1: Cocochanel23 (725)
+Seat 2: MRZO (775)
+*** ANTE/BLINDS ***
+MRZO posts small blind 20
+Cocochanel23 posts big blind 40
+Dealt to MRZO [Ts 2c]
+*** PRE-FLOP *** 
+MRZO folds
+Cocochanel23 collected 60 from pot
+*** SUMMARY ***
+Total pot 60 | No rake
+Seat 1: Cocochanel23 (big blind) won 60
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4831166513769611265-19-1781013076 - Holdem no limit (20/40) - 2026/06/09 13:51:16 UTC
+Table: 'Expresso(1124843609)#0' 3-max (real money) Seat #1 is the button
+Seat 1: Cocochanel23 (745)
+Seat 2: MRZO (755)
+*** ANTE/BLINDS ***
+Cocochanel23 posts small blind 20
+MRZO posts big blind 40
+Dealt to MRZO [5h Qs]
+*** PRE-FLOP *** 
+Cocochanel23 calls 20
+MRZO checks
+*** FLOP *** [Js Ac Td]
+MRZO checks
+Cocochanel23 checks
+*** TURN *** [Js Ac Td][9c]
+MRZO checks
+Cocochanel23 bets 40
+MRZO calls 40
+*** RIVER *** [Js Ac Td 9c][As]
+MRZO checks
+Cocochanel23 checks
+*** SHOW DOWN ***
+MRZO shows [5h Qs] (One pair : Aces)
+Cocochanel23 shows [8h Jc] (Two pairs : Aces and Jacks)
+Cocochanel23 collected 160 from pot
+*** SUMMARY ***
+Total pot 160 | No rake
+Board: [Js Ac Td 9c As]
+Seat 1: Cocochanel23 (small blind) (button) showed [8h Jc] and won 160 with Two pairs : Aces and Jacks
+Seat 2: MRZO (big blind) showed [5h Qs] and lost with One pair : Aces
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4831166513769611265-20-1781013090 - Holdem no limit (20/40) - 2026/06/09 13:51:30 UTC
+Table: 'Expresso(1124843609)#0' 3-max (real money) Seat #2 is the button
+Seat 1: Cocochanel23 (825)
+Seat 2: MRZO (675)
+*** ANTE/BLINDS ***
+MRZO posts small blind 20
+Cocochanel23 posts big blind 40
+Dealt to MRZO [Th 4h]
+*** PRE-FLOP *** 
+MRZO calls 20
+Cocochanel23 checks
+*** FLOP *** [3d 9h 3h]
+Cocochanel23 checks
+MRZO bets 40
+Cocochanel23 calls 40
+*** TURN *** [3d 9h 3h][7d]
+Cocochanel23 checks
+MRZO bets 80
+Cocochanel23 folds
+MRZO collected 240 from pot
+*** SUMMARY ***
+Total pot 240 | No rake
+Board: [3d 9h 3h 7d]
+Seat 2: MRZO (small blind) (button) won 240
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4831166513769611265-21-1781013103 - Holdem no limit (20/40) - 2026/06/09 13:51:43 UTC
+Table: 'Expresso(1124843609)#0' 3-max (real money) Seat #1 is the button
+Seat 1: Cocochanel23 (745)
+Seat 2: MRZO (755)
+*** ANTE/BLINDS ***
+Cocochanel23 posts small blind 20
+MRZO posts big blind 40
+Dealt to MRZO [4h 5h]
+*** PRE-FLOP *** 
+Cocochanel23 raises 705 to 745 and is all-in
+MRZO folds
+Cocochanel23 collected 785 from pot
+*** SUMMARY ***
+Total pot 785 | No rake
+Seat 1: Cocochanel23 (small blind) (button) won 785
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4831166513769611265-22-1781013107 - Holdem no limit (20/40) - 2026/06/09 13:51:47 UTC
+Table: 'Expresso(1124843609)#0' 3-max (real money) Seat #2 is the button
+Seat 1: Cocochanel23 (785)
+Seat 2: MRZO (715)
+*** ANTE/BLINDS ***
+MRZO posts small blind 20
+Cocochanel23 posts big blind 40
+Dealt to MRZO [4d 8c]
+*** PRE-FLOP *** 
+MRZO folds
+Cocochanel23 collected 60 from pot
+*** SUMMARY ***
+Total pot 60 | No rake
+Seat 1: Cocochanel23 (big blind) won 60
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4831166513769611265-23-1781013111 - Holdem no limit (20/40) - 2026/06/09 13:51:51 UTC
+Table: 'Expresso(1124843609)#0' 3-max (real money) Seat #1 is the button
+Seat 1: Cocochanel23 (805)
+Seat 2: MRZO (695)
+*** ANTE/BLINDS ***
+Cocochanel23 posts small blind 20
+MRZO posts big blind 40
+Dealt to MRZO [Tc 5h]
+*** PRE-FLOP *** 
+Cocochanel23 raises 765 to 805 and is all-in
+MRZO folds
+Cocochanel23 collected 845 from pot
+*** SUMMARY ***
+Total pot 845 | No rake
+Seat 1: Cocochanel23 (small blind) (button) won 845
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4831166513769611265-24-1781013116 - Holdem no limit (20/40) - 2026/06/09 13:51:56 UTC
+Table: 'Expresso(1124843609)#0' 3-max (real money) Seat #2 is the button
+Seat 1: Cocochanel23 (845)
+Seat 2: MRZO (655)
+*** ANTE/BLINDS ***
+MRZO posts small blind 20
+Cocochanel23 posts big blind 40
+Dealt to MRZO [Td 5h]
+*** PRE-FLOP *** 
+MRZO folds
+Cocochanel23 collected 60 from pot
+*** SUMMARY ***
+Total pot 60 | No rake
+Seat 1: Cocochanel23 (big blind) won 60
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4831166513769611265-25-1781013120 - Holdem no limit (20/40) - 2026/06/09 13:52:00 UTC
+Table: 'Expresso(1124843609)#0' 3-max (real money) Seat #1 is the button
+Seat 1: Cocochanel23 (865)
+Seat 2: MRZO (635)
+*** ANTE/BLINDS ***
+Cocochanel23 posts small blind 20
+MRZO posts big blind 40
+Dealt to MRZO [9d Ad]
+*** PRE-FLOP *** 
+Cocochanel23 calls 20
+MRZO raises 595 to 635 and is all-in
+Cocochanel23 folds
+MRZO collected 675 from pot
+*** SUMMARY ***
+Total pot 675 | No rake
+Seat 2: MRZO (big blind) won 675
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4831166513769611265-26-1781013127 - Holdem no limit (30/60) - 2026/06/09 13:52:07 UTC
+Table: 'Expresso(1124843609)#0' 3-max (real money) Seat #2 is the button
+Seat 1: Cocochanel23 (825)
+Seat 2: MRZO (675)
+*** ANTE/BLINDS ***
+MRZO posts small blind 30
+Cocochanel23 posts big blind 60
+Dealt to MRZO [6h 5c]
+*** PRE-FLOP *** 
+MRZO folds
+Cocochanel23 collected 90 from pot
+*** SUMMARY ***
+Total pot 90 | No rake
+Seat 1: Cocochanel23 (big blind) won 90
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4831166513769611265-27-1781013131 - Holdem no limit (30/60) - 2026/06/09 13:52:11 UTC
+Table: 'Expresso(1124843609)#0' 3-max (real money) Seat #1 is the button
+Seat 1: Cocochanel23 (855)
+Seat 2: MRZO (645)
+*** ANTE/BLINDS ***
+Cocochanel23 posts small blind 30
+MRZO posts big blind 60
+Dealt to MRZO [As Kd]
+*** PRE-FLOP *** 
+Cocochanel23 calls 30
+MRZO raises 585 to 645 and is all-in
+Cocochanel23 folds
+MRZO collected 705 from pot
+*** SUMMARY ***
+Total pot 705 | No rake
+Seat 2: MRZO (big blind) won 705
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4831166513769611265-28-1781013141 - Holdem no limit (30/60) - 2026/06/09 13:52:21 UTC
+Table: 'Expresso(1124843609)#0' 3-max (real money) Seat #2 is the button
+Seat 1: Cocochanel23 (795)
+Seat 2: MRZO (705)
+*** ANTE/BLINDS ***
+MRZO posts small blind 30
+Cocochanel23 posts big blind 60
+Dealt to MRZO [4s Th]
+*** PRE-FLOP *** 
+MRZO folds
+Cocochanel23 collected 90 from pot
+*** SUMMARY ***
+Total pot 90 | No rake
+Seat 1: Cocochanel23 (big blind) won 90
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4831166513769611265-29-1781013145 - Holdem no limit (30/60) - 2026/06/09 13:52:25 UTC
+Table: 'Expresso(1124843609)#0' 3-max (real money) Seat #1 is the button
+Seat 1: Cocochanel23 (825)
+Seat 2: MRZO (675)
+*** ANTE/BLINDS ***
+Cocochanel23 posts small blind 30
+MRZO posts big blind 60
+Dealt to MRZO [Jd Kd]
+*** PRE-FLOP *** 
+Cocochanel23 raises 765 to 825 and is all-in
+MRZO calls 615 and is all-in
+*** FLOP *** [9h 9c 5d]
+*** TURN *** [9h 9c 5d][Js]
+*** RIVER *** [9h 9c 5d Js][2s]
+*** SHOW DOWN ***
+Cocochanel23 shows [Jh 5h] (Two pairs : Jacks and 9)
+MRZO shows [Jd Kd] (Two pairs : Jacks and 9)
+MRZO collected 1350 from main pot
+Cocochanel23 collected 150 from side pot 1
+*** SUMMARY ***
+Total pot 1500 | No rake
+Board: [9h 9c 5d Js 2s]
+Seat 1: Cocochanel23 (small blind) (button) showed [Jh 5h] and won 150 with Two pairs : Jacks and 9
+Seat 2: MRZO (big blind) showed [Jd Kd] and won 1350 with Two pairs : Jacks and 9
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4831166513769611265-30-1781013156 - Holdem no limit (30/60) - 2026/06/09 13:52:36 UTC
+Table: 'Expresso(1124843609)#0' 3-max (real money) Seat #2 is the button
+Seat 1: Cocochanel23 (150)
+Seat 2: MRZO (1350)
+*** ANTE/BLINDS ***
+MRZO posts small blind 30
+Cocochanel23 posts big blind 60
+Dealt to MRZO [3d 3c]
+*** PRE-FLOP *** 
+MRZO raises 1290 to 1350 and is all-in
+Cocochanel23 calls 90 and is all-in
+*** FLOP *** [4c Qc 2d]
+*** TURN *** [4c Qc 2d][Th]
+*** RIVER *** [4c Qc 2d Th][Js]
+*** SHOW DOWN ***
+Cocochanel23 shows [7s 9c] (High card : Queen)
+MRZO shows [3d 3c] (One pair : 3)
+MRZO collected 1500 from pot
+*** SUMMARY ***
+Total pot 1500 | No rake
+Board: [4c Qc 2d Th Js]
+Seat 1: Cocochanel23 (big blind) showed [7s 9c] and lost with High card : Queen
+Seat 2: MRZO (small blind) (button) showed [3d 3c] and won 1500 with One pair : 3
+
+

@@ -1,0 +1,458 @@
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830591864325275649-1-1780998227 - Holdem no limit (10/20) - 2026/06/09 09:43:47 UTC
+Table: 'Expresso(1124709813)#0' 3-max (real money) Seat #3 is the button
+Seat 1: -27- (500)
+Seat 2: lounas59 (500)
+Seat 3: MRZO (500)
+*** ANTE/BLINDS ***
+-27- posts small blind 10
+lounas59 posts big blind 20
+Dealt to MRZO [Kc 3d]
+*** PRE-FLOP *** 
+MRZO folds
+-27- calls 10
+lounas59 checks
+*** FLOP *** [7s 6c 3h]
+-27- checks
+lounas59 checks
+*** TURN *** [7s 6c 3h][8s]
+-27- checks
+lounas59 bets 20
+-27- folds
+lounas59 collected 60 from pot
+*** SUMMARY ***
+Total pot 60 | No rake
+Board: [7s 6c 3h 8s]
+Seat 2: lounas59 (big blind) won 60
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830591864325275649-2-1780998241 - Holdem no limit (10/20) - 2026/06/09 09:44:01 UTC
+Table: 'Expresso(1124709813)#0' 3-max (real money) Seat #1 is the button
+Seat 1: -27- (480)
+Seat 2: lounas59 (520)
+Seat 3: MRZO (500)
+*** ANTE/BLINDS ***
+lounas59 posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [Tc Kd]
+*** PRE-FLOP *** 
+-27- folds
+lounas59 calls 10
+MRZO raises 50 to 70
+lounas59 calls 50
+*** FLOP *** [9d 6c 8h]
+lounas59 checks
+MRZO checks
+*** TURN *** [9d 6c 8h][As]
+lounas59 checks
+MRZO checks
+*** RIVER *** [9d 6c 8h As][Qc]
+lounas59 bets 20
+MRZO folds
+lounas59 collected 160 from pot
+*** SUMMARY ***
+Total pot 160 | No rake
+Board: [9d 6c 8h As Qc]
+Seat 2: lounas59 (small blind) won 160
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830591864325275649-3-1780998281 - Holdem no limit (10/20) - 2026/06/09 09:44:41 UTC
+Table: 'Expresso(1124709813)#0' 3-max (real money) Seat #2 is the button
+Seat 1: -27- (480)
+Seat 2: lounas59 (590)
+Seat 3: MRZO (430)
+*** ANTE/BLINDS ***
+MRZO posts small blind 10
+-27- posts big blind 20
+Dealt to MRZO [Tc 9d]
+*** PRE-FLOP *** 
+lounas59 raises 20 to 40
+MRZO folds
+-27- calls 20
+*** FLOP *** [5h Ks 8h]
+-27- checks
+lounas59 bets 31
+-27- folds
+lounas59 collected 121 from pot
+*** SUMMARY ***
+Total pot 121 | No rake
+Board: [5h Ks 8h]
+Seat 2: lounas59 (button) won 121
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830591864325275649-4-1780998295 - Holdem no limit (10/20) - 2026/06/09 09:44:55 UTC
+Table: 'Expresso(1124709813)#0' 3-max (real money) Seat #3 is the button
+Seat 1: -27- (440)
+Seat 2: lounas59 (640)
+Seat 3: MRZO (420)
+*** ANTE/BLINDS ***
+-27- posts small blind 10
+lounas59 posts big blind 20
+Dealt to MRZO [3c 8s]
+*** PRE-FLOP *** 
+MRZO folds
+-27- calls 10
+lounas59 checks
+*** FLOP *** [Jc 9d Qh]
+-27- checks
+lounas59 checks
+*** TURN *** [Jc 9d Qh][Td]
+-27- checks
+lounas59 checks
+*** RIVER *** [Jc 9d Qh Td][Ac]
+-27- checks
+lounas59 checks
+*** SHOW DOWN ***
+-27- shows [6s 4h] (High card : Ace)
+lounas59 shows [Ah 2s] (One pair : Aces)
+lounas59 collected 40 from pot
+*** SUMMARY ***
+Total pot 40 | No rake
+Board: [Jc 9d Qh Td Ac]
+Seat 1: -27- (small blind) showed [6s 4h] and lost with High card : Ace
+Seat 2: lounas59 (big blind) showed [Ah 2s] and won 40 with One pair : Aces
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830591864325275649-5-1780998310 - Holdem no limit (10/20) - 2026/06/09 09:45:10 UTC
+Table: 'Expresso(1124709813)#0' 3-max (real money) Seat #1 is the button
+Seat 1: -27- (420)
+Seat 2: lounas59 (660)
+Seat 3: MRZO (420)
+*** ANTE/BLINDS ***
+lounas59 posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [7h Ts]
+*** PRE-FLOP *** 
+-27- raises 20 to 40
+lounas59 calls 30
+MRZO folds
+*** FLOP *** [Qd Tc 7c]
+lounas59 checks
+-27- bets 60
+lounas59 folds
+-27- collected 160 from pot
+*** SUMMARY ***
+Total pot 160 | No rake
+Board: [Qd Tc 7c]
+Seat 1: -27- (button) won 160
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830591864325275649-6-1780998324 - Holdem no limit (15/30) - 2026/06/09 09:45:24 UTC
+Table: 'Expresso(1124709813)#0' 3-max (real money) Seat #2 is the button
+Seat 1: -27- (480)
+Seat 2: lounas59 (620)
+Seat 3: MRZO (400)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+-27- posts big blind 30
+Dealt to MRZO [Ac Ks]
+*** PRE-FLOP *** 
+lounas59 folds
+MRZO raises 370 to 400 and is all-in
+-27- calls 370
+*** FLOP *** [2h Kc 6s]
+*** TURN *** [2h Kc 6s][Ts]
+*** RIVER *** [2h Kc 6s Ts][Kd]
+*** SHOW DOWN ***
+-27- shows [As Jh] (One pair : Kings)
+MRZO shows [Ac Ks] (Trips of Kings)
+MRZO collected 800 from pot
+*** SUMMARY ***
+Total pot 800 | No rake
+Board: [2h Kc 6s Ts Kd]
+Seat 1: -27- (big blind) showed [As Jh] and lost with One pair : Kings
+Seat 3: MRZO (small blind) showed [Ac Ks] and won 800 with Trips of Kings
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830591864325275649-7-1780998343 - Holdem no limit (15/30) - 2026/06/09 09:45:43 UTC
+Table: 'Expresso(1124709813)#0' 3-max (real money) Seat #3 is the button
+Seat 1: -27- (80)
+Seat 2: lounas59 (620)
+Seat 3: MRZO (800)
+*** ANTE/BLINDS ***
+-27- posts small blind 15
+lounas59 posts big blind 30
+Dealt to MRZO [6c Ac]
+*** PRE-FLOP *** 
+MRZO raises 30 to 60
+-27- raises 20 to 80 and is all-in
+lounas59 folds
+MRZO calls 20
+*** FLOP *** [5d Kc Qh]
+*** TURN *** [5d Kc Qh][3h]
+*** RIVER *** [5d Kc Qh 3h][Tc]
+*** SHOW DOWN ***
+MRZO shows [6c Ac] (High card : Ace)
+-27- shows [Jd Kd] (One pair : Kings)
+-27- collected 190 from pot
+*** SUMMARY ***
+Total pot 190 | No rake
+Board: [5d Kc Qh 3h Tc]
+Seat 1: -27- (small blind) showed [Jd Kd] and won 190 with One pair : Kings
+Seat 3: MRZO (button) showed [6c Ac] and lost with High card : Ace
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830591864325275649-8-1780998361 - Holdem no limit (15/30) - 2026/06/09 09:46:01 UTC
+Table: 'Expresso(1124709813)#0' 3-max (real money) Seat #1 is the button
+Seat 1: -27- (190)
+Seat 2: lounas59 (590)
+Seat 3: MRZO (720)
+*** ANTE/BLINDS ***
+lounas59 posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [2d 5s]
+*** PRE-FLOP *** 
+-27- raises 160 to 190 and is all-in
+lounas59 folds
+MRZO folds
+-27- collected 235 from pot
+*** SUMMARY ***
+Total pot 235 | No rake
+Seat 1: -27- (button) won 235
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830591864325275649-9-1780998382 - Holdem no limit (15/30) - 2026/06/09 09:46:22 UTC
+Table: 'Expresso(1124709813)#0' 3-max (real money) Seat #2 is the button
+Seat 1: -27- (235)
+Seat 2: lounas59 (575)
+Seat 3: MRZO (690)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+-27- posts big blind 30
+Dealt to MRZO [3h 2c]
+*** PRE-FLOP *** 
+lounas59 calls 30
+MRZO folds
+-27- checks
+*** FLOP *** [4d Td Ah]
+-27- checks
+lounas59 checks
+*** TURN *** [4d Td Ah][8s]
+-27- checks
+lounas59 checks
+*** RIVER *** [4d Td Ah 8s][8h]
+-27- checks
+lounas59 checks
+*** SHOW DOWN ***
+-27- shows [Jh 3d] (One pair : 8)
+lounas59 shows [7c Jc] (One pair : 8)
+lounas59 collected 38 from pot
+-27- collected 37 from pot
+*** SUMMARY ***
+Total pot 75 | No rake
+Board: [4d Td Ah 8s 8h]
+Seat 1: -27- (big blind) showed [Jh 3d] and won 37 with One pair : 8
+Seat 2: lounas59 (button) showed [7c Jc] and won 38 with One pair : 8
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830591864325275649-10-1780998406 - Holdem no limit (20/40) - 2026/06/09 09:46:46 UTC
+Table: 'Expresso(1124709813)#0' 3-max (real money) Seat #3 is the button
+Seat 1: -27- (242)
+Seat 2: lounas59 (583)
+Seat 3: MRZO (675)
+*** ANTE/BLINDS ***
+-27- posts small blind 20
+lounas59 posts big blind 40
+Dealt to MRZO [Ad 9s]
+*** PRE-FLOP *** 
+MRZO raises 635 to 675 and is all-in
+-27- folds
+lounas59 folds
+MRZO collected 735 from pot
+*** SUMMARY ***
+Total pot 735 | No rake
+Seat 3: MRZO (button) won 735
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830591864325275649-11-1780998412 - Holdem no limit (20/40) - 2026/06/09 09:46:52 UTC
+Table: 'Expresso(1124709813)#0' 3-max (real money) Seat #1 is the button
+Seat 1: -27- (222)
+Seat 2: lounas59 (543)
+Seat 3: MRZO (735)
+*** ANTE/BLINDS ***
+lounas59 posts small blind 20
+MRZO posts big blind 40
+Dealt to MRZO [5h 8c]
+*** PRE-FLOP *** 
+-27- raises 182 to 222 and is all-in
+lounas59 folds
+MRZO folds
+-27- collected 282 from pot
+*** SUMMARY ***
+Total pot 282 | No rake
+Seat 1: -27- (button) won 282
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830591864325275649-12-1780998419 - Holdem no limit (20/40) - 2026/06/09 09:46:59 UTC
+Table: 'Expresso(1124709813)#0' 3-max (real money) Seat #2 is the button
+Seat 1: -27- (282)
+Seat 2: lounas59 (523)
+Seat 3: MRZO (695)
+*** ANTE/BLINDS ***
+MRZO posts small blind 20
+-27- posts big blind 40
+Dealt to MRZO [Jh 6c]
+*** PRE-FLOP *** 
+lounas59 folds
+MRZO calls 20
+-27- raises 242 to 282 and is all-in
+MRZO folds
+-27- collected 322 from pot
+*** SUMMARY ***
+Total pot 322 | No rake
+Seat 1: -27- (big blind) won 322
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830591864325275649-13-1780998443 - Holdem no limit (20/40) - 2026/06/09 09:47:23 UTC
+Table: 'Expresso(1124709813)#0' 3-max (real money) Seat #3 is the button
+Seat 1: -27- (322)
+Seat 2: lounas59 (523)
+Seat 3: MRZO (655)
+*** ANTE/BLINDS ***
+-27- posts small blind 20
+lounas59 posts big blind 40
+Dealt to MRZO [2d 3h]
+*** PRE-FLOP *** 
+MRZO folds
+-27- raises 282 to 322 and is all-in
+lounas59 folds
+-27- collected 362 from pot
+*** SUMMARY ***
+Total pot 362 | No rake
+Seat 1: -27- (small blind) won 362
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830591864325275649-14-1780998450 - Holdem no limit (20/40) - 2026/06/09 09:47:30 UTC
+Table: 'Expresso(1124709813)#0' 3-max (real money) Seat #1 is the button
+Seat 1: -27- (362)
+Seat 2: lounas59 (483)
+Seat 3: MRZO (655)
+*** ANTE/BLINDS ***
+lounas59 posts small blind 20
+MRZO posts big blind 40
+Dealt to MRZO [Qc 2d]
+*** PRE-FLOP *** 
+-27- raises 322 to 362 and is all-in
+lounas59 folds
+MRZO folds
+-27- collected 422 from pot
+*** SUMMARY ***
+Total pot 422 | No rake
+Seat 1: -27- (button) won 422
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830591864325275649-15-1780998466 - Holdem no limit (20/40) - 2026/06/09 09:47:46 UTC
+Table: 'Expresso(1124709813)#0' 3-max (real money) Seat #2 is the button
+Seat 1: -27- (422)
+Seat 2: lounas59 (463)
+Seat 3: MRZO (615)
+*** ANTE/BLINDS ***
+MRZO posts small blind 20
+-27- posts big blind 40
+Dealt to MRZO [Qs As]
+*** PRE-FLOP *** 
+lounas59 folds
+MRZO calls 20
+-27- raises 382 to 422 and is all-in
+MRZO raises 193 to 615 and is all-in
+*** FLOP *** [3c 3s 9d]
+*** TURN *** [3c 3s 9d][Ad]
+*** RIVER *** [3c 3s 9d Ad][7s]
+*** SHOW DOWN ***
+-27- shows [5s 7h] (Two pairs : 7 and 3)
+MRZO shows [Qs As] (Two pairs : Aces and 3)
+MRZO collected 1037 from pot
+*** SUMMARY ***
+Total pot 1037 | No rake
+Board: [3c 3s 9d Ad 7s]
+Seat 1: -27- (big blind) showed [5s 7h] and lost with Two pairs : 7 and 3
+Seat 3: MRZO (small blind) showed [Qs As] and won 1037 with Two pairs : Aces and 3
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830591864325275649-16-1780998489 - Holdem no limit (20/40) - 2026/06/09 09:48:09 UTC
+Table: 'Expresso(1124709813)#0' 3-max (real money) Seat #2 is the button
+Seat 2: lounas59 (463)
+Seat 3: MRZO (1037)
+*** ANTE/BLINDS ***
+lounas59 posts small blind 20
+MRZO posts big blind 40
+Dealt to MRZO [6d 2d]
+*** PRE-FLOP *** 
+lounas59 calls 20
+MRZO checks
+*** FLOP *** [7s Td 2s]
+MRZO checks
+lounas59 checks
+*** TURN *** [7s Td 2s][6c]
+MRZO bets 80
+lounas59 folds
+MRZO collected 160 from pot
+*** SUMMARY ***
+Total pot 160 | No rake
+Board: [7s Td 2s 6c]
+Seat 3: MRZO (big blind) won 160
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830591864325275649-17-1780998519 - Holdem no limit (30/60) - 2026/06/09 09:48:39 UTC
+Table: 'Expresso(1124709813)#0' 3-max (real money) Seat #3 is the button
+Seat 2: lounas59 (423)
+Seat 3: MRZO (1077)
+*** ANTE/BLINDS ***
+MRZO posts small blind 30
+lounas59 posts big blind 60
+Dealt to MRZO [Tc 7h]
+*** PRE-FLOP *** 
+MRZO calls 30
+lounas59 checks
+*** FLOP *** [7d Ah 6s]
+lounas59 checks
+MRZO bets 96
+lounas59 folds
+MRZO collected 216 from pot
+*** SUMMARY ***
+Total pot 216 | No rake
+Board: [7d Ah 6s]
+Seat 3: MRZO (small blind) (button) won 216
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830591864325275649-18-1780998531 - Holdem no limit (30/60) - 2026/06/09 09:48:51 UTC
+Table: 'Expresso(1124709813)#0' 3-max (real money) Seat #2 is the button
+Seat 2: lounas59 (363)
+Seat 3: MRZO (1137)
+*** ANTE/BLINDS ***
+lounas59 posts small blind 30
+MRZO posts big blind 60
+Dealt to MRZO [Qd 5s]
+*** PRE-FLOP *** 
+lounas59 raises 120 to 180
+MRZO folds
+lounas59 collected 240 from pot
+*** SUMMARY ***
+Total pot 240 | No rake
+Seat 2: lounas59 (small blind) (button) won 240
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830591864325275649-19-1780998537 - Holdem no limit (30/60) - 2026/06/09 09:48:57 UTC
+Table: 'Expresso(1124709813)#0' 3-max (real money) Seat #3 is the button
+Seat 2: lounas59 (423)
+Seat 3: MRZO (1077)
+*** ANTE/BLINDS ***
+MRZO posts small blind 30
+lounas59 posts big blind 60
+Dealt to MRZO [Kh 9d]
+*** PRE-FLOP *** 
+MRZO raises 1017 to 1077 and is all-in
+lounas59 calls 363 and is all-in
+*** FLOP *** [2h 4h 7s]
+*** TURN *** [2h 4h 7s][4c]
+*** RIVER *** [2h 4h 7s 4c][9s]
+*** SHOW DOWN ***
+lounas59 shows [Ts Ks] (One pair : 4)
+MRZO shows [Kh 9d] (Two pairs : 9 and 4)
+MRZO collected 1500 from pot
+*** SUMMARY ***
+Total pot 1500 | No rake
+Board: [2h 4h 7s 4c 9s]
+Seat 2: lounas59 (big blind) showed [Ts Ks] and lost with One pair : 4
+Seat 3: MRZO (small blind) (button) showed [Kh 9d] and won 1500 with Two pairs : 9 and 4
+
+

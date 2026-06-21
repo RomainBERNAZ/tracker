@@ -1,0 +1,549 @@
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830471128499617793-1-1780994492 - Holdem no limit (10/20) - 2026/06/09 08:41:32 UTC
+Table: 'Expresso(1124681702)#0' 3-max (real money) Seat #3 is the button
+Seat 1: Sandrritaa (500)
+Seat 2: MRZO (500)
+Seat 3: Patro0910 (500)
+*** ANTE/BLINDS ***
+Sandrritaa posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [3s 3c]
+*** PRE-FLOP *** 
+Patro0910 raises 20 to 40
+Sandrritaa calls 30
+MRZO calls 20
+*** FLOP *** [Js Td 4s]
+Sandrritaa checks
+MRZO checks
+Patro0910 checks
+*** TURN *** [Js Td 4s][8h]
+Sandrritaa bets 78
+MRZO folds
+Patro0910 calls 78
+*** RIVER *** [Js Td 4s 8h][6d]
+Sandrritaa bets 179
+Patro0910 calls 179
+*** SHOW DOWN ***
+Patro0910 shows [5d 4h] (One pair : 4)
+Sandrritaa shows [5s Jd] (One pair : Jacks)
+Sandrritaa collected 634 from pot
+*** SUMMARY ***
+Total pot 634 | No rake
+Board: [Js Td 4s 8h 6d]
+Seat 1: Sandrritaa (small blind) showed [5s Jd] and won 634 with One pair : Jacks
+Seat 3: Patro0910 (button) showed [5d 4h] and lost with One pair : 4
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830471128499617793-2-1780994526 - Holdem no limit (10/20) - 2026/06/09 08:42:06 UTC
+Table: 'Expresso(1124681702)#0' 3-max (real money) Seat #1 is the button
+Seat 1: Sandrritaa (837)
+Seat 2: MRZO (460)
+Seat 3: Patro0910 (203)
+*** ANTE/BLINDS ***
+MRZO posts small blind 10
+Patro0910 posts big blind 20
+Dealt to MRZO [Th 6d]
+*** PRE-FLOP *** 
+Sandrritaa calls 20
+MRZO folds
+Patro0910 raises 40 to 60
+Sandrritaa calls 40
+*** FLOP *** [Ks 5h 9s]
+Patro0910 checks
+Sandrritaa bets 85
+Patro0910 raises 58 to 143 and is all-in
+Sandrritaa calls 58
+*** TURN *** [Ks 5h 9s][Ad]
+*** RIVER *** [Ks 5h 9s Ad][Kd]
+*** SHOW DOWN ***
+Sandrritaa shows [Qs Jc] (One pair : Kings)
+Patro0910 shows [Ah 8h] (Two pairs : Aces and Kings)
+Patro0910 collected 416 from pot
+*** SUMMARY ***
+Total pot 416 | No rake
+Board: [Ks 5h 9s Ad Kd]
+Seat 1: Sandrritaa (button) showed [Qs Jc] and lost with One pair : Kings
+Seat 3: Patro0910 (big blind) showed [Ah 8h] and won 416 with Two pairs : Aces and Kings
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830471128499617793-3-1780994592 - Holdem no limit (15/30) - 2026/06/09 08:43:12 UTC
+Table: 'Expresso(1124681702)#0' 3-max (real money) Seat #2 is the button
+Seat 1: Sandrritaa (634)
+Seat 2: MRZO (450)
+Seat 3: Patro0910 (416)
+*** ANTE/BLINDS ***
+Patro0910 posts small blind 15
+Sandrritaa posts big blind 30
+Dealt to MRZO [As Qs]
+*** PRE-FLOP *** 
+MRZO raises 420 to 450 and is all-in
+Patro0910 calls 401 and is all-in
+Sandrritaa folds
+*** FLOP *** [Qd 7h 9h]
+*** TURN *** [Qd 7h 9h][Kh]
+*** RIVER *** [Qd 7h 9h Kh][2s]
+*** SHOW DOWN ***
+Patro0910 shows [7d Ad] (One pair : 7)
+MRZO shows [As Qs] (One pair : Queens)
+MRZO collected 896 from pot
+*** SUMMARY ***
+Total pot 896 | No rake
+Board: [Qd 7h 9h Kh 2s]
+Seat 2: MRZO (button) showed [As Qs] and won 896 with One pair : Queens
+Seat 3: Patro0910 (small blind) showed [7d Ad] and lost with One pair : 7
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830471128499617793-4-1780994605 - Holdem no limit (15/30) - 2026/06/09 08:43:25 UTC
+Table: 'Expresso(1124681702)#0' 3-max (real money) Seat #1 is the button
+Seat 1: Sandrritaa (604)
+Seat 2: MRZO (896)
+*** ANTE/BLINDS ***
+Sandrritaa posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [Jh Ks]
+*** PRE-FLOP *** 
+Sandrritaa calls 15
+MRZO raises 75 to 105
+Sandrritaa folds
+MRZO collected 135 from pot
+*** SUMMARY ***
+Total pot 135 | No rake
+Seat 2: MRZO (big blind) won 135
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830471128499617793-5-1780994622 - Holdem no limit (15/30) - 2026/06/09 08:43:42 UTC
+Table: 'Expresso(1124681702)#0' 3-max (real money) Seat #2 is the button
+Seat 1: Sandrritaa (574)
+Seat 2: MRZO (926)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+Sandrritaa posts big blind 30
+Dealt to MRZO [8h Qc]
+*** PRE-FLOP *** 
+MRZO calls 15
+Sandrritaa checks
+*** FLOP *** [7d 3d Qd]
+Sandrritaa bets 105
+MRZO raises 791 to 896 and is all-in
+Sandrritaa calls 439 and is all-in
+*** TURN *** [7d 3d Qd][8c]
+*** RIVER *** [7d 3d Qd 8c][Td]
+*** SHOW DOWN ***
+Sandrritaa shows [Kd 7h] (Flush King high)
+MRZO shows [8h Qc] (Two pairs : Queens and 8)
+MRZO collected 352 from side pot 1
+Sandrritaa collected 1148 from main pot
+*** SUMMARY ***
+Total pot 1500 | No rake
+Board: [7d 3d Qd 8c Td]
+Seat 1: Sandrritaa (big blind) showed [Kd 7h] and won 1148 with Flush King high
+Seat 2: MRZO (small blind) (button) showed [8h Qc] and won 352 with Two pairs : Queens and 8
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830471128499617793-6-1780994644 - Holdem no limit (15/30) - 2026/06/09 08:44:04 UTC
+Table: 'Expresso(1124681702)#0' 3-max (real money) Seat #1 is the button
+Seat 1: Sandrritaa (1148)
+Seat 2: MRZO (352)
+*** ANTE/BLINDS ***
+Sandrritaa posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [4c 3c]
+*** PRE-FLOP *** 
+Sandrritaa calls 15
+MRZO checks
+*** FLOP *** [8h Qs 2h]
+MRZO checks
+Sandrritaa checks
+*** TURN *** [8h Qs 2h][Jh]
+MRZO checks
+Sandrritaa checks
+*** RIVER *** [8h Qs 2h Jh][5s]
+MRZO checks
+Sandrritaa checks
+*** SHOW DOWN ***
+MRZO shows [4c 3c] (High card : Queen)
+Sandrritaa shows [Th 4d] (High card : Queen)
+Sandrritaa collected 60 from pot
+*** SUMMARY ***
+Total pot 60 | No rake
+Board: [8h Qs 2h Jh 5s]
+Seat 1: Sandrritaa (small blind) (button) showed [Th 4d] and won 60 with High card : Queen
+Seat 2: MRZO (big blind) showed [4c 3c] and lost with High card : Queen
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830471128499617793-7-1780994669 - Holdem no limit (15/30) - 2026/06/09 08:44:29 UTC
+Table: 'Expresso(1124681702)#0' 3-max (real money) Seat #2 is the button
+Seat 1: Sandrritaa (1178)
+Seat 2: MRZO (322)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+Sandrritaa posts big blind 30
+Dealt to MRZO [4s 9c]
+*** PRE-FLOP *** 
+MRZO calls 15
+Sandrritaa checks
+*** FLOP *** [3h 4c 5d]
+Sandrritaa checks
+MRZO bets 39
+Sandrritaa folds
+MRZO collected 99 from pot
+*** SUMMARY ***
+Total pot 99 | No rake
+Board: [3h 4c 5d]
+Seat 2: MRZO (small blind) (button) won 99
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830471128499617793-8-1780994688 - Holdem no limit (20/40) - 2026/06/09 08:44:48 UTC
+Table: 'Expresso(1124681702)#0' 3-max (real money) Seat #1 is the button
+Seat 1: Sandrritaa (1148)
+Seat 2: MRZO (352)
+*** ANTE/BLINDS ***
+Sandrritaa posts small blind 20
+MRZO posts big blind 40
+Dealt to MRZO [8c 9h]
+*** PRE-FLOP *** 
+Sandrritaa calls 20
+MRZO checks
+*** FLOP *** [As 5h 6c]
+MRZO checks
+Sandrritaa checks
+*** TURN *** [As 5h 6c][5s]
+MRZO bets 52
+Sandrritaa raises 103 to 155
+MRZO folds
+Sandrritaa collected 287 from pot
+*** SUMMARY ***
+Total pot 287 | No rake
+Board: [As 5h 6c 5s]
+Seat 1: Sandrritaa (small blind) (button) won 287
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830471128499617793-9-1780994711 - Holdem no limit (20/40) - 2026/06/09 08:45:11 UTC
+Table: 'Expresso(1124681702)#0' 3-max (real money) Seat #2 is the button
+Seat 1: Sandrritaa (1240)
+Seat 2: MRZO (260)
+*** ANTE/BLINDS ***
+MRZO posts small blind 20
+Sandrritaa posts big blind 40
+Dealt to MRZO [Qd Kd]
+*** PRE-FLOP *** 
+MRZO raises 220 to 260 and is all-in
+Sandrritaa folds
+MRZO collected 300 from pot
+*** SUMMARY ***
+Total pot 300 | No rake
+Seat 2: MRZO (small blind) (button) won 300
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830471128499617793-10-1780994716 - Holdem no limit (20/40) - 2026/06/09 08:45:16 UTC
+Table: 'Expresso(1124681702)#0' 3-max (real money) Seat #1 is the button
+Seat 1: Sandrritaa (1200)
+Seat 2: MRZO (300)
+*** ANTE/BLINDS ***
+Sandrritaa posts small blind 20
+MRZO posts big blind 40
+Dealt to MRZO [Jd 9s]
+*** PRE-FLOP *** 
+Sandrritaa calls 20
+MRZO checks
+*** FLOP *** [Jh 7c Kh]
+MRZO checks
+Sandrritaa checks
+*** TURN *** [Jh 7c Kh][9d]
+MRZO bets 64
+Sandrritaa raises 64 to 128
+MRZO raises 132 to 260 and is all-in
+Sandrritaa calls 132
+*** RIVER *** [Jh 7c Kh 9d][9h]
+*** SHOW DOWN ***
+Sandrritaa shows [8d 2d] (One pair : 9)
+MRZO shows [Jd 9s] (Full of 9 and Jacks)
+MRZO collected 600 from pot
+*** SUMMARY ***
+Total pot 600 | No rake
+Board: [Jh 7c Kh 9d 9h]
+Seat 1: Sandrritaa (small blind) (button) showed [8d 2d] and lost with One pair : 9
+Seat 2: MRZO (big blind) showed [Jd 9s] and won 600 with Full of 9 and Jacks
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830471128499617793-11-1780994747 - Holdem no limit (20/40) - 2026/06/09 08:45:47 UTC
+Table: 'Expresso(1124681702)#0' 3-max (real money) Seat #2 is the button
+Seat 1: Sandrritaa (900)
+Seat 2: MRZO (600)
+*** ANTE/BLINDS ***
+MRZO posts small blind 20
+Sandrritaa posts big blind 40
+Dealt to MRZO [Ac 7c]
+*** PRE-FLOP *** 
+MRZO raises 560 to 600 and is all-in
+Sandrritaa folds
+MRZO collected 640 from pot
+*** SUMMARY ***
+Total pot 640 | No rake
+Seat 2: MRZO (small blind) (button) won 640
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830471128499617793-12-1780994755 - Holdem no limit (20/40) - 2026/06/09 08:45:55 UTC
+Table: 'Expresso(1124681702)#0' 3-max (real money) Seat #1 is the button
+Seat 1: Sandrritaa (860)
+Seat 2: MRZO (640)
+*** ANTE/BLINDS ***
+Sandrritaa posts small blind 20
+MRZO posts big blind 40
+Dealt to MRZO [Td 3d]
+*** PRE-FLOP *** 
+Sandrritaa folds
+MRZO collected 60 from pot
+*** SUMMARY ***
+Total pot 60 | No rake
+Seat 2: MRZO (big blind) won 60
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830471128499617793-13-1780994760 - Holdem no limit (30/60) - 2026/06/09 08:46:00 UTC
+Table: 'Expresso(1124681702)#0' 3-max (real money) Seat #2 is the button
+Seat 1: Sandrritaa (840)
+Seat 2: MRZO (660)
+*** ANTE/BLINDS ***
+MRZO posts small blind 30
+Sandrritaa posts big blind 60
+Dealt to MRZO [9s 8h]
+*** PRE-FLOP *** 
+MRZO calls 30
+Sandrritaa checks
+*** FLOP *** [8s 6h As]
+Sandrritaa checks
+MRZO bets 78
+Sandrritaa folds
+MRZO collected 198 from pot
+*** SUMMARY ***
+Total pot 198 | No rake
+Board: [8s 6h As]
+Seat 2: MRZO (small blind) (button) won 198
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830471128499617793-14-1780994794 - Holdem no limit (30/60) - 2026/06/09 08:46:34 UTC
+Table: 'Expresso(1124681702)#0' 3-max (real money) Seat #1 is the button
+Seat 1: Sandrritaa (780)
+Seat 2: MRZO (720)
+*** ANTE/BLINDS ***
+Sandrritaa posts small blind 30
+MRZO posts big blind 60
+Dealt to MRZO [5c Kd]
+*** PRE-FLOP *** 
+Sandrritaa calls 30
+MRZO checks
+*** FLOP *** [4h 7c 4s]
+MRZO checks
+Sandrritaa checks
+*** TURN *** [4h 7c 4s][9s]
+MRZO checks
+Sandrritaa checks
+*** RIVER *** [4h 7c 4s 9s][6h]
+MRZO checks
+Sandrritaa bets 120
+MRZO folds
+Sandrritaa collected 240 from pot
+*** SUMMARY ***
+Total pot 240 | No rake
+Board: [4h 7c 4s 9s 6h]
+Seat 1: Sandrritaa (small blind) (button) won 240
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830471128499617793-15-1780994823 - Holdem no limit (30/60) - 2026/06/09 08:47:03 UTC
+Table: 'Expresso(1124681702)#0' 3-max (real money) Seat #2 is the button
+Seat 1: Sandrritaa (840)
+Seat 2: MRZO (660)
+*** ANTE/BLINDS ***
+MRZO posts small blind 30
+Sandrritaa posts big blind 60
+Dealt to MRZO [Kh 5h]
+*** PRE-FLOP *** 
+MRZO raises 600 to 660 and is all-in
+Sandrritaa folds
+MRZO collected 720 from pot
+*** SUMMARY ***
+Total pot 720 | No rake
+Seat 2: MRZO (small blind) (button) won 720
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830471128499617793-16-1780994828 - Holdem no limit (30/60) - 2026/06/09 08:47:08 UTC
+Table: 'Expresso(1124681702)#0' 3-max (real money) Seat #1 is the button
+Seat 1: Sandrritaa (780)
+Seat 2: MRZO (720)
+*** ANTE/BLINDS ***
+Sandrritaa posts small blind 30
+MRZO posts big blind 60
+Dealt to MRZO [4c 6s]
+*** PRE-FLOP *** 
+Sandrritaa calls 30
+MRZO checks
+*** FLOP *** [8s Qs 7d]
+MRZO checks
+Sandrritaa checks
+*** TURN *** [8s Qs 7d][9s]
+MRZO checks
+Sandrritaa bets 720 and is all-in
+MRZO folds
+Sandrritaa collected 840 from pot
+*** SUMMARY ***
+Total pot 840 | No rake
+Board: [8s Qs 7d 9s]
+Seat 1: Sandrritaa (small blind) (button) won 840
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830471128499617793-17-1780994847 - Holdem no limit (30/60) - 2026/06/09 08:47:27 UTC
+Table: 'Expresso(1124681702)#0' 3-max (real money) Seat #2 is the button
+Seat 1: Sandrritaa (840)
+Seat 2: MRZO (660)
+*** ANTE/BLINDS ***
+MRZO posts small blind 30
+Sandrritaa posts big blind 60
+Dealt to MRZO [8c 9d]
+*** PRE-FLOP *** 
+MRZO calls 30
+Sandrritaa checks
+*** FLOP *** [2s 6h 4s]
+Sandrritaa bets 120
+MRZO folds
+Sandrritaa collected 240 from pot
+*** SUMMARY ***
+Total pot 240 | No rake
+Board: [2s 6h 4s]
+Seat 1: Sandrritaa (big blind) won 240
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 5 - HandId: #4830471128499617793-18-1780994862 - Holdem no limit (40/80) - 2026/06/09 08:47:42 UTC
+Table: 'Expresso(1124681702)#0' 3-max (real money) Seat #1 is the button
+Seat 1: Sandrritaa (900)
+Seat 2: MRZO (600)
+*** ANTE/BLINDS ***
+Sandrritaa posts small blind 40
+MRZO posts big blind 80
+Dealt to MRZO [4d 8h]
+*** PRE-FLOP *** 
+Sandrritaa calls 40
+MRZO checks
+*** FLOP *** [2c Jc Kc]
+MRZO checks
+Sandrritaa bets 160
+MRZO folds
+Sandrritaa collected 320 from pot
+*** SUMMARY ***
+Total pot 320 | No rake
+Board: [2c Jc Kc]
+Seat 1: Sandrritaa (small blind) (button) won 320
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 5 - HandId: #4830471128499617793-19-1780994876 - Holdem no limit (40/80) - 2026/06/09 08:47:56 UTC
+Table: 'Expresso(1124681702)#0' 3-max (real money) Seat #2 is the button
+Seat 1: Sandrritaa (980)
+Seat 2: MRZO (520)
+*** ANTE/BLINDS ***
+MRZO posts small blind 40
+Sandrritaa posts big blind 80
+Dealt to MRZO [Js 3d]
+*** PRE-FLOP *** 
+MRZO folds
+Sandrritaa collected 120 from pot
+*** SUMMARY ***
+Total pot 120 | No rake
+Seat 1: Sandrritaa (big blind) won 120
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 5 - HandId: #4830471128499617793-20-1780994881 - Holdem no limit (40/80) - 2026/06/09 08:48:01 UTC
+Table: 'Expresso(1124681702)#0' 3-max (real money) Seat #1 is the button
+Seat 1: Sandrritaa (1020)
+Seat 2: MRZO (480)
+*** ANTE/BLINDS ***
+Sandrritaa posts small blind 40
+MRZO posts big blind 80
+Dealt to MRZO [3s 7s]
+*** PRE-FLOP *** 
+Sandrritaa calls 40
+MRZO checks
+*** FLOP *** [7h Ts 6d]
+MRZO checks
+Sandrritaa checks
+*** TURN *** [7h Ts 6d][Jh]
+MRZO checks
+Sandrritaa bets 160
+MRZO folds
+Sandrritaa collected 320 from pot
+*** SUMMARY ***
+Total pot 320 | No rake
+Board: [7h Ts 6d Jh]
+Seat 1: Sandrritaa (small blind) (button) won 320
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 5 - HandId: #4830471128499617793-21-1780994902 - Holdem no limit (40/80) - 2026/06/09 08:48:22 UTC
+Table: 'Expresso(1124681702)#0' 3-max (real money) Seat #2 is the button
+Seat 1: Sandrritaa (1100)
+Seat 2: MRZO (400)
+*** ANTE/BLINDS ***
+MRZO posts small blind 40
+Sandrritaa posts big blind 80
+Dealt to MRZO [9h Js]
+*** PRE-FLOP *** 
+MRZO raises 320 to 400 and is all-in
+Sandrritaa folds
+MRZO collected 480 from pot
+*** SUMMARY ***
+Total pot 480 | No rake
+Seat 2: MRZO (small blind) (button) won 480
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 5 - HandId: #4830471128499617793-22-1780994907 - Holdem no limit (40/80) - 2026/06/09 08:48:27 UTC
+Table: 'Expresso(1124681702)#0' 3-max (real money) Seat #1 is the button
+Seat 1: Sandrritaa (1020)
+Seat 2: MRZO (480)
+*** ANTE/BLINDS ***
+Sandrritaa posts small blind 40
+MRZO posts big blind 80
+Dealt to MRZO [2c Ts]
+*** PRE-FLOP *** 
+Sandrritaa calls 40
+MRZO checks
+*** FLOP *** [7c Kc 5h]
+MRZO checks
+Sandrritaa checks
+*** TURN *** [7c Kc 5h][Qd]
+MRZO checks
+Sandrritaa checks
+*** RIVER *** [7c Kc 5h Qd][7d]
+MRZO checks
+Sandrritaa checks
+*** SHOW DOWN ***
+MRZO shows [2c Ts] (One pair : 7)
+Sandrritaa shows [Jh 6h] (One pair : 7)
+Sandrritaa collected 160 from pot
+*** SUMMARY ***
+Total pot 160 | No rake
+Board: [7c Kc 5h Qd 7d]
+Seat 1: Sandrritaa (small blind) (button) showed [Jh 6h] and won 160 with One pair : 7
+Seat 2: MRZO (big blind) showed [2c Ts] and lost with One pair : 7
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 5 - HandId: #4830471128499617793-23-1780994939 - Holdem no limit (40/80) - 2026/06/09 08:48:59 UTC
+Table: 'Expresso(1124681702)#0' 3-max (real money) Seat #2 is the button
+Seat 1: Sandrritaa (1100)
+Seat 2: MRZO (400)
+*** ANTE/BLINDS ***
+MRZO posts small blind 40
+Sandrritaa posts big blind 80
+Dealt to MRZO [7s Jc]
+*** PRE-FLOP *** 
+MRZO raises 320 to 400 and is all-in
+Sandrritaa calls 320
+*** FLOP *** [5h 5d 8h]
+*** TURN *** [5h 5d 8h][6h]
+*** RIVER *** [5h 5d 8h 6h][Ts]
+*** SHOW DOWN ***
+MRZO shows [7s Jc] (One pair : 5)
+Sandrritaa shows [Jh Ac] (One pair : 5)
+Sandrritaa collected 800 from pot
+*** SUMMARY ***
+Total pot 800 | No rake
+Board: [5h 5d 8h 6h Ts]
+Seat 1: Sandrritaa (big blind) showed [Jh Ac] and won 800 with One pair : 5
+Seat 2: MRZO (small blind) (button) showed [7s Jc] and lost with One pair : 5
+
+

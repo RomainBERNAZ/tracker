@@ -1,0 +1,838 @@
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830785593120129025-1-1781003287 - Holdem no limit (10/20) - 2026/06/09 11:08:07 UTC
+Table: 'Expresso(1124754919)#0' 3-max (real money) Seat #3 is the button
+Seat 1: NuXflaXeFRA (500)
+Seat 2: Aless5 (500)
+Seat 3: MRZO (500)
+*** ANTE/BLINDS ***
+NuXflaXeFRA posts small blind 10
+Aless5 posts big blind 20
+Dealt to MRZO [4d 8c]
+*** PRE-FLOP *** 
+MRZO folds
+NuXflaXeFRA calls 10
+Aless5 checks
+*** FLOP *** [Qs Td 2c]
+NuXflaXeFRA checks
+Aless5 bets 20
+NuXflaXeFRA calls 20
+*** TURN *** [Qs Td 2c][6d]
+NuXflaXeFRA checks
+Aless5 checks
+*** RIVER *** [Qs Td 2c 6d][As]
+NuXflaXeFRA checks
+Aless5 checks
+*** SHOW DOWN ***
+NuXflaXeFRA shows [9c Ks] (High card : Ace)
+Aless5 shows [2d 5s] (One pair : 2)
+Aless5 collected 80 from pot
+*** SUMMARY ***
+Total pot 80 | No rake
+Board: [Qs Td 2c 6d As]
+Seat 1: NuXflaXeFRA (small blind) showed [9c Ks] and lost with High card : Ace
+Seat 2: Aless5 (big blind) showed [2d 5s] and won 80 with One pair : 2
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830785593120129025-2-1781003343 - Holdem no limit (10/20) - 2026/06/09 11:09:03 UTC
+Table: 'Expresso(1124754919)#0' 3-max (real money) Seat #1 is the button
+Seat 1: NuXflaXeFRA (460)
+Seat 2: Aless5 (540)
+Seat 3: MRZO (500)
+*** ANTE/BLINDS ***
+Aless5 posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [6s 8c]
+*** PRE-FLOP *** 
+NuXflaXeFRA folds
+Aless5 folds
+MRZO collected 30 from pot
+*** SUMMARY ***
+Total pot 30 | No rake
+Seat 3: MRZO (big blind) won 30
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830785593120129025-3-1781003349 - Holdem no limit (10/20) - 2026/06/09 11:09:09 UTC
+Table: 'Expresso(1124754919)#0' 3-max (real money) Seat #2 is the button
+Seat 1: NuXflaXeFRA (460)
+Seat 2: Aless5 (530)
+Seat 3: MRZO (510)
+*** ANTE/BLINDS ***
+MRZO posts small blind 10
+NuXflaXeFRA posts big blind 20
+Dealt to MRZO [Js 5h]
+*** PRE-FLOP *** 
+Aless5 folds
+MRZO folds
+NuXflaXeFRA collected 30 from pot
+*** SUMMARY ***
+Total pot 30 | No rake
+Seat 1: NuXflaXeFRA (big blind) won 30
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830785593120129025-4-1781003357 - Holdem no limit (10/20) - 2026/06/09 11:09:17 UTC
+Table: 'Expresso(1124754919)#0' 3-max (real money) Seat #3 is the button
+Seat 1: NuXflaXeFRA (470)
+Seat 2: Aless5 (530)
+Seat 3: MRZO (500)
+*** ANTE/BLINDS ***
+NuXflaXeFRA posts small blind 10
+Aless5 posts big blind 20
+Dealt to MRZO [Jc 6c]
+*** PRE-FLOP *** 
+MRZO folds
+NuXflaXeFRA calls 10
+Aless5 checks
+*** FLOP *** [Qh 3d 4h]
+NuXflaXeFRA checks
+Aless5 checks
+*** TURN *** [Qh 3d 4h][Kh]
+NuXflaXeFRA checks
+Aless5 checks
+*** RIVER *** [Qh 3d 4h Kh][2d]
+NuXflaXeFRA bets 20
+Aless5 folds
+NuXflaXeFRA collected 60 from pot
+*** SUMMARY ***
+Total pot 60 | No rake
+Board: [Qh 3d 4h Kh 2d]
+Seat 1: NuXflaXeFRA (small blind) won 60
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830785593120129025-5-1781003420 - Holdem no limit (15/30) - 2026/06/09 11:10:20 UTC
+Table: 'Expresso(1124754919)#0' 3-max (real money) Seat #1 is the button
+Seat 1: NuXflaXeFRA (490)
+Seat 2: Aless5 (510)
+Seat 3: MRZO (500)
+*** ANTE/BLINDS ***
+Aless5 posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [Tc 2d]
+*** PRE-FLOP *** 
+NuXflaXeFRA folds
+Aless5 folds
+MRZO collected 45 from pot
+*** SUMMARY ***
+Total pot 45 | No rake
+Seat 3: MRZO (big blind) won 45
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830785593120129025-6-1781003437 - Holdem no limit (15/30) - 2026/06/09 11:10:37 UTC
+Table: 'Expresso(1124754919)#0' 3-max (real money) Seat #2 is the button
+Seat 1: NuXflaXeFRA (490)
+Seat 2: Aless5 (495)
+Seat 3: MRZO (515)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+NuXflaXeFRA posts big blind 30
+Dealt to MRZO [Ks Td]
+*** PRE-FLOP *** 
+Aless5 raises 465 to 495 and is all-in
+MRZO folds
+NuXflaXeFRA folds
+Aless5 collected 540 from pot
+*** SUMMARY ***
+Total pot 540 | No rake
+Seat 2: Aless5 (button) won 540
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830785593120129025-7-1781003455 - Holdem no limit (15/30) - 2026/06/09 11:10:55 UTC
+Table: 'Expresso(1124754919)#0' 3-max (real money) Seat #3 is the button
+Seat 1: NuXflaXeFRA (460)
+Seat 2: Aless5 (540)
+Seat 3: MRZO (500)
+*** ANTE/BLINDS ***
+NuXflaXeFRA posts small blind 15
+Aless5 posts big blind 30
+Dealt to MRZO [Jh Qc]
+*** PRE-FLOP *** 
+MRZO raises 30 to 60
+NuXflaXeFRA folds
+Aless5 folds
+MRZO collected 105 from pot
+*** SUMMARY ***
+Total pot 105 | No rake
+Seat 3: MRZO (button) won 105
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830785593120129025-8-1781003469 - Holdem no limit (20/40) - 2026/06/09 11:11:09 UTC
+Table: 'Expresso(1124754919)#0' 3-max (real money) Seat #1 is the button
+Seat 1: NuXflaXeFRA (445)
+Seat 2: Aless5 (510)
+Seat 3: MRZO (545)
+*** ANTE/BLINDS ***
+Aless5 posts small blind 20
+MRZO posts big blind 40
+Dealt to MRZO [2s Ks]
+*** PRE-FLOP *** 
+NuXflaXeFRA calls 40
+Aless5 folds
+MRZO checks
+*** FLOP *** [5h 6c 9d]
+MRZO checks
+NuXflaXeFRA bets 40
+MRZO folds
+NuXflaXeFRA collected 140 from pot
+*** SUMMARY ***
+Total pot 140 | No rake
+Board: [5h 6c 9d]
+Seat 1: NuXflaXeFRA (button) won 140
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830785593120129025-9-1781003489 - Holdem no limit (20/40) - 2026/06/09 11:11:29 UTC
+Table: 'Expresso(1124754919)#0' 3-max (real money) Seat #2 is the button
+Seat 1: NuXflaXeFRA (505)
+Seat 2: Aless5 (490)
+Seat 3: MRZO (505)
+*** ANTE/BLINDS ***
+MRZO posts small blind 20
+NuXflaXeFRA posts big blind 40
+Dealt to MRZO [4h Kh]
+*** PRE-FLOP *** 
+Aless5 folds
+MRZO calls 20
+NuXflaXeFRA checks
+*** FLOP *** [Td Jd 8d]
+MRZO checks
+NuXflaXeFRA checks
+*** TURN *** [Td Jd 8d][Ad]
+MRZO checks
+NuXflaXeFRA checks
+*** RIVER *** [Td Jd 8d Ad][Jc]
+MRZO checks
+NuXflaXeFRA bets 40
+MRZO folds
+NuXflaXeFRA collected 120 from pot
+*** SUMMARY ***
+Total pot 120 | No rake
+Board: [Td Jd 8d Ad Jc]
+Seat 1: NuXflaXeFRA (big blind) won 120
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830785593120129025-10-1781003520 - Holdem no limit (20/40) - 2026/06/09 11:12:00 UTC
+Table: 'Expresso(1124754919)#0' 3-max (real money) Seat #3 is the button
+Seat 1: NuXflaXeFRA (545)
+Seat 2: Aless5 (490)
+Seat 3: MRZO (465)
+*** ANTE/BLINDS ***
+NuXflaXeFRA posts small blind 20
+Aless5 posts big blind 40
+Dealt to MRZO [8h Ac]
+*** PRE-FLOP *** 
+MRZO raises 425 to 465 and is all-in
+NuXflaXeFRA folds
+Aless5 folds
+MRZO collected 525 from pot
+*** SUMMARY ***
+Total pot 525 | No rake
+Seat 3: MRZO (button) won 525
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830785593120129025-11-1781003538 - Holdem no limit (20/40) - 2026/06/09 11:12:18 UTC
+Table: 'Expresso(1124754919)#0' 3-max (real money) Seat #1 is the button
+Seat 1: NuXflaXeFRA (525)
+Seat 2: Aless5 (450)
+Seat 3: MRZO (525)
+*** ANTE/BLINDS ***
+Aless5 posts small blind 20
+MRZO posts big blind 40
+Dealt to MRZO [Kd 6c]
+*** PRE-FLOP *** 
+NuXflaXeFRA folds
+Aless5 folds
+MRZO collected 60 from pot
+*** SUMMARY ***
+Total pot 60 | No rake
+Seat 3: MRZO (big blind) won 60
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830785593120129025-12-1781003545 - Holdem no limit (20/40) - 2026/06/09 11:12:25 UTC
+Table: 'Expresso(1124754919)#0' 3-max (real money) Seat #2 is the button
+Seat 1: NuXflaXeFRA (525)
+Seat 2: Aless5 (430)
+Seat 3: MRZO (545)
+*** ANTE/BLINDS ***
+MRZO posts small blind 20
+NuXflaXeFRA posts big blind 40
+Dealt to MRZO [Tc 9s]
+*** PRE-FLOP *** 
+Aless5 folds
+MRZO calls 20
+NuXflaXeFRA checks
+*** FLOP *** [7c Jd 4h]
+MRZO checks
+NuXflaXeFRA checks
+*** TURN *** [7c Jd 4h][7d]
+MRZO checks
+NuXflaXeFRA bets 40
+MRZO calls 40
+*** RIVER *** [7c Jd 4h 7d][8h]
+MRZO bets 160
+NuXflaXeFRA folds
+MRZO collected 320 from pot
+*** SUMMARY ***
+Total pot 320 | No rake
+Board: [7c Jd 4h 7d 8h]
+Seat 3: MRZO (small blind) won 320
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830785593120129025-13-1781003598 - Holdem no limit (30/60) - 2026/06/09 11:13:18 UTC
+Table: 'Expresso(1124754919)#0' 3-max (real money) Seat #3 is the button
+Seat 1: NuXflaXeFRA (445)
+Seat 2: Aless5 (430)
+Seat 3: MRZO (625)
+*** ANTE/BLINDS ***
+NuXflaXeFRA posts small blind 30
+Aless5 posts big blind 60
+Dealt to MRZO [Jd 7d]
+*** PRE-FLOP *** 
+MRZO folds
+NuXflaXeFRA raises 60 to 120
+Aless5 raises 180 to 300
+NuXflaXeFRA raises 145 to 445 and is all-in
+Aless5 calls 130 and is all-in
+*** FLOP *** [6h 2s 5h]
+*** TURN *** [6h 2s 5h][9d]
+*** RIVER *** [6h 2s 5h 9d][Kh]
+*** SHOW DOWN ***
+NuXflaXeFRA shows [As 2d] (One pair : 2)
+Aless5 shows [Kd Qd] (One pair : Kings)
+Aless5 collected 860 from main pot
+NuXflaXeFRA collected 15 from side pot 1
+*** SUMMARY ***
+Total pot 875 | No rake
+Board: [6h 2s 5h 9d Kh]
+Seat 1: NuXflaXeFRA (small blind) showed [As 2d] and won 15 with One pair : 2
+Seat 2: Aless5 (big blind) showed [Kd Qd] and won 860 with One pair : Kings
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830785593120129025-14-1781003620 - Holdem no limit (30/60) - 2026/06/09 11:13:40 UTC
+Table: 'Expresso(1124754919)#0' 3-max (real money) Seat #1 is the button
+Seat 1: NuXflaXeFRA (15)
+Seat 2: Aless5 (860)
+Seat 3: MRZO (625)
+*** ANTE/BLINDS ***
+Aless5 posts small blind 30
+MRZO posts big blind 60
+Dealt to MRZO [4h 5h]
+*** PRE-FLOP *** 
+NuXflaXeFRA calls 15 and is all-in
+Aless5 folds
+*** FLOP *** [4s Jd Tc]
+*** TURN *** [4s Jd Tc][3s]
+*** RIVER *** [4s Jd Tc 3s][Th]
+*** SHOW DOWN ***
+NuXflaXeFRA shows [Td 9d] (Trips of Tens)
+MRZO shows [4h 5h] (Two pairs : Tens and 4)
+MRZO collected 60 from side pot 1
+NuXflaXeFRA collected 45 from main pot
+*** SUMMARY ***
+Total pot 105 | No rake
+Board: [4s Jd Tc 3s Th]
+Seat 1: NuXflaXeFRA (button) showed [Td 9d] and won 45 with Trips of Tens
+Seat 3: MRZO (big blind) showed [4h 5h] and won 60 with Two pairs : Tens and 4
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830785593120129025-15-1781003631 - Holdem no limit (30/60) - 2026/06/09 11:13:51 UTC
+Table: 'Expresso(1124754919)#0' 3-max (real money) Seat #2 is the button
+Seat 1: NuXflaXeFRA (45)
+Seat 2: Aless5 (830)
+Seat 3: MRZO (625)
+*** ANTE/BLINDS ***
+MRZO posts small blind 30
+NuXflaXeFRA posts big blind 45 and is all-in
+Dealt to MRZO [3h Ad]
+*** PRE-FLOP *** 
+Aless5 folds
+MRZO raises 580 to 625 and is all-in
+*** FLOP *** [5c 9c 3c]
+*** TURN *** [5c 9c 3c][2d]
+*** RIVER *** [5c 9c 3c 2d][Jh]
+*** SHOW DOWN ***
+NuXflaXeFRA shows [Ks 9s] (One pair : 9)
+MRZO shows [3h Ad] (One pair : 3)
+MRZO collected 580 from side pot 1
+NuXflaXeFRA collected 90 from main pot
+*** SUMMARY ***
+Total pot 670 | No rake
+Board: [5c 9c 3c 2d Jh]
+Seat 1: NuXflaXeFRA (big blind) showed [Ks 9s] and won 90 with One pair : 9
+Seat 3: MRZO (small blind) showed [3h Ad] and won 580 with One pair : 3
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830785593120129025-16-1781003645 - Holdem no limit (30/60) - 2026/06/09 11:14:05 UTC
+Table: 'Expresso(1124754919)#0' 3-max (real money) Seat #3 is the button
+Seat 1: NuXflaXeFRA (90)
+Seat 2: Aless5 (830)
+Seat 3: MRZO (580)
+*** ANTE/BLINDS ***
+NuXflaXeFRA posts small blind 30
+Aless5 posts big blind 60
+Dealt to MRZO [Kc 5h]
+*** PRE-FLOP *** 
+MRZO folds
+NuXflaXeFRA raises 30 to 90 and is all-in
+Aless5 calls 30
+*** FLOP *** [8c 9s 8h]
+*** TURN *** [8c 9s 8h][4d]
+*** RIVER *** [8c 9s 8h 4d][8d]
+*** SHOW DOWN ***
+NuXflaXeFRA shows [6h Tc] (Trips of 8)
+Aless5 shows [Jc Ac] (Trips of 8)
+Aless5 collected 180 from pot
+*** SUMMARY ***
+Total pot 180 | No rake
+Board: [8c 9s 8h 4d 8d]
+Seat 1: NuXflaXeFRA (small blind) showed [6h Tc] and lost with Trips of 8
+Seat 2: Aless5 (big blind) showed [Jc Ac] and won 180 with Trips of 8
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 5 - HandId: #4830785593120129025-17-1781003660 - Holdem no limit (40/80) - 2026/06/09 11:14:20 UTC
+Table: 'Expresso(1124754919)#0' 3-max (real money) Seat #2 is the button
+Seat 2: Aless5 (920)
+Seat 3: MRZO (580)
+*** ANTE/BLINDS ***
+Aless5 posts small blind 40
+MRZO posts big blind 80
+Dealt to MRZO [8d Kh]
+*** PRE-FLOP *** 
+Aless5 folds
+MRZO collected 120 from pot
+*** SUMMARY ***
+Total pot 120 | No rake
+Seat 3: MRZO (big blind) won 120
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 5 - HandId: #4830785593120129025-18-1781003673 - Holdem no limit (40/80) - 2026/06/09 11:14:33 UTC
+Table: 'Expresso(1124754919)#0' 3-max (real money) Seat #3 is the button
+Seat 2: Aless5 (880)
+Seat 3: MRZO (620)
+*** ANTE/BLINDS ***
+MRZO posts small blind 40
+Aless5 posts big blind 80
+Dealt to MRZO [2h 8c]
+*** PRE-FLOP *** 
+MRZO folds
+Aless5 collected 120 from pot
+*** SUMMARY ***
+Total pot 120 | No rake
+Seat 2: Aless5 (big blind) won 120
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 5 - HandId: #4830785593120129025-19-1781003682 - Holdem no limit (40/80) - 2026/06/09 11:14:42 UTC
+Table: 'Expresso(1124754919)#0' 3-max (real money) Seat #2 is the button
+Seat 2: Aless5 (920)
+Seat 3: MRZO (580)
+*** ANTE/BLINDS ***
+Aless5 posts small blind 40
+MRZO posts big blind 80
+Dealt to MRZO [Qc 9h]
+*** PRE-FLOP *** 
+Aless5 folds
+MRZO collected 120 from pot
+*** SUMMARY ***
+Total pot 120 | No rake
+Seat 3: MRZO (big blind) won 120
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 5 - HandId: #4830785593120129025-20-1781003686 - Holdem no limit (40/80) - 2026/06/09 11:14:46 UTC
+Table: 'Expresso(1124754919)#0' 3-max (real money) Seat #3 is the button
+Seat 2: Aless5 (880)
+Seat 3: MRZO (620)
+*** ANTE/BLINDS ***
+MRZO posts small blind 40
+Aless5 posts big blind 80
+Dealt to MRZO [5c Ac]
+*** PRE-FLOP *** 
+MRZO raises 540 to 620 and is all-in
+Aless5 folds
+MRZO collected 700 from pot
+*** SUMMARY ***
+Total pot 700 | No rake
+Seat 3: MRZO (small blind) (button) won 700
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 5 - HandId: #4830785593120129025-21-1781003698 - Holdem no limit (40/80) - 2026/06/09 11:14:58 UTC
+Table: 'Expresso(1124754919)#0' 3-max (real money) Seat #2 is the button
+Seat 2: Aless5 (800)
+Seat 3: MRZO (700)
+*** ANTE/BLINDS ***
+Aless5 posts small blind 40
+MRZO posts big blind 80
+Dealt to MRZO [5s 8h]
+*** PRE-FLOP *** 
+Aless5 raises 120 to 200
+MRZO folds
+Aless5 collected 280 from pot
+*** SUMMARY ***
+Total pot 280 | No rake
+Seat 2: Aless5 (small blind) (button) won 280
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 5 - HandId: #4830785593120129025-22-1781003706 - Holdem no limit (40/80) - 2026/06/09 11:15:06 UTC
+Table: 'Expresso(1124754919)#0' 3-max (real money) Seat #3 is the button
+Seat 2: Aless5 (880)
+Seat 3: MRZO (620)
+*** ANTE/BLINDS ***
+MRZO posts small blind 40
+Aless5 posts big blind 80
+Dealt to MRZO [Ad 7s]
+*** PRE-FLOP *** 
+MRZO raises 540 to 620 and is all-in
+Aless5 calls 540
+*** FLOP *** [2c 8c 4d]
+*** TURN *** [2c 8c 4d][3h]
+*** RIVER *** [2c 8c 4d 3h][3d]
+*** SHOW DOWN ***
+Aless5 shows [Jd Qh] (One pair : 3)
+MRZO shows [Ad 7s] (One pair : 3)
+MRZO collected 1240 from pot
+*** SUMMARY ***
+Total pot 1240 | No rake
+Board: [2c 8c 4d 3h 3d]
+Seat 2: Aless5 (big blind) showed [Jd Qh] and lost with One pair : 3
+Seat 3: MRZO (small blind) (button) showed [Ad 7s] and won 1240 with One pair : 3
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 5 - HandId: #4830785593120129025-23-1781003717 - Holdem no limit (40/80) - 2026/06/09 11:15:17 UTC
+Table: 'Expresso(1124754919)#0' 3-max (real money) Seat #2 is the button
+Seat 2: Aless5 (260)
+Seat 3: MRZO (1240)
+*** ANTE/BLINDS ***
+Aless5 posts small blind 40
+MRZO posts big blind 80
+Dealt to MRZO [2d 6d]
+*** PRE-FLOP *** 
+Aless5 raises 180 to 260 and is all-in
+MRZO raises 980 to 1240 and is all-in
+*** FLOP *** [9d 4s Ts]
+*** TURN *** [9d 4s Ts][3s]
+*** RIVER *** [9d 4s Ts 3s][Ks]
+*** SHOW DOWN ***
+Aless5 shows [Qc 8s] (Flush King high)
+MRZO shows [2d 6d] (High card : King)
+MRZO collected 980 from side pot 1
+Aless5 collected 520 from main pot
+*** SUMMARY ***
+Total pot 1500 | No rake
+Board: [9d 4s Ts 3s Ks]
+Seat 2: Aless5 (small blind) (button) showed [Qc 8s] and won 520 with Flush King high
+Seat 3: MRZO (big blind) showed [2d 6d] and won 980 with High card : King
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 5 - HandId: #4830785593120129025-24-1781003733 - Holdem no limit (40/80) - 2026/06/09 11:15:33 UTC
+Table: 'Expresso(1124754919)#0' 3-max (real money) Seat #3 is the button
+Seat 2: Aless5 (520)
+Seat 3: MRZO (980)
+*** ANTE/BLINDS ***
+MRZO posts small blind 40
+Aless5 posts big blind 80
+Dealt to MRZO [Jc 3h]
+*** PRE-FLOP *** 
+MRZO folds
+Aless5 collected 120 from pot
+*** SUMMARY ***
+Total pot 120 | No rake
+Seat 2: Aless5 (big blind) won 120
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 6 - HandId: #4830785593120129025-25-1781003736 - Holdem no limit (50/100) - 2026/06/09 11:15:36 UTC
+Table: 'Expresso(1124754919)#0' 3-max (real money) Seat #2 is the button
+Seat 2: Aless5 (560)
+Seat 3: MRZO (940)
+*** ANTE/BLINDS ***
+Aless5 posts small blind 50
+MRZO posts big blind 100
+Dealt to MRZO [5h 7c]
+*** PRE-FLOP *** 
+Aless5 folds
+MRZO collected 150 from pot
+*** SUMMARY ***
+Total pot 150 | No rake
+Seat 3: MRZO (big blind) won 150
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 6 - HandId: #4830785593120129025-26-1781003740 - Holdem no limit (50/100) - 2026/06/09 11:15:40 UTC
+Table: 'Expresso(1124754919)#0' 3-max (real money) Seat #3 is the button
+Seat 2: Aless5 (510)
+Seat 3: MRZO (990)
+*** ANTE/BLINDS ***
+MRZO posts small blind 50
+Aless5 posts big blind 100
+Dealt to MRZO [3s 7c]
+*** PRE-FLOP *** 
+MRZO folds
+Aless5 collected 150 from pot
+*** SUMMARY ***
+Total pot 150 | No rake
+Seat 2: Aless5 (big blind) won 150
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 6 - HandId: #4830785593120129025-27-1781003745 - Holdem no limit (50/100) - 2026/06/09 11:15:45 UTC
+Table: 'Expresso(1124754919)#0' 3-max (real money) Seat #2 is the button
+Seat 2: Aless5 (560)
+Seat 3: MRZO (940)
+*** ANTE/BLINDS ***
+Aless5 posts small blind 50
+MRZO posts big blind 100
+Dealt to MRZO [7h 4h]
+*** PRE-FLOP *** 
+Aless5 folds
+MRZO collected 150 from pot
+*** SUMMARY ***
+Total pot 150 | No rake
+Seat 3: MRZO (big blind) won 150
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 6 - HandId: #4830785593120129025-28-1781003752 - Holdem no limit (50/100) - 2026/06/09 11:15:52 UTC
+Table: 'Expresso(1124754919)#0' 3-max (real money) Seat #3 is the button
+Seat 2: Aless5 (510)
+Seat 3: MRZO (990)
+*** ANTE/BLINDS ***
+MRZO posts small blind 50
+Aless5 posts big blind 100
+Dealt to MRZO [6c 6d]
+*** PRE-FLOP *** 
+MRZO raises 890 to 990 and is all-in
+Aless5 folds
+MRZO collected 1090 from pot
+*** SUMMARY ***
+Total pot 1090 | No rake
+Seat 3: MRZO (small blind) (button) won 1090
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 6 - HandId: #4830785593120129025-29-1781003764 - Holdem no limit (50/100) - 2026/06/09 11:16:04 UTC
+Table: 'Expresso(1124754919)#0' 3-max (real money) Seat #2 is the button
+Seat 2: Aless5 (410)
+Seat 3: MRZO (1090)
+*** ANTE/BLINDS ***
+Aless5 posts small blind 50
+MRZO posts big blind 100
+Dealt to MRZO [Td 9h]
+*** PRE-FLOP *** 
+Aless5 calls 50
+MRZO raises 990 to 1090 and is all-in
+Aless5 calls 310 and is all-in
+*** FLOP *** [Ac 7d 2s]
+*** TURN *** [Ac 7d 2s][5d]
+*** RIVER *** [Ac 7d 2s 5d][Kd]
+*** SHOW DOWN ***
+Aless5 shows [Jd Ah] (One pair : Aces)
+MRZO shows [Td 9h] (High card : Ace)
+MRZO collected 680 from side pot 1
+Aless5 collected 820 from main pot
+*** SUMMARY ***
+Total pot 1500 | No rake
+Board: [Ac 7d 2s 5d Kd]
+Seat 2: Aless5 (small blind) (button) showed [Jd Ah] and won 820 with One pair : Aces
+Seat 3: MRZO (big blind) showed [Td 9h] and won 680 with High card : Ace
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 6 - HandId: #4830785593120129025-30-1781003778 - Holdem no limit (50/100) - 2026/06/09 11:16:18 UTC
+Table: 'Expresso(1124754919)#0' 3-max (real money) Seat #3 is the button
+Seat 2: Aless5 (820)
+Seat 3: MRZO (680)
+*** ANTE/BLINDS ***
+MRZO posts small blind 50
+Aless5 posts big blind 100
+Dealt to MRZO [Ts 5s]
+*** PRE-FLOP *** 
+MRZO raises 580 to 680 and is all-in
+Aless5 calls 580
+*** FLOP *** [8d Jh 3h]
+*** TURN *** [8d Jh 3h][Tc]
+*** RIVER *** [8d Jh 3h Tc][Qd]
+*** SHOW DOWN ***
+Aless5 shows [Kh 8h] (One pair : 8)
+MRZO shows [Ts 5s] (One pair : Tens)
+MRZO collected 1360 from pot
+*** SUMMARY ***
+Total pot 1360 | No rake
+Board: [8d Jh 3h Tc Qd]
+Seat 2: Aless5 (big blind) showed [Kh 8h] and lost with One pair : 8
+Seat 3: MRZO (small blind) (button) showed [Ts 5s] and won 1360 with One pair : Tens
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 6 - HandId: #4830785593120129025-31-1781003793 - Holdem no limit (50/100) - 2026/06/09 11:16:33 UTC
+Table: 'Expresso(1124754919)#0' 3-max (real money) Seat #2 is the button
+Seat 2: Aless5 (140)
+Seat 3: MRZO (1360)
+*** ANTE/BLINDS ***
+Aless5 posts small blind 50
+MRZO posts big blind 100
+Dealt to MRZO [Kh 4h]
+*** PRE-FLOP *** 
+Aless5 folds
+MRZO collected 150 from pot
+*** SUMMARY ***
+Total pot 150 | No rake
+Seat 3: MRZO (big blind) won 150
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 6 - HandId: #4830785593120129025-32-1781003797 - Holdem no limit (50/100) - 2026/06/09 11:16:37 UTC
+Table: 'Expresso(1124754919)#0' 3-max (real money) Seat #3 is the button
+Seat 2: Aless5 (90)
+Seat 3: MRZO (1410)
+*** ANTE/BLINDS ***
+MRZO posts small blind 50
+Aless5 posts big blind 90 and is all-in
+Dealt to MRZO [7h 2s]
+*** PRE-FLOP *** 
+MRZO raises 1320 to 1410 and is all-in
+*** FLOP *** [Ts 3d Js]
+*** TURN *** [Ts 3d Js][Qh]
+*** RIVER *** [Ts 3d Js Qh][6s]
+*** SHOW DOWN ***
+Aless5 shows [8s 5h] (High card : Queen)
+MRZO shows [7h 2s] (High card : Queen)
+MRZO collected 1320 from side pot 1
+Aless5 collected 180 from main pot
+*** SUMMARY ***
+Total pot 1500 | No rake
+Board: [Ts 3d Js Qh 6s]
+Seat 2: Aless5 (big blind) showed [8s 5h] and won 180 with High card : Queen
+Seat 3: MRZO (small blind) (button) showed [7h 2s] and won 1320 with High card : Queen
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 6 - HandId: #4830785593120129025-33-1781003807 - Holdem no limit (50/100) - 2026/06/09 11:16:47 UTC
+Table: 'Expresso(1124754919)#0' 3-max (real money) Seat #2 is the button
+Seat 2: Aless5 (180)
+Seat 3: MRZO (1320)
+*** ANTE/BLINDS ***
+Aless5 posts small blind 50
+MRZO posts big blind 100
+Dealt to MRZO [2c Kc]
+*** PRE-FLOP *** 
+Aless5 raises 80 to 180 and is all-in
+MRZO raises 1140 to 1320 and is all-in
+*** FLOP *** [Qd As Jc]
+*** TURN *** [Qd As Jc][3h]
+*** RIVER *** [Qd As Jc 3h][Js]
+*** SHOW DOWN ***
+Aless5 shows [8h Ad] (Two pairs : Aces and Jacks)
+MRZO shows [2c Kc] (One pair : Jacks)
+MRZO collected 1140 from side pot 1
+Aless5 collected 360 from main pot
+*** SUMMARY ***
+Total pot 1500 | No rake
+Board: [Qd As Jc 3h Js]
+Seat 2: Aless5 (small blind) (button) showed [8h Ad] and won 360 with Two pairs : Aces and Jacks
+Seat 3: MRZO (big blind) showed [2c Kc] and won 1140 with One pair : Jacks
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 6 - HandId: #4830785593120129025-34-1781003817 - Holdem no limit (50/100) - 2026/06/09 11:16:57 UTC
+Table: 'Expresso(1124754919)#0' 3-max (real money) Seat #3 is the button
+Seat 2: Aless5 (360)
+Seat 3: MRZO (1140)
+*** ANTE/BLINDS ***
+MRZO posts small blind 50
+Aless5 posts big blind 100
+Dealt to MRZO [3c Kh]
+*** PRE-FLOP *** 
+MRZO raises 1040 to 1140 and is all-in
+Aless5 folds
+MRZO collected 1240 from pot
+*** SUMMARY ***
+Total pot 1240 | No rake
+Seat 3: MRZO (small blind) (button) won 1240
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 6 - HandId: #4830785593120129025-35-1781003823 - Holdem no limit (50/100) - 2026/06/09 11:17:03 UTC
+Table: 'Expresso(1124754919)#0' 3-max (real money) Seat #2 is the button
+Seat 2: Aless5 (260)
+Seat 3: MRZO (1240)
+*** ANTE/BLINDS ***
+Aless5 posts small blind 50
+MRZO posts big blind 100
+Dealt to MRZO [4s 3h]
+*** PRE-FLOP *** 
+Aless5 raises 160 to 260 and is all-in
+MRZO raises 980 to 1240 and is all-in
+*** FLOP *** [Js 8s 3d]
+*** TURN *** [Js 8s 3d][Jh]
+*** RIVER *** [Js 8s 3d Jh][8d]
+*** SHOW DOWN ***
+Aless5 shows [Jd Th] (Full of Jacks and 8)
+MRZO shows [4s 3h] (Two pairs : Jacks and 8)
+MRZO collected 980 from side pot 1
+Aless5 collected 520 from main pot
+*** SUMMARY ***
+Total pot 1500 | No rake
+Board: [Js 8s 3d Jh 8d]
+Seat 2: Aless5 (small blind) (button) showed [Jd Th] and won 520 with Full of Jacks and 8
+Seat 3: MRZO (big blind) showed [4s 3h] and won 980 with Two pairs : Jacks and 8
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 7 - HandId: #4830785593120129025-36-1781003835 - Holdem no limit (60/120) - 2026/06/09 11:17:15 UTC
+Table: 'Expresso(1124754919)#0' 3-max (real money) Seat #3 is the button
+Seat 2: Aless5 (520)
+Seat 3: MRZO (980)
+*** ANTE/BLINDS ***
+MRZO posts small blind 60
+Aless5 posts big blind 120
+Dealt to MRZO [3c 5s]
+*** PRE-FLOP *** 
+MRZO folds
+Aless5 collected 180 from pot
+*** SUMMARY ***
+Total pot 180 | No rake
+Seat 2: Aless5 (big blind) won 180
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 7 - HandId: #4830785593120129025-37-1781003851 - Holdem no limit (60/120) - 2026/06/09 11:17:31 UTC
+Table: 'Expresso(1124754919)#0' 3-max (real money) Seat #2 is the button
+Seat 2: Aless5 (580)
+Seat 3: MRZO (920)
+*** ANTE/BLINDS ***
+Aless5 posts small blind 60
+MRZO posts big blind 120
+Dealt to MRZO [9c Ad]
+*** PRE-FLOP *** 
+Aless5 folds
+MRZO collected 180 from pot
+*** SUMMARY ***
+Total pot 180 | No rake
+Seat 3: MRZO (big blind) won 180
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 7 - HandId: #4830785593120129025-38-1781003855 - Holdem no limit (60/120) - 2026/06/09 11:17:35 UTC
+Table: 'Expresso(1124754919)#0' 3-max (real money) Seat #3 is the button
+Seat 2: Aless5 (520)
+Seat 3: MRZO (980)
+*** ANTE/BLINDS ***
+MRZO posts small blind 60
+Aless5 posts big blind 120
+Dealt to MRZO [Ad 9c]
+*** PRE-FLOP *** 
+MRZO raises 860 to 980 and is all-in
+Aless5 folds
+MRZO collected 1100 from pot
+*** SUMMARY ***
+Total pot 1100 | No rake
+Seat 3: MRZO (small blind) (button) won 1100
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 7 - HandId: #4830785593120129025-39-1781003860 - Holdem no limit (60/120) - 2026/06/09 11:17:40 UTC
+Table: 'Expresso(1124754919)#0' 3-max (real money) Seat #2 is the button
+Seat 2: Aless5 (400)
+Seat 3: MRZO (1100)
+*** ANTE/BLINDS ***
+Aless5 posts small blind 60
+MRZO posts big blind 120
+Dealt to MRZO [5d 5h]
+*** PRE-FLOP *** 
+Aless5 raises 180 to 300
+MRZO raises 800 to 1100 and is all-in
+Aless5 calls 100 and is all-in
+*** FLOP *** [8h 8d 4h]
+*** TURN *** [8h 8d 4h][2c]
+*** RIVER *** [8h 8d 4h 2c][Th]
+*** SHOW DOWN ***
+Aless5 shows [9d Qs] (One pair : 8)
+MRZO shows [5d 5h] (Two pairs : 8 and 5)
+MRZO collected 1500 from pot
+*** SUMMARY ***
+Total pot 1500 | No rake
+Board: [8h 8d 4h 2c Th]
+Seat 2: Aless5 (small blind) (button) showed [9d Qs] and lost with One pair : 8
+Seat 3: MRZO (big blind) showed [5d 5h] and won 1500 with Two pairs : 8 and 5
+
+

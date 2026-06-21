@@ -1,0 +1,823 @@
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830424347715829761-1-1780992965 - Holdem no limit (10/20) - 2026/06/09 08:16:05 UTC
+Table: 'Expresso(1124670810)#0' 3-max (real money) Seat #1 is the button
+Seat 1: TSRKmimi (500)
+Seat 2: Degordito (500)
+Seat 3: MRZO (500)
+*** ANTE/BLINDS ***
+Degordito posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [Ts Qh]
+*** PRE-FLOP *** 
+TSRKmimi raises 30 to 50
+Degordito raises 75 to 125
+MRZO folds
+TSRKmimi folds
+Degordito collected 195 from pot
+*** SUMMARY ***
+Total pot 195 | No rake
+Seat 2: Degordito (small blind) won 195
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830424347715829761-2-1780992977 - Holdem no limit (10/20) - 2026/06/09 08:16:17 UTC
+Table: 'Expresso(1124670810)#0' 3-max (real money) Seat #2 is the button
+Seat 1: TSRKmimi (450)
+Seat 2: Degordito (570)
+Seat 3: MRZO (480)
+*** ANTE/BLINDS ***
+MRZO posts small blind 10
+TSRKmimi posts big blind 20
+Dealt to MRZO [Js Kc]
+*** PRE-FLOP *** 
+Degordito raises 30 to 50
+MRZO calls 40
+TSRKmimi folds
+*** FLOP *** [Ah 5h 5d]
+MRZO checks
+Degordito checks
+*** TURN *** [Ah 5h 5d][Ac]
+MRZO checks
+Degordito bets 120
+MRZO folds
+Degordito collected 240 from pot
+*** SUMMARY ***
+Total pot 240 | No rake
+Board: [Ah 5h 5d Ac]
+Seat 2: Degordito (button) won 240
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830424347715829761-3-1780993006 - Holdem no limit (10/20) - 2026/06/09 08:16:46 UTC
+Table: 'Expresso(1124670810)#0' 3-max (real money) Seat #3 is the button
+Seat 1: TSRKmimi (430)
+Seat 2: Degordito (640)
+Seat 3: MRZO (430)
+*** ANTE/BLINDS ***
+TSRKmimi posts small blind 10
+Degordito posts big blind 20
+Dealt to MRZO [4h 9d]
+*** PRE-FLOP *** 
+MRZO folds
+TSRKmimi folds
+Degordito collected 30 from pot
+*** SUMMARY ***
+Total pot 30 | No rake
+Seat 2: Degordito (big blind) won 30
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830424347715829761-4-1780993011 - Holdem no limit (10/20) - 2026/06/09 08:16:51 UTC
+Table: 'Expresso(1124670810)#0' 3-max (real money) Seat #1 is the button
+Seat 1: TSRKmimi (420)
+Seat 2: Degordito (650)
+Seat 3: MRZO (430)
+*** ANTE/BLINDS ***
+Degordito posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [Qh 5c]
+*** PRE-FLOP *** 
+TSRKmimi folds
+Degordito raises 30 to 50
+MRZO folds
+Degordito collected 70 from pot
+*** SUMMARY ***
+Total pot 70 | No rake
+Seat 2: Degordito (small blind) won 70
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830424347715829761-5-1780993018 - Holdem no limit (10/20) - 2026/06/09 08:16:58 UTC
+Table: 'Expresso(1124670810)#0' 3-max (real money) Seat #2 is the button
+Seat 1: TSRKmimi (420)
+Seat 2: Degordito (670)
+Seat 3: MRZO (410)
+*** ANTE/BLINDS ***
+MRZO posts small blind 10
+TSRKmimi posts big blind 20
+Dealt to MRZO [Ac 6h]
+*** PRE-FLOP *** 
+Degordito folds
+MRZO raises 20 to 40
+TSRKmimi calls 20
+*** FLOP *** [5s 3s Kd]
+MRZO checks
+TSRKmimi bets 28
+MRZO folds
+TSRKmimi collected 108 from pot
+*** SUMMARY ***
+Total pot 108 | No rake
+Board: [5s 3s Kd]
+Seat 1: TSRKmimi (big blind) won 108
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830424347715829761-6-1780993042 - Holdem no limit (10/20) - 2026/06/09 08:17:22 UTC
+Table: 'Expresso(1124670810)#0' 3-max (real money) Seat #3 is the button
+Seat 1: TSRKmimi (460)
+Seat 2: Degordito (670)
+Seat 3: MRZO (370)
+*** ANTE/BLINDS ***
+TSRKmimi posts small blind 10
+Degordito posts big blind 20
+Dealt to MRZO [4h 6h]
+*** PRE-FLOP *** 
+MRZO folds
+TSRKmimi folds
+Degordito collected 30 from pot
+*** SUMMARY ***
+Total pot 30 | No rake
+Seat 2: Degordito (big blind) won 30
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830424347715829761-7-1780993048 - Holdem no limit (10/20) - 2026/06/09 08:17:28 UTC
+Table: 'Expresso(1124670810)#0' 3-max (real money) Seat #1 is the button
+Seat 1: TSRKmimi (450)
+Seat 2: Degordito (680)
+Seat 3: MRZO (370)
+*** ANTE/BLINDS ***
+Degordito posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [7h Qs]
+*** PRE-FLOP *** 
+TSRKmimi folds
+Degordito raises 30 to 50
+MRZO folds
+Degordito collected 70 from pot
+*** SUMMARY ***
+Total pot 70 | No rake
+Seat 2: Degordito (small blind) won 70
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830424347715829761-8-1780993065 - Holdem no limit (15/30) - 2026/06/09 08:17:45 UTC
+Table: 'Expresso(1124670810)#0' 3-max (real money) Seat #2 is the button
+Seat 1: TSRKmimi (450)
+Seat 2: Degordito (700)
+Seat 3: MRZO (350)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+TSRKmimi posts big blind 30
+Dealt to MRZO [2s 3h]
+*** PRE-FLOP *** 
+Degordito raises 30 to 60
+MRZO folds
+TSRKmimi folds
+Degordito collected 105 from pot
+*** SUMMARY ***
+Total pot 105 | No rake
+Seat 2: Degordito (button) won 105
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830424347715829761-9-1780993074 - Holdem no limit (15/30) - 2026/06/09 08:17:54 UTC
+Table: 'Expresso(1124670810)#0' 3-max (real money) Seat #3 is the button
+Seat 1: TSRKmimi (420)
+Seat 2: Degordito (745)
+Seat 3: MRZO (335)
+*** ANTE/BLINDS ***
+TSRKmimi posts small blind 15
+Degordito posts big blind 30
+Dealt to MRZO [Kh As]
+*** PRE-FLOP *** 
+MRZO raises 305 to 335 and is all-in
+TSRKmimi folds
+Degordito folds
+MRZO collected 380 from pot
+*** SUMMARY ***
+Total pot 380 | No rake
+Seat 3: MRZO (button) won 380
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830424347715829761-10-1780993082 - Holdem no limit (15/30) - 2026/06/09 08:18:02 UTC
+Table: 'Expresso(1124670810)#0' 3-max (real money) Seat #1 is the button
+Seat 1: TSRKmimi (405)
+Seat 2: Degordito (715)
+Seat 3: MRZO (380)
+*** ANTE/BLINDS ***
+Degordito posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [6d Ts]
+*** PRE-FLOP *** 
+TSRKmimi folds
+Degordito folds
+MRZO collected 45 from pot
+*** SUMMARY ***
+Total pot 45 | No rake
+Seat 3: MRZO (big blind) won 45
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830424347715829761-11-1780993090 - Holdem no limit (15/30) - 2026/06/09 08:18:10 UTC
+Table: 'Expresso(1124670810)#0' 3-max (real money) Seat #2 is the button
+Seat 1: TSRKmimi (405)
+Seat 2: Degordito (700)
+Seat 3: MRZO (395)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+TSRKmimi posts big blind 30
+Dealt to MRZO [5h Js]
+*** PRE-FLOP *** 
+Degordito folds
+MRZO folds
+TSRKmimi collected 45 from pot
+*** SUMMARY ***
+Total pot 45 | No rake
+Seat 1: TSRKmimi (big blind) won 45
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830424347715829761-12-1780993098 - Holdem no limit (15/30) - 2026/06/09 08:18:18 UTC
+Table: 'Expresso(1124670810)#0' 3-max (real money) Seat #3 is the button
+Seat 1: TSRKmimi (420)
+Seat 2: Degordito (700)
+Seat 3: MRZO (380)
+*** ANTE/BLINDS ***
+TSRKmimi posts small blind 15
+Degordito posts big blind 30
+Dealt to MRZO [4d Td]
+*** PRE-FLOP *** 
+MRZO folds
+TSRKmimi folds
+Degordito collected 45 from pot
+*** SUMMARY ***
+Total pot 45 | No rake
+Seat 2: Degordito (big blind) won 45
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830424347715829761-13-1780993104 - Holdem no limit (15/30) - 2026/06/09 08:18:24 UTC
+Table: 'Expresso(1124670810)#0' 3-max (real money) Seat #1 is the button
+Seat 1: TSRKmimi (405)
+Seat 2: Degordito (715)
+Seat 3: MRZO (380)
+*** ANTE/BLINDS ***
+Degordito posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [Th 4c]
+*** PRE-FLOP *** 
+TSRKmimi raises 30 to 60
+Degordito calls 45
+MRZO folds
+*** FLOP *** [Kh Ks Ts]
+Degordito checks
+TSRKmimi checks
+*** TURN *** [Kh Ks Ts][3h]
+Degordito bets 53
+TSRKmimi calls 53
+*** RIVER *** [Kh Ks Ts 3h][6h]
+Degordito bets 256
+TSRKmimi raises 36 to 292 and is all-in
+Degordito calls 36
+*** SHOW DOWN ***
+TSRKmimi shows [7s Kd] (Trips of Kings)
+Degordito shows [5h 8h] (Flush King high)
+Degordito collected 840 from pot
+*** SUMMARY ***
+Total pot 840 | No rake
+Board: [Kh Ks Ts 3h 6h]
+Seat 1: TSRKmimi (button) showed [7s Kd] and lost with Trips of Kings
+Seat 2: Degordito (small blind) showed [5h 8h] and won 840 with Flush King high
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830424347715829761-14-1780993148 - Holdem no limit (20/40) - 2026/06/09 08:19:08 UTC
+Table: 'Expresso(1124670810)#0' 3-max (real money) Seat #3 is the button
+Seat 2: Degordito (1150)
+Seat 3: MRZO (350)
+*** ANTE/BLINDS ***
+MRZO posts small blind 20
+Degordito posts big blind 40
+Dealt to MRZO [Jd 3c]
+*** PRE-FLOP *** 
+MRZO folds
+Degordito collected 60 from pot
+*** SUMMARY ***
+Total pot 60 | No rake
+Seat 2: Degordito (big blind) won 60
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830424347715829761-15-1780993152 - Holdem no limit (20/40) - 2026/06/09 08:19:12 UTC
+Table: 'Expresso(1124670810)#0' 3-max (real money) Seat #2 is the button
+Seat 2: Degordito (1170)
+Seat 3: MRZO (330)
+*** ANTE/BLINDS ***
+Degordito posts small blind 20
+MRZO posts big blind 40
+Dealt to MRZO [4c 9s]
+*** PRE-FLOP *** 
+Degordito raises 60 to 100
+MRZO folds
+Degordito collected 140 from pot
+*** SUMMARY ***
+Total pot 140 | No rake
+Seat 2: Degordito (small blind) (button) won 140
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830424347715829761-16-1780993165 - Holdem no limit (20/40) - 2026/06/09 08:19:25 UTC
+Table: 'Expresso(1124670810)#0' 3-max (real money) Seat #3 is the button
+Seat 2: Degordito (1210)
+Seat 3: MRZO (290)
+*** ANTE/BLINDS ***
+MRZO posts small blind 20
+Degordito posts big blind 40
+Dealt to MRZO [Tc 8d]
+*** PRE-FLOP *** 
+MRZO raises 250 to 290 and is all-in
+Degordito folds
+MRZO collected 330 from pot
+*** SUMMARY ***
+Total pot 330 | No rake
+Seat 3: MRZO (small blind) (button) won 330
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830424347715829761-17-1780993173 - Holdem no limit (20/40) - 2026/06/09 08:19:33 UTC
+Table: 'Expresso(1124670810)#0' 3-max (real money) Seat #2 is the button
+Seat 2: Degordito (1170)
+Seat 3: MRZO (330)
+*** ANTE/BLINDS ***
+Degordito posts small blind 20
+MRZO posts big blind 40
+Dealt to MRZO [Th 8d]
+*** PRE-FLOP *** 
+Degordito folds
+MRZO collected 60 from pot
+*** SUMMARY ***
+Total pot 60 | No rake
+Seat 3: MRZO (big blind) won 60
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830424347715829761-18-1780993184 - Holdem no limit (20/40) - 2026/06/09 08:19:44 UTC
+Table: 'Expresso(1124670810)#0' 3-max (real money) Seat #3 is the button
+Seat 2: Degordito (1150)
+Seat 3: MRZO (350)
+*** ANTE/BLINDS ***
+MRZO posts small blind 20
+Degordito posts big blind 40
+Dealt to MRZO [Qs 8c]
+*** PRE-FLOP *** 
+MRZO calls 20
+Degordito checks
+*** FLOP *** [Ah 7c 9d]
+Degordito checks
+MRZO checks
+*** TURN *** [Ah 7c 9d][6s]
+Degordito checks
+MRZO bets 52
+Degordito calls 52
+*** RIVER *** [Ah 7c 9d 6s][4d]
+Degordito checks
+MRZO checks
+*** SHOW DOWN ***
+Degordito shows [Jc 8h] (High card : Ace)
+MRZO shows [Qs 8c] (High card : Ace)
+MRZO collected 184 from pot
+*** SUMMARY ***
+Total pot 184 | No rake
+Board: [Ah 7c 9d 6s 4d]
+Seat 2: Degordito (big blind) showed [Jc 8h] and lost with High card : Ace
+Seat 3: MRZO (small blind) (button) showed [Qs 8c] and won 184 with High card : Ace
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830424347715829761-19-1780993224 - Holdem no limit (20/40) - 2026/06/09 08:20:24 UTC
+Table: 'Expresso(1124670810)#0' 3-max (real money) Seat #2 is the button
+Seat 2: Degordito (1058)
+Seat 3: MRZO (442)
+*** ANTE/BLINDS ***
+Degordito posts small blind 20
+MRZO posts big blind 40
+Dealt to MRZO [Jc 8d]
+*** PRE-FLOP *** 
+Degordito raises 60 to 100
+MRZO calls 60
+*** FLOP *** [9c 9d 7h]
+MRZO checks
+Degordito checks
+*** TURN *** [9c 9d 7h][5h]
+MRZO checks
+Degordito bets 100
+MRZO folds
+Degordito collected 300 from pot
+*** SUMMARY ***
+Total pot 300 | No rake
+Board: [9c 9d 7h 5h]
+Seat 2: Degordito (small blind) (button) won 300
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830424347715829761-20-1780993260 - Holdem no limit (30/60) - 2026/06/09 08:21:00 UTC
+Table: 'Expresso(1124670810)#0' 3-max (real money) Seat #3 is the button
+Seat 2: Degordito (1158)
+Seat 3: MRZO (342)
+*** ANTE/BLINDS ***
+MRZO posts small blind 30
+Degordito posts big blind 60
+Dealt to MRZO [As 9d]
+*** PRE-FLOP *** 
+MRZO raises 282 to 342 and is all-in
+Degordito folds
+MRZO collected 402 from pot
+*** SUMMARY ***
+Total pot 402 | No rake
+Seat 3: MRZO (small blind) (button) won 402
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830424347715829761-21-1780993273 - Holdem no limit (30/60) - 2026/06/09 08:21:13 UTC
+Table: 'Expresso(1124670810)#0' 3-max (real money) Seat #2 is the button
+Seat 2: Degordito (1098)
+Seat 3: MRZO (402)
+*** ANTE/BLINDS ***
+Degordito posts small blind 30
+MRZO posts big blind 60
+Dealt to MRZO [6c Qd]
+*** PRE-FLOP *** 
+Degordito raises 90 to 150
+MRZO folds
+Degordito collected 210 from pot
+*** SUMMARY ***
+Total pot 210 | No rake
+Seat 2: Degordito (small blind) (button) won 210
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830424347715829761-22-1780993281 - Holdem no limit (30/60) - 2026/06/09 08:21:21 UTC
+Table: 'Expresso(1124670810)#0' 3-max (real money) Seat #3 is the button
+Seat 2: Degordito (1158)
+Seat 3: MRZO (342)
+*** ANTE/BLINDS ***
+MRZO posts small blind 30
+Degordito posts big blind 60
+Dealt to MRZO [Kd Js]
+*** PRE-FLOP *** 
+MRZO raises 282 to 342 and is all-in
+Degordito folds
+MRZO collected 402 from pot
+*** SUMMARY ***
+Total pot 402 | No rake
+Seat 3: MRZO (small blind) (button) won 402
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830424347715829761-23-1780993287 - Holdem no limit (30/60) - 2026/06/09 08:21:27 UTC
+Table: 'Expresso(1124670810)#0' 3-max (real money) Seat #2 is the button
+Seat 2: Degordito (1098)
+Seat 3: MRZO (402)
+*** ANTE/BLINDS ***
+Degordito posts small blind 30
+MRZO posts big blind 60
+Dealt to MRZO [Qs 8h]
+*** PRE-FLOP *** 
+Degordito calls 30
+MRZO raises 342 to 402 and is all-in
+Degordito folds
+MRZO collected 462 from pot
+*** SUMMARY ***
+Total pot 462 | No rake
+Seat 3: MRZO (big blind) won 462
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830424347715829761-24-1780993301 - Holdem no limit (30/60) - 2026/06/09 08:21:41 UTC
+Table: 'Expresso(1124670810)#0' 3-max (real money) Seat #3 is the button
+Seat 2: Degordito (1038)
+Seat 3: MRZO (462)
+*** ANTE/BLINDS ***
+MRZO posts small blind 30
+Degordito posts big blind 60
+Dealt to MRZO [2c Qs]
+*** PRE-FLOP *** 
+MRZO folds
+Degordito collected 90 from pot
+*** SUMMARY ***
+Total pot 90 | No rake
+Seat 2: Degordito (big blind) won 90
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830424347715829761-25-1780993304 - Holdem no limit (30/60) - 2026/06/09 08:21:44 UTC
+Table: 'Expresso(1124670810)#0' 3-max (real money) Seat #2 is the button
+Seat 2: Degordito (1068)
+Seat 3: MRZO (432)
+*** ANTE/BLINDS ***
+Degordito posts small blind 30
+MRZO posts big blind 60
+Dealt to MRZO [3h Ts]
+*** PRE-FLOP *** 
+Degordito raises 90 to 150
+MRZO folds
+Degordito collected 210 from pot
+*** SUMMARY ***
+Total pot 210 | No rake
+Seat 2: Degordito (small blind) (button) won 210
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830424347715829761-26-1780993308 - Holdem no limit (30/60) - 2026/06/09 08:21:48 UTC
+Table: 'Expresso(1124670810)#0' 3-max (real money) Seat #3 is the button
+Seat 2: Degordito (1128)
+Seat 3: MRZO (372)
+*** ANTE/BLINDS ***
+MRZO posts small blind 30
+Degordito posts big blind 60
+Dealt to MRZO [Qh 6c]
+*** PRE-FLOP *** 
+MRZO raises 312 to 372 and is all-in
+Degordito folds
+MRZO collected 432 from pot
+*** SUMMARY ***
+Total pot 432 | No rake
+Seat 3: MRZO (small blind) (button) won 432
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830424347715829761-27-1780993318 - Holdem no limit (30/60) - 2026/06/09 08:21:58 UTC
+Table: 'Expresso(1124670810)#0' 3-max (real money) Seat #2 is the button
+Seat 2: Degordito (1068)
+Seat 3: MRZO (432)
+*** ANTE/BLINDS ***
+Degordito posts small blind 30
+MRZO posts big blind 60
+Dealt to MRZO [5h 9c]
+*** PRE-FLOP *** 
+Degordito raises 90 to 150
+MRZO folds
+Degordito collected 210 from pot
+*** SUMMARY ***
+Total pot 210 | No rake
+Seat 2: Degordito (small blind) (button) won 210
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 5 - HandId: #4830424347715829761-28-1780993324 - Holdem no limit (40/80) - 2026/06/09 08:22:04 UTC
+Table: 'Expresso(1124670810)#0' 3-max (real money) Seat #3 is the button
+Seat 2: Degordito (1128)
+Seat 3: MRZO (372)
+*** ANTE/BLINDS ***
+MRZO posts small blind 40
+Degordito posts big blind 80
+Dealt to MRZO [3c 6c]
+*** PRE-FLOP *** 
+MRZO folds
+Degordito collected 120 from pot
+*** SUMMARY ***
+Total pot 120 | No rake
+Seat 2: Degordito (big blind) won 120
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 5 - HandId: #4830424347715829761-29-1780993334 - Holdem no limit (40/80) - 2026/06/09 08:22:14 UTC
+Table: 'Expresso(1124670810)#0' 3-max (real money) Seat #2 is the button
+Seat 2: Degordito (1168)
+Seat 3: MRZO (332)
+*** ANTE/BLINDS ***
+Degordito posts small blind 40
+MRZO posts big blind 80
+Dealt to MRZO [5s Qc]
+*** PRE-FLOP *** 
+Degordito calls 40
+MRZO raises 252 to 332 and is all-in
+Degordito folds
+MRZO collected 412 from pot
+*** SUMMARY ***
+Total pot 412 | No rake
+Seat 3: MRZO (big blind) won 412
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 5 - HandId: #4830424347715829761-30-1780993346 - Holdem no limit (40/80) - 2026/06/09 08:22:26 UTC
+Table: 'Expresso(1124670810)#0' 3-max (real money) Seat #3 is the button
+Seat 2: Degordito (1088)
+Seat 3: MRZO (412)
+*** ANTE/BLINDS ***
+MRZO posts small blind 40
+Degordito posts big blind 80
+Dealt to MRZO [Ad 9h]
+*** PRE-FLOP *** 
+MRZO raises 332 to 412 and is all-in
+Degordito calls 332
+*** FLOP *** [Jc 2d 8d]
+*** TURN *** [Jc 2d 8d][Qh]
+*** RIVER *** [Jc 2d 8d Qh][8s]
+*** SHOW DOWN ***
+Degordito shows [Ac 3c] (One pair : 8)
+MRZO shows [Ad 9h] (One pair : 8)
+MRZO collected 412 from pot
+Degordito collected 412 from pot
+*** SUMMARY ***
+Total pot 824 | No rake
+Board: [Jc 2d 8d Qh 8s]
+Seat 2: Degordito (big blind) showed [Ac 3c] and won 412 with One pair : 8
+Seat 3: MRZO (small blind) (button) showed [Ad 9h] and won 412 with One pair : 8
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 5 - HandId: #4830424347715829761-31-1780993358 - Holdem no limit (40/80) - 2026/06/09 08:22:38 UTC
+Table: 'Expresso(1124670810)#0' 3-max (real money) Seat #2 is the button
+Seat 2: Degordito (1088)
+Seat 3: MRZO (412)
+*** ANTE/BLINDS ***
+Degordito posts small blind 40
+MRZO posts big blind 80
+Dealt to MRZO [2c 9d]
+*** PRE-FLOP *** 
+Degordito folds
+MRZO collected 120 from pot
+*** SUMMARY ***
+Total pot 120 | No rake
+Seat 3: MRZO (big blind) won 120
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 5 - HandId: #4830424347715829761-32-1780993362 - Holdem no limit (40/80) - 2026/06/09 08:22:42 UTC
+Table: 'Expresso(1124670810)#0' 3-max (real money) Seat #3 is the button
+Seat 2: Degordito (1048)
+Seat 3: MRZO (452)
+*** ANTE/BLINDS ***
+MRZO posts small blind 40
+Degordito posts big blind 80
+Dealt to MRZO [Qs Js]
+*** PRE-FLOP *** 
+MRZO raises 372 to 452 and is all-in
+Degordito folds
+MRZO collected 532 from pot
+*** SUMMARY ***
+Total pot 532 | No rake
+Seat 3: MRZO (small blind) (button) won 532
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 5 - HandId: #4830424347715829761-33-1780993370 - Holdem no limit (40/80) - 2026/06/09 08:22:50 UTC
+Table: 'Expresso(1124670810)#0' 3-max (real money) Seat #2 is the button
+Seat 2: Degordito (968)
+Seat 3: MRZO (532)
+*** ANTE/BLINDS ***
+Degordito posts small blind 40
+MRZO posts big blind 80
+Dealt to MRZO [Ts 7s]
+*** PRE-FLOP *** 
+Degordito folds
+MRZO collected 120 from pot
+*** SUMMARY ***
+Total pot 120 | No rake
+Seat 3: MRZO (big blind) won 120
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 5 - HandId: #4830424347715829761-34-1780993377 - Holdem no limit (40/80) - 2026/06/09 08:22:57 UTC
+Table: 'Expresso(1124670810)#0' 3-max (real money) Seat #3 is the button
+Seat 2: Degordito (928)
+Seat 3: MRZO (572)
+*** ANTE/BLINDS ***
+MRZO posts small blind 40
+Degordito posts big blind 80
+Dealt to MRZO [3s 8s]
+*** PRE-FLOP *** 
+MRZO folds
+Degordito collected 120 from pot
+*** SUMMARY ***
+Total pot 120 | No rake
+Seat 2: Degordito (big blind) won 120
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 5 - HandId: #4830424347715829761-35-1780993381 - Holdem no limit (40/80) - 2026/06/09 08:23:01 UTC
+Table: 'Expresso(1124670810)#0' 3-max (real money) Seat #2 is the button
+Seat 2: Degordito (968)
+Seat 3: MRZO (532)
+*** ANTE/BLINDS ***
+Degordito posts small blind 40
+MRZO posts big blind 80
+Dealt to MRZO [6c 8d]
+*** PRE-FLOP *** 
+Degordito raises 120 to 200
+MRZO folds
+Degordito collected 280 from pot
+*** SUMMARY ***
+Total pot 280 | No rake
+Seat 2: Degordito (small blind) (button) won 280
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 5 - HandId: #4830424347715829761-36-1780993389 - Holdem no limit (40/80) - 2026/06/09 08:23:09 UTC
+Table: 'Expresso(1124670810)#0' 3-max (real money) Seat #3 is the button
+Seat 2: Degordito (1048)
+Seat 3: MRZO (452)
+*** ANTE/BLINDS ***
+MRZO posts small blind 40
+Degordito posts big blind 80
+Dealt to MRZO [2c Ks]
+*** PRE-FLOP *** 
+MRZO raises 372 to 452 and is all-in
+Degordito folds
+MRZO collected 532 from pot
+*** SUMMARY ***
+Total pot 532 | No rake
+Seat 3: MRZO (small blind) (button) won 532
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 5 - HandId: #4830424347715829761-37-1780993394 - Holdem no limit (40/80) - 2026/06/09 08:23:14 UTC
+Table: 'Expresso(1124670810)#0' 3-max (real money) Seat #2 is the button
+Seat 2: Degordito (968)
+Seat 3: MRZO (532)
+*** ANTE/BLINDS ***
+Degordito posts small blind 40
+MRZO posts big blind 80
+Dealt to MRZO [Qd 2c]
+*** PRE-FLOP *** 
+Degordito raises 888 to 968 and is all-in
+MRZO folds
+Degordito collected 1048 from pot
+*** SUMMARY ***
+Total pot 1048 | No rake
+Seat 2: Degordito (small blind) (button) won 1048
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 5 - HandId: #4830424347715829761-38-1780993401 - Holdem no limit (40/80) - 2026/06/09 08:23:21 UTC
+Table: 'Expresso(1124670810)#0' 3-max (real money) Seat #3 is the button
+Seat 2: Degordito (1048)
+Seat 3: MRZO (452)
+*** ANTE/BLINDS ***
+MRZO posts small blind 40
+Degordito posts big blind 80
+Dealt to MRZO [Ah Ac]
+*** PRE-FLOP *** 
+MRZO raises 372 to 452 and is all-in
+Degordito folds
+MRZO collected 532 from pot
+*** SUMMARY ***
+Total pot 532 | No rake
+Seat 3: MRZO (small blind) (button) won 532
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 5 - HandId: #4830424347715829761-39-1780993407 - Holdem no limit (40/80) - 2026/06/09 08:23:27 UTC
+Table: 'Expresso(1124670810)#0' 3-max (real money) Seat #2 is the button
+Seat 2: Degordito (968)
+Seat 3: MRZO (532)
+*** ANTE/BLINDS ***
+Degordito posts small blind 40
+MRZO posts big blind 80
+Dealt to MRZO [Ah Qd]
+*** PRE-FLOP *** 
+Degordito calls 40
+MRZO raises 452 to 532 and is all-in
+Degordito folds
+MRZO collected 612 from pot
+*** SUMMARY ***
+Total pot 612 | No rake
+Seat 3: MRZO (big blind) won 612
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 6 - HandId: #4830424347715829761-40-1780993420 - Holdem no limit (50/100) - 2026/06/09 08:23:40 UTC
+Table: 'Expresso(1124670810)#0' 3-max (real money) Seat #3 is the button
+Seat 2: Degordito (888)
+Seat 3: MRZO (612)
+*** ANTE/BLINDS ***
+MRZO posts small blind 50
+Degordito posts big blind 100
+Dealt to MRZO [4d Ks]
+*** PRE-FLOP *** 
+MRZO raises 512 to 612 and is all-in
+Degordito calls 512
+*** FLOP *** [4c 7h Jh]
+*** TURN *** [4c 7h Jh][7c]
+*** RIVER *** [4c 7h Jh 7c][6c]
+*** SHOW DOWN ***
+Degordito shows [9c 8s] (One pair : 7)
+MRZO shows [4d Ks] (Two pairs : 7 and 4)
+MRZO collected 1224 from pot
+*** SUMMARY ***
+Total pot 1224 | No rake
+Board: [4c 7h Jh 7c 6c]
+Seat 2: Degordito (big blind) showed [9c 8s] and lost with One pair : 7
+Seat 3: MRZO (small blind) (button) showed [4d Ks] and won 1224 with Two pairs : 7 and 4
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 6 - HandId: #4830424347715829761-41-1780993432 - Holdem no limit (50/100) - 2026/06/09 08:23:52 UTC
+Table: 'Expresso(1124670810)#0' 3-max (real money) Seat #2 is the button
+Seat 2: Degordito (276)
+Seat 3: MRZO (1224)
+*** ANTE/BLINDS ***
+Degordito posts small blind 50
+MRZO posts big blind 100
+Dealt to MRZO [3h Qh]
+*** PRE-FLOP *** 
+Degordito folds
+MRZO collected 150 from pot
+*** SUMMARY ***
+Total pot 150 | No rake
+Seat 3: MRZO (big blind) won 150
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 6 - HandId: #4830424347715829761-42-1780993436 - Holdem no limit (50/100) - 2026/06/09 08:23:56 UTC
+Table: 'Expresso(1124670810)#0' 3-max (real money) Seat #3 is the button
+Seat 2: Degordito (226)
+Seat 3: MRZO (1274)
+*** ANTE/BLINDS ***
+MRZO posts small blind 50
+Degordito posts big blind 100
+Dealt to MRZO [2s 7c]
+*** PRE-FLOP *** 
+MRZO folds
+Degordito collected 150 from pot
+*** SUMMARY ***
+Total pot 150 | No rake
+Seat 2: Degordito (big blind) won 150
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 6 - HandId: #4830424347715829761-43-1780993440 - Holdem no limit (50/100) - 2026/06/09 08:24:00 UTC
+Table: 'Expresso(1124670810)#0' 3-max (real money) Seat #2 is the button
+Seat 2: Degordito (276)
+Seat 3: MRZO (1224)
+*** ANTE/BLINDS ***
+Degordito posts small blind 50
+MRZO posts big blind 100
+Dealt to MRZO [Kh 6c]
+*** PRE-FLOP *** 
+Degordito raises 176 to 276 and is all-in
+MRZO raises 948 to 1224 and is all-in
+*** FLOP *** [Jc 2s Qd]
+*** TURN *** [Jc 2s Qd][Kd]
+*** RIVER *** [Jc 2s Qd Kd][Qs]
+*** SHOW DOWN ***
+Degordito shows [7c 2d] (Two pairs : Queens and 2)
+MRZO shows [Kh 6c] (Two pairs : Kings and Queens)
+MRZO collected 1500 from pot
+*** SUMMARY ***
+Total pot 1500 | No rake
+Board: [Jc 2s Qd Kd Qs]
+Seat 2: Degordito (small blind) (button) showed [7c 2d] and lost with Two pairs : Queens and 2
+Seat 3: MRZO (big blind) showed [Kh 6c] and won 1500 with Two pairs : Kings and Queens
+
+

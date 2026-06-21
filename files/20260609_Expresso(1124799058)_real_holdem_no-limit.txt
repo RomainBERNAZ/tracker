@@ -1,0 +1,597 @@
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830975168681607169-1-1781007948 - Holdem no limit (10/20) - 2026/06/09 12:25:48 UTC
+Table: 'Expresso(1124799058)#0' 3-max (real money) Seat #3 is the button
+Seat 1: MRZO (500)
+Seat 2: AAmacyelclAA (500)
+Seat 3: garou-915936 (500)
+*** ANTE/BLINDS ***
+MRZO posts small blind 10
+AAmacyelclAA posts big blind 20
+Dealt to MRZO [5h 7h]
+*** PRE-FLOP *** 
+garou-915936 calls 20
+MRZO calls 10
+AAmacyelclAA checks
+*** FLOP *** [Qh Ac 5d]
+MRZO checks
+AAmacyelclAA bets 21
+garou-915936 folds
+MRZO calls 21
+*** TURN *** [Qh Ac 5d][6d]
+MRZO checks
+AAmacyelclAA bets 36
+MRZO calls 36
+*** RIVER *** [Qh Ac 5d 6d][4h]
+MRZO checks
+AAmacyelclAA checks
+*** SHOW DOWN ***
+MRZO shows [5h 7h] (One pair : 5)
+AAmacyelclAA shows [9h Qd] (One pair : Queens)
+AAmacyelclAA collected 174 from pot
+*** SUMMARY ***
+Total pot 174 | No rake
+Board: [Qh Ac 5d 6d 4h]
+Seat 1: MRZO (small blind) showed [5h 7h] and lost with One pair : 5
+Seat 2: AAmacyelclAA (big blind) showed [9h Qd] and won 174 with One pair : Queens
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830975168681607169-2-1781007969 - Holdem no limit (10/20) - 2026/06/09 12:26:09 UTC
+Table: 'Expresso(1124799058)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (423)
+Seat 2: AAmacyelclAA (597)
+Seat 3: garou-915936 (480)
+*** ANTE/BLINDS ***
+AAmacyelclAA posts small blind 10
+garou-915936 posts big blind 20
+Dealt to MRZO [Qh Jc]
+*** PRE-FLOP *** 
+MRZO raises 20 to 40
+AAmacyelclAA folds
+garou-915936 calls 20
+*** FLOP *** [Tc 3d 8h]
+garou-915936 checks
+MRZO bets 32
+garou-915936 calls 32
+*** TURN *** [Tc 3d 8h][9h]
+garou-915936 checks
+MRZO bets 77
+garou-915936 raises 77 to 154
+MRZO raises 197 to 351 and is all-in
+garou-915936 raises 57 to 408 and is all-in
+*** RIVER *** [Tc 3d 8h 9h][9d]
+*** SHOW DOWN ***
+MRZO shows [Qh Jc] (Straight Queen high)
+garou-915936 shows [Jh Qd] (Straight Queen high)
+garou-915936 collected 485 from side pot 1
+MRZO collected 428 from main pot
+*** SUMMARY ***
+Total pot 913 | No rake
+Board: [Tc 3d 8h 9h 9d]
+Seat 1: MRZO (button) showed [Qh Jc] and won 428 with Straight Queen high
+Seat 3: garou-915936 (big blind) showed [Jh Qd] and won 485 with Straight Queen high
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830975168681607169-3-1781007993 - Holdem no limit (10/20) - 2026/06/09 12:26:33 UTC
+Table: 'Expresso(1124799058)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (428)
+Seat 2: AAmacyelclAA (587)
+Seat 3: garou-915936 (485)
+*** ANTE/BLINDS ***
+garou-915936 posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [6c Ah]
+*** PRE-FLOP *** 
+AAmacyelclAA folds
+garou-915936 calls 10
+MRZO raises 408 to 428 and is all-in
+garou-915936 folds
+MRZO collected 448 from pot
+*** SUMMARY ***
+Total pot 448 | No rake
+Seat 1: MRZO (big blind) won 448
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830975168681607169-4-1781008003 - Holdem no limit (10/20) - 2026/06/09 12:26:43 UTC
+Table: 'Expresso(1124799058)#0' 3-max (real money) Seat #3 is the button
+Seat 1: MRZO (448)
+Seat 2: AAmacyelclAA (587)
+Seat 3: garou-915936 (465)
+*** ANTE/BLINDS ***
+MRZO posts small blind 10
+AAmacyelclAA posts big blind 20
+Dealt to MRZO [5h Ad]
+*** PRE-FLOP *** 
+garou-915936 folds
+MRZO raises 30 to 50
+AAmacyelclAA folds
+MRZO collected 70 from pot
+*** SUMMARY ***
+Total pot 70 | No rake
+Seat 1: MRZO (small blind) won 70
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830975168681607169-5-1781008010 - Holdem no limit (10/20) - 2026/06/09 12:26:50 UTC
+Table: 'Expresso(1124799058)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (468)
+Seat 2: AAmacyelclAA (567)
+Seat 3: garou-915936 (465)
+*** ANTE/BLINDS ***
+AAmacyelclAA posts small blind 10
+garou-915936 posts big blind 20
+Dealt to MRZO [9h Qs]
+*** PRE-FLOP *** 
+MRZO folds
+AAmacyelclAA folds
+garou-915936 collected 30 from pot
+*** SUMMARY ***
+Total pot 30 | No rake
+Seat 3: garou-915936 (big blind) won 30
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830975168681607169-6-1781008014 - Holdem no limit (10/20) - 2026/06/09 12:26:54 UTC
+Table: 'Expresso(1124799058)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (468)
+Seat 2: AAmacyelclAA (557)
+Seat 3: garou-915936 (475)
+*** ANTE/BLINDS ***
+garou-915936 posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [Ah As]
+*** PRE-FLOP *** 
+AAmacyelclAA calls 20
+garou-915936 calls 10
+MRZO raises 80 to 100
+AAmacyelclAA folds
+garou-915936 calls 80
+*** FLOP *** [5c 2c 5h]
+garou-915936 checks
+MRZO bets 77
+garou-915936 raises 298 to 375 and is all-in
+MRZO calls 291 and is all-in
+*** TURN *** [5c 2c 5h][Js]
+*** RIVER *** [5c 2c 5h Js][2d]
+*** SHOW DOWN ***
+MRZO shows [Ah As] (Two pairs : Aces and 5)
+garou-915936 shows [8c Kc] (Two pairs : 5 and 2)
+garou-915936 collected 7 from side pot 1
+MRZO collected 956 from main pot
+*** SUMMARY ***
+Total pot 963 | No rake
+Board: [5c 2c 5h Js 2d]
+Seat 1: MRZO (big blind) showed [Ah As] and won 956 with Two pairs : Aces and 5
+Seat 3: garou-915936 (small blind) showed [8c Kc] and won 7 with Two pairs : 5 and 2
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830975168681607169-7-1781008035 - Holdem no limit (10/20) - 2026/06/09 12:27:15 UTC
+Table: 'Expresso(1124799058)#0' 3-max (real money) Seat #3 is the button
+Seat 1: MRZO (956)
+Seat 2: AAmacyelclAA (537)
+Seat 3: garou-915936 (7)
+*** ANTE/BLINDS ***
+MRZO posts small blind 10
+AAmacyelclAA posts big blind 20
+Dealt to MRZO [7d Qc]
+*** PRE-FLOP *** 
+garou-915936 calls 7 and is all-in
+MRZO calls 10
+AAmacyelclAA checks
+*** FLOP *** [2d Kd 2c]
+MRZO checks
+AAmacyelclAA checks
+*** TURN *** [2d Kd 2c][4h]
+MRZO checks
+AAmacyelclAA bets 24
+MRZO folds
+*** RIVER *** [2d Kd 2c 4h][6s]
+*** SHOW DOWN ***
+garou-915936 shows [8d Ah] (One pair : 2)
+AAmacyelclAA shows [4d 5c] (Two pairs : 4 and 2)
+AAmacyelclAA collected 71 from pot
+*** SUMMARY ***
+Total pot 71 | No rake
+Board: [2d Kd 2c 4h 6s]
+Seat 2: AAmacyelclAA (big blind) showed [4d 5c] and won 71 with Two pairs : 4 and 2
+Seat 3: garou-915936 (button) showed [8d Ah] and lost with One pair : 2
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830975168681607169-8-1781008059 - Holdem no limit (15/30) - 2026/06/09 12:27:39 UTC
+Table: 'Expresso(1124799058)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (936)
+Seat 2: AAmacyelclAA (564)
+*** ANTE/BLINDS ***
+AAmacyelclAA posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [2d Qc]
+*** PRE-FLOP *** 
+AAmacyelclAA calls 15
+MRZO checks
+*** FLOP *** [6d 2s 4s]
+MRZO checks
+AAmacyelclAA checks
+*** TURN *** [6d 2s 4s][6c]
+MRZO bets 48
+AAmacyelclAA folds
+MRZO collected 108 from pot
+*** SUMMARY ***
+Total pot 108 | No rake
+Board: [6d 2s 4s 6c]
+Seat 1: MRZO (big blind) won 108
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830975168681607169-9-1781008069 - Holdem no limit (15/30) - 2026/06/09 12:27:49 UTC
+Table: 'Expresso(1124799058)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (966)
+Seat 2: AAmacyelclAA (534)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+AAmacyelclAA posts big blind 30
+Dealt to MRZO [9c 7s]
+*** PRE-FLOP *** 
+MRZO calls 15
+AAmacyelclAA checks
+*** FLOP *** [Th 6h 8d]
+AAmacyelclAA checks
+MRZO bets 48
+AAmacyelclAA folds
+MRZO collected 108 from pot
+*** SUMMARY ***
+Total pot 108 | No rake
+Board: [Th 6h 8d]
+Seat 1: MRZO (small blind) (button) won 108
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830975168681607169-10-1781008078 - Holdem no limit (15/30) - 2026/06/09 12:27:58 UTC
+Table: 'Expresso(1124799058)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (996)
+Seat 2: AAmacyelclAA (504)
+*** ANTE/BLINDS ***
+AAmacyelclAA posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [5h 5s]
+*** PRE-FLOP *** 
+AAmacyelclAA folds
+MRZO collected 45 from pot
+*** SUMMARY ***
+Total pot 45 | No rake
+Seat 1: MRZO (big blind) won 45
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830975168681607169-11-1781008081 - Holdem no limit (15/30) - 2026/06/09 12:28:01 UTC
+Table: 'Expresso(1124799058)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (1011)
+Seat 2: AAmacyelclAA (489)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+AAmacyelclAA posts big blind 30
+Dealt to MRZO [3s 2d]
+*** PRE-FLOP *** 
+MRZO folds
+AAmacyelclAA collected 45 from pot
+*** SUMMARY ***
+Total pot 45 | No rake
+Seat 2: AAmacyelclAA (big blind) won 45
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830975168681607169-12-1781008086 - Holdem no limit (15/30) - 2026/06/09 12:28:06 UTC
+Table: 'Expresso(1124799058)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (996)
+Seat 2: AAmacyelclAA (504)
+*** ANTE/BLINDS ***
+AAmacyelclAA posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [3d 5c]
+*** PRE-FLOP *** 
+AAmacyelclAA calls 15
+MRZO checks
+*** FLOP *** [Kc 2c As]
+MRZO checks
+AAmacyelclAA bets 30
+MRZO calls 30
+*** TURN *** [Kc 2c As][Tc]
+MRZO checks
+AAmacyelclAA bets 42
+MRZO calls 42
+*** RIVER *** [Kc 2c As Tc][Th]
+MRZO checks
+AAmacyelclAA checks
+*** SHOW DOWN ***
+MRZO shows [3d 5c] (One pair : Tens)
+AAmacyelclAA shows [4d Kd] (Two pairs : Kings and Tens)
+AAmacyelclAA collected 204 from pot
+*** SUMMARY ***
+Total pot 204 | No rake
+Board: [Kc 2c As Tc Th]
+Seat 1: MRZO (big blind) showed [3d 5c] and lost with One pair : Tens
+Seat 2: AAmacyelclAA (small blind) (button) showed [4d Kd] and won 204 with Two pairs : Kings and Tens
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830975168681607169-13-1781008107 - Holdem no limit (15/30) - 2026/06/09 12:28:27 UTC
+Table: 'Expresso(1124799058)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (894)
+Seat 2: AAmacyelclAA (606)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+AAmacyelclAA posts big blind 30
+Dealt to MRZO [Qd 6c]
+*** PRE-FLOP *** 
+MRZO calls 15
+AAmacyelclAA checks
+*** FLOP *** [Ts Jh 2s]
+AAmacyelclAA checks
+MRZO bets 39
+AAmacyelclAA folds
+MRZO collected 99 from pot
+*** SUMMARY ***
+Total pot 99 | No rake
+Board: [Ts Jh 2s]
+Seat 1: MRZO (small blind) (button) won 99
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830975168681607169-14-1781008117 - Holdem no limit (15/30) - 2026/06/09 12:28:37 UTC
+Table: 'Expresso(1124799058)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (924)
+Seat 2: AAmacyelclAA (576)
+*** ANTE/BLINDS ***
+AAmacyelclAA posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [Ts Ks]
+*** PRE-FLOP *** 
+AAmacyelclAA calls 15
+MRZO raises 75 to 105
+AAmacyelclAA folds
+MRZO collected 135 from pot
+*** SUMMARY ***
+Total pot 135 | No rake
+Seat 1: MRZO (big blind) won 135
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830975168681607169-15-1781008131 - Holdem no limit (20/40) - 2026/06/09 12:28:51 UTC
+Table: 'Expresso(1124799058)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (954)
+Seat 2: AAmacyelclAA (546)
+*** ANTE/BLINDS ***
+MRZO posts small blind 20
+AAmacyelclAA posts big blind 40
+Dealt to MRZO [7d 5d]
+*** PRE-FLOP *** 
+MRZO calls 20
+AAmacyelclAA checks
+*** FLOP *** [Qs 5s 4h]
+AAmacyelclAA checks
+MRZO bets 52
+AAmacyelclAA folds
+MRZO collected 132 from pot
+*** SUMMARY ***
+Total pot 132 | No rake
+Board: [Qs 5s 4h]
+Seat 1: MRZO (small blind) (button) won 132
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830975168681607169-16-1781008139 - Holdem no limit (20/40) - 2026/06/09 12:28:59 UTC
+Table: 'Expresso(1124799058)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (994)
+Seat 2: AAmacyelclAA (506)
+*** ANTE/BLINDS ***
+AAmacyelclAA posts small blind 20
+MRZO posts big blind 40
+Dealt to MRZO [Ah 6c]
+*** PRE-FLOP *** 
+AAmacyelclAA raises 80 to 120
+MRZO raises 874 to 994 and is all-in
+AAmacyelclAA calls 386 and is all-in
+*** FLOP *** [5s Td 2s]
+*** TURN *** [5s Td 2s][4d]
+*** RIVER *** [5s Td 2s 4d][As]
+*** SHOW DOWN ***
+MRZO shows [Ah 6c] (One pair : Aces)
+AAmacyelclAA shows [Qh Ac] (One pair : Aces)
+AAmacyelclAA collected 1012 from main pot
+MRZO collected 488 from side pot 1
+*** SUMMARY ***
+Total pot 1500 | No rake
+Board: [5s Td 2s 4d As]
+Seat 1: MRZO (big blind) showed [Ah 6c] and won 488 with One pair : Aces
+Seat 2: AAmacyelclAA (small blind) (button) showed [Qh Ac] and won 1012 with One pair : Aces
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830975168681607169-17-1781008152 - Holdem no limit (20/40) - 2026/06/09 12:29:12 UTC
+Table: 'Expresso(1124799058)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (488)
+Seat 2: AAmacyelclAA (1012)
+*** ANTE/BLINDS ***
+MRZO posts small blind 20
+AAmacyelclAA posts big blind 40
+Dealt to MRZO [Ks 2c]
+*** PRE-FLOP *** 
+MRZO calls 20
+AAmacyelclAA checks
+*** FLOP *** [8d 6h 6d]
+AAmacyelclAA checks
+MRZO checks
+*** TURN *** [8d 6h 6d][5c]
+AAmacyelclAA bets 40
+MRZO folds
+AAmacyelclAA collected 120 from pot
+*** SUMMARY ***
+Total pot 120 | No rake
+Board: [8d 6h 6d 5c]
+Seat 2: AAmacyelclAA (big blind) won 120
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830975168681607169-18-1781008165 - Holdem no limit (20/40) - 2026/06/09 12:29:25 UTC
+Table: 'Expresso(1124799058)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (448)
+Seat 2: AAmacyelclAA (1052)
+*** ANTE/BLINDS ***
+AAmacyelclAA posts small blind 20
+MRZO posts big blind 40
+Dealt to MRZO [7d 2c]
+*** PRE-FLOP *** 
+AAmacyelclAA folds
+MRZO collected 60 from pot
+*** SUMMARY ***
+Total pot 60 | No rake
+Seat 1: MRZO (big blind) won 60
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830975168681607169-19-1781008169 - Holdem no limit (20/40) - 2026/06/09 12:29:29 UTC
+Table: 'Expresso(1124799058)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (468)
+Seat 2: AAmacyelclAA (1032)
+*** ANTE/BLINDS ***
+MRZO posts small blind 20
+AAmacyelclAA posts big blind 40
+Dealt to MRZO [Jd 9s]
+*** PRE-FLOP *** 
+MRZO calls 20
+AAmacyelclAA checks
+*** FLOP *** [5d 4h As]
+AAmacyelclAA bets 52
+MRZO folds
+AAmacyelclAA collected 132 from pot
+*** SUMMARY ***
+Total pot 132 | No rake
+Board: [5d 4h As]
+Seat 2: AAmacyelclAA (big blind) won 132
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830975168681607169-20-1781008176 - Holdem no limit (20/40) - 2026/06/09 12:29:36 UTC
+Table: 'Expresso(1124799058)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (428)
+Seat 2: AAmacyelclAA (1072)
+*** ANTE/BLINDS ***
+AAmacyelclAA posts small blind 20
+MRZO posts big blind 40
+Dealt to MRZO [4h Th]
+*** PRE-FLOP *** 
+AAmacyelclAA folds
+MRZO collected 60 from pot
+*** SUMMARY ***
+Total pot 60 | No rake
+Seat 1: MRZO (big blind) won 60
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830975168681607169-21-1781008180 - Holdem no limit (20/40) - 2026/06/09 12:29:40 UTC
+Table: 'Expresso(1124799058)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (448)
+Seat 2: AAmacyelclAA (1052)
+*** ANTE/BLINDS ***
+MRZO posts small blind 20
+AAmacyelclAA posts big blind 40
+Dealt to MRZO [Qc 6s]
+*** PRE-FLOP *** 
+MRZO calls 20
+AAmacyelclAA raises 80 to 120
+MRZO folds
+AAmacyelclAA collected 160 from pot
+*** SUMMARY ***
+Total pot 160 | No rake
+Seat 2: AAmacyelclAA (big blind) won 160
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830975168681607169-22-1781008190 - Holdem no limit (20/40) - 2026/06/09 12:29:50 UTC
+Table: 'Expresso(1124799058)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (408)
+Seat 2: AAmacyelclAA (1092)
+*** ANTE/BLINDS ***
+AAmacyelclAA posts small blind 20
+MRZO posts big blind 40
+Dealt to MRZO [Ac 9h]
+*** PRE-FLOP *** 
+AAmacyelclAA raises 80 to 120
+MRZO raises 288 to 408 and is all-in
+AAmacyelclAA calls 288
+*** FLOP *** [6h Td 9c]
+*** TURN *** [6h Td 9c][Qh]
+*** RIVER *** [6h Td 9c Qh][3s]
+*** SHOW DOWN ***
+AAmacyelclAA shows [Ah 5s] (High card : Ace)
+MRZO shows [Ac 9h] (One pair : 9)
+MRZO collected 816 from pot
+*** SUMMARY ***
+Total pot 816 | No rake
+Board: [6h Td 9c Qh 3s]
+Seat 1: MRZO (big blind) showed [Ac 9h] and won 816 with One pair : 9
+Seat 2: AAmacyelclAA (small blind) (button) showed [Ah 5s] and lost with High card : Ace
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830975168681607169-23-1781008203 - Holdem no limit (20/40) - 2026/06/09 12:30:03 UTC
+Table: 'Expresso(1124799058)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (816)
+Seat 2: AAmacyelclAA (684)
+*** ANTE/BLINDS ***
+MRZO posts small blind 20
+AAmacyelclAA posts big blind 40
+Dealt to MRZO [Kh 9c]
+*** PRE-FLOP *** 
+MRZO raises 40 to 80
+AAmacyelclAA raises 604 to 684 and is all-in
+MRZO folds
+AAmacyelclAA collected 764 from pot
+*** SUMMARY ***
+Total pot 764 | No rake
+Seat 2: AAmacyelclAA (big blind) won 764
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830975168681607169-24-1781008215 - Holdem no limit (20/40) - 2026/06/09 12:30:15 UTC
+Table: 'Expresso(1124799058)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (736)
+Seat 2: AAmacyelclAA (764)
+*** ANTE/BLINDS ***
+AAmacyelclAA posts small blind 20
+MRZO posts big blind 40
+Dealt to MRZO [Th 7c]
+*** PRE-FLOP *** 
+AAmacyelclAA folds
+MRZO collected 60 from pot
+*** SUMMARY ***
+Total pot 60 | No rake
+Seat 1: MRZO (big blind) won 60
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830975168681607169-25-1781008225 - Holdem no limit (30/60) - 2026/06/09 12:30:25 UTC
+Table: 'Expresso(1124799058)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (756)
+Seat 2: AAmacyelclAA (744)
+*** ANTE/BLINDS ***
+MRZO posts small blind 30
+AAmacyelclAA posts big blind 60
+Dealt to MRZO [3d 9h]
+*** PRE-FLOP *** 
+MRZO calls 30
+AAmacyelclAA checks
+*** FLOP *** [7s 3s Td]
+AAmacyelclAA checks
+MRZO bets 60
+AAmacyelclAA folds
+MRZO collected 180 from pot
+*** SUMMARY ***
+Total pot 180 | No rake
+Board: [7s 3s Td]
+Seat 1: MRZO (small blind) (button) won 180
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830975168681607169-26-1781008255 - Holdem no limit (30/60) - 2026/06/09 12:30:55 UTC
+Table: 'Expresso(1124799058)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (816)
+Seat 2: AAmacyelclAA (684)
+*** ANTE/BLINDS ***
+AAmacyelclAA posts small blind 30
+MRZO posts big blind 60
+Dealt to MRZO [Ah Qc]
+*** PRE-FLOP *** 
+AAmacyelclAA raises 624 to 684 and is all-in
+MRZO raises 132 to 816 and is all-in
+*** FLOP *** [6h 7h 2s]
+*** TURN *** [6h 7h 2s][9d]
+*** RIVER *** [6h 7h 2s 9d][Qs]
+*** SHOW DOWN ***
+AAmacyelclAA shows [Kc 5s] (High card : King)
+MRZO shows [Ah Qc] (One pair : Queens)
+MRZO collected 1500 from pot
+*** SUMMARY ***
+Total pot 1500 | No rake
+Board: [6h 7h 2s 9d Qs]
+Seat 1: MRZO (big blind) showed [Ah Qc] and won 1500 with One pair : Queens
+Seat 2: AAmacyelclAA (small blind) (button) showed [Kc 5s] and lost with High card : King
+
+

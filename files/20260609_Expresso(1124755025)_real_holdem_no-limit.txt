@@ -1,0 +1,185 @@
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830786048386662401-1-1781003287 - Holdem no limit (10/20) - 2026/06/09 11:08:07 UTC
+Table: 'Expresso(1124755025)#0' 3-max (real money) Seat #1 is the button
+Seat 1: Aless5 (500)
+Seat 2: LeGenDe 688 (500)
+Seat 3: MRZO (500)
+*** ANTE/BLINDS ***
+LeGenDe 688 posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [Jc 6d]
+*** PRE-FLOP *** 
+Aless5 raises 20 to 40
+LeGenDe 688 folds
+MRZO folds
+Aless5 collected 70 from pot
+*** SUMMARY ***
+Total pot 70 | No rake
+Seat 1: Aless5 (button) won 70
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830786048386662401-2-1781003311 - Holdem no limit (10/20) - 2026/06/09 11:08:31 UTC
+Table: 'Expresso(1124755025)#0' 3-max (real money) Seat #2 is the button
+Seat 1: Aless5 (530)
+Seat 2: LeGenDe 688 (490)
+Seat 3: MRZO (480)
+*** ANTE/BLINDS ***
+MRZO posts small blind 10
+Aless5 posts big blind 20
+Dealt to MRZO [6s Qc]
+*** PRE-FLOP *** 
+LeGenDe 688 calls 20
+MRZO folds
+Aless5 checks
+*** FLOP *** [As 7h 3c]
+Aless5 bets 38
+LeGenDe 688 calls 38
+*** TURN *** [As 7h 3c][Ks]
+Aless5 checks
+LeGenDe 688 bets 82
+Aless5 folds
+LeGenDe 688 collected 208 from pot
+*** SUMMARY ***
+Total pot 208 | No rake
+Board: [As 7h 3c Ks]
+Seat 2: LeGenDe 688 (button) won 208
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830786048386662401-3-1781003349 - Holdem no limit (10/20) - 2026/06/09 11:09:09 UTC
+Table: 'Expresso(1124755025)#0' 3-max (real money) Seat #3 is the button
+Seat 1: Aless5 (472)
+Seat 2: LeGenDe 688 (558)
+Seat 3: MRZO (470)
+*** ANTE/BLINDS ***
+Aless5 posts small blind 10
+LeGenDe 688 posts big blind 20
+Dealt to MRZO [2d 7h]
+*** PRE-FLOP *** 
+MRZO folds
+Aless5 folds
+LeGenDe 688 collected 30 from pot
+*** SUMMARY ***
+Total pot 30 | No rake
+Seat 2: LeGenDe 688 (big blind) won 30
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830786048386662401-4-1781003357 - Holdem no limit (10/20) - 2026/06/09 11:09:17 UTC
+Table: 'Expresso(1124755025)#0' 3-max (real money) Seat #1 is the button
+Seat 1: Aless5 (462)
+Seat 2: LeGenDe 688 (568)
+Seat 3: MRZO (470)
+*** ANTE/BLINDS ***
+LeGenDe 688 posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [Jd 4h]
+*** PRE-FLOP *** 
+Aless5 raises 20 to 40
+LeGenDe 688 raises 20 to 60
+MRZO folds
+Aless5 folds
+LeGenDe 688 collected 120 from pot
+*** SUMMARY ***
+Total pot 120 | No rake
+Seat 2: LeGenDe 688 (small blind) won 120
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830786048386662401-5-1781003377 - Holdem no limit (15/30) - 2026/06/09 11:09:37 UTC
+Table: 'Expresso(1124755025)#0' 3-max (real money) Seat #2 is the button
+Seat 1: Aless5 (422)
+Seat 2: LeGenDe 688 (628)
+Seat 3: MRZO (450)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+Aless5 posts big blind 30
+Dealt to MRZO [Jd 7d]
+*** PRE-FLOP *** 
+LeGenDe 688 raises 30 to 60
+MRZO folds
+Aless5 folds
+LeGenDe 688 collected 105 from pot
+*** SUMMARY ***
+Total pot 105 | No rake
+Seat 2: LeGenDe 688 (button) won 105
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830786048386662401-6-1781003394 - Holdem no limit (15/30) - 2026/06/09 11:09:54 UTC
+Table: 'Expresso(1124755025)#0' 3-max (real money) Seat #3 is the button
+Seat 1: Aless5 (392)
+Seat 2: LeGenDe 688 (673)
+Seat 3: MRZO (435)
+*** ANTE/BLINDS ***
+Aless5 posts small blind 15
+LeGenDe 688 posts big blind 30
+Dealt to MRZO [8s Tc]
+*** PRE-FLOP *** 
+MRZO folds
+Aless5 folds
+LeGenDe 688 collected 45 from pot
+*** SUMMARY ***
+Total pot 45 | No rake
+Seat 2: LeGenDe 688 (big blind) won 45
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830786048386662401-7-1781003409 - Holdem no limit (15/30) - 2026/06/09 11:10:09 UTC
+Table: 'Expresso(1124755025)#0' 3-max (real money) Seat #1 is the button
+Seat 1: Aless5 (377)
+Seat 2: LeGenDe 688 (688)
+Seat 3: MRZO (435)
+*** ANTE/BLINDS ***
+LeGenDe 688 posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [Qs 5d]
+*** PRE-FLOP *** 
+Aless5 folds
+LeGenDe 688 raises 60 to 90
+MRZO folds
+LeGenDe 688 collected 120 from pot
+*** SUMMARY ***
+Total pot 120 | No rake
+Seat 2: LeGenDe 688 (small blind) won 120
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830786048386662401-8-1781003426 - Holdem no limit (15/30) - 2026/06/09 11:10:26 UTC
+Table: 'Expresso(1124755025)#0' 3-max (real money) Seat #2 is the button
+Seat 1: Aless5 (377)
+Seat 2: LeGenDe 688 (718)
+Seat 3: MRZO (405)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+Aless5 posts big blind 30
+Dealt to MRZO [Ks 2c]
+*** PRE-FLOP *** 
+LeGenDe 688 folds
+MRZO folds
+Aless5 collected 45 from pot
+*** SUMMARY ***
+Total pot 45 | No rake
+Seat 1: Aless5 (big blind) won 45
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830786048386662401-9-1781003438 - Holdem no limit (15/30) - 2026/06/09 11:10:38 UTC
+Table: 'Expresso(1124755025)#0' 3-max (real money) Seat #3 is the button
+Seat 1: Aless5 (392)
+Seat 2: LeGenDe 688 (718)
+Seat 3: MRZO (390)
+*** ANTE/BLINDS ***
+Aless5 posts small blind 15
+LeGenDe 688 posts big blind 30
+Dealt to MRZO [Kc Js]
+*** PRE-FLOP *** 
+MRZO raises 360 to 390 and is all-in
+Aless5 folds
+LeGenDe 688 calls 360
+*** FLOP *** [6h 8h As]
+*** TURN *** [6h 8h As][Ts]
+*** RIVER *** [6h 8h As Ts][2c]
+*** SHOW DOWN ***
+MRZO shows [Kc Js] (High card : Ace)
+LeGenDe 688 shows [7h 7s] (One pair : 7)
+LeGenDe 688 collected 795 from pot
+*** SUMMARY ***
+Total pot 795 | No rake
+Board: [6h 8h As Ts 2c]
+Seat 2: LeGenDe 688 (big blind) showed [7h 7s] and won 795 with One pair : 7
+Seat 3: MRZO (button) showed [Kc Js] and lost with High card : Ace
+
+

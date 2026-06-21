@@ -1,0 +1,325 @@
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830752689375674369-1-1781002453 - Holdem no limit (10/20) - 2026/06/09 10:54:13 UTC
+Table: 'Expresso(1124747258)#0' 3-max (real money) Seat #3 is the button
+Seat 1: EscoBabar (500)
+Seat 2: Djax.one (500)
+Seat 3: MRZO (500)
+*** ANTE/BLINDS ***
+EscoBabar posts small blind 10
+Djax.one posts big blind 20
+Dealt to MRZO [Qh Qs]
+*** PRE-FLOP *** 
+MRZO raises 30 to 50
+EscoBabar folds
+Djax.one calls 30
+*** FLOP *** [6d 2d 5s]
+Djax.one bets 20
+MRZO raises 116 to 136
+Djax.one calls 116
+*** TURN *** [6d 2d 5s][4s]
+Djax.one bets 40
+MRZO raises 274 to 314 and is all-in
+Djax.one calls 274 and is all-in
+*** RIVER *** [6d 2d 5s 4s][6s]
+*** SHOW DOWN ***
+Djax.one shows [9d 8d] (One pair : 6)
+MRZO shows [Qh Qs] (Two pairs : Queens and 6)
+MRZO collected 1010 from pot
+*** SUMMARY ***
+Total pot 1010 | No rake
+Board: [6d 2d 5s 4s 6s]
+Seat 2: Djax.one (big blind) showed [9d 8d] and lost with One pair : 6
+Seat 3: MRZO (button) showed [Qh Qs] and won 1010 with Two pairs : Queens and 6
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830752689375674369-2-1781002482 - Holdem no limit (10/20) - 2026/06/09 10:54:42 UTC
+Table: 'Expresso(1124747258)#0' 3-max (real money) Seat #3 is the button
+Seat 1: EscoBabar (490)
+Seat 3: MRZO (1010)
+*** ANTE/BLINDS ***
+MRZO posts small blind 10
+EscoBabar posts big blind 20
+Dealt to MRZO [2s 3c]
+*** PRE-FLOP *** 
+MRZO folds
+EscoBabar collected 30 from pot
+*** SUMMARY ***
+Total pot 30 | No rake
+Seat 1: EscoBabar (big blind) won 30
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830752689375674369-3-1781002486 - Holdem no limit (10/20) - 2026/06/09 10:54:46 UTC
+Table: 'Expresso(1124747258)#0' 3-max (real money) Seat #1 is the button
+Seat 1: EscoBabar (500)
+Seat 3: MRZO (1000)
+*** ANTE/BLINDS ***
+EscoBabar posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [Jd 2h]
+*** PRE-FLOP *** 
+EscoBabar calls 10
+MRZO checks
+*** FLOP *** [7h Jh 2d]
+MRZO bets 40
+EscoBabar calls 40
+*** TURN *** [7h Jh 2d][Qs]
+MRZO checks
+EscoBabar bets 42
+MRZO raises 898 to 940 and is all-in
+EscoBabar folds
+MRZO collected 1102 from pot
+*** SUMMARY ***
+Total pot 1102 | No rake
+Board: [7h Jh 2d Qs]
+Seat 3: MRZO (big blind) won 1102
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830752689375674369-4-1781002510 - Holdem no limit (10/20) - 2026/06/09 10:55:10 UTC
+Table: 'Expresso(1124747258)#0' 3-max (real money) Seat #3 is the button
+Seat 1: EscoBabar (398)
+Seat 3: MRZO (1102)
+*** ANTE/BLINDS ***
+MRZO posts small blind 10
+EscoBabar posts big blind 20
+Dealt to MRZO [4c 2c]
+*** PRE-FLOP *** 
+MRZO calls 10
+EscoBabar raises 378 to 398 and is all-in
+MRZO folds
+EscoBabar collected 418 from pot
+*** SUMMARY ***
+Total pot 418 | No rake
+Seat 1: EscoBabar (big blind) won 418
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830752689375674369-5-1781002525 - Holdem no limit (10/20) - 2026/06/09 10:55:25 UTC
+Table: 'Expresso(1124747258)#0' 3-max (real money) Seat #1 is the button
+Seat 1: EscoBabar (418)
+Seat 3: MRZO (1082)
+*** ANTE/BLINDS ***
+EscoBabar posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [Kd As]
+*** PRE-FLOP *** 
+EscoBabar folds
+MRZO collected 30 from pot
+*** SUMMARY ***
+Total pot 30 | No rake
+Seat 3: MRZO (big blind) won 30
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830752689375674369-6-1781002529 - Holdem no limit (10/20) - 2026/06/09 10:55:29 UTC
+Table: 'Expresso(1124747258)#0' 3-max (real money) Seat #3 is the button
+Seat 1: EscoBabar (408)
+Seat 3: MRZO (1092)
+*** ANTE/BLINDS ***
+MRZO posts small blind 10
+EscoBabar posts big blind 20
+Dealt to MRZO [5d 4c]
+*** PRE-FLOP *** 
+MRZO folds
+EscoBabar collected 30 from pot
+*** SUMMARY ***
+Total pot 30 | No rake
+Seat 1: EscoBabar (big blind) won 30
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830752689375674369-7-1781002533 - Holdem no limit (10/20) - 2026/06/09 10:55:33 UTC
+Table: 'Expresso(1124747258)#0' 3-max (real money) Seat #1 is the button
+Seat 1: EscoBabar (418)
+Seat 3: MRZO (1082)
+*** ANTE/BLINDS ***
+EscoBabar posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [2s Ad]
+*** PRE-FLOP *** 
+EscoBabar calls 10
+MRZO raises 50 to 70
+EscoBabar calls 50
+*** FLOP *** [6d 6s Kc]
+MRZO checks
+EscoBabar checks
+*** TURN *** [6d 6s Kc][Qc]
+MRZO checks
+EscoBabar bets 49
+MRZO folds
+EscoBabar collected 189 from pot
+*** SUMMARY ***
+Total pot 189 | No rake
+Board: [6d 6s Kc Qc]
+Seat 1: EscoBabar (small blind) (button) won 189
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830752689375674369-8-1781002555 - Holdem no limit (15/30) - 2026/06/09 10:55:55 UTC
+Table: 'Expresso(1124747258)#0' 3-max (real money) Seat #3 is the button
+Seat 1: EscoBabar (488)
+Seat 3: MRZO (1012)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+EscoBabar posts big blind 30
+Dealt to MRZO [8s Jh]
+*** PRE-FLOP *** 
+MRZO calls 15
+EscoBabar raises 458 to 488 and is all-in
+MRZO folds
+EscoBabar collected 518 from pot
+*** SUMMARY ***
+Total pot 518 | No rake
+Seat 1: EscoBabar (big blind) won 518
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830752689375674369-9-1781002567 - Holdem no limit (15/30) - 2026/06/09 10:56:07 UTC
+Table: 'Expresso(1124747258)#0' 3-max (real money) Seat #1 is the button
+Seat 1: EscoBabar (518)
+Seat 3: MRZO (982)
+*** ANTE/BLINDS ***
+EscoBabar posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [7h 5s]
+*** PRE-FLOP *** 
+EscoBabar calls 15
+MRZO checks
+*** FLOP *** [3c 5h 6c]
+MRZO checks
+EscoBabar bets 30
+MRZO calls 30
+*** TURN *** [3c 5h 6c][7s]
+MRZO checks
+EscoBabar bets 78
+MRZO calls 78
+*** RIVER *** [3c 5h 6c 7s][6h]
+MRZO checks
+EscoBabar bets 276
+MRZO calls 276
+*** SHOW DOWN ***
+EscoBabar shows [Ah Td] (One pair : 6)
+MRZO shows [7h 5s] (Two pairs : 7 and 6)
+MRZO collected 828 from pot
+*** SUMMARY ***
+Total pot 828 | No rake
+Board: [3c 5h 6c 7s 6h]
+Seat 1: EscoBabar (small blind) (button) showed [Ah Td] and lost with One pair : 6
+Seat 3: MRZO (big blind) showed [7h 5s] and won 828 with Two pairs : 7 and 6
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830752689375674369-10-1781002592 - Holdem no limit (15/30) - 2026/06/09 10:56:32 UTC
+Table: 'Expresso(1124747258)#0' 3-max (real money) Seat #3 is the button
+Seat 1: EscoBabar (104)
+Seat 3: MRZO (1396)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+EscoBabar posts big blind 30
+Dealt to MRZO [2c Jc]
+*** PRE-FLOP *** 
+MRZO raises 1366 to 1396 and is all-in
+EscoBabar calls 74 and is all-in
+*** FLOP *** [4s Ks 6s]
+*** TURN *** [4s Ks 6s][9c]
+*** RIVER *** [4s Ks 6s 9c][5c]
+*** SHOW DOWN ***
+EscoBabar shows [Jh As] (High card : Ace)
+MRZO shows [2c Jc] (High card : King)
+MRZO collected 1292 from side pot 1
+EscoBabar collected 208 from main pot
+*** SUMMARY ***
+Total pot 1500 | No rake
+Board: [4s Ks 6s 9c 5c]
+Seat 1: EscoBabar (big blind) showed [Jh As] and won 208 with High card : Ace
+Seat 3: MRZO (small blind) (button) showed [2c Jc] and won 1292 with High card : King
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830752689375674369-11-1781002603 - Holdem no limit (15/30) - 2026/06/09 10:56:43 UTC
+Table: 'Expresso(1124747258)#0' 3-max (real money) Seat #1 is the button
+Seat 1: EscoBabar (208)
+Seat 3: MRZO (1292)
+*** ANTE/BLINDS ***
+EscoBabar posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [9h 4h]
+*** PRE-FLOP *** 
+EscoBabar raises 178 to 208 and is all-in
+MRZO folds
+EscoBabar collected 238 from pot
+*** SUMMARY ***
+Total pot 238 | No rake
+Seat 1: EscoBabar (small blind) (button) won 238
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830752689375674369-12-1781002609 - Holdem no limit (15/30) - 2026/06/09 10:56:49 UTC
+Table: 'Expresso(1124747258)#0' 3-max (real money) Seat #3 is the button
+Seat 1: EscoBabar (238)
+Seat 3: MRZO (1262)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+EscoBabar posts big blind 30
+Dealt to MRZO [8h 9h]
+*** PRE-FLOP *** 
+MRZO raises 1232 to 1262 and is all-in
+EscoBabar folds
+MRZO collected 1292 from pot
+*** SUMMARY ***
+Total pot 1292 | No rake
+Seat 3: MRZO (small blind) (button) won 1292
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830752689375674369-13-1781002614 - Holdem no limit (15/30) - 2026/06/09 10:56:54 UTC
+Table: 'Expresso(1124747258)#0' 3-max (real money) Seat #1 is the button
+Seat 1: EscoBabar (208)
+Seat 3: MRZO (1292)
+*** ANTE/BLINDS ***
+EscoBabar posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [3s 2h]
+*** PRE-FLOP *** 
+EscoBabar raises 178 to 208 and is all-in
+MRZO folds
+EscoBabar collected 238 from pot
+*** SUMMARY ***
+Total pot 238 | No rake
+Seat 1: EscoBabar (small blind) (button) won 238
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830752689375674369-14-1781002620 - Holdem no limit (15/30) - 2026/06/09 10:57:00 UTC
+Table: 'Expresso(1124747258)#0' 3-max (real money) Seat #3 is the button
+Seat 1: EscoBabar (238)
+Seat 3: MRZO (1262)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+EscoBabar posts big blind 30
+Dealt to MRZO [Qs 4c]
+*** PRE-FLOP *** 
+MRZO raises 1232 to 1262 and is all-in
+EscoBabar folds
+MRZO collected 1292 from pot
+*** SUMMARY ***
+Total pot 1292 | No rake
+Seat 3: MRZO (small blind) (button) won 1292
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830752689375674369-15-1781002624 - Holdem no limit (15/30) - 2026/06/09 10:57:04 UTC
+Table: 'Expresso(1124747258)#0' 3-max (real money) Seat #1 is the button
+Seat 1: EscoBabar (208)
+Seat 3: MRZO (1292)
+*** ANTE/BLINDS ***
+EscoBabar posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [3s Ts]
+*** PRE-FLOP *** 
+EscoBabar calls 15
+MRZO checks
+*** FLOP *** [2d Tc 6d]
+MRZO bets 60
+EscoBabar raises 118 to 178 and is all-in
+MRZO raises 1084 to 1262 and is all-in
+*** TURN *** [2d Tc 6d][Qc]
+*** RIVER *** [2d Tc 6d Qc][Ac]
+*** SHOW DOWN ***
+EscoBabar shows [6c 5h] (One pair : 6)
+MRZO shows [3s Ts] (One pair : Tens)
+MRZO collected 1500 from pot
+*** SUMMARY ***
+Total pot 1500 | No rake
+Board: [2d Tc 6d Qc Ac]
+Seat 1: EscoBabar (small blind) (button) showed [6c 5h] and lost with One pair : 6
+Seat 3: MRZO (big blind) showed [3s Ts] and won 1500 with One pair : Tens
+
+

@@ -1,0 +1,424 @@
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830502481760878593-1-1780995450 - Holdem no limit (10/20) - 2026/06/09 08:57:30 UTC
+Table: 'Expresso(1124689002)#0' 3-max (real money) Seat #3 is the button
+Seat 1: BigFishWin (500)
+Seat 2: MRZO (500)
+Seat 3: TinusLMB (500)
+*** ANTE/BLINDS ***
+BigFishWin posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [Js 4h]
+*** PRE-FLOP *** 
+TinusLMB calls 20
+BigFishWin folds
+MRZO checks
+*** FLOP *** [Qs 3c 2c]
+MRZO checks
+TinusLMB checks
+*** TURN *** [Qs 3c 2c][Ah]
+MRZO checks
+TinusLMB checks
+*** RIVER *** [Qs 3c 2c Ah][7c]
+MRZO checks
+TinusLMB checks
+*** SHOW DOWN ***
+MRZO shows [Js 4h] (High card : Ace)
+TinusLMB shows [5d Jc] (High card : Ace)
+TinusLMB collected 50 from pot
+*** SUMMARY ***
+Total pot 50 | No rake
+Board: [Qs 3c 2c Ah 7c]
+Seat 2: MRZO (big blind) showed [Js 4h] and lost with High card : Ace
+Seat 3: TinusLMB (button) showed [5d Jc] and won 50 with High card : Ace
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830502481760878593-2-1780995474 - Holdem no limit (10/20) - 2026/06/09 08:57:54 UTC
+Table: 'Expresso(1124689002)#0' 3-max (real money) Seat #1 is the button
+Seat 1: BigFishWin (490)
+Seat 2: MRZO (480)
+Seat 3: TinusLMB (530)
+*** ANTE/BLINDS ***
+MRZO posts small blind 10
+TinusLMB posts big blind 20
+Dealt to MRZO [9s 8d]
+*** PRE-FLOP *** 
+BigFishWin raises 20 to 40
+MRZO folds
+TinusLMB calls 20
+*** FLOP *** [2s 6c Js]
+TinusLMB checks
+BigFishWin bets 72
+TinusLMB folds
+BigFishWin collected 162 from pot
+*** SUMMARY ***
+Total pot 162 | No rake
+Board: [2s 6c Js]
+Seat 1: BigFishWin (button) won 162
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830502481760878593-3-1780995491 - Holdem no limit (10/20) - 2026/06/09 08:58:11 UTC
+Table: 'Expresso(1124689002)#0' 3-max (real money) Seat #2 is the button
+Seat 1: BigFishWin (540)
+Seat 2: MRZO (470)
+Seat 3: TinusLMB (490)
+*** ANTE/BLINDS ***
+TinusLMB posts small blind 10
+BigFishWin posts big blind 20
+Dealt to MRZO [Ah 5d]
+*** PRE-FLOP *** 
+MRZO raises 20 to 40
+TinusLMB folds
+BigFishWin calls 20
+*** FLOP *** [Qc 4h 3h]
+BigFishWin checks
+MRZO bets 23
+BigFishWin folds
+MRZO collected 113 from pot
+*** SUMMARY ***
+Total pot 113 | No rake
+Board: [Qc 4h 3h]
+Seat 2: MRZO (button) won 113
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830502481760878593-4-1780995511 - Holdem no limit (10/20) - 2026/06/09 08:58:31 UTC
+Table: 'Expresso(1124689002)#0' 3-max (real money) Seat #3 is the button
+Seat 1: BigFishWin (500)
+Seat 2: MRZO (520)
+Seat 3: TinusLMB (480)
+*** ANTE/BLINDS ***
+BigFishWin posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [2h 3c]
+*** PRE-FLOP *** 
+TinusLMB calls 20
+BigFishWin folds
+MRZO checks
+*** FLOP *** [Td Qs Js]
+MRZO checks
+TinusLMB checks
+*** TURN *** [Td Qs Js][Ah]
+MRZO checks
+TinusLMB bets 20
+MRZO folds
+TinusLMB collected 70 from pot
+*** SUMMARY ***
+Total pot 70 | No rake
+Board: [Td Qs Js Ah]
+Seat 3: TinusLMB (button) won 70
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830502481760878593-5-1780995542 - Holdem no limit (15/30) - 2026/06/09 08:59:02 UTC
+Table: 'Expresso(1124689002)#0' 3-max (real money) Seat #1 is the button
+Seat 1: BigFishWin (490)
+Seat 2: MRZO (500)
+Seat 3: TinusLMB (510)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+TinusLMB posts big blind 30
+Dealt to MRZO [7h 4c]
+*** PRE-FLOP *** 
+BigFishWin raises 30 to 60
+MRZO folds
+TinusLMB calls 30
+*** FLOP *** [Jd 9c 3c]
+TinusLMB bets 30
+BigFishWin calls 30
+*** TURN *** [Jd 9c 3c][7c]
+TinusLMB checks
+BigFishWin bets 45
+TinusLMB raises 45 to 90
+BigFishWin calls 45
+*** RIVER *** [Jd 9c 3c 7c][3h]
+TinusLMB bets 330 and is all-in
+BigFishWin calls 310 and is all-in
+*** SHOW DOWN ***
+BigFishWin shows [Ac 8c] (Flush Ace high)
+TinusLMB shows [Jh Ah] (Two pairs : Jacks and 3)
+TinusLMB collected 20 from side pot 1
+BigFishWin collected 995 from main pot
+*** SUMMARY ***
+Total pot 1015 | No rake
+Board: [Jd 9c 3c 7c 3h]
+Seat 1: BigFishWin (button) showed [Ac 8c] and won 995 with Flush Ace high
+Seat 3: TinusLMB (big blind) showed [Jh Ah] and won 20 with Two pairs : Jacks and 3
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830502481760878593-6-1780995578 - Holdem no limit (15/30) - 2026/06/09 08:59:38 UTC
+Table: 'Expresso(1124689002)#0' 3-max (real money) Seat #2 is the button
+Seat 1: BigFishWin (995)
+Seat 2: MRZO (485)
+Seat 3: TinusLMB (20)
+*** ANTE/BLINDS ***
+TinusLMB posts small blind 15
+BigFishWin posts big blind 30
+Dealt to MRZO [Kh 9s]
+*** PRE-FLOP *** 
+MRZO raises 30 to 60
+TinusLMB calls 5 and is all-in
+BigFishWin calls 30
+*** FLOP *** [3c 4s 8c]
+BigFishWin checks
+MRZO checks
+*** TURN *** [3c 4s 8c][Th]
+BigFishWin bets 45
+MRZO folds
+*** RIVER *** [3c 4s 8c Th][8d]
+*** SHOW DOWN ***
+TinusLMB shows [Ts 4d] (Two pairs : Tens and 8)
+BigFishWin shows [Qh Td] (Two pairs : Tens and 8)
+BigFishWin collected 185 from pot
+*** SUMMARY ***
+Total pot 185 | No rake
+Board: [3c 4s 8c Th 8d]
+Seat 1: BigFishWin (big blind) showed [Qh Td] and won 185 with Two pairs : Tens and 8
+Seat 3: TinusLMB (small blind) showed [Ts 4d] and lost with Two pairs : Tens and 8
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830502481760878593-7-1780995618 - Holdem no limit (15/30) - 2026/06/09 09:00:18 UTC
+Table: 'Expresso(1124689002)#0' 3-max (real money) Seat #1 is the button
+Seat 1: BigFishWin (1075)
+Seat 2: MRZO (425)
+*** ANTE/BLINDS ***
+BigFishWin posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [8h 3c]
+*** PRE-FLOP *** 
+BigFishWin folds
+MRZO collected 45 from pot
+*** SUMMARY ***
+Total pot 45 | No rake
+Seat 2: MRZO (big blind) won 45
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830502481760878593-8-1780995623 - Holdem no limit (15/30) - 2026/06/09 09:00:23 UTC
+Table: 'Expresso(1124689002)#0' 3-max (real money) Seat #2 is the button
+Seat 1: BigFishWin (1060)
+Seat 2: MRZO (440)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+BigFishWin posts big blind 30
+Dealt to MRZO [Jc 6d]
+*** PRE-FLOP *** 
+MRZO calls 15
+BigFishWin checks
+*** FLOP *** [2c 2s 3d]
+BigFishWin checks
+MRZO checks
+*** TURN *** [2c 2s 3d][8c]
+BigFishWin checks
+MRZO checks
+*** RIVER *** [2c 2s 3d 8c][5d]
+BigFishWin checks
+MRZO checks
+*** SHOW DOWN ***
+BigFishWin shows [9c 4d] (One pair : 2)
+MRZO shows [Jc 6d] (One pair : 2)
+MRZO collected 60 from pot
+*** SUMMARY ***
+Total pot 60 | No rake
+Board: [2c 2s 3d 8c 5d]
+Seat 1: BigFishWin (big blind) showed [9c 4d] and lost with One pair : 2
+Seat 2: MRZO (small blind) (button) showed [Jc 6d] and won 60 with One pair : 2
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830502481760878593-9-1780995648 - Holdem no limit (20/40) - 2026/06/09 09:00:48 UTC
+Table: 'Expresso(1124689002)#0' 3-max (real money) Seat #1 is the button
+Seat 1: BigFishWin (1030)
+Seat 2: MRZO (470)
+*** ANTE/BLINDS ***
+BigFishWin posts small blind 20
+MRZO posts big blind 40
+Dealt to MRZO [4d 3c]
+*** PRE-FLOP *** 
+BigFishWin folds
+MRZO collected 60 from pot
+*** SUMMARY ***
+Total pot 60 | No rake
+Seat 2: MRZO (big blind) won 60
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830502481760878593-10-1780995658 - Holdem no limit (20/40) - 2026/06/09 09:00:58 UTC
+Table: 'Expresso(1124689002)#0' 3-max (real money) Seat #2 is the button
+Seat 1: BigFishWin (1010)
+Seat 2: MRZO (490)
+*** ANTE/BLINDS ***
+MRZO posts small blind 20
+BigFishWin posts big blind 40
+Dealt to MRZO [Jc Ah]
+*** PRE-FLOP *** 
+MRZO raises 450 to 490 and is all-in
+BigFishWin folds
+MRZO collected 530 from pot
+*** SUMMARY ***
+Total pot 530 | No rake
+Seat 2: MRZO (small blind) (button) won 530
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830502481760878593-11-1780995664 - Holdem no limit (20/40) - 2026/06/09 09:01:04 UTC
+Table: 'Expresso(1124689002)#0' 3-max (real money) Seat #1 is the button
+Seat 1: BigFishWin (970)
+Seat 2: MRZO (530)
+*** ANTE/BLINDS ***
+BigFishWin posts small blind 20
+MRZO posts big blind 40
+Dealt to MRZO [4d Kd]
+*** PRE-FLOP *** 
+BigFishWin raises 930 to 970 and is all-in
+MRZO folds
+BigFishWin collected 1010 from pot
+*** SUMMARY ***
+Total pot 1010 | No rake
+Seat 1: BigFishWin (small blind) (button) won 1010
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830502481760878593-12-1780995673 - Holdem no limit (20/40) - 2026/06/09 09:01:13 UTC
+Table: 'Expresso(1124689002)#0' 3-max (real money) Seat #2 is the button
+Seat 1: BigFishWin (1010)
+Seat 2: MRZO (490)
+*** ANTE/BLINDS ***
+MRZO posts small blind 20
+BigFishWin posts big blind 40
+Dealt to MRZO [8h 4d]
+*** PRE-FLOP *** 
+MRZO folds
+BigFishWin collected 60 from pot
+*** SUMMARY ***
+Total pot 60 | No rake
+Seat 1: BigFishWin (big blind) won 60
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830502481760878593-13-1780995677 - Holdem no limit (20/40) - 2026/06/09 09:01:17 UTC
+Table: 'Expresso(1124689002)#0' 3-max (real money) Seat #1 is the button
+Seat 1: BigFishWin (1030)
+Seat 2: MRZO (470)
+*** ANTE/BLINDS ***
+BigFishWin posts small blind 20
+MRZO posts big blind 40
+Dealt to MRZO [Jd 3c]
+*** PRE-FLOP *** 
+BigFishWin folds
+MRZO collected 60 from pot
+*** SUMMARY ***
+Total pot 60 | No rake
+Seat 2: MRZO (big blind) won 60
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830502481760878593-14-1780995681 - Holdem no limit (20/40) - 2026/06/09 09:01:21 UTC
+Table: 'Expresso(1124689002)#0' 3-max (real money) Seat #2 is the button
+Seat 1: BigFishWin (1010)
+Seat 2: MRZO (490)
+*** ANTE/BLINDS ***
+MRZO posts small blind 20
+BigFishWin posts big blind 40
+Dealt to MRZO [As Ac]
+*** PRE-FLOP *** 
+MRZO raises 60 to 100
+BigFishWin calls 60
+*** FLOP *** [6d 7c Td]
+BigFishWin checks
+MRZO bets 100
+BigFishWin folds
+MRZO collected 300 from pot
+*** SUMMARY ***
+Total pot 300 | No rake
+Board: [6d 7c Td]
+Seat 2: MRZO (small blind) (button) won 300
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830502481760878593-15-1780995693 - Holdem no limit (20/40) - 2026/06/09 09:01:33 UTC
+Table: 'Expresso(1124689002)#0' 3-max (real money) Seat #1 is the button
+Seat 1: BigFishWin (910)
+Seat 2: MRZO (590)
+*** ANTE/BLINDS ***
+BigFishWin posts small blind 20
+MRZO posts big blind 40
+Dealt to MRZO [8c 9c]
+*** PRE-FLOP *** 
+BigFishWin raises 870 to 910 and is all-in
+MRZO folds
+BigFishWin collected 950 from pot
+*** SUMMARY ***
+Total pot 950 | No rake
+Seat 1: BigFishWin (small blind) (button) won 950
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830502481760878593-16-1780995699 - Holdem no limit (20/40) - 2026/06/09 09:01:39 UTC
+Table: 'Expresso(1124689002)#0' 3-max (real money) Seat #2 is the button
+Seat 1: BigFishWin (950)
+Seat 2: MRZO (550)
+*** ANTE/BLINDS ***
+MRZO posts small blind 20
+BigFishWin posts big blind 40
+Dealt to MRZO [Ah Ks]
+*** PRE-FLOP *** 
+MRZO raises 510 to 550 and is all-in
+BigFishWin folds
+MRZO collected 590 from pot
+*** SUMMARY ***
+Total pot 590 | No rake
+Seat 2: MRZO (small blind) (button) won 590
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830502481760878593-17-1780995705 - Holdem no limit (20/40) - 2026/06/09 09:01:45 UTC
+Table: 'Expresso(1124689002)#0' 3-max (real money) Seat #1 is the button
+Seat 1: BigFishWin (910)
+Seat 2: MRZO (590)
+*** ANTE/BLINDS ***
+BigFishWin posts small blind 20
+MRZO posts big blind 40
+Dealt to MRZO [Qh 5h]
+*** PRE-FLOP *** 
+BigFishWin raises 870 to 910 and is all-in
+MRZO folds
+BigFishWin collected 950 from pot
+*** SUMMARY ***
+Total pot 950 | No rake
+Seat 1: BigFishWin (small blind) (button) won 950
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830502481760878593-18-1780995711 - Holdem no limit (20/40) - 2026/06/09 09:01:51 UTC
+Table: 'Expresso(1124689002)#0' 3-max (real money) Seat #2 is the button
+Seat 1: BigFishWin (950)
+Seat 2: MRZO (550)
+*** ANTE/BLINDS ***
+MRZO posts small blind 20
+BigFishWin posts big blind 40
+Dealt to MRZO [Qs 3c]
+*** PRE-FLOP *** 
+MRZO calls 20
+BigFishWin checks
+*** FLOP *** [6c Kc Th]
+BigFishWin checks
+MRZO bets 40
+BigFishWin folds
+MRZO collected 120 from pot
+*** SUMMARY ***
+Total pot 120 | No rake
+Board: [6c Kc Th]
+Seat 2: MRZO (small blind) (button) won 120
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830502481760878593-19-1780995719 - Holdem no limit (30/60) - 2026/06/09 09:01:59 UTC
+Table: 'Expresso(1124689002)#0' 3-max (real money) Seat #1 is the button
+Seat 1: BigFishWin (910)
+Seat 2: MRZO (590)
+*** ANTE/BLINDS ***
+BigFishWin posts small blind 30
+MRZO posts big blind 60
+Dealt to MRZO [4c Kc]
+*** PRE-FLOP *** 
+BigFishWin raises 850 to 910 and is all-in
+MRZO calls 530 and is all-in
+*** FLOP *** [2s 5d Jh]
+*** TURN *** [2s 5d Jh][7d]
+*** RIVER *** [2s 5d Jh 7d][Td]
+*** SHOW DOWN ***
+MRZO shows [4c Kc] (High card : King)
+BigFishWin shows [As 3d] (High card : Ace)
+BigFishWin collected 1500 from pot
+*** SUMMARY ***
+Total pot 1500 | No rake
+Board: [2s 5d Jh 7d Td]
+Seat 1: BigFishWin (small blind) (button) showed [As 3d] and won 1500 with High card : Ace
+Seat 2: MRZO (big blind) showed [4c Kc] and lost with High card : King
+
+

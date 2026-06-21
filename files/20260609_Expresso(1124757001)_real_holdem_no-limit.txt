@@ -1,0 +1,172 @@
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830794535242039297-1-1781003459 - Holdem no limit (10/20) - 2026/06/09 11:10:59 UTC
+Table: 'Expresso(1124757001)#0' 3-max (real money) Seat #1 is the button
+Seat 1: leTCHAKAL (500)
+Seat 2: MRZO (500)
+Seat 3: PapaEcho (500)
+*** ANTE/BLINDS ***
+MRZO posts small blind 10
+PapaEcho posts big blind 20
+Dealt to MRZO [4d Jc]
+*** PRE-FLOP *** 
+leTCHAKAL raises 40 to 60
+MRZO folds
+PapaEcho calls 40
+*** FLOP *** [2d 9d 6c]
+PapaEcho checks
+leTCHAKAL bets 46
+PapaEcho calls 46
+*** TURN *** [2d 9d 6c][8h]
+PapaEcho checks
+leTCHAKAL bets 78
+PapaEcho folds
+leTCHAKAL collected 300 from pot
+*** SUMMARY ***
+Total pot 300 | No rake
+Board: [2d 9d 6c 8h]
+Seat 1: leTCHAKAL (button) won 300
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830794535242039297-2-1781003475 - Holdem no limit (10/20) - 2026/06/09 11:11:15 UTC
+Table: 'Expresso(1124757001)#0' 3-max (real money) Seat #2 is the button
+Seat 1: leTCHAKAL (616)
+Seat 2: MRZO (490)
+Seat 3: PapaEcho (394)
+*** ANTE/BLINDS ***
+PapaEcho posts small blind 10
+leTCHAKAL posts big blind 20
+Dealt to MRZO [Tc 3d]
+*** PRE-FLOP *** 
+MRZO folds
+PapaEcho raises 20 to 40
+leTCHAKAL folds
+PapaEcho collected 60 from pot
+*** SUMMARY ***
+Total pot 60 | No rake
+Seat 3: PapaEcho (small blind) won 60
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830794535242039297-3-1781003487 - Holdem no limit (10/20) - 2026/06/09 11:11:27 UTC
+Table: 'Expresso(1124757001)#0' 3-max (real money) Seat #3 is the button
+Seat 1: leTCHAKAL (596)
+Seat 2: MRZO (490)
+Seat 3: PapaEcho (414)
+*** ANTE/BLINDS ***
+leTCHAKAL posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [Qc Ts]
+*** PRE-FLOP *** 
+PapaEcho folds
+leTCHAKAL folds
+MRZO collected 30 from pot
+*** SUMMARY ***
+Total pot 30 | No rake
+Seat 2: MRZO (big blind) won 30
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830794535242039297-4-1781003493 - Holdem no limit (10/20) - 2026/06/09 11:11:33 UTC
+Table: 'Expresso(1124757001)#0' 3-max (real money) Seat #1 is the button
+Seat 1: leTCHAKAL (586)
+Seat 2: MRZO (500)
+Seat 3: PapaEcho (414)
+*** ANTE/BLINDS ***
+MRZO posts small blind 10
+PapaEcho posts big blind 20
+Dealt to MRZO [Ts 2h]
+*** PRE-FLOP *** 
+leTCHAKAL folds
+MRZO folds
+PapaEcho collected 30 from pot
+*** SUMMARY ***
+Total pot 30 | No rake
+Seat 3: PapaEcho (big blind) won 30
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830794535242039297-5-1781003498 - Holdem no limit (10/20) - 2026/06/09 11:11:38 UTC
+Table: 'Expresso(1124757001)#0' 3-max (real money) Seat #2 is the button
+Seat 1: leTCHAKAL (586)
+Seat 2: MRZO (490)
+Seat 3: PapaEcho (424)
+*** ANTE/BLINDS ***
+PapaEcho posts small blind 10
+leTCHAKAL posts big blind 20
+Dealt to MRZO [Qc 6h]
+*** PRE-FLOP *** 
+MRZO folds
+PapaEcho raises 20 to 40
+leTCHAKAL calls 20
+*** FLOP *** [Jh Js 6d]
+PapaEcho checks
+leTCHAKAL checks
+*** TURN *** [Jh Js 6d][2s]
+PapaEcho checks
+leTCHAKAL bets 28
+PapaEcho folds
+leTCHAKAL collected 108 from pot
+*** SUMMARY ***
+Total pot 108 | No rake
+Board: [Jh Js 6d 2s]
+Seat 1: leTCHAKAL (big blind) won 108
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830794535242039297-6-1781003522 - Holdem no limit (10/20) - 2026/06/09 11:12:02 UTC
+Table: 'Expresso(1124757001)#0' 3-max (real money) Seat #3 is the button
+Seat 1: leTCHAKAL (626)
+Seat 2: MRZO (490)
+Seat 3: PapaEcho (384)
+*** ANTE/BLINDS ***
+leTCHAKAL posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [5s 9h]
+*** PRE-FLOP *** 
+PapaEcho raises 20 to 40
+leTCHAKAL raises 80 to 120
+MRZO folds
+PapaEcho calls 80
+*** FLOP *** [As 2h 7s]
+leTCHAKAL bets 91
+PapaEcho raises 173 to 264 and is all-in
+leTCHAKAL calls 173
+*** TURN *** [As 2h 7s][6c]
+*** RIVER *** [As 2h 7s 6c][7h]
+*** SHOW DOWN ***
+PapaEcho shows [3h Ah] (Two pairs : Aces and 7)
+leTCHAKAL shows [Kh Ad] (Two pairs : Aces and 7)
+leTCHAKAL collected 788 from pot
+*** SUMMARY ***
+Total pot 788 | No rake
+Board: [As 2h 7s 6c 7h]
+Seat 1: leTCHAKAL (small blind) showed [Kh Ad] and won 788 with Two pairs : Aces and 7
+Seat 3: PapaEcho (button) showed [3h Ah] and lost with Two pairs : Aces and 7
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830794535242039297-7-1781003549 - Holdem no limit (15/30) - 2026/06/09 11:12:29 UTC
+Table: 'Expresso(1124757001)#0' 3-max (real money) Seat #2 is the button
+Seat 1: leTCHAKAL (1030)
+Seat 2: MRZO (470)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+leTCHAKAL posts big blind 30
+Dealt to MRZO [Js Td]
+*** PRE-FLOP *** 
+MRZO raises 30 to 60
+leTCHAKAL calls 30
+*** FLOP *** [Jh 7c 9s]
+leTCHAKAL checks
+MRZO bets 42
+leTCHAKAL calls 42
+*** TURN *** [Jh 7c 9s][6d]
+leTCHAKAL bets 133
+MRZO raises 235 to 368 and is all-in
+leTCHAKAL calls 235
+*** RIVER *** [Jh 7c 9s 6d][Qh]
+*** SHOW DOWN ***
+MRZO shows [Js Td] (One pair : Jacks)
+leTCHAKAL shows [7s Jd] (Two pairs : Jacks and 7)
+leTCHAKAL collected 940 from pot
+*** SUMMARY ***
+Total pot 940 | No rake
+Board: [Jh 7c 9s 6d Qh]
+Seat 1: leTCHAKAL (big blind) showed [7s Jd] and won 940 with Two pairs : Jacks and 7
+Seat 2: MRZO (small blind) (button) showed [Js Td] and lost with One pair : Jacks
+
+

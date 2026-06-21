@@ -1,0 +1,290 @@
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830743352116772865-1-1781002232 - Holdem no limit (10/20) - 2026/06/09 10:50:32 UTC
+Table: 'Expresso(1124745084)#0' 3-max (real money) Seat #1 is the button
+Seat 1: Mister_Fly (500)
+Seat 2: Stay_Focusss (500)
+Seat 3: MRZO (500)
+*** ANTE/BLINDS ***
+Stay_Focusss posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [9h 7s]
+*** PRE-FLOP *** 
+Mister_Fly folds
+Stay_Focusss folds
+MRZO collected 30 from pot
+*** SUMMARY ***
+Total pot 30 | No rake
+Seat 3: MRZO (big blind) won 30
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830743352116772865-2-1781002240 - Holdem no limit (10/20) - 2026/06/09 10:50:40 UTC
+Table: 'Expresso(1124745084)#0' 3-max (real money) Seat #2 is the button
+Seat 1: Mister_Fly (500)
+Seat 2: Stay_Focusss (490)
+Seat 3: MRZO (510)
+*** ANTE/BLINDS ***
+MRZO posts small blind 10
+Mister_Fly posts big blind 20
+Dealt to MRZO [2s Jd]
+*** PRE-FLOP *** 
+Stay_Focusss raises 20 to 40
+MRZO folds
+Mister_Fly calls 20
+*** FLOP *** [Tc Ts Td]
+Mister_Fly checks
+Stay_Focusss bets 45
+Mister_Fly calls 45
+*** TURN *** [Tc Ts Td][2c]
+Mister_Fly checks
+Stay_Focusss bets 63
+Mister_Fly calls 63
+*** RIVER *** [Tc Ts Td 2c][3h]
+Mister_Fly checks
+Stay_Focusss checks
+*** SHOW DOWN ***
+Mister_Fly shows [6h Jh] (Trips of Tens)
+Stay_Focusss shows [7s 7d] (Full of Tens and 7)
+Stay_Focusss collected 306 from pot
+*** SUMMARY ***
+Total pot 306 | No rake
+Board: [Tc Ts Td 2c 3h]
+Seat 1: Mister_Fly (big blind) showed [6h Jh] and lost with Trips of Tens
+Seat 2: Stay_Focusss (button) showed [7s 7d] and won 306 with Full of Tens and 7
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830743352116772865-3-1781002270 - Holdem no limit (10/20) - 2026/06/09 10:51:10 UTC
+Table: 'Expresso(1124745084)#0' 3-max (real money) Seat #3 is the button
+Seat 1: Mister_Fly (352)
+Seat 2: Stay_Focusss (648)
+Seat 3: MRZO (500)
+*** ANTE/BLINDS ***
+Mister_Fly posts small blind 10
+Stay_Focusss posts big blind 20
+Dealt to MRZO [8s 8c]
+*** PRE-FLOP *** 
+MRZO raises 30 to 50
+Mister_Fly calls 40
+Stay_Focusss folds
+*** FLOP *** [Ks Qh 7c]
+Mister_Fly checks
+MRZO checks
+*** TURN *** [Ks Qh 7c][7h]
+Mister_Fly bets 40
+MRZO calls 40
+*** RIVER *** [Ks Qh 7c 7h][2c]
+Mister_Fly checks
+MRZO checks
+*** SHOW DOWN ***
+Mister_Fly shows [3h Ah] (One pair : 7)
+MRZO shows [8s 8c] (Two pairs : 8 and 7)
+MRZO collected 200 from pot
+*** SUMMARY ***
+Total pot 200 | No rake
+Board: [Ks Qh 7c 7h 2c]
+Seat 1: Mister_Fly (small blind) showed [3h Ah] and lost with One pair : 7
+Seat 3: MRZO (button) showed [8s 8c] and won 200 with Two pairs : 8 and 7
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830743352116772865-4-1781002298 - Holdem no limit (10/20) - 2026/06/09 10:51:38 UTC
+Table: 'Expresso(1124745084)#0' 3-max (real money) Seat #1 is the button
+Seat 1: Mister_Fly (262)
+Seat 2: Stay_Focusss (628)
+Seat 3: MRZO (610)
+*** ANTE/BLINDS ***
+Stay_Focusss posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [8s Qd]
+*** PRE-FLOP *** 
+Mister_Fly calls 20
+Stay_Focusss calls 10
+MRZO checks
+*** FLOP *** [Jh 6h 9h]
+Stay_Focusss checks
+MRZO checks
+Mister_Fly bets 60
+Stay_Focusss folds
+MRZO folds
+Mister_Fly collected 120 from pot
+*** SUMMARY ***
+Total pot 120 | No rake
+Board: [Jh 6h 9h]
+Seat 1: Mister_Fly (button) won 120
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830743352116772865-5-1781002327 - Holdem no limit (15/30) - 2026/06/09 10:52:07 UTC
+Table: 'Expresso(1124745084)#0' 3-max (real money) Seat #2 is the button
+Seat 1: Mister_Fly (302)
+Seat 2: Stay_Focusss (608)
+Seat 3: MRZO (590)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+Mister_Fly posts big blind 30
+Dealt to MRZO [3d 2s]
+*** PRE-FLOP *** 
+Stay_Focusss raises 30 to 60
+MRZO folds
+Mister_Fly folds
+Stay_Focusss collected 105 from pot
+*** SUMMARY ***
+Total pot 105 | No rake
+Seat 2: Stay_Focusss (button) won 105
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830743352116772865-6-1781002338 - Holdem no limit (15/30) - 2026/06/09 10:52:18 UTC
+Table: 'Expresso(1124745084)#0' 3-max (real money) Seat #3 is the button
+Seat 1: Mister_Fly (272)
+Seat 2: Stay_Focusss (653)
+Seat 3: MRZO (575)
+*** ANTE/BLINDS ***
+Mister_Fly posts small blind 15
+Stay_Focusss posts big blind 30
+Dealt to MRZO [6s 7h]
+*** PRE-FLOP *** 
+MRZO folds
+Mister_Fly calls 15
+Stay_Focusss raises 38 to 68
+Mister_Fly raises 204 to 272 and is all-in
+Stay_Focusss raises 204 to 476
+*** FLOP *** [5c 3d 5h]
+*** TURN *** [5c 3d 5h][Ks]
+*** RIVER *** [5c 3d 5h Ks][6c]
+*** SHOW DOWN ***
+Mister_Fly shows [Kd Tc] (Two pairs : Kings and 5)
+Stay_Focusss shows [As Ah] (Two pairs : Aces and 5)
+Stay_Focusss collected 748 from pot
+*** SUMMARY ***
+Total pot 748 | No rake
+Board: [5c 3d 5h Ks 6c]
+Seat 1: Mister_Fly (small blind) showed [Kd Tc] and lost with Two pairs : Kings and 5
+Seat 2: Stay_Focusss (big blind) showed [As Ah] and won 748 with Two pairs : Aces and 5
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830743352116772865-7-1781002363 - Holdem no limit (15/30) - 2026/06/09 10:52:43 UTC
+Table: 'Expresso(1124745084)#0' 3-max (real money) Seat #2 is the button
+Seat 2: Stay_Focusss (925)
+Seat 3: MRZO (575)
+*** ANTE/BLINDS ***
+Stay_Focusss posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [5d 8s]
+*** PRE-FLOP *** 
+Stay_Focusss raises 30 to 60
+MRZO folds
+Stay_Focusss collected 90 from pot
+*** SUMMARY ***
+Total pot 90 | No rake
+Seat 2: Stay_Focusss (small blind) (button) won 90
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830743352116772865-8-1781002375 - Holdem no limit (15/30) - 2026/06/09 10:52:55 UTC
+Table: 'Expresso(1124745084)#0' 3-max (real money) Seat #3 is the button
+Seat 2: Stay_Focusss (955)
+Seat 3: MRZO (545)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+Stay_Focusss posts big blind 30
+Dealt to MRZO [Td Ks]
+*** PRE-FLOP *** 
+MRZO raises 45 to 75
+Stay_Focusss folds
+MRZO collected 105 from pot
+*** SUMMARY ***
+Total pot 105 | No rake
+Seat 3: MRZO (small blind) (button) won 105
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830743352116772865-9-1781002381 - Holdem no limit (15/30) - 2026/06/09 10:53:01 UTC
+Table: 'Expresso(1124745084)#0' 3-max (real money) Seat #2 is the button
+Seat 2: Stay_Focusss (925)
+Seat 3: MRZO (575)
+*** ANTE/BLINDS ***
+Stay_Focusss posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [Tc 6c]
+*** PRE-FLOP *** 
+Stay_Focusss raises 30 to 60
+MRZO calls 30
+*** FLOP *** [As Ad 5c]
+MRZO checks
+Stay_Focusss bets 30
+MRZO calls 30
+*** TURN *** [As Ad 5c][8s]
+MRZO checks
+Stay_Focusss checks
+*** RIVER *** [As Ad 5c 8s][7d]
+MRZO bets 117
+Stay_Focusss calls 117
+*** SHOW DOWN ***
+MRZO shows [Tc 6c] (One pair : Aces)
+Stay_Focusss shows [2c Ac] (Trips of Aces)
+Stay_Focusss collected 414 from pot
+*** SUMMARY ***
+Total pot 414 | No rake
+Board: [As Ad 5c 8s 7d]
+Seat 2: Stay_Focusss (small blind) (button) showed [2c Ac] and won 414 with Trips of Aces
+Seat 3: MRZO (big blind) showed [Tc 6c] and lost with One pair : Aces
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830743352116772865-10-1781002404 - Holdem no limit (15/30) - 2026/06/09 10:53:24 UTC
+Table: 'Expresso(1124745084)#0' 3-max (real money) Seat #3 is the button
+Seat 2: Stay_Focusss (1132)
+Seat 3: MRZO (368)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+Stay_Focusss posts big blind 30
+Dealt to MRZO [Ah 5s]
+*** PRE-FLOP *** 
+MRZO raises 338 to 368 and is all-in
+Stay_Focusss folds
+MRZO collected 398 from pot
+*** SUMMARY ***
+Total pot 398 | No rake
+Seat 3: MRZO (small blind) (button) won 398
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830743352116772865-11-1781002413 - Holdem no limit (20/40) - 2026/06/09 10:53:33 UTC
+Table: 'Expresso(1124745084)#0' 3-max (real money) Seat #2 is the button
+Seat 2: Stay_Focusss (1102)
+Seat 3: MRZO (398)
+*** ANTE/BLINDS ***
+Stay_Focusss posts small blind 20
+MRZO posts big blind 40
+Dealt to MRZO [Jh 8h]
+*** PRE-FLOP *** 
+Stay_Focusss raises 40 to 80
+MRZO calls 40
+*** FLOP *** [2h 3c Qs]
+MRZO checks
+Stay_Focusss bets 56
+MRZO folds
+Stay_Focusss collected 216 from pot
+*** SUMMARY ***
+Total pot 216 | No rake
+Board: [2h 3c Qs]
+Seat 2: Stay_Focusss (small blind) (button) won 216
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830743352116772865-12-1781002428 - Holdem no limit (20/40) - 2026/06/09 10:53:48 UTC
+Table: 'Expresso(1124745084)#0' 3-max (real money) Seat #3 is the button
+Seat 2: Stay_Focusss (1182)
+Seat 3: MRZO (318)
+*** ANTE/BLINDS ***
+MRZO posts small blind 20
+Stay_Focusss posts big blind 40
+Dealt to MRZO [Ah 5s]
+*** PRE-FLOP *** 
+MRZO raises 278 to 318 and is all-in
+Stay_Focusss raises 278 to 596
+*** FLOP *** [Qd Ks 6c]
+*** TURN *** [Qd Ks 6c][4d]
+*** RIVER *** [Qd Ks 6c 4d][8c]
+*** SHOW DOWN ***
+MRZO shows [Ah 5s] (High card : Ace)
+Stay_Focusss shows [9c As] (High card : Ace)
+Stay_Focusss collected 914 from pot
+*** SUMMARY ***
+Total pot 914 | No rake
+Board: [Qd Ks 6c 4d 8c]
+Seat 2: Stay_Focusss (big blind) showed [9c As] and won 914 with High card : Ace
+Seat 3: MRZO (small blind) (button) showed [Ah 5s] and lost with High card : Ace
+
+

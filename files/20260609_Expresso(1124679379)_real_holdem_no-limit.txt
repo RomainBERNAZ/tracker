@@ -1,0 +1,36 @@
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830461151290589185-1-1780994224 - Holdem no limit (10/20) - 2026/06/09 08:37:04 UTC
+Table: 'Expresso(1124679379)#0' 3-max (real money) Seat #3 is the button
+Seat 1: J.SitPasBon (500)
+Seat 2: MRZO (500)
+Seat 3: -BLacK-Kat- (500)
+*** ANTE/BLINDS ***
+J.SitPasBon posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [5s Ks]
+*** PRE-FLOP *** 
+-BLacK-Kat- raises 30 to 50
+J.SitPasBon calls 40
+MRZO calls 30
+*** FLOP *** [Th Jc Kh]
+J.SitPasBon checks
+MRZO checks
+-BLacK-Kat- bets 75
+J.SitPasBon folds
+MRZO calls 75
+*** TURN *** [Th Jc Kh][5h]
+MRZO checks
+-BLacK-Kat- bets 150
+MRZO raises 225 to 375 and is all-in
+-BLacK-Kat- calls 225 and is all-in
+*** RIVER *** [Th Jc Kh 5h][9s]
+*** SHOW DOWN ***
+MRZO shows [5s Ks] (Two pairs : Kings and 5)
+-BLacK-Kat- shows [Js Kd] (Two pairs : Kings and Jacks)
+-BLacK-Kat- collected 1050 from pot
+*** SUMMARY ***
+Total pot 1050 | No rake
+Board: [Th Jc Kh 5h 9s]
+Seat 2: MRZO (big blind) showed [5s Ks] and lost with Two pairs : Kings and 5
+Seat 3: -BLacK-Kat- (button) showed [Js Kd] and won 1050 with Two pairs : Kings and Jacks
+
+

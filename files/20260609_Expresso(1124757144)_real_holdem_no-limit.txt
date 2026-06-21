@@ -1,0 +1,244 @@
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830795149422362625-1-1781003473 - Holdem no limit (10/20) - 2026/06/09 11:11:13 UTC
+Table: 'Expresso(1124757144)#0' 3-max (real money) Seat #2 is the button
+Seat 1: kai911 (500)
+Seat 2: MRZO (500)
+Seat 3: Benaillon (500)
+*** ANTE/BLINDS ***
+Benaillon posts small blind 10
+kai911 posts big blind 20
+Dealt to MRZO [2d 9d]
+*** PRE-FLOP *** 
+MRZO folds
+Benaillon calls 10
+kai911 checks
+*** FLOP *** [7s 5c Ac]
+Benaillon checks
+kai911 bets 26
+Benaillon calls 26
+*** TURN *** [7s 5c Ac][Jc]
+Benaillon checks
+kai911 checks
+*** RIVER *** [7s 5c Ac Jc][4s]
+Benaillon checks
+kai911 bets 60
+Benaillon folds
+kai911 collected 152 from pot
+*** SUMMARY ***
+Total pot 152 | No rake
+Board: [7s 5c Ac Jc 4s]
+Seat 1: kai911 (big blind) won 152
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830795149422362625-2-1781003541 - Holdem no limit (10/20) - 2026/06/09 11:12:21 UTC
+Table: 'Expresso(1124757144)#0' 3-max (real money) Seat #3 is the button
+Seat 1: kai911 (546)
+Seat 2: MRZO (500)
+Seat 3: Benaillon (454)
+*** ANTE/BLINDS ***
+kai911 posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [4d 5s]
+*** PRE-FLOP *** 
+Benaillon folds
+kai911 calls 10
+MRZO checks
+*** FLOP *** [Ks 6d 2s]
+kai911 checks
+MRZO checks
+*** TURN *** [Ks 6d 2s][Qs]
+kai911 checks
+MRZO checks
+*** RIVER *** [Ks 6d 2s Qs][Qh]
+kai911 checks
+MRZO checks
+*** SHOW DOWN ***
+MRZO shows [4d 5s] (One pair : Queens)
+kai911 shows [9d Tc] (One pair : Queens)
+kai911 collected 40 from pot
+*** SUMMARY ***
+Total pot 40 | No rake
+Board: [Ks 6d 2s Qs Qh]
+Seat 1: kai911 (small blind) showed [9d Tc] and won 40 with One pair : Queens
+Seat 2: MRZO (big blind) showed [4d 5s] and lost with One pair : Queens
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830795149422362625-3-1781003583 - Holdem no limit (15/30) - 2026/06/09 11:13:03 UTC
+Table: 'Expresso(1124757144)#0' 3-max (real money) Seat #1 is the button
+Seat 1: kai911 (566)
+Seat 2: MRZO (480)
+Seat 3: Benaillon (454)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+Benaillon posts big blind 30
+Dealt to MRZO [Qd Tc]
+*** PRE-FLOP *** 
+kai911 calls 30
+MRZO calls 15
+Benaillon checks
+*** FLOP *** [3c 9d Jc]
+MRZO checks
+Benaillon checks
+kai911 bets 59
+MRZO calls 59
+Benaillon folds
+*** TURN *** [3c 9d Jc][4s]
+MRZO checks
+kai911 checks
+*** RIVER *** [3c 9d Jc 4s][7c]
+MRZO bets 166
+kai911 folds
+MRZO collected 374 from pot
+*** SUMMARY ***
+Total pot 374 | No rake
+Board: [3c 9d Jc 4s 7c]
+Seat 2: MRZO (small blind) won 374
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830795149422362625-4-1781003654 - Holdem no limit (20/40) - 2026/06/09 11:14:14 UTC
+Table: 'Expresso(1124757144)#0' 3-max (real money) Seat #2 is the button
+Seat 1: kai911 (477)
+Seat 2: MRZO (599)
+Seat 3: Benaillon (424)
+*** ANTE/BLINDS ***
+Benaillon posts small blind 20
+kai911 posts big blind 40
+Dealt to MRZO [Qs Ac]
+*** PRE-FLOP *** 
+MRZO raises 559 to 599 and is all-in
+Benaillon folds
+kai911 calls 437 and is all-in
+*** FLOP *** [7s Qh Kd]
+*** TURN *** [7s Qh Kd][2c]
+*** RIVER *** [7s Qh Kd 2c][Qd]
+*** SHOW DOWN ***
+kai911 shows [Tc Ad] (One pair : Queens)
+MRZO shows [Qs Ac] (Trips of Queens)
+MRZO collected 1096 from pot
+*** SUMMARY ***
+Total pot 1096 | No rake
+Board: [7s Qh Kd 2c Qd]
+Seat 1: kai911 (big blind) showed [Tc Ad] and lost with One pair : Queens
+Seat 2: MRZO (button) showed [Qs Ac] and won 1096 with Trips of Queens
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830795149422362625-5-1781003682 - Holdem no limit (20/40) - 2026/06/09 11:14:42 UTC
+Table: 'Expresso(1124757144)#0' 3-max (real money) Seat #2 is the button
+Seat 2: MRZO (1096)
+Seat 3: Benaillon (404)
+*** ANTE/BLINDS ***
+MRZO posts small blind 20
+Benaillon posts big blind 40
+Dealt to MRZO [Ah 2d]
+*** PRE-FLOP *** 
+MRZO raises 1056 to 1096 and is all-in
+Benaillon folds
+MRZO collected 1136 from pot
+*** SUMMARY ***
+Total pot 1136 | No rake
+Seat 2: MRZO (small blind) (button) won 1136
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830795149422362625-6-1781003687 - Holdem no limit (20/40) - 2026/06/09 11:14:47 UTC
+Table: 'Expresso(1124757144)#0' 3-max (real money) Seat #3 is the button
+Seat 2: MRZO (1136)
+Seat 3: Benaillon (364)
+*** ANTE/BLINDS ***
+Benaillon posts small blind 20
+MRZO posts big blind 40
+Dealt to MRZO [Ts Kc]
+*** PRE-FLOP *** 
+Benaillon calls 20
+MRZO raises 1096 to 1136 and is all-in
+Benaillon folds
+MRZO collected 1176 from pot
+*** SUMMARY ***
+Total pot 1176 | No rake
+Seat 2: MRZO (big blind) won 1176
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830795149422362625-7-1781003695 - Holdem no limit (20/40) - 2026/06/09 11:14:55 UTC
+Table: 'Expresso(1124757144)#0' 3-max (real money) Seat #2 is the button
+Seat 2: MRZO (1176)
+Seat 3: Benaillon (324)
+*** ANTE/BLINDS ***
+MRZO posts small blind 20
+Benaillon posts big blind 40
+Dealt to MRZO [Jc 5h]
+*** PRE-FLOP *** 
+MRZO calls 20
+Benaillon checks
+*** FLOP *** [Ts 6h Ks]
+Benaillon checks
+MRZO checks
+*** TURN *** [Ts 6h Ks][Jh]
+Benaillon checks
+MRZO bets 52
+Benaillon calls 52
+*** RIVER *** [Ts 6h Ks Jh][Jd]
+Benaillon checks
+MRZO bets 1084 and is all-in
+Benaillon folds
+MRZO collected 1268 from pot
+*** SUMMARY ***
+Total pot 1268 | No rake
+Board: [Ts 6h Ks Jh Jd]
+Seat 2: MRZO (small blind) (button) won 1268
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830795149422362625-8-1781003728 - Holdem no limit (20/40) - 2026/06/09 11:15:28 UTC
+Table: 'Expresso(1124757144)#0' 3-max (real money) Seat #3 is the button
+Seat 2: MRZO (1268)
+Seat 3: Benaillon (232)
+*** ANTE/BLINDS ***
+Benaillon posts small blind 20
+MRZO posts big blind 40
+Dealt to MRZO [8d 5s]
+*** PRE-FLOP *** 
+Benaillon calls 20
+MRZO checks
+*** FLOP *** [5c 6d 6h]
+MRZO checks
+Benaillon checks
+*** TURN *** [5c 6d 6h][Ks]
+MRZO checks
+Benaillon bets 40
+MRZO calls 40
+*** RIVER *** [5c 6d 6h Ks][6c]
+MRZO checks
+Benaillon checks
+*** SHOW DOWN ***
+Benaillon shows [7s 9h] (Trips of 6)
+MRZO shows [8d 5s] (Full of 6 and 5)
+MRZO collected 160 from pot
+*** SUMMARY ***
+Total pot 160 | No rake
+Board: [5c 6d 6h Ks 6c]
+Seat 2: MRZO (big blind) showed [8d 5s] and won 160 with Full of 6 and 5
+Seat 3: Benaillon (small blind) (button) showed [7s 9h] and lost with Trips of 6
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830795149422362625-9-1781003743 - Holdem no limit (30/60) - 2026/06/09 11:15:43 UTC
+Table: 'Expresso(1124757144)#0' 3-max (real money) Seat #2 is the button
+Seat 2: MRZO (1348)
+Seat 3: Benaillon (152)
+*** ANTE/BLINDS ***
+MRZO posts small blind 30
+Benaillon posts big blind 60
+Dealt to MRZO [5s 2s]
+*** PRE-FLOP *** 
+MRZO raises 1288 to 1348 and is all-in
+Benaillon calls 92 and is all-in
+*** FLOP *** [Kc 4s Kd]
+*** TURN *** [Kc 4s Kd][6c]
+*** RIVER *** [Kc 4s Kd 6c][3c]
+*** SHOW DOWN ***
+Benaillon shows [9h 5d] (One pair : Kings)
+MRZO shows [5s 2s] (Straight 6 high)
+MRZO collected 1500 from pot
+*** SUMMARY ***
+Total pot 1500 | No rake
+Board: [Kc 4s Kd 6c 3c]
+Seat 2: MRZO (small blind) (button) showed [5s 2s] and won 1500 with Straight 6 high
+Seat 3: Benaillon (big blind) showed [9h 5d] and lost with One pair : Kings
+
+

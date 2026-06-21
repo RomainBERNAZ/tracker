@@ -1,0 +1,355 @@
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830486757885607937-1-1780995208 - Holdem no limit (10/20) - 2026/06/09 08:53:28 UTC
+Table: 'Expresso(1124685341)#0' 3-max (real money) Seat #3 is the button
+Seat 1: MyDaughters (500)
+Seat 2: Sindy Nero (500)
+Seat 3: MRZO (500)
+*** ANTE/BLINDS ***
+MyDaughters posts small blind 10
+Sindy Nero posts big blind 20
+Dealt to MRZO [9h 3h]
+*** PRE-FLOP *** 
+MRZO folds
+MyDaughters folds
+Sindy Nero collected 30 from pot
+*** SUMMARY ***
+Total pot 30 | No rake
+Seat 2: Sindy Nero (big blind) won 30
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830486757885607937-2-1780995215 - Holdem no limit (10/20) - 2026/06/09 08:53:35 UTC
+Table: 'Expresso(1124685341)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MyDaughters (490)
+Seat 2: Sindy Nero (510)
+Seat 3: MRZO (500)
+*** ANTE/BLINDS ***
+Sindy Nero posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [9d Ks]
+*** PRE-FLOP *** 
+MyDaughters raises 30 to 50
+Sindy Nero folds
+MRZO calls 30
+*** FLOP *** [8h 5c 3s]
+MRZO checks
+MyDaughters bets 72
+MRZO folds
+MyDaughters collected 182 from pot
+*** SUMMARY ***
+Total pot 182 | No rake
+Board: [8h 5c 3s]
+Seat 1: MyDaughters (button) won 182
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830486757885607937-3-1780995240 - Holdem no limit (10/20) - 2026/06/09 08:54:00 UTC
+Table: 'Expresso(1124685341)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MyDaughters (550)
+Seat 2: Sindy Nero (500)
+Seat 3: MRZO (450)
+*** ANTE/BLINDS ***
+MRZO posts small blind 10
+MyDaughters posts big blind 20
+Dealt to MRZO [Ts 9h]
+*** PRE-FLOP *** 
+Sindy Nero folds
+MRZO calls 10
+MyDaughters raises 40 to 60
+MRZO calls 40
+*** FLOP *** [4s 5s 7s]
+MRZO checks
+MyDaughters checks
+*** TURN *** [4s 5s 7s][2c]
+MRZO checks
+MyDaughters checks
+*** RIVER *** [4s 5s 7s 2c][2s]
+MRZO checks
+MyDaughters checks
+*** SHOW DOWN ***
+MyDaughters shows [Tc Ad] (One pair : 2)
+MRZO shows [Ts 9h] (Flush Ten high)
+MRZO collected 120 from pot
+*** SUMMARY ***
+Total pot 120 | No rake
+Board: [4s 5s 7s 2c 2s]
+Seat 1: MyDaughters (big blind) showed [Tc Ad] and lost with One pair : 2
+Seat 3: MRZO (small blind) showed [Ts 9h] and won 120 with Flush Ten high
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830486757885607937-4-1780995266 - Holdem no limit (10/20) - 2026/06/09 08:54:26 UTC
+Table: 'Expresso(1124685341)#0' 3-max (real money) Seat #3 is the button
+Seat 1: MyDaughters (490)
+Seat 2: Sindy Nero (500)
+Seat 3: MRZO (510)
+*** ANTE/BLINDS ***
+MyDaughters posts small blind 10
+Sindy Nero posts big blind 20
+Dealt to MRZO [Jd Js]
+*** PRE-FLOP *** 
+MRZO raises 30 to 50
+MyDaughters folds
+Sindy Nero folds
+MRZO collected 80 from pot
+*** SUMMARY ***
+Total pot 80 | No rake
+Seat 3: MRZO (button) won 80
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830486757885607937-5-1780995275 - Holdem no limit (10/20) - 2026/06/09 08:54:35 UTC
+Table: 'Expresso(1124685341)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MyDaughters (480)
+Seat 2: Sindy Nero (480)
+Seat 3: MRZO (540)
+*** ANTE/BLINDS ***
+Sindy Nero posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [4c Th]
+*** PRE-FLOP *** 
+MyDaughters folds
+Sindy Nero raises 30 to 50
+MRZO folds
+Sindy Nero collected 70 from pot
+*** SUMMARY ***
+Total pot 70 | No rake
+Seat 2: Sindy Nero (small blind) won 70
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830486757885607937-6-1780995286 - Holdem no limit (10/20) - 2026/06/09 08:54:46 UTC
+Table: 'Expresso(1124685341)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MyDaughters (480)
+Seat 2: Sindy Nero (500)
+Seat 3: MRZO (520)
+*** ANTE/BLINDS ***
+MRZO posts small blind 10
+MyDaughters posts big blind 20
+Dealt to MRZO [2d Jh]
+*** PRE-FLOP *** 
+Sindy Nero folds
+MRZO folds
+MyDaughters collected 30 from pot
+*** SUMMARY ***
+Total pot 30 | No rake
+Seat 1: MyDaughters (big blind) won 30
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830486757885607937-7-1780995293 - Holdem no limit (10/20) - 2026/06/09 08:54:53 UTC
+Table: 'Expresso(1124685341)#0' 3-max (real money) Seat #3 is the button
+Seat 1: MyDaughters (490)
+Seat 2: Sindy Nero (500)
+Seat 3: MRZO (510)
+*** ANTE/BLINDS ***
+MyDaughters posts small blind 10
+Sindy Nero posts big blind 20
+Dealt to MRZO [Qs 6h]
+*** PRE-FLOP *** 
+MRZO folds
+MyDaughters folds
+Sindy Nero collected 30 from pot
+*** SUMMARY ***
+Total pot 30 | No rake
+Seat 2: Sindy Nero (big blind) won 30
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830486757885607937-8-1780995300 - Holdem no limit (15/30) - 2026/06/09 08:55:00 UTC
+Table: 'Expresso(1124685341)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MyDaughters (480)
+Seat 2: Sindy Nero (510)
+Seat 3: MRZO (510)
+*** ANTE/BLINDS ***
+Sindy Nero posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [4d Jh]
+*** PRE-FLOP *** 
+MyDaughters raises 30 to 60
+Sindy Nero raises 450 to 510 and is all-in
+MRZO folds
+MyDaughters folds
+Sindy Nero collected 600 from pot
+*** SUMMARY ***
+Total pot 600 | No rake
+Seat 2: Sindy Nero (small blind) won 600
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830486757885607937-9-1780995309 - Holdem no limit (15/30) - 2026/06/09 08:55:09 UTC
+Table: 'Expresso(1124685341)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MyDaughters (420)
+Seat 2: Sindy Nero (600)
+Seat 3: MRZO (480)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+MyDaughters posts big blind 30
+Dealt to MRZO [As Kc]
+*** PRE-FLOP *** 
+Sindy Nero folds
+MRZO raises 450 to 480 and is all-in
+MyDaughters folds
+MRZO collected 510 from pot
+*** SUMMARY ***
+Total pot 510 | No rake
+Seat 3: MRZO (small blind) won 510
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830486757885607937-10-1780995317 - Holdem no limit (15/30) - 2026/06/09 08:55:17 UTC
+Table: 'Expresso(1124685341)#0' 3-max (real money) Seat #3 is the button
+Seat 1: MyDaughters (390)
+Seat 2: Sindy Nero (600)
+Seat 3: MRZO (510)
+*** ANTE/BLINDS ***
+MyDaughters posts small blind 15
+Sindy Nero posts big blind 30
+Dealt to MRZO [6s 5h]
+*** PRE-FLOP *** 
+MRZO folds
+MyDaughters raises 30 to 60
+Sindy Nero raises 540 to 600 and is all-in
+MyDaughters folds
+Sindy Nero collected 660 from pot
+*** SUMMARY ***
+Total pot 660 | No rake
+Seat 2: Sindy Nero (big blind) won 660
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830486757885607937-11-1780995334 - Holdem no limit (15/30) - 2026/06/09 08:55:34 UTC
+Table: 'Expresso(1124685341)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MyDaughters (330)
+Seat 2: Sindy Nero (660)
+Seat 3: MRZO (510)
+*** ANTE/BLINDS ***
+Sindy Nero posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [6d 9s]
+*** PRE-FLOP *** 
+MyDaughters folds
+Sindy Nero folds
+MRZO collected 45 from pot
+*** SUMMARY ***
+Total pot 45 | No rake
+Seat 3: MRZO (big blind) won 45
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830486757885607937-12-1780995340 - Holdem no limit (15/30) - 2026/06/09 08:55:40 UTC
+Table: 'Expresso(1124685341)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MyDaughters (330)
+Seat 2: Sindy Nero (645)
+Seat 3: MRZO (525)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+MyDaughters posts big blind 30
+Dealt to MRZO [Jd Kc]
+*** PRE-FLOP *** 
+Sindy Nero raises 30 to 60
+MRZO calls 45
+MyDaughters calls 30
+*** FLOP *** [Jc Qs 9d]
+MRZO checks
+MyDaughters bets 117
+Sindy Nero folds
+MRZO raises 348 to 465 and is all-in
+MyDaughters calls 153 and is all-in
+*** TURN *** [Jc Qs 9d][Js]
+*** RIVER *** [Jc Qs 9d Js][Tc]
+*** SHOW DOWN ***
+MyDaughters shows [Qh 2h] (Two pairs : Queens and Jacks)
+MRZO shows [Jd Kc] (Straight King high)
+MRZO collected 915 from pot
+*** SUMMARY ***
+Total pot 915 | No rake
+Board: [Jc Qs 9d Js Tc]
+Seat 1: MyDaughters (big blind) showed [Qh 2h] and lost with Two pairs : Queens and Jacks
+Seat 3: MRZO (small blind) showed [Jd Kc] and won 915 with Straight King high
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830486757885607937-13-1780995383 - Holdem no limit (15/30) - 2026/06/09 08:56:23 UTC
+Table: 'Expresso(1124685341)#0' 3-max (real money) Seat #2 is the button
+Seat 2: Sindy Nero (585)
+Seat 3: MRZO (915)
+*** ANTE/BLINDS ***
+Sindy Nero posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [Jh Jd]
+*** PRE-FLOP *** 
+Sindy Nero calls 15
+MRZO raises 75 to 105
+Sindy Nero raises 480 to 585 and is all-in
+MRZO raises 330 to 915 and is all-in
+*** FLOP *** [9c Qs Ac]
+*** TURN *** [9c Qs Ac][7c]
+*** RIVER *** [9c Qs Ac 7c][4h]
+*** SHOW DOWN ***
+Sindy Nero shows [8c Ad] (One pair : Aces)
+MRZO shows [Jh Jd] (One pair : Jacks)
+MRZO collected 330 from side pot 1
+Sindy Nero collected 1170 from main pot
+*** SUMMARY ***
+Total pot 1500 | No rake
+Board: [9c Qs Ac 7c 4h]
+Seat 2: Sindy Nero (small blind) (button) showed [8c Ad] and won 1170 with One pair : Aces
+Seat 3: MRZO (big blind) showed [Jh Jd] and won 330 with One pair : Jacks
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830486757885607937-14-1780995402 - Holdem no limit (20/40) - 2026/06/09 08:56:42 UTC
+Table: 'Expresso(1124685341)#0' 3-max (real money) Seat #3 is the button
+Seat 2: Sindy Nero (1170)
+Seat 3: MRZO (330)
+*** ANTE/BLINDS ***
+MRZO posts small blind 20
+Sindy Nero posts big blind 40
+Dealt to MRZO [Qd Ah]
+*** PRE-FLOP *** 
+MRZO raises 290 to 330 and is all-in
+Sindy Nero raises 290 to 620
+*** FLOP *** [Js Qc 4d]
+*** TURN *** [Js Qc 4d][Ac]
+*** RIVER *** [Js Qc 4d Ac][7d]
+*** SHOW DOWN ***
+Sindy Nero shows [As 3s] (One pair : Aces)
+MRZO shows [Qd Ah] (Two pairs : Aces and Queens)
+MRZO collected 660 from main pot
+Sindy Nero collected 290 from side pot 1
+*** SUMMARY ***
+Total pot 950 | No rake
+Board: [Js Qc 4d Ac 7d]
+Seat 2: Sindy Nero (big blind) showed [As 3s] and won 290 with One pair : Aces
+Seat 3: MRZO (small blind) (button) showed [Qd Ah] and won 660 with Two pairs : Aces and Queens
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830486757885607937-15-1780995414 - Holdem no limit (20/40) - 2026/06/09 08:56:54 UTC
+Table: 'Expresso(1124685341)#0' 3-max (real money) Seat #2 is the button
+Seat 2: Sindy Nero (840)
+Seat 3: MRZO (660)
+*** ANTE/BLINDS ***
+Sindy Nero posts small blind 20
+MRZO posts big blind 40
+Dealt to MRZO [7d 3h]
+*** PRE-FLOP *** 
+Sindy Nero folds
+MRZO collected 60 from pot
+*** SUMMARY ***
+Total pot 60 | No rake
+Seat 3: MRZO (big blind) won 60
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830486757885607937-16-1780995419 - Holdem no limit (20/40) - 2026/06/09 08:56:59 UTC
+Table: 'Expresso(1124685341)#0' 3-max (real money) Seat #3 is the button
+Seat 2: Sindy Nero (820)
+Seat 3: MRZO (680)
+*** ANTE/BLINDS ***
+MRZO posts small blind 20
+Sindy Nero posts big blind 40
+Dealt to MRZO [Jc Ks]
+*** PRE-FLOP *** 
+MRZO raises 60 to 100
+Sindy Nero raises 720 to 820 and is all-in
+MRZO calls 580 and is all-in
+*** FLOP *** [Td 2h 2s]
+*** TURN *** [Td 2h 2s][4d]
+*** RIVER *** [Td 2h 2s 4d][Qc]
+*** SHOW DOWN ***
+MRZO shows [Jc Ks] (One pair : 2)
+Sindy Nero shows [Jd As] (One pair : 2)
+Sindy Nero collected 1500 from pot
+*** SUMMARY ***
+Total pot 1500 | No rake
+Board: [Td 2h 2s 4d Qc]
+Seat 2: Sindy Nero (big blind) showed [Jd As] and won 1500 with One pair : 2
+Seat 3: MRZO (small blind) (button) showed [Jc Ks] and lost with One pair : 2
+
+

@@ -1,0 +1,16 @@
+#!/bin/bash
+# Desktop dev launcher (Docker + Tauri)
+
+cd "$(dirname "$0")" || exit 1
+
+echo "🚀 Lancement de l'app desktop (Docker + Tauri)..."
+echo "   Une fenetre desktop va s'ouvrir (pas le navigateur)"
+echo "   Compilation initiale: 30-60 sec"
+echo ""
+
+sudo docker compose -f docker/compose.yml down --remove-orphans 2>/dev/null || true
+sudo docker compose -f docker/compose.yml run --rm --service-ports \
+	-e DISPLAY="$DISPLAY" \
+	-e WAYLAND_DISPLAY="$WAYLAND_DISPLAY" \
+	-e XDG_RUNTIME_DIR="$XDG_RUNTIME_DIR" \
+	dev bash -lc "cd /app && cargo tauri dev --config src-tauri/tauri.conf.json"

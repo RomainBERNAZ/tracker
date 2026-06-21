@@ -1,0 +1,13 @@
+[package]
+name    = "cev_realized_core"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+serde       = { workspace = true }
+serde_json  = { workspace = true }
+thiserror   = { workspace = true }
+hand_ledger = { workspace = true }
+
+[dev-dependencies]
+hh_parser_winamax = { workspace = true }

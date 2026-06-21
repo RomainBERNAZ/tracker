@@ -1,0 +1,439 @@
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830471064075108353-1-1780994491 - Holdem no limit (10/20) - 2026/06/09 08:41:31 UTC
+Table: 'Expresso(1124681687)#0' 3-max (real money) Seat #1 is the button
+Seat 1: Ghoz_Ghoz (500)
+Seat 2: Maaav (500)
+Seat 3: MRZO (500)
+*** ANTE/BLINDS ***
+Maaav posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [5s 4h]
+*** PRE-FLOP *** 
+Ghoz_Ghoz folds
+Maaav calls 10
+MRZO checks
+*** FLOP *** [Qc 9d 7c]
+Maaav checks
+MRZO checks
+*** TURN *** [Qc 9d 7c][Jd]
+Maaav bets 26
+MRZO folds
+Maaav collected 66 from pot
+*** SUMMARY ***
+Total pot 66 | No rake
+Board: [Qc 9d 7c Jd]
+Seat 2: Maaav (small blind) won 66
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830471064075108353-2-1780994506 - Holdem no limit (10/20) - 2026/06/09 08:41:46 UTC
+Table: 'Expresso(1124681687)#0' 3-max (real money) Seat #2 is the button
+Seat 1: Ghoz_Ghoz (500)
+Seat 2: Maaav (520)
+Seat 3: MRZO (480)
+*** ANTE/BLINDS ***
+MRZO posts small blind 10
+Ghoz_Ghoz posts big blind 20
+Dealt to MRZO [8c 8s]
+*** PRE-FLOP *** 
+Maaav calls 20
+MRZO raises 460 to 480 and is all-in
+Ghoz_Ghoz folds
+Maaav raises 40 to 520 and is all-in
+*** FLOP *** [Ks 5c 8d]
+*** TURN *** [Ks 5c 8d][Tc]
+*** RIVER *** [Ks 5c 8d Tc][6h]
+*** SHOW DOWN ***
+Maaav shows [7h Ac] (High card : Ace)
+MRZO shows [8c 8s] (Trips of 8)
+MRZO collected 980 from main pot
+Maaav collected 40 from side pot 1
+*** SUMMARY ***
+Total pot 1020 | No rake
+Board: [Ks 5c 8d Tc 6h]
+Seat 2: Maaav (button) showed [7h Ac] and won 40 with High card : Ace
+Seat 3: MRZO (small blind) showed [8c 8s] and won 980 with Trips of 8
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830471064075108353-3-1780994529 - Holdem no limit (10/20) - 2026/06/09 08:42:09 UTC
+Table: 'Expresso(1124681687)#0' 3-max (real money) Seat #3 is the button
+Seat 1: Ghoz_Ghoz (480)
+Seat 2: Maaav (40)
+Seat 3: MRZO (980)
+*** ANTE/BLINDS ***
+Ghoz_Ghoz posts small blind 10
+Maaav posts big blind 20
+Dealt to MRZO [3h Qc]
+*** PRE-FLOP *** 
+MRZO folds
+Ghoz_Ghoz raises 20 to 40
+Maaav calls 20 and is all-in
+*** FLOP *** [6c Kc 8c]
+*** TURN *** [6c Kc 8c][Ah]
+*** RIVER *** [6c Kc 8c Ah][Jh]
+*** SHOW DOWN ***
+Maaav shows [5h 5c] (One pair : 5)
+Ghoz_Ghoz shows [Ad 4c] (One pair : Aces)
+Ghoz_Ghoz collected 80 from pot
+*** SUMMARY ***
+Total pot 80 | No rake
+Board: [6c Kc 8c Ah Jh]
+Seat 1: Ghoz_Ghoz (small blind) showed [Ad 4c] and won 80 with One pair : Aces
+Seat 2: Maaav (big blind) showed [5h 5c] and lost with One pair : 5
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830471064075108353-4-1780994541 - Holdem no limit (10/20) - 2026/06/09 08:42:21 UTC
+Table: 'Expresso(1124681687)#0' 3-max (real money) Seat #3 is the button
+Seat 1: Ghoz_Ghoz (520)
+Seat 3: MRZO (980)
+*** ANTE/BLINDS ***
+MRZO posts small blind 10
+Ghoz_Ghoz posts big blind 20
+Dealt to MRZO [Ts 4h]
+*** PRE-FLOP *** 
+MRZO calls 10
+Ghoz_Ghoz checks
+*** FLOP *** [Qd 9s 2s]
+Ghoz_Ghoz checks
+MRZO bets 20
+Ghoz_Ghoz folds
+MRZO collected 60 from pot
+*** SUMMARY ***
+Total pot 60 | No rake
+Board: [Qd 9s 2s]
+Seat 3: MRZO (small blind) (button) won 60
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830471064075108353-5-1780994552 - Holdem no limit (10/20) - 2026/06/09 08:42:32 UTC
+Table: 'Expresso(1124681687)#0' 3-max (real money) Seat #1 is the button
+Seat 1: Ghoz_Ghoz (500)
+Seat 3: MRZO (1000)
+*** ANTE/BLINDS ***
+Ghoz_Ghoz posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [2c Ad]
+*** PRE-FLOP *** 
+Ghoz_Ghoz calls 10
+MRZO checks
+*** FLOP *** [2s 3d Kc]
+MRZO checks
+Ghoz_Ghoz checks
+*** TURN *** [2s 3d Kc][8h]
+MRZO checks
+Ghoz_Ghoz checks
+*** RIVER *** [2s 3d Kc 8h][6h]
+MRZO checks
+Ghoz_Ghoz bets 32
+MRZO folds
+Ghoz_Ghoz collected 72 from pot
+*** SUMMARY ***
+Total pot 72 | No rake
+Board: [2s 3d Kc 8h 6h]
+Seat 1: Ghoz_Ghoz (small blind) (button) won 72
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830471064075108353-6-1780994573 - Holdem no limit (10/20) - 2026/06/09 08:42:53 UTC
+Table: 'Expresso(1124681687)#0' 3-max (real money) Seat #3 is the button
+Seat 1: Ghoz_Ghoz (520)
+Seat 3: MRZO (980)
+*** ANTE/BLINDS ***
+MRZO posts small blind 10
+Ghoz_Ghoz posts big blind 20
+Dealt to MRZO [Ac 7s]
+*** PRE-FLOP *** 
+MRZO raises 30 to 50
+Ghoz_Ghoz calls 30
+*** FLOP *** [8h 8d 9c]
+Ghoz_Ghoz checks
+MRZO checks
+*** TURN *** [8h 8d 9c][3s]
+Ghoz_Ghoz checks
+MRZO bets 35
+Ghoz_Ghoz folds
+MRZO collected 135 from pot
+*** SUMMARY ***
+Total pot 135 | No rake
+Board: [8h 8d 9c 3s]
+Seat 3: MRZO (small blind) (button) won 135
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830471064075108353-7-1780994614 - Holdem no limit (15/30) - 2026/06/09 08:43:34 UTC
+Table: 'Expresso(1124681687)#0' 3-max (real money) Seat #1 is the button
+Seat 1: Ghoz_Ghoz (470)
+Seat 3: MRZO (1030)
+*** ANTE/BLINDS ***
+Ghoz_Ghoz posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [Jh 3d]
+*** PRE-FLOP *** 
+Ghoz_Ghoz raises 60 to 90
+MRZO folds
+Ghoz_Ghoz collected 120 from pot
+*** SUMMARY ***
+Total pot 120 | No rake
+Seat 1: Ghoz_Ghoz (small blind) (button) won 120
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830471064075108353-8-1780994631 - Holdem no limit (15/30) - 2026/06/09 08:43:51 UTC
+Table: 'Expresso(1124681687)#0' 3-max (real money) Seat #3 is the button
+Seat 1: Ghoz_Ghoz (500)
+Seat 3: MRZO (1000)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+Ghoz_Ghoz posts big blind 30
+Dealt to MRZO [2d 5d]
+*** PRE-FLOP *** 
+MRZO folds
+Ghoz_Ghoz collected 45 from pot
+*** SUMMARY ***
+Total pot 45 | No rake
+Seat 1: Ghoz_Ghoz (big blind) won 45
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830471064075108353-9-1780994635 - Holdem no limit (15/30) - 2026/06/09 08:43:55 UTC
+Table: 'Expresso(1124681687)#0' 3-max (real money) Seat #1 is the button
+Seat 1: Ghoz_Ghoz (515)
+Seat 3: MRZO (985)
+*** ANTE/BLINDS ***
+Ghoz_Ghoz posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [7c 4s]
+*** PRE-FLOP *** 
+Ghoz_Ghoz folds
+MRZO collected 45 from pot
+*** SUMMARY ***
+Total pot 45 | No rake
+Seat 3: MRZO (big blind) won 45
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830471064075108353-10-1780994647 - Holdem no limit (15/30) - 2026/06/09 08:44:07 UTC
+Table: 'Expresso(1124681687)#0' 3-max (real money) Seat #3 is the button
+Seat 1: Ghoz_Ghoz (500)
+Seat 3: MRZO (1000)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+Ghoz_Ghoz posts big blind 30
+Dealt to MRZO [6s Qh]
+*** PRE-FLOP *** 
+MRZO calls 15
+Ghoz_Ghoz checks
+*** FLOP *** [Ad As 9s]
+Ghoz_Ghoz bets 48
+MRZO folds
+Ghoz_Ghoz collected 108 from pot
+*** SUMMARY ***
+Total pot 108 | No rake
+Board: [Ad As 9s]
+Seat 1: Ghoz_Ghoz (big blind) won 108
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830471064075108353-11-1780994664 - Holdem no limit (15/30) - 2026/06/09 08:44:24 UTC
+Table: 'Expresso(1124681687)#0' 3-max (real money) Seat #1 is the button
+Seat 1: Ghoz_Ghoz (530)
+Seat 3: MRZO (970)
+*** ANTE/BLINDS ***
+Ghoz_Ghoz posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [5d Kh]
+*** PRE-FLOP *** 
+Ghoz_Ghoz folds
+MRZO collected 45 from pot
+*** SUMMARY ***
+Total pot 45 | No rake
+Seat 3: MRZO (big blind) won 45
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830471064075108353-12-1780994673 - Holdem no limit (20/40) - 2026/06/09 08:44:33 UTC
+Table: 'Expresso(1124681687)#0' 3-max (real money) Seat #3 is the button
+Seat 1: Ghoz_Ghoz (515)
+Seat 3: MRZO (985)
+*** ANTE/BLINDS ***
+MRZO posts small blind 20
+Ghoz_Ghoz posts big blind 40
+Dealt to MRZO [7c 6c]
+*** PRE-FLOP *** 
+MRZO calls 20
+Ghoz_Ghoz checks
+*** FLOP *** [6d 5s 7s]
+Ghoz_Ghoz checks
+MRZO bets 80
+Ghoz_Ghoz folds
+MRZO collected 160 from pot
+*** SUMMARY ***
+Total pot 160 | No rake
+Board: [6d 5s 7s]
+Seat 3: MRZO (small blind) (button) won 160
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830471064075108353-13-1780994699 - Holdem no limit (20/40) - 2026/06/09 08:44:59 UTC
+Table: 'Expresso(1124681687)#0' 3-max (real money) Seat #1 is the button
+Seat 1: Ghoz_Ghoz (475)
+Seat 3: MRZO (1025)
+*** ANTE/BLINDS ***
+Ghoz_Ghoz posts small blind 20
+MRZO posts big blind 40
+Dealt to MRZO [Th Jd]
+*** PRE-FLOP *** 
+Ghoz_Ghoz raises 80 to 120
+MRZO calls 80
+*** FLOP *** [Jc 5d Kc]
+MRZO checks
+Ghoz_Ghoz bets 192
+MRZO raises 713 to 905 and is all-in
+Ghoz_Ghoz calls 163 and is all-in
+*** TURN *** [Jc 5d Kc][6h]
+*** RIVER *** [Jc 5d Kc 6h][9s]
+*** SHOW DOWN ***
+Ghoz_Ghoz shows [Qh Kh] (One pair : Kings)
+MRZO shows [Th Jd] (One pair : Jacks)
+MRZO collected 550 from side pot 1
+Ghoz_Ghoz collected 950 from main pot
+*** SUMMARY ***
+Total pot 1500 | No rake
+Board: [Jc 5d Kc 6h 9s]
+Seat 1: Ghoz_Ghoz (small blind) (button) showed [Qh Kh] and won 950 with One pair : Kings
+Seat 3: MRZO (big blind) showed [Th Jd] and won 550 with One pair : Jacks
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830471064075108353-14-1780994720 - Holdem no limit (20/40) - 2026/06/09 08:45:20 UTC
+Table: 'Expresso(1124681687)#0' 3-max (real money) Seat #3 is the button
+Seat 1: Ghoz_Ghoz (950)
+Seat 3: MRZO (550)
+*** ANTE/BLINDS ***
+MRZO posts small blind 20
+Ghoz_Ghoz posts big blind 40
+Dealt to MRZO [Jh Th]
+*** PRE-FLOP *** 
+MRZO calls 20
+Ghoz_Ghoz checks
+*** FLOP *** [2d 2h Jc]
+Ghoz_Ghoz bets 52
+MRZO raises 458 to 510 and is all-in
+Ghoz_Ghoz folds
+MRZO collected 642 from pot
+*** SUMMARY ***
+Total pot 642 | No rake
+Board: [2d 2h Jc]
+Seat 3: MRZO (small blind) (button) won 642
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830471064075108353-15-1780994741 - Holdem no limit (20/40) - 2026/06/09 08:45:41 UTC
+Table: 'Expresso(1124681687)#0' 3-max (real money) Seat #1 is the button
+Seat 1: Ghoz_Ghoz (858)
+Seat 3: MRZO (642)
+*** ANTE/BLINDS ***
+Ghoz_Ghoz posts small blind 20
+MRZO posts big blind 40
+Dealt to MRZO [Jd 9h]
+*** PRE-FLOP *** 
+Ghoz_Ghoz folds
+MRZO collected 60 from pot
+*** SUMMARY ***
+Total pot 60 | No rake
+Seat 3: MRZO (big blind) won 60
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830471064075108353-16-1780994750 - Holdem no limit (20/40) - 2026/06/09 08:45:50 UTC
+Table: 'Expresso(1124681687)#0' 3-max (real money) Seat #3 is the button
+Seat 1: Ghoz_Ghoz (838)
+Seat 3: MRZO (662)
+*** ANTE/BLINDS ***
+MRZO posts small blind 20
+Ghoz_Ghoz posts big blind 40
+Dealt to MRZO [5c 3c]
+*** PRE-FLOP *** 
+MRZO folds
+Ghoz_Ghoz collected 60 from pot
+*** SUMMARY ***
+Total pot 60 | No rake
+Seat 1: Ghoz_Ghoz (big blind) won 60
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830471064075108353-17-1780994754 - Holdem no limit (20/40) - 2026/06/09 08:45:54 UTC
+Table: 'Expresso(1124681687)#0' 3-max (real money) Seat #1 is the button
+Seat 1: Ghoz_Ghoz (858)
+Seat 3: MRZO (642)
+*** ANTE/BLINDS ***
+Ghoz_Ghoz posts small blind 20
+MRZO posts big blind 40
+Dealt to MRZO [3h Kc]
+*** PRE-FLOP *** 
+Ghoz_Ghoz folds
+MRZO collected 60 from pot
+*** SUMMARY ***
+Total pot 60 | No rake
+Seat 3: MRZO (big blind) won 60
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830471064075108353-18-1780994764 - Holdem no limit (30/60) - 2026/06/09 08:46:04 UTC
+Table: 'Expresso(1124681687)#0' 3-max (real money) Seat #3 is the button
+Seat 1: Ghoz_Ghoz (838)
+Seat 3: MRZO (662)
+*** ANTE/BLINDS ***
+MRZO posts small blind 30
+Ghoz_Ghoz posts big blind 60
+Dealt to MRZO [9c Qh]
+*** PRE-FLOP *** 
+MRZO calls 30
+Ghoz_Ghoz checks
+*** FLOP *** [7c Js 7s]
+Ghoz_Ghoz checks
+MRZO checks
+*** TURN *** [7c Js 7s][Th]
+Ghoz_Ghoz bets 60
+MRZO calls 60
+*** RIVER *** [7c Js 7s Th][4h]
+Ghoz_Ghoz bets 60
+MRZO folds
+Ghoz_Ghoz collected 300 from pot
+*** SUMMARY ***
+Total pot 300 | No rake
+Board: [7c Js 7s Th 4h]
+Seat 1: Ghoz_Ghoz (big blind) won 300
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830471064075108353-19-1780994797 - Holdem no limit (30/60) - 2026/06/09 08:46:37 UTC
+Table: 'Expresso(1124681687)#0' 3-max (real money) Seat #1 is the button
+Seat 1: Ghoz_Ghoz (958)
+Seat 3: MRZO (542)
+*** ANTE/BLINDS ***
+Ghoz_Ghoz posts small blind 30
+MRZO posts big blind 60
+Dealt to MRZO [Kc 2h]
+*** PRE-FLOP *** 
+Ghoz_Ghoz calls 30
+MRZO checks
+*** FLOP *** [9d 4h Ah]
+MRZO checks
+Ghoz_Ghoz bets 60
+MRZO folds
+Ghoz_Ghoz collected 180 from pot
+*** SUMMARY ***
+Total pot 180 | No rake
+Board: [9d 4h Ah]
+Seat 1: Ghoz_Ghoz (small blind) (button) won 180
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830471064075108353-20-1780994808 - Holdem no limit (30/60) - 2026/06/09 08:46:48 UTC
+Table: 'Expresso(1124681687)#0' 3-max (real money) Seat #3 is the button
+Seat 1: Ghoz_Ghoz (1018)
+Seat 3: MRZO (482)
+*** ANTE/BLINDS ***
+MRZO posts small blind 30
+Ghoz_Ghoz posts big blind 60
+Dealt to MRZO [9h Kc]
+*** PRE-FLOP *** 
+MRZO raises 422 to 482 and is all-in
+Ghoz_Ghoz calls 422
+*** FLOP *** [Js 2d Ac]
+*** TURN *** [Js 2d Ac][2c]
+*** RIVER *** [Js 2d Ac 2c][6s]
+*** SHOW DOWN ***
+MRZO shows [9h Kc] (One pair : 2)
+Ghoz_Ghoz shows [Qs Jc] (Two pairs : Jacks and 2)
+Ghoz_Ghoz collected 964 from pot
+*** SUMMARY ***
+Total pot 964 | No rake
+Board: [Js 2d Ac 2c 6s]
+Seat 1: Ghoz_Ghoz (big blind) showed [Qs Jc] and won 964 with Two pairs : Jacks and 2
+Seat 3: MRZO (small blind) (button) showed [9h Kc] and lost with One pair : 2
+
+

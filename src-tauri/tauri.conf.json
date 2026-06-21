@@ -1,0 +1,32 @@
+{
+  "productName": "Expresso Review",
+  "version": "0.0.1",
+  "identifier": "dev.expresso.review",
+  "build": {
+    "beforeDevCommand": "cd /app/src/frontend && pnpm dev",
+    "devUrl": "http://localhost:5173",
+    "beforeBuildCommand": "cd /app/src/frontend && pnpm build",
+    "frontendDist": "../src/frontend/dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "label": "main",
+        "title": "Expresso Review",
+        "width": 1280,
+        "height": 800,
+        "minWidth": 900,
+        "minHeight": 600,
+        "resizable": true
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "icon": []
+  }
+}

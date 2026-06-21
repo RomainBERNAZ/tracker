@@ -1,0 +1,323 @@
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830494248308572161-1-1780995199 - Holdem no limit (10/20) - 2026/06/09 08:53:19 UTC
+Table: 'Expresso(1124687085)#0' 3-max (real money) Seat #3 is the button
+Seat 1: MichouPaye (500)
+Seat 2: MRZO (500)
+Seat 3: sotls (500)
+*** ANTE/BLINDS ***
+MichouPaye posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [Kd 3d]
+*** PRE-FLOP *** 
+sotls calls 20
+MichouPaye calls 10
+MRZO checks
+*** FLOP *** [Qc 9s 7d]
+MichouPaye bets 20
+MRZO folds
+sotls calls 20
+*** TURN *** [Qc 9s 7d][Qd]
+MichouPaye bets 35
+sotls calls 35
+*** RIVER *** [Qc 9s 7d Qd][4d]
+MichouPaye bets 59
+sotls calls 59
+*** SHOW DOWN ***
+MichouPaye shows [Jc 6c] (One pair : Queens)
+sotls shows [9d Ac] (Two pairs : Queens and 9)
+sotls collected 288 from pot
+*** SUMMARY ***
+Total pot 288 | No rake
+Board: [Qc 9s 7d Qd 4d]
+Seat 1: MichouPaye (small blind) showed [Jc 6c] and lost with One pair : Queens
+Seat 3: sotls (button) showed [9d Ac] and won 288 with Two pairs : Queens and 9
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830494248308572161-2-1780995231 - Holdem no limit (10/20) - 2026/06/09 08:53:51 UTC
+Table: 'Expresso(1124687085)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MichouPaye (366)
+Seat 2: MRZO (480)
+Seat 3: sotls (654)
+*** ANTE/BLINDS ***
+MRZO posts small blind 10
+sotls posts big blind 20
+Dealt to MRZO [8c 5s]
+*** PRE-FLOP *** 
+MichouPaye calls 20
+MRZO folds
+sotls checks
+*** FLOP *** [8s Kc 7c]
+sotls checks
+MichouPaye checks
+*** TURN *** [8s Kc 7c][3c]
+sotls checks
+MichouPaye checks
+*** RIVER *** [8s Kc 7c 3c][7s]
+sotls checks
+MichouPaye checks
+*** SHOW DOWN ***
+MichouPaye shows [Jh 4h] (One pair : 7)
+sotls shows [Jd 6d] (One pair : 7)
+sotls collected 25 from pot
+MichouPaye collected 25 from pot
+*** SUMMARY ***
+Total pot 50 | No rake
+Board: [8s Kc 7c 3c 7s]
+Seat 1: MichouPaye (button) showed [Jh 4h] and won 25 with One pair : 7
+Seat 3: sotls (big blind) showed [Jd 6d] and won 25 with One pair : 7
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830494248308572161-3-1780995249 - Holdem no limit (10/20) - 2026/06/09 08:54:09 UTC
+Table: 'Expresso(1124687085)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MichouPaye (371)
+Seat 2: MRZO (470)
+Seat 3: sotls (659)
+*** ANTE/BLINDS ***
+sotls posts small blind 10
+MichouPaye posts big blind 20
+Dealt to MRZO [Kc 5c]
+*** PRE-FLOP *** 
+MRZO folds
+sotls calls 10
+MichouPaye checks
+*** FLOP *** [3d 9c 7d]
+sotls checks
+MichouPaye checks
+*** TURN *** [3d 9c 7d][8s]
+sotls checks
+MichouPaye checks
+*** RIVER *** [3d 9c 7d 8s][7h]
+sotls checks
+MichouPaye bets 40
+sotls calls 40
+*** SHOW DOWN ***
+sotls shows [3s Kh] (Two pairs : 7 and 3)
+MichouPaye shows [Jh 9h] (Two pairs : 9 and 7)
+MichouPaye collected 120 from pot
+*** SUMMARY ***
+Total pot 120 | No rake
+Board: [3d 9c 7d 8s 7h]
+Seat 1: MichouPaye (big blind) showed [Jh 9h] and won 120 with Two pairs : 9 and 7
+Seat 3: sotls (small blind) showed [3s Kh] and lost with Two pairs : 7 and 3
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830494248308572161-4-1780995265 - Holdem no limit (10/20) - 2026/06/09 08:54:25 UTC
+Table: 'Expresso(1124687085)#0' 3-max (real money) Seat #3 is the button
+Seat 1: MichouPaye (431)
+Seat 2: MRZO (470)
+Seat 3: sotls (599)
+*** ANTE/BLINDS ***
+MichouPaye posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [Ks Td]
+*** PRE-FLOP *** 
+sotls calls 20
+MichouPaye calls 10
+MRZO checks
+*** FLOP *** [Kd Kc Ts]
+MichouPaye checks
+MRZO checks
+sotls checks
+*** TURN *** [Kd Kc Ts][Kh]
+MichouPaye checks
+MRZO checks
+sotls checks
+*** RIVER *** [Kd Kc Ts Kh][6h]
+MichouPaye bets 411 and is all-in
+MRZO raises 39 to 450 and is all-in
+sotls folds
+*** SHOW DOWN ***
+MichouPaye shows [7s 2h] (Trips of Kings)
+MRZO shows [Ks Td] (Quads of Kings)
+MRZO collected 921 from pot
+*** SUMMARY ***
+Total pot 921 | No rake
+Board: [Kd Kc Ts Kh 6h]
+Seat 1: MichouPaye (small blind) showed [7s 2h] and lost with Trips of Kings
+Seat 2: MRZO (big blind) showed [Ks Td] and won 921 with Quads of Kings
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830494248308572161-5-1780995292 - Holdem no limit (15/30) - 2026/06/09 08:54:52 UTC
+Table: 'Expresso(1124687085)#0' 3-max (real money) Seat #2 is the button
+Seat 2: MRZO (921)
+Seat 3: sotls (579)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+sotls posts big blind 30
+Dealt to MRZO [Qh Ah]
+*** PRE-FLOP *** 
+MRZO raises 60 to 90
+sotls calls 60
+*** FLOP *** [7s 9d 5c]
+sotls checks
+MRZO bets 45
+sotls calls 45
+*** TURN *** [7s 9d 5c][Td]
+sotls checks
+MRZO checks
+*** RIVER *** [7s 9d 5c Td][Js]
+sotls bets 176
+MRZO folds
+sotls collected 446 from pot
+*** SUMMARY ***
+Total pot 446 | No rake
+Board: [7s 9d 5c Td Js]
+Seat 3: sotls (big blind) won 446
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830494248308572161-6-1780995317 - Holdem no limit (15/30) - 2026/06/09 08:55:17 UTC
+Table: 'Expresso(1124687085)#0' 3-max (real money) Seat #3 is the button
+Seat 2: MRZO (786)
+Seat 3: sotls (714)
+*** ANTE/BLINDS ***
+sotls posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [Ks 7c]
+*** PRE-FLOP *** 
+sotls calls 15
+MRZO checks
+*** FLOP *** [Th 2s 8d]
+MRZO checks
+sotls checks
+*** TURN *** [Th 2s 8d][9d]
+MRZO checks
+sotls checks
+*** RIVER *** [Th 2s 8d 9d][4d]
+MRZO checks
+sotls bets 39
+MRZO folds
+sotls collected 99 from pot
+*** SUMMARY ***
+Total pot 99 | No rake
+Board: [Th 2s 8d 9d 4d]
+Seat 3: sotls (small blind) (button) won 99
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830494248308572161-7-1780995334 - Holdem no limit (15/30) - 2026/06/09 08:55:34 UTC
+Table: 'Expresso(1124687085)#0' 3-max (real money) Seat #2 is the button
+Seat 2: MRZO (756)
+Seat 3: sotls (744)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+sotls posts big blind 30
+Dealt to MRZO [2h 5h]
+*** PRE-FLOP *** 
+MRZO calls 15
+sotls checks
+*** FLOP *** [4s 6c 7c]
+sotls checks
+MRZO bets 39
+sotls calls 39
+*** TURN *** [4s 6c 7c][Kd]
+sotls checks
+MRZO bets 90
+sotls calls 90
+*** RIVER *** [4s 6c 7c Kd][8c]
+sotls checks
+MRZO checks
+*** SHOW DOWN ***
+sotls shows [8h 9c] (One pair : 8)
+MRZO shows [2h 5h] (Straight 8 high)
+MRZO collected 318 from pot
+*** SUMMARY ***
+Total pot 318 | No rake
+Board: [4s 6c 7c Kd 8c]
+Seat 2: MRZO (small blind) (button) showed [2h 5h] and won 318 with Straight 8 high
+Seat 3: sotls (big blind) showed [8h 9c] and lost with One pair : 8
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830494248308572161-8-1780995355 - Holdem no limit (15/30) - 2026/06/09 08:55:55 UTC
+Table: 'Expresso(1124687085)#0' 3-max (real money) Seat #3 is the button
+Seat 2: MRZO (915)
+Seat 3: sotls (585)
+*** ANTE/BLINDS ***
+sotls posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [7s Ah]
+*** PRE-FLOP *** 
+sotls raises 555 to 585 and is all-in
+MRZO raises 330 to 915 and is all-in
+*** FLOP *** [Kh Ac 6d]
+*** TURN *** [Kh Ac 6d][5h]
+*** RIVER *** [Kh Ac 6d 5h][Ad]
+*** SHOW DOWN ***
+MRZO shows [7s Ah] (Trips of Aces)
+sotls shows [Kd Kc] (Full of Kings and Aces)
+sotls collected 1170 from main pot
+MRZO collected 330 from side pot 1
+*** SUMMARY ***
+Total pot 1500 | No rake
+Board: [Kh Ac 6d 5h Ad]
+Seat 2: MRZO (big blind) showed [7s Ah] and won 330 with Trips of Aces
+Seat 3: sotls (small blind) (button) showed [Kd Kc] and won 1170 with Full of Kings and Aces
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830494248308572161-9-1780995366 - Holdem no limit (15/30) - 2026/06/09 08:56:06 UTC
+Table: 'Expresso(1124687085)#0' 3-max (real money) Seat #2 is the button
+Seat 2: MRZO (330)
+Seat 3: sotls (1170)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+sotls posts big blind 30
+Dealt to MRZO [As Ac]
+*** PRE-FLOP *** 
+MRZO raises 300 to 330 and is all-in
+sotls folds
+MRZO collected 360 from pot
+*** SUMMARY ***
+Total pot 360 | No rake
+Seat 2: MRZO (small blind) (button) won 360
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830494248308572161-10-1780995376 - Holdem no limit (15/30) - 2026/06/09 08:56:16 UTC
+Table: 'Expresso(1124687085)#0' 3-max (real money) Seat #3 is the button
+Seat 2: MRZO (360)
+Seat 3: sotls (1140)
+*** ANTE/BLINDS ***
+sotls posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [Ts 9s]
+*** PRE-FLOP *** 
+sotls calls 15
+MRZO checks
+*** FLOP *** [As 2c 4d]
+MRZO checks
+sotls checks
+*** TURN *** [As 2c 4d][6d]
+MRZO checks
+sotls checks
+*** RIVER *** [As 2c 4d 6d][Ah]
+MRZO checks
+sotls bets 39
+MRZO folds
+sotls collected 99 from pot
+*** SUMMARY ***
+Total pot 99 | No rake
+Board: [As 2c 4d 6d Ah]
+Seat 3: sotls (small blind) (button) won 99
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830494248308572161-11-1780995394 - Holdem no limit (20/40) - 2026/06/09 08:56:34 UTC
+Table: 'Expresso(1124687085)#0' 3-max (real money) Seat #2 is the button
+Seat 2: MRZO (330)
+Seat 3: sotls (1170)
+*** ANTE/BLINDS ***
+MRZO posts small blind 20
+sotls posts big blind 40
+Dealt to MRZO [3d 3s]
+*** PRE-FLOP *** 
+MRZO raises 290 to 330 and is all-in
+sotls raises 840 to 1170 and is all-in
+*** FLOP *** [2s Ts Qc]
+*** TURN *** [2s Ts Qc][8c]
+*** RIVER *** [2s Ts Qc 8c][6c]
+*** SHOW DOWN ***
+MRZO shows [3d 3s] (One pair : 3)
+sotls shows [Kh Tc] (One pair : Tens)
+sotls collected 1500 from pot
+*** SUMMARY ***
+Total pot 1500 | No rake
+Board: [2s Ts Qc 8c 6c]
+Seat 2: MRZO (small blind) (button) showed [3d 3s] and lost with One pair : 3
+Seat 3: sotls (big blind) showed [Kh Tc] and won 1500 with One pair : Tens
+
+

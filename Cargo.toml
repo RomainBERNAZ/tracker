@@ -1,0 +1,34 @@
+[workspace]
+members = [
+    "src/rust/hh_parser_winamax",
+    "src/rust/hand_ledger",
+    "src/rust/cev_realized_core",
+    "src/rust/hh_ingest",
+    "src/rust/session_read_model",
+    "src-tauri",
+]
+resolver = "2"
+
+[workspace.dependencies]
+serde       = { version = "1",    features = ["derive"] }
+serde_json  = "1"
+thiserror   = "2"
+chrono      = { version = "0.4",  features = ["serde"] }
+regex       = "1"
+rusqlite    = { version = "0.32", features = ["bundled"] }
+uuid        = { version = "1",    features = ["v4"] }
+sha2        = "0.10"
+hex         = "0.4"
+log         = "0.4"
+tracing     = "0.1"
+tokio       = { version = "1",    features = ["full"] }
+
+hh_parser_winamax  = { path = "src/rust/hh_parser_winamax" }
+hand_ledger        = { path = "src/rust/hand_ledger" }
+cev_realized_core  = { path = "src/rust/cev_realized_core" }
+hh_ingest          = { path = "src/rust/hh_ingest" }
+session_read_model = { path = "src/rust/session_read_model" }
+
+[profile.release]
+opt-level  = 3
+lto       = "thin"

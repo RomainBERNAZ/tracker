@@ -1,0 +1,88 @@
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830738812336340993-1-1781002119 - Holdem no limit (10/20) - 2026/06/09 10:48:39 UTC
+Table: 'Expresso(1124744027)#0' 3-max (real money) Seat #3 is the button
+Seat 1: MRZO (500)
+Seat 2: Lfc35 (500)
+Seat 3: Syseco Swann (500)
+*** ANTE/BLINDS ***
+MRZO posts small blind 10
+Lfc35 posts big blind 20
+Dealt to MRZO [Kh 2c]
+*** PRE-FLOP *** 
+Syseco Swann calls 20
+MRZO folds
+Lfc35 checks
+*** FLOP *** [Js 5s Ts]
+Lfc35 bets 20
+Syseco Swann calls 20
+*** TURN *** [Js 5s Ts][2s]
+Lfc35 bets 20
+Syseco Swann raises 50 to 70
+Lfc35 folds
+Syseco Swann collected 180 from pot
+*** SUMMARY ***
+Total pot 180 | No rake
+Board: [Js 5s Ts 2s]
+Seat 3: Syseco Swann (button) won 180
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830738812336340993-2-1781002142 - Holdem no limit (10/20) - 2026/06/09 10:49:02 UTC
+Table: 'Expresso(1124744027)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (490)
+Seat 2: Lfc35 (440)
+Seat 3: Syseco Swann (570)
+*** ANTE/BLINDS ***
+Lfc35 posts small blind 10
+Syseco Swann posts big blind 20
+Dealt to MRZO [As 8h]
+*** PRE-FLOP *** 
+MRZO raises 20 to 40
+Lfc35 calls 30
+Syseco Swann calls 20
+*** FLOP *** [3s 8s 4c]
+Lfc35 checks
+Syseco Swann checks
+MRZO bets 96
+Lfc35 folds
+Syseco Swann folds
+MRZO collected 216 from pot
+*** SUMMARY ***
+Total pot 216 | No rake
+Board: [3s 8s 4c]
+Seat 1: MRZO (button) won 216
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830738812336340993-3-1781002162 - Holdem no limit (10/20) - 2026/06/09 10:49:22 UTC
+Table: 'Expresso(1124744027)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (570)
+Seat 2: Lfc35 (400)
+Seat 3: Syseco Swann (530)
+*** ANTE/BLINDS ***
+Syseco Swann posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [Ad As]
+*** PRE-FLOP *** 
+Lfc35 calls 20
+Syseco Swann calls 10
+MRZO raises 80 to 100
+Lfc35 calls 80
+Syseco Swann calls 80
+*** FLOP *** [2d 5s 6d]
+Syseco Swann checks
+MRZO bets 470 and is all-in
+Lfc35 calls 300 and is all-in
+Syseco Swann calls 430 and is all-in
+*** TURN *** [2d 5s 6d][Kh]
+*** RIVER *** [2d 5s 6d Kh][2c]
+*** SHOW DOWN ***
+Lfc35 shows [Kd 7c] (Two pairs : Kings and 2)
+Syseco Swann shows [9d 9s] (Two pairs : 9 and 2)
+MRZO shows [Ad As] (Two pairs : Aces and 2)
+MRZO collected 1500 from pot
+*** SUMMARY ***
+Total pot 1500 | No rake
+Board: [2d 5s 6d Kh 2c]
+Seat 1: MRZO (big blind) showed [Ad As] and won 1500 with Two pairs : Aces and 2
+Seat 2: Lfc35 (button) showed [Kd 7c] and lost with Two pairs : Kings and 2
+Seat 3: Syseco Swann (small blind) showed [9d 9s] and lost with Two pairs : 9 and 2
+
+

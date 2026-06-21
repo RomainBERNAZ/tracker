@@ -1,0 +1,9 @@
+[package]
+name    = "session_read_model"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+serde    = { workspace = true }
+rusqlite = { workspace = true }
+chrono   = { workspace = true }

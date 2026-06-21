@@ -1,0 +1,378 @@
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830461134110720001-1-1780994229 - Holdem no limit (10/20) - 2026/06/09 08:37:09 UTC
+Table: 'Expresso(1124679375)#0' 3-max (real money) Seat #2 is the button
+Seat 1: -BLacK-Kat- (500)
+Seat 2: UneWarrior (500)
+Seat 3: MRZO (500)
+*** ANTE/BLINDS ***
+MRZO posts small blind 10
+-BLacK-Kat- posts big blind 20
+Dealt to MRZO [5s 8d]
+*** PRE-FLOP *** 
+UneWarrior folds
+MRZO folds
+-BLacK-Kat- collected 30 from pot
+*** SUMMARY ***
+Total pot 30 | No rake
+Seat 1: -BLacK-Kat- (big blind) won 30
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830461134110720001-2-1780994240 - Holdem no limit (10/20) - 2026/06/09 08:37:20 UTC
+Table: 'Expresso(1124679375)#0' 3-max (real money) Seat #3 is the button
+Seat 1: -BLacK-Kat- (510)
+Seat 2: UneWarrior (500)
+Seat 3: MRZO (490)
+*** ANTE/BLINDS ***
+-BLacK-Kat- posts small blind 10
+UneWarrior posts big blind 20
+Dealt to MRZO [Kc 9s]
+*** PRE-FLOP *** 
+MRZO folds
+-BLacK-Kat- raises 30 to 50
+UneWarrior folds
+-BLacK-Kat- collected 70 from pot
+*** SUMMARY ***
+Total pot 70 | No rake
+Seat 1: -BLacK-Kat- (small blind) won 70
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830461134110720001-3-1780994256 - Holdem no limit (10/20) - 2026/06/09 08:37:36 UTC
+Table: 'Expresso(1124679375)#0' 3-max (real money) Seat #1 is the button
+Seat 1: -BLacK-Kat- (530)
+Seat 2: UneWarrior (480)
+Seat 3: MRZO (490)
+*** ANTE/BLINDS ***
+UneWarrior posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [Js Kd]
+*** PRE-FLOP *** 
+-BLacK-Kat- folds
+UneWarrior folds
+MRZO collected 30 from pot
+*** SUMMARY ***
+Total pot 30 | No rake
+Seat 3: MRZO (big blind) won 30
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830461134110720001-4-1780994266 - Holdem no limit (10/20) - 2026/06/09 08:37:46 UTC
+Table: 'Expresso(1124679375)#0' 3-max (real money) Seat #2 is the button
+Seat 1: -BLacK-Kat- (530)
+Seat 2: UneWarrior (470)
+Seat 3: MRZO (500)
+*** ANTE/BLINDS ***
+MRZO posts small blind 10
+-BLacK-Kat- posts big blind 20
+Dealt to MRZO [Qd 2h]
+*** PRE-FLOP *** 
+UneWarrior folds
+MRZO folds
+-BLacK-Kat- collected 30 from pot
+*** SUMMARY ***
+Total pot 30 | No rake
+Seat 1: -BLacK-Kat- (big blind) won 30
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830461134110720001-5-1780994271 - Holdem no limit (10/20) - 2026/06/09 08:37:51 UTC
+Table: 'Expresso(1124679375)#0' 3-max (real money) Seat #3 is the button
+Seat 1: -BLacK-Kat- (540)
+Seat 2: UneWarrior (470)
+Seat 3: MRZO (490)
+*** ANTE/BLINDS ***
+-BLacK-Kat- posts small blind 10
+UneWarrior posts big blind 20
+Dealt to MRZO [3s Kh]
+*** PRE-FLOP *** 
+MRZO folds
+-BLacK-Kat- raises 30 to 50
+UneWarrior folds
+-BLacK-Kat- collected 70 from pot
+*** SUMMARY ***
+Total pot 70 | No rake
+Seat 1: -BLacK-Kat- (small blind) won 70
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830461134110720001-6-1780994282 - Holdem no limit (10/20) - 2026/06/09 08:38:02 UTC
+Table: 'Expresso(1124679375)#0' 3-max (real money) Seat #1 is the button
+Seat 1: -BLacK-Kat- (560)
+Seat 2: UneWarrior (450)
+Seat 3: MRZO (490)
+*** ANTE/BLINDS ***
+UneWarrior posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [Kc Jd]
+*** PRE-FLOP *** 
+-BLacK-Kat- raises 30 to 50
+UneWarrior calls 40
+MRZO calls 30
+*** FLOP *** [Qh Ts 6d]
+UneWarrior checks
+MRZO checks
+-BLacK-Kat- bets 75
+UneWarrior folds
+MRZO calls 75
+*** TURN *** [Qh Ts 6d][4d]
+MRZO checks
+-BLacK-Kat- checks
+*** RIVER *** [Qh Ts 6d 4d][6s]
+MRZO checks
+-BLacK-Kat- checks
+*** SHOW DOWN ***
+MRZO shows [Kc Jd] (One pair : 6)
+-BLacK-Kat- shows [As Th] (Two pairs : Tens and 6)
+-BLacK-Kat- collected 300 from pot
+*** SUMMARY ***
+Total pot 300 | No rake
+Board: [Qh Ts 6d 4d 6s]
+Seat 1: -BLacK-Kat- (button) showed [As Th] and won 300 with Two pairs : Tens and 6
+Seat 3: MRZO (big blind) showed [Kc Jd] and lost with One pair : 6
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830461134110720001-7-1780994324 - Holdem no limit (15/30) - 2026/06/09 08:38:44 UTC
+Table: 'Expresso(1124679375)#0' 3-max (real money) Seat #2 is the button
+Seat 1: -BLacK-Kat- (735)
+Seat 2: UneWarrior (400)
+Seat 3: MRZO (365)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+-BLacK-Kat- posts big blind 30
+Dealt to MRZO [7h 8c]
+*** PRE-FLOP *** 
+UneWarrior raises 370 to 400 and is all-in
+MRZO folds
+-BLacK-Kat- folds
+UneWarrior collected 445 from pot
+*** SUMMARY ***
+Total pot 445 | No rake
+Seat 2: UneWarrior (button) won 445
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830461134110720001-8-1780994334 - Holdem no limit (15/30) - 2026/06/09 08:38:54 UTC
+Table: 'Expresso(1124679375)#0' 3-max (real money) Seat #3 is the button
+Seat 1: -BLacK-Kat- (705)
+Seat 2: UneWarrior (445)
+Seat 3: MRZO (350)
+*** ANTE/BLINDS ***
+-BLacK-Kat- posts small blind 15
+UneWarrior posts big blind 30
+Dealt to MRZO [Jd 2d]
+*** PRE-FLOP *** 
+MRZO folds
+-BLacK-Kat- raises 30 to 60
+UneWarrior raises 385 to 445 and is all-in
+-BLacK-Kat- folds
+UneWarrior collected 505 from pot
+*** SUMMARY ***
+Total pot 505 | No rake
+Seat 2: UneWarrior (big blind) won 505
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830461134110720001-9-1780994348 - Holdem no limit (15/30) - 2026/06/09 08:39:08 UTC
+Table: 'Expresso(1124679375)#0' 3-max (real money) Seat #1 is the button
+Seat 1: -BLacK-Kat- (645)
+Seat 2: UneWarrior (505)
+Seat 3: MRZO (350)
+*** ANTE/BLINDS ***
+UneWarrior posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [6s 5d]
+*** PRE-FLOP *** 
+-BLacK-Kat- folds
+UneWarrior calls 15
+MRZO checks
+*** FLOP *** [3h Jd Tc]
+UneWarrior checks
+MRZO checks
+*** TURN *** [3h Jd Tc][4h]
+UneWarrior bets 475 and is all-in
+MRZO folds
+UneWarrior collected 535 from pot
+*** SUMMARY ***
+Total pot 535 | No rake
+Board: [3h Jd Tc 4h]
+Seat 2: UneWarrior (small blind) won 535
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830461134110720001-10-1780994367 - Holdem no limit (15/30) - 2026/06/09 08:39:27 UTC
+Table: 'Expresso(1124679375)#0' 3-max (real money) Seat #2 is the button
+Seat 1: -BLacK-Kat- (645)
+Seat 2: UneWarrior (535)
+Seat 3: MRZO (320)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+-BLacK-Kat- posts big blind 30
+Dealt to MRZO [2c 9d]
+*** PRE-FLOP *** 
+UneWarrior folds
+MRZO folds
+-BLacK-Kat- collected 45 from pot
+*** SUMMARY ***
+Total pot 45 | No rake
+Seat 1: -BLacK-Kat- (big blind) won 45
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830461134110720001-11-1780994371 - Holdem no limit (15/30) - 2026/06/09 08:39:31 UTC
+Table: 'Expresso(1124679375)#0' 3-max (real money) Seat #3 is the button
+Seat 1: -BLacK-Kat- (660)
+Seat 2: UneWarrior (535)
+Seat 3: MRZO (305)
+*** ANTE/BLINDS ***
+-BLacK-Kat- posts small blind 15
+UneWarrior posts big blind 30
+Dealt to MRZO [Qd 2d]
+*** PRE-FLOP *** 
+MRZO folds
+-BLacK-Kat- raises 630 to 660 and is all-in
+UneWarrior calls 505 and is all-in
+*** FLOP *** [9h Ac 2c]
+*** TURN *** [9h Ac 2c][8c]
+*** RIVER *** [9h Ac 2c 8c][2h]
+*** SHOW DOWN ***
+UneWarrior shows [3c 4s] (One pair : 2)
+-BLacK-Kat- shows [As 6d] (Two pairs : Aces and 2)
+-BLacK-Kat- collected 1195 from pot
+*** SUMMARY ***
+Total pot 1195 | No rake
+Board: [9h Ac 2c 8c 2h]
+Seat 1: -BLacK-Kat- (small blind) showed [As 6d] and won 1195 with Two pairs : Aces and 2
+Seat 2: UneWarrior (big blind) showed [3c 4s] and lost with One pair : 2
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830461134110720001-12-1780994386 - Holdem no limit (15/30) - 2026/06/09 08:39:46 UTC
+Table: 'Expresso(1124679375)#0' 3-max (real money) Seat #3 is the button
+Seat 1: -BLacK-Kat- (1195)
+Seat 3: MRZO (305)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+-BLacK-Kat- posts big blind 30
+Dealt to MRZO [7s 5c]
+*** PRE-FLOP *** 
+MRZO folds
+-BLacK-Kat- collected 45 from pot
+*** SUMMARY ***
+Total pot 45 | No rake
+Seat 1: -BLacK-Kat- (big blind) won 45
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830461134110720001-13-1780994390 - Holdem no limit (15/30) - 2026/06/09 08:39:50 UTC
+Table: 'Expresso(1124679375)#0' 3-max (real money) Seat #1 is the button
+Seat 1: -BLacK-Kat- (1210)
+Seat 3: MRZO (290)
+*** ANTE/BLINDS ***
+-BLacK-Kat- posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [7d 2s]
+*** PRE-FLOP *** 
+-BLacK-Kat- raises 1180 to 1210 and is all-in
+MRZO folds
+-BLacK-Kat- collected 1240 from pot
+*** SUMMARY ***
+Total pot 1240 | No rake
+Seat 1: -BLacK-Kat- (small blind) (button) won 1240
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830461134110720001-14-1780994396 - Holdem no limit (15/30) - 2026/06/09 08:39:56 UTC
+Table: 'Expresso(1124679375)#0' 3-max (real money) Seat #3 is the button
+Seat 1: -BLacK-Kat- (1240)
+Seat 3: MRZO (260)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+-BLacK-Kat- posts big blind 30
+Dealt to MRZO [8c 7s]
+*** PRE-FLOP *** 
+MRZO raises 230 to 260 and is all-in
+-BLacK-Kat- folds
+MRZO collected 290 from pot
+*** SUMMARY ***
+Total pot 290 | No rake
+Seat 3: MRZO (small blind) (button) won 290
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830461134110720001-15-1780994403 - Holdem no limit (15/30) - 2026/06/09 08:40:03 UTC
+Table: 'Expresso(1124679375)#0' 3-max (real money) Seat #1 is the button
+Seat 1: -BLacK-Kat- (1210)
+Seat 3: MRZO (290)
+*** ANTE/BLINDS ***
+-BLacK-Kat- posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [Qc 5d]
+*** PRE-FLOP *** 
+-BLacK-Kat- calls 15
+MRZO checks
+*** FLOP *** [4h 8h Tc]
+MRZO checks
+-BLacK-Kat- bets 30
+MRZO folds
+-BLacK-Kat- collected 90 from pot
+*** SUMMARY ***
+Total pot 90 | No rake
+Board: [4h 8h Tc]
+Seat 1: -BLacK-Kat- (small blind) (button) won 90
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830461134110720001-16-1780994422 - Holdem no limit (20/40) - 2026/06/09 08:40:22 UTC
+Table: 'Expresso(1124679375)#0' 3-max (real money) Seat #3 is the button
+Seat 1: -BLacK-Kat- (1240)
+Seat 3: MRZO (260)
+*** ANTE/BLINDS ***
+MRZO posts small blind 20
+-BLacK-Kat- posts big blind 40
+Dealt to MRZO [As 4d]
+*** PRE-FLOP *** 
+MRZO raises 220 to 260 and is all-in
+-BLacK-Kat- folds
+MRZO collected 300 from pot
+*** SUMMARY ***
+Total pot 300 | No rake
+Seat 3: MRZO (small blind) (button) won 300
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830461134110720001-17-1780994428 - Holdem no limit (20/40) - 2026/06/09 08:40:28 UTC
+Table: 'Expresso(1124679375)#0' 3-max (real money) Seat #1 is the button
+Seat 1: -BLacK-Kat- (1200)
+Seat 3: MRZO (300)
+*** ANTE/BLINDS ***
+-BLacK-Kat- posts small blind 20
+MRZO posts big blind 40
+Dealt to MRZO [7s 6c]
+*** PRE-FLOP *** 
+-BLacK-Kat- calls 20
+MRZO checks
+*** FLOP *** [3h Qc 6h]
+MRZO checks
+-BLacK-Kat- bets 40
+MRZO calls 40
+*** TURN *** [3h Qc 6h][5c]
+MRZO checks
+-BLacK-Kat- bets 1120 and is all-in
+MRZO folds
+-BLacK-Kat- collected 1280 from pot
+*** SUMMARY ***
+Total pot 1280 | No rake
+Board: [3h Qc 6h 5c]
+Seat 1: -BLacK-Kat- (small blind) (button) won 1280
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830461134110720001-18-1780994462 - Holdem no limit (20/40) - 2026/06/09 08:41:02 UTC
+Table: 'Expresso(1124679375)#0' 3-max (real money) Seat #3 is the button
+Seat 1: -BLacK-Kat- (1280)
+Seat 3: MRZO (220)
+*** ANTE/BLINDS ***
+MRZO posts small blind 20
+-BLacK-Kat- posts big blind 40
+Dealt to MRZO [Tc 6c]
+*** PRE-FLOP *** 
+MRZO raises 180 to 220 and is all-in
+-BLacK-Kat- raises 1060 to 1280 and is all-in
+*** FLOP *** [Jd 3h Ac]
+*** TURN *** [Jd 3h Ac][8s]
+*** RIVER *** [Jd 3h Ac 8s][7h]
+*** SHOW DOWN ***
+MRZO shows [Tc 6c] (High card : Ace)
+-BLacK-Kat- shows [Jh As] (Two pairs : Aces and Jacks)
+-BLacK-Kat- collected 1500 from pot
+*** SUMMARY ***
+Total pot 1500 | No rake
+Board: [Jd 3h Ac 8s 7h]
+Seat 1: -BLacK-Kat- (big blind) showed [Jh As] and won 1500 with Two pairs : Aces and Jacks
+Seat 3: MRZO (small blind) (button) showed [Tc 6c] and lost with High card : Ace
+
+

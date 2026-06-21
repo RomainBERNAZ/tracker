@@ -1,0 +1,169 @@
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830474676142604289-1-1780994601 - Holdem no limit (10/20) - 2026/06/09 08:43:21 UTC
+Table: 'Expresso(1124682528)#0' 3-max (real money) Seat #3 is the button
+Seat 1: lepiaf76 (500)
+Seat 2: MRZO (500)
+Seat 3: Sbacallao (500)
+*** ANTE/BLINDS ***
+lepiaf76 posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [Ks Ac]
+*** PRE-FLOP *** 
+Sbacallao calls 20
+lepiaf76 calls 10
+MRZO raises 480 to 500 and is all-in
+Sbacallao folds
+lepiaf76 folds
+MRZO collected 540 from pot
+*** SUMMARY ***
+Total pot 540 | No rake
+Seat 2: MRZO (big blind) won 540
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830474676142604289-2-1780994614 - Holdem no limit (10/20) - 2026/06/09 08:43:34 UTC
+Table: 'Expresso(1124682528)#0' 3-max (real money) Seat #1 is the button
+Seat 1: lepiaf76 (480)
+Seat 2: MRZO (540)
+Seat 3: Sbacallao (480)
+*** ANTE/BLINDS ***
+MRZO posts small blind 10
+Sbacallao posts big blind 20
+Dealt to MRZO [6s 7h]
+*** PRE-FLOP *** 
+lepiaf76 folds
+MRZO calls 10
+Sbacallao checks
+*** FLOP *** [4h 5s Kd]
+MRZO bets 20
+Sbacallao raises 80 to 100
+MRZO calls 80
+*** TURN *** [4h 5s Kd][8h]
+MRZO checks
+Sbacallao bets 240
+MRZO raises 180 to 420 and is all-in
+Sbacallao calls 120 and is all-in
+*** RIVER *** [4h 5s Kd 8h][Ks]
+*** SHOW DOWN ***
+Sbacallao shows [5c 7d] (Two pairs : Kings and 5)
+MRZO shows [6s 7h] (Straight 8 high)
+MRZO collected 1020 from pot
+*** SUMMARY ***
+Total pot 1020 | No rake
+Board: [4h 5s Kd 8h Ks]
+Seat 2: MRZO (small blind) showed [6s 7h] and won 1020 with Straight 8 high
+Seat 3: Sbacallao (big blind) showed [5c 7d] and lost with Two pairs : Kings and 5
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830474676142604289-3-1780994672 - Holdem no limit (10/20) - 2026/06/09 08:44:32 UTC
+Table: 'Expresso(1124682528)#0' 3-max (real money) Seat #1 is the button
+Seat 1: lepiaf76 (480)
+Seat 2: MRZO (1020)
+*** ANTE/BLINDS ***
+lepiaf76 posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [3s 5s]
+*** PRE-FLOP *** 
+lepiaf76 calls 10
+MRZO checks
+*** FLOP *** [Ah Ts 9h]
+MRZO checks
+lepiaf76 bets 40
+MRZO folds
+lepiaf76 collected 80 from pot
+*** SUMMARY ***
+Total pot 80 | No rake
+Board: [Ah Ts 9h]
+Seat 1: lepiaf76 (small blind) (button) won 80
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830474676142604289-4-1780994686 - Holdem no limit (10/20) - 2026/06/09 08:44:46 UTC
+Table: 'Expresso(1124682528)#0' 3-max (real money) Seat #2 is the button
+Seat 1: lepiaf76 (500)
+Seat 2: MRZO (1000)
+*** ANTE/BLINDS ***
+MRZO posts small blind 10
+lepiaf76 posts big blind 20
+Dealt to MRZO [6d 4s]
+*** PRE-FLOP *** 
+MRZO calls 10
+lepiaf76 raises 480 to 500 and is all-in
+MRZO folds
+lepiaf76 collected 520 from pot
+*** SUMMARY ***
+Total pot 520 | No rake
+Seat 1: lepiaf76 (big blind) won 520
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830474676142604289-5-1780994701 - Holdem no limit (15/30) - 2026/06/09 08:45:01 UTC
+Table: 'Expresso(1124682528)#0' 3-max (real money) Seat #1 is the button
+Seat 1: lepiaf76 (520)
+Seat 2: MRZO (980)
+*** ANTE/BLINDS ***
+lepiaf76 posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [7c 4d]
+*** PRE-FLOP *** 
+lepiaf76 raises 490 to 520 and is all-in
+MRZO folds
+lepiaf76 collected 550 from pot
+*** SUMMARY ***
+Total pot 550 | No rake
+Seat 1: lepiaf76 (small blind) (button) won 550
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830474676142604289-6-1780994711 - Holdem no limit (15/30) - 2026/06/09 08:45:11 UTC
+Table: 'Expresso(1124682528)#0' 3-max (real money) Seat #2 is the button
+Seat 1: lepiaf76 (550)
+Seat 2: MRZO (950)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+lepiaf76 posts big blind 30
+Dealt to MRZO [Ah 7s]
+*** PRE-FLOP *** 
+MRZO raises 45 to 75
+lepiaf76 calls 45
+*** FLOP *** [Ts 3h 6d]
+lepiaf76 checks
+MRZO bets 53
+lepiaf76 calls 53
+*** TURN *** [Ts 3h 6d][Js]
+lepiaf76 checks
+MRZO checks
+*** RIVER *** [Ts 3h 6d Js][Jd]
+lepiaf76 checks
+MRZO checks
+*** SHOW DOWN ***
+lepiaf76 shows [5s Qs] (One pair : Jacks)
+MRZO shows [Ah 7s] (One pair : Jacks)
+MRZO collected 256 from pot
+*** SUMMARY ***
+Total pot 256 | No rake
+Board: [Ts 3h 6d Js Jd]
+Seat 1: lepiaf76 (big blind) showed [5s Qs] and lost with One pair : Jacks
+Seat 2: MRZO (small blind) (button) showed [Ah 7s] and won 256 with One pair : Jacks
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830474676142604289-7-1780994752 - Holdem no limit (15/30) - 2026/06/09 08:45:52 UTC
+Table: 'Expresso(1124682528)#0' 3-max (real money) Seat #1 is the button
+Seat 1: lepiaf76 (422)
+Seat 2: MRZO (1078)
+*** ANTE/BLINDS ***
+lepiaf76 posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [Ad 7h]
+*** PRE-FLOP *** 
+lepiaf76 raises 392 to 422 and is all-in
+MRZO raises 656 to 1078 and is all-in
+*** FLOP *** [8c 7d Js]
+*** TURN *** [8c 7d Js][Tc]
+*** RIVER *** [8c 7d Js Tc][3h]
+*** SHOW DOWN ***
+lepiaf76 shows [Kh Ac] (High card : Ace)
+MRZO shows [Ad 7h] (One pair : 7)
+MRZO collected 1500 from pot
+*** SUMMARY ***
+Total pot 1500 | No rake
+Board: [8c 7d Js Tc 3h]
+Seat 1: lepiaf76 (small blind) (button) showed [Kh Ac] and lost with High card : Ace
+Seat 2: MRZO (big blind) showed [Ad 7h] and won 1500 with One pair : 7
+
+

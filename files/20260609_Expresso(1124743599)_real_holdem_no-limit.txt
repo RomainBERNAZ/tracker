@@ -1,0 +1,660 @@
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830736974090338305-1-1781002082 - Holdem no limit (10/20) - 2026/06/09 10:48:02 UTC
+Table: 'Expresso(1124743599)#0' 3-max (real money) Seat #3 is the button
+Seat 1: Tonyweeling (500)
+Seat 2: MRZO (500)
+Seat 3: _Weyti_ (500)
+*** ANTE/BLINDS ***
+Tonyweeling posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [Kh Ac]
+*** PRE-FLOP *** 
+_Weyti_ raises 20 to 40
+Tonyweeling folds
+MRZO raises 460 to 500 and is all-in
+_Weyti_ folds
+MRZO collected 550 from pot
+*** SUMMARY ***
+Total pot 550 | No rake
+Seat 2: MRZO (big blind) won 550
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830736974090338305-2-1781002093 - Holdem no limit (10/20) - 2026/06/09 10:48:13 UTC
+Table: 'Expresso(1124743599)#0' 3-max (real money) Seat #1 is the button
+Seat 1: Tonyweeling (490)
+Seat 2: MRZO (550)
+Seat 3: _Weyti_ (460)
+*** ANTE/BLINDS ***
+MRZO posts small blind 10
+_Weyti_ posts big blind 20
+Dealt to MRZO [4c Qc]
+*** PRE-FLOP *** 
+Tonyweeling raises 50 to 70
+MRZO folds
+_Weyti_ folds
+Tonyweeling collected 100 from pot
+*** SUMMARY ***
+Total pot 100 | No rake
+Seat 1: Tonyweeling (button) won 100
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830736974090338305-3-1781002106 - Holdem no limit (10/20) - 2026/06/09 10:48:26 UTC
+Table: 'Expresso(1124743599)#0' 3-max (real money) Seat #2 is the button
+Seat 1: Tonyweeling (520)
+Seat 2: MRZO (540)
+Seat 3: _Weyti_ (440)
+*** ANTE/BLINDS ***
+_Weyti_ posts small blind 10
+Tonyweeling posts big blind 20
+Dealt to MRZO [Ad Th]
+*** PRE-FLOP *** 
+MRZO raises 30 to 50
+_Weyti_ folds
+Tonyweeling calls 30
+*** FLOP *** [2d 2s Td]
+Tonyweeling checks
+MRZO bets 39
+Tonyweeling folds
+MRZO collected 149 from pot
+*** SUMMARY ***
+Total pot 149 | No rake
+Board: [2d 2s Td]
+Seat 2: MRZO (button) won 149
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830736974090338305-4-1781002129 - Holdem no limit (10/20) - 2026/06/09 10:48:49 UTC
+Table: 'Expresso(1124743599)#0' 3-max (real money) Seat #3 is the button
+Seat 1: Tonyweeling (470)
+Seat 2: MRZO (600)
+Seat 3: _Weyti_ (430)
+*** ANTE/BLINDS ***
+Tonyweeling posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [7c Js]
+*** PRE-FLOP *** 
+_Weyti_ raises 20 to 40
+Tonyweeling folds
+MRZO folds
+_Weyti_ collected 70 from pot
+*** SUMMARY ***
+Total pot 70 | No rake
+Seat 3: _Weyti_ (button) won 70
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830736974090338305-5-1781002151 - Holdem no limit (10/20) - 2026/06/09 10:49:11 UTC
+Table: 'Expresso(1124743599)#0' 3-max (real money) Seat #1 is the button
+Seat 1: Tonyweeling (460)
+Seat 2: MRZO (580)
+Seat 3: _Weyti_ (460)
+*** ANTE/BLINDS ***
+MRZO posts small blind 10
+_Weyti_ posts big blind 20
+Dealt to MRZO [Kh 3h]
+*** PRE-FLOP *** 
+Tonyweeling raises 30 to 50
+MRZO folds
+_Weyti_ folds
+Tonyweeling collected 80 from pot
+*** SUMMARY ***
+Total pot 80 | No rake
+Seat 1: Tonyweeling (button) won 80
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830736974090338305-6-1781002167 - Holdem no limit (10/20) - 2026/06/09 10:49:27 UTC
+Table: 'Expresso(1124743599)#0' 3-max (real money) Seat #2 is the button
+Seat 1: Tonyweeling (490)
+Seat 2: MRZO (570)
+Seat 3: _Weyti_ (440)
+*** ANTE/BLINDS ***
+_Weyti_ posts small blind 10
+Tonyweeling posts big blind 20
+Dealt to MRZO [2d Ks]
+*** PRE-FLOP *** 
+MRZO folds
+_Weyti_ raises 30 to 50
+Tonyweeling calls 30
+*** FLOP *** [Jh 4d 7s]
+_Weyti_ bets 25
+Tonyweeling calls 25
+*** TURN *** [Jh 4d 7s][4h]
+_Weyti_ checks
+Tonyweeling checks
+*** RIVER *** [Jh 4d 7s 4h][3h]
+_Weyti_ checks
+Tonyweeling checks
+*** SHOW DOWN ***
+Tonyweeling shows [8d Kd] (One pair : 4)
+_Weyti_ shows [Ac Qd] (One pair : 4)
+_Weyti_ collected 150 from pot
+*** SUMMARY ***
+Total pot 150 | No rake
+Board: [Jh 4d 7s 4h 3h]
+Seat 1: Tonyweeling (big blind) showed [8d Kd] and lost with One pair : 4
+Seat 3: _Weyti_ (small blind) showed [Ac Qd] and won 150 with One pair : 4
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830736974090338305-7-1781002211 - Holdem no limit (15/30) - 2026/06/09 10:50:11 UTC
+Table: 'Expresso(1124743599)#0' 3-max (real money) Seat #3 is the button
+Seat 1: Tonyweeling (415)
+Seat 2: MRZO (570)
+Seat 3: _Weyti_ (515)
+*** ANTE/BLINDS ***
+Tonyweeling posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [3h 9s]
+*** PRE-FLOP *** 
+_Weyti_ raises 30 to 60
+Tonyweeling calls 45
+MRZO folds
+*** FLOP *** [Jd Js 6c]
+Tonyweeling checks
+_Weyti_ bets 38
+Tonyweeling folds
+_Weyti_ collected 188 from pot
+*** SUMMARY ***
+Total pot 188 | No rake
+Board: [Jd Js 6c]
+Seat 3: _Weyti_ (button) won 188
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830736974090338305-8-1781002233 - Holdem no limit (15/30) - 2026/06/09 10:50:33 UTC
+Table: 'Expresso(1124743599)#0' 3-max (real money) Seat #1 is the button
+Seat 1: Tonyweeling (355)
+Seat 2: MRZO (540)
+Seat 3: _Weyti_ (605)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+_Weyti_ posts big blind 30
+Dealt to MRZO [Ac 5h]
+*** PRE-FLOP *** 
+Tonyweeling folds
+MRZO raises 30 to 60
+_Weyti_ folds
+MRZO collected 90 from pot
+*** SUMMARY ***
+Total pot 90 | No rake
+Seat 2: MRZO (small blind) won 90
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830736974090338305-9-1781002247 - Holdem no limit (15/30) - 2026/06/09 10:50:47 UTC
+Table: 'Expresso(1124743599)#0' 3-max (real money) Seat #2 is the button
+Seat 1: Tonyweeling (355)
+Seat 2: MRZO (570)
+Seat 3: _Weyti_ (575)
+*** ANTE/BLINDS ***
+_Weyti_ posts small blind 15
+Tonyweeling posts big blind 30
+Dealt to MRZO [2c 9s]
+*** PRE-FLOP *** 
+MRZO folds
+_Weyti_ raises 545 to 575 and is all-in
+Tonyweeling folds
+_Weyti_ collected 605 from pot
+*** SUMMARY ***
+Total pot 605 | No rake
+Seat 3: _Weyti_ (small blind) won 605
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830736974090338305-10-1781002260 - Holdem no limit (20/40) - 2026/06/09 10:51:00 UTC
+Table: 'Expresso(1124743599)#0' 3-max (real money) Seat #3 is the button
+Seat 1: Tonyweeling (325)
+Seat 2: MRZO (570)
+Seat 3: _Weyti_ (605)
+*** ANTE/BLINDS ***
+Tonyweeling posts small blind 20
+MRZO posts big blind 40
+Dealt to MRZO [8d 9d]
+*** PRE-FLOP *** 
+_Weyti_ folds
+Tonyweeling folds
+MRZO collected 60 from pot
+*** SUMMARY ***
+Total pot 60 | No rake
+Seat 2: MRZO (big blind) won 60
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830736974090338305-11-1781002269 - Holdem no limit (20/40) - 2026/06/09 10:51:09 UTC
+Table: 'Expresso(1124743599)#0' 3-max (real money) Seat #1 is the button
+Seat 1: Tonyweeling (305)
+Seat 2: MRZO (590)
+Seat 3: _Weyti_ (605)
+*** ANTE/BLINDS ***
+MRZO posts small blind 20
+_Weyti_ posts big blind 40
+Dealt to MRZO [8d 6c]
+*** PRE-FLOP *** 
+Tonyweeling calls 40
+MRZO folds
+_Weyti_ checks
+*** FLOP *** [9c 7h Qs]
+_Weyti_ checks
+Tonyweeling checks
+*** TURN *** [9c 7h Qs][Ac]
+_Weyti_ checks
+Tonyweeling bets 265 and is all-in
+_Weyti_ folds
+Tonyweeling collected 365 from pot
+*** SUMMARY ***
+Total pot 365 | No rake
+Board: [9c 7h Qs Ac]
+Seat 1: Tonyweeling (button) won 365
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830736974090338305-12-1781002319 - Holdem no limit (20/40) - 2026/06/09 10:51:59 UTC
+Table: 'Expresso(1124743599)#0' 3-max (real money) Seat #2 is the button
+Seat 1: Tonyweeling (365)
+Seat 2: MRZO (570)
+Seat 3: _Weyti_ (565)
+*** ANTE/BLINDS ***
+_Weyti_ posts small blind 20
+Tonyweeling posts big blind 40
+Dealt to MRZO [8h 2s]
+*** PRE-FLOP *** 
+MRZO folds
+_Weyti_ raises 525 to 565 and is all-in
+Tonyweeling calls 325 and is all-in
+*** FLOP *** [5h 3d 7d]
+*** TURN *** [5h 3d 7d][4d]
+*** RIVER *** [5h 3d 7d 4d][6s]
+*** SHOW DOWN ***
+Tonyweeling shows [Td Qs] (Straight 7 high)
+_Weyti_ shows [Ad 9c] (Straight 7 high)
+_Weyti_ collected 565 from side pot 1
+Tonyweeling collected 365 from main pot
+*** SUMMARY ***
+Total pot 930 | No rake
+Board: [5h 3d 7d 4d 6s]
+Seat 1: Tonyweeling (big blind) showed [Td Qs] and won 365 with Straight 7 high
+Seat 3: _Weyti_ (small blind) showed [Ad 9c] and won 565 with Straight 7 high
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830736974090338305-13-1781002333 - Holdem no limit (20/40) - 2026/06/09 10:52:13 UTC
+Table: 'Expresso(1124743599)#0' 3-max (real money) Seat #3 is the button
+Seat 1: Tonyweeling (365)
+Seat 2: MRZO (570)
+Seat 3: _Weyti_ (565)
+*** ANTE/BLINDS ***
+Tonyweeling posts small blind 20
+MRZO posts big blind 40
+Dealt to MRZO [Qc 5c]
+*** PRE-FLOP *** 
+_Weyti_ folds
+Tonyweeling calls 20
+MRZO checks
+*** FLOP *** [Ad 2h 8c]
+Tonyweeling checks
+MRZO checks
+*** TURN *** [Ad 2h 8c][Ac]
+Tonyweeling checks
+MRZO bets 52
+Tonyweeling folds
+MRZO collected 132 from pot
+*** SUMMARY ***
+Total pot 132 | No rake
+Board: [Ad 2h 8c Ac]
+Seat 2: MRZO (big blind) won 132
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830736974090338305-14-1781002409 - Holdem no limit (30/60) - 2026/06/09 10:53:29 UTC
+Table: 'Expresso(1124743599)#0' 3-max (real money) Seat #1 is the button
+Seat 1: Tonyweeling (325)
+Seat 2: MRZO (610)
+Seat 3: _Weyti_ (565)
+*** ANTE/BLINDS ***
+MRZO posts small blind 30
+_Weyti_ posts big blind 60
+Dealt to MRZO [Ts 6h]
+*** PRE-FLOP *** 
+Tonyweeling folds
+MRZO folds
+_Weyti_ collected 90 from pot
+*** SUMMARY ***
+Total pot 90 | No rake
+Seat 3: _Weyti_ (big blind) won 90
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830736974090338305-15-1781002421 - Holdem no limit (30/60) - 2026/06/09 10:53:41 UTC
+Table: 'Expresso(1124743599)#0' 3-max (real money) Seat #2 is the button
+Seat 1: Tonyweeling (325)
+Seat 2: MRZO (580)
+Seat 3: _Weyti_ (595)
+*** ANTE/BLINDS ***
+_Weyti_ posts small blind 30
+Tonyweeling posts big blind 60
+Dealt to MRZO [Qc Ts]
+*** PRE-FLOP *** 
+MRZO folds
+_Weyti_ raises 535 to 595 and is all-in
+Tonyweeling folds
+_Weyti_ collected 655 from pot
+*** SUMMARY ***
+Total pot 655 | No rake
+Seat 3: _Weyti_ (small blind) won 655
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830736974090338305-16-1781002435 - Holdem no limit (30/60) - 2026/06/09 10:53:55 UTC
+Table: 'Expresso(1124743599)#0' 3-max (real money) Seat #3 is the button
+Seat 1: Tonyweeling (265)
+Seat 2: MRZO (580)
+Seat 3: _Weyti_ (655)
+*** ANTE/BLINDS ***
+Tonyweeling posts small blind 30
+MRZO posts big blind 60
+Dealt to MRZO [2d Qc]
+*** PRE-FLOP *** 
+_Weyti_ calls 60
+Tonyweeling folds
+MRZO checks
+*** FLOP *** [2h Ad Kh]
+MRZO checks
+_Weyti_ bets 60
+MRZO folds
+_Weyti_ collected 210 from pot
+*** SUMMARY ***
+Total pot 210 | No rake
+Board: [2h Ad Kh]
+Seat 3: _Weyti_ (button) won 210
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 5 - HandId: #4830736974090338305-17-1781002455 - Holdem no limit (40/80) - 2026/06/09 10:54:15 UTC
+Table: 'Expresso(1124743599)#0' 3-max (real money) Seat #1 is the button
+Seat 1: Tonyweeling (235)
+Seat 2: MRZO (520)
+Seat 3: _Weyti_ (745)
+*** ANTE/BLINDS ***
+MRZO posts small blind 40
+_Weyti_ posts big blind 80
+Dealt to MRZO [2h 9d]
+*** PRE-FLOP *** 
+Tonyweeling folds
+MRZO folds
+_Weyti_ collected 120 from pot
+*** SUMMARY ***
+Total pot 120 | No rake
+Seat 3: _Weyti_ (big blind) won 120
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 5 - HandId: #4830736974090338305-18-1781002466 - Holdem no limit (40/80) - 2026/06/09 10:54:26 UTC
+Table: 'Expresso(1124743599)#0' 3-max (real money) Seat #2 is the button
+Seat 1: Tonyweeling (235)
+Seat 2: MRZO (480)
+Seat 3: _Weyti_ (785)
+*** ANTE/BLINDS ***
+_Weyti_ posts small blind 40
+Tonyweeling posts big blind 80
+Dealt to MRZO [Ad 9d]
+*** PRE-FLOP *** 
+MRZO raises 400 to 480 and is all-in
+_Weyti_ folds
+Tonyweeling calls 155 and is all-in
+*** FLOP *** [Qs 9h Kh]
+*** TURN *** [Qs 9h Kh][9s]
+*** RIVER *** [Qs 9h Kh 9s][7c]
+*** SHOW DOWN ***
+Tonyweeling shows [Jh 8s] (One pair : 9)
+MRZO shows [Ad 9d] (Trips of 9)
+MRZO collected 755 from pot
+*** SUMMARY ***
+Total pot 755 | No rake
+Board: [Qs 9h Kh 9s 7c]
+Seat 1: Tonyweeling (big blind) showed [Jh 8s] and lost with One pair : 9
+Seat 2: MRZO (button) showed [Ad 9d] and won 755 with Trips of 9
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 5 - HandId: #4830736974090338305-19-1781002480 - Holdem no limit (40/80) - 2026/06/09 10:54:40 UTC
+Table: 'Expresso(1124743599)#0' 3-max (real money) Seat #2 is the button
+Seat 2: MRZO (755)
+Seat 3: _Weyti_ (745)
+*** ANTE/BLINDS ***
+MRZO posts small blind 40
+_Weyti_ posts big blind 80
+Dealt to MRZO [3h 5d]
+*** PRE-FLOP *** 
+MRZO folds
+_Weyti_ collected 120 from pot
+*** SUMMARY ***
+Total pot 120 | No rake
+Seat 3: _Weyti_ (big blind) won 120
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 5 - HandId: #4830736974090338305-20-1781002483 - Holdem no limit (40/80) - 2026/06/09 10:54:43 UTC
+Table: 'Expresso(1124743599)#0' 3-max (real money) Seat #3 is the button
+Seat 2: MRZO (715)
+Seat 3: _Weyti_ (785)
+*** ANTE/BLINDS ***
+_Weyti_ posts small blind 40
+MRZO posts big blind 80
+Dealt to MRZO [9s 6d]
+*** PRE-FLOP *** 
+_Weyti_ calls 40
+MRZO checks
+*** FLOP *** [5s Ad Tc]
+MRZO checks
+_Weyti_ bets 80
+MRZO folds
+_Weyti_ collected 240 from pot
+*** SUMMARY ***
+Total pot 240 | No rake
+Board: [5s Ad Tc]
+Seat 3: _Weyti_ (small blind) (button) won 240
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 5 - HandId: #4830736974090338305-21-1781002503 - Holdem no limit (40/80) - 2026/06/09 10:55:03 UTC
+Table: 'Expresso(1124743599)#0' 3-max (real money) Seat #2 is the button
+Seat 2: MRZO (635)
+Seat 3: _Weyti_ (865)
+*** ANTE/BLINDS ***
+MRZO posts small blind 40
+_Weyti_ posts big blind 80
+Dealt to MRZO [Js Tc]
+*** PRE-FLOP *** 
+MRZO raises 555 to 635 and is all-in
+_Weyti_ folds
+MRZO collected 715 from pot
+*** SUMMARY ***
+Total pot 715 | No rake
+Seat 2: MRZO (small blind) (button) won 715
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 5 - HandId: #4830736974090338305-22-1781002509 - Holdem no limit (40/80) - 2026/06/09 10:55:09 UTC
+Table: 'Expresso(1124743599)#0' 3-max (real money) Seat #3 is the button
+Seat 2: MRZO (715)
+Seat 3: _Weyti_ (785)
+*** ANTE/BLINDS ***
+_Weyti_ posts small blind 40
+MRZO posts big blind 80
+Dealt to MRZO [8d Kc]
+*** PRE-FLOP *** 
+_Weyti_ raises 705 to 785 and is all-in
+MRZO calls 635 and is all-in
+*** FLOP *** [As Ts 4d]
+*** TURN *** [As Ts 4d][Qd]
+*** RIVER *** [As Ts 4d Qd][3s]
+*** SHOW DOWN ***
+MRZO shows [8d Kc] (High card : Ace)
+_Weyti_ shows [9h 8h] (High card : Ace)
+_Weyti_ collected 70 from side pot 1
+MRZO collected 1430 from main pot
+*** SUMMARY ***
+Total pot 1500 | No rake
+Board: [As Ts 4d Qd 3s]
+Seat 2: MRZO (big blind) showed [8d Kc] and won 1430 with High card : Ace
+Seat 3: _Weyti_ (small blind) (button) showed [9h 8h] and won 70 with High card : Ace
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 5 - HandId: #4830736974090338305-23-1781002524 - Holdem no limit (40/80) - 2026/06/09 10:55:24 UTC
+Table: 'Expresso(1124743599)#0' 3-max (real money) Seat #2 is the button
+Seat 2: MRZO (1430)
+Seat 3: _Weyti_ (70)
+*** ANTE/BLINDS ***
+MRZO posts small blind 40
+_Weyti_ posts big blind 70 and is all-in
+Dealt to MRZO [3h 8h]
+*** PRE-FLOP *** 
+MRZO raises 1360 to 1430 and is all-in
+*** FLOP *** [7s Qd 2s]
+*** TURN *** [7s Qd 2s][4c]
+*** RIVER *** [7s Qd 2s 4c][Ks]
+*** SHOW DOWN ***
+MRZO shows [3h 8h] (High card : King)
+_Weyti_ shows [Jc Qc] (One pair : Queens)
+_Weyti_ collected 140 from main pot
+MRZO collected 1360 from side pot 1
+*** SUMMARY ***
+Total pot 1500 | No rake
+Board: [7s Qd 2s 4c Ks]
+Seat 2: MRZO (small blind) (button) showed [3h 8h] and won 1360 with High card : King
+Seat 3: _Weyti_ (big blind) showed [Jc Qc] and won 140 with One pair : Queens
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 6 - HandId: #4830736974090338305-24-1781002534 - Holdem no limit (50/100) - 2026/06/09 10:55:34 UTC
+Table: 'Expresso(1124743599)#0' 3-max (real money) Seat #3 is the button
+Seat 2: MRZO (1360)
+Seat 3: _Weyti_ (140)
+*** ANTE/BLINDS ***
+_Weyti_ posts small blind 50
+MRZO posts big blind 100
+Dealt to MRZO [8c 9h]
+*** PRE-FLOP *** 
+_Weyti_ raises 40 to 140 and is all-in
+MRZO raises 1220 to 1360 and is all-in
+*** FLOP *** [4s Kc Qs]
+*** TURN *** [4s Kc Qs][3c]
+*** RIVER *** [4s Kc Qs 3c][Th]
+*** SHOW DOWN ***
+MRZO shows [8c 9h] (High card : King)
+_Weyti_ shows [7c 4d] (One pair : 4)
+_Weyti_ collected 280 from main pot
+MRZO collected 1220 from side pot 1
+*** SUMMARY ***
+Total pot 1500 | No rake
+Board: [4s Kc Qs 3c Th]
+Seat 2: MRZO (big blind) showed [8c 9h] and won 1220 with High card : King
+Seat 3: _Weyti_ (small blind) (button) showed [7c 4d] and won 280 with One pair : 4
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 6 - HandId: #4830736974090338305-25-1781002548 - Holdem no limit (50/100) - 2026/06/09 10:55:48 UTC
+Table: 'Expresso(1124743599)#0' 3-max (real money) Seat #2 is the button
+Seat 2: MRZO (1220)
+Seat 3: _Weyti_ (280)
+*** ANTE/BLINDS ***
+MRZO posts small blind 50
+_Weyti_ posts big blind 100
+Dealt to MRZO [Th 4h]
+*** PRE-FLOP *** 
+MRZO raises 1120 to 1220 and is all-in
+_Weyti_ folds
+MRZO collected 1320 from pot
+*** SUMMARY ***
+Total pot 1320 | No rake
+Seat 2: MRZO (small blind) (button) won 1320
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 6 - HandId: #4830736974090338305-26-1781002554 - Holdem no limit (50/100) - 2026/06/09 10:55:54 UTC
+Table: 'Expresso(1124743599)#0' 3-max (real money) Seat #3 is the button
+Seat 2: MRZO (1320)
+Seat 3: _Weyti_ (180)
+*** ANTE/BLINDS ***
+_Weyti_ posts small blind 50
+MRZO posts big blind 100
+Dealt to MRZO [2c Kc]
+*** PRE-FLOP *** 
+_Weyti_ raises 80 to 180 and is all-in
+MRZO raises 1140 to 1320 and is all-in
+*** FLOP *** [Qs 6h Qd]
+*** TURN *** [Qs 6h Qd][Qc]
+*** RIVER *** [Qs 6h Qd Qc][5s]
+*** SHOW DOWN ***
+MRZO shows [2c Kc] (Trips of Queens)
+_Weyti_ shows [5c 3c] (Full of Queens and 5)
+_Weyti_ collected 360 from main pot
+MRZO collected 1140 from side pot 1
+*** SUMMARY ***
+Total pot 1500 | No rake
+Board: [Qs 6h Qd Qc 5s]
+Seat 2: MRZO (big blind) showed [2c Kc] and won 1140 with Trips of Queens
+Seat 3: _Weyti_ (small blind) (button) showed [5c 3c] and won 360 with Full of Queens and 5
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 6 - HandId: #4830736974090338305-27-1781002566 - Holdem no limit (50/100) - 2026/06/09 10:56:06 UTC
+Table: 'Expresso(1124743599)#0' 3-max (real money) Seat #2 is the button
+Seat 2: MRZO (1140)
+Seat 3: _Weyti_ (360)
+*** ANTE/BLINDS ***
+MRZO posts small blind 50
+_Weyti_ posts big blind 100
+Dealt to MRZO [2s 4c]
+*** PRE-FLOP *** 
+MRZO folds
+_Weyti_ collected 150 from pot
+*** SUMMARY ***
+Total pot 150 | No rake
+Seat 3: _Weyti_ (big blind) won 150
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 6 - HandId: #4830736974090338305-28-1781002571 - Holdem no limit (50/100) - 2026/06/09 10:56:11 UTC
+Table: 'Expresso(1124743599)#0' 3-max (real money) Seat #3 is the button
+Seat 2: MRZO (1090)
+Seat 3: _Weyti_ (410)
+*** ANTE/BLINDS ***
+_Weyti_ posts small blind 50
+MRZO posts big blind 100
+Dealt to MRZO [Kh 5c]
+*** PRE-FLOP *** 
+_Weyti_ folds
+MRZO collected 150 from pot
+*** SUMMARY ***
+Total pot 150 | No rake
+Seat 2: MRZO (big blind) won 150
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 6 - HandId: #4830736974090338305-29-1781002575 - Holdem no limit (50/100) - 2026/06/09 10:56:15 UTC
+Table: 'Expresso(1124743599)#0' 3-max (real money) Seat #2 is the button
+Seat 2: MRZO (1140)
+Seat 3: _Weyti_ (360)
+*** ANTE/BLINDS ***
+MRZO posts small blind 50
+_Weyti_ posts big blind 100
+Dealt to MRZO [3h Jc]
+*** PRE-FLOP *** 
+MRZO raises 1040 to 1140 and is all-in
+_Weyti_ calls 260 and is all-in
+*** FLOP *** [Kh As Ad]
+*** TURN *** [Kh As Ad][Ah]
+*** RIVER *** [Kh As Ad Ah][6c]
+*** SHOW DOWN ***
+MRZO shows [3h Jc] (Trips of Aces)
+_Weyti_ shows [Jd 9s] (Trips of Aces)
+_Weyti_ collected 360 from main pot
+MRZO collected 1140 from side pot 1
+*** SUMMARY ***
+Total pot 1500 | No rake
+Board: [Kh As Ad Ah 6c]
+Seat 2: MRZO (small blind) (button) showed [3h Jc] and won 1140 with Trips of Aces
+Seat 3: _Weyti_ (big blind) showed [Jd 9s] and won 360 with Trips of Aces
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 6 - HandId: #4830736974090338305-30-1781002588 - Holdem no limit (50/100) - 2026/06/09 10:56:28 UTC
+Table: 'Expresso(1124743599)#0' 3-max (real money) Seat #3 is the button
+Seat 2: MRZO (1140)
+Seat 3: _Weyti_ (360)
+*** ANTE/BLINDS ***
+_Weyti_ posts small blind 50
+MRZO posts big blind 100
+Dealt to MRZO [2h 2d]
+*** PRE-FLOP *** 
+_Weyti_ raises 260 to 360 and is all-in
+MRZO raises 780 to 1140 and is all-in
+*** FLOP *** [Qc Kd Td]
+*** TURN *** [Qc Kd Td][Ks]
+*** RIVER *** [Qc Kd Td Ks][9s]
+*** SHOW DOWN ***
+_Weyti_ shows [5c 3c] (One pair : Kings)
+MRZO shows [2h 2d] (Two pairs : Kings and 2)
+MRZO collected 1500 from pot
+*** SUMMARY ***
+Total pot 1500 | No rake
+Board: [Qc Kd Td Ks 9s]
+Seat 2: MRZO (big blind) showed [2h 2d] and won 1500 with Two pairs : Kings and 2
+Seat 3: _Weyti_ (small blind) (button) showed [5c 3c] and lost with One pair : Kings
+
+

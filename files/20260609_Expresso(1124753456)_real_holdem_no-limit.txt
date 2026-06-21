@@ -1,0 +1,201 @@
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830779309582974977-1-1781003289 - Holdem no limit (10/20) - 2026/06/09 11:08:09 UTC
+Table: 'Expresso(1124753456)#0' 3-max (real money) Seat #3 is the button
+Seat 1: RickySifredO (500)
+Seat 2: MRZO (500)
+Seat 3: TheASlife (500)
+*** ANTE/BLINDS ***
+RickySifredO posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [2c 2h]
+*** PRE-FLOP *** 
+TheASlife raises 30 to 50
+RickySifredO folds
+MRZO calls 30
+*** FLOP *** [2d Qs Ah]
+MRZO checks
+TheASlife checks
+*** TURN *** [2d Qs Ah][Qd]
+MRZO bets 88
+TheASlife folds
+MRZO collected 198 from pot
+*** SUMMARY ***
+Total pot 198 | No rake
+Board: [2d Qs Ah Qd]
+Seat 2: MRZO (big blind) won 198
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830779309582974977-2-1781003323 - Holdem no limit (10/20) - 2026/06/09 11:08:43 UTC
+Table: 'Expresso(1124753456)#0' 3-max (real money) Seat #1 is the button
+Seat 1: RickySifredO (490)
+Seat 2: MRZO (560)
+Seat 3: TheASlife (450)
+*** ANTE/BLINDS ***
+MRZO posts small blind 10
+TheASlife posts big blind 20
+Dealt to MRZO [Jh Ad]
+*** PRE-FLOP *** 
+RickySifredO calls 20
+MRZO raises 50 to 70
+TheASlife calls 50
+RickySifredO calls 50
+*** FLOP *** [9c 6c Qd]
+MRZO checks
+TheASlife checks
+RickySifredO bets 420 and is all-in
+MRZO folds
+TheASlife folds
+RickySifredO collected 630 from pot
+*** SUMMARY ***
+Total pot 630 | No rake
+Board: [9c 6c Qd]
+Seat 1: RickySifredO (button) won 630
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830779309582974977-3-1781003346 - Holdem no limit (10/20) - 2026/06/09 11:09:06 UTC
+Table: 'Expresso(1124753456)#0' 3-max (real money) Seat #2 is the button
+Seat 1: RickySifredO (630)
+Seat 2: MRZO (490)
+Seat 3: TheASlife (380)
+*** ANTE/BLINDS ***
+TheASlife posts small blind 10
+RickySifredO posts big blind 20
+Dealt to MRZO [8s 9c]
+*** PRE-FLOP *** 
+MRZO folds
+TheASlife raises 40 to 60
+RickySifredO raises 570 to 630 and is all-in
+TheASlife calls 320 and is all-in
+*** FLOP *** [8h Ah 2c]
+*** TURN *** [8h Ah 2c][2s]
+*** RIVER *** [8h Ah 2c 2s][2h]
+*** SHOW DOWN ***
+RickySifredO shows [6h 6d] (Full of 2 and 6)
+TheASlife shows [Jh Ad] (Full of 2 and Aces)
+TheASlife collected 760 from main pot
+RickySifredO collected 250 from side pot 1
+*** SUMMARY ***
+Total pot 1010 | No rake
+Board: [8h Ah 2c 2s 2h]
+Seat 1: RickySifredO (big blind) showed [6h 6d] and won 250 with Full of 2 and 6
+Seat 3: TheASlife (small blind) showed [Jh Ad] and won 760 with Full of 2 and Aces
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830779309582974977-4-1781003363 - Holdem no limit (10/20) - 2026/06/09 11:09:23 UTC
+Table: 'Expresso(1124753456)#0' 3-max (real money) Seat #3 is the button
+Seat 1: RickySifredO (250)
+Seat 2: MRZO (490)
+Seat 3: TheASlife (760)
+*** ANTE/BLINDS ***
+RickySifredO posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [Qs 4h]
+*** PRE-FLOP *** 
+TheASlife folds
+RickySifredO raises 230 to 250 and is all-in
+MRZO folds
+RickySifredO collected 270 from pot
+*** SUMMARY ***
+Total pot 270 | No rake
+Seat 1: RickySifredO (small blind) won 270
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830779309582974977-5-1781003368 - Holdem no limit (10/20) - 2026/06/09 11:09:28 UTC
+Table: 'Expresso(1124753456)#0' 3-max (real money) Seat #1 is the button
+Seat 1: RickySifredO (270)
+Seat 2: MRZO (470)
+Seat 3: TheASlife (760)
+*** ANTE/BLINDS ***
+MRZO posts small blind 10
+TheASlife posts big blind 20
+Dealt to MRZO [Ts 6d]
+*** PRE-FLOP *** 
+RickySifredO raises 250 to 270 and is all-in
+MRZO folds
+TheASlife folds
+RickySifredO collected 300 from pot
+*** SUMMARY ***
+Total pot 300 | No rake
+Seat 1: RickySifredO (button) won 300
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830779309582974977-6-1781003375 - Holdem no limit (10/20) - 2026/06/09 11:09:35 UTC
+Table: 'Expresso(1124753456)#0' 3-max (real money) Seat #2 is the button
+Seat 1: RickySifredO (300)
+Seat 2: MRZO (460)
+Seat 3: TheASlife (740)
+*** ANTE/BLINDS ***
+TheASlife posts small blind 10
+RickySifredO posts big blind 20
+Dealt to MRZO [6h 2c]
+*** PRE-FLOP *** 
+MRZO folds
+TheASlife folds
+RickySifredO collected 30 from pot
+*** SUMMARY ***
+Total pot 30 | No rake
+Seat 1: RickySifredO (big blind) won 30
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830779309582974977-7-1781003392 - Holdem no limit (15/30) - 2026/06/09 11:09:52 UTC
+Table: 'Expresso(1124753456)#0' 3-max (real money) Seat #3 is the button
+Seat 1: RickySifredO (310)
+Seat 2: MRZO (460)
+Seat 3: TheASlife (730)
+*** ANTE/BLINDS ***
+RickySifredO posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [Jh 2c]
+*** PRE-FLOP *** 
+TheASlife raises 45 to 75
+RickySifredO calls 60
+MRZO folds
+*** FLOP *** [6s 3d 8d]
+RickySifredO checks
+TheASlife checks
+*** TURN *** [6s 3d 8d][5c]
+RickySifredO checks
+TheASlife bets 63
+RickySifredO calls 63
+*** RIVER *** [6s 3d 8d 5c][9h]
+RickySifredO bets 172 and is all-in
+TheASlife calls 172
+*** SHOW DOWN ***
+RickySifredO shows [Kc Kd] (One pair : Kings)
+TheASlife shows [7h Ac] (Straight 9 high)
+TheASlife collected 650 from pot
+*** SUMMARY ***
+Total pot 650 | No rake
+Board: [6s 3d 8d 5c 9h]
+Seat 1: RickySifredO (small blind) showed [Kc Kd] and lost with One pair : Kings
+Seat 3: TheASlife (button) showed [7h Ac] and won 650 with Straight 9 high
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830779309582974977-8-1781003423 - Holdem no limit (15/30) - 2026/06/09 11:10:23 UTC
+Table: 'Expresso(1124753456)#0' 3-max (real money) Seat #2 is the button
+Seat 2: MRZO (430)
+Seat 3: TheASlife (1070)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+TheASlife posts big blind 30
+Dealt to MRZO [9h Jc]
+*** PRE-FLOP *** 
+MRZO calls 15
+TheASlife raises 60 to 90
+MRZO calls 60
+*** FLOP *** [4d 9s 5c]
+TheASlife bets 180
+MRZO raises 160 to 340 and is all-in
+TheASlife calls 160
+*** TURN *** [4d 9s 5c][8s]
+*** RIVER *** [4d 9s 5c 8s][6h]
+*** SHOW DOWN ***
+MRZO shows [9h Jc] (One pair : 9)
+TheASlife shows [Ad 9c] (One pair : 9)
+TheASlife collected 860 from pot
+*** SUMMARY ***
+Total pot 860 | No rake
+Board: [4d 9s 5c 8s 6h]
+Seat 2: MRZO (small blind) (button) showed [9h Jc] and lost with One pair : 9
+Seat 3: TheASlife (big blind) showed [Ad 9c] and won 860 with One pair : 9
+
+

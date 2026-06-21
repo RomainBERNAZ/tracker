@@ -1,0 +1,625 @@
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830591147065737217-1-1780998234 - Holdem no limit (10/20) - 2026/06/09 09:43:54 UTC
+Table: 'Expresso(1124709646)#0' 3-max (real money) Seat #3 is the button
+Seat 1: MRZO (500)
+Seat 2: Jardani27 (500)
+Seat 3: Fweeez (500)
+*** ANTE/BLINDS ***
+MRZO posts small blind 10
+Jardani27 posts big blind 20
+Dealt to MRZO [Jd Qh]
+*** PRE-FLOP *** 
+Fweeez folds
+MRZO raises 20 to 40
+Jardani27 calls 20
+*** FLOP *** [2s Jh As]
+MRZO bets 28
+Jardani27 folds
+MRZO collected 108 from pot
+*** SUMMARY ***
+Total pot 108 | No rake
+Board: [2s Jh As]
+Seat 1: MRZO (small blind) won 108
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830591147065737217-2-1780998248 - Holdem no limit (10/20) - 2026/06/09 09:44:08 UTC
+Table: 'Expresso(1124709646)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (540)
+Seat 2: Jardani27 (460)
+Seat 3: Fweeez (500)
+*** ANTE/BLINDS ***
+Jardani27 posts small blind 10
+Fweeez posts big blind 20
+Dealt to MRZO [6h As]
+*** PRE-FLOP *** 
+MRZO folds
+Jardani27 calls 10
+Fweeez raises 60 to 80
+Jardani27 folds
+Fweeez collected 100 from pot
+*** SUMMARY ***
+Total pot 100 | No rake
+Seat 3: Fweeez (big blind) won 100
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830591147065737217-3-1780998260 - Holdem no limit (10/20) - 2026/06/09 09:44:20 UTC
+Table: 'Expresso(1124709646)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (540)
+Seat 2: Jardani27 (440)
+Seat 3: Fweeez (520)
+*** ANTE/BLINDS ***
+Fweeez posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [Ks 5d]
+*** PRE-FLOP *** 
+Jardani27 calls 20
+Fweeez folds
+MRZO checks
+*** FLOP *** [3d 7h Ah]
+MRZO checks
+Jardani27 bets 20
+MRZO folds
+Jardani27 collected 70 from pot
+*** SUMMARY ***
+Total pot 70 | No rake
+Board: [3d 7h Ah]
+Seat 2: Jardani27 (button) won 70
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830591147065737217-4-1780998280 - Holdem no limit (10/20) - 2026/06/09 09:44:40 UTC
+Table: 'Expresso(1124709646)#0' 3-max (real money) Seat #3 is the button
+Seat 1: MRZO (520)
+Seat 2: Jardani27 (470)
+Seat 3: Fweeez (510)
+*** ANTE/BLINDS ***
+MRZO posts small blind 10
+Jardani27 posts big blind 20
+Dealt to MRZO [2s 9s]
+*** PRE-FLOP *** 
+Fweeez raises 20 to 40
+MRZO folds
+Jardani27 calls 20
+*** FLOP *** [4c 4s 8s]
+Jardani27 checks
+Fweeez checks
+*** TURN *** [4c 4s 8s][6c]
+Jardani27 checks
+Fweeez bets 45
+Jardani27 folds
+Fweeez collected 135 from pot
+*** SUMMARY ***
+Total pot 135 | No rake
+Board: [4c 4s 8s 6c]
+Seat 3: Fweeez (button) won 135
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830591147065737217-5-1780998307 - Holdem no limit (10/20) - 2026/06/09 09:45:07 UTC
+Table: 'Expresso(1124709646)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (510)
+Seat 2: Jardani27 (430)
+Seat 3: Fweeez (560)
+*** ANTE/BLINDS ***
+Jardani27 posts small blind 10
+Fweeez posts big blind 20
+Dealt to MRZO [8c Kh]
+*** PRE-FLOP *** 
+MRZO folds
+Jardani27 calls 10
+Fweeez checks
+*** FLOP *** [5h Ac Th]
+Jardani27 checks
+Fweeez checks
+*** TURN *** [5h Ac Th][Ks]
+Jardani27 checks
+Fweeez bets 20
+Jardani27 folds
+Fweeez collected 60 from pot
+*** SUMMARY ***
+Total pot 60 | No rake
+Board: [5h Ac Th Ks]
+Seat 3: Fweeez (big blind) won 60
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830591147065737217-6-1780998336 - Holdem no limit (15/30) - 2026/06/09 09:45:36 UTC
+Table: 'Expresso(1124709646)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (510)
+Seat 2: Jardani27 (410)
+Seat 3: Fweeez (580)
+*** ANTE/BLINDS ***
+Fweeez posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [Qd 9c]
+*** PRE-FLOP *** 
+Jardani27 calls 30
+Fweeez folds
+MRZO checks
+*** FLOP *** [Jc As Tc]
+MRZO bets 49
+Jardani27 folds
+MRZO collected 124 from pot
+*** SUMMARY ***
+Total pot 124 | No rake
+Board: [Jc As Tc]
+Seat 1: MRZO (big blind) won 124
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830591147065737217-7-1780998357 - Holdem no limit (15/30) - 2026/06/09 09:45:57 UTC
+Table: 'Expresso(1124709646)#0' 3-max (real money) Seat #3 is the button
+Seat 1: MRZO (555)
+Seat 2: Jardani27 (380)
+Seat 3: Fweeez (565)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+Jardani27 posts big blind 30
+Dealt to MRZO [9d 2d]
+*** PRE-FLOP *** 
+Fweeez folds
+MRZO folds
+Jardani27 collected 45 from pot
+*** SUMMARY ***
+Total pot 45 | No rake
+Seat 2: Jardani27 (big blind) won 45
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830591147065737217-8-1780998362 - Holdem no limit (15/30) - 2026/06/09 09:46:02 UTC
+Table: 'Expresso(1124709646)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (540)
+Seat 2: Jardani27 (395)
+Seat 3: Fweeez (565)
+*** ANTE/BLINDS ***
+Jardani27 posts small blind 15
+Fweeez posts big blind 30
+Dealt to MRZO [3c 9c]
+*** PRE-FLOP *** 
+MRZO folds
+Jardani27 calls 15
+Fweeez checks
+*** FLOP *** [Jd Td 6h]
+Jardani27 bets 30
+Fweeez calls 30
+*** TURN *** [Jd Td 6h][Qh]
+Jardani27 checks
+Fweeez checks
+*** RIVER *** [Jd Td 6h Qh][Ks]
+Jardani27 bets 30
+Fweeez calls 30
+*** SHOW DOWN ***
+Fweeez shows [8c Jh] (One pair : Jacks)
+Jardani27 shows [6d 9s] (Straight King high)
+Jardani27 collected 180 from pot
+*** SUMMARY ***
+Total pot 180 | No rake
+Board: [Jd Td 6h Qh Ks]
+Seat 2: Jardani27 (small blind) showed [6d 9s] and won 180 with Straight King high
+Seat 3: Fweeez (big blind) showed [8c Jh] and lost with One pair : Jacks
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830591147065737217-9-1780998385 - Holdem no limit (15/30) - 2026/06/09 09:46:25 UTC
+Table: 'Expresso(1124709646)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (540)
+Seat 2: Jardani27 (485)
+Seat 3: Fweeez (475)
+*** ANTE/BLINDS ***
+Fweeez posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [7c 7s]
+*** PRE-FLOP *** 
+Jardani27 folds
+Fweeez raises 30 to 60
+MRZO raises 480 to 540 and is all-in
+Fweeez folds
+MRZO collected 600 from pot
+*** SUMMARY ***
+Total pot 600 | No rake
+Seat 1: MRZO (big blind) won 600
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830591147065737217-10-1780998394 - Holdem no limit (15/30) - 2026/06/09 09:46:34 UTC
+Table: 'Expresso(1124709646)#0' 3-max (real money) Seat #3 is the button
+Seat 1: MRZO (600)
+Seat 2: Jardani27 (485)
+Seat 3: Fweeez (415)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+Jardani27 posts big blind 30
+Dealt to MRZO [8s 3s]
+*** PRE-FLOP *** 
+Fweeez folds
+MRZO calls 15
+Jardani27 checks
+*** FLOP *** [Kh Js 9h]
+MRZO checks
+Jardani27 bets 39
+MRZO folds
+Jardani27 collected 99 from pot
+*** SUMMARY ***
+Total pot 99 | No rake
+Board: [Kh Js 9h]
+Seat 2: Jardani27 (big blind) won 99
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830591147065737217-11-1780998407 - Holdem no limit (15/30) - 2026/06/09 09:46:47 UTC
+Table: 'Expresso(1124709646)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (570)
+Seat 2: Jardani27 (515)
+Seat 3: Fweeez (415)
+*** ANTE/BLINDS ***
+Jardani27 posts small blind 15
+Fweeez posts big blind 30
+Dealt to MRZO [Ah 5s]
+*** PRE-FLOP *** 
+MRZO raises 30 to 60
+Jardani27 folds
+Fweeez calls 30
+*** FLOP *** [5h Qd 8c]
+Fweeez checks
+MRZO bets 47
+Fweeez calls 47
+*** TURN *** [5h Qd 8c][Ac]
+Fweeez checks
+MRZO bets 149
+Fweeez folds
+MRZO collected 378 from pot
+*** SUMMARY ***
+Total pot 378 | No rake
+Board: [5h Qd 8c Ac]
+Seat 1: MRZO (button) won 378
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830591147065737217-12-1780998438 - Holdem no limit (20/40) - 2026/06/09 09:47:18 UTC
+Table: 'Expresso(1124709646)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (692)
+Seat 2: Jardani27 (500)
+Seat 3: Fweeez (308)
+*** ANTE/BLINDS ***
+Fweeez posts small blind 20
+MRZO posts big blind 40
+Dealt to MRZO [Qc Ad]
+*** PRE-FLOP *** 
+Jardani27 folds
+Fweeez folds
+MRZO collected 60 from pot
+*** SUMMARY ***
+Total pot 60 | No rake
+Seat 1: MRZO (big blind) won 60
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830591147065737217-13-1780998444 - Holdem no limit (20/40) - 2026/06/09 09:47:24 UTC
+Table: 'Expresso(1124709646)#0' 3-max (real money) Seat #3 is the button
+Seat 1: MRZO (712)
+Seat 2: Jardani27 (500)
+Seat 3: Fweeez (288)
+*** ANTE/BLINDS ***
+MRZO posts small blind 20
+Jardani27 posts big blind 40
+Dealt to MRZO [Ks 5c]
+*** PRE-FLOP *** 
+Fweeez folds
+MRZO calls 20
+Jardani27 checks
+*** FLOP *** [9h Jc Js]
+MRZO checks
+Jardani27 bets 52
+MRZO folds
+Jardani27 collected 132 from pot
+*** SUMMARY ***
+Total pot 132 | No rake
+Board: [9h Jc Js]
+Seat 2: Jardani27 (big blind) won 132
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830591147065737217-14-1780998456 - Holdem no limit (20/40) - 2026/06/09 09:47:36 UTC
+Table: 'Expresso(1124709646)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (672)
+Seat 2: Jardani27 (540)
+Seat 3: Fweeez (288)
+*** ANTE/BLINDS ***
+Jardani27 posts small blind 20
+Fweeez posts big blind 40
+Dealt to MRZO [6d 3s]
+*** PRE-FLOP *** 
+MRZO folds
+Jardani27 calls 20
+Fweeez checks
+*** FLOP *** [4s 6s 4d]
+Jardani27 checks
+Fweeez bets 40
+Jardani27 folds
+Fweeez collected 120 from pot
+*** SUMMARY ***
+Total pot 120 | No rake
+Board: [4s 6s 4d]
+Seat 3: Fweeez (big blind) won 120
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830591147065737217-15-1780998468 - Holdem no limit (20/40) - 2026/06/09 09:47:48 UTC
+Table: 'Expresso(1124709646)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (672)
+Seat 2: Jardani27 (500)
+Seat 3: Fweeez (328)
+*** ANTE/BLINDS ***
+Fweeez posts small blind 20
+MRZO posts big blind 40
+Dealt to MRZO [Tc 9h]
+*** PRE-FLOP *** 
+Jardani27 raises 460 to 500 and is all-in
+Fweeez folds
+MRZO folds
+Jardani27 collected 560 from pot
+*** SUMMARY ***
+Total pot 560 | No rake
+Seat 2: Jardani27 (button) won 560
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830591147065737217-16-1780998476 - Holdem no limit (20/40) - 2026/06/09 09:47:56 UTC
+Table: 'Expresso(1124709646)#0' 3-max (real money) Seat #3 is the button
+Seat 1: MRZO (632)
+Seat 2: Jardani27 (560)
+Seat 3: Fweeez (308)
+*** ANTE/BLINDS ***
+MRZO posts small blind 20
+Jardani27 posts big blind 40
+Dealt to MRZO [Jc 9d]
+*** PRE-FLOP *** 
+Fweeez folds
+MRZO folds
+Jardani27 collected 60 from pot
+*** SUMMARY ***
+Total pot 60 | No rake
+Seat 2: Jardani27 (big blind) won 60
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830591147065737217-17-1780998480 - Holdem no limit (20/40) - 2026/06/09 09:48:00 UTC
+Table: 'Expresso(1124709646)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (612)
+Seat 2: Jardani27 (580)
+Seat 3: Fweeez (308)
+*** ANTE/BLINDS ***
+Jardani27 posts small blind 20
+Fweeez posts big blind 40
+Dealt to MRZO [9h Qs]
+*** PRE-FLOP *** 
+MRZO folds
+Jardani27 raises 540 to 580 and is all-in
+Fweeez folds
+Jardani27 collected 620 from pot
+*** SUMMARY ***
+Total pot 620 | No rake
+Seat 2: Jardani27 (small blind) won 620
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830591147065737217-18-1780998487 - Holdem no limit (20/40) - 2026/06/09 09:48:07 UTC
+Table: 'Expresso(1124709646)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (612)
+Seat 2: Jardani27 (620)
+Seat 3: Fweeez (268)
+*** ANTE/BLINDS ***
+Fweeez posts small blind 20
+MRZO posts big blind 40
+Dealt to MRZO [9h As]
+*** PRE-FLOP *** 
+Jardani27 folds
+Fweeez raises 228 to 268 and is all-in
+MRZO raises 344 to 612 and is all-in
+*** FLOP *** [Qd Ac 8c]
+*** TURN *** [Qd Ac 8c][Tc]
+*** RIVER *** [Qd Ac 8c Tc][Ad]
+*** SHOW DOWN ***
+Fweeez shows [8s 7c] (Two pairs : Aces and 8)
+MRZO shows [9h As] (Trips of Aces)
+MRZO collected 880 from pot
+*** SUMMARY ***
+Total pot 880 | No rake
+Board: [Qd Ac 8c Tc Ad]
+Seat 1: MRZO (big blind) showed [9h As] and won 880 with Trips of Aces
+Seat 3: Fweeez (small blind) showed [8s 7c] and lost with Two pairs : Aces and 8
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830591147065737217-19-1780998501 - Holdem no limit (20/40) - 2026/06/09 09:48:21 UTC
+Table: 'Expresso(1124709646)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (880)
+Seat 2: Jardani27 (620)
+*** ANTE/BLINDS ***
+MRZO posts small blind 20
+Jardani27 posts big blind 40
+Dealt to MRZO [Qs 4d]
+*** PRE-FLOP *** 
+MRZO calls 20
+Jardani27 raises 580 to 620 and is all-in
+MRZO folds
+Jardani27 collected 660 from pot
+*** SUMMARY ***
+Total pot 660 | No rake
+Seat 2: Jardani27 (big blind) won 660
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830591147065737217-20-1780998511 - Holdem no limit (30/60) - 2026/06/09 09:48:31 UTC
+Table: 'Expresso(1124709646)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (840)
+Seat 2: Jardani27 (660)
+*** ANTE/BLINDS ***
+Jardani27 posts small blind 30
+MRZO posts big blind 60
+Dealt to MRZO [4s Ad]
+*** PRE-FLOP *** 
+Jardani27 folds
+MRZO collected 90 from pot
+*** SUMMARY ***
+Total pot 90 | No rake
+Seat 1: MRZO (big blind) won 90
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830591147065737217-21-1780998517 - Holdem no limit (30/60) - 2026/06/09 09:48:37 UTC
+Table: 'Expresso(1124709646)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (870)
+Seat 2: Jardani27 (630)
+*** ANTE/BLINDS ***
+MRZO posts small blind 30
+Jardani27 posts big blind 60
+Dealt to MRZO [4d 9h]
+*** PRE-FLOP *** 
+MRZO calls 30
+Jardani27 raises 570 to 630 and is all-in
+MRZO folds
+Jardani27 collected 690 from pot
+*** SUMMARY ***
+Total pot 690 | No rake
+Seat 2: Jardani27 (big blind) won 690
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830591147065737217-22-1780998523 - Holdem no limit (30/60) - 2026/06/09 09:48:43 UTC
+Table: 'Expresso(1124709646)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (810)
+Seat 2: Jardani27 (690)
+*** ANTE/BLINDS ***
+Jardani27 posts small blind 30
+MRZO posts big blind 60
+Dealt to MRZO [Jh 5d]
+*** PRE-FLOP *** 
+Jardani27 raises 630 to 690 and is all-in
+MRZO folds
+Jardani27 collected 750 from pot
+*** SUMMARY ***
+Total pot 750 | No rake
+Seat 2: Jardani27 (small blind) (button) won 750
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830591147065737217-23-1780998534 - Holdem no limit (30/60) - 2026/06/09 09:48:54 UTC
+Table: 'Expresso(1124709646)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (750)
+Seat 2: Jardani27 (750)
+*** ANTE/BLINDS ***
+MRZO posts small blind 30
+Jardani27 posts big blind 60
+Dealt to MRZO [3h 3s]
+*** PRE-FLOP *** 
+MRZO raises 690 to 750 and is all-in
+Jardani27 folds
+MRZO collected 810 from pot
+*** SUMMARY ***
+Total pot 810 | No rake
+Seat 1: MRZO (small blind) (button) won 810
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830591147065737217-24-1780998539 - Holdem no limit (30/60) - 2026/06/09 09:48:59 UTC
+Table: 'Expresso(1124709646)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (810)
+Seat 2: Jardani27 (690)
+*** ANTE/BLINDS ***
+Jardani27 posts small blind 30
+MRZO posts big blind 60
+Dealt to MRZO [Kd Tc]
+*** PRE-FLOP *** 
+Jardani27 folds
+MRZO collected 90 from pot
+*** SUMMARY ***
+Total pot 90 | No rake
+Seat 1: MRZO (big blind) won 90
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830591147065737217-25-1780998544 - Holdem no limit (30/60) - 2026/06/09 09:49:04 UTC
+Table: 'Expresso(1124709646)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (840)
+Seat 2: Jardani27 (660)
+*** ANTE/BLINDS ***
+MRZO posts small blind 30
+Jardani27 posts big blind 60
+Dealt to MRZO [9c Js]
+*** PRE-FLOP *** 
+MRZO calls 30
+Jardani27 checks
+*** FLOP *** [4d 3s 5s]
+Jardani27 checks
+MRZO checks
+*** TURN *** [4d 3s 5s][7c]
+Jardani27 checks
+MRZO checks
+*** RIVER *** [4d 3s 5s 7c][2h]
+Jardani27 checks
+MRZO checks
+*** SHOW DOWN ***
+MRZO shows [9c Js] (High card : Jack)
+Jardani27 shows [9h 2s] (One pair : 2)
+Jardani27 collected 120 from pot
+*** SUMMARY ***
+Total pot 120 | No rake
+Board: [4d 3s 5s 7c 2h]
+Seat 1: MRZO (small blind) (button) showed [9c Js] and lost with High card : Jack
+Seat 2: Jardani27 (big blind) showed [9h 2s] and won 120 with One pair : 2
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830591147065737217-26-1780998571 - Holdem no limit (30/60) - 2026/06/09 09:49:31 UTC
+Table: 'Expresso(1124709646)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (780)
+Seat 2: Jardani27 (720)
+*** ANTE/BLINDS ***
+Jardani27 posts small blind 30
+MRZO posts big blind 60
+Dealt to MRZO [8s 9h]
+*** PRE-FLOP *** 
+Jardani27 raises 660 to 720 and is all-in
+MRZO folds
+Jardani27 collected 780 from pot
+*** SUMMARY ***
+Total pot 780 | No rake
+Seat 2: Jardani27 (small blind) (button) won 780
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830591147065737217-27-1780998579 - Holdem no limit (30/60) - 2026/06/09 09:49:39 UTC
+Table: 'Expresso(1124709646)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (720)
+Seat 2: Jardani27 (780)
+*** ANTE/BLINDS ***
+MRZO posts small blind 30
+Jardani27 posts big blind 60
+Dealt to MRZO [Jc Kd]
+*** PRE-FLOP *** 
+MRZO raises 660 to 720 and is all-in
+Jardani27 folds
+MRZO collected 780 from pot
+*** SUMMARY ***
+Total pot 780 | No rake
+Seat 1: MRZO (small blind) (button) won 780
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830591147065737217-28-1780998586 - Holdem no limit (30/60) - 2026/06/09 09:49:46 UTC
+Table: 'Expresso(1124709646)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (780)
+Seat 2: Jardani27 (720)
+*** ANTE/BLINDS ***
+Jardani27 posts small blind 30
+MRZO posts big blind 60
+Dealt to MRZO [Ac 6d]
+*** PRE-FLOP *** 
+Jardani27 folds
+MRZO collected 90 from pot
+*** SUMMARY ***
+Total pot 90 | No rake
+Seat 1: MRZO (big blind) won 90
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830591147065737217-29-1780998591 - Holdem no limit (30/60) - 2026/06/09 09:49:51 UTC
+Table: 'Expresso(1124709646)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (810)
+Seat 2: Jardani27 (690)
+*** ANTE/BLINDS ***
+MRZO posts small blind 30
+Jardani27 posts big blind 60
+Dealt to MRZO [Ks 9d]
+*** PRE-FLOP *** 
+MRZO calls 30
+Jardani27 raises 630 to 690 and is all-in
+MRZO raises 120 to 810 and is all-in
+*** FLOP *** [8d 8h 8c]
+*** TURN *** [8d 8h 8c][Ah]
+*** RIVER *** [8d 8h 8c Ah][2s]
+*** SHOW DOWN ***
+Jardani27 shows [Ts Qc] (Trips of 8)
+MRZO shows [Ks 9d] (Trips of 8)
+MRZO collected 1500 from pot
+*** SUMMARY ***
+Total pot 1500 | No rake
+Board: [8d 8h 8c Ah 2s]
+Seat 1: MRZO (small blind) (button) showed [Ks 9d] and won 1500 with Trips of 8
+Seat 2: Jardani27 (big blind) showed [Ts Qc] and lost with Trips of 8
+
+

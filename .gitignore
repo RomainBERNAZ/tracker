@@ -1,0 +1,53 @@
+# .gitignore
+
+# Rust
+/target/
+Cargo.lock
+**/*.rs.bk
+*.rlib
+
+# Node / Frontend
+node_modules/
+dist/
+.pnpm-store/
+pnpm-lock.yaml
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Database
+*.db
+*.db-shm
+*.db-wal
+
+# Build artifacts
+/build/
+/dist/
+
+# Test coverage
+tarpaulin-report.html
+cobertura.xml
+
+# Logs
+logs/
+*.log
+
+# Benchmarks
+/target/criterion/
+
+# Tauri
+src/tauri/target/
+
+# OS
+.DS_Store
+Thumbs.db

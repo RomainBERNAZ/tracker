@@ -1,0 +1,28 @@
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830735470851784705-1-1781002086 - Holdem no limit (10/20) - 2026/06/09 10:48:06 UTC
+Table: 'Expresso(1124743249)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (500)
+Seat 2: parente22 (500)
+Seat 3: mc  tonio (500)
+*** ANTE/BLINDS ***
+mc  tonio posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [8h 8d]
+*** PRE-FLOP *** 
+parente22 calls 20
+mc  tonio folds
+MRZO raises 480 to 500 and is all-in
+parente22 calls 480 and is all-in
+*** FLOP *** [7s 9c 2s]
+*** TURN *** [7s 9c 2s][6c]
+*** RIVER *** [7s 9c 2s 6c][2h]
+*** SHOW DOWN ***
+MRZO shows [8h 8d] (Two pairs : 8 and 2)
+parente22 shows [7d 7h] (Full of 7 and 2)
+parente22 collected 1010 from pot
+*** SUMMARY ***
+Total pot 1010 | No rake
+Board: [7s 9c 2s 6c 2h]
+Seat 1: MRZO (big blind) showed [8h 8d] and lost with Two pairs : 8 and 2
+Seat 2: parente22 (button) showed [7d 7h] and won 1010 with Full of 7 and 2
+
+

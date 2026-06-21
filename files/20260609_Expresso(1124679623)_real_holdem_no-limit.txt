@@ -1,0 +1,28 @@
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830462199262609409-1-1780994230 - Holdem no limit (10/20) - 2026/06/09 08:37:10 UTC
+Table: 'Expresso(1124679623)#0' 3-max (real money) Seat #3 is the button
+Seat 1: amar140361 (500)
+Seat 2: MRZO (500)
+Seat 3: julus59 (500)
+*** ANTE/BLINDS ***
+amar140361 posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [9s 9d]
+*** PRE-FLOP *** 
+julus59 raises 20 to 40
+amar140361 folds
+MRZO raises 460 to 500 and is all-in
+julus59 calls 460 and is all-in
+*** FLOP *** [Tc 8d 2h]
+*** TURN *** [Tc 8d 2h][Ad]
+*** RIVER *** [Tc 8d 2h Ad][Kd]
+*** SHOW DOWN ***
+MRZO shows [9s 9d] (One pair : 9)
+julus59 shows [Ts Qs] (One pair : Tens)
+julus59 collected 1010 from pot
+*** SUMMARY ***
+Total pot 1010 | No rake
+Board: [Tc 8d 2h Ad Kd]
+Seat 2: MRZO (big blind) showed [9s 9d] and lost with One pair : 9
+Seat 3: julus59 (button) showed [Ts Qs] and won 1010 with One pair : Tens
+
+

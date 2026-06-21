@@ -1,0 +1,472 @@
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830747539709886465-1-1781002334 - Holdem no limit (10/20) - 2026/06/09 10:52:14 UTC
+Table: 'Expresso(1124746059)#0' 3-max (real money) Seat #2 is the button
+Seat 1: TT_Flingueur (500)
+Seat 2: BizouBeko (500)
+Seat 3: MRZO (500)
+*** ANTE/BLINDS ***
+MRZO posts small blind 10
+TT_Flingueur posts big blind 20
+Dealt to MRZO [Th 5h]
+*** PRE-FLOP *** 
+BizouBeko folds
+MRZO calls 10
+TT_Flingueur raises 40 to 60
+MRZO folds
+TT_Flingueur collected 80 from pot
+*** SUMMARY ***
+Total pot 80 | No rake
+Seat 1: TT_Flingueur (big blind) won 80
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830747539709886465-2-1781002356 - Holdem no limit (10/20) - 2026/06/09 10:52:36 UTC
+Table: 'Expresso(1124746059)#0' 3-max (real money) Seat #3 is the button
+Seat 1: TT_Flingueur (520)
+Seat 2: BizouBeko (500)
+Seat 3: MRZO (480)
+*** ANTE/BLINDS ***
+TT_Flingueur posts small blind 10
+BizouBeko posts big blind 20
+Dealt to MRZO [Th Qd]
+*** PRE-FLOP *** 
+MRZO folds
+TT_Flingueur calls 10
+BizouBeko checks
+*** FLOP *** [Js Ah 9s]
+TT_Flingueur checks
+BizouBeko checks
+*** TURN *** [Js Ah 9s][9d]
+TT_Flingueur checks
+BizouBeko checks
+*** RIVER *** [Js Ah 9s 9d][2d]
+TT_Flingueur bets 26
+BizouBeko folds
+TT_Flingueur collected 66 from pot
+*** SUMMARY ***
+Total pot 66 | No rake
+Board: [Js Ah 9s 9d 2d]
+Seat 1: TT_Flingueur (small blind) won 66
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830747539709886465-3-1781002385 - Holdem no limit (10/20) - 2026/06/09 10:53:05 UTC
+Table: 'Expresso(1124746059)#0' 3-max (real money) Seat #1 is the button
+Seat 1: TT_Flingueur (540)
+Seat 2: BizouBeko (480)
+Seat 3: MRZO (480)
+*** ANTE/BLINDS ***
+BizouBeko posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [4c 3d]
+*** PRE-FLOP *** 
+TT_Flingueur folds
+BizouBeko calls 10
+MRZO checks
+*** FLOP *** [Kh 5h 5s]
+BizouBeko checks
+MRZO checks
+*** TURN *** [Kh 5h 5s][Td]
+BizouBeko checks
+MRZO checks
+*** RIVER *** [Kh 5h 5s Td][Ad]
+BizouBeko checks
+MRZO checks
+*** SHOW DOWN ***
+BizouBeko shows [9s 8h] (One pair : 5)
+MRZO shows [4c 3d] (One pair : 5)
+MRZO collected 20 from pot
+BizouBeko collected 20 from pot
+*** SUMMARY ***
+Total pot 40 | No rake
+Board: [Kh 5h 5s Td Ad]
+Seat 2: BizouBeko (small blind) showed [9s 8h] and won 20 with One pair : 5
+Seat 3: MRZO (big blind) showed [4c 3d] and won 20 with One pair : 5
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830747539709886465-4-1781002409 - Holdem no limit (10/20) - 2026/06/09 10:53:29 UTC
+Table: 'Expresso(1124746059)#0' 3-max (real money) Seat #2 is the button
+Seat 1: TT_Flingueur (540)
+Seat 2: BizouBeko (480)
+Seat 3: MRZO (480)
+*** ANTE/BLINDS ***
+MRZO posts small blind 10
+TT_Flingueur posts big blind 20
+Dealt to MRZO [9c Ts]
+*** PRE-FLOP *** 
+BizouBeko folds
+MRZO calls 10
+TT_Flingueur raises 40 to 60
+MRZO calls 40
+*** FLOP *** [Ac Td 2h]
+MRZO checks
+TT_Flingueur checks
+*** TURN *** [Ac Td 2h][9s]
+MRZO bets 96
+TT_Flingueur folds
+MRZO collected 216 from pot
+*** SUMMARY ***
+Total pot 216 | No rake
+Board: [Ac Td 2h 9s]
+Seat 3: MRZO (small blind) won 216
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830747539709886465-5-1781002437 - Holdem no limit (15/30) - 2026/06/09 10:53:57 UTC
+Table: 'Expresso(1124746059)#0' 3-max (real money) Seat #3 is the button
+Seat 1: TT_Flingueur (480)
+Seat 2: BizouBeko (480)
+Seat 3: MRZO (540)
+*** ANTE/BLINDS ***
+TT_Flingueur posts small blind 15
+BizouBeko posts big blind 30
+Dealt to MRZO [8s 5c]
+*** PRE-FLOP *** 
+MRZO folds
+TT_Flingueur raises 450 to 480 and is all-in
+BizouBeko folds
+TT_Flingueur collected 510 from pot
+*** SUMMARY ***
+Total pot 510 | No rake
+Seat 1: TT_Flingueur (small blind) won 510
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830747539709886465-6-1781002448 - Holdem no limit (15/30) - 2026/06/09 10:54:08 UTC
+Table: 'Expresso(1124746059)#0' 3-max (real money) Seat #1 is the button
+Seat 1: TT_Flingueur (510)
+Seat 2: BizouBeko (450)
+Seat 3: MRZO (540)
+*** ANTE/BLINDS ***
+BizouBeko posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [7d Jh]
+*** PRE-FLOP *** 
+TT_Flingueur raises 30 to 60
+BizouBeko folds
+MRZO folds
+TT_Flingueur collected 105 from pot
+*** SUMMARY ***
+Total pot 105 | No rake
+Seat 1: TT_Flingueur (button) won 105
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830747539709886465-7-1781002460 - Holdem no limit (15/30) - 2026/06/09 10:54:20 UTC
+Table: 'Expresso(1124746059)#0' 3-max (real money) Seat #2 is the button
+Seat 1: TT_Flingueur (555)
+Seat 2: BizouBeko (435)
+Seat 3: MRZO (510)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+TT_Flingueur posts big blind 30
+Dealt to MRZO [Ts 2c]
+*** PRE-FLOP *** 
+BizouBeko folds
+MRZO folds
+TT_Flingueur collected 45 from pot
+*** SUMMARY ***
+Total pot 45 | No rake
+Seat 1: TT_Flingueur (big blind) won 45
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830747539709886465-8-1781002466 - Holdem no limit (15/30) - 2026/06/09 10:54:26 UTC
+Table: 'Expresso(1124746059)#0' 3-max (real money) Seat #3 is the button
+Seat 1: TT_Flingueur (570)
+Seat 2: BizouBeko (435)
+Seat 3: MRZO (495)
+*** ANTE/BLINDS ***
+TT_Flingueur posts small blind 15
+BizouBeko posts big blind 30
+Dealt to MRZO [Kd Js]
+*** PRE-FLOP *** 
+MRZO raises 30 to 60
+TT_Flingueur folds
+BizouBeko calls 30
+*** FLOP *** [Ac 4h 7s]
+BizouBeko checks
+MRZO bets 47
+BizouBeko folds
+MRZO collected 182 from pot
+*** SUMMARY ***
+Total pot 182 | No rake
+Board: [Ac 4h 7s]
+Seat 3: MRZO (button) won 182
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830747539709886465-9-1781002490 - Holdem no limit (15/30) - 2026/06/09 10:54:50 UTC
+Table: 'Expresso(1124746059)#0' 3-max (real money) Seat #1 is the button
+Seat 1: TT_Flingueur (555)
+Seat 2: BizouBeko (375)
+Seat 3: MRZO (570)
+*** ANTE/BLINDS ***
+BizouBeko posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [Tc Ad]
+*** PRE-FLOP *** 
+TT_Flingueur folds
+BizouBeko calls 15
+MRZO raises 540 to 570 and is all-in
+BizouBeko folds
+MRZO collected 600 from pot
+*** SUMMARY ***
+Total pot 600 | No rake
+Seat 3: MRZO (big blind) won 600
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830747539709886465-10-1781002506 - Holdem no limit (15/30) - 2026/06/09 10:55:06 UTC
+Table: 'Expresso(1124746059)#0' 3-max (real money) Seat #2 is the button
+Seat 1: TT_Flingueur (555)
+Seat 2: BizouBeko (345)
+Seat 3: MRZO (600)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+TT_Flingueur posts big blind 30
+Dealt to MRZO [Kd 3c]
+*** PRE-FLOP *** 
+BizouBeko folds
+MRZO calls 15
+TT_Flingueur raises 45 to 75
+MRZO folds
+TT_Flingueur collected 105 from pot
+*** SUMMARY ***
+Total pot 105 | No rake
+Seat 1: TT_Flingueur (big blind) won 105
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830747539709886465-11-1781002522 - Holdem no limit (20/40) - 2026/06/09 10:55:22 UTC
+Table: 'Expresso(1124746059)#0' 3-max (real money) Seat #3 is the button
+Seat 1: TT_Flingueur (585)
+Seat 2: BizouBeko (345)
+Seat 3: MRZO (570)
+*** ANTE/BLINDS ***
+TT_Flingueur posts small blind 20
+BizouBeko posts big blind 40
+Dealt to MRZO [4c 4h]
+*** PRE-FLOP *** 
+MRZO raises 530 to 570 and is all-in
+TT_Flingueur folds
+BizouBeko folds
+MRZO collected 630 from pot
+*** SUMMARY ***
+Total pot 630 | No rake
+Seat 3: MRZO (button) won 630
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830747539709886465-12-1781002535 - Holdem no limit (20/40) - 2026/06/09 10:55:35 UTC
+Table: 'Expresso(1124746059)#0' 3-max (real money) Seat #1 is the button
+Seat 1: TT_Flingueur (565)
+Seat 2: BizouBeko (305)
+Seat 3: MRZO (630)
+*** ANTE/BLINDS ***
+BizouBeko posts small blind 20
+MRZO posts big blind 40
+Dealt to MRZO [8c 8h]
+*** PRE-FLOP *** 
+TT_Flingueur folds
+BizouBeko folds
+MRZO collected 60 from pot
+*** SUMMARY ***
+Total pot 60 | No rake
+Seat 3: MRZO (big blind) won 60
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830747539709886465-13-1781002541 - Holdem no limit (20/40) - 2026/06/09 10:55:41 UTC
+Table: 'Expresso(1124746059)#0' 3-max (real money) Seat #2 is the button
+Seat 1: TT_Flingueur (565)
+Seat 2: BizouBeko (285)
+Seat 3: MRZO (650)
+*** ANTE/BLINDS ***
+MRZO posts small blind 20
+TT_Flingueur posts big blind 40
+Dealt to MRZO [7h Ts]
+*** PRE-FLOP *** 
+BizouBeko folds
+MRZO folds
+TT_Flingueur collected 60 from pot
+*** SUMMARY ***
+Total pot 60 | No rake
+Seat 1: TT_Flingueur (big blind) won 60
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830747539709886465-14-1781002550 - Holdem no limit (20/40) - 2026/06/09 10:55:50 UTC
+Table: 'Expresso(1124746059)#0' 3-max (real money) Seat #3 is the button
+Seat 1: TT_Flingueur (585)
+Seat 2: BizouBeko (285)
+Seat 3: MRZO (630)
+*** ANTE/BLINDS ***
+TT_Flingueur posts small blind 20
+BizouBeko posts big blind 40
+Dealt to MRZO [3c 2s]
+*** PRE-FLOP *** 
+MRZO folds
+TT_Flingueur folds
+BizouBeko collected 60 from pot
+*** SUMMARY ***
+Total pot 60 | No rake
+Seat 2: BizouBeko (big blind) won 60
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830747539709886465-15-1781002554 - Holdem no limit (20/40) - 2026/06/09 10:55:54 UTC
+Table: 'Expresso(1124746059)#0' 3-max (real money) Seat #1 is the button
+Seat 1: TT_Flingueur (565)
+Seat 2: BizouBeko (305)
+Seat 3: MRZO (630)
+*** ANTE/BLINDS ***
+BizouBeko posts small blind 20
+MRZO posts big blind 40
+Dealt to MRZO [3s Kd]
+*** PRE-FLOP *** 
+TT_Flingueur folds
+BizouBeko folds
+MRZO collected 60 from pot
+*** SUMMARY ***
+Total pot 60 | No rake
+Seat 3: MRZO (big blind) won 60
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830747539709886465-16-1781002561 - Holdem no limit (20/40) - 2026/06/09 10:56:01 UTC
+Table: 'Expresso(1124746059)#0' 3-max (real money) Seat #2 is the button
+Seat 1: TT_Flingueur (565)
+Seat 2: BizouBeko (285)
+Seat 3: MRZO (650)
+*** ANTE/BLINDS ***
+MRZO posts small blind 20
+TT_Flingueur posts big blind 40
+Dealt to MRZO [Ad 8h]
+*** PRE-FLOP *** 
+BizouBeko raises 245 to 285 and is all-in
+MRZO raises 365 to 650 and is all-in
+TT_Flingueur folds
+*** FLOP *** [4c 5h 7h]
+*** TURN *** [4c 5h 7h][Ah]
+*** RIVER *** [4c 5h 7h Ah][6h]
+*** SHOW DOWN ***
+BizouBeko shows [8d As] (Straight 8 high)
+MRZO shows [Ad 8h] (Flush Ace high)
+MRZO collected 975 from pot
+*** SUMMARY ***
+Total pot 975 | No rake
+Board: [4c 5h 7h Ah 6h]
+Seat 2: BizouBeko (button) showed [8d As] and lost with Straight 8 high
+Seat 3: MRZO (small blind) showed [Ad 8h] and won 975 with Flush Ace high
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830747539709886465-17-1781002578 - Holdem no limit (20/40) - 2026/06/09 10:56:18 UTC
+Table: 'Expresso(1124746059)#0' 3-max (real money) Seat #1 is the button
+Seat 1: TT_Flingueur (525)
+Seat 3: MRZO (975)
+*** ANTE/BLINDS ***
+TT_Flingueur posts small blind 20
+MRZO posts big blind 40
+Dealt to MRZO [Ks 9d]
+*** PRE-FLOP *** 
+TT_Flingueur folds
+MRZO collected 60 from pot
+*** SUMMARY ***
+Total pot 60 | No rake
+Seat 3: MRZO (big blind) won 60
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830747539709886465-18-1781002590 - Holdem no limit (20/40) - 2026/06/09 10:56:30 UTC
+Table: 'Expresso(1124746059)#0' 3-max (real money) Seat #3 is the button
+Seat 1: TT_Flingueur (505)
+Seat 3: MRZO (995)
+*** ANTE/BLINDS ***
+MRZO posts small blind 20
+TT_Flingueur posts big blind 40
+Dealt to MRZO [4h 5d]
+*** PRE-FLOP *** 
+MRZO folds
+TT_Flingueur collected 60 from pot
+*** SUMMARY ***
+Total pot 60 | No rake
+Seat 1: TT_Flingueur (big blind) won 60
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 3 - HandId: #4830747539709886465-19-1781002594 - Holdem no limit (20/40) - 2026/06/09 10:56:34 UTC
+Table: 'Expresso(1124746059)#0' 3-max (real money) Seat #1 is the button
+Seat 1: TT_Flingueur (525)
+Seat 3: MRZO (975)
+*** ANTE/BLINDS ***
+TT_Flingueur posts small blind 20
+MRZO posts big blind 40
+Dealt to MRZO [6d 3d]
+*** PRE-FLOP *** 
+TT_Flingueur folds
+MRZO collected 60 from pot
+*** SUMMARY ***
+Total pot 60 | No rake
+Seat 3: MRZO (big blind) won 60
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830747539709886465-20-1781002604 - Holdem no limit (30/60) - 2026/06/09 10:56:44 UTC
+Table: 'Expresso(1124746059)#0' 3-max (real money) Seat #3 is the button
+Seat 1: TT_Flingueur (505)
+Seat 3: MRZO (995)
+*** ANTE/BLINDS ***
+MRZO posts small blind 30
+TT_Flingueur posts big blind 60
+Dealt to MRZO [Js Ah]
+*** PRE-FLOP *** 
+MRZO raises 935 to 995 and is all-in
+TT_Flingueur folds
+MRZO collected 1055 from pot
+*** SUMMARY ***
+Total pot 1055 | No rake
+Seat 3: MRZO (small blind) (button) won 1055
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830747539709886465-21-1781002610 - Holdem no limit (30/60) - 2026/06/09 10:56:50 UTC
+Table: 'Expresso(1124746059)#0' 3-max (real money) Seat #1 is the button
+Seat 1: TT_Flingueur (445)
+Seat 3: MRZO (1055)
+*** ANTE/BLINDS ***
+TT_Flingueur posts small blind 30
+MRZO posts big blind 60
+Dealt to MRZO [Js 6c]
+*** PRE-FLOP *** 
+TT_Flingueur raises 385 to 445 and is all-in
+MRZO folds
+TT_Flingueur collected 505 from pot
+*** SUMMARY ***
+Total pot 505 | No rake
+Seat 1: TT_Flingueur (small blind) (button) won 505
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830747539709886465-22-1781002620 - Holdem no limit (30/60) - 2026/06/09 10:57:00 UTC
+Table: 'Expresso(1124746059)#0' 3-max (real money) Seat #3 is the button
+Seat 1: TT_Flingueur (505)
+Seat 3: MRZO (995)
+*** ANTE/BLINDS ***
+MRZO posts small blind 30
+TT_Flingueur posts big blind 60
+Dealt to MRZO [8d 6h]
+*** PRE-FLOP *** 
+MRZO folds
+TT_Flingueur collected 90 from pot
+*** SUMMARY ***
+Total pot 90 | No rake
+Seat 1: TT_Flingueur (big blind) won 90
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 4 - HandId: #4830747539709886465-23-1781002625 - Holdem no limit (30/60) - 2026/06/09 10:57:05 UTC
+Table: 'Expresso(1124746059)#0' 3-max (real money) Seat #1 is the button
+Seat 1: TT_Flingueur (535)
+Seat 3: MRZO (965)
+*** ANTE/BLINDS ***
+TT_Flingueur posts small blind 30
+MRZO posts big blind 60
+Dealt to MRZO [6d Kc]
+*** PRE-FLOP *** 
+TT_Flingueur calls 30
+MRZO raises 905 to 965 and is all-in
+TT_Flingueur calls 475 and is all-in
+*** FLOP *** [4c 6s 8s]
+*** TURN *** [4c 6s 8s][4s]
+*** RIVER *** [4c 6s 8s 4s][7d]
+*** SHOW DOWN ***
+TT_Flingueur shows [Jh Kh] (One pair : 4)
+MRZO shows [6d Kc] (Two pairs : 6 and 4)
+MRZO collected 1500 from pot
+*** SUMMARY ***
+Total pot 1500 | No rake
+Board: [4c 6s 8s 4s 7d]
+Seat 1: TT_Flingueur (small blind) (button) showed [Jh Kh] and lost with One pair : 4
+Seat 3: MRZO (big blind) showed [6d Kc] and won 1500 with Two pairs : 6 and 4
+
+

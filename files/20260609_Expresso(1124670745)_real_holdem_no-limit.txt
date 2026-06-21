@@ -1,0 +1,278 @@
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830424068542955521-1-1780992964 - Holdem no limit (10/20) - 2026/06/09 08:16:04 UTC
+Table: 'Expresso(1124670745)#0' 3-max (real money) Seat #3 is the button
+Seat 1: MRZO (500)
+Seat 2: DMsport1 (500)
+Seat 3: Citron-Frais (500)
+*** ANTE/BLINDS ***
+MRZO posts small blind 10
+DMsport1 posts big blind 20
+Dealt to MRZO [3c 6c]
+*** PRE-FLOP *** 
+Citron-Frais folds
+MRZO folds
+DMsport1 collected 30 from pot
+*** SUMMARY ***
+Total pot 30 | No rake
+Seat 2: DMsport1 (big blind) won 30
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830424068542955521-2-1780992975 - Holdem no limit (10/20) - 2026/06/09 08:16:15 UTC
+Table: 'Expresso(1124670745)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (490)
+Seat 2: DMsport1 (510)
+Seat 3: Citron-Frais (500)
+*** ANTE/BLINDS ***
+DMsport1 posts small blind 10
+Citron-Frais posts big blind 20
+Dealt to MRZO [Kh 2h]
+*** PRE-FLOP *** 
+MRZO raises 20 to 40
+DMsport1 calls 30
+Citron-Frais folds
+*** FLOP *** [Th 3h 9d]
+DMsport1 checks
+MRZO bets 35
+DMsport1 calls 35
+*** TURN *** [Th 3h 9d][Jh]
+DMsport1 checks
+MRZO bets 85
+DMsport1 calls 85
+*** RIVER *** [Th 3h 9d Jh][Js]
+DMsport1 checks
+MRZO bets 330 and is all-in
+DMsport1 calls 330
+*** SHOW DOWN ***
+DMsport1 shows [Jc 8s] (Trips of Jacks)
+MRZO shows [Kh 2h] (Flush King high)
+MRZO collected 1000 from pot
+*** SUMMARY ***
+Total pot 1000 | No rake
+Board: [Th 3h 9d Jh Js]
+Seat 1: MRZO (button) showed [Kh 2h] and won 1000 with Flush King high
+Seat 2: DMsport1 (small blind) showed [Jc 8s] and lost with Trips of Jacks
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830424068542955521-3-1780993009 - Holdem no limit (10/20) - 2026/06/09 08:16:49 UTC
+Table: 'Expresso(1124670745)#0' 3-max (real money) Seat #2 is the button
+Seat 1: MRZO (1000)
+Seat 2: DMsport1 (20)
+Seat 3: Citron-Frais (480)
+*** ANTE/BLINDS ***
+Citron-Frais posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [7s 5h]
+*** PRE-FLOP *** 
+DMsport1 calls 20 and is all-in
+Citron-Frais calls 10
+MRZO checks
+*** FLOP *** [Kd 8c Qh]
+Citron-Frais checks
+MRZO checks
+*** TURN *** [Kd 8c Qh][5s]
+Citron-Frais bets 20
+MRZO folds
+*** RIVER *** [Kd 8c Qh 5s][Kh]
+*** SHOW DOWN ***
+DMsport1 shows [4h 7c] (One pair : Kings)
+Citron-Frais shows [8h Ks] (Full of Kings and 8)
+Citron-Frais collected 80 from pot
+*** SUMMARY ***
+Total pot 80 | No rake
+Board: [Kd 8c Qh 5s Kh]
+Seat 2: DMsport1 (button) showed [4h 7c] and lost with One pair : Kings
+Seat 3: Citron-Frais (small blind) showed [8h Ks] and won 80 with Full of Kings and 8
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830424068542955521-4-1780993027 - Holdem no limit (10/20) - 2026/06/09 08:17:07 UTC
+Table: 'Expresso(1124670745)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (980)
+Seat 3: Citron-Frais (520)
+*** ANTE/BLINDS ***
+MRZO posts small blind 10
+Citron-Frais posts big blind 20
+Dealt to MRZO [4d 6h]
+*** PRE-FLOP *** 
+MRZO folds
+Citron-Frais collected 30 from pot
+*** SUMMARY ***
+Total pot 30 | No rake
+Seat 3: Citron-Frais (big blind) won 30
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4830424068542955521-5-1780993031 - Holdem no limit (10/20) - 2026/06/09 08:17:11 UTC
+Table: 'Expresso(1124670745)#0' 3-max (real money) Seat #3 is the button
+Seat 1: MRZO (970)
+Seat 3: Citron-Frais (530)
+*** ANTE/BLINDS ***
+Citron-Frais posts small blind 10
+MRZO posts big blind 20
+Dealt to MRZO [6d Jd]
+*** PRE-FLOP *** 
+Citron-Frais raises 20 to 40
+MRZO calls 20
+*** FLOP *** [7h As Jc]
+MRZO checks
+Citron-Frais bets 26
+MRZO calls 26
+*** TURN *** [7h As Jc][Td]
+MRZO checks
+Citron-Frais bets 60
+MRZO calls 60
+*** RIVER *** [7h As Jc Td][3s]
+MRZO checks
+Citron-Frais checks
+*** SHOW DOWN ***
+Citron-Frais shows [Ts 9c] (One pair : Tens)
+MRZO shows [6d Jd] (One pair : Jacks)
+MRZO collected 252 from pot
+*** SUMMARY ***
+Total pot 252 | No rake
+Board: [7h As Jc Td 3s]
+Seat 1: MRZO (big blind) showed [6d Jd] and won 252 with One pair : Jacks
+Seat 3: Citron-Frais (small blind) (button) showed [Ts 9c] and lost with One pair : Tens
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830424068542955521-6-1780993053 - Holdem no limit (15/30) - 2026/06/09 08:17:33 UTC
+Table: 'Expresso(1124670745)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (1096)
+Seat 3: Citron-Frais (404)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+Citron-Frais posts big blind 30
+Dealt to MRZO [6d 2s]
+*** PRE-FLOP *** 
+MRZO calls 15
+Citron-Frais checks
+*** FLOP *** [5s Ks 3c]
+Citron-Frais checks
+MRZO bets 39
+Citron-Frais folds
+MRZO collected 99 from pot
+*** SUMMARY ***
+Total pot 99 | No rake
+Board: [5s Ks 3c]
+Seat 1: MRZO (small blind) (button) won 99
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830424068542955521-7-1780993061 - Holdem no limit (15/30) - 2026/06/09 08:17:41 UTC
+Table: 'Expresso(1124670745)#0' 3-max (real money) Seat #3 is the button
+Seat 1: MRZO (1126)
+Seat 3: Citron-Frais (374)
+*** ANTE/BLINDS ***
+Citron-Frais posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [8s Ad]
+*** PRE-FLOP *** 
+Citron-Frais folds
+MRZO collected 45 from pot
+*** SUMMARY ***
+Total pot 45 | No rake
+Seat 1: MRZO (big blind) won 45
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830424068542955521-8-1780993065 - Holdem no limit (15/30) - 2026/06/09 08:17:45 UTC
+Table: 'Expresso(1124670745)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (1141)
+Seat 3: Citron-Frais (359)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+Citron-Frais posts big blind 30
+Dealt to MRZO [Qc 7h]
+*** PRE-FLOP *** 
+MRZO calls 15
+Citron-Frais raises 329 to 359 and is all-in
+MRZO folds
+Citron-Frais collected 389 from pot
+*** SUMMARY ***
+Total pot 389 | No rake
+Seat 3: Citron-Frais (big blind) won 389
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830424068542955521-9-1780993081 - Holdem no limit (15/30) - 2026/06/09 08:18:01 UTC
+Table: 'Expresso(1124670745)#0' 3-max (real money) Seat #3 is the button
+Seat 1: MRZO (1111)
+Seat 3: Citron-Frais (389)
+*** ANTE/BLINDS ***
+Citron-Frais posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [2s 9d]
+*** PRE-FLOP *** 
+Citron-Frais calls 15
+MRZO checks
+*** FLOP *** [4c Td 5h]
+MRZO checks
+Citron-Frais bets 30
+MRZO folds
+Citron-Frais collected 90 from pot
+*** SUMMARY ***
+Total pot 90 | No rake
+Board: [4c Td 5h]
+Seat 3: Citron-Frais (small blind) (button) won 90
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830424068542955521-10-1780993088 - Holdem no limit (15/30) - 2026/06/09 08:18:08 UTC
+Table: 'Expresso(1124670745)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (1081)
+Seat 3: Citron-Frais (419)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+Citron-Frais posts big blind 30
+Dealt to MRZO [Kh 3c]
+*** PRE-FLOP *** 
+MRZO raises 30 to 60
+Citron-Frais raises 359 to 419 and is all-in
+MRZO folds
+Citron-Frais collected 479 from pot
+*** SUMMARY ***
+Total pot 479 | No rake
+Seat 3: Citron-Frais (big blind) won 479
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830424068542955521-11-1780993101 - Holdem no limit (15/30) - 2026/06/09 08:18:21 UTC
+Table: 'Expresso(1124670745)#0' 3-max (real money) Seat #3 is the button
+Seat 1: MRZO (1021)
+Seat 3: Citron-Frais (479)
+*** ANTE/BLINDS ***
+Citron-Frais posts small blind 15
+MRZO posts big blind 30
+Dealt to MRZO [7d 5d]
+*** PRE-FLOP *** 
+Citron-Frais calls 15
+MRZO checks
+*** FLOP *** [Qs 8s As]
+MRZO checks
+Citron-Frais bets 30
+MRZO folds
+Citron-Frais collected 90 from pot
+*** SUMMARY ***
+Total pot 90 | No rake
+Board: [Qs 8s As]
+Seat 3: Citron-Frais (small blind) (button) won 90
+
+
+Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 2 - HandId: #4830424068542955521-12-1780993109 - Holdem no limit (15/30) - 2026/06/09 08:18:29 UTC
+Table: 'Expresso(1124670745)#0' 3-max (real money) Seat #1 is the button
+Seat 1: MRZO (991)
+Seat 3: Citron-Frais (509)
+*** ANTE/BLINDS ***
+MRZO posts small blind 15
+Citron-Frais posts big blind 30
+Dealt to MRZO [Qs Kd]
+*** PRE-FLOP *** 
+MRZO calls 15
+Citron-Frais raises 479 to 509 and is all-in
+MRZO raises 482 to 991 and is all-in
+*** FLOP *** [Td Ad 2d]
+*** TURN *** [Td Ad 2d][Ks]
+*** RIVER *** [Td Ad 2d Ks][5c]
+*** SHOW DOWN ***
+Citron-Frais shows [4h 8c] (High card : Ace)
+MRZO shows [Qs Kd] (One pair : Kings)
+MRZO collected 1500 from pot
+*** SUMMARY ***
+Total pot 1500 | No rake
+Board: [Td Ad 2d Ks 5c]
+Seat 1: MRZO (small blind) (button) showed [Qs Kd] and won 1500 with One pair : Kings
+Seat 3: Citron-Frais (big blind) showed [4h 8c] and lost with High card : Ace
+
+
