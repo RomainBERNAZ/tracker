@@ -27,6 +27,8 @@ const RE_SEAT: &str = r#"^Seat (\d+): (.+) \((\d+)\)$"#;
 // Le Yoyo14510 posts small blind 10
 const RE_BLIND_SB: &str = r#"^(.+) posts small blind (\d+)$"#;
 const RE_BLIND_BB: &str = r#"^(.+) posts big blind (\d+)$"#;
+const RE_BLIND_SB_ALLIN: &str = r#"^(.+) posts small blind (\d+) and is all-in$"#;
+const RE_BLIND_BB_ALLIN: &str = r#"^(.+) posts big blind (\d+) and is all-in$"#;
 const RE_BLIND_ANTE: &str = r#"^(.+) posts ante (\d+)$"#;
 
 // Dealt to MRZO [4c Ah]
@@ -71,6 +73,8 @@ struct Regexes {
     seat: Regex,
     blind_sb: Regex,
     blind_bb: Regex,
+    blind_sb_allin: Regex,
+    blind_bb_allin: Regex,
     blind_ante: Regex,
     dealt: Regex,
     street_preflop: Regex,
@@ -100,6 +104,8 @@ impl Regexes {
             seat: re!(RE_SEAT),
             blind_sb: re!(RE_BLIND_SB),
             blind_bb: re!(RE_BLIND_BB),
+            blind_sb_allin: re!(RE_BLIND_SB_ALLIN),
+            blind_bb_allin: re!(RE_BLIND_BB_ALLIN),
             blind_ante: re!(RE_BLIND_ANTE),
             dealt: re!(RE_DEALT),
             street_preflop: re!(RE_STREET_PREFLOP),
@@ -313,7 +319,19 @@ pub fn parse_hands<R: Read>(
                         blind_type: BlindType::SmallBlind,
                         amount: caps[2].parse().unwrap_or(0),
                     });
+                } else if let Some(caps) = re.blind_sb_allin.captures(line) {
+                    current.blinds.push(BlindAction {
+                        player_name: caps[1].to_string(),
+                        blind_type: BlindType::SmallBlind,
+                        amount: caps[2].parse().unwrap_or(0),
+                    });
                 } else if let Some(caps) = re.blind_bb.captures(line) {
+                    current.blinds.push(BlindAction {
+                        player_name: caps[1].to_string(),
+                        blind_type: BlindType::BigBlind,
+                        amount: caps[2].parse().unwrap_or(0),
+                    });
+                } else if let Some(caps) = re.blind_bb_allin.captures(line) {
                     current.blinds.push(BlindAction {
                         player_name: caps[1].to_string(),
                         blind_type: BlindType::BigBlind,

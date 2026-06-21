@@ -1,11 +1,34 @@
-# Project Initialization Status
+# Project Status Snapshot
 
-**Date**: 2026-06-19  
-**Status**: ✅ **Structure & Documentation Complete** (Code implementation not started)
+**Date**: 2026-06-21  
+**Status**: ✅ **Phase 1 completed and signed off** (all validation gates passed)
 
 ---
 
-## What's Complete
+## Current Reality (Delta vs initial initialization)
+
+This file was originally written at project bootstrap time. The project has moved beyond initialization.
+
+- [x] Rust crates implemented (`hh_parser_winamax`, `hand_ledger`, `cev_realized_core`, `hh_ingest`, `session_read_model`)
+- [x] Frontend app implemented and buildable
+- [x] Tauri integration operational
+- [x] End-to-end import + validation pipeline running in Docker
+- [x] Regression suite added for locked EV outputs
+- [x] Performance gain achieved (~11.7x on current dataset)
+- [x] Frontend lint configured and passing
+
+### Validation Snapshot
+
+- [x] Full Rust tests passing (19/19)
+- [x] Frontend build passing
+- [x] Frontend lint passing
+- [x] Dataset import validated (45 tournaments / 901 hands)
+- [x] Invariants: 901/901 valid (0 invalid)
+- [x] Product sign-off completed
+
+---
+
+## Historical Initialization Checklist (2026-06-19)
 
 ### ✅ Project Structure
 - [x] Root directory organization
@@ -54,7 +77,7 @@
 
 ---
 
-## What's NOT Complete (Reserved for Code Development)
+## Historical Planned Work (Now Obsolete)
 
 ### ❌ Code Implementation
 - [ ] Rust crates (hh_parser_winamax, hand_ledger, cev_realized_core, hh_ingest, session_read_model)

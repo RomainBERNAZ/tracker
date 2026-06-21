@@ -22,12 +22,12 @@ Build a **clean, maintainable, performant** desktop application to analyze Expre
 ## Phase 1: Realized cEV Foundation (Blocking)
 
 ### Deliverables
-- [ ] HH import pipeline (Winamax)
-- [ ] Parsing + normalization
-- [ ] Ledger: contributions/payouts
-- [ ] Realized cEV calculation (`stack_end - stack_start`)
-- [ ] Invariant validation (sum=0, no chips lost)
-- [ ] Minimal UI (import, session list, hand detail)
+- [x] HH import pipeline (Winamax)
+- [x] Parsing + normalization
+- [x] Ledger: contributions/payouts
+- [x] Realized cEV calculation (`stack_end - stack_start`)
+- [x] Invariant validation (sum=0, no chips lost)
+- [x] Minimal UI (import, session list, hand detail)
 
 ### Validation Gates
 ✓ 100% invariants pass  
@@ -193,13 +193,23 @@ docker run -it expresso-review:v0.1
 
 ## Status
 
-**Current Phase**: Project initialization (structure + docs only, no implementation).
+**Current Phase**: Phase 1 complete and signed off (all validation gates passed).
 
 | Phase | Status | ETA |
 |-------|--------|-----|
-| 1. Realized cEV foundation | 📋 Planning | TBD |
-| 2. Replayer & filters | ⏳ Blocked | Post-Phase 1 |
+| 1. Realized cEV foundation | ✅ Signed off |
+| 2. Replayer & filters | ▶️ Ready to start | Next phase |
 | 3. Optimization & polish | ⏳ Blocked | Post-Phase 2 |
+
+## Latest Validation Snapshot (2026-06-21)
+
+- Rust tests: 19/19 passing
+- Frontend build: passing (`tsc && vite build`)
+- Frontend lint: passing (ESLint configured)
+- Import validation dataset: 45 tournaments, 901 hands
+- Invariants: 901/901 valid (0 invalid)
+- Regression outputs: locked reference cases passing
+- Previous blocker resolved: short-stack blind all-in parsing fixed and validated
 
 ---
 
@@ -209,5 +219,5 @@ docker run -it expresso-review:v0.1
 
 ---
 
-**Last updated**: 2026-06-19  
+**Last updated**: 2026-06-21  
 **Version**: V0.1 (feature-frozen)

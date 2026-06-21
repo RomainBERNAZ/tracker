@@ -63,6 +63,31 @@ You played 5min 13s
 You finished in 2nd place
 "#;
 
+    const SAMPLE_ALLIN_BLINDS: &str = r#"Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 6 - HandId: #4830424227456745473-54-1780993434 - Holdem no limit (50/100) - 2026/06/09 08:23:54 UTC
+Table: 'Expresso(1124670782)#0' 3-max (real money) Seat #3 is the button
+Seat 1: MRZO (80)
+Seat 3: lalex9471 (1420)
+*** ANTE/BLINDS ***
+lalex9471 posts small blind 50
+MRZO posts big blind 80 and is all-in
+Dealt to MRZO [Tc Ah]
+*** PRE-FLOP *** 
+lalex9471 raises 1340 to 1420 and is all-in
+*** FLOP *** [3s 4d 8h]
+*** TURN *** [3s 4d 8h][Ad]
+*** RIVER *** [3s 4d 8h Ad][Qs]
+*** SHOW DOWN ***
+MRZO shows [Tc Ah] (One pair : Aces)
+lalex9471 shows [6h Ac] (One pair : Aces)
+lalex9471 collected 1340 from side pot 1
+MRZO collected 160 from main pot
+*** SUMMARY ***
+Total pot 1500 | No rake
+Board: [3s 4d 8h Ad Qs]
+Seat 1: MRZO (big blind) showed [Tc Ah] and won 160 with One pair : Aces
+Seat 3: lalex9471 (small blind) (button) showed [6h Ac] and won 1340 with One pair : Aces
+"#;
+
     #[test]
     fn test_parse_single_hand() {
         let (hands, warnings) = parse_hands(SAMPLE_HAND.as_bytes()).unwrap();
@@ -132,5 +157,20 @@ You finished in 2nd place
         assert_eq!(river.actions.len(), 2);
         assert!(matches!(river.actions[0].action, Action::AllInBet { amount: 304 }));
         assert!(matches!(river.actions[1].action, Action::AllInCall { amount: 304 }));
+    }
+
+    #[test]
+    fn test_all_in_blinds_are_parsed() {
+        let (hands, warnings) = parse_hands(SAMPLE_ALLIN_BLINDS.as_bytes()).unwrap();
+        assert_eq!(hands.len(), 1);
+
+        let h = &hands[0];
+        assert_eq!(h.blinds.len(), 2);
+        assert_eq!(h.blinds[0].blind_type, BlindType::SmallBlind);
+        assert_eq!(h.blinds[0].amount, 50);
+        assert_eq!(h.blinds[1].blind_type, BlindType::BigBlind);
+        assert_eq!(h.blinds[1].amount, 80);
+
+        assert!(warnings.is_empty(), "unexpected warnings: {:?}", warnings);
     }
 }

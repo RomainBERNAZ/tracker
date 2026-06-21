@@ -6,6 +6,22 @@ This document lists all criteria that must be satisfied before Phase 1 is consid
 
 ---
 
+## Execution Status Snapshot (2026-06-21)
+
+This section captures the final validated state for Phase 1 sign-off.
+
+- [x] Rust test suites passing (`cargo test --all --exclude expresso-review`)
+- [x] Reference output regression test passing
+- [x] Frontend build passing (`pnpm build`)
+- [x] Frontend lint passing (`pnpm lint`)
+- [x] Import validation run completed on 45 tournaments / 901 hands
+- [x] Invariants at 100% after short-stack blind all-in parsing fix (901/901 valid)
+- [x] Phase 1 sign-off completed
+
+Phase 2 is now unblocked.
+
+---
+
 ## 1. Core Calculation Correctness
 
 ### 1.1 Realized cEV Calculation
