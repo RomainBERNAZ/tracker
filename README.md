@@ -181,6 +181,18 @@ Template: [ADR_TEMPLATE.md](./docs/adr/ADR_TEMPLATE.md)
 
 ## Deployment
 
+### 🚀 Download Precompiled App (No Install Needed)
+
+**Pas envie d'installer Rust & Node ?** Télécharge l'app compilée directement:
+
+➡️ **[Télécharge ici](https://github.com/RomainBERNAZ/tracker/releases)**
+
+- **Linux**: `expresso-review_*.AppImage` → chmod +x + run
+- **macOS**: `expresso-review_*.dmg` → click to install
+- **Windows**: `expresso-review_*.msi` → installer wizard
+
+C'est tout. Pas de dépendances, pas de compilation. L'app est prête.
+
 ### Docker
 ```bash
 docker build -t expresso-review:v0.1 -f docker/Dockerfile .
@@ -190,8 +202,8 @@ docker run -it expresso-review:v0.1
 ### Desktop Bundle
 [TBD post-Phase 1: Tauri packaging for macOS/Linux/Windows]
 
-### Native Install (No Docker)
-Pour installer l'app sur une autre machine sans environnement dev Docker,
+### Native Install (For Developers)
+Pour **compiler l'app vous-même** sans Docker,
 utiliser le guide complet: **[PRODUCTION_SETUP.md](./PRODUCTION_SETUP.md)**.
 
 #### Quick Install (Copy/Paste)
