@@ -5,7 +5,7 @@
   "build": {
     "beforeDevCommand": "cd /app/src/frontend 2>/dev/null || cd ../src/frontend 2>/dev/null || cd src/frontend && pnpm dev",
     "devUrl": "http://localhost:5173",
-    "beforeBuildCommand": "cd /app/src/frontend 2>/dev/null || cd ../src/frontend 2>/dev/null || cd src/frontend && pnpm build",
+    "beforeBuildCommand": "pnpm --dir src/frontend build",
     "frontendDist": "../src/frontend/dist"
   },
   "app": {
