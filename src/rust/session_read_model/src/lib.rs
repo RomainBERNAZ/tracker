@@ -555,7 +555,7 @@ pub fn load_hand_for_replay(
         })?
         .collect::<Result<_, _>>()?;
 
-    let players_vec: Vec<ReplayerPlayer> = players_map.values().cloned().collect();
+    let mut players_vec: Vec<ReplayerPlayer> = players_map.values().cloned().collect();
     players_vec.sort_by_key(|p| p.seat_number);
 
     let button_pos = usize::try_from(button_seat).unwrap_or(0);
