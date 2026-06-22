@@ -43,6 +43,9 @@ jobs:
       - name: Install frontend dependencies
         run: pnpm install --dir src/frontend
 
+      - name: Build frontend
+        run: pnpm --dir src/frontend build
+
       - name: Install Tauri dependencies (Ubuntu)
         if: matrix.platform == 'linux'
         run: |
