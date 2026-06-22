@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { memo, useEffect, useMemo, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { api, TournamentRow, SessionStats } from '../api'
 
@@ -6,6 +6,8 @@ type ColumnKey = 'date' | 'tournamentId' | 'multi' | 'prizepool' | 'hands' | 'po
 type SortDirection = 'asc' | 'desc'
 
 const INITIAL_COLUMNS: ColumnKey[] = ['date', 'tournamentId', 'multi', 'prizepool', 'hands', 'position', 'cev', 'net']
+const TOURNAMENT_ROW_HEIGHT = 41
+const TOURNAMENT_ROW_OVERSCAN = 10
 
 const COLUMN_LABELS: Record<ColumnKey, string> = {
   date: 'Date',
@@ -36,24 +38,48 @@ function posTag(pos: number) {
   return <span className="tag tag-3rd">3rd</span>
 }
 
-export default function Tournaments() {
+export default memo(function Tournaments() {
   const navigate = useNavigate()
   const [rows, setRows] = useState<TournamentRow[]>([])
   const [stats, setStats] = useState<SessionStats | null>(null)
   const [loading, setLoading] = useState(true)
+  const [scrollTop, setScrollTop] = useState(0)
+  const [viewportHeight, setViewportHeight] = useState(480)
+  const tableWrapRef = useRef<HTMLDivElement | null>(null)
   const columns = INITIAL_COLUMNS
   const [sortColumn, setSortColumn] = useState<ColumnKey>('date')
   const [sortDirection, setSortDirection] = useState<SortDirection>('desc')
 
-  const avgCev = rows.length > 0
-    ? rows.reduce((sum, t) => sum + t.hero_cev_sum, 0) / rows.length
-    : 0
+  const avgCev = useMemo(
+    () => (rows.length > 0 ? rows.reduce((sum, t) => sum + t.hero_cev_sum, 0) / rows.length : 0),
+    [rows],
+  )
 
   useEffect(() => {
     Promise.all([api.getTournaments(), api.getStats()])
       .then(([t, s]) => { setRows(t); setStats(s) })
       .catch(console.error)
       .finally(() => setLoading(false))
+  }, [])
+
+  useEffect(() => {
+    const element = tableWrapRef.current
+    if (!element) {
+      return undefined
+    }
+
+    const updateViewportHeight = () => {
+      setViewportHeight(element.clientHeight || 480)
+    }
+
+    updateViewportHeight()
+
+    const resizeObserver = new ResizeObserver(updateViewportHeight)
+    resizeObserver.observe(element)
+
+    return () => {
+      resizeObserver.disconnect()
+    }
   }, [])
 
   function toggleSort(column: ColumnKey) {
@@ -108,18 +134,42 @@ export default function Tournaments() {
     }
   }
 
-  const sortedRows = [...rows].sort((left, right) => {
-    const leftValue = getSortValue(left, sortColumn)
-    const rightValue = getSortValue(right, sortColumn)
+  function getSortIndicator(column: ColumnKey) {
+    if (sortColumn !== column) {
+      return ''
+    }
 
-    if (leftValue < rightValue) {
-      return sortDirection === 'asc' ? -1 : 1
+    return sortDirection === 'asc' ? ' ▲' : ' ▼'
+  }
+
+  const sortedRows = useMemo(() => {
+    return [...rows].sort((left, right) => {
+      const leftValue = getSortValue(left, sortColumn)
+      const rightValue = getSortValue(right, sortColumn)
+
+      if (leftValue < rightValue) {
+        return sortDirection === 'asc' ? -1 : 1
+      }
+      if (leftValue > rightValue) {
+        return sortDirection === 'asc' ? 1 : -1
+      }
+      return 0
+    })
+  }, [rows, sortColumn, sortDirection])
+
+  const visibleWindow = useMemo(() => {
+    const visibleCount = Math.ceil(viewportHeight / TOURNAMENT_ROW_HEIGHT) + TOURNAMENT_ROW_OVERSCAN * 2
+    const startIndex = Math.max(0, Math.floor(scrollTop / TOURNAMENT_ROW_HEIGHT) - TOURNAMENT_ROW_OVERSCAN)
+    const endIndex = Math.min(sortedRows.length, startIndex + visibleCount)
+    const topSpacerHeight = startIndex * TOURNAMENT_ROW_HEIGHT
+    const bottomSpacerHeight = Math.max(0, (sortedRows.length - endIndex) * TOURNAMENT_ROW_HEIGHT)
+
+    return {
+      visibleRows: sortedRows.slice(startIndex, endIndex),
+      topSpacerHeight,
+      bottomSpacerHeight,
     }
-    if (leftValue > rightValue) {
-      return sortDirection === 'asc' ? 1 : -1
-    }
-    return 0
-  })
+  }, [scrollTop, sortedRows, viewportHeight])
 
   if (loading) return <p style={{ color: 'var(--text-dim)' }}>Chargement…</p>
 
@@ -171,7 +221,11 @@ export default function Tournaments() {
         </div>
       )}
 
-      <div className="table-wrap">
+      <div
+        ref={tableWrapRef}
+        className="table-wrap"
+        onScroll={(event) => setScrollTop(event.currentTarget.scrollTop)}
+      >
         <table>
           <thead>
             <tr>
@@ -184,20 +238,30 @@ export default function Tournaments() {
                 >
                   <span className="th-label">
                     {COLUMN_LABELS[column]}
-                    {sortColumn === column ? (sortDirection === 'asc' ? ' ▲' : ' ▼') : ''}
+                    {getSortIndicator(column)}
                   </span>
                 </th>
               ))}
             </tr>
           </thead>
           <tbody>
-            {sortedRows.map(t => (
+            {visibleWindow.topSpacerHeight > 0 && (
+              <tr className="table-spacer-row">
+                <td colSpan={columns.length} style={{ height: visibleWindow.topSpacerHeight, padding: 0, border: 0 }} />
+              </tr>
+            )}
+            {visibleWindow.visibleRows.map(t => (
               <tr key={t.id} onClick={() => navigate(`/tournaments/${t.id}/hands`)}>
                 {columns.map(column => (
                   <td key={column}>{renderCell(t, column)}</td>
                 ))}
               </tr>
             ))}
+            {visibleWindow.bottomSpacerHeight > 0 && (
+              <tr className="table-spacer-row">
+                <td colSpan={columns.length} style={{ height: visibleWindow.bottomSpacerHeight, padding: 0, border: 0 }} />
+              </tr>
+            )}
             {rows.length === 0 && (
               <tr><td colSpan={columns.length} style={{ textAlign: 'center', color: 'var(--text-dim)', padding: 32 }}>
                 Aucun tournoi importé
@@ -208,4 +272,4 @@ export default function Tournaments() {
       </div>
     </div>
   )
-}
+})

@@ -1,5 +1,6 @@
 use rusqlite::{Connection, params};
 use serde::{Deserialize, Serialize};
+use serde_json;
 
 // ─── Read models (returned to the UI) ────────────────────────────────────────
 
@@ -18,6 +19,10 @@ pub struct TournamentRow {
     pub hero_cev_sum: i64,
     /// Sum of hero all-in Net EV converted to euros for this tournament (V1 proportional)
     pub hero_net_ev_eur_sum: f64,
+    /// cEV sum on hands WITHOUT showdown
+    pub wsd_cev_sum: i64,
+    /// cEV sum on hands WITH showdown
+    pub sd_cev_sum: i64,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -29,6 +34,7 @@ pub struct HandRow {
     pub big_blind: i64,
     pub timestamp: String,
     pub hero_cev: i64,
+    pub hero_collected: i64,
     pub hero_net_ev: Option<i64>,
     pub hero_allin_equity: Option<f64>,
     pub hero_cards: Option<String>,   // "Ah Kd" or null
@@ -37,6 +43,10 @@ pub struct HandRow {
     pub invariants_ok: bool,
     /// Net EV converted to euros: net_ev_chips * prizepool_eur / total_chips (proportional V1)
     pub hero_net_ev_eur: Option<f64>,
+    /// Whether the hand reached showdown (NULL for legacy rows imported before this flag existed)
+    pub has_showdown: Option<bool>,
+    /// Whether hero showed cards at showdown (NULL for legacy rows imported before this flag existed)
+    pub hero_showed: Option<bool>,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -125,10 +135,81 @@ pub struct ReplayerStep {
     pub increment_amount: Option<i64>,
     pub to_amount: Option<i64>,
     pub pot_size_after: i64,
+    pub players_after: Vec<ReplayerPlayer>,
     pub description: String,  // Human-readable: "PlayerA bets 50" etc.
 }
 
 // ─── Queries ─────────────────────────────────────────────────────────────────
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct HandChipPoint {
+    pub timestamp: String,
+    pub realized_cev: i64,
+    pub net_ev: Option<i64>,
+    pub has_showdown: bool,
+}
+
+/// Returns per-hand chip data ordered by timestamp for cumulative chart.
+pub fn get_chip_evolution(conn: &Connection) -> Result<Vec<HandChipPoint>, rusqlite::Error> {
+    let mut stmt = conn.prepare(
+        r#"SELECT h.timestamp, hp.realized_cev, hp.net_ev,
+                  COALESCE(h.has_showdown, 0)
+           FROM hands h
+           JOIN hand_players hp ON hp.hand_id = h.id AND hp.hero = 1
+           ORDER BY h.timestamp ASC"#,
+    )?;
+
+    let rows = stmt.query_map([], |row| {
+        Ok(HandChipPoint {
+            timestamp: row.get(0)?,
+            realized_cev: row.get(1)?,
+            net_ev: row.get(2)?,
+            has_showdown: row.get::<_, i64>(3).map(|v| v != 0)?,
+        })
+    })?;
+
+    rows.collect()
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct ChipSummary {
+    pub net_chips: i64,
+    pub net_ev_chips: i64,
+    pub avg_cev_per_game: f64,
+    pub wsd_net_chips: i64,   // cEV net on hands WITHOUT showdown
+    pub sd_net_chips: i64,    // cEV net on hands WITH showdown
+}
+
+/// Single-query chip aggregation — replaces the N+1 hand-loading in the frontend.
+pub fn get_chip_summary(conn: &Connection) -> Result<ChipSummary, rusqlite::Error> {
+    let (net_chips, net_ev_chips, wsd_net_chips, sd_net_chips): (i64, i64, i64, i64) =
+        conn.query_row(
+            r#"SELECT
+                COALESCE(SUM(hp.realized_cev), 0),
+                COALESCE(SUM(COALESCE(hp.net_ev, hp.realized_cev)), 0),
+                COALESCE(SUM(CASE WHEN h.has_showdown = 0 THEN hp.realized_cev ELSE 0 END), 0),
+                COALESCE(SUM(CASE WHEN h.has_showdown = 1 THEN hp.realized_cev ELSE 0 END), 0)
+            FROM hand_players hp
+            JOIN hands h ON h.id = hp.hand_id
+            WHERE hp.hero = 1"#,
+            [],
+            |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?, r.get(3)?)),
+        )?;
+
+    let total_tournaments: i64 = conn.query_row(
+        "SELECT COUNT(*) FROM tournaments",
+        [],
+        |r| r.get(0),
+    )?;
+
+    let avg_cev_per_game = if total_tournaments > 0 {
+        net_chips as f64 / total_tournaments as f64
+    } else {
+        0.0
+    };
+
+    Ok(ChipSummary { net_chips, net_ev_chips, avg_cev_per_game, wsd_net_chips, sd_net_chips })
+}
 
 /// List all tournaments, newest first.
 pub fn list_tournaments(
@@ -150,7 +231,9 @@ pub fn list_tournaments(
                          ELSE CAST(hp.net_ev AS REAL) * t.prizepool_euros /
                               NULLIF((SELECT SUM(hp2.starting_stack) FROM hand_players hp2 WHERE hp2.hand_id = h.id), 0)
                     END
-                ), 0.0) as hero_net_ev_eur_sum
+                ), 0.0) as hero_net_ev_eur_sum,
+                COALESCE(SUM(CASE WHEN h.has_showdown = 0 THEN hp.realized_cev ELSE 0 END), 0) as wsd_cev_sum,
+                COALESCE(SUM(CASE WHEN h.has_showdown = 1 THEN hp.realized_cev ELSE 0 END), 0) as sd_cev_sum
            FROM tournaments t
            LEFT JOIN hands h ON h.tournament_id = t.id
            LEFT JOIN hand_players hp ON hp.hand_id = h.id AND hp.hero = 1
@@ -173,6 +256,8 @@ pub fn list_tournaments(
             hand_count: row.get(9)?,
             hero_cev_sum: row.get(10)?,
             hero_net_ev_eur_sum: row.get(11)?,
+            wsd_cev_sum: row.get(12)?,
+            sd_cev_sum: row.get(13)?,
         })
     })?;
 
@@ -187,13 +272,15 @@ pub fn list_hands_for_tournament(
     let mut stmt = conn.prepare(
         r#"SELECT h.id, h.tournament_id, h.level, h.small_blind, h.big_blind,
                   h.timestamp, h.total_pot, h.seat_count,
-                  hp.realized_cev, hp.net_ev, hp.allin_equity,
+                   hp.realized_cev, hp.collected, hp.net_ev, hp.allin_equity,
                   hc.card1 || ' ' || hc.card2,
                   (ic.sum_invariant AND ic.chip_conservation AND ic.pot_match),
                   CASE WHEN hp.net_ev IS NULL THEN NULL
                        ELSE CAST(hp.net_ev AS REAL) * t.prizepool_euros /
                             NULLIF((SELECT SUM(hp2.starting_stack) FROM hand_players hp2 WHERE hp2.hand_id = h.id), 0)
-                  END AS net_ev_eur
+                   END AS net_ev_eur,
+                   h.has_showdown,
+                   h.hero_showed
            FROM hands h
            JOIN hand_players hp ON hp.hand_id = h.id AND hp.hero = 1
            JOIN tournaments t ON t.id = h.tournament_id
@@ -214,11 +301,18 @@ pub fn list_hands_for_tournament(
             total_pot: row.get(6)?,
             seat_count: row.get(7)?,
             hero_cev: row.get(8)?,
-            hero_net_ev: row.get(9)?,
-            hero_allin_equity: row.get(10)?,
-            hero_cards: row.get(11)?,
-            invariants_ok: row.get::<_, i64>(12).map(|v| v != 0).unwrap_or(true),
-            hero_net_ev_eur: row.get(13)?,
+            hero_collected: row.get(9)?,
+            hero_net_ev: row.get(10)?,
+            hero_allin_equity: row.get(11)?,
+            hero_cards: row.get(12)?,
+            invariants_ok: row.get::<_, i64>(13).map(|v| v != 0).unwrap_or(true),
+            hero_net_ev_eur: row.get(14)?,
+            has_showdown: row
+                .get::<_, Option<i64>>(15)?
+                .map(|v| v != 0),
+            hero_showed: row
+                .get::<_, Option<i64>>(16)?
+                .map(|v| v != 0),
         })
     })?;
 
@@ -235,13 +329,15 @@ pub fn get_hand_detail(
         .query_row(
             r#"SELECT h.id, h.tournament_id, h.level, h.small_blind, h.big_blind,
                       h.timestamp, h.total_pot, h.seat_count,
-                      hp.realized_cev, hp.net_ev, hp.allin_equity,
+                      hp.realized_cev, hp.collected, hp.net_ev, hp.allin_equity,
                       hc.card1 || ' ' || hc.card2,
                       (ic.sum_invariant AND ic.chip_conservation AND ic.pot_match),
                       CASE WHEN hp.net_ev IS NULL THEN NULL
                            ELSE CAST(hp.net_ev AS REAL) * t.prizepool_euros /
                                 NULLIF((SELECT SUM(hp2.starting_stack) FROM hand_players hp2 WHERE hp2.hand_id = h.id), 0)
-                      END AS net_ev_eur
+                          END AS net_ev_eur,
+                          h.has_showdown,
+                          h.hero_showed
                FROM hands h
                JOIN hand_players hp ON hp.hand_id = h.id AND hp.hero = 1
                JOIN tournaments t ON t.id = h.tournament_id
@@ -260,11 +356,18 @@ pub fn get_hand_detail(
                     total_pot: row.get(6)?,
                     seat_count: row.get(7)?,
                     hero_cev: row.get(8)?,
-                    hero_net_ev: row.get(9)?,
-                    hero_allin_equity: row.get(10)?,
-                    hero_cards: row.get(11)?,
-                    invariants_ok: row.get::<_, i64>(12).map(|v| v != 0).unwrap_or(true),
-                    hero_net_ev_eur: row.get(13)?,
+                    hero_collected: row.get(9)?,
+                    hero_net_ev: row.get(10)?,
+                    hero_allin_equity: row.get(11)?,
+                    hero_cards: row.get(12)?,
+                    invariants_ok: row.get::<_, i64>(13).map(|v| v != 0).unwrap_or(true),
+                    hero_net_ev_eur: row.get(14)?,
+                    has_showdown: row
+                        .get::<_, Option<i64>>(15)?
+                        .map(|v| v != 0),
+                    hero_showed: row
+                        .get::<_, Option<i64>>(16)?
+                        .map(|v| v != 0),
                 })
             },
         )
@@ -385,8 +488,8 @@ pub fn load_hand_for_replay(
     // Load hand info
     let hand_info = conn
         .query_row(
-            r#"SELECT h.id, h.tournament_id, h.table_name, h.timestamp, h.level, 
-                      h.small_blind, h.big_blind
+            r#"SELECT h.id, h.tournament_id, h.table_name, h.timestamp, h.level,
+                      h.small_blind, h.big_blind, h.button_seat, COALESCE(h.board_cards, '[]')
                FROM hands h
                WHERE h.id = ?1"#,
             params![hand_id],
@@ -399,16 +502,20 @@ pub fn load_hand_for_replay(
                     row.get::<_, i64>(4)?,
                     row.get::<_, i64>(5)?,
                     row.get::<_, i64>(6)?,
+                    row.get::<_, i64>(7)?,
+                    row.get::<_, String>(8)?,
                 ))
             },
         )
         .ok();
 
-    let (hand_id_val, tournament_id, table_name, timestamp, level, sb, bb) =
+    let (hand_id_val, tournament_id, table_name, timestamp, level, sb, bb, button_seat, board_cards_json) =
         match hand_info {
             None => return Ok(None),
             Some(h) => h,
         };
+
+    let board: Vec<String> = serde_json::from_str(&board_cards_json).unwrap_or_default();
 
     // Load all players for this hand
     let mut players_stmt = conn.prepare(
@@ -416,9 +523,13 @@ pub fn load_hand_for_replay(
                 hp.player_name,
                 hp.starting_stack,
                 hp.ending_stack,
-                (hc.card1 || ' ' || hc.card2) AS hole_cards
+                COALESCE(
+                    shc.card1 || ' ' || shc.card2,
+                    hc.card1 || ' ' || hc.card2
+                ) AS hole_cards
             FROM hand_players hp
             LEFT JOIN hole_cards hc ON hc.hand_id = hp.hand_id AND hc.player_name = hp.player_name
+            LEFT JOIN showdown_hole_cards shc ON shc.hand_id = hp.hand_id AND shc.player_name = hp.player_name
            WHERE hp.hand_id = ?1
            ORDER BY hp.seat_number"#,
     )?;
@@ -447,7 +558,7 @@ pub fn load_hand_for_replay(
     let mut players_vec: Vec<ReplayerPlayer> = players_map.values().cloned().collect();
     players_vec.sort_by_key(|p| p.seat_number);
 
-    let button_pos = 0; // V0.1 always 3-handed, SB=0, BB=1, BTN=2
+    let button_pos = usize::try_from(button_seat).unwrap_or(0);
 
     // Load all actions for this hand
     let mut actions_stmt = conn.prepare(
@@ -473,6 +584,37 @@ pub fn load_hand_for_replay(
             })?
             .collect::<Result<_, _>>()?;
 
+    fn format_replay_description(
+        actor_name: &str,
+        action_type: &str,
+        amount: Option<i64>,
+        increment_amount: Option<i64>,
+        to_amount: Option<i64>,
+    ) -> String {
+        match action_type {
+            "fold" => format!("{} fold", actor_name),
+            "check" => format!("{} check", actor_name),
+            "call" => format!("{} call {}", actor_name, amount.unwrap_or(0)),
+            "bet" => format!("{} bet {}", actor_name, amount.unwrap_or(0)),
+            "raise" => format!(
+                "{} raise {} to {}",
+                actor_name,
+                increment_amount.unwrap_or(0),
+                to_amount.unwrap_or(0)
+            ),
+            "collect" => format!("{} collect {}", actor_name, amount.unwrap_or(0)),
+            "allin_call" => format!("{} all-in call {}", actor_name, amount.unwrap_or(0)),
+            "allin_bet" => format!("{} all-in bet {}", actor_name, amount.unwrap_or(0)),
+            "allin_raise" => format!(
+                "{} all-in raise {} to {}",
+                actor_name,
+                increment_amount.unwrap_or(0),
+                to_amount.unwrap_or(0)
+            ),
+            _ => format!("{} {}", actor_name, action_type),
+        }
+    }
+
     // Build replayer steps (with stacks at each step)
     let mut steps: Vec<ReplayerStep> = Vec::new();
     let mut player_stacks = players_map.clone();
@@ -480,31 +622,37 @@ pub fn load_hand_for_replay(
     for (step_num, (street, _action_idx, actor_name, action_type, amount, incr, to_amt)) in
         raw_actions.iter().enumerate()
     {
-        let description = format!(
-            "{} {} {} chips",
-            actor_name,
-            action_type,
-            amount.unwrap_or(0)
-        );
+        let description = format_replay_description(actor_name, action_type, *amount, *incr, *to_amt);
 
-        // Update player stack if bet/raise/call/fold
+        // Update player state for the action that just happened.
         if let Some(player) = player_stacks.get_mut(actor_name) {
             match action_type.as_str() {
-                "Fold" => {
+                "fold" => {
                     player.folded = true;
                 }
-                "AllIn" => {
-                    player.current_stack = 0;
+                "call" | "bet" | "allin_call" | "allin_bet" => {
+                    player.current_stack = (player.current_stack - amount.unwrap_or(0)).max(0);
                 }
-                _ => {
-                    if let Some(amt) = amount {
-                        player.current_stack -= amt;
+                "raise" | "allin_raise" => {
+                    // to_amount is the total bet on this street; incr is the added amount above previous bet.
+                    // We subtract incr (the actual chips this player puts in now).
+                    player.current_stack = (player.current_stack - incr.unwrap_or(0)).max(0);
+                    if incr.is_none() && to_amt.is_some() {
+                        // Fallback: incr not stored — use to_amount as best estimate
+                        player.current_stack = (player.current_stack - to_amt.unwrap_or(0)).max(0);
                     }
                 }
+                "collect" => {
+                    player.current_stack += amount.unwrap_or(0);
+                }
+                _ => {}
             }
         }
 
-        // Compute pot after this action (simplified: look at hand_players ending stacks)
+        let mut players_after: Vec<ReplayerPlayer> = player_stacks.values().cloned().collect();
+        players_after.sort_by_key(|player| player.seat_number);
+
+        // Compute pot after this action from invested chips so far.
         let pot_size_after = players_vec
             .iter()
             .map(|p| p.starting_stack)
@@ -523,6 +671,7 @@ pub fn load_hand_for_replay(
             increment_amount: *incr,
             to_amount: *to_amt,
             pot_size_after,
+            players_after,
             description,
         });
     }
@@ -545,7 +694,7 @@ pub fn load_hand_for_replay(
         big_blind: bb,
         players: players_vec,
         button_pos,
-        board: vec![], // Will be populated from board_cards table if we have it
+        board,
         current_step: 0,
         total_steps: steps.len(),
         steps,
@@ -587,6 +736,9 @@ mod tests {
               seat_count INTEGER NOT NULL,
               timestamp TEXT NOT NULL,
               player_count INTEGER NOT NULL,
+                            board_cards TEXT,
+                            has_showdown INTEGER,
+                            hero_showed INTEGER,
               rake_chips INTEGER NOT NULL,
               total_pot INTEGER NOT NULL
             );
@@ -613,6 +765,14 @@ mod tests {
               card1 TEXT NOT NULL,
               card2 TEXT NOT NULL
             );
+
+                        CREATE TABLE showdown_hole_cards (
+                            id INTEGER PRIMARY KEY AUTOINCREMENT,
+                            hand_id TEXT NOT NULL,
+                            player_name TEXT NOT NULL,
+                            card1 TEXT NOT NULL,
+                            card2 TEXT NOT NULL
+                        );
 
             CREATE TABLE invariant_checks (
               id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -645,8 +805,8 @@ mod tests {
         ).expect("insert tournament");
 
         conn.execute(
-            "INSERT INTO hands (id, tournament_id, table_name, game_name, buy_in_euros, rake_euros, level, small_blind, big_blind, button_seat, seat_count, timestamp, player_count, rake_chips, total_pot) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13, ?14, ?15)",
-            params!["H29", "T1", "Expresso(T1)#0", "Holdem no limit", 1.86_f64, 0.14_f64, 4_i64, 30_i64, 60_i64, 1_i64, 2_i64, "2026-06-09T13:52:25Z", 2_i64, 0_i64, 1500_i64],
+            "INSERT INTO hands (id, tournament_id, table_name, game_name, buy_in_euros, rake_euros, level, small_blind, big_blind, button_seat, seat_count, timestamp, player_count, board_cards, rake_chips, total_pot) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13, ?14, ?15, ?16)",
+            params!["H29", "T1", "Expresso(T1)#0", "Holdem no limit", 1.86_f64, 0.14_f64, 4_i64, 30_i64, 60_i64, 1_i64, 2_i64, "2026-06-09T13:52:25Z", 2_i64, r#"["Qs","3d","8h","7c","Ah"]"#, 0_i64, 1500_i64],
         ).expect("insert hand");
 
         conn.execute(
@@ -663,6 +823,11 @@ mod tests {
             "INSERT INTO hole_cards (hand_id, player_name, card1, card2) VALUES (?1, ?2, ?3, ?4)",
             params!["H29", "MRZO", "Jd", "Kd"],
         ).expect("insert cards");
+
+        conn.execute(
+            "INSERT INTO showdown_hole_cards (hand_id, player_name, card1, card2) VALUES (?1, ?2, ?3, ?4)",
+            params!["H29", "Cocochanel23", "As", "Qc"],
+        ).expect("insert showdown cards");
 
         conn.execute(
             "INSERT INTO invariant_checks (hand_id, sum_invariant, chip_conservation, pot_match, errors_json) VALUES (?1, ?2, ?3, ?4, ?5)",
@@ -734,12 +899,22 @@ mod tests {
                 let state = replay.unwrap();
                 assert_eq!(state.hand_id, "H29");
                 assert_eq!(state.total_steps, 2);
-                assert_eq!(state.players.len(), 3);
-        
-                // Check first player
-                let p1 = &state.players[0];
-                assert_eq!(p1.seat_number, 1);
-                assert_eq!(p1.starting_stack, 600);
+                assert_eq!(state.players.len(), 2);
+                assert_eq!(state.button_pos, 1);
+                assert_eq!(state.board, vec!["Qs", "3d", "8h", "7c", "Ah"]);
+                assert_eq!(state.players[0].hole_cards.as_deref(), Some("As Qc"));
+                assert_eq!(state.players[1].hole_cards.as_deref(), Some("Jd Kd"));
+
+                let first_step = &state.steps[0];
+                assert_eq!(first_step.action_type, "allin_raise");
+                assert_eq!(first_step.players_after.len(), 2);
+                assert_eq!(first_step.players_after[0].name, "Cocochanel23");
+                assert_eq!(first_step.players_after[0].current_stack, 60);
+
+                let second_step = &state.steps[1];
+                assert_eq!(second_step.action_type, "allin_call");
+                assert_eq!(second_step.players_after[1].name, "MRZO");
+                assert_eq!(second_step.players_after[1].current_stack, 60);
             }
         assert_eq!(detail.actions.len(), 2);
     }

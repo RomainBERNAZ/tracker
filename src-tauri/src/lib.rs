@@ -5,8 +5,10 @@ use serde::Serialize;
 use hh_ingest::{db, import_tournament_with_conn, ImportProgress, ImportResult, DEFAULT_HERO};
 use rusqlite::Connection;
 use session_read_model::{
-	get_hand_detail, get_session_stats, list_hands_for_tournament, list_tournaments, HandDetail,
-	HandRow, SessionStats, TournamentRow, load_hand_for_replay, ReplayerState,
+	get_hand_detail, get_session_stats, get_chip_summary, get_chip_evolution,
+	list_hands_for_tournament, list_tournaments,
+	HandDetail, HandRow, HandChipPoint, SessionStats, ChipSummary, TournamentRow,
+	load_hand_for_replay, ReplayerState,
 };
 use tauri::{Emitter, Manager};
 
@@ -252,6 +254,20 @@ pub mod commands {
 	}
 
 	#[tauri::command]
+	pub async fn get_chip_evolution_cmd(
+		state: tauri::State<'_, AppState>,
+	) -> Result<Vec<HandChipPoint>, String> {
+		let conn = state.db.lock().map_err(|e| e.to_string())?;
+		get_chip_evolution(&conn).map_err(|e| e.to_string())
+	}
+
+	#[tauri::command]
+	pub async fn get_chip_summary_cmd(state: tauri::State<'_, AppState>) -> Result<ChipSummary, String> {
+		let conn = state.db.lock().map_err(|e| e.to_string())?;
+		get_chip_summary(&conn).map_err(|e| e.to_string())
+	}
+
+	#[tauri::command]
 	pub async fn clear_all_data(state: tauri::State<'_, AppState>) -> Result<ClearDataResult, String> {
 		let conn = state.db.lock().map_err(|e| e.to_string())?;
 		let cleared = db::clear_all_imported_data(&conn).map_err(|e| e.to_string())?;
@@ -294,6 +310,8 @@ pub fn run() {
 			commands::get_hand,
 			commands::get_hand_for_replay,
 			commands::get_stats,
+			commands::get_chip_summary_cmd,
+			commands::get_chip_evolution_cmd,
 			commands::clear_all_data,
 		])
 		.run(tauri::generate_context!())

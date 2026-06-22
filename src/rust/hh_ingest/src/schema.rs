@@ -37,6 +37,9 @@ CREATE TABLE IF NOT EXISTS hands (
     seat_count      INTEGER NOT NULL,
     timestamp       TEXT    NOT NULL,
     player_count    INTEGER NOT NULL,
+    board_cards     TEXT,                    -- JSON array of final board cards, e.g. ["9d","9h","Td","Kh","3h"]
+    has_showdown    INTEGER,                 -- 1 if hand reached showdown, 0 if not, NULL unknown (legacy rows)
+    hero_showed     INTEGER,                 -- 1 if hero showed cards, 0 if not, NULL unknown (legacy rows)
     rake_chips      INTEGER NOT NULL DEFAULT 0,
     total_pot       INTEGER NOT NULL DEFAULT 0,
     created_at      TEXT    DEFAULT (strftime('%Y-%m-%dT%H:%M:%SZ','now')),
@@ -92,6 +95,17 @@ CREATE TABLE IF NOT EXISTS hole_cards (
     card1       TEXT    NOT NULL,
     card2       TEXT    NOT NULL,
     FOREIGN KEY (hand_id) REFERENCES hands(id)
+);
+
+-- ── Showdown hole cards (non-hero players revealed at showdown) ───────────
+CREATE TABLE IF NOT EXISTS showdown_hole_cards (
+    id          INTEGER PRIMARY KEY AUTOINCREMENT,
+    hand_id     TEXT    NOT NULL,
+    player_name TEXT    NOT NULL,
+    card1       TEXT    NOT NULL,
+    card2       TEXT    NOT NULL,
+    FOREIGN KEY (hand_id) REFERENCES hands(id),
+    UNIQUE (hand_id, player_name)
 );
 
 -- ── Invariant checks ───────────────────────────────────────────────────────

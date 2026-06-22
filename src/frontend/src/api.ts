@@ -2,8 +2,8 @@ import { invoke } from '@tauri-apps/api/core'
 
 function invokeTauri<T>(cmd: string, args?: Record<string, unknown>): Promise<T> {
   const hasTauriRuntime =
-    typeof window !== 'undefined' &&
-    typeof (window as unknown as { __TAURI_INTERNALS__?: unknown }).__TAURI_INTERNALS__ !== 'undefined'
+    globalThis.window !== undefined &&
+    (globalThis.window as typeof globalThis.window & { __TAURI_INTERNALS__?: unknown }).__TAURI_INTERNALS__ !== undefined
 
   if (!hasTauriRuntime) {
     return Promise.reject(
@@ -31,6 +31,8 @@ export interface TournamentRow {
   hand_count: number
   hero_cev_sum: number
   hero_net_ev_eur_sum: number
+  wsd_cev_sum: number
+  sd_cev_sum: number
 }
 
 export interface HandRow {
@@ -41,6 +43,7 @@ export interface HandRow {
   big_blind: number
   timestamp: string
   hero_cev: number
+  hero_collected: number
   hero_net_ev: number | null
   hero_allin_equity: number | null
   hero_cards: string | null
@@ -48,6 +51,8 @@ export interface HandRow {
   seat_count: number
   invariants_ok: boolean
   hero_net_ev_eur: number | null
+  has_showdown: boolean | null
+  hero_showed: boolean | null
 }
 
 export interface PlayerDetailRow {
@@ -91,6 +96,14 @@ export interface SessionStats {
   multiplier_dist: [number, number][]
 }
 
+export interface ChipSummary {
+  net_chips: number
+  net_ev_chips: number
+  avg_cev_per_game: number
+  wsd_net_chips: number
+  sd_net_chips: number
+}
+
 export interface ReplayerPlayer {
   seat_number: number
   name: string
@@ -109,6 +122,7 @@ export interface ReplayerStep {
   increment_amount: number | null
   to_amount: number | null
   pot_size_after: number
+  players_after: ReplayerPlayer[]
   description: string
 }
 
@@ -126,6 +140,13 @@ export interface ReplayerState {
   current_step: number
   total_steps: number
   steps: ReplayerStep[]
+}
+
+export interface HandChipPoint {
+  timestamp: string
+  realized_cev: number
+  net_ev: number | null
+  has_showdown: boolean
 }
 
 export interface ImportResult {
@@ -195,6 +216,12 @@ export const api = {
 
   getStats: (): Promise<SessionStats> =>
     invokeTauri('get_stats'),
+
+  getChipSummary: (): Promise<ChipSummary> =>
+    invokeTauri('get_chip_summary_cmd'),
+
+  getChipEvolution: (): Promise<HandChipPoint[]> =>
+    invokeTauri('get_chip_evolution_cmd'),
 
   clearAllData: (): Promise<ClearDataResult> =>
     invokeTauri('clear_all_data'),

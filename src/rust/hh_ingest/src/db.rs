@@ -38,6 +38,9 @@ fn ensure_schema_extensions(conn: &Connection) -> Result<(), rusqlite::Error> {
     for alter in [
         "ALTER TABLE hand_players ADD COLUMN net_ev INTEGER",
         "ALTER TABLE hand_players ADD COLUMN allin_equity REAL",
+        "ALTER TABLE hands ADD COLUMN board_cards TEXT",
+        "ALTER TABLE hands ADD COLUMN has_showdown INTEGER",
+        "ALTER TABLE hands ADD COLUMN hero_showed INTEGER",
     ] {
         if let Err(e) = conn.execute(alter, []) {
             let msg = e.to_string();
@@ -46,6 +49,20 @@ fn ensure_schema_extensions(conn: &Connection) -> Result<(), rusqlite::Error> {
             }
         }
     }
+
+    // Create V0.2 tables that may not exist in older databases.
+    conn.execute_batch(
+        r#"CREATE TABLE IF NOT EXISTS showdown_hole_cards (
+            id          INTEGER PRIMARY KEY AUTOINCREMENT,
+            hand_id     TEXT    NOT NULL,
+            player_name TEXT    NOT NULL,
+            card1       TEXT    NOT NULL,
+            card2       TEXT    NOT NULL,
+            FOREIGN KEY (hand_id) REFERENCES hands(id),
+            UNIQUE (hand_id, player_name)
+        );"#
+    )?;
+
     Ok(())
 }
 
@@ -107,12 +124,27 @@ pub fn insert_hand_with_ledger(
 
     // ── hands row ──────────────────────────────────────────────────────────
     {
+        let board_cards_json = serde_json::to_string(&hand.summary.board)
+            .map_err(|e| rusqlite::Error::ToSqlConversionFailure(Box::new(e)))?;
+        let has_showdown = hand
+            .summary
+            .seat_results
+            .iter()
+            .any(|sr| sr.showed.is_some()) as i64;
+        let hero_showed = hand
+            .summary
+            .seat_results
+            .iter()
+            .find(|sr| sr.player_name == hero_name)
+            .and_then(|sr| sr.showed.as_ref())
+            .is_some() as i64;
+
         let mut stmt = conn.prepare_cached(
             r#"INSERT INTO hands
                (id, tournament_id, table_name, game_name, buy_in_euros, rake_euros,
                 level, small_blind, big_blind, button_seat, seat_count,
-                timestamp, player_count, rake_chips, total_pot)
-               VALUES (?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11,?12,?13,?14,?15)"#,
+                timestamp, player_count, board_cards, has_showdown, hero_showed, rake_chips, total_pot)
+               VALUES (?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11,?12,?13,?14,?15,?16,?17,?18)"#,
         )?;
         stmt.execute(params![
             hand.hand_id,
@@ -128,6 +160,9 @@ pub fn insert_hand_with_ledger(
             hand.seat_count,
             hand.timestamp.to_rfc3339(),
             hand.seats.len() as i64,
+            board_cards_json,
+            has_showdown,
+            hero_showed,
             ledger.rake as i64,
             ledger.total_pot as i64,
         ])?;
@@ -216,6 +251,16 @@ pub fn insert_hand_with_ledger(
                VALUES (?1,?2,?3,?4)"#,
         )?;
         stmt.execute(params![hand.hand_id, hc.player_name, hc.card1, hc.card2])?;
+    }
+
+    if let Some(showdown) = &hand.showdown {
+        let mut stmt = conn.prepare_cached(
+            r#"INSERT OR IGNORE INTO showdown_hole_cards (hand_id, player_name, card1, card2)
+               VALUES (?1,?2,?3,?4)"#,
+        )?;
+        for shown in &showdown.shown_hands {
+            stmt.execute(params![hand.hand_id, shown.player_name, shown.card1, shown.card2])?;
+        }
     }
 
     // ── invariant_checks row ─────────────────────────────────────────────
@@ -314,6 +359,7 @@ pub fn clear_all_imported_data(conn: &Connection) -> Result<ClearDataStats, rusq
         r#"
         BEGIN;
         DELETE FROM invariant_checks;
+        DELETE FROM showdown_hole_cards;
         DELETE FROM hole_cards;
         DELETE FROM hand_actions;
         DELETE FROM hand_players;
@@ -348,9 +394,9 @@ mod tests {
             r#"INSERT INTO hands
                (id, tournament_id, table_name, game_name, buy_in_euros, rake_euros,
                 level, small_blind, big_blind, button_seat, seat_count,
-                timestamp, player_count, rake_chips, total_pot)
-               VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13, ?14, ?15)"#,
-            params!["H1", "T1", "Table 1", "Holdem no limit", 1.86_f64, 0.14_f64, 1_i64, 10_i64, 20_i64, 1_i64, 2_i64, "2026-06-09T13:52:25Z", 2_i64, 0_i64, 40_i64],
+                timestamp, player_count, board_cards, has_showdown, hero_showed, rake_chips, total_pot)
+               VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13, ?14, ?15, ?16, ?17, ?18)"#,
+            params!["H1", "T1", "Table 1", "Holdem no limit", 1.86_f64, 0.14_f64, 1_i64, 10_i64, 20_i64, 1_i64, 2_i64, "2026-06-09T13:52:25Z", 2_i64, "[]", 0_i64, 0_i64, 0_i64, 40_i64],
         )
         .expect("insert hand");
 
@@ -368,6 +414,12 @@ mod tests {
             params!["H1", "MRZO", "Ah", "Kd"],
         )
         .expect("insert hole cards");
+
+        conn.execute(
+            "INSERT INTO showdown_hole_cards (hand_id, player_name, card1, card2) VALUES (?1, ?2, ?3, ?4)",
+            params!["H1", "Villain", "Qs", "Qh"],
+        )
+        .expect("insert showdown hole cards");
 
         conn.execute(
             "INSERT INTO hand_actions (hand_id, street_order, street, action_index, player_name, action_type, amount, increment_amount, to_amount) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9)",
