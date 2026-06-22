@@ -19,11 +19,12 @@ function fmtEur(n: number) {
   return `${sign}${n.toFixed(2)}€`
 }
 
-function deltaClassName(delta: number) {
-  if (delta > 0) return 'positive'
-  if (delta < 0) return 'negative'
-  return 'neutral'
-}
+// Unused helper - may be used in future iterations
+// function deltaClassName(delta: number) {
+//   if (delta > 0) return 'positive'
+//   if (delta < 0) return 'negative'
+//   return 'neutral'
+// }
 
 // Winamax Expresso 2 EUR public distribution provided by user (tickets / 10,000,000 draws).
 const WINAMAX_2EUR_MULTIPLIER_MODEL: Array<{ mult: number; tickets: number }> = [
@@ -269,7 +270,7 @@ const SummaryPositionsPie = memo(({ wins, secondPlace, thirdPlace }: PositionsPi
             dataKey="value"
             isAnimationActive={false}
           />
-          <Tooltip formatter={(value: number) => [`${value}`, 'Tournois']} />
+          <Tooltip formatter={(value: any) => [`${value}`, 'Tournois']} />
         </PieChart>
       </ResponsiveContainer>
       <div style={{ display: 'flex', gap: 16, fontSize: 12, justifyContent: 'center' }}>
@@ -518,9 +519,9 @@ const SummaryChipsTab = memo(({ chipSummary, handEvolution, filteredFromMs, filt
               <Tooltip
                 contentStyle={{ background: '#1a1d2e', border: '1px solid #2a2d3e', borderRadius: 6, fontSize: 12 }}
                 labelStyle={{ color: '#a9b0c8', marginBottom: 4 }}
-                formatter={(value: number, name: string) => {
+                formatter={(value: any, name: any) => {
                   const curve = CHIPS_CURVES.find((c) => c.key === name)
-                  return [fmtChips(value), curve?.label ?? name]
+                  return [fmtChips(value as number), curve?.label ?? name]
                 }}
                 isAnimationActive={false}
               />

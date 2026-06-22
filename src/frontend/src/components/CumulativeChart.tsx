@@ -20,10 +20,6 @@ function fmtEur(n: number) {
   return `${sign}${n.toFixed(2)}€`
 }
 
-function fmtDateShort(iso: string) {
-  return new Date(iso).toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit' })
-}
-
 function CumulativeChartInner({ tournaments }: Props) {
   const data = useMemo(() => {
     const sorted = [...tournaments].sort(
@@ -70,8 +66,8 @@ function CumulativeChartInner({ tournaments }: Props) {
             fontSize: 12,
           }}
           labelStyle={{ color: '#a9b0c8', marginBottom: 4 }}
-          formatter={(value: number, name: string) => [
-            fmtEur(value),
+          formatter={(value: any, name: any) => [
+            fmtEur(value as number),
             name === 'net' ? 'Net réel' : 'Net EV',
           ]}
           isAnimationActive={false}
