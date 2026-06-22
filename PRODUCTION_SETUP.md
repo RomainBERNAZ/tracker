@@ -57,11 +57,12 @@ xcode-select --install
 
 ```bash
 # Clone the repo
-git clone https://github.com/YOUR_ORG/tracker.git
+git clone https://github.com/RomainBERNAZ/tracker.git
 cd tracker
 
-# Checkout latest release tag (or branch)
-git checkout 12e2d44  # Latest Phase 1 sign-off commit
+# Checkout a stable ref (recommended: latest tag)
+git fetch --tags
+git checkout master
 
 # Install Rust dependencies
 cargo build --release --workspace --exclude expresso-review

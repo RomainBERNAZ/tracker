@@ -12,6 +12,7 @@ Build a **clean, maintainable, performant** desktop application to analyze Expre
 ## Quick Links
 - **[PROJECT_BRIEF.md](./PROJECT_BRIEF.md)** — Full requirements (French)
 - **[SETUP.md](./SETUP.md)** — Development environment setup
+- **[PRODUCTION_SETUP.md](./PRODUCTION_SETUP.md)** — Installation native sur un autre PC (sans Docker)
 - **[ARCHITECTURE.md](./docs/design/ARCHITECTURE.md)** — System design & modules
 - **[IMPLEMENTATION_PLAN.md](./docs/IMPLEMENTATION_PLAN.md)** — Phase breakdown & milestones
 - **[ADR/](./docs/adr/)** — Architecture Decision Records
@@ -188,6 +189,35 @@ docker run -it expresso-review:v0.1
 
 ### Desktop Bundle
 [TBD post-Phase 1: Tauri packaging for macOS/Linux/Windows]
+
+### Native Install (No Docker)
+Pour installer l'app sur une autre machine sans environnement dev Docker,
+utiliser le guide complet: **[PRODUCTION_SETUP.md](./PRODUCTION_SETUP.md)**.
+
+#### Quick Install (Copy/Paste)
+```bash
+# 1) Tooling
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+source "$HOME/.cargo/env"
+rustup update stable
+
+curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+sudo apt-get install -y nodejs
+npm install -g pnpm@8
+sudo apt-get install -y build-essential libssl-dev libgtk-3-dev libayatana-appindicator3-dev librsvg2-dev
+
+# 2) Build app
+git clone https://github.com/RomainBERNAZ/tracker.git
+cd tracker
+pnpm install --dir src/frontend --frozen-lockfile
+cargo tauri build --release
+
+# 3) Run app (Linux AppImage)
+chmod +x src-tauri/target/release/bundle/appimage/expresso-review_*.AppImage
+./src-tauri/target/release/bundle/appimage/expresso-review_*.AppImage
+```
+
+Pour macOS/Windows et le détail complet: **[PRODUCTION_SETUP.md](./PRODUCTION_SETUP.md)**.
 
 ---
 
