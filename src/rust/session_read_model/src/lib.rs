@@ -534,7 +534,7 @@ pub fn load_hand_for_replay(
            ORDER BY hp.seat_number"#,
     )?;
 
-    let mut players_map: std::collections::HashMap<String, ReplayerPlayer> = players_stmt
+    let players_map: std::collections::HashMap<String, ReplayerPlayer> = players_stmt
         .query_map(params![hand_id], |row| {
             let seat: i64 = row.get(0)?;
             let name: String = row.get(1)?;
@@ -555,7 +555,7 @@ pub fn load_hand_for_replay(
         })?
         .collect::<Result<_, _>>()?;
 
-    let mut players_vec: Vec<ReplayerPlayer> = players_map.values().cloned().collect();
+    let players_vec: Vec<ReplayerPlayer> = players_map.values().cloned().collect();
     players_vec.sort_by_key(|p| p.seat_number);
 
     let button_pos = usize::try_from(button_seat).unwrap_or(0);
