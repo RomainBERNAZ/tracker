@@ -53,7 +53,7 @@ jobs:
         run: cargo install tauri-cli --locked
 
       - name: Build app
-        run: cargo tauri build --release
+        run: cargo tauri build
 
       - name: Upload Linux AppImage
         if: matrix.platform == 'linux'
