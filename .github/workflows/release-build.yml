@@ -36,13 +36,12 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 18
-          cache: 'npm'
 
       - name: Install pnpm
         run: npm install -g pnpm
 
       - name: Install frontend dependencies
-        run: pnpm install --dir src/frontend --frozen-lockfile
+        run: pnpm install --dir src/frontend
 
       - name: Install Tauri dependencies (Ubuntu)
         if: matrix.platform == 'linux'

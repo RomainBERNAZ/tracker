@@ -48,6 +48,13 @@ logs/
 # Tauri
 src/tauri/target/
 
+# Test data files (temporary exports, Windows ADS)
+export*.csv
+export*.csv:*
+*.csv:Zone.Identifier
+report_*.csv
+tournament_*_report.csv
+
 # OS
 .DS_Store
 Thumbs.db
