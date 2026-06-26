@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom'
 import Import from './pages/Import'
 import Tournaments from './pages/Tournaments'
@@ -5,9 +6,14 @@ import HandList from './pages/HandList'
 import HandDetail from './pages/HandDetail'
 import Replayer from './pages/Replayer'
 import Summary from './pages/Summary'
+import { api } from './api'
 import './App.css'
 
 export default function App() {
+  useEffect(() => {
+    api.moveWindowToPrimary().catch(() => undefined)
+  }, [])
+
   return (
     <BrowserRouter>
       <div className="layout">

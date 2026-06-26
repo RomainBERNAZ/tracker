@@ -1,11 +1,11 @@
-import { useState, useCallback } from 'react'
-import { open } from '@tauri-apps/plugin-dialog'
+import { useState, useCallback, useRef } from 'react'
 import { listen } from '@tauri-apps/api/event'
 import { api, BatchImportResult, ClearDataResult, ImportResult, ImportProgress } from '../api'
 
-const DEFAULT_IMPORT_DIR = import.meta.env.VITE_IMPORT_BASE_DIR ?? '/app/files'
+const DEFAULT_IMPORT_DIR = import.meta.env.VITE_IMPORT_BASE_DIR
 
 export default function Import() {
+  const dialogLockRef = useRef(false)
   const [status, setStatus] = useState<'idle' | 'picking' | 'importing' | 'done' | 'error'>('idle')
   const [progress, setProgress] = useState<ImportProgress | null>(null)
   const [result, setResult] = useState<ImportResult | null>(null)
@@ -14,6 +14,15 @@ export default function Import() {
   const [clearConfirm, setClearConfirm] = useState(false)
   const [clearing, setClearing] = useState(false)
   const [error, setError] = useState<string | null>(null)
+
+  const resetImportState = useCallback(() => {
+    setError(null)
+    setResult(null)
+    setBatchResult(null)
+    setClearResult(null)
+    setClearConfirm(false)
+    setProgress(null)
+  }, [])
 
   const derivePair = (selectedPath: string): { hhPath: string; summaryPath: string } => {
     if (selectedPath.endsWith('_summary.txt')) {
@@ -33,104 +42,183 @@ export default function Import() {
     throw new Error('Fichier non supporte: utiliser .txt ou _summary.txt')
   }
 
-  const handleImport = useCallback(async () => {
-    setStatus('picking')
-    setError(null)
-    setResult(null)
-    setBatchResult(null)
-    setClearResult(null)
-    setClearConfirm(false)
-    setProgress(null)
-
-    try {
-      // Pick HH file
-      let hhPath: string | null = null
-      try {
-        hhPath = await open({
-          title: 'Sélectionner le fichier HH Winamax',
-          filters: [{ name: 'Hand History', extensions: ['txt'] }],
-          defaultPath: DEFAULT_IMPORT_DIR,
-          multiple: false,
-        })
-      } catch {
-        // Fallback without default path if the base folder is unavailable.
-        hhPath = await open({
-          title: 'Sélectionner le fichier HH Winamax',
-          filters: [{ name: 'Hand History', extensions: ['txt'] }],
-          multiple: false,
-        })
-      }
-
-      if (!hhPath) { setStatus('idle'); return }
-
-      const { hhPath: resolvedHh, summaryPath } = derivePair(hhPath)
-
-      setStatus('importing')
-
-      // Listen for progress events
-      const unlisten = await listen<ImportProgress>('import_progress', (event) => {
-        setProgress(event.payload)
-      })
-
-      try {
-        const res = await api.importTournament(resolvedHh, summaryPath)
-        setResult(res)
-        setStatus('done')
-      } finally {
-        unlisten()
-      }
-    } catch (e) {
-      setError(String(e))
-      setStatus('error')
+  const withDialogLock = async <T,>(fn: () => Promise<T>): Promise<T | null> => {
+    // Prevent multiple native pickers from opening concurrently on double-clicks.
+    if (dialogLockRef.current) {
+      return null
     }
-  }, [])
+
+    dialogLockRef.current = true
+    try {
+      return await fn()
+    } finally {
+      dialogLockRef.current = false
+    }
+  }
+
+  const handleImport = useCallback(async () => {
+    const lockResult = await withDialogLock(async () => {
+      setStatus('picking')
+      resetImportState()
+      await api.moveWindowToPrimary().catch(() => undefined)
+
+      try {
+        // Pick HH file
+        const hhPath = await api.pickImportFile(DEFAULT_IMPORT_DIR ?? null)
+
+        if (!hhPath) { setStatus('idle'); return }
+
+        const { hhPath: resolvedHh, summaryPath } = derivePair(hhPath)
+
+        setStatus('importing')
+
+        // Listen for progress events
+        const unlisten = await listen<ImportProgress>('import_progress', (event) => {
+          setProgress(event.payload)
+        })
+
+        try {
+          const res = await api.importTournament(resolvedHh, summaryPath)
+          setResult(res)
+          setStatus('done')
+        } finally {
+          unlisten()
+        }
+      } catch (e) {
+        setError(String(e))
+        setStatus('error')
+      }
+    })
+
+    if (lockResult === null) return
+  }, [resetImportState])
+
+  const handleImportMultiple = useCallback(async () => {
+    const lockResult = await withDialogLock(async () => {
+      setStatus('picking')
+      resetImportState()
+      await api.moveWindowToPrimary().catch(() => undefined)
+
+      try {
+        const selected = await api.pickImportFiles(DEFAULT_IMPORT_DIR ?? null)
+
+        if (!selected || selected.length === 0) {
+          setStatus('idle')
+          return
+        }
+
+        // A tournament can be selected via HH or summary; dedupe by HH path.
+        const pairs = new Map<string, { hhPath: string; summaryPath: string }>()
+        for (const selectedPath of selected) {
+          const pair = derivePair(selectedPath)
+          pairs.set(pair.hhPath, pair)
+        }
+
+        const tournaments = Array.from(pairs.values())
+
+        if (tournaments.length === 1) {
+          setStatus('importing')
+          const unlisten = await listen<ImportProgress>('import_progress', (event) => {
+            setProgress(event.payload)
+          })
+
+          try {
+            const single = tournaments[0]
+            const res = await api.importTournament(single.hhPath, single.summaryPath)
+            setResult(res)
+            setStatus('done')
+          } finally {
+            unlisten()
+          }
+          return
+        }
+
+        setStatus('importing')
+        const unlisten = await listen<ImportProgress>('import_progress', (event) => {
+          setProgress(event.payload)
+        })
+
+        try {
+          let imported = 0
+          let failed = 0
+          let total_hands = 0
+          let inserted_hands = 0
+          let skipped_hands = 0
+          let parse_errors = 0
+          let invalid_hands = 0
+          const failures: string[] = []
+
+          for (const tournament of tournaments) {
+            try {
+              const res = await api.importTournament(tournament.hhPath, tournament.summaryPath)
+              imported += 1
+              total_hands += res.total_hands
+              inserted_hands += res.inserted_hands
+              skipped_hands += res.skipped_hands
+              parse_errors += res.parse_errors
+              invalid_hands += res.invalid_hands
+            } catch (e) {
+              failed += 1
+              failures.push(`${tournament.hhPath}: ${String(e)}`)
+            }
+          }
+
+          setBatchResult({
+            tournaments_total: tournaments.length,
+            tournaments_imported: imported,
+            tournaments_failed: failed,
+            total_hands,
+            inserted_hands,
+            skipped_hands,
+            parse_errors,
+            invalid_hands,
+            failures,
+          })
+          setStatus('done')
+        } finally {
+          unlisten()
+        }
+      } catch (e) {
+        setError(String(e))
+        setStatus('error')
+      }
+    })
+
+    if (lockResult === null) return
+  }, [resetImportState])
 
   const handleImportFolder = useCallback(async () => {
-    setStatus('picking')
-    setError(null)
-    setResult(null)
-    setBatchResult(null)
-    setClearResult(null)
-    setClearConfirm(false)
-    setProgress(null)
-
-    try {
-      let folderPath: string | null = null
-      try {
-        folderPath = await open({
-          title: 'Selectionner le dossier d\'imports Winamax',
-          defaultPath: DEFAULT_IMPORT_DIR,
-          directory: true,
-          multiple: false,
-        })
-      } catch {
-        folderPath = await open({
-          title: 'Selectionner le dossier d\'imports Winamax',
-          directory: true,
-          multiple: false,
-        })
-      }
-
-      if (!folderPath) { setStatus('idle'); return }
-
-      setStatus('importing')
-
-      const unlisten = await listen<ImportProgress>('import_progress', (event) => {
-        setProgress(event.payload)
-      })
+    const lockResult = await withDialogLock(async () => {
+      setStatus('picking')
+      resetImportState()
+      await api.moveWindowToPrimary().catch(() => undefined)
 
       try {
-        const res = await api.importFolder(folderPath)
-        setBatchResult(res)
-        setStatus('done')
-      } finally {
-        unlisten()
+        const folderPath = await api.pickImportFolder(DEFAULT_IMPORT_DIR ?? null)
+
+        if (!folderPath) { setStatus('idle'); return }
+
+        setStatus('importing')
+
+        const unlisten = await listen<ImportProgress>('import_progress', (event) => {
+          setProgress(event.payload)
+        })
+
+        try {
+          const res = await api.importFolder(folderPath)
+          setBatchResult(res)
+          setStatus('done')
+        } finally {
+          unlisten()
+        }
+      } catch (e) {
+        setError(String(e))
+        setStatus('error')
       }
-    } catch (e) {
-      setError(String(e))
-      setStatus('error')
-    }
-  }, [])
+    })
+
+    if (lockResult === null) return
+  }, [resetImportState])
 
   const handleClearAllData = useCallback(async () => {
     if (!clearConfirm) {
@@ -161,11 +249,18 @@ export default function Import() {
     ? Math.round((progress.processed_hands / progress.total_hands) * 100)
     : 0
 
+  let clearButtonLabel = 'Effacer les donnees importees'
+  if (clearing) {
+    clearButtonLabel = 'Effacement en cours...'
+  } else if (clearConfirm) {
+    clearButtonLabel = 'Confirmer l effacement total'
+  }
+
   return (
     <div>
       <div className="page-header">
         <h1>Import Hand History</h1>
-        <p>Importer un fichier Winamax Expresso (.txt)</p>
+        <p>Importer un fichier, plusieurs fichiers, ou un dossier Winamax Expresso (.txt)</p>
       </div>
 
       {(status === 'idle' || status === 'picking') && (
@@ -178,6 +273,13 @@ export default function Import() {
             <div className="icon">↓</div>
             <div>Importer un fichier (HH ou _summary)</div>
             <div className="hint">Le fichier correspondant sera détecté automatiquement</div>
+          </button>
+          <button
+            type="button"
+            className="btn-primary"
+            onClick={handleImportMultiple}
+          >
+            Importer plusieurs fichiers
           </button>
           <button
             type="button"
@@ -267,11 +369,7 @@ export default function Import() {
             disabled={status === 'importing' || clearing}
             style={{ borderColor: 'rgba(239,68,68,0.45)', color: 'var(--red)' }}
           >
-            {clearing
-              ? 'Effacement en cours...'
-              : clearConfirm
-                ? 'Confirmer l effacement total'
-                : 'Effacer les donnees importees'}
+            {clearButtonLabel}
           </button>
 
           {clearConfirm && !clearing && (

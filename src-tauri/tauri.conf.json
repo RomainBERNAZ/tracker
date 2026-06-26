@@ -1,6 +1,6 @@
 {
   "productName": "Expresso Review",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "identifier": "dev.expresso.review",
   "build": {
     "beforeDevCommand": "cd /app/src/frontend 2>/dev/null || cd ../src/frontend 2>/dev/null || cd src/frontend && pnpm dev",

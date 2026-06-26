@@ -43,11 +43,27 @@ function normalizeReplayPlayers(players: ReplayerPlayer[] | undefined) {
   return players.map((player) => ({
     seat_number: Number(player.seat_number ?? 0),
     name: player.name ?? 'Inconnu',
+    hero: Boolean(player.hero),
     starting_stack: Number(player.starting_stack ?? 0),
     current_stack: Number(player.current_stack ?? 0),
     hole_cards: player.hole_cards ?? null,
     folded: Boolean(player.folded),
   }))
+}
+
+function streetPct(street: string | undefined): number {
+  switch ((street ?? '').toLowerCase()) {
+    case 'preflop':
+      return 0
+    case 'flop':
+      return 60
+    case 'turn':
+      return 80
+    case 'river':
+      return 100
+    default:
+      return 0
+  }
 }
 
 function normalizeReplaySteps(steps: ReplayerStep[] | undefined) {
@@ -172,6 +188,11 @@ function buildActionSummary(step: ReplayerStep | null) {
   return step.description
 }
 
+function actionAmountForDisplay(step: ReplayerStep | null) {
+  if (!step) return null
+  return step.amount ?? step.to_amount ?? step.increment_amount ?? null
+}
+
 function boardCardsForStreet(board: string[], street: string | undefined) {
   const normalizedStreet = (street ?? '').toLowerCase()
   if (normalizedStreet === 'flop') {
@@ -186,15 +207,25 @@ function boardCardsForStreet(board: string[], street: string | undefined) {
   return []
 }
 
-const ReplayBoard = memo(({ board, street }: { readonly board: string[]; readonly street: string | undefined }) => {
+const ReplayBoard = memo(({
+  board,
+  street,
+  compact,
+}: {
+  readonly board: string[]
+  readonly street: string | undefined
+  readonly compact?: boolean
+}) => {
   const visibleCards = boardCardsForStreet(board, street)
 
   return (
-    <div className="summary-card">
-      <div className="summary-card-header">
-        <h3>Board</h3>
-        <span className="replayer-street-pill">{streetLabel(street ?? 'preflop')}</span>
-      </div>
+    <div className={compact ? 'replayer-board-compact' : 'summary-card'}>
+      {!compact && (
+        <div className="summary-card-header">
+          <h3>Board</h3>
+          <span className="replayer-street-pill">{streetLabel(street ?? 'preflop')}</span>
+        </div>
+      )}
       <div className="replayer-board-row">
         {[0, 1, 2, 3, 4].map((slot) => {
           const card = visibleCards[slot]
@@ -205,9 +236,9 @@ const ReplayBoard = memo(({ board, street }: { readonly board: string[]; readonl
           )
         })}
       </div>
-      {board.length === 0 && (
+      {!compact && board.length === 0 && (
         <p style={{ color: 'var(--text-dim)', fontSize: 12, marginTop: 10 }}>
-          Le board n'est pas encore fourni par le backend de replay.
+          Board vide: c'est normal au debut (preflop). Si la main va au showdown et reste vide jusqu'a la fin, les donnees sont probablement issues d'un import ancien sans board_cards (reimport conseille).
         </p>
       )}
     </div>
@@ -218,25 +249,34 @@ const ReplayPlayerCard = memo(({
   player,
   isActor,
   isButton,
+  actionLabel,
+  stackPct,
+  positionClass,
 }: {
   readonly player: ReplayerPlayer
   readonly isActor: boolean
   readonly isButton: boolean
+  readonly actionLabel: string | null
+  readonly stackPct: number
+  readonly positionClass?: string
 }) => {
   return (
-    <div className={`replayer-player-card ${player.folded ? 'replayer-player-card-folded' : ''} ${isActor ? 'replayer-player-card-actor' : ''}`}>
+    <div className={`replayer-player-card ${player.folded ? 'replayer-player-card-folded' : ''} ${isActor ? 'replayer-player-card-actor' : ''} ${positionClass ?? ''}`}>
       <div className="replayer-player-topline">
         <strong>{player.name}</strong>
         <div className="replayer-player-badges">
+          {player.hero && <span className="replayer-seat-pill">HERO</span>}
           {isButton && <span className="replayer-seat-pill">BTN</span>}
           <span className="replayer-seat-pill">Seat {player.seat_number}</span>
         </div>
       </div>
       <div className="replayer-player-meta">
-        <span>Stack depart: {player.starting_stack}</span>
-        <span>Stack affiche: {player.current_stack}</span>
+        <span className="replayer-stat-primary">Stack: {player.current_stack}</span>
+        <span>Départ: {player.starting_stack}</span>
+        <span>Part stack: {stackPct.toFixed(1)}%</span>
       </div>
       <div className="replayer-player-cards">{renderHoleCards(player.hole_cards)}</div>
+      {actionLabel && <div className="replayer-seat-action-badge">{actionLabel}</div>}
     </div>
   )
 })
@@ -284,6 +324,8 @@ function ReplayerContent() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [currentStep, setCurrentStep] = useState(0)
+  const [isAutoPlay, setIsAutoPlay] = useState(false)
+  const [playSpeedMs, setPlaySpeedMs] = useState(1000)
 
   useEffect(() => {
     const load = async () => {
@@ -302,6 +344,7 @@ function ReplayerContent() {
         }
         setState(normalizeReplayState(data))
         setCurrentStep(0)
+        setIsAutoPlay(false)
       } catch (e) {
         setError(e instanceof Error ? e.message : String(e))
       } finally {
@@ -320,16 +363,24 @@ function ReplayerContent() {
 
       switch (event.key) {
         case 'ArrowLeft':
+          setIsAutoPlay(false)
           setCurrentStep((prev) => Math.max(0, prev - 1))
           break
         case 'ArrowRight':
+          setIsAutoPlay(false)
           setCurrentStep((prev) => Math.min(state.total_steps - 1, prev + 1))
           break
         case 'Home':
+          setIsAutoPlay(false)
           setCurrentStep(0)
           break
         case 'End':
+          setIsAutoPlay(false)
           setCurrentStep(state.total_steps - 1)
+          break
+        case ' ':
+          event.preventDefault()
+          setIsAutoPlay((prev) => !prev)
           break
       }
     }
@@ -356,13 +407,72 @@ function ReplayerContent() {
     : (state?.players ?? [])
   const currentActorName = step?.actor_name ?? null
   const currentPot = step?.pot_size_after ?? 0
+  const currentStreetPct = streetPct(step?.street)
   const currentActionSummary = useMemo(() => buildActionSummary(step), [step])
+  const currentActionAmount = useMemo(() => actionAmountForDisplay(step), [step])
+  const totalCurrentStack = useMemo(
+    () => Math.max(1, displayedPlayers.reduce((sum, player) => sum + player.current_stack, 0)),
+    [displayedPlayers],
+  )
+
+  useEffect(() => {
+    if (!isAutoPlay || !state) {
+      return undefined
+    }
+
+    const id = globalThis.setInterval(() => {
+      setCurrentStep((prev) => {
+        const next = prev + 1
+        if (next >= state.total_steps) {
+          globalThis.clearInterval(id)
+          setIsAutoPlay(false)
+          return prev
+        }
+        return next
+      })
+    }, playSpeedMs)
+
+    return () => globalThis.clearInterval(id)
+  }, [isAutoPlay, playSpeedMs, state])
+
+  const positionedPlayers = useMemo(() => {
+    const sorted = [...displayedPlayers].sort((a, b) => a.seat_number - b.seat_number)
+    const hero = sorted.find((p) => p.hero)
+    const others = sorted.filter((p) => !p.hero)
+
+    if (!hero) {
+      const count = sorted.length
+      return sorted.map((player, index) => {
+        let slot = 0
+        if (count === 2) {
+          slot = index === 0 ? 0 : 2
+        } else if (count >= 3) {
+          slot = [0, 1, 2][index] ?? 0
+        }
+        return { player, slot }
+      })
+    }
+
+    if (others.length === 1) {
+      return [
+        { player: hero, slot: 0 },
+        { player: others[0], slot: 2 },
+      ]
+    }
+
+    return [
+      { player: hero, slot: 0 },
+      ...(others[0] ? [{ player: others[0], slot: 1 }] : []),
+      ...(others[1] ? [{ player: others[1], slot: 2 }] : []),
+    ]
+  }, [displayedPlayers])
 
   function goToStep(nextStep: number) {
     if (!state) {
       return
     }
 
+    setIsAutoPlay(false)
     setCurrentStep(Math.max(0, Math.min(state.total_steps - 1, nextStep)))
   }
 
@@ -418,12 +528,52 @@ function ReplayerContent() {
         </div>
       </div>
 
-      <ReplayBoard board={state.board} street={step?.street} />
+      <div className="summary-card replayer-table-card">
+        <div className="summary-card-header">
+          <h3>Table</h3>
+          <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+            <span className="replayer-street-pill">{streetLabel(step?.street ?? 'preflop')}</span>
+            <span className="replayer-street-pill">Street {currentStreetPct}%</span>
+            <span className="replayer-street-pill">Pot {currentPot}</span>
+          </div>
+        </div>
+
+        <div className="replayer-felt-table">
+          <div className="replayer-felt-inner" />
+          <div className="replayer-pot-center">
+            <span>Pot</span>
+            <strong>{currentPot}</strong>
+            {currentActionAmount != null && (
+              <small>{currentActionAmount} ajouté</small>
+            )}
+          </div>
+
+          <div className="replayer-board-on-table">
+            <ReplayBoard board={state.board} street={step?.street} compact />
+          </div>
+
+          {positionedPlayers.map(({ player, slot }) => {
+            const isActor = player.name === currentActorName
+            const isButton = player.seat_number === state.button_pos
+            return (
+              <ReplayPlayerCard
+                key={`${player.seat_number}-${player.name}`}
+                player={player}
+                isActor={isActor}
+                isButton={isButton}
+                actionLabel={isActor ? currentActionSummary : null}
+                stackPct={(player.current_stack / totalCurrentStack) * 100}
+                positionClass={`replayer-seat-pos-${slot}`}
+              />
+            )
+          })}
+        </div>
+      </div>
 
       <div className="summary-card" style={{ marginTop: 16 }}>
         <div className="summary-card-header">
           <h3>Navigation</h3>
-          <span style={{ color: 'var(--text-dim)', fontSize: 12 }}>Clavier: ← → Home End</span>
+          <span style={{ color: 'var(--text-dim)', fontSize: 12 }}>Clavier: ← → Home End Espace</span>
         </div>
         <div className="replayer-controls-row">
           <button className="period-pill" disabled={currentStep === 0} onClick={() => goToStep(0)}>« Debut</button>
@@ -436,26 +586,31 @@ function ReplayerContent() {
             value={currentStep}
             onChange={(event) => goToStep(Number(event.target.value))}
           />
+          <button
+            className="period-pill"
+            onClick={() => setIsAutoPlay((prev) => !prev)}
+            disabled={state.total_steps <= 1}
+          >
+            {isAutoPlay ? 'Pause' : 'Play'}
+          </button>
+          <select
+            className="filter-input"
+            value={String(playSpeedMs)}
+            onChange={(event) => setPlaySpeedMs(Number(event.target.value))}
+            style={{ maxWidth: 110 }}
+            aria-label="Vitesse autoplay"
+          >
+            <option value="1400">x0.75</option>
+            <option value="1000">x1</option>
+            <option value="700">x1.5</option>
+            <option value="450">x2.2</option>
+          </select>
           <button className="period-pill" disabled={currentStep >= state.total_steps - 1} onClick={() => goToStep(currentStep + 1)}>Suivant ›</button>
           <button className="period-pill" disabled={currentStep >= state.total_steps - 1} onClick={() => goToStep(state.total_steps - 1)}>Fin »</button>
         </div>
       </div>
 
       <div className="summary-grid" style={{ marginTop: 16 }}>
-        <div className="summary-card">
-          <h3>Joueurs</h3>
-          <div className="replayer-players-grid">
-            {displayedPlayers.map((player) => (
-              <ReplayPlayerCard
-                key={`${player.seat_number}-${player.name}`}
-                player={player}
-                isActor={player.name === currentActorName}
-                isButton={player.seat_number === state.button_pos}
-              />
-            ))}
-          </div>
-        </div>
-
         <div className="summary-card">
           <h3>Action courante</h3>
           <div className="replayer-current-action-card">
@@ -467,6 +622,7 @@ function ReplayerContent() {
             {step && (
               <div className="replayer-current-action-meta">
                 <span>Type: {step.action_type}</span>
+                <span>Street: {streetLabel(step.street)} ({streetPct(step.street)}%)</span>
                 <span>Montant: {step.amount ?? step.to_amount ?? step.increment_amount ?? '-'}</span>
                 <span>Pot apres action: {step.pot_size_after}</span>
               </div>
@@ -475,6 +631,22 @@ function ReplayerContent() {
           <div style={{ marginTop: 16 }}>
             <h3 style={{ marginBottom: 10 }}>Timeline</h3>
             <ReplayTimeline steps={state.steps} currentStep={currentStep} onSelect={goToStep} />
+          </div>
+        </div>
+
+        <div className="summary-card">
+          <h3>Stacks snapshot</h3>
+          <div className="replayer-players-grid">
+            {displayedPlayers
+              .slice()
+              .sort((a, b) => a.seat_number - b.seat_number)
+              .map((player) => (
+                <div key={`${player.seat_number}-${player.name}`} className="replayer-stack-line">
+                  <strong>{player.name}</strong>
+                  <span>Seat {player.seat_number}</span>
+                  <span>{player.current_stack}</span>
+                </div>
+              ))}
           </div>
         </div>
       </div>

@@ -107,6 +107,7 @@ export interface ChipSummary {
 export interface ReplayerPlayer {
   seat_number: number
   name: string
+  hero: boolean
   starting_stack: number
   current_stack: number
   hole_cards: string | null
@@ -147,6 +148,58 @@ export interface HandChipPoint {
   realized_cev: number
   net_ev: number | null
   has_showdown: boolean
+}
+
+export interface CoachSpot {
+  hand_id: string
+  tournament_id: string
+  timestamp: string
+  delta_chips: number
+  has_showdown: boolean
+  severity: 'low' | 'medium' | 'high'
+  reason: string
+}
+
+export interface CoachFormatStats {
+  hands: number
+  vpip_count: number
+  vpip_pct: number
+  pfr_count: number
+  pfr_pct: number
+  three_bet_count: number
+  three_bet_opportunities: number
+  three_bet_pct: number
+  limp_count: number
+  limp_pct: number
+  fold_to_three_bet_count: number
+  fold_to_three_bet_opportunities: number
+  fold_to_three_bet_pct: number
+  feedback: string[]
+}
+
+export interface CoachStatsSnapshot {
+  early_phase: CoachFormatStats
+  mid_phase: CoachFormatStats
+  late_phase: CoachFormatStats
+  heads_up: CoachFormatStats
+}
+
+export interface CoachBlunderSpot {
+  hand_id: string
+  tournament_id: string
+  timestamp: string
+  level: number
+  big_blind: number
+  action_kind: 'call' | 'push'
+  action_type: string
+  hero_stack_bb: number
+  action_amount_bb: number
+  net_ev_chips: number
+  net_ev_bb: number
+  allin_equity: number | null
+  has_showdown: boolean
+  severity: 'bad' | 'critical'
+  reason: string
 }
 
 export interface ImportResult {
@@ -196,6 +249,18 @@ export interface ClearDataResult {
 // ─── API calls ────────────────────────────────────────────────────────────────
 
 export const api = {
+  moveWindowToPrimary: (): Promise<void> =>
+    invokeTauri('move_window_to_primary'),
+
+  pickImportFile: (defaultDir?: string | null): Promise<string | null> =>
+    invokeTauri('pick_import_file', { defaultDir }),
+
+  pickImportFiles: (defaultDir?: string | null): Promise<string[] | null> =>
+    invokeTauri('pick_import_files', { defaultDir }),
+
+  pickImportFolder: (defaultDir?: string | null): Promise<string | null> =>
+    invokeTauri('pick_import_folder', { defaultDir }),
+
   importTournament: (hhPath: string, summaryPath: string): Promise<ImportResult> =>
     invokeTauri('import_tournament', { hhPath, summaryPath }),
 
@@ -222,6 +287,20 @@ export const api = {
 
   getChipEvolution: (): Promise<HandChipPoint[]> =>
     invokeTauri('get_chip_evolution_cmd'),
+
+  getCoachSpots: (limit?: number): Promise<CoachSpot[]> =>
+    invokeTauri('get_coach_spots', { limit }),
+
+  getCoachStats: (fromTs?: string | null, toTs?: string | null): Promise<CoachStatsSnapshot> =>
+    invokeTauri('get_coach_stats_cmd', { fromTs, toTs }),
+
+  getCoachBlunders: (
+    fromTs?: string | null,
+    toTs?: string | null,
+    limit?: number,
+    minSeverity?: 'bad' | 'critical' | null,
+  ): Promise<CoachBlunderSpot[]> =>
+    invokeTauri('get_coach_blunders_cmd', { fromTs, toTs, limit, minSeverity }),
 
   clearAllData: (): Promise<ClearDataResult> =>
     invokeTauri('clear_all_data'),

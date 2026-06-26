@@ -1,6 +1,7 @@
 use rusqlite::{Connection, params};
 use serde::{Deserialize, Serialize};
 use serde_json;
+use std::collections::BTreeMap;
 
 // ─── Read models (returned to the UI) ────────────────────────────────────────
 
@@ -119,6 +120,7 @@ pub struct ReplayerState {
 pub struct ReplayerPlayer {
     pub seat_number: i64,
     pub name: String,
+    pub hero: bool,
     pub starting_stack: i64,
     pub current_stack: i64,  // At current_step
     pub hole_cards: Option<String>,  // "As Kd" format or null
@@ -180,6 +182,76 @@ pub struct ChipSummary {
     pub sd_net_chips: i64,    // cEV net on hands WITH showdown
 }
 
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct CoachSpot {
+    pub hand_id: String,
+    pub tournament_id: String,
+    pub timestamp: String,
+    pub delta_chips: i64,
+    pub has_showdown: bool,
+    pub severity: String,
+    pub reason: String,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct CoachFormatStats {
+    pub hands: i64,
+    pub vpip_count: i64,
+    pub vpip_pct: f64,
+    pub pfr_count: i64,
+    pub pfr_pct: f64,
+    pub three_bet_count: i64,
+    pub three_bet_opportunities: i64,
+    pub three_bet_pct: f64,
+    pub limp_count: i64,
+    pub limp_pct: f64,
+    pub fold_to_three_bet_count: i64,
+    pub fold_to_three_bet_opportunities: i64,
+    pub fold_to_three_bet_pct: f64,
+    pub feedback: Vec<String>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct CoachStatsSnapshot {
+    pub early_phase: CoachFormatStats,
+    pub mid_phase: CoachFormatStats,
+    pub late_phase: CoachFormatStats,
+    pub heads_up: CoachFormatStats,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct CoachBlunderSpot {
+    pub hand_id: String,
+    pub tournament_id: String,
+    pub timestamp: String,
+    pub level: i64,
+    pub big_blind: i64,
+    pub action_kind: String,
+    pub action_type: String,
+    pub hero_stack_bb: f64,
+    pub action_amount_bb: f64,
+    pub net_ev_chips: i64,
+    pub net_ev_bb: f64,
+    pub allin_equity: Option<f64>,
+    pub has_showdown: bool,
+    pub severity: String,
+    pub reason: String,
+}
+
+#[derive(Debug, Clone)]
+struct PreflopActionSample {
+    player_name: String,
+    action_type: String,
+}
+
+#[derive(Debug, Clone)]
+struct PreflopHandSample {
+    player_count: i64,
+    level: i64,
+    hero_name: String,
+    actions: Vec<PreflopActionSample>,
+}
+
 /// Single-query chip aggregation — replaces the N+1 hand-loading in the frontend.
 pub fn get_chip_summary(conn: &Connection) -> Result<ChipSummary, rusqlite::Error> {
     let (net_chips, net_ev_chips, wsd_net_chips, sd_net_chips): (i64, i64, i64, i64) =
@@ -209,6 +281,487 @@ pub fn get_chip_summary(conn: &Connection) -> Result<ChipSummary, rusqlite::Erro
     };
 
     Ok(ChipSummary { net_chips, net_ev_chips, avg_cev_per_game, wsd_net_chips, sd_net_chips })
+}
+
+/// List potentially important variance/setup spots for coach review.
+pub fn list_coach_spots(
+    conn: &Connection,
+    limit: Option<usize>,
+) -> Result<Vec<CoachSpot>, rusqlite::Error> {
+    let lim = limit.unwrap_or(300) as i64;
+
+    let mut stmt = conn.prepare(
+        r#"SELECT h.id,
+                  h.tournament_id,
+                  h.timestamp,
+                  COALESCE(h.has_showdown, 0) AS has_showdown,
+                  (hp.realized_cev - COALESCE(hp.net_ev, hp.realized_cev)) AS delta_chips
+           FROM hands h
+           JOIN hand_players hp ON hp.hand_id = h.id AND hp.hero = 1
+           WHERE hp.net_ev IS NOT NULL
+             AND ABS(hp.realized_cev - COALESCE(hp.net_ev, hp.realized_cev)) >= 120
+           ORDER BY ABS(hp.realized_cev - COALESCE(hp.net_ev, hp.realized_cev)) DESC,
+                    h.timestamp DESC
+           LIMIT ?1"#,
+    )?;
+
+    let rows = stmt.query_map(params![lim], |row| {
+        let has_showdown = row.get::<_, i64>(3).map(|v| v != 0)?;
+        let delta_chips: i64 = row.get(4)?;
+
+        let severity = if delta_chips.abs() >= 220 {
+            "high"
+        } else if delta_chips.abs() >= 160 {
+            "medium"
+        } else {
+            "low"
+        };
+
+        let reason = if has_showdown && delta_chips <= -180 {
+            "Top range adverse probable"
+        } else if delta_chips <= -120 {
+            "Setup defavorable"
+        } else if delta_chips >= 120 {
+            "Setup favorable"
+        } else {
+            "Ecart vs EV"
+        };
+
+        Ok(CoachSpot {
+            hand_id: row.get(0)?,
+            tournament_id: row.get(1)?,
+            timestamp: row.get(2)?,
+            delta_chips,
+            has_showdown,
+            severity: severity.to_string(),
+            reason: reason.to_string(),
+        })
+    })?;
+
+    rows.collect()
+}
+
+fn severity_rank(severity: &str) -> i32 {
+    match severity {
+        "critical" => 2,
+        "bad" => 1,
+        _ => 0,
+    }
+}
+
+/// V1 blunder detector focused on clearly bad preflop all-in calls and pushes.
+/// Marginal spots are intentionally filtered out using strict bbEV thresholds.
+pub fn list_coach_blunders(
+    conn: &Connection,
+    from_ts: Option<&str>,
+    to_ts: Option<&str>,
+    limit: Option<usize>,
+    min_severity: Option<&str>,
+) -> Result<Vec<CoachBlunderSpot>, rusqlite::Error> {
+    let lim = limit.unwrap_or(120) as i64;
+    let min_rank = min_severity.map_or(1, severity_rank);
+
+    let mut stmt = conn.prepare(
+        r#"SELECT h.id,
+                  h.tournament_id,
+                  h.timestamp,
+                  h.level,
+                  h.big_blind,
+                  COALESCE(h.has_showdown, 0) AS has_showdown,
+                  hp.starting_stack,
+                  hp.net_ev,
+                  hp.allin_equity,
+                  a.action_type,
+                  COALESCE(a.amount, a.increment_amount, a.to_amount, 0) AS action_amount
+           FROM hands h
+           JOIN hand_players hp ON hp.hand_id = h.id AND hp.hero = 1
+           JOIN hand_actions a
+             ON a.hand_id = h.id
+            AND a.street_order = 0
+            AND a.player_name = hp.player_name
+           WHERE hp.net_ev IS NOT NULL
+             AND a.action_type IN ('allin_call', 'allin_bet', 'allin_raise')
+             AND (?1 IS NULL OR h.timestamp >= ?1)
+             AND (?2 IS NULL OR h.timestamp <= ?2)
+             AND NOT EXISTS (
+                 SELECT 1
+                 FROM hand_actions a2
+                 WHERE a2.hand_id = a.hand_id
+                   AND a2.street_order = a.street_order
+                   AND a2.player_name = a.player_name
+                   AND a2.action_type IN ('allin_call', 'allin_bet', 'allin_raise')
+                   AND a2.action_index < a.action_index
+             )
+           ORDER BY h.timestamp DESC"#,
+    )?;
+
+    let rows: Vec<(String, String, String, i64, i64, bool, i64, i64, Option<f64>, String, i64)> = stmt
+        .query_map(params![from_ts, to_ts], |row| {
+            Ok((
+                row.get(0)?,
+                row.get(1)?,
+                row.get(2)?,
+                row.get(3)?,
+                row.get(4)?,
+                row.get::<_, i64>(5).map(|v| v != 0)?,
+                row.get(6)?,
+                row.get(7)?,
+                row.get(8)?,
+                row.get(9)?,
+                row.get(10)?,
+            ))
+        })?
+        .collect::<Result<_, _>>()?;
+
+    let mut out = Vec::new();
+
+    for (hand_id, tournament_id, timestamp, level, big_blind, has_showdown, hero_stack, net_ev_chips, allin_equity, action_type, action_amount) in rows {
+        if big_blind <= 0 {
+            continue;
+        }
+
+        let bb = big_blind as f64;
+        let net_ev_bb = net_ev_chips as f64 / bb;
+        let hero_stack_bb = hero_stack as f64 / bb;
+        let action_amount_bb = action_amount.max(0) as f64 / bb;
+
+        // Ignore marginal spots by requiring a meaningful negative bbEV.
+        if net_ev_bb > -4.0 {
+            continue;
+        }
+
+        let is_call = action_type == "allin_call";
+        let action_kind = if is_call { "call" } else { "push" };
+
+        let mut severity = "";
+        let mut reason = String::new();
+
+        if is_call {
+            if net_ev_bb <= -8.0 && allin_equity.unwrap_or(0.0) <= 0.30 {
+                severity = "critical";
+                reason = "Call all-in tres negatif (EV et equity tres basses).".to_string();
+            } else if net_ev_bb <= -5.0 && allin_equity.unwrap_or(0.0) <= 0.36 {
+                severity = "bad";
+                reason = "Call all-in negatif (hors zone marginale).".to_string();
+            }
+        } else if net_ev_bb <= -10.0 || (hero_stack_bb >= 25.0 && net_ev_bb <= -6.0) {
+            severity = "critical";
+            reason = "Push all-in trop cher pour la profondeur.".to_string();
+        } else if hero_stack_bb >= 15.0 && net_ev_bb <= -6.0 {
+            severity = "bad";
+            reason = "Push all-in negatif a profondeur non triviale.".to_string();
+        }
+
+        if severity.is_empty() || severity_rank(severity) < min_rank {
+            continue;
+        }
+
+        out.push(CoachBlunderSpot {
+            hand_id,
+            tournament_id,
+            timestamp,
+            level,
+            big_blind,
+            action_kind: action_kind.to_string(),
+            action_type,
+            hero_stack_bb,
+            action_amount_bb,
+            net_ev_chips,
+            net_ev_bb,
+            allin_equity,
+            has_showdown,
+            severity: severity.to_string(),
+            reason,
+        });
+    }
+
+    out.sort_by(|a, b| {
+        severity_rank(&b.severity)
+            .cmp(&severity_rank(&a.severity))
+            .then_with(|| a.net_ev_bb.partial_cmp(&b.net_ev_bb).unwrap_or(std::cmp::Ordering::Equal))
+            .then_with(|| b.timestamp.cmp(&a.timestamp))
+    });
+
+    if out.len() > lim as usize {
+        out.truncate(lim as usize);
+    }
+
+    Ok(out)
+}
+
+fn is_voluntary_preflop_action(action_type: &str) -> bool {
+    matches!(action_type, "call" | "raise" | "bet" | "allin_call" | "allin_bet" | "allin_raise")
+}
+
+fn is_aggressive_preflop_action(action_type: &str) -> bool {
+    matches!(action_type, "raise" | "bet" | "allin_bet" | "allin_raise")
+}
+
+fn is_call_preflop_action(action_type: &str) -> bool {
+    matches!(action_type, "call" | "allin_call")
+}
+
+fn pct(count: i64, opportunities: i64) -> f64 {
+    if opportunities <= 0 {
+        0.0
+    } else {
+        (count as f64 * 100.0) / opportunities as f64
+    }
+}
+
+fn build_preflop_feedback(player_count: i64, stats: &CoachFormatStats) -> Vec<String> {
+    let mut feedback = Vec::new();
+
+    if stats.hands < 30 {
+        feedback.push(format!("Echantillon limite: {} mains seulement.", stats.hands));
+    }
+
+    if player_count == 3 {
+        if stats.vpip_pct < 22.0 {
+            feedback.push("3-way: VPIP assez tight, tu abandonnes peut-etre trop de spots jouables.".to_string());
+        } else if stats.vpip_pct > 40.0 {
+            feedback.push("3-way: VPIP assez loose, attention a ne pas trop defendre hors position.".to_string());
+        } else {
+            feedback.push("3-way: volume VPIP plutot sain.".to_string());
+        }
+
+        if stats.vpip_count > 0 && (stats.pfr_count as f64 / stats.vpip_count as f64) < 0.55 {
+            feedback.push("3-way: ecart VPIP/PFR important, profil plutot passif preflop.".to_string());
+        }
+
+        if stats.three_bet_opportunities >= 5 {
+            if stats.three_bet_pct < 5.0 {
+                feedback.push("3-way: 3-bet plutot bas, tu peux sans doute punir un peu plus les opens.".to_string());
+            } else if stats.three_bet_pct > 16.0 {
+                feedback.push("3-way: 3-bet eleve, verifie que la range reste stable.".to_string());
+            }
+        }
+
+        if stats.limp_pct > 10.0 {
+            feedback.push("3-way: presence notable de limps, a verifier selon ta strategie SB.".to_string());
+        }
+    } else {
+        if stats.vpip_pct < 55.0 {
+            feedback.push("HU: VPIP trop faible, tu risques de laisser trop de blindes.".to_string());
+        } else if stats.vpip_pct > 85.0 {
+            feedback.push("HU: VPIP tres large, attention a ne pas surdefendre.".to_string());
+        } else {
+            feedback.push("HU: activite preflop dans une zone raisonnable.".to_string());
+        }
+
+        if stats.vpip_count > 0 && (stats.pfr_count as f64 / stats.vpip_count as f64) < 0.65 {
+            feedback.push("HU: tu completes/calls plus que tu n'agresses, profil assez passif.".to_string());
+        }
+
+        if stats.three_bet_opportunities >= 5 {
+            if stats.three_bet_pct < 10.0 {
+                feedback.push("HU: 3-bet plutot bas, tu peux mettre plus de pression preflop.".to_string());
+            } else if stats.three_bet_pct > 22.0 {
+                feedback.push("HU: 3-bet tres actif, surveille les ranges de bluff.".to_string());
+            }
+        }
+
+        if stats.limp_pct > 35.0 {
+            feedback.push("HU: beaucoup de limps, verifie si tu ne manques pas d'open raises faciles.".to_string());
+        }
+    }
+
+    if stats.fold_to_three_bet_opportunities >= 4 {
+        if stats.fold_to_three_bet_pct > 65.0 {
+            feedback.push("Face aux 3-bets: tu folds beaucoup, possible leak de defense.".to_string());
+        } else if stats.fold_to_three_bet_pct < 25.0 {
+            feedback.push("Face aux 3-bets: defense tres sticky, verifie la qualite des continues.".to_string());
+        }
+    }
+
+    feedback
+}
+
+fn compute_preflop_stats(samples: &[PreflopHandSample], player_count: i64) -> CoachFormatStats {
+    let mut hands = 0_i64;
+    let mut vpip_count = 0_i64;
+    let mut pfr_count = 0_i64;
+    let mut three_bet_count = 0_i64;
+    let mut three_bet_opportunities = 0_i64;
+    let mut limp_count = 0_i64;
+    let mut fold_to_three_bet_count = 0_i64;
+    let mut fold_to_three_bet_opportunities = 0_i64;
+
+    for sample in samples.iter().filter(|sample| sample.player_count == player_count) {
+        hands += 1;
+
+        if sample.actions.iter().any(|a| a.player_name == sample.hero_name && is_voluntary_preflop_action(&a.action_type)) {
+            vpip_count += 1;
+        }
+
+        if sample.actions.iter().any(|a| a.player_name == sample.hero_name && is_aggressive_preflop_action(&a.action_type)) {
+            pfr_count += 1;
+        }
+
+        if let Some(first_hero_idx) = sample.actions.iter().position(|a| a.player_name == sample.hero_name) {
+            let first_hero_action = &sample.actions[first_hero_idx];
+            let prior_aggressive = sample.actions[..first_hero_idx]
+                .iter()
+                .filter(|a| is_aggressive_preflop_action(&a.action_type))
+                .count() as i64;
+
+            if prior_aggressive == 0 && is_call_preflop_action(&first_hero_action.action_type) {
+                limp_count += 1;
+            }
+
+            if prior_aggressive == 1 {
+                three_bet_opportunities += 1;
+                if is_aggressive_preflop_action(&first_hero_action.action_type) {
+                    three_bet_count += 1;
+                }
+            }
+        }
+
+        let mut aggressive_count = 0_i64;
+        for (idx, action) in sample.actions.iter().enumerate() {
+            if !is_aggressive_preflop_action(&action.action_type) {
+                continue;
+            }
+
+            if aggressive_count == 1 && action.player_name != sample.hero_name {
+                let hero_opened = sample.actions[..idx].iter().any(|a| {
+                    a.player_name == sample.hero_name && is_aggressive_preflop_action(&a.action_type)
+                }) && sample.actions[..idx]
+                    .iter()
+                    .filter(|a| is_aggressive_preflop_action(&a.action_type))
+                    .next()
+                    .map(|a| a.player_name == sample.hero_name)
+                    .unwrap_or(false);
+
+                if hero_opened {
+                    fold_to_three_bet_opportunities += 1;
+                    if let Some(next_hero_action) = sample.actions[idx + 1..]
+                        .iter()
+                        .find(|a| a.player_name == sample.hero_name)
+                    {
+                        if next_hero_action.action_type == "fold" {
+                            fold_to_three_bet_count += 1;
+                        }
+                    }
+                    break;
+                }
+            }
+
+            aggressive_count += 1;
+        }
+    }
+
+    let mut stats = CoachFormatStats {
+        hands,
+        vpip_count,
+        vpip_pct: pct(vpip_count, hands),
+        pfr_count,
+        pfr_pct: pct(pfr_count, hands),
+        three_bet_count,
+        three_bet_opportunities,
+        three_bet_pct: pct(three_bet_count, three_bet_opportunities),
+        limp_count,
+        limp_pct: pct(limp_count, hands),
+        fold_to_three_bet_count,
+        fold_to_three_bet_opportunities,
+        fold_to_three_bet_pct: pct(fold_to_three_bet_count, fold_to_three_bet_opportunities),
+        feedback: Vec::new(),
+    };
+
+    stats.feedback = build_preflop_feedback(player_count, &stats);
+    stats
+}
+
+fn compute_preflop_stats_with_filter<F>(samples: &[PreflopHandSample], predicate: F) -> CoachFormatStats
+where
+    F: Fn(&PreflopHandSample) -> bool,
+{
+    let filtered: Vec<PreflopHandSample> = samples
+        .iter()
+        .filter(|sample| predicate(sample))
+        .cloned()
+        .collect();
+
+    if filtered.is_empty() {
+        return CoachFormatStats {
+            hands: 0,
+            vpip_count: 0,
+            vpip_pct: 0.0,
+            pfr_count: 0,
+            pfr_pct: 0.0,
+            three_bet_count: 0,
+            three_bet_opportunities: 0,
+            three_bet_pct: 0.0,
+            limp_count: 0,
+            limp_pct: 0.0,
+            fold_to_three_bet_count: 0,
+            fold_to_three_bet_opportunities: 0,
+            fold_to_three_bet_pct: 0.0,
+            feedback: vec!["Aucune main sur ce segment.".to_string()],
+        };
+    }
+
+    let player_count = filtered[0].player_count;
+    compute_preflop_stats(&filtered, player_count)
+}
+
+pub fn get_coach_stats(
+    conn: &Connection,
+    from_ts: Option<&str>,
+    to_ts: Option<&str>,
+) -> Result<CoachStatsSnapshot, rusqlite::Error> {
+    let mut stmt = conn.prepare(
+        r#"SELECT h.id,
+                  h.player_count,
+                  h.level,
+                  hp.player_name,
+                  a.player_name,
+                  a.action_type,
+                  a.action_index
+           FROM hands h
+           JOIN hand_players hp ON hp.hand_id = h.id AND hp.hero = 1
+           LEFT JOIN hand_actions a ON a.hand_id = h.id AND a.street_order = 0
+           WHERE h.player_count IN (2, 3)
+             AND (?1 IS NULL OR h.timestamp >= ?1)
+             AND (?2 IS NULL OR h.timestamp <= ?2)
+           ORDER BY h.id ASC, a.action_index ASC"#,
+    )?;
+
+    let rows: Vec<(String, i64, i64, String, Option<String>, Option<String>)> = stmt
+        .query_map(params![from_ts, to_ts], |row| {
+            Ok((
+                row.get(0)?,
+                row.get(1)?,
+                row.get(2)?,
+                row.get(3)?,
+                row.get(4)?,
+                row.get(5)?,
+            ))
+        })?
+        .collect::<Result<_, _>>()?;
+
+    let mut grouped: BTreeMap<String, PreflopHandSample> = BTreeMap::new();
+    for (hand_id, player_count, level, hero_name, action_player, action_type) in rows {
+        let sample = grouped.entry(hand_id).or_insert_with(|| PreflopHandSample {
+            player_count,
+            level,
+            hero_name: hero_name.clone(),
+            actions: Vec::new(),
+        });
+
+        if let (Some(player_name), Some(action_type)) = (action_player, action_type) {
+            sample.actions.push(PreflopActionSample { player_name, action_type });
+        }
+    }
+
+    let samples: Vec<PreflopHandSample> = grouped.into_values().collect();
+
+    Ok(CoachStatsSnapshot {
+        early_phase: compute_preflop_stats_with_filter(&samples, |sample| sample.player_count == 3 && sample.level <= 3),
+        mid_phase: compute_preflop_stats_with_filter(&samples, |sample| sample.player_count == 3 && sample.level >= 4 && sample.level <= 6),
+        late_phase: compute_preflop_stats_with_filter(&samples, |sample| sample.player_count == 3 && sample.level >= 7),
+        heads_up: compute_preflop_stats(&samples, 2),
+    })
 }
 
 /// List all tournaments, newest first.
@@ -521,8 +1074,10 @@ pub fn load_hand_for_replay(
     let mut players_stmt = conn.prepare(
          r#"SELECT hp.seat_number,
                 hp.player_name,
+              hp.hero,
                 hp.starting_stack,
                 hp.ending_stack,
+                hp.contributions,
                 COALESCE(
                     shc.card1 || ' ' || shc.card2,
                     hc.card1 || ' ' || hc.card2
@@ -534,42 +1089,53 @@ pub fn load_hand_for_replay(
            ORDER BY hp.seat_number"#,
     )?;
 
-    let mut players_map: std::collections::HashMap<String, ReplayerPlayer> = players_stmt
+    let players_map: std::collections::HashMap<String, (ReplayerPlayer, i64)> = players_stmt
         .query_map(params![hand_id], |row| {
             let seat: i64 = row.get(0)?;
             let name: String = row.get(1)?;
-            let starting: i64 = row.get(2)?;
-            let hole_card_str: Option<String> = row.get(4)?;
+            let is_hero: i64 = row.get(2)?;
+            let starting: i64 = row.get(3)?;
+            let contributions: i64 = row.get(5)?;
+            let hole_card_str: Option<String> = row.get(6)?;
 
             Ok((
                 name.clone(),
-                ReplayerPlayer {
-                    seat_number: seat,
-                    name,
-                    starting_stack: starting,
-                    current_stack: starting,
-                    hole_cards: hole_card_str,
-                    folded: false,
-                },
+                (
+                    ReplayerPlayer {
+                        seat_number: seat,
+                        name,
+                        hero: is_hero != 0,
+                        starting_stack: starting,
+                        current_stack: starting,
+                        hole_cards: hole_card_str,
+                        folded: false,
+                    },
+                    contributions,
+                ),
             ))
         })?
         .collect::<Result<_, _>>()?;
 
-    let mut players_vec: Vec<ReplayerPlayer> = players_map.values().cloned().collect();
+    let total_contributions: i64 = players_map.values().map(|(_, c)| *c).sum();
+
+    let mut players_vec: Vec<ReplayerPlayer> = players_map
+        .values()
+        .map(|(p, _)| p.clone())
+        .collect();
     players_vec.sort_by_key(|p| p.seat_number);
 
     let button_pos = usize::try_from(button_seat).unwrap_or(0);
 
     // Load all actions for this hand
     let mut actions_stmt = conn.prepare(
-        r#"SELECT street, action_index, player_name, action_type,
+        r#"SELECT street_order, street, action_index, player_name, action_type,
                   amount, increment_amount, to_amount
            FROM hand_actions
            WHERE hand_id = ?1
            ORDER BY street_order ASC, action_index ASC"#,
     )?;
 
-    let raw_actions: Vec<(String, i64, String, String, Option<i64>, Option<i64>, Option<i64>)> =
+    let raw_actions: Vec<(i64, String, i64, String, String, Option<i64>, Option<i64>, Option<i64>)> =
         actions_stmt
             .query_map(params![hand_id], |row| {
                 Ok((
@@ -580,6 +1146,7 @@ pub fn load_hand_for_replay(
                     row.get(4)?,
                     row.get(5)?,
                     row.get(6)?,
+                    row.get(7)?,
                 ))
             })?
             .collect::<Result<_, _>>()?;
@@ -617,31 +1184,72 @@ pub fn load_hand_for_replay(
 
     // Build replayer steps (with stacks at each step)
     let mut steps: Vec<ReplayerStep> = Vec::new();
-    let mut player_stacks = players_map.clone();
+    let mut player_stacks: std::collections::HashMap<String, ReplayerPlayer> = players_map
+        .iter()
+        .map(|(name, (player, _))| (name.clone(), player.clone()))
+        .collect();
 
-    for (step_num, (street, _action_idx, actor_name, action_type, amount, incr, to_amt)) in
+    let mut street_bets: std::collections::HashMap<String, i64> = player_stacks
+        .keys()
+        .map(|name| (name.clone(), 0_i64))
+        .collect();
+    let mut current_street = String::from("preflop");
+    let mut current_bet = 0_i64;
+
+    fn as_delta_non_negative(value: i64) -> i64 {
+        value.max(0)
+    }
+    let mut seen_streets: std::collections::HashSet<String> = std::collections::HashSet::new();
+
+    for (step_num, (_street_order, street, _action_idx, actor_name, action_type, amount, incr, to_amt)) in
         raw_actions.iter().enumerate()
     {
+        if street.to_ascii_lowercase() != current_street {
+            current_street = street.to_ascii_lowercase();
+            current_bet = 0;
+            for bet in street_bets.values_mut() {
+                *bet = 0;
+            }
+        }
+
+        seen_streets.insert(street.to_ascii_lowercase());
         let description = format_replay_description(actor_name, action_type, *amount, *incr, *to_amt);
 
         // Update player state for the action that just happened.
         if let Some(player) = player_stacks.get_mut(actor_name) {
+            let already_in_street = *street_bets.get(actor_name).unwrap_or(&0);
             match action_type.as_str() {
                 "fold" => {
                     player.folded = true;
                 }
-                "call" | "bet" | "allin_call" | "allin_bet" => {
-                    player.current_stack = (player.current_stack - amount.unwrap_or(0)).max(0);
+
+                "check" => {}
+
+                "call" | "allin_call" => {
+                    let target = current_bet;
+                    let delta = as_delta_non_negative(target - already_in_street);
+                    player.current_stack = (player.current_stack - delta).max(0);
+                    street_bets.insert(actor_name.clone(), already_in_street + delta);
                 }
+
+                "bet" | "allin_bet" => {
+                    let target = amount.unwrap_or(0);
+                    let delta = as_delta_non_negative(target - already_in_street);
+                    player.current_stack = (player.current_stack - delta).max(0);
+                    street_bets.insert(actor_name.clone(), already_in_street + delta);
+                    current_bet = current_bet.max(target);
+                }
+
                 "raise" | "allin_raise" => {
-                    // to_amount is the total bet on this street; incr is the added amount above previous bet.
-                    // We subtract incr (the actual chips this player puts in now).
-                    player.current_stack = (player.current_stack - incr.unwrap_or(0)).max(0);
-                    if incr.is_none() && to_amt.is_some() {
-                        // Fallback: incr not stored — use to_amount as best estimate
-                        player.current_stack = (player.current_stack - to_amt.unwrap_or(0)).max(0);
-                    }
+                    let target = to_amt
+                        .or_else(|| incr.map(|inc| current_bet + inc))
+                        .unwrap_or(current_bet);
+                    let delta = as_delta_non_negative(target - already_in_street);
+                    player.current_stack = (player.current_stack - delta).max(0);
+                    street_bets.insert(actor_name.clone(), already_in_street + delta);
+                    current_bet = current_bet.max(target);
                 }
+
                 "collect" => {
                     player.current_stack += amount.unwrap_or(0);
                 }
@@ -652,15 +1260,8 @@ pub fn load_hand_for_replay(
         let mut players_after: Vec<ReplayerPlayer> = player_stacks.values().cloned().collect();
         players_after.sort_by_key(|player| player.seat_number);
 
-        // Compute pot after this action from invested chips so far.
-        let pot_size_after = players_vec
-            .iter()
-            .map(|p| p.starting_stack)
-            .sum::<i64>()
-            - player_stacks
-                .values()
-                .map(|p| p.current_stack)
-                .sum::<i64>();
+        // Keep pot constant at final hand contributions to avoid transient double-counting display.
+        let pot_size_after = total_contributions;
 
         steps.push(ReplayerStep {
             step_number: step_num,
@@ -674,6 +1275,42 @@ pub fn load_hand_for_replay(
             players_after,
             description,
         });
+    }
+
+    let mut append_board_reveal_step = |street_name: &str, revealed_cards: &[String]| {
+        if revealed_cards.is_empty() {
+            return;
+        }
+
+        let mut players_after: Vec<ReplayerPlayer> = player_stacks.values().cloned().collect();
+        players_after.sort_by_key(|player| player.seat_number);
+
+        let pot_size_after = total_contributions;
+
+        steps.push(ReplayerStep {
+            step_number: steps.len(),
+            street: street_name.to_string(),
+            actor_name: "Board".to_string(),
+            action_type: "board_reveal".to_string(),
+            amount: None,
+            increment_amount: None,
+            to_amount: None,
+            pot_size_after,
+            players_after,
+            description: format!("Board {}: {}", street_name, revealed_cards.join(" ")),
+        });
+    };
+
+    // Some all-in preflop hands have no explicit postflop actions in the DB.
+    // Add synthetic reveal steps so replay can still progress through the full board.
+    if board.len() >= 3 && !seen_streets.contains("flop") {
+        append_board_reveal_step("flop", &board[..3]);
+    }
+    if board.len() >= 4 && !seen_streets.contains("turn") {
+        append_board_reveal_step("turn", &board[..4]);
+    }
+    if board.len() >= 5 && !seen_streets.contains("river") {
+        append_board_reveal_step("river", &board[..5]);
     }
 
     // Update players vec with final state from steps
@@ -898,7 +1535,7 @@ mod tests {
 
                 let state = replay.unwrap();
                 assert_eq!(state.hand_id, "H29");
-                assert_eq!(state.total_steps, 2);
+                assert_eq!(state.total_steps, 5);
                 assert_eq!(state.players.len(), 2);
                 assert_eq!(state.button_pos, 1);
                 assert_eq!(state.board, vec!["Qs", "3d", "8h", "7c", "Ah"]);
@@ -909,12 +1546,24 @@ mod tests {
                 assert_eq!(first_step.action_type, "allin_raise");
                 assert_eq!(first_step.players_after.len(), 2);
                 assert_eq!(first_step.players_after[0].name, "Cocochanel23");
-                assert_eq!(first_step.players_after[0].current_stack, 60);
+                assert_eq!(first_step.players_after[0].current_stack, 0);
 
                 let second_step = &state.steps[1];
                 assert_eq!(second_step.action_type, "allin_call");
                 assert_eq!(second_step.players_after[1].name, "MRZO");
-                assert_eq!(second_step.players_after[1].current_stack, 60);
+                assert_eq!(second_step.players_after[1].current_stack, 0);
+
+                let flop_reveal = &state.steps[2];
+                assert_eq!(flop_reveal.street, "flop");
+                assert_eq!(flop_reveal.action_type, "board_reveal");
+
+                let turn_reveal = &state.steps[3];
+                assert_eq!(turn_reveal.street, "turn");
+                assert_eq!(turn_reveal.action_type, "board_reveal");
+
+                let river_reveal = &state.steps[4];
+                assert_eq!(river_reveal.street, "river");
+                assert_eq!(river_reveal.action_type, "board_reveal");
             }
         assert_eq!(detail.actions.len(), 2);
     }

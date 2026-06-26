@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState, memo } from 'react'
+import { useNavigate } from 'react-router-dom'
 import {
   PieChart,
   Pie,
@@ -11,7 +12,7 @@ import {
   CartesianGrid,
   ReferenceLine,
 } from 'recharts'
-import { api, ChipSummary, HandChipPoint, TournamentRow } from '../api'
+import { api, ChipSummary, CoachBlunderSpot, CoachFormatStats, CoachStatsSnapshot, HandChipPoint, TournamentRow } from '../api'
 import { CumulativeChart } from '../components/CumulativeChart'
 
 function fmtEur(n: number) {
@@ -19,10 +20,15 @@ function fmtEur(n: number) {
   return `${sign}${n.toFixed(2)}€`
 }
 
-function deltaClassName(delta: number) {
-  if (delta > 0) return 'positive'
-  if (delta < 0) return 'negative'
-  return 'neutral'
+function clamp(n: number, min: number, max: number) {
+  return Math.min(max, Math.max(min, n))
+}
+
+function stddev(values: number[]): number {
+  if (values.length < 2) return 0
+  const mean = values.reduce((acc, v) => acc + v, 0) / values.length
+  const variance = values.reduce((acc, v) => acc + Math.pow(v - mean, 2), 0) / (values.length - 1)
+  return Math.sqrt(variance)
 }
 
 // Winamax Expresso 2 EUR public distribution provided by user (tickets / 10,000,000 draws).
@@ -94,6 +100,17 @@ function applyDateRange(tours: TournamentRow[], fromMs: number | null, toMs: num
     const ms = new Date(t.started_at).getTime()
     return !Number.isNaN(ms) && (fromMs == null || ms >= fromMs) && (toMs == null || ms <= toMs)
   })
+}
+
+function inRange(ms: number, fromMs: number | null, toMs: number | null): boolean {
+  if (Number.isNaN(ms)) return false
+  if (fromMs != null && ms < fromMs) return false
+  if (toMs != null && ms > toMs) return false
+  return true
+}
+
+function filterHandsByRange(hands: HandChipPoint[], fromMs: number | null, toMs: number | null): HandChipPoint[] {
+  return hands.filter((h) => inRange(new Date(h.timestamp).getTime(), fromMs, toMs))
 }
 
 function computeMultiplierComparison(
@@ -206,6 +223,140 @@ interface PositionsPieProps {
   readonly thirdPlace: number
 }
 
+interface CoachReview {
+  score: number
+  grade: 'A' | 'B' | 'C' | 'D' | 'E'
+  title: string
+  varianceLabel: string
+  varianceColor: string
+  confidenceLabel: string
+  confidence: number
+  evRoiPct: number
+  realRoiPct: number
+  runDiffEur: number
+  luckZ: number | null
+  allinSamples: number
+  setupUnfavorable: number
+  setupFavorable: number
+  topRangePressure: number
+  notes: string[]
+  explanation: string[]
+}
+
+function gradeFromScore(score: number): CoachReview['grade'] {
+  if (score >= 82) return 'A'
+  if (score >= 68) return 'B'
+  if (score >= 54) return 'C'
+  if (score >= 40) return 'D'
+  return 'E'
+}
+
+function varianceTone(luckZ: number | null): { label: string; color: string } {
+  if (luckZ != null && luckZ <= -1) {
+    return { label: 'Variance défavorable', color: '#ef4444' }
+  }
+  if (luckZ != null && luckZ >= 1) {
+    return { label: 'Variance favorable', color: '#10b981' }
+  }
+  return { label: 'Variance standard', color: 'var(--text-dim)' }
+}
+
+function confidenceLabelFrom(confidence: number): string {
+  if (confidence >= 0.85) return 'élevée'
+  if (confidence >= 0.5) return 'moyenne'
+  return 'faible'
+}
+
+function varianceNote(luckZ: number | null, runDiffEur: number): string {
+  const diffSign = runDiffEur >= 0 ? '+' : ''
+  if (luckZ == null) {
+    return `Variance: échantillon encore trop faible (${diffSign}${runDiffEur.toFixed(2)}€ vs EV).`
+  }
+  const zSign = luckZ >= 0 ? '+' : ''
+  return `Variance: ${zSign}${luckZ.toFixed(2)}σ (${diffSign}${runDiffEur.toFixed(2)}€ vs EV).`
+}
+
+function buildCoachReview(
+  stats: FilteredStats,
+  tournaments: TournamentRow[],
+  hands: HandChipPoint[],
+): CoachReview | null {
+  const n = stats.totalTournaments
+  if (n === 0) return null
+
+  const totalBuyIn = BUY_IN * n
+  const evRoiPct = totalBuyIn > 0 ? (stats.netEvEurTotal / totalBuyIn) * 100 : 0
+  const realRoiPct = totalBuyIn > 0 ? (stats.totalNetEur / totalBuyIn) * 100 : 0
+  const runDiffEur = stats.totalNetEur - stats.netEvEurTotal
+
+  const luck = computeLuck(stats.totalNetEur, stats.netEvEurTotal, n)
+  const luckZ = luck?.zScore ?? null
+
+  const allinHands = hands.filter((h) => h.net_ev !== null)
+  const allinSamples = allinHands.length
+  const allinDeltas = allinHands.map((h) => h.realized_cev - (h.net_ev ?? h.realized_cev))
+  const showdownDeltas = allinHands.filter((h) => h.has_showdown).map((h) => h.realized_cev - (h.net_ev ?? h.realized_cev))
+
+  // Heuristic proxies for setup-like situations; thresholds are intentionally conservative.
+  const setupUnfavorable = allinDeltas.filter((d) => d <= -120).length
+  const setupFavorable = allinDeltas.filter((d) => d >= 120).length
+  const topRangePressure = showdownDeltas.filter((d) => d <= -180).length
+
+  const perTournamentNetEv = tournaments.map((t) => t.hero_net_ev_eur_sum)
+  const evStd = stddev(perTournamentNetEv)
+  const consistency = clamp(1 - evStd / 4, 0, 1)
+  const confidence = clamp(n / 40, 0.2, 1)
+
+  const setupBalance = setupFavorable - setupUnfavorable
+  const setupScore = allinSamples > 0 ? clamp(setupBalance / Math.max(8, allinSamples) * 10, -6, 6) : 0
+
+  const rawScore = 50 + (evRoiPct * 0.65) + (consistency * 12) + setupScore
+  const score = Math.round(clamp(rawScore, 0, 100))
+  const grade = gradeFromScore(score)
+  const { label: varianceLabel, color: varianceColor } = varianceTone(luckZ)
+  const confidenceLabel = confidenceLabelFrom(confidence)
+
+  let title = 'Session correcte'
+  if (score >= 75) title = 'Session solide'
+  else if (score <= 45) title = 'Session fragile'
+
+  const notes: string[] = [
+    `Qualité EV: ${evRoiPct >= 0 ? '+' : ''}${evRoiPct.toFixed(1)}% de ROI all-in EV sur ${n} tournois.`,
+    varianceNote(luckZ, runDiffEur),
+    `Setups (proxy): ${setupUnfavorable} défavorables vs ${setupFavorable} favorables sur ${allinSamples} spots all-in.`,
+  ]
+
+  if (topRangePressure > 0) {
+    notes.push(`Top range adverse probable (proxy showdown): ${topRangePressure} spot(s) marqué(s).`)
+  }
+
+  const explanation = [
+    'La note regarde surtout le ROI EV all-in, la stabilité EV par tournoi et le balance setups favorables/défavorables.',
+    'Le résultat réel n améliore pas directement la note: il sert surtout à lire la variance, pas la qualité de jeu.',
+    'La confiance est affichée séparément et ne rabaisse plus mécaniquement la note des sessions courtes.',
+  ]
+
+  return {
+    score,
+    grade,
+    title,
+    varianceLabel,
+    varianceColor,
+    confidenceLabel,
+    confidence,
+    evRoiPct,
+    realRoiPct,
+    runDiffEur,
+    luckZ,
+    allinSamples,
+    setupUnfavorable,
+    setupFavorable,
+    topRangePressure,
+    notes,
+    explanation,
+  }
+}
+
 function luckLabel(zScore: number): { label: string; color: string } {
   const absZ = Math.abs(zScore)
   const pos = zScore >= 0
@@ -243,6 +394,487 @@ const LuckIndicator = memo(({ net, ev, n }: { readonly net: number; readonly ev:
   )
 })
 
+const CoachReviewCard = memo(({
+  review,
+}: {
+  readonly review: CoachReview | null
+}) => {
+  if (!review) return null
+
+  return (
+    <div className="summary-card" style={{ marginBottom: 16 }}>
+      <div className="summary-card-header" style={{ marginBottom: 12 }}>
+        <h3>Coach session (V1)</h3>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+          <span style={{
+            borderRadius: 999,
+            padding: '4px 10px',
+            background: 'rgba(255,255,255,0.06)',
+            border: '1px solid rgba(255,255,255,0.12)',
+            fontSize: 12,
+            color: review.varianceColor,
+            fontWeight: 700,
+          }}>
+            {review.varianceLabel}
+          </span>
+          <span style={{
+            borderRadius: 999,
+            padding: '4px 10px',
+            background: 'rgba(255,255,255,0.06)',
+            border: '1px solid rgba(255,255,255,0.12)',
+            fontSize: 12,
+            color: 'var(--text-dim)',
+          }}>
+            Confiance {review.confidenceLabel}
+          </span>
+        </div>
+      </div>
+
+      <div className="stats-bar" style={{ marginBottom: 12 }}>
+        <div className="stat-card">
+          <div className="label">Note session</div>
+          <div className="value">{review.score}/100 ({review.grade})</div>
+        </div>
+        <div className="stat-card">
+          <div className="label">Verdict</div>
+          <div className="value">{review.title}</div>
+        </div>
+        <div className="stat-card">
+          <div className="label">ROI réel</div>
+          <div className={`value ${review.realRoiPct >= 0 ? 'positive' : 'negative'}`}>
+            {review.realRoiPct >= 0 ? '+' : ''}{review.realRoiPct.toFixed(1)}%
+          </div>
+        </div>
+        <div className="stat-card">
+          <div className="label">ROI EV all-in</div>
+          <div className={`value ${review.evRoiPct >= 0 ? 'positive' : 'negative'}`}>
+            {review.evRoiPct >= 0 ? '+' : ''}{review.evRoiPct.toFixed(1)}%
+          </div>
+        </div>
+      </div>
+
+      <div style={{ display: 'grid', gap: 6, fontSize: 13, color: 'var(--text-dim)' }}>
+        {review.notes.map((note) => (
+          <div key={note}>• {note}</div>
+        ))}
+      </div>
+
+      <div style={{ marginTop: 12, display: 'grid', gap: 6, fontSize: 12, color: 'var(--text-dim)' }}>
+        {review.explanation.map((line) => (
+          <div key={line}>• {line}</div>
+        ))}
+      </div>
+    </div>
+  )
+})
+
+function fmtPct(value: number, denominator?: number) {
+  if (denominator !== undefined && denominator <= 0) return '—'
+  return `${value.toFixed(1)}%`
+}
+
+const CoachPreflopStatsCard = memo(({
+  title,
+  stats,
+}: {
+  readonly title: string
+  readonly stats: CoachFormatStats
+}) => {
+  return (
+    <div className="summary-card">
+      <div className="summary-card-header" style={{ marginBottom: 12 }}>
+        <h3>{title}</h3>
+        <span style={{ color: 'var(--text-dim)', fontSize: 12 }}>{stats.hands} mains</span>
+      </div>
+
+      <div className="stats-bar" style={{ marginBottom: 12 }}>
+        <div className="stat-card">
+          <div className="label">VPIP</div>
+          <div className="value">{fmtPct(stats.vpip_pct, stats.hands)}</div>
+        </div>
+        <div className="stat-card">
+          <div className="label">PFR</div>
+          <div className="value">{fmtPct(stats.pfr_pct, stats.hands)}</div>
+        </div>
+        <div className="stat-card">
+          <div className="label">3BET</div>
+          <div className="value">{fmtPct(stats.three_bet_pct, stats.three_bet_opportunities)}</div>
+        </div>
+        <div className="stat-card">
+          <div className="label">Limp</div>
+          <div className="value">{fmtPct(stats.limp_pct, stats.hands)}</div>
+        </div>
+        <div className="stat-card">
+          <div className="label">Fold vs 3BET</div>
+          <div className="value">{fmtPct(stats.fold_to_three_bet_pct, stats.fold_to_three_bet_opportunities)}</div>
+        </div>
+      </div>
+
+      <div style={{ display: 'grid', gap: 6, fontSize: 13, color: 'var(--text-dim)' }}>
+        {stats.feedback.map((line) => (
+          <div key={line}>• {line}</div>
+        ))}
+      </div>
+    </div>
+  )
+})
+
+function buildPriorityAlerts(snapshot: CoachStatsSnapshot | null): string[] {
+  if (!snapshot) return []
+
+  const candidates: Array<{ score: number; text: string }> = []
+  const pushIf = (condition: boolean, score: number, text: string) => {
+    if (condition) candidates.push({ score, text })
+  }
+
+  pushIf(
+    snapshot.heads_up.hands >= 20 && snapshot.heads_up.vpip_pct < 55,
+    95,
+    'Priorité: trop passif en HU, ton VPIP est probablement trop bas.',
+  )
+  pushIf(
+    snapshot.heads_up.hands >= 20 && snapshot.heads_up.vpip_count > 0 && (snapshot.heads_up.pfr_count / snapshot.heads_up.vpip_count) < 0.65,
+    88,
+    'Priorité: en HU tu call/limp plus que tu n’agresses.',
+  )
+  pushIf(
+    snapshot.late_phase.hands >= 20 && snapshot.late_phase.pfr_pct < 20,
+    84,
+    'Priorité: late game assez passif, tu prends peu l’initiative préflop.',
+  )
+  pushIf(
+    snapshot.mid_phase.hands >= 20 && snapshot.mid_phase.three_bet_opportunities >= 5 && snapshot.mid_phase.three_bet_pct < 5,
+    74,
+    'Point de vigilance: en mid game tu 3-bet très peu.',
+  )
+  pushIf(
+    snapshot.early_phase.hands >= 20 && snapshot.early_phase.limp_pct > 10,
+    70,
+    'Point de vigilance: présence notable de limps en early game.',
+  )
+  pushIf(
+    snapshot.late_phase.hands >= 20 && snapshot.late_phase.fold_to_three_bet_opportunities >= 4 && snapshot.late_phase.fold_to_three_bet_pct > 65,
+    78,
+    'Point de vigilance: en late tu folds beaucoup face aux 3-bets.',
+  )
+
+  const sortedCandidates = [...candidates].sort((a, b) => b.score - a.score)
+
+  return sortedCandidates
+    .slice(0, 3)
+    .map((item) => item.text)
+}
+
+function useCoachData(
+  coachDateSelected: boolean,
+  coachDatesValid: boolean,
+  fromMs: number | null,
+  toMs: number | null,
+) {
+  const [coachSnapshot, setCoachSnapshot] = useState<CoachStatsSnapshot | null>(null)
+  const [coachBlunders, setCoachBlunders] = useState<CoachBlunderSpot[]>([])
+  const [coachLoading, setCoachLoading] = useState(false)
+
+  useEffect(() => {
+    if (!coachDateSelected || !coachDatesValid) {
+      setCoachSnapshot(null)
+      setCoachBlunders([])
+      setCoachLoading(false)
+      return
+    }
+
+    const fromTs = fromMs == null ? null : new Date(fromMs).toISOString()
+    const toTs = toMs == null ? null : new Date(toMs).toISOString()
+
+    let cancelled = false
+    setCoachLoading(true)
+    Promise.all([
+      api.getCoachStats(fromTs, toTs),
+      api.getCoachBlunders(fromTs, toTs, 150, 'bad'),
+    ])
+      .then(([snapshot, blunders]) => {
+        if (cancelled) return
+        setCoachSnapshot(snapshot)
+        setCoachBlunders(blunders)
+      })
+      .catch((err) => {
+        console.error(err)
+        if (cancelled) return
+        setCoachSnapshot(null)
+        setCoachBlunders([])
+      })
+      .finally(() => {
+        if (!cancelled) setCoachLoading(false)
+      })
+
+    return () => {
+      cancelled = true
+    }
+  }, [coachDateSelected, coachDatesValid, fromMs, toMs])
+
+  return { coachSnapshot, coachBlunders, coachLoading }
+}
+
+const CoachAlertsCard = memo(({ alerts }: { readonly alerts: string[] }) => {
+  if (alerts.length === 0) return null
+
+  return (
+    <div className="summary-card" style={{ marginBottom: 16 }}>
+      <div className="summary-card-header" style={{ marginBottom: 12 }}>
+        <h3>Alertes priorité session</h3>
+      </div>
+      <div style={{ display: 'grid', gap: 8, fontSize: 13, color: 'var(--text-dim)' }}>
+        {alerts.map((alert) => (
+          <div key={alert}>• {alert}</div>
+        ))}
+      </div>
+    </div>
+  )
+})
+
+const CoachBlundersCard = memo(({
+  blunders,
+  onOpenReplay,
+}: {
+  readonly blunders: CoachBlunderSpot[]
+  readonly onOpenReplay: (handId: string) => void
+}) => {
+  const [actionFilter, setActionFilter] = useState<'all' | 'call' | 'push'>('all')
+  const [severityFilter, setSeverityFilter] = useState<'all' | 'bad' | 'critical'>('all')
+
+  const filtered = useMemo(
+    () => blunders.filter((spot) => {
+      if (actionFilter !== 'all' && spot.action_kind !== actionFilter) return false
+      if (severityFilter !== 'all' && spot.severity !== severityFilter) return false
+      return true
+    }),
+    [blunders, actionFilter, severityFilter],
+  )
+
+  if (blunders.length === 0) {
+    return (
+      <div className="summary-card" style={{ marginBottom: 16 }}>
+        <div className="summary-card-header" style={{ marginBottom: 8 }}>
+          <h3>Blunders call/push (V1)</h3>
+        </div>
+        <p style={{ color: 'var(--text-dim)', fontSize: 13 }}>
+          Aucun gros raté call/push détecté sur la période.
+        </p>
+      </div>
+    )
+  }
+
+  const criticalCount = blunders.filter((s) => s.severity === 'critical').length
+  const callCount = blunders.filter((s) => s.action_kind === 'call').length
+  const pushCount = blunders.filter((s) => s.action_kind === 'push').length
+
+  return (
+    <div className="summary-card" style={{ marginBottom: 16 }}>
+      <div className="summary-card-header" style={{ marginBottom: 12 }}>
+        <h3>Blunders call/push (V1)</h3>
+      </div>
+
+      <div className="stats-bar" style={{ marginBottom: 12 }}>
+        <div className="stat-card">
+          <div className="label">Spots retenus</div>
+          <div className="value">{blunders.length}</div>
+        </div>
+        <div className="stat-card">
+          <div className="label">Critiques</div>
+          <div className="value negative">{criticalCount}</div>
+        </div>
+        <div className="stat-card">
+          <div className="label">Calls</div>
+          <div className="value">{callCount}</div>
+        </div>
+        <div className="stat-card">
+          <div className="label">Pushes</div>
+          <div className="value">{pushCount}</div>
+        </div>
+      </div>
+
+      <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 10 }}>
+        <select
+          className="filter-input"
+          value={actionFilter}
+          onChange={(e) => setActionFilter(e.target.value as 'all' | 'call' | 'push')}
+          aria-label="Filtre action blunders"
+          style={{ maxWidth: 180 }}
+        >
+          <option value="all">Action: toutes</option>
+          <option value="call">Action: call</option>
+          <option value="push">Action: push</option>
+        </select>
+        <select
+          className="filter-input"
+          value={severityFilter}
+          onChange={(e) => setSeverityFilter(e.target.value as 'all' | 'bad' | 'critical')}
+          aria-label="Filtre gravite blunders"
+          style={{ maxWidth: 180 }}
+        >
+          <option value="all">Gravité: toutes</option>
+          <option value="bad">Gravité: mauvais</option>
+          <option value="critical">Gravité: critique</option>
+        </select>
+      </div>
+
+      {filtered.length === 0 ? (
+        <p style={{ color: 'var(--text-dim)', fontSize: 13 }}>
+          Aucun spot pour ce filtre.
+        </p>
+      ) : (
+        <div style={{ overflowX: 'auto' }}>
+          <table className="table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Action</th>
+                <th>Stacks</th>
+                <th>EV</th>
+                <th>Equity</th>
+                <th>Motif</th>
+                <th />
+              </tr>
+            </thead>
+            <tbody>
+              {filtered.slice(0, 30).map((spot) => (
+                <tr key={`${spot.hand_id}-${spot.action_type}`}>
+                  <td>{new Date(spot.timestamp).toLocaleString('fr-FR')}</td>
+                  <td>
+                    <span style={{
+                      borderRadius: 999,
+                      padding: '2px 8px',
+                      background: 'rgba(255,255,255,0.05)',
+                      border: `1px solid ${spot.severity === 'critical' ? 'rgba(239,68,68,0.6)' : 'rgba(245,158,11,0.6)'}`,
+                      color: spot.severity === 'critical' ? '#ef4444' : '#f59e0b',
+                      fontSize: 12,
+                      fontWeight: 700,
+                    }}>
+                      {spot.action_kind.toUpperCase()} · {spot.severity === 'critical' ? 'CRITIQUE' : 'MAUVAIS'}
+                    </span>
+                  </td>
+                  <td>{spot.hero_stack_bb.toFixed(1)}bb · {spot.action_amount_bb.toFixed(1)}bb</td>
+                  <td className="negative">{spot.net_ev_bb.toFixed(1)}bb</td>
+                  <td>{spot.allin_equity == null ? '—' : `${(spot.allin_equity * 100).toFixed(1)}%`}</td>
+                  <td style={{ color: 'var(--text-dim)' }}>{spot.reason}</td>
+                  <td>
+                    <button
+                      type="button"
+                      className="back-link"
+                      onClick={() => onOpenReplay(spot.hand_id)}
+                      style={{ margin: 0 }}
+                    >
+                      Replay
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </div>
+  )
+})
+
+const CoachTabPanel = memo(({
+  coachFrom,
+  coachTo,
+  setCoachFrom,
+  setCoachTo,
+  coachDateSelected,
+  coachDatesValid,
+  coachLoading,
+  coachSnapshot,
+  coachReview,
+  priorityAlerts,
+  coachBlunders,
+  onOpenReplay,
+}: {
+  readonly coachFrom: string
+  readonly coachTo: string
+  readonly setCoachFrom: (value: string) => void
+  readonly setCoachTo: (value: string) => void
+  readonly coachDateSelected: boolean
+  readonly coachDatesValid: boolean
+  readonly coachLoading: boolean
+  readonly coachSnapshot: CoachStatsSnapshot | null
+  readonly coachReview: CoachReview | null
+  readonly priorityAlerts: string[]
+  readonly coachBlunders: CoachBlunderSpot[]
+  readonly onOpenReplay: (handId: string) => void
+}) => {
+  return (
+    <>
+      <div className="summary-card" style={{ marginBottom: 16 }}>
+        <div className="summary-card-header" style={{ marginBottom: 8 }}>
+          <h3>Filtre coach (dates)</h3>
+        </div>
+        <div className="summary-custom-dates" style={{ marginTop: 0 }}>
+          <input
+            className="filter-input summary-date-input"
+            type="text"
+            placeholder="JJ/MM/AAAA"
+            value={coachFrom}
+            maxLength={10}
+            onChange={(e) => setCoachFrom(e.target.value)}
+            aria-label="Date de debut coach"
+          />
+          <span style={{ color: 'var(--text-dim)', fontSize: 13 }}>→</span>
+          <input
+            className="filter-input summary-date-input"
+            type="text"
+            placeholder="JJ/MM/AAAA"
+            value={coachTo}
+            maxLength={10}
+            onChange={(e) => setCoachTo(e.target.value)}
+            aria-label="Date de fin coach"
+          />
+        </div>
+        <p style={{ color: 'var(--text-dim)', fontSize: 12, marginTop: 8 }}>
+          Vide = pas de limite. Ce filtre est independant du filtre Summary.
+        </p>
+      </div>
+
+      {!coachDateSelected && (
+        <div className="summary-card">
+          <p style={{ color: 'var(--text-dim)', fontSize: 13 }}>
+            Selectionne au moins une date pour afficher le board coach.
+          </p>
+        </div>
+      )}
+
+      {coachDateSelected && !coachDatesValid && (
+        <div className="summary-card">
+          <p style={{ color: 'var(--red)', fontSize: 13 }}>
+            Renseigne des dates valides au format JJ/MM/AAAA.
+          </p>
+        </div>
+      )}
+
+      {coachDateSelected && coachDatesValid && coachLoading && (
+        <div className="summary-card">
+          <p style={{ color: 'var(--text-dim)', fontSize: 13 }}>Chargement du board coach…</p>
+        </div>
+      )}
+
+      {coachDateSelected && coachDatesValid && !coachLoading && coachSnapshot && (
+        <>
+          <CoachAlertsCard alerts={priorityAlerts} />
+          <CoachBlundersCard blunders={coachBlunders} onOpenReplay={onOpenReplay} />
+          <CoachReviewCard review={coachReview} />
+          <div className="summary-grid">
+            <CoachPreflopStatsCard title="Early · 3-way niveaux 1-3" stats={coachSnapshot.early_phase} />
+            <CoachPreflopStatsCard title="Mid · 3-way niveaux 4-6" stats={coachSnapshot.mid_phase} />
+            <CoachPreflopStatsCard title="Late · 3-way niveaux 7+" stats={coachSnapshot.late_phase} />
+            <CoachPreflopStatsCard title="Heads-up" stats={coachSnapshot.heads_up} />
+          </div>
+        </>
+      )}
+    </>
+  )
+})
+
 const SummaryPositionsPie = memo(({ wins, secondPlace, thirdPlace }: PositionsPieProps) => {
   const data = useMemo(() => [
     { name: '1st', value: wins, fill: '#10b981' },
@@ -269,7 +901,7 @@ const SummaryPositionsPie = memo(({ wins, secondPlace, thirdPlace }: PositionsPi
             dataKey="value"
             isAnimationActive={false}
           />
-          <Tooltip formatter={(value: number) => [`${value}`, 'Tournois']} />
+          <Tooltip formatter={(value) => [String(value ?? ''), 'Tournois']} />
         </PieChart>
       </ResponsiveContainer>
       <div style={{ display: 'flex', gap: 16, fontSize: 12, justifyContent: 'center' }}>
@@ -518,9 +1150,11 @@ const SummaryChipsTab = memo(({ chipSummary, handEvolution, filteredFromMs, filt
               <Tooltip
                 contentStyle={{ background: '#1a1d2e', border: '1px solid #2a2d3e', borderRadius: 6, fontSize: 12 }}
                 labelStyle={{ color: '#a9b0c8', marginBottom: 4 }}
-                formatter={(value: number, name: string) => {
-                  const curve = CHIPS_CURVES.find((c) => c.key === name)
-                  return [fmtChips(value), curve?.label ?? name]
+                formatter={(value, name) => {
+                  const numericValue = typeof value === 'number' ? value : Number(value ?? 0)
+                  const seriesName = String(name ?? '')
+                  const curve = CHIPS_CURVES.find((c) => c.key === seriesName)
+                  return [fmtChips(Number.isFinite(numericValue) ? numericValue : 0), curve?.label ?? seriesName]
                 }}
                 isAnimationActive={false}
               />
@@ -566,6 +1200,7 @@ const SummaryChipsTab = memo(({ chipSummary, handEvolution, filteredFromMs, filt
 })
 
 export default memo(function Summary() {
+  const navigate = useNavigate()
   const [tournaments, setTournaments] = useState<TournamentRow[]>([])
   const [chipSummary, setChipSummary] = useState<ChipSummary | null>(null)
   const [handEvolution, setHandEvolution] = useState<HandChipPoint[]>([])
@@ -573,7 +1208,9 @@ export default memo(function Summary() {
   const [period, setPeriod] = useState<Period>('all')
   const [customFrom, setCustomFrom] = useState('')
   const [customTo, setCustomTo] = useState('')
-  const [activeTab, setActiveTab] = useState<'summary' | 'chips'>('summary')
+  const [activeTab, setActiveTab] = useState<'summary' | 'chips' | 'coach'>('summary')
+  const [coachFrom, setCoachFrom] = useState('')
+  const [coachTo, setCoachTo] = useState('')
 
   useEffect(() => {
     Promise.all([api.getTournaments(), api.getChipSummary(), api.getChipEvolution()])
@@ -586,10 +1223,48 @@ export default memo(function Summary() {
       .finally(() => setLoading(false))
   }, [])
 
+  const filteredRange = useMemo(
+    () => periodToRange(period, customFrom, customTo),
+    [period, customFrom, customTo],
+  )
+
   const filteredTournaments = useMemo(() => {
-    const { fromMs, toMs } = periodToRange(period, customFrom, customTo)
-    return applyDateRange(tournaments, fromMs, toMs)
-  }, [period, customFrom, customTo, tournaments])
+    return applyDateRange(tournaments, filteredRange.fromMs, filteredRange.toMs)
+  }, [filteredRange.fromMs, filteredRange.toMs, tournaments])
+
+  const coachRange = useMemo(() => {
+    const fromMs = parseDDMMYYYY(coachFrom)
+    const toMsRaw = parseDDMMYYYY(coachTo)
+    const toMs = toMsRaw == null ? null : toMsRaw + 86_399_999
+    return { fromMs, toMs }
+  }, [coachFrom, coachTo])
+
+  const coachDateSelected = coachFrom.trim().length > 0 || coachTo.trim().length > 0
+  const coachDatesValid =
+    (coachFrom.trim().length === 0 || coachRange.fromMs != null) &&
+    (coachTo.trim().length === 0 || coachRange.toMs != null)
+
+  const { coachSnapshot, coachBlunders, coachLoading } = useCoachData(
+    coachDateSelected,
+    coachDatesValid,
+    coachRange.fromMs,
+    coachRange.toMs,
+  )
+
+  const coachTournaments = useMemo(
+    () => applyDateRange(tournaments, coachRange.fromMs, coachRange.toMs),
+    [tournaments, coachRange.fromMs, coachRange.toMs],
+  )
+
+  const coachStats = useMemo(
+    () => computeFilteredStats(coachTournaments),
+    [coachTournaments],
+  )
+
+  const coachHands = useMemo(
+    () => filterHandsByRange(handEvolution, coachRange.fromMs, coachRange.toMs),
+    [handEvolution, coachRange.fromMs, coachRange.toMs],
+  )
 
   const filteredStats = useMemo(
     () => computeFilteredStats(filteredTournaments),
@@ -599,6 +1274,16 @@ export default memo(function Summary() {
   const { rows: sortedMultipliers } = useMemo(
     () => computeMultiplierComparison(filteredStats.totalTournaments, filteredStats.multiplierDist),
     [filteredStats.totalTournaments, filteredStats.multiplierDist],
+  )
+
+  const coachReview = useMemo(
+    () => buildCoachReview(coachStats, coachTournaments, coachHands),
+    [coachStats, coachTournaments, coachHands],
+  )
+
+  const priorityAlerts = useMemo(
+    () => buildPriorityAlerts(coachSnapshot),
+    [coachSnapshot],
   )
 
   if (loading) return <p style={{ color: 'var(--text-dim)' }}>Chargement…</p>
@@ -681,6 +1366,21 @@ export default memo(function Summary() {
         >
           Jetons
         </button>
+        <button
+          onClick={() => setActiveTab('coach')}
+          style={{
+            padding: '8px 16px',
+            background: activeTab === 'coach' ? 'rgba(255,255,255,0.1)' : 'transparent',
+            border: 'none',
+            color: activeTab === 'coach' ? 'var(--text)' : 'var(--text-dim)',
+            cursor: 'pointer',
+            borderBottom: activeTab === 'coach' ? '2px solid var(--accent)' : 'none',
+            fontSize: 14,
+            fontWeight: activeTab === 'coach' ? '600' : '400',
+          }}
+        >
+          Coach
+        </button>
       </div>
 
       {/* Summary Tab */}
@@ -761,8 +1461,25 @@ export default memo(function Summary() {
         <SummaryChipsTab
           chipSummary={chipSummary}
           handEvolution={handEvolution}
-          filteredFromMs={periodToRange(period, customFrom, customTo).fromMs}
-          filteredToMs={periodToRange(period, customFrom, customTo).toMs}
+          filteredFromMs={filteredRange.fromMs}
+          filteredToMs={filteredRange.toMs}
+        />
+      )}
+
+      {activeTab === 'coach' && (
+        <CoachTabPanel
+          coachFrom={coachFrom}
+          coachTo={coachTo}
+          setCoachFrom={setCoachFrom}
+          setCoachTo={setCoachTo}
+          coachDateSelected={coachDateSelected}
+          coachDatesValid={coachDatesValid}
+          coachLoading={coachLoading}
+          coachSnapshot={coachSnapshot}
+          coachReview={coachReview}
+          priorityAlerts={priorityAlerts}
+          coachBlunders={coachBlunders}
+          onOpenReplay={(handId) => navigate(`/hands/${handId}/replay`)}
         />
       )}
     </div>

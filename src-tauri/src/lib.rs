@@ -5,12 +5,36 @@ use serde::Serialize;
 use hh_ingest::{db, import_tournament_with_conn, ImportProgress, ImportResult, DEFAULT_HERO};
 use rusqlite::Connection;
 use session_read_model::{
-	get_hand_detail, get_session_stats, get_chip_summary, get_chip_evolution,
+	get_hand_detail, get_session_stats, get_chip_summary, get_chip_evolution, get_coach_stats, list_coach_spots, list_coach_blunders,
 	list_hands_for_tournament, list_tournaments,
-	HandDetail, HandRow, HandChipPoint, SessionStats, ChipSummary, TournamentRow,
+	HandDetail, HandRow, HandChipPoint, SessionStats, ChipSummary, TournamentRow, CoachSpot, CoachStatsSnapshot, CoachBlunderSpot,
 	load_hand_for_replay, ReplayerState,
 };
 use tauri::{Emitter, Manager};
+use tauri_plugin_dialog::DialogExt;
+
+fn move_window_to_primary_center(window: &tauri::WebviewWindow) -> Result<(), String> {
+	let monitor = window
+		.primary_monitor()
+		.map_err(|e| e.to_string())?
+		.ok_or_else(|| "Aucun ecran principal detecte".to_string())?;
+
+	let monitor_size = monitor.size();
+	let monitor_pos = monitor.position();
+	let window_size = window.outer_size().map_err(|e| e.to_string())?;
+
+	let monitor_width = i32::try_from(monitor_size.width).unwrap_or(i32::MAX);
+	let monitor_height = i32::try_from(monitor_size.height).unwrap_or(i32::MAX);
+	let window_width = i32::try_from(window_size.width).unwrap_or(i32::MAX);
+	let window_height = i32::try_from(window_size.height).unwrap_or(i32::MAX);
+
+	let x = monitor_pos.x + ((monitor_width - window_width).max(0) / 2);
+	let y = monitor_pos.y + ((monitor_height - window_height).max(0) / 2);
+
+	window
+		.set_position(tauri::Position::Physical(tauri::PhysicalPosition::new(x, y)))
+		.map_err(|e| e.to_string())
+}
 
 pub struct AppState {
 	pub db: Mutex<Connection>,
@@ -63,6 +87,71 @@ fn derive_pair_from_selected(selected: &Path) -> Result<(PathBuf, PathBuf), Stri
 
 pub mod commands {
 	use super::*;
+
+	fn apply_default_directory(
+		builder: tauri_plugin_dialog::FileDialogBuilder<tauri::Wry>,
+		default_dir: Option<String>,
+	) -> tauri_plugin_dialog::FileDialogBuilder<tauri::Wry> {
+		if let Some(dir) = default_dir {
+			if !dir.trim().is_empty() {
+				return builder.set_directory(dir);
+			}
+		}
+		builder
+	}
+
+	#[tauri::command]
+	pub async fn pick_import_file(
+		default_dir: Option<String>,
+		window: tauri::WebviewWindow,
+	) -> Result<Option<String>, String> {
+		let _ = move_window_to_primary_center(&window);
+
+		let builder = window
+			.dialog()
+			.file()
+			.set_parent(&window)
+			.set_title("Selectionner le fichier HH Winamax")
+			.add_filter("Hand History", &["txt"]);
+
+		let selected = apply_default_directory(builder, default_dir).blocking_pick_file();
+		Ok(selected.map(|p| p.to_string()))
+	}
+
+	#[tauri::command]
+	pub async fn pick_import_files(
+		default_dir: Option<String>,
+		window: tauri::WebviewWindow,
+	) -> Result<Option<Vec<String>>, String> {
+		let _ = move_window_to_primary_center(&window);
+
+		let builder = window
+			.dialog()
+			.file()
+			.set_parent(&window)
+			.set_title("Selectionner plusieurs fichiers Winamax (.txt)")
+			.add_filter("Hand History", &["txt"]);
+
+		let selected = apply_default_directory(builder, default_dir).blocking_pick_files();
+		Ok(selected.map(|files| files.into_iter().map(|p| p.to_string()).collect()))
+	}
+
+	#[tauri::command]
+	pub async fn pick_import_folder(
+		default_dir: Option<String>,
+		window: tauri::WebviewWindow,
+	) -> Result<Option<String>, String> {
+		let _ = move_window_to_primary_center(&window);
+
+		let builder = window
+			.dialog()
+			.file()
+			.set_parent(&window)
+			.set_title("Selectionner le dossier d imports Winamax");
+
+		let selected = apply_default_directory(builder, default_dir).blocking_pick_folder();
+		Ok(selected.map(|p| p.to_string()))
+	}
 
 	#[tauri::command]
 	pub async fn import_tournament(
@@ -268,6 +357,43 @@ pub mod commands {
 	}
 
 	#[tauri::command]
+	pub async fn get_coach_spots(
+		limit: Option<usize>,
+		state: tauri::State<'_, AppState>,
+	) -> Result<Vec<CoachSpot>, String> {
+		let conn = state.db.lock().map_err(|e| e.to_string())?;
+		list_coach_spots(&conn, limit).map_err(|e| e.to_string())
+	}
+
+	#[tauri::command]
+	pub async fn get_coach_stats_cmd(
+		from_ts: Option<String>,
+		to_ts: Option<String>,
+		state: tauri::State<'_, AppState>,
+	) -> Result<CoachStatsSnapshot, String> {
+		let conn = state.db.lock().map_err(|e| e.to_string())?;
+		get_coach_stats(&conn, from_ts.as_deref(), to_ts.as_deref()).map_err(|e| e.to_string())
+	}
+
+	#[tauri::command]
+	pub async fn get_coach_blunders_cmd(
+		from_ts: Option<String>,
+		to_ts: Option<String>,
+		limit: Option<usize>,
+		min_severity: Option<String>,
+		state: tauri::State<'_, AppState>,
+	) -> Result<Vec<CoachBlunderSpot>, String> {
+		let conn = state.db.lock().map_err(|e| e.to_string())?;
+		list_coach_blunders(&conn, from_ts.as_deref(), to_ts.as_deref(), limit, min_severity.as_deref())
+			.map_err(|e| e.to_string())
+	}
+
+	#[tauri::command]
+	pub async fn move_window_to_primary(window: tauri::WebviewWindow) -> Result<(), String> {
+		move_window_to_primary_center(&window)
+	}
+
+	#[tauri::command]
 	pub async fn clear_all_data(state: tauri::State<'_, AppState>) -> Result<ClearDataResult, String> {
 		let conn = state.db.lock().map_err(|e| e.to_string())?;
 		let cleared = db::clear_all_imported_data(&conn).map_err(|e| e.to_string())?;
@@ -300,9 +426,17 @@ pub fn run() {
 				db: Mutex::new(conn),
 			});
 
+			if let Some(main_window) = app.get_webview_window("main") {
+				let _ = move_window_to_primary_center(&main_window);
+			}
+
 			Ok(())
 		})
 		.invoke_handler(tauri::generate_handler![
+			commands::move_window_to_primary,
+			commands::pick_import_file,
+			commands::pick_import_files,
+			commands::pick_import_folder,
 			commands::import_tournament,
 			commands::import_folder,
 			commands::get_tournaments,
@@ -312,6 +446,9 @@ pub fn run() {
 			commands::get_stats,
 			commands::get_chip_summary_cmd,
 			commands::get_chip_evolution_cmd,
+			commands::get_coach_spots,
+			commands::get_coach_stats_cmd,
+			commands::get_coach_blunders_cmd,
 			commands::clear_all_data,
 		])
 		.run(tauri::generate_context!())
