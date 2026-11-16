@@ -1,21 +1,18 @@
 use std::collections::HashMap;
 use std::fs;
-use std::path::Path;
+use std::path::{Path, PathBuf};
 
 use hand_ledger::compute_ledger;
 use hh_ingest::ev::compute_hero_net_ev;
 use hh_parser_winamax::parse_hands;
 
-fn reference_hh_path(tournament_id: &str) -> String {
-    let docker_path = format!("/app/files/20260609_Expresso({})_real_holdem_no-limit.txt", tournament_id);
-    if Path::new(&docker_path).exists() {
-        return docker_path;
-    }
-
-    format!(
-        "/home/rbernaz/tracker/files/20260609_Expresso({})_real_holdem_no-limit.txt",
-        tournament_id
-    )
+fn reference_hh_path(tournament_id: &str) -> PathBuf {
+    Path::new(env!("CARGO_MANIFEST_DIR"))
+        .join("../../../files")
+        .join(format!(
+            "20260609_Expresso({})_real_holdem_no-limit.txt",
+            tournament_id
+        ))
 }
 
 #[test]

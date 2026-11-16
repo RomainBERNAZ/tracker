@@ -15,15 +15,10 @@ use std::path::Path;
 fn v01_import_and_validate_all_tournaments() {
     let conn = db::open_memory().expect("Failed to open DB");
     
-       // Use /app/files in Docker, fall back to local path
-       let files_dir = if std::path::Path::new("/app/files").exists() {
-           "/app/files"
-       } else {
-           "/home/rbernaz/tracker/files"
-       };
+    let files_dir = Path::new(env!("CARGO_MANIFEST_DIR")).join("../../../files");
     
     // Find all .txt files (excluding _summary.txt)
-    let mut hh_files: Vec<_> = std::fs::read_dir(files_dir)
+    let mut hh_files: Vec<_> = std::fs::read_dir(&files_dir)
         .expect("Failed to read files dir")
         .filter_map(|e| e.ok())
         .map(|e| e.path())

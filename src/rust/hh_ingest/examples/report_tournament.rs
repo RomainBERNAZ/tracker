@@ -9,19 +9,13 @@ fn main() {
         .nth(1)
         .unwrap_or_else(|| "1124843609".to_string());
 
-    let candidates = [
-        format!("/app/files/20260609_Expresso({})_real_holdem_no-limit.txt", tournament_id),
-        format!(
-            "/home/rbernaz/tracker/files/20260609_Expresso({})_real_holdem_no-limit.txt",
+    let hh_path = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
+        .join("../../../files")
+        .join(format!(
+            "20260609_Expresso({})_real_holdem_no-limit.txt",
             tournament_id
-        ),
-    ];
-    let hh_path = candidates
-        .iter()
-        .find(|p| std::path::Path::new(p.as_str()).exists())
-        .expect("hh path");
-
-    let hh_text = fs::read_to_string(hh_path).expect("read hh file");
+        ));
+    let hh_text = fs::read_to_string(&hh_path).expect("read hh file");
     let (hands, warnings) = parse_hands(hh_text.as_bytes()).expect("parse hh");
 
     if !warnings.is_empty() {
