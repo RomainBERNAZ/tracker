@@ -81,7 +81,7 @@ cd ../..
 
 ```bash
 # From repository root
-cargo tauri build --release
+cargo tauri build
 ```
 
 This will:
@@ -242,7 +242,7 @@ sudo apt-get install -y libgtk-3-dev libayatana-appindicator3-dev
 # Ensure cargo is in PATH
 source "$HOME/.cargo/env"
 # Then retry
-cargo tauri build --release
+cargo tauri build
 ```
 
 ### App Crashes on Launch

@@ -210,7 +210,7 @@ sudo apt-get install -y build-essential libssl-dev libgtk-3-dev libayatana-appin
 git clone https://github.com/RomainBERNAZ/tracker.git
 cd tracker
 pnpm install --dir src/frontend --frozen-lockfile
-cargo tauri build --release
+cargo tauri build
 
 # 3) Run app (Linux AppImage)
 chmod +x src-tauri/target/release/bundle/appimage/expresso-review_*.AppImage
