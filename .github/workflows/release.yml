@@ -9,7 +9,25 @@ permissions:
   contents: write
 
 jobs:
+  prepare-source:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Archive build sources
+        run: git archive --format=tar --output=source.tar HEAD Cargo.toml src src-tauri
+
+      - name: Upload build sources
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-sources
+          path: source.tar
+          if-no-files-found: error
+
   build:
+    needs: prepare-source
     strategy:
       fail-fast: false
       matrix:
@@ -23,14 +41,14 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - name: Download build sources
+        uses: actions/download-artifact@v4
         with:
-          sparse-checkout: |
-            /Cargo.toml
-            /src/
-            /src-tauri/
-          sparse-checkout-cone-mode: false
+          name: build-sources
+          path: source
+
+      - name: Extract build sources
+        run: tar -xf source/source.tar
 
       - name: Setup Node
         uses: actions/setup-node@v4
