@@ -5,7 +5,7 @@
   "build": {
     "beforeDevCommand": "cd \"${GITHUB_WORKSPACE:-$(git rev-parse --show-toplevel)}/src/frontend\" && pnpm dev",
     "devUrl": "http://localhost:5173",
-    "beforeBuildCommand": "pnpm --dir src/frontend build",
+    "beforeBuildCommand": "pnpm build",
     "frontendDist": "../src/frontend/dist"
   },
   "app": {
