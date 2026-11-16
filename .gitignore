@@ -11,6 +11,7 @@ node_modules/
 dist/
 .pnpm-store/
 pnpm-lock.yaml
+!src/frontend/pnpm-lock.yaml
 
 # IDEs
 .vscode/
