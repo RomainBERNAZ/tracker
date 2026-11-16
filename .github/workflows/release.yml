@@ -25,6 +25,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            /*
+            !/export-20_06_26_13_06.csv:6E53BFF5-0001-412b-8407-E3AEDE763511
+            !/export-20_06_26_13_06.csv:Zone.Identifier
+          sparse-checkout-cone-mode: false
 
       - name: Setup Node
         uses: actions/setup-node@v4
