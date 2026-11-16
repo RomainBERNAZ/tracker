@@ -16,6 +16,7 @@ hh_parser_winamax  = { workspace = true }
 hand_ledger        = { workspace = true }
 cev_realized_core  = { workspace = true }
 rs_poker           = { version = "5.0.0", default-features = false }
+zip                = { version = "0.6.6", default-features = false, features = ["deflate"] }
 
 [dev-dependencies]
 tempfile = "3"

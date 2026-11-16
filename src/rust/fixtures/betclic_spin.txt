@@ -1,0 +1,107 @@
+*** HEADER ***
+Site: Betclic.fr
+Game Mode: Spin
+Game Type: NL Texas Hold'em
+Game Name: Spin & Rush 2€
+Game ID: GAME-001
+Prize pool: 10.00€
+Multiplier: x5
+Buy In: 2.00€
+Hand ID: HAND-001
+Date & Time: 2026-11-14 20:32:34 (UTC)
+Table ID: TABLE-001
+Blinds: 50/100
+Total Pot: 200
+Rake: 0
+*** PLAYERS ***
+Seat 1: Villain (500) [SB]
+Seat 2: Hero (500) [BB Hero]
+Seat 3: Other (500) [BTN]
+*** HOLE CARDS ***
+Villain: [Qc Qd]
+Hero: [As Ah]
+Other: [Jh Js]
+*** PRE-FLOP ***
+20:32:34 - Villain: Posts SB 50
+20:32:34 - Hero: Posts BB 100
+20:32:35 - Other: Folds
+20:32:36 - Villain: Calls 50
+20:32:37 - Hero: Checks
+*** SUMMARY ***
+Hero wins main pot of 200
+
+------------
+
+*** HEADER ***
+Site: Betclic.fr
+Game Mode: Spin
+Game Type: NL Texas Hold'em
+Game Name: Spin & Rush 2€
+Game ID: GAME-001
+Prize pool: 10.00€
+Multiplier: x5
+Buy In: 2.00€
+Hand ID: HAND-002
+Date & Time: 2026-11-14 20:33:34 (UTC)
+Table ID: TABLE-001
+Blinds: 50/100
+Total Pot: 400
+Rake: 0
+*** PLAYERS ***
+Seat 1: Villain (200) [BB]
+Seat 3: Hero (300) [BTN SB Hero]
+*** HOLE CARDS ***
+Villain: [Qc Qd]
+Hero: [As Ah]
+*** PRE-FLOP ***
+20:33:34 - Hero: Posts SB 50
+20:33:34 - Villain: Posts BB 100
+20:33:35 - Hero: Calls 50
+*** FLOP *** [2c 3d 8h]
+20:33:36 - Hero: Checks
+20:33:36 - Villain: Checks
+*** TURN *** [2c 3d 8h 9s]
+20:33:37 - Hero: Checks
+20:33:37 - Villain: Checks
+*** RIVER *** [2c 3d 8h 9s Kc]
+20:33:38 - Hero: Bets 200 and is all-in
+20:33:39 - Villain: Calls 100 and is all-in
+*** SHOWDOWN ***
+Hero shows [As Ah] (Pair) [As Ah Kc 9s 8h]
+Villain shows [Qc Qd] (Pair) [Kc Qd Qc 9s 8h]
+*** SUMMARY ***
+Hero wins main pot of 400
+Hero finished 1st and wins 10.00 EUR
+Villain finished 2nd
+
+------------
+
+*** HEADER ***
+Site: Betclic.fr
+Game Mode: Spin
+Game Type: NL Texas Hold'em
+Game Name: Spin & Rush 2€
+Game ID: GAME-002
+Prize pool: 10.00€
+Multiplier: x5
+Buy In: 2.00€
+Hand ID: HAND-003
+Date & Time: 2026-11-14 20:40:00 (UTC)
+Table ID: TABLE-002
+Blinds: 50/100
+Total Pot: 150
+Rake: 0
+*** PLAYERS ***
+Seat 1: Villain (300) [BTN SB]
+Seat 3: Hero (300) [BB Hero]
+*** HOLE CARDS ***
+Villain: [Jc Js]
+Hero: [Kc Kh]
+*** PRE-FLOP ***
+20:40:00 - Villain: Posts SB 50
+20:40:00 - Hero: Posts BB 100
+20:40:01 - Villain: Folds
+*** SUMMARY ***
+Villain wins main pot of 150
+Villain finished 1st and wins 10.00 EUR
+Hero finished 2nd

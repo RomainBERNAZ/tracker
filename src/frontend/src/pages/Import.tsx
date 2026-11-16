@@ -25,21 +25,27 @@ export default function Import() {
   }, [])
 
   const derivePair = (selectedPath: string): { hhPath: string; summaryPath: string } => {
-    if (selectedPath.endsWith('_summary.txt')) {
+    const lowerPath = selectedPath.toLowerCase()
+
+    if (lowerPath.endsWith('.zip')) {
+      return { hhPath: selectedPath, summaryPath: '' }
+    }
+
+    if (lowerPath.endsWith('_summary.txt')) {
       return {
-        hhPath: selectedPath.replace(/_summary\.txt$/, '.txt'),
+        hhPath: selectedPath.replace(/_summary\.txt$/i, '.txt'),
         summaryPath: selectedPath,
       }
     }
 
-    if (selectedPath.endsWith('.txt')) {
+    if (lowerPath.endsWith('.txt')) {
       return {
         hhPath: selectedPath,
-        summaryPath: selectedPath.replace(/\.txt$/, '_summary.txt'),
+        summaryPath: selectedPath.replace(/\.txt$/i, '_summary.txt'),
       }
     }
 
-    throw new Error('Fichier non supporte: utiliser .txt ou _summary.txt')
+    throw new Error('Fichier non supporte: utiliser .txt, .zip ou _summary.txt')
   }
 
   const withDialogLock = async <T,>(fn: () => Promise<T>): Promise<T | null> => {
@@ -260,7 +266,7 @@ export default function Import() {
     <div>
       <div className="page-header">
         <h1>Import Hand History</h1>
-        <p>Importer un fichier, plusieurs fichiers, ou un dossier Winamax Expresso (.txt)</p>
+        <p>Importer Winamax Expresso (.txt) ou Betclic Spin/Rush (.txt ou .zip)</p>
       </div>
 
       {(status === 'idle' || status === 'picking') && (
@@ -272,7 +278,7 @@ export default function Import() {
           >
             <div className="icon">↓</div>
             <div>Importer un fichier (HH ou _summary)</div>
-            <div className="hint">Le fichier correspondant sera détecté automatiquement</div>
+            <div className="hint">Le format Winamax ou Betclic est détecté automatiquement</div>
           </button>
           <button
             type="button"
@@ -316,7 +322,7 @@ export default function Import() {
             <dt>Invalides</dt>      <dd>{result.invalid_hands}</dd>
           </dl>
           <button className="btn-primary" style={{ marginTop: 16 }} onClick={() => setStatus('idle')}>
-            Importer un autre tournoi
+            Importer un autre fichier
           </button>
         </div>
       )}
@@ -325,9 +331,9 @@ export default function Import() {
         <div className="import-result">
           <h3 className="positive">✓ Import dossier terminé</h3>
           <dl>
-            <dt>Tournois detectes</dt> <dd>{batchResult.tournaments_total}</dd>
-            <dt>Tournois importes</dt> <dd>{batchResult.tournaments_imported}</dd>
-            <dt>Tournois en echec</dt> <dd>{batchResult.tournaments_failed}</dd>
+            <dt>Fichiers detectes</dt> <dd>{batchResult.tournaments_total}</dd>
+            <dt>Fichiers importes</dt> <dd>{batchResult.tournaments_imported}</dd>
+            <dt>Fichiers en echec</dt> <dd>{batchResult.tournaments_failed}</dd>
             <dt>Total mains</dt>       <dd>{batchResult.total_hands}</dd>
             <dt>Inserees</dt>          <dd>{batchResult.inserted_hands}</dd>
             <dt>Ignorees (dup)</dt>    <dd>{batchResult.skipped_hands}</dd>

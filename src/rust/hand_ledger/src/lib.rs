@@ -1,7 +1,8 @@
-use std::collections::HashMap;
-use serde::{Deserialize, Serialize};
-use thiserror::Error;
 use hh_parser_winamax::{Action, ParsedHand, StreetType};
+use serde::{Deserialize, Serialize};
+use std::cmp::Reverse;
+use std::collections::HashMap;
+use thiserror::Error;
 
 #[derive(Debug, Error)]
 pub enum LedgerError {
@@ -106,6 +107,8 @@ pub fn compute_ledger(hand: &ParsedHand) -> HandLedger {
         }
     }
 
+    reconcile_uncalled_excess(&mut contributions, hand.summary.total_pot);
+
     // ── Showdown collections ──────────────────────────────────────────────────
     if let Some(sd) = &hand.showdown {
         for (name, amount) in &sd.collections {
@@ -155,6 +158,30 @@ pub fn compute_ledger(hand: &ParsedHand) -> HandLedger {
         players,
         total_pot: hand.summary.total_pot,
         rake: hand.summary.rake,
+    }
+}
+
+fn reconcile_uncalled_excess(contributions: &mut HashMap<&str, u64>, total_pot: u64) {
+    let contributed: u64 = contributions.values().copied().sum();
+    let excess = contributed.saturating_sub(total_pot);
+    if excess == 0 {
+        return;
+    }
+
+    let mut ranked: Vec<(&str, u64)> = contributions
+        .iter()
+        .map(|(name, amount)| (*name, *amount))
+        .collect();
+    ranked.sort_unstable_by_key(|(_, amount)| Reverse(*amount));
+
+    let Some((player, largest)) = ranked.first().copied() else {
+        return;
+    };
+    let second_largest = ranked.get(1).map(|(_, amount)| *amount).unwrap_or(0);
+    if largest.saturating_sub(second_largest) == excess {
+        if let Some(amount) = contributions.get_mut(&player) {
+            *amount -= excess;
+        }
     }
 }
 
@@ -223,7 +250,11 @@ Seat 3: Le Yoyo14510 (small blind) showed [Kd Jd] and lost with Two pairs : King
     fn test_mrzo_folded_cev() {
         let (hands, _) = parse_hands(HAND_3WAY.as_bytes()).unwrap();
         let ledger = compute_ledger(&hands[0]);
-        let mrzo = ledger.players.iter().find(|p| p.player_name == "MRZO").unwrap();
+        let mrzo = ledger
+            .players
+            .iter()
+            .find(|p| p.player_name == "MRZO")
+            .unwrap();
         // MRZO put in 40 (raise preflop), folded on turn, collected 0
         assert_eq!(mrzo.contributions, 40);
         assert_eq!(mrzo.collected, 0);
@@ -234,10 +265,43 @@ Seat 3: Le Yoyo14510 (small blind) showed [Kd Jd] and lost with Two pairs : King
     fn test_winner_cev() {
         let (hands, _) = parse_hands(HAND_3WAY.as_bytes()).unwrap();
         let ledger = compute_ledger(&hands[0]);
-        let winner = ledger.players.iter().find(|p| p.player_name == "KeDuBluff_2A").unwrap();
+        let winner = ledger
+            .players
+            .iter()
+            .find(|p| p.player_name == "KeDuBluff_2A")
+            .unwrap();
         // KeDuBluff put in 500, collected 1040
         assert_eq!(winner.contributions, 500);
         assert_eq!(winner.collected, 1040);
         assert_eq!(winner.realized_cev, 540);
+    }
+
+    #[test]
+    fn betclic_uncalled_excess_is_not_counted_as_pot_contribution() {
+        let parsed = hh_parser_winamax::parse_betclic_history(
+            include_str!("../../fixtures/betclic_spin.txt").as_bytes(),
+        )
+        .unwrap();
+        let ledger = compute_ledger(&parsed.hands[1]);
+
+        assert_eq!(ledger.total_pot, 400);
+        assert_eq!(
+            ledger
+                .players
+                .iter()
+                .map(|player| player.contributions)
+                .sum::<u64>(),
+            400
+        );
+        assert_eq!(ledger.cev_sum(), 0);
+
+        let hero = ledger
+            .players
+            .iter()
+            .find(|player| player.player_name == "Hero")
+            .unwrap();
+        assert_eq!(hero.contributions, 200);
+        assert_eq!(hero.collected, 400);
+        assert_eq!(hero.ending_stack, 500);
     }
 }

@@ -1,8 +1,10 @@
+pub mod betclic;
 pub mod error;
 pub mod parser;
 pub mod summary_parser;
 pub mod types;
 
+pub use betclic::{parse_betclic_history, BetclicParsedHistory};
 pub use error::ParseError;
 pub use parser::parse_hands;
 pub use summary_parser::parse_tournament_summary;
@@ -140,7 +142,11 @@ Seat 3: lalex9471 (small blind) (button) showed [6h Ac] and won 1340 with One pa
     fn test_mrzo_folds_action() {
         let (hands, _) = parse_hands(SAMPLE_HAND.as_bytes()).unwrap();
         let h = &hands[0];
-        let turn = h.streets.iter().find(|s| s.street_type == StreetType::Turn).unwrap();
+        let turn = h
+            .streets
+            .iter()
+            .find(|s| s.street_type == StreetType::Turn)
+            .unwrap();
         let mrzo_fold = turn
             .actions
             .iter()
@@ -153,10 +159,20 @@ Seat 3: lalex9471 (small blind) (button) showed [6h Ac] and won 1340 with One pa
     fn test_all_in_actions() {
         let (hands, _) = parse_hands(SAMPLE_HAND.as_bytes()).unwrap();
         let h = &hands[0];
-        let river = h.streets.iter().find(|s| s.street_type == StreetType::River).unwrap();
+        let river = h
+            .streets
+            .iter()
+            .find(|s| s.street_type == StreetType::River)
+            .unwrap();
         assert_eq!(river.actions.len(), 2);
-        assert!(matches!(river.actions[0].action, Action::AllInBet { amount: 304 }));
-        assert!(matches!(river.actions[1].action, Action::AllInCall { amount: 304 }));
+        assert!(matches!(
+            river.actions[0].action,
+            Action::AllInBet { amount: 304 }
+        ));
+        assert!(matches!(
+            river.actions[1].action,
+            Action::AllInCall { amount: 304 }
+        ));
     }
 
     #[test]

@@ -2,7 +2,7 @@ use std::sync::Mutex;
 use std::path::{Path, PathBuf};
 use serde::Serialize;
 
-use hh_ingest::{db, import_tournament_with_conn, ImportProgress, ImportResult, DEFAULT_HERO};
+use hh_ingest::{db, import_history_file_with_conn, ImportProgress, ImportResult, DEFAULT_HERO};
 use rusqlite::Connection;
 use session_read_model::{
 	get_hand_detail, get_session_stats, get_chip_summary, get_chip_evolution, get_coach_stats, list_coach_spots, list_coach_blunders,
@@ -70,19 +70,28 @@ fn derive_pair_from_selected(selected: &Path) -> Result<(PathBuf, PathBuf), Stri
 		.and_then(|n| n.to_str())
 		.ok_or_else(|| "Nom de fichier invalide".to_string())?;
 
-	if name.ends_with("_summary.txt") {
-		let hh_name = name.replace("_summary.txt", ".txt");
+	if name.to_ascii_lowercase().ends_with(".zip") {
+		return Ok((selected.to_path_buf(), PathBuf::new()));
+	}
+
+	if name.to_ascii_lowercase().ends_with("_summary.txt") {
+		let base = &name[..name.len() - "_summary.txt".len()];
+		let hh_name = format!("{base}.txt");
 		let hh_path = selected.with_file_name(hh_name);
 		return Ok((hh_path, selected.to_path_buf()));
 	}
 
-	if name.ends_with(".txt") {
-		let summary_name = name.replace(".txt", "_summary.txt");
+	if name.to_ascii_lowercase().ends_with(".txt") {
+		let stem = selected
+			.file_stem()
+			.and_then(|stem| stem.to_str())
+			.ok_or_else(|| "Nom de fichier invalide".to_string())?;
+		let summary_name = format!("{stem}_summary.txt");
 		let summary_path = selected.with_file_name(summary_name);
 		return Ok((selected.to_path_buf(), summary_path));
 	}
 
-	Err("Fichier non supporte: utiliser .txt ou _summary.txt".to_string())
+	Err("Fichier non supporte: utiliser .txt, .zip ou _summary.txt".to_string())
 }
 
 pub mod commands {
@@ -111,8 +120,8 @@ pub mod commands {
 			.dialog()
 			.file()
 			.set_parent(&window)
-			.set_title("Selectionner le fichier HH Winamax")
-			.add_filter("Hand History", &["txt"]);
+			.set_title("Selectionner un fichier Winamax ou Betclic")
+			.add_filter("Hand History", &["txt", "zip"]);
 
 		let selected = apply_default_directory(builder, default_dir).blocking_pick_file();
 		Ok(selected.map(|p| p.to_string()))
@@ -129,8 +138,8 @@ pub mod commands {
 			.dialog()
 			.file()
 			.set_parent(&window)
-			.set_title("Selectionner plusieurs fichiers Winamax (.txt)")
-			.add_filter("Hand History", &["txt"]);
+			.set_title("Selectionner plusieurs fichiers Winamax ou Betclic")
+			.add_filter("Hand History", &["txt", "zip"]);
 
 		let selected = apply_default_directory(builder, default_dir).blocking_pick_files();
 		Ok(selected.map(|files| files.into_iter().map(|p| p.to_string()).collect()))
@@ -147,7 +156,7 @@ pub mod commands {
 			.dialog()
 			.file()
 			.set_parent(&window)
-			.set_title("Selectionner le dossier d imports Winamax");
+			.set_title("Selectionner le dossier d imports Winamax ou Betclic");
 
 		let selected = apply_default_directory(builder, default_dir).blocking_pick_folder();
 		Ok(selected.map(|p| p.to_string()))
@@ -162,28 +171,38 @@ pub mod commands {
 	) -> Result<ImportResult, String> {
 		let selected_hh = Path::new(&hh_path);
 		let selected_summary = Path::new(&summary_path);
-		let (effective_hh, effective_summary) = if selected_hh.exists() && selected_summary.exists() {
-			(selected_hh.to_path_buf(), selected_summary.to_path_buf())
-		} else {
+		let selected_is_summary = selected_hh
+			.file_name()
+			.and_then(|name| name.to_str())
+			.is_some_and(|name| name.to_ascii_lowercase().ends_with("_summary.txt"));
+		let (effective_hh, derived_summary) = if selected_is_summary || !selected_hh.exists() {
 			derive_pair_from_selected(selected_hh)?
+		} else {
+			(selected_hh.to_path_buf(), PathBuf::new())
 		};
 
-		if !effective_hh.exists() {
+		if !effective_hh.is_file() {
 			return Err(format!("IO error: fichier HH introuvable: {}", effective_hh.display()));
 		}
-		if !effective_summary.exists() {
-			return Err(format!(
-				"IO error: fichier summary introuvable: {}",
-				effective_summary.display()
-			));
-		}
+		let effective_summary = if selected_summary.is_file() {
+			Some(selected_summary.to_path_buf())
+		} else if !derived_summary.as_os_str().is_empty() && derived_summary.is_file() {
+			Some(derived_summary)
+		} else {
+			derive_pair_from_selected(&effective_hh)
+				.ok()
+				.map(|(_, summary)| summary)
+				.filter(|summary| summary.is_file())
+		};
+		let effective_summary = effective_summary
+			.map(|path| path.to_string_lossy().into_owned());
 
 		let conn = state.db.lock().map_err(|e| e.to_string())?;
 		let win = window.clone();
 
-		let result = import_tournament_with_conn(
+		let result = import_history_file_with_conn(
 			effective_hh.to_string_lossy().as_ref(),
-			effective_summary.to_string_lossy().as_ref(),
+			effective_summary.as_deref(),
 			&conn,
 			DEFAULT_HERO,
 			Some(Box::new(move |progress: ImportProgress| {
@@ -211,19 +230,25 @@ pub mod commands {
 			.filter_map(Result::ok)
 			.map(|e| e.path())
 			.filter(|p| {
+				let extension = p
+					.extension()
+					.and_then(|e| e.to_str())
+					.unwrap_or_default()
+					.to_ascii_lowercase();
+				let file_name = p
+					.file_name()
+					.and_then(|n| n.to_str())
+					.unwrap_or_default()
+					.to_ascii_lowercase();
 				p.is_file()
-					&& p.extension().and_then(|e| e.to_str()) == Some("txt")
-					&& !p
-						.file_name()
-						.and_then(|n| n.to_str())
-						.unwrap_or_default()
-						.ends_with("_summary.txt")
+					&& (extension == "txt" || extension == "zip")
+					&& !file_name.ends_with("_summary.txt")
 			})
 			.collect();
 		hh_files.sort();
 
 		if hh_files.is_empty() {
-			return Err("Aucun fichier .txt de tournoi trouve dans ce dossier".to_string());
+			return Err("Aucun fichier .txt ou .zip de tournoi trouve dans ce dossier".to_string());
 		}
 
 		let conn = state.db.lock().map_err(|e| e.to_string())?;
@@ -239,25 +264,23 @@ pub mod commands {
 		let mut failures: Vec<String> = Vec::new();
 
 		for hh in &hh_files {
-			let summary = hh.with_file_name(
-				hh.file_name()
-					.and_then(|n| n.to_str())
-					.unwrap_or_default()
-					.replace(".txt", "_summary.txt"),
-			);
+			let is_text = hh
+				.extension()
+				.and_then(|extension| extension.to_str())
+				.is_some_and(|extension| extension.eq_ignore_ascii_case("txt"));
+			let summary_path = if is_text {
+				let stem = hh.file_stem().and_then(|name| name.to_str()).unwrap_or_default();
+				let summary = hh.with_file_name(format!("{stem}_summary.txt"));
+				summary.is_file().then_some(summary)
+			} else {
+				None
+			};
+			let summary_path =
+				summary_path.map(|path| path.to_string_lossy().into_owned());
 
-			if !summary.exists() {
-				failed += 1;
-				failures.push(format!(
-					"Summary manquant pour {}",
-					hh.file_name().and_then(|n| n.to_str()).unwrap_or_default()
-				));
-				continue;
-			}
-
-			match import_tournament_with_conn(
+			match import_history_file_with_conn(
 				hh.to_string_lossy().as_ref(),
-				summary.to_string_lossy().as_ref(),
+				summary_path.as_deref(),
 				&conn,
 				DEFAULT_HERO,
 				Some(Box::new({

@@ -23,7 +23,7 @@ Build a **clean, maintainable, performant** desktop application to analyze Expre
 ## Phase 1: Realized cEV Foundation (Blocking)
 
 ### Deliverables
-- [x] HH import pipeline (Winamax)
+- [x] HH import pipeline (Winamax + Betclic Spin/Rush)
 - [x] Parsing + normalization
 - [x] Ledger: contributions/payouts
 - [x] Realized cEV calculation (`stack_end - stack_start`)

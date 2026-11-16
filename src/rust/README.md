@@ -4,7 +4,7 @@ This directory contains the Rust workspace with all performance-critical modules
 
 ## Modules
 
-- **`hh_parser_winamax`** — Winamax hand history parser
+- **`hh_parser_winamax`** — Winamax and Betclic Spin/Rush hand history parsers
 - **`hand_ledger`** — Ledger & split calculations
 - **`cev_realized_core`** — Realized cEV + invariant validation
 - **`hh_ingest`** — Import orchestration pipeline
@@ -18,6 +18,7 @@ Cargo.workspace
 │   ├── src/
 │   │   ├── lib.rs        # Public API
 │   │   ├── parser.rs     # State machine
+│   │   ├── betclic.rs    # Betclic Spin/Rush text export parser
 │   │   ├── error.rs      # Error types
 │   │   └── tests.rs
 │   └── Cargo.toml
