@@ -1,11 +1,11 @@
 {
   "productName": "Expresso Review",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "identifier": "dev.expresso.review",
   "build": {
     "beforeDevCommand": "cd \"${GITHUB_WORKSPACE:-$(git rev-parse --show-toplevel)}/src/frontend\" && pnpm dev",
     "devUrl": "http://localhost:5173",
-    "beforeBuildCommand": "cd \"${GITHUB_WORKSPACE:-$(git rev-parse --show-toplevel)}/src/frontend\" && pnpm build",
+    "beforeBuildCommand": "pnpm --dir src/frontend build",
     "frontendDist": "../src/frontend/dist"
   },
   "app": {
