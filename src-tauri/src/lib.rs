@@ -392,10 +392,11 @@ pub mod commands {
 	pub async fn get_coach_stats_cmd(
 		from_ts: Option<String>,
 		to_ts: Option<String>,
+		buy_in: Option<f64>,
 		state: tauri::State<'_, AppState>,
 	) -> Result<CoachStatsSnapshot, String> {
 		let conn = state.db.lock().map_err(|e| e.to_string())?;
-		get_coach_stats(&conn, from_ts.as_deref(), to_ts.as_deref()).map_err(|e| e.to_string())
+		get_coach_stats(&conn, from_ts.as_deref(), to_ts.as_deref(), buy_in).map_err(|e| e.to_string())
 	}
 
 	#[tauri::command]
@@ -404,10 +405,11 @@ pub mod commands {
 		to_ts: Option<String>,
 		limit: Option<usize>,
 		min_severity: Option<String>,
+		buy_in: Option<f64>,
 		state: tauri::State<'_, AppState>,
 	) -> Result<Vec<CoachBlunderSpot>, String> {
 		let conn = state.db.lock().map_err(|e| e.to_string())?;
-		list_coach_blunders(&conn, from_ts.as_deref(), to_ts.as_deref(), limit, min_severity.as_deref())
+		list_coach_blunders(&conn, from_ts.as_deref(), to_ts.as_deref(), limit, min_severity.as_deref(), buy_in)
 			.map_err(|e| e.to_string())
 	}
 

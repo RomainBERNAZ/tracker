@@ -10,6 +10,7 @@ pub struct TournamentRow {
     pub id: String,
     pub player_name: String,
     pub buy_in_euros: f64,
+    pub rake_euros: f64,
     pub prizepool_euros: f64,
     pub multiplier: i64,
     pub finish_position: i64,
@@ -145,6 +146,7 @@ pub struct ReplayerStep {
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct HandChipPoint {
+    pub tournament_id: String,
     pub timestamp: String,
     pub realized_cev: i64,
     pub net_ev: Option<i64>,
@@ -164,7 +166,7 @@ const HERO_SHOWDOWN_SQL: &str = r#"(COALESCE(h.has_showdown, 0) <> 0 AND NOT EXI
 pub fn get_chip_evolution(conn: &Connection) -> Result<Vec<HandChipPoint>, rusqlite::Error> {
     let mut stmt = conn.prepare(&format!(
         r#"SELECT h.timestamp, hp.realized_cev, hp.net_ev,
-                  {HERO_SHOWDOWN_SQL}
+                  {HERO_SHOWDOWN_SQL}, h.tournament_id
            FROM hands h
            JOIN hand_players hp ON hp.hand_id = h.id AND hp.hero = 1
            ORDER BY h.timestamp ASC"#,
@@ -172,6 +174,7 @@ pub fn get_chip_evolution(conn: &Connection) -> Result<Vec<HandChipPoint>, rusql
 
     let rows = stmt.query_map([], |row| {
         Ok(HandChipPoint {
+            tournament_id: row.get(4)?,
             timestamp: row.get(0)?,
             realized_cev: row.get(1)?,
             net_ev: row.get(2)?,
@@ -366,6 +369,7 @@ pub fn list_coach_blunders(
     to_ts: Option<&str>,
     limit: Option<usize>,
     min_severity: Option<&str>,
+    buy_in: Option<f64>,
 ) -> Result<Vec<CoachBlunderSpot>, rusqlite::Error> {
     let lim = limit.unwrap_or(120) as i64;
     let min_rank = min_severity.map_or(1, severity_rank);
@@ -390,8 +394,12 @@ pub fn list_coach_blunders(
             AND a.player_name = hp.player_name
            WHERE hp.net_ev IS NOT NULL
              AND a.action_type IN ('allin_call', 'allin_bet', 'allin_raise')
-             AND (?1 IS NULL OR h.timestamp >= ?1)
-             AND (?2 IS NULL OR h.timestamp <= ?2)
+             AND h.tournament_id IN (
+                 SELECT t.id FROM tournaments t
+                 WHERE (?1 IS NULL OR julianday(t.started_at) >= julianday(?1))
+                   AND (?2 IS NULL OR julianday(t.started_at) <= julianday(?2))
+                   AND (?3 IS NULL OR ROUND(t.buy_in_euros + t.rake_euros, 6) = ?3)
+             )
              AND NOT EXISTS (
                  SELECT 1
                  FROM hand_actions a2
@@ -405,7 +413,7 @@ pub fn list_coach_blunders(
     )?;
 
     let rows: Vec<(String, String, String, i64, i64, bool, i64, i64, Option<f64>, String, i64)> = stmt
-        .query_map(params![from_ts, to_ts], |row| {
+        .query_map(params![from_ts, to_ts, buy_in], |row| {
             Ok((
                 row.get(0)?,
                 row.get(1)?,
@@ -718,6 +726,7 @@ pub fn get_coach_stats(
     conn: &Connection,
     from_ts: Option<&str>,
     to_ts: Option<&str>,
+    buy_in: Option<f64>,
 ) -> Result<CoachStatsSnapshot, rusqlite::Error> {
     let mut stmt = conn.prepare(
         r#"SELECT h.id,
@@ -731,13 +740,17 @@ pub fn get_coach_stats(
            JOIN hand_players hp ON hp.hand_id = h.id AND hp.hero = 1
            LEFT JOIN hand_actions a ON a.hand_id = h.id AND a.street_order = 0
            WHERE h.player_count IN (2, 3)
-             AND (?1 IS NULL OR h.timestamp >= ?1)
-             AND (?2 IS NULL OR h.timestamp <= ?2)
+             AND h.tournament_id IN (
+                 SELECT t.id FROM tournaments t
+                 WHERE (?1 IS NULL OR julianday(t.started_at) >= julianday(?1))
+                   AND (?2 IS NULL OR julianday(t.started_at) <= julianday(?2))
+                   AND (?3 IS NULL OR ROUND(t.buy_in_euros + t.rake_euros, 6) = ?3)
+             )
            ORDER BY h.id ASC, a.action_index ASC"#,
     )?;
 
     let rows: Vec<(String, i64, i64, String, Option<String>, Option<String>)> = stmt
-        .query_map(params![from_ts, to_ts], |row| {
+        .query_map(params![from_ts, to_ts, buy_in], |row| {
             Ok((
                 row.get(0)?,
                 row.get(1)?,
@@ -795,7 +808,8 @@ pub fn list_tournaments(
                     END
                 ), 0.0) as hero_net_ev_eur_sum,
                 COALESCE(SUM(CASE WHEN NOT {HERO_SHOWDOWN_SQL} THEN hp.realized_cev ELSE 0 END), 0) as wsd_cev_sum,
-                COALESCE(SUM(CASE WHEN {HERO_SHOWDOWN_SQL} THEN hp.realized_cev ELSE 0 END), 0) as sd_cev_sum
+                COALESCE(SUM(CASE WHEN {HERO_SHOWDOWN_SQL} THEN hp.realized_cev ELSE 0 END), 0) as sd_cev_sum,
+                t.rake_euros
            FROM tournaments t
            LEFT JOIN hands h ON h.tournament_id = t.id
            LEFT JOIN hand_players hp ON hp.hand_id = h.id AND hp.hero = 1
@@ -820,6 +834,7 @@ pub fn list_tournaments(
             hero_net_ev_eur_sum: row.get(11)?,
             wsd_cev_sum: row.get(12)?,
             sd_cev_sum: row.get(13)?,
+            rake_euros: row.get(14)?,
         })
     })?;
 
@@ -840,6 +855,7 @@ mod tournament_listing_tests {
                 id TEXT PRIMARY KEY,
                 player_name TEXT NOT NULL,
                 buy_in_euros REAL NOT NULL,
+                rake_euros REAL NOT NULL DEFAULT 0,
                 prizepool_euros REAL NOT NULL,
                 multiplier INTEGER NOT NULL,
                 finish_position INTEGER NOT NULL,
@@ -1549,6 +1565,56 @@ mod tests {
             "INSERT INTO hand_actions (hand_id, street_order, street, action_index, player_name, action_type, amount, increment_amount, to_amount) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9)",
             params!["H29", 0_i64, "preflop", 1_i64, "MRZO", "allin_call", Some(615_i64), Option::<i64>::None, Option::<i64>::None],
         ).expect("insert action 2");
+    }
+
+    #[test]
+    fn coach_filters_paid_buy_in_and_whole_tournaments_before_limiting() {
+        let conn = Connection::open_in_memory().expect("open database");
+        seed(&conn);
+        conn.execute_batch(
+            r#"
+            UPDATE tournaments SET started_at = '2026-06-09T23:59:00Z';
+            UPDATE hands SET timestamp = '2026-06-10T00:02:00Z';
+            UPDATE hand_players SET net_ev = -600, allin_equity = 0.2 WHERE hero = 1;
+            INSERT INTO tournaments
+              SELECT 'T2', player_name, 4.65, 0.35, 10.0, multiplier, registered_players,
+                     finish_position, started_at, duration_secs, net_eur FROM tournaments WHERE id = 'T1';
+            INSERT INTO hands
+              SELECT 'H30', 'T2', table_name, game_name, 4.65, 0.35, level, small_blind,
+                     big_blind, button_seat, seat_count, timestamp, player_count, board_cards,
+                     has_showdown, hero_showed, rake_chips, total_pot FROM hands WHERE id = 'H29';
+            INSERT INTO hand_players (hand_id, seat_number, player_name, starting_stack, ending_stack,
+                                     contributions, collected, realized_cev, net_ev, allin_equity, hero)
+              SELECT 'H30', seat_number, player_name, starting_stack, ending_stack, contributions,
+                     collected, realized_cev, -1200, allin_equity, hero FROM hand_players WHERE hand_id = 'H29';
+            INSERT INTO hand_actions (hand_id, street_order, street, action_index, player_name,
+                                      action_type, amount, increment_amount, to_amount)
+              SELECT 'H30', street_order, street, action_index, player_name, action_type,
+                     amount, increment_amount, to_amount FROM hand_actions WHERE hand_id = 'H29';
+            "#,
+        ).expect("seed second buy-in and midnight hands");
+
+        let from = Some("2026-06-09T00:00:00.000Z");
+        let to = Some("2026-06-09T23:59:59.999Z");
+        for (buy_in, expected_hands, expected_id) in [
+            (None, 2, Some("H30")),
+            (Some(2.0), 1, Some("H29")),
+            (Some(5.0), 1, Some("H30")),
+            (Some(10.0), 0, None),
+        ] {
+            let stats = get_coach_stats(&conn, from, to, buy_in).expect("coach statistics");
+            assert_eq!(stats.heads_up.hands, expected_hands);
+            let spots = list_coach_blunders(&conn, from, to, Some(1), Some("bad"), buy_in)
+                .expect("coach blunders");
+            assert_eq!(spots.first().map(|spot| spot.hand_id.as_str()), expected_id);
+        }
+        let next_day = get_coach_stats(
+            &conn, Some("2026-06-10T00:00:00Z"), None, None,
+        ).expect("exclude tournaments started the previous day");
+        assert_eq!(next_day.heads_up.hands, 0);
+        let evolution = get_chip_evolution(&conn).expect("chip evolution with tournament identities");
+        assert_eq!(evolution.len(), 2);
+        assert!(evolution.iter().all(|h| h.tournament_id == "T1" || h.tournament_id == "T2"));
     }
 
     #[test]

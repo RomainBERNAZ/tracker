@@ -1,6 +1,8 @@
 import { memo, useEffect, useMemo, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { api, TournamentRow, SessionStats } from '../api'
+import { api, TournamentRow } from '../api'
+import { TournamentFilters } from '../components/TournamentFilters'
+import { DEFAULT_FILTER, applyTournamentRange, computeFilteredStats, periodToRange } from './tournamentFilters'
 
 type ColumnKey = 'date' | 'tournamentId' | 'multi' | 'prizepool' | 'hands' | 'position' | 'cev' | 'net'
 type SortDirection = 'asc' | 'desc'
@@ -40,8 +42,8 @@ function posTag(pos: number) {
 
 export default memo(function Tournaments() {
   const navigate = useNavigate()
-  const [rows, setRows] = useState<TournamentRow[]>([])
-  const [stats, setStats] = useState<SessionStats | null>(null)
+  const [tournaments, setTournaments] = useState<TournamentRow[]>([])
+  const [filter, setFilter] = useState(DEFAULT_FILTER)
   const [loading, setLoading] = useState(true)
   const [scrollTop, setScrollTop] = useState(0)
   const [viewportHeight, setViewportHeight] = useState(480)
@@ -50,17 +52,22 @@ export default memo(function Tournaments() {
   const [sortColumn, setSortColumn] = useState<ColumnKey>('date')
   const [sortDirection, setSortDirection] = useState<SortDirection>('desc')
 
-  const avgCev = useMemo(
-    () => (rows.length > 0 ? rows.reduce((sum, t) => sum + t.hero_cev_sum, 0) / rows.length : 0),
-    [rows],
-  )
+  const range = useMemo(() => periodToRange(filter.period, filter.customFrom, filter.customTo), [filter.period, filter.customFrom, filter.customTo])
+  const rows = useMemo(() => applyTournamentRange(tournaments, range.fromMs, range.toMs, filter.buyIn), [tournaments, range.fromMs, range.toMs, filter.buyIn])
+  const stats = useMemo(() => computeFilteredStats(rows), [rows])
+  const avgCev = stats.avgCev
 
   useEffect(() => {
-    Promise.all([api.getTournaments(100), api.getStats()])
-      .then(([t, s]) => { setRows(t); setStats(s) })
+    api.getTournaments()
+      .then(setTournaments)
       .catch(console.error)
       .finally(() => setLoading(false))
   }, [])
+
+  useEffect(() => {
+    setScrollTop(0)
+    if (tableWrapRef.current) tableWrapRef.current.scrollTop = 0
+  }, [rows])
 
   useEffect(() => {
     const element = tableWrapRef.current
@@ -177,35 +184,37 @@ export default memo(function Tournaments() {
     <div>
       <div className="page-header">
         <h1>Tournois</h1>
-        <p>{stats?.total_tournaments ?? 0} tournois · {stats?.total_hands ?? 0} mains</p>
+        <p>{stats.totalTournaments} tournois · {stats.totalHands} mains</p>
       </div>
+
+      <TournamentFilters tournaments={tournaments} value={filter} onChange={setFilter} />
 
       {stats && (
         <div className="stats-bar">
           <div className="stat-card">
             <div className="label">Net total</div>
-            <div className={`value ${stats.total_net_eur >= 0 ? 'positive' : 'negative'}`}>
-              {fmtEur(stats.total_net_eur)}
+            <div className={`value ${stats.totalNetEur >= 0 ? 'positive' : 'negative'}`}>
+              {fmtEur(stats.totalNetEur)}
             </div>
           </div>
           <div className="stat-card">
             <div className="label">Moy. / tournoi</div>
-            <div className={`value ${stats.avg_net_eur_per_tournament >= 0 ? 'positive' : 'negative'}`}>
-              {fmtEur(stats.avg_net_eur_per_tournament)}
+            <div className={`value ${stats.avgNetEurPerTournament >= 0 ? 'positive' : 'negative'}`}>
+              {fmtEur(stats.avgNetEurPerTournament)}
             </div>
           </div>
           <div className="stat-card">
             <div className="label">Résultats</div>
             <div className="value" style={{ fontSize: 16, marginTop: 6 }}>
               <span className="positive">{stats.wins}×1st</span>{' '}
-              <span className="neutral">{stats.second_place}×2nd</span>{' '}
-              <span className="negative">{stats.third_place}×3rd</span>
+              <span className="neutral">{stats.secondPlace}×2nd</span>{' '}
+              <span className="negative">{stats.thirdPlace}×3rd</span>
             </div>
           </div>
           <div className="stat-card">
             <div className="label">Multipliers</div>
             <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginTop: 6 }}>
-              {stats.multiplier_dist.map(([mult, count]) => (
+              {stats.multiplierDist.map(([mult, count]) => (
                 <span key={mult} style={{ fontSize: 12, color: 'var(--text-dim)' }}>
                   x{mult}: <strong style={{ color: 'var(--text)' }}>{count}</strong>
                 </span>
@@ -264,7 +273,7 @@ export default memo(function Tournaments() {
             )}
             {rows.length === 0 && (
               <tr><td colSpan={columns.length} style={{ textAlign: 'center', color: 'var(--text-dim)', padding: 32 }}>
-                Aucun tournoi importé
+                Aucun tournoi pour ces filtres
               </td></tr>
             )}
           </tbody>

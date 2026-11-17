@@ -15,6 +15,8 @@ import {
 import { api, CoachBlunderSpot, CoachFormatStats, CoachStatsSnapshot, HandChipPoint, TournamentRow } from '../api'
 import { CumulativeChart } from '../components/CumulativeChart'
 import { summarizeChips } from './summaryChips'
+import { TournamentFilters } from '../components/TournamentFilters'
+import { DEFAULT_FILTER, applyTournamentRange, computeFilteredStats, endOfDay, handsForTournaments, parseDateInput, periodToRange, tournamentBuyIn } from './tournamentFilters'
 
 function fmtEur(n: number) {
   const sign = n >= 0 ? '+' : ''
@@ -45,84 +47,7 @@ const WINAMAX_2EUR_MULTIPLIER_MODEL: Array<{ mult: number; tickets: number }> = 
   { mult: 2, tickets: 5363697 },
 ]
 
-type Period = 'all' | '7d' | '30d' | 'month' | 'custom'
-
-const PERIOD_LABELS: Record<Period, string> = {
-  all: 'Tout',
-  '7d': '7 jours',
-  '30d': '30 jours',
-  month: 'Ce mois',
-  custom: 'Perso',
-}
-
-/** Parse a native date input value as local midnight. */
-function parseDateInput(raw: string): number | null {
-  if (!raw) return null
-  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(raw)
-  if (!m) return null
-  const year = Number(m[1])
-  const month = Number(m[2]) - 1
-  const day = Number(m[3])
-  const date = new Date(year, month, day)
-  if (date.getFullYear() !== year || date.getMonth() !== month || date.getDate() !== day) return null
-  return date.getTime()
-}
-
-function endOfDay(dateMs: number): number {
-  const end = new Date(dateMs)
-  end.setHours(23, 59, 59, 999)
-  return end.getTime()
-}
-
-interface FilteredStats {
-  totalTournaments: number
-  totalHands: number
-  totalNetEur: number
-  avgNetEurPerTournament: number
-  netEvEurTotal: number
-  netEvEurAvg: number
-  wins: number
-  secondPlace: number
-  thirdPlace: number
-  multiplierDist: [number, number][]
-}
-
-function computeFilteredStats(tours: TournamentRow[]): FilteredStats {
-  const totalTournaments = tours.length
-  const totalHands = tours.reduce((acc, t) => acc + t.hand_count, 0)
-  const totalNetEur = tours.reduce((acc, t) => acc + t.net_eur, 0)
-  const avgNetEurPerTournament = totalTournaments > 0 ? totalNetEur / totalTournaments : 0
-  const wins = tours.filter((t) => t.finish_position === 1).length
-  const secondPlace = tours.filter((t) => t.finish_position === 2).length
-  const thirdPlace = tours.filter((t) => t.finish_position === 3).length
-  const netEvEurTotal = tours.reduce((acc, t) => acc + t.hero_net_ev_eur_sum, 0)
-  const netEvEurAvg = totalTournaments > 0 ? netEvEurTotal / totalTournaments : 0
-  const multiplierMap = new Map<number, number>()
-  tours.forEach((t) => {
-    multiplierMap.set(t.multiplier, (multiplierMap.get(t.multiplier) ?? 0) + 1)
-  })
-  const multiplierDist = [...multiplierMap.entries()].sort((a, b) => a[0] - b[0])
-  return { totalTournaments, totalHands, totalNetEur, avgNetEurPerTournament, netEvEurTotal, netEvEurAvg, wins, secondPlace, thirdPlace, multiplierDist }
-}
-
-function applyDateRange(tours: TournamentRow[], fromMs: number | null, toMs: number | null) {
-  if (fromMs == null && toMs == null) return tours
-  return tours.filter((t) => {
-    const ms = new Date(t.started_at).getTime()
-    return !Number.isNaN(ms) && (fromMs == null || ms >= fromMs) && (toMs == null || ms <= toMs)
-  })
-}
-
-function inRange(ms: number, fromMs: number | null, toMs: number | null): boolean {
-  if (Number.isNaN(ms)) return false
-  if (fromMs != null && ms < fromMs) return false
-  if (toMs != null && ms > toMs) return false
-  return true
-}
-
-function filterHandsByRange(hands: HandChipPoint[], fromMs: number | null, toMs: number | null): HandChipPoint[] {
-  return hands.filter((h) => inRange(new Date(h.timestamp).getTime(), fromMs, toMs))
-}
+type FilteredStats = ReturnType<typeof computeFilteredStats>
 
 function computeMultiplierComparison(
   totalTournaments: number,
@@ -143,23 +68,6 @@ function computeMultiplierComparison(
     .sort((a, b) => a.mult - b.mult)
   const chartMax = rows.reduce((acc, row) => Math.max(acc, row.expectedCount, row.realCount), 1)
   return { rows, chartMax }
-}
-
-function periodToRange(period: Period, customFrom: string, customTo: string): { fromMs: number | null; toMs: number | null } {
-  const now = Date.now()
-  if (period === '7d') return { fromMs: now - 7 * 86_400_000, toMs: null }
-  if (period === '30d') return { fromMs: now - 30 * 86_400_000, toMs: null }
-  if (period === 'month') {
-    const d = new Date()
-    return { fromMs: new Date(d.getFullYear(), d.getMonth(), 1).getTime(), toMs: null }
-  }
-  if (period === 'custom') {
-    const fromMs = parseDateInput(customFrom)
-    const toMsRaw = parseDateInput(customTo)
-    const toMs = toMsRaw == null ? null : endOfDay(toMsRaw)
-    return { fromMs, toMs }
-  }
-  return { fromMs: null, toMs: null }
 }
 
 // ── Variance / luck calculation ───────────────────────────────────────────────
@@ -295,12 +203,14 @@ function buildCoachReview(
   const n = stats.totalTournaments
   if (n === 0) return null
 
-  const totalBuyIn = BUY_IN * n
+  const totalBuyIn = tournaments.reduce((sum, t) => sum + tournamentBuyIn(t), 0)
   const evRoiPct = totalBuyIn > 0 ? (stats.netEvEurTotal / totalBuyIn) * 100 : 0
   const realRoiPct = totalBuyIn > 0 ? (stats.totalNetEur / totalBuyIn) * 100 : 0
   const runDiffEur = stats.totalNetEur - stats.netEvEurTotal
 
-  const luck = computeLuck(stats.totalNetEur, stats.netEvEurTotal, n)
+  const luck = tournaments.every((t) => tournamentBuyIn(t) === BUY_IN)
+    ? computeLuck(stats.totalNetEur, stats.netEvEurTotal, n)
+    : null
   const luckZ = luck?.zScore ?? null
 
   const allinHands = hands.filter((h) => h.net_ev !== null)
@@ -581,6 +491,7 @@ function useCoachData(
   coachDatesValid: boolean,
   fromMs: number | null,
   toMs: number | null,
+  buyIn: string,
 ) {
   const [coachSnapshot, setCoachSnapshot] = useState<CoachStatsSnapshot | null>(null)
   const [coachBlunders, setCoachBlunders] = useState<CoachBlunderSpot[]>([])
@@ -600,8 +511,8 @@ function useCoachData(
     let cancelled = false
     setCoachLoading(true)
     Promise.all([
-      api.getCoachStats(fromTs, toTs),
-      api.getCoachBlunders(fromTs, toTs, 150, 'bad'),
+      api.getCoachStats(fromTs, toTs, buyIn === '' ? null : Number(buyIn)),
+      api.getCoachBlunders(fromTs, toTs, 150, 'bad', buyIn === '' ? null : Number(buyIn)),
     ])
       .then(([snapshot, blunders]) => {
         if (cancelled) return
@@ -621,7 +532,7 @@ function useCoachData(
     return () => {
       cancelled = true
     }
-  }, [coachDateSelected, coachDatesValid, fromMs, toMs])
+  }, [coachDateSelected, coachDatesValid, fromMs, toMs, buyIn])
 
   return { coachSnapshot, coachBlunders, coachLoading }
 }
@@ -839,7 +750,7 @@ const CoachTabPanel = memo(({
           />
         </div>
         <p style={{ color: 'var(--text-dim)', fontSize: 12, marginTop: 8 }}>
-          Vide = pas de limite. Ce filtre est independant du filtre Summary.
+          Vide = pas de limite. Ces dates sont independantes de la periode Summary. Le buy-in est commun.
         </p>
       </div>
 
@@ -986,10 +897,8 @@ const CHIPS_CURVES: Array<{ key: ChipsCurveKey; label: string; stroke: string; d
   { key: 'sd', label: 'Showdown', stroke: '#f59e0b', dash: '4 2' },
 ]
 
-const SummaryChipsTab = memo(({ handEvolution, filteredFromMs, filteredToMs, filteredTournamentCount }: {
-  readonly handEvolution: HandChipPoint[]
-  readonly filteredFromMs: number | null
-  readonly filteredToMs: number | null
+const SummaryChipsTab = memo(({ filteredHands, filteredTournamentCount }: {
+  readonly filteredHands: HandChipPoint[]
   readonly filteredTournamentCount: number
 }) => {
   const [activeCurves, setActiveCurves] = useState<Set<ChipsCurveKey>>(
@@ -1026,11 +935,6 @@ const SummaryChipsTab = memo(({ handEvolution, filteredFromMs, filteredToMs, fil
       observer.disconnect()
     }
   }, [])
-
-  const filteredHands = useMemo(
-    () => filterHandsByRange(handEvolution, filteredFromMs, filteredToMs),
-    [handEvolution, filteredFromMs, filteredToMs],
-  )
 
   const chipStats = useMemo(
     () => summarizeChips(filteredHands, filteredTournamentCount),
@@ -1211,9 +1115,7 @@ export default memo(function Summary() {
   const [tournaments, setTournaments] = useState<TournamentRow[]>([])
   const [handEvolution, setHandEvolution] = useState<HandChipPoint[]>([])
   const [loading, setLoading] = useState(true)
-  const [period, setPeriod] = useState<Period>('all')
-  const [customFrom, setCustomFrom] = useState('')
-  const [customTo, setCustomTo] = useState('')
+  const [filter, setFilter] = useState(DEFAULT_FILTER)
   const [activeTab, setActiveTab] = useState<'summary' | 'chips' | 'coach'>('summary')
   const [coachFrom, setCoachFrom] = useState('')
   const [coachTo, setCoachTo] = useState('')
@@ -1229,13 +1131,18 @@ export default memo(function Summary() {
   }, [])
 
   const filteredRange = useMemo(
-    () => periodToRange(period, customFrom, customTo),
-    [period, customFrom, customTo],
+    () => periodToRange(filter.period, filter.customFrom, filter.customTo),
+    [filter.period, filter.customFrom, filter.customTo],
   )
 
   const filteredTournaments = useMemo(() => {
-    return applyDateRange(tournaments, filteredRange.fromMs, filteredRange.toMs)
-  }, [filteredRange.fromMs, filteredRange.toMs, tournaments])
+    return applyTournamentRange(tournaments, filteredRange.fromMs, filteredRange.toMs, filter.buyIn)
+  }, [filteredRange.fromMs, filteredRange.toMs, tournaments, filter.buyIn])
+
+  const filteredHands = useMemo(
+    () => handsForTournaments(handEvolution, filteredTournaments),
+    [handEvolution, filteredTournaments],
+  )
 
   const coachRange = useMemo(() => {
     const fromMs = parseDateInput(coachFrom)
@@ -1254,11 +1161,12 @@ export default memo(function Summary() {
     coachDatesValid,
     coachRange.fromMs,
     coachRange.toMs,
+    filter.buyIn,
   )
 
   const coachTournaments = useMemo(
-    () => applyDateRange(tournaments, coachRange.fromMs, coachRange.toMs),
-    [tournaments, coachRange.fromMs, coachRange.toMs],
+    () => applyTournamentRange(tournaments, coachRange.fromMs, coachRange.toMs, filter.buyIn),
+    [tournaments, coachRange.fromMs, coachRange.toMs, filter.buyIn],
   )
 
   const coachStats = useMemo(
@@ -1267,14 +1175,16 @@ export default memo(function Summary() {
   )
 
   const coachHands = useMemo(
-    () => filterHandsByRange(handEvolution, coachRange.fromMs, coachRange.toMs),
-    [handEvolution, coachRange.fromMs, coachRange.toMs],
+    () => handsForTournaments(handEvolution, coachTournaments),
+    [handEvolution, coachTournaments],
   )
 
   const filteredStats = useMemo(
     () => computeFilteredStats(filteredTournaments),
     [filteredTournaments],
   )
+  const supportsTheoreticalModel = filteredTournaments.length > 0 &&
+    filteredTournaments.every((t) => tournamentBuyIn(t) === BUY_IN)
 
   const { rows: sortedMultipliers } = useMemo(
     () => computeMultiplierComparison(filteredStats.totalTournaments, filteredStats.multiplierDist),
@@ -1299,40 +1209,10 @@ export default memo(function Summary() {
         <div className="summary-header-row">
           <div>
             <h1>Session Summary</h1>
-            <p>{filteredStats.totalTournaments} tournois · {filteredStats.totalHands} mains</p>
-          </div>
-          <div className="period-pill-bar">
-            {(['all', '7d', '30d', 'month', 'custom'] as Period[]).map((p) => (
-              <button
-                key={p}
-                type="button"
-                className={`period-pill${period === p ? ' period-pill-active' : ''}`}
-                onClick={() => setPeriod(p)}
-              >
-                {PERIOD_LABELS[p]}
-              </button>
-            ))}
+            <p>{activeTab === 'coach' ? coachStats.totalTournaments : filteredStats.totalTournaments} tournois · {activeTab === 'coach' ? coachStats.totalHands : filteredStats.totalHands} mains</p>
           </div>
         </div>
-        {period === 'custom' && (
-          <div className="summary-custom-dates">
-            <input
-              className="filter-input summary-date-input"
-              type="date"
-              value={customFrom}
-              onChange={(e) => setCustomFrom(e.target.value)}
-              aria-label="Date de debut"
-            />
-            <span style={{ color: 'var(--text-dim)', fontSize: 13 }}>→</span>
-            <input
-              className="filter-input summary-date-input"
-              type="date"
-              value={customTo}
-              onChange={(e) => setCustomTo(e.target.value)}
-              aria-label="Date de fin"
-            />
-          </div>
-        )}
+        <TournamentFilters tournaments={tournaments} value={filter} onChange={setFilter} showPeriod={activeTab !== 'coach'} />
       </div>
 
       {/* Tab Navigation */}
@@ -1437,7 +1317,14 @@ export default memo(function Summary() {
 
             <div className="summary-card">
               <h3>Multiplicateurs: attendus vs reels</h3>
-              <SummaryMultiplierChart sortedMultipliers={sortedMultipliers} />
+              {supportsTheoreticalModel ? <SummaryMultiplierChart sortedMultipliers={sortedMultipliers} /> : (
+                <>
+                  <p style={{ color: 'var(--text-dim)' }}>Le modele theorique est disponible uniquement pour les buy-ins de 2 €.</p>
+                  <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+                    {filteredStats.multiplierDist.map(([mult, count]) => <span key={mult}>x{mult} : {count}</span>)}
+                  </div>
+                </>
+              )}
             </div>
           </div>
 
@@ -1445,7 +1332,7 @@ export default memo(function Summary() {
             <div className="summary-card-header">
               <h3>Évolution cumulative</h3>
               <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-                <LuckIndicator net={filteredStats.totalNetEur} ev={filteredStats.netEvEurTotal} n={filteredStats.totalTournaments} />
+                {supportsTheoreticalModel && <LuckIndicator net={filteredStats.totalNetEur} ev={filteredStats.netEvEurTotal} n={filteredStats.totalTournaments} />}
                 <div className="chart-legend">
                   <span className="chart-legend-item chart-legend-net">Net réel</span>
                   <span className="chart-legend-item chart-legend-ev">Net EV</span>
@@ -1460,9 +1347,7 @@ export default memo(function Summary() {
       {/* Chips Tab */}
       {activeTab === 'chips' && (
         <SummaryChipsTab
-          handEvolution={handEvolution}
-          filteredFromMs={filteredRange.fromMs}
-          filteredToMs={filteredRange.toMs}
+          filteredHands={filteredHands}
           filteredTournamentCount={filteredStats.totalTournaments}
         />
       )}

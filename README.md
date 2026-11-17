@@ -18,6 +18,14 @@ Build a **clean, maintainable, performant** desktop application to analyze Expre
 - **[ADR/](./docs/adr/)** — Architecture Decision Records
 - **[CEV_SPECIFICATION.md](./docs/design/CEV_SPECIFICATION.md)** — Realized cEV math & validation rules
 
+## Filtres des resultats
+
+- Summary (Resume et Jetons) et Tournois : periode et buy-in, combinables. Les montants proposes correspondent aux tournois importes, rake inclus.
+- Coach : le buy-in de Summary s'applique aussi aux statistiques, bilans et erreurs detectees ; sa periode reste definie par ses champs de dates dedies.
+- Les dates selectionnent les tournois selon leur debut, en heure locale, et incluent toutes leurs mains, meme apres minuit.
+- Le cEV moyen est la somme du Net EV en jetons (gain realise si EV absente), divisee par le nombre de tournois selectionnes. Les deux pages utilisent tout l'historique, sans limite aux 100 derniers tournois.
+- Les comparaisons theoriques de multiplicateurs et de variance restent reservees au modele 2 EUR existant ; les resultats observes restent disponibles pour tous les buy-ins.
+
 ---
 
 ## Phase 1: Realized cEV Foundation (Blocking)

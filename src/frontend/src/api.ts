@@ -22,6 +22,7 @@ export interface TournamentRow {
   id: string
   player_name: string
   buy_in_euros: number
+  rake_euros: number
   prizepool_euros: number
   multiplier: number
   finish_position: number
@@ -144,6 +145,7 @@ export interface ReplayerState {
 }
 
 export interface HandChipPoint {
+  tournament_id: string
   timestamp: string
   realized_cev: number
   net_ev: number | null
@@ -291,16 +293,17 @@ export const api = {
   getCoachSpots: (limit?: number): Promise<CoachSpot[]> =>
     invokeTauri('get_coach_spots', { limit }),
 
-  getCoachStats: (fromTs?: string | null, toTs?: string | null): Promise<CoachStatsSnapshot> =>
-    invokeTauri('get_coach_stats_cmd', { fromTs, toTs }),
+  getCoachStats: (fromTs?: string | null, toTs?: string | null, buyIn?: number | null): Promise<CoachStatsSnapshot> =>
+    invokeTauri('get_coach_stats_cmd', { fromTs, toTs, buyIn }),
 
   getCoachBlunders: (
     fromTs?: string | null,
     toTs?: string | null,
     limit?: number,
     minSeverity?: 'bad' | 'critical' | null,
+    buyIn?: number | null,
   ): Promise<CoachBlunderSpot[]> =>
-    invokeTauri('get_coach_blunders_cmd', { fromTs, toTs, limit, minSeverity }),
+    invokeTauri('get_coach_blunders_cmd', { fromTs, toTs, limit, minSeverity, buyIn }),
 
   clearAllData: (): Promise<ClearDataResult> =>
     invokeTauri('clear_all_data'),
