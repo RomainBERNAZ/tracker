@@ -1,6 +1,8 @@
 use hand_ledger::HandLedger;
-use hh_parser_winamax::{ParsedHand, StreetType};
-use rs_poker::core::{Card as PokerCard, Rank as PokerRank, Rankable, Suit as PokerSuit, Value as PokerValue};
+use hh_parser_winamax::{HoleCards, ParsedHand, ShownHand, StreetType};
+use rs_poker::core::{
+    Card as PokerCard, Rank as PokerRank, Rankable, Suit as PokerSuit, Value as PokerValue,
+};
 use std::collections::hash_map::DefaultHasher;
 use std::hash::{Hash, Hasher};
 
@@ -88,72 +90,81 @@ fn best_score_7(cards: &[Card; 7]) -> PokerRank {
     poker_cards.rank()
 }
 
-fn known_board_at_allin(hand: &ParsedHand) -> Vec<Card> {
-    let mut known = Vec::new();
-    let mut allin_street: Option<StreetType> = None;
-
-    for st in &hand.streets {
-        if st.actions.iter().any(|a| matches!(a.action, hh_parser_winamax::Action::AllInBet { .. } | hh_parser_winamax::Action::AllInCall { .. } | hh_parser_winamax::Action::AllInRaise { .. })) {
-            allin_street = Some(st.street_type.clone());
-            break;
-        }
-    }
-
-    let Some(target) = allin_street else {
-        return known;
+fn known_board_at_allin(all_in_street: &StreetType, final_board: &[String]) -> Option<Vec<Card>> {
+    let known_card_count = match all_in_street {
+        StreetType::PreFlop => 0,
+        StreetType::Flop => 3,
+        StreetType::Turn => 4,
+        StreetType::River => 5,
     };
 
-    for st in &hand.streets {
-        if st.street_type == StreetType::PreFlop {
-            if target == StreetType::PreFlop {
-                break;
-            }
-            continue;
-        }
-
-        for c in &st.new_board_cards {
-            if let Some(card) = parse_card(c) {
-                known.push(card);
-            }
-        }
-
-        if st.street_type == target {
-            break;
-        }
+    if final_board.len() < known_card_count {
+        return None;
     }
 
-    known
+    final_board
+        .iter()
+        .take(known_card_count)
+        .map(|card| parse_card(card))
+        .collect()
 }
 
-pub fn compute_hero_net_ev(hand: &ParsedHand, ledger: &HandLedger, hero_name: &str) -> Option<(i64, f64)> {
-    // V0.2 scope: all-in showdowns with known hole cards for hero and contenders.
-    let showdown = hand.showdown.as_ref()?;
-    if showdown.shown_hands.len() < 2 {
-        return None;
-    }
-
-    if !showdown.shown_hands.iter().any(|s| s.player_name == hero_name) {
-        return None;
-    }
-
-    let hero_hole = hand.hero_cards.as_ref()?;
-    if hero_hole.player_name != hero_name {
-        return None;
-    }
-
-    // PT4 adjusts the pot whenever a player is all-in, including a shove hero covers.
-    let has_all_in_action = hand.streets.iter().any(|street| {
-        street.actions.iter().any(|action| {
-            matches!(
-                action.action,
-                hh_parser_winamax::Action::AllInBet { .. }
-                    | hh_parser_winamax::Action::AllInCall { .. }
-                    | hh_parser_winamax::Action::AllInRaise { .. }
-            )
+fn first_all_in_street(hand: &ParsedHand) -> Option<StreetType> {
+    hand.streets
+        .iter()
+        .find(|street| {
+            street.actions.iter().any(|action| {
+                matches!(
+                    action.action,
+                    hh_parser_winamax::Action::AllInBet { .. }
+                        | hh_parser_winamax::Action::AllInCall { .. }
+                        | hh_parser_winamax::Action::AllInRaise { .. }
+                )
+            })
         })
-    });
+        .map(|street| street.street_type.clone())
+}
 
-    if !has_all_in_action {
+pub fn compute_hero_net_ev(
+    hand: &ParsedHand,
+    ledger: &HandLedger,
+    hero_name: &str,
+) -> Option<(i64, f64)> {
+    let showdown = hand.showdown.as_ref()?;
+    let hero_hole = hand.hero_cards.as_ref()?;
+    let all_in_street = first_all_in_street(hand)?;
+
+    compute_hero_net_ev_from_data(
+        &hand.hand_id,
+        hero_name,
+        hero_hole,
+        &showdown.shown_hands,
+        &all_in_street,
+        &hand.summary.board,
+        ledger,
+    )
+}
+
+pub(crate) fn compute_hero_net_ev_from_data(
+    hand_id: &str,
+    hero_name: &str,
+    hero_hole: &HoleCards,
+    shown_hands: &[ShownHand],
+    all_in_street: &StreetType,
+    final_board: &[String],
+    ledger: &HandLedger,
+) -> Option<(i64, f64)> {
+    // V0.2 scope: all-in showdowns with known hole cards for hero and contenders.
+    // PT4 adjusts the pot whenever a player is all-in, including a shove hero covers.
+    if shown_hands.len() < 2 {
+        return None;
+    }
+
+    if !shown_hands.iter().any(|s| s.player_name == hero_name) {
+        return None;
+    }
+
+    if hero_hole.player_name != hero_name {
         return None;
     }
 
@@ -163,7 +174,7 @@ pub fn compute_hero_net_ev(hand: &ParsedHand, ledger: &HandLedger, hero_name: &s
     let hero_c2 = parse_card(&hero_hole.card2)?;
 
     let mut contenders: Vec<(String, Card, Card, u64)> = Vec::new();
-    for shown in &showdown.shown_hands {
+    for shown in shown_hands {
         let (c1, c2) = if shown.player_name == hero_name {
             (hero_c1, hero_c2)
         } else {
@@ -177,7 +188,7 @@ pub fn compute_hero_net_ev(hand: &ParsedHand, ledger: &HandLedger, hero_name: &s
         contenders.push((shown.player_name.clone(), c1, c2, contrib));
     }
 
-    let known_board = known_board_at_allin(hand);
+    let known_board = known_board_at_allin(all_in_street, final_board)?;
     if known_board.len() > 5 {
         return None;
     }
@@ -203,7 +214,7 @@ pub fn compute_hero_net_ev(hand: &ParsedHand, ledger: &HandLedger, hero_name: &s
 
     let deck = deck_without(&used);
     let mut hasher = DefaultHasher::new();
-    hand.hand_id.hash(&mut hasher);
+    hand_id.hash(&mut hasher);
     let seed = hasher.finish();
     let samples = recommended_samples(contenders.len(), to_draw);
     let expected_collect = monte_carlo_equity_multiway(
@@ -226,7 +237,6 @@ pub fn compute_hero_net_ev(hand: &ParsedHand, ledger: &HandLedger, hero_name: &s
     let equity = expected_collect / total_pot;
     Some((net_ev, equity))
 }
-
 
 fn next_u64(state: &mut u64) -> u64 {
     // xorshift64*

@@ -12,7 +12,7 @@ import {
   CartesianGrid,
   ReferenceLine,
 } from 'recharts'
-import { api, ChipSummary, CoachBlunderSpot, CoachFormatStats, CoachStatsSnapshot, HandChipPoint, TournamentRow } from '../api'
+import { api, CoachBlunderSpot, CoachFormatStats, CoachStatsSnapshot, HandChipPoint, TournamentRow } from '../api'
 import { CumulativeChart } from '../components/CumulativeChart'
 
 function fmtEur(n: number) {
@@ -54,13 +54,23 @@ const PERIOD_LABELS: Record<Period, string> = {
   custom: 'Perso',
 }
 
-/** Parse DD/MM/YYYY → timestamp, returns null if empty or invalid. */
-function parseDDMMYYYY(raw: string): number | null {
+/** Parse a native date input value as local midnight. */
+function parseDateInput(raw: string): number | null {
   if (!raw) return null
-  const m = /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/.exec(raw)
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(raw)
   if (!m) return null
-  const ms = new Date(Number(m[3]), Number(m[2]) - 1, Number(m[1])).getTime()
-  return Number.isNaN(ms) ? null : ms
+  const year = Number(m[1])
+  const month = Number(m[2]) - 1
+  const day = Number(m[3])
+  const date = new Date(year, month, day)
+  if (date.getFullYear() !== year || date.getMonth() !== month || date.getDate() !== day) return null
+  return date.getTime()
+}
+
+function endOfDay(dateMs: number): number {
+  const end = new Date(dateMs)
+  end.setHours(23, 59, 59, 999)
+  return end.getTime()
 }
 
 interface FilteredStats {
@@ -143,10 +153,10 @@ function periodToRange(period: Period, customFrom: string, customTo: string): { 
     return { fromMs: new Date(d.getFullYear(), d.getMonth(), 1).getTime(), toMs: null }
   }
   if (period === 'custom') {
-    const fromMs = parseDDMMYYYY(customFrom)
-    const toMs = parseDDMMYYYY(customTo)
-    const toMsEnd = toMs == null ? null : toMs + 86_399_999
-    return { fromMs, toMs: toMsEnd }
+    const fromMs = parseDateInput(customFrom)
+    const toMsRaw = parseDateInput(customTo)
+    const toMs = toMsRaw == null ? null : endOfDay(toMsRaw)
+    return { fromMs, toMs }
   }
   return { fromMs: null, toMs: null }
 }
@@ -813,20 +823,16 @@ const CoachTabPanel = memo(({
         <div className="summary-custom-dates" style={{ marginTop: 0 }}>
           <input
             className="filter-input summary-date-input"
-            type="text"
-            placeholder="JJ/MM/AAAA"
+            type="date"
             value={coachFrom}
-            maxLength={10}
             onChange={(e) => setCoachFrom(e.target.value)}
             aria-label="Date de debut coach"
           />
           <span style={{ color: 'var(--text-dim)', fontSize: 13 }}>→</span>
           <input
             className="filter-input summary-date-input"
-            type="text"
-            placeholder="JJ/MM/AAAA"
+            type="date"
             value={coachTo}
-            maxLength={10}
             onChange={(e) => setCoachTo(e.target.value)}
             aria-label="Date de fin coach"
           />
@@ -979,11 +985,11 @@ const CHIPS_CURVES: Array<{ key: ChipsCurveKey; label: string; stroke: string; d
   { key: 'sd', label: 'Showdown', stroke: '#f59e0b', dash: '4 2' },
 ]
 
-const SummaryChipsTab = memo(({ chipSummary, handEvolution, filteredFromMs, filteredToMs }: {
-  readonly chipSummary: ChipSummary | null
+const SummaryChipsTab = memo(({ handEvolution, filteredFromMs, filteredToMs, filteredTournamentCount }: {
   readonly handEvolution: HandChipPoint[]
   readonly filteredFromMs: number | null
   readonly filteredToMs: number | null
+  readonly filteredTournamentCount: number
 }) => {
   const [activeCurves, setActiveCurves] = useState<Set<ChipsCurveKey>>(
     () => new Set(['cev', 'ev'] as ChipsCurveKey[]),
@@ -1021,14 +1027,34 @@ const SummaryChipsTab = memo(({ chipSummary, handEvolution, filteredFromMs, filt
   }, [])
 
   const filteredHands = useMemo(
-    () => handEvolution.filter((h) => {
-      const ts = new Date(h.timestamp).getTime()
-      if (filteredFromMs != null && ts < filteredFromMs) return false
-      if (filteredToMs != null && ts > filteredToMs) return false
-      return true
-    }),
+    () => filterHandsByRange(handEvolution, filteredFromMs, filteredToMs),
     [handEvolution, filteredFromMs, filteredToMs],
   )
+
+  const chipStats = useMemo(() => {
+    let netChips = 0
+    let netEvChips = 0
+    let wsdNetChips = 0
+    let sdNetChips = 0
+
+    filteredHands.forEach((hand) => {
+      netChips += hand.realized_cev
+      netEvChips += hand.net_ev ?? hand.realized_cev
+      if (hand.has_showdown) {
+        sdNetChips += hand.realized_cev
+      } else {
+        wsdNetChips += hand.realized_cev
+      }
+    })
+
+    return {
+      netChips,
+      netEvChips,
+      avgCevPerGame: filteredTournamentCount > 0 ? netChips / filteredTournamentCount : 0,
+      wsdNetChips,
+      sdNetChips,
+    }
+  }, [filteredHands, filteredTournamentCount])
 
   const chipsLuck = useMemo(() => {
     const deltas = filteredHands.map((h) => h.realized_cev - (h.net_ev ?? h.realized_cev))
@@ -1075,32 +1101,32 @@ const SummaryChipsTab = memo(({ chipSummary, handEvolution, filteredFromMs, filt
       <div className="stats-bar" style={{ marginBottom: 16 }}>
         <div className="stat-card">
           <div className="label">Net (chips)</div>
-          <div className={`value ${(chipSummary?.net_chips ?? 0) >= 0 ? 'positive' : 'negative'}`}>
-            {fmtChips(chipSummary?.net_chips ?? 0)}
+          <div className={`value ${chipStats.netChips >= 0 ? 'positive' : 'negative'}`}>
+            {fmtChips(chipStats.netChips)}
           </div>
         </div>
         <div className="stat-card">
           <div className="label">NetEV (chips)</div>
-          <div className={`value ${(chipSummary?.net_ev_chips ?? 0) >= 0 ? 'positive' : 'negative'}`}>
-            {fmtChips(chipSummary?.net_ev_chips ?? 0)}
+          <div className={`value ${chipStats.netEvChips >= 0 ? 'positive' : 'negative'}`}>
+            {fmtChips(chipStats.netEvChips)}
           </div>
         </div>
         <div className="stat-card">
           <div className="label">cEV moyen (chips/game)</div>
-          <div className={`value ${(chipSummary?.avg_cev_per_game ?? 0) >= 0 ? 'positive' : 'negative'}`}>
-            {(chipSummary?.avg_cev_per_game ?? 0) > 0 ? '+' : ''}{chipSummary?.avg_cev_per_game?.toFixed(1) ?? '—'}
+          <div className={`value ${chipStats.avgCevPerGame >= 0 ? 'positive' : 'negative'}`}>
+            {chipStats.avgCevPerGame > 0 ? '+' : ''}{chipStats.avgCevPerGame.toFixed(1)}
           </div>
         </div>
         <div className="stat-card">
           <div className="label">WSD net (chips)</div>
-          <div className={`value ${(chipSummary?.wsd_net_chips ?? 0) >= 0 ? 'positive' : 'negative'}`}>
-            {fmtChips(chipSummary?.wsd_net_chips ?? 0)}
+          <div className={`value ${chipStats.wsdNetChips >= 0 ? 'positive' : 'negative'}`}>
+            {fmtChips(chipStats.wsdNetChips)}
           </div>
         </div>
         <div className="stat-card">
           <div className="label">SD net (chips)</div>
-          <div className={`value ${(chipSummary?.sd_net_chips ?? 0) >= 0 ? 'positive' : 'negative'}`}>
-            {fmtChips(chipSummary?.sd_net_chips ?? 0)}
+          <div className={`value ${chipStats.sdNetChips >= 0 ? 'positive' : 'negative'}`}>
+            {fmtChips(chipStats.sdNetChips)}
           </div>
         </div>
       </div>
@@ -1202,7 +1228,6 @@ const SummaryChipsTab = memo(({ chipSummary, handEvolution, filteredFromMs, filt
 export default memo(function Summary() {
   const navigate = useNavigate()
   const [tournaments, setTournaments] = useState<TournamentRow[]>([])
-  const [chipSummary, setChipSummary] = useState<ChipSummary | null>(null)
   const [handEvolution, setHandEvolution] = useState<HandChipPoint[]>([])
   const [loading, setLoading] = useState(true)
   const [period, setPeriod] = useState<Period>('all')
@@ -1213,10 +1238,9 @@ export default memo(function Summary() {
   const [coachTo, setCoachTo] = useState('')
 
   useEffect(() => {
-    Promise.all([api.getTournaments(), api.getChipSummary(), api.getChipEvolution()])
-      .then(([t, chips, evolution]) => {
+    Promise.all([api.getTournaments(), api.getChipEvolution()])
+      .then(([t, evolution]) => {
         setTournaments(t)
-        setChipSummary(chips)
         setHandEvolution(evolution)
       })
       .catch(console.error)
@@ -1233,9 +1257,9 @@ export default memo(function Summary() {
   }, [filteredRange.fromMs, filteredRange.toMs, tournaments])
 
   const coachRange = useMemo(() => {
-    const fromMs = parseDDMMYYYY(coachFrom)
-    const toMsRaw = parseDDMMYYYY(coachTo)
-    const toMs = toMsRaw == null ? null : toMsRaw + 86_399_999
+    const fromMs = parseDateInput(coachFrom)
+    const toMsRaw = parseDateInput(coachTo)
+    const toMs = toMsRaw == null ? null : endOfDay(toMsRaw)
     return { fromMs, toMs }
   }, [coachFrom, coachTo])
 
@@ -1313,20 +1337,16 @@ export default memo(function Summary() {
           <div className="summary-custom-dates">
             <input
               className="filter-input summary-date-input"
-              type="text"
-              placeholder="JJ/MM/AAAA"
+              type="date"
               value={customFrom}
-              maxLength={10}
               onChange={(e) => setCustomFrom(e.target.value)}
               aria-label="Date de debut"
             />
             <span style={{ color: 'var(--text-dim)', fontSize: 13 }}>→</span>
             <input
               className="filter-input summary-date-input"
-              type="text"
-              placeholder="JJ/MM/AAAA"
+              type="date"
               value={customTo}
-              maxLength={10}
               onChange={(e) => setCustomTo(e.target.value)}
               aria-label="Date de fin"
             />
@@ -1459,10 +1479,10 @@ export default memo(function Summary() {
       {/* Chips Tab */}
       {activeTab === 'chips' && (
         <SummaryChipsTab
-          chipSummary={chipSummary}
           handEvolution={handEvolution}
           filteredFromMs={filteredRange.fromMs}
           filteredToMs={filteredRange.toMs}
+          filteredTournamentCount={filteredStats.totalTournaments}
         />
       )}
 

@@ -269,6 +269,10 @@ tr:hover td {
   min-width: 220px;
 }
 
+.filter-input[type='date'] {
+  color-scheme: dark;
+}
+
 .filter-select {
   appearance: none;
   -webkit-appearance: none;
