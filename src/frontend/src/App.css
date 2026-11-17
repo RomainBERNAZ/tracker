@@ -480,6 +480,68 @@ tr:hover td {
   }
 }
 
+/* ─ Bankroll ─ */
+.bankroll-page {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.bankroll-page .page-header,
+.bankroll-page .stats-bar {
+  margin-bottom: 0;
+}
+
+.bankroll-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+  gap: 16px;
+  align-items: start;
+}
+
+.bankroll-fields {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+  align-items: end;
+  gap: 12px;
+  padding: 0;
+  border: 0;
+  margin: 12px 0;
+  min-width: 0;
+}
+
+.bankroll-fields label {
+  display: grid;
+  gap: 6px;
+  color: var(--text-dim);
+  font-size: 13px;
+  min-width: 0;
+}
+
+.bankroll-fields input,
+.bankroll-fields select {
+  width: 100%;
+  min-width: 0;
+}
+
+.bankroll-page .bankroll-diagnostic {
+  border-left: 4px solid var(--accent);
+}
+
+.bankroll-page .bankroll-down,
+.bankroll-page .bankroll-review {
+  border-left-color: var(--red);
+}
+
+.bankroll-page .bankroll-shot {
+  border-left-color: var(--green);
+}
+
+.bankroll-ledger {
+  overflow: auto;
+  max-height: 360px;
+}
+
 /* ─ Summary period filter ─ */
 .summary-header-row {
   display: flex;
@@ -914,7 +976,8 @@ tr:hover td {
 }
 
 .summary-chips-tab,
-.summary-chips-card {
+.summary-chips-card,
+.summary-euro-card {
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -925,7 +988,12 @@ tr:hover td {
   gap: 8px;
 }
 
-.chips-chart {
+.summary-euro-card {
+  margin-top: 24px;
+}
+
+.chips-chart,
+.summary-euro-chart {
   position: relative;
   flex: 1;
   min-height: 220px;

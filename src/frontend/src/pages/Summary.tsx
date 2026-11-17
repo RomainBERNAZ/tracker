@@ -1315,7 +1315,7 @@ export default memo(function Summary() {
             </div>
           </div>
 
-          <div className="summary-card" style={{ marginBottom: 16, marginTop: 24 }}>
+          <div className="summary-card summary-euro-card">
             <div className="summary-card-header">
               <h3>Évolution cumulative</h3>
               <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>

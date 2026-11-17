@@ -41,61 +41,64 @@ function CumulativeChartInner({ tournaments }: Props) {
   }
 
   return (
-    <ResponsiveContainer width="100%" height={320}>
-      <LineChart data={data} margin={{ top: 16, right: 16, bottom: 8, left: 8 }}>
-        <CartesianGrid stroke="rgba(255,255,255,0.05)" vertical={false} />
-        <XAxis
-          dataKey="label"
-          tick={{ fill: '#a9b0c8', fontSize: 11 }}
-          tickLine={false}
-          axisLine={{ stroke: 'rgba(255,255,255,0.1)' }}
-          interval="preserveStartEnd"
-        />
-        <YAxis
-          tickFormatter={fmtEur}
-          tick={{ fill: '#a9b0c8', fontSize: 11 }}
-          tickLine={false}
-          axisLine={false}
-          width={72}
-        />
-        <Tooltip
-          contentStyle={{
-            background: '#1a1d2e',
-            border: '1px solid #2a2d3e',
-            borderRadius: 6,
-            fontSize: 12,
-          }}
-          labelStyle={{ color: '#a9b0c8', marginBottom: 4 }}
-          formatter={(value, name) => {
-            const numericValue = typeof value === 'number' ? value : Number(value ?? 0)
-            const seriesName = String(name ?? '')
-            return [
-              fmtEur(Number.isFinite(numericValue) ? numericValue : 0),
-              seriesName === 'net' ? 'Net réel' : 'Net EV',
-            ]
-          }}
-          isAnimationActive={false}
-        />
-        <ReferenceLine y={0} stroke="rgba(255,255,255,0.15)" strokeDasharray="4 4" />
-        <Line
-          dataKey="ev"
-          stroke="#7f89b8"
-          strokeWidth={1.5}
-          dot={false}
-          strokeDasharray="6 3"
-          name="ev"
-          isAnimationActive={false}
-        />
-        <Line
-          dataKey="net"
-          stroke="#6c63ff"
-          strokeWidth={2}
-          dot={false}
-          name="net"
-          isAnimationActive={false}
-        />
-      </LineChart>
-    </ResponsiveContainer>
+    <div className="summary-euro-chart">
+      <ResponsiveContainer width="100%" height="100%" initialDimension={{ width: 0, height: 220 }}
+        style={{ position: 'absolute', inset: 0 }}>
+        <LineChart data={data} margin={{ top: 16, right: 16, bottom: 8, left: 8 }}>
+          <CartesianGrid stroke="rgba(255,255,255,0.05)" vertical={false} />
+          <XAxis
+            dataKey="label"
+            tick={{ fill: '#a9b0c8', fontSize: 11 }}
+            tickLine={false}
+            axisLine={{ stroke: 'rgba(255,255,255,0.1)' }}
+            interval="preserveStartEnd"
+          />
+          <YAxis
+            tickFormatter={fmtEur}
+            tick={{ fill: '#a9b0c8', fontSize: 11 }}
+            tickLine={false}
+            axisLine={false}
+            width={72}
+          />
+          <Tooltip
+            contentStyle={{
+              background: '#1a1d2e',
+              border: '1px solid #2a2d3e',
+              borderRadius: 6,
+              fontSize: 12,
+            }}
+            labelStyle={{ color: '#a9b0c8', marginBottom: 4 }}
+            formatter={(value, name) => {
+              const numericValue = typeof value === 'number' ? value : Number(value ?? 0)
+              const seriesName = String(name ?? '')
+              return [
+                fmtEur(Number.isFinite(numericValue) ? numericValue : 0),
+                seriesName === 'net' ? 'Net réel' : 'Net EV',
+              ]
+            }}
+            isAnimationActive={false}
+          />
+          <ReferenceLine y={0} stroke="rgba(255,255,255,0.15)" strokeDasharray="4 4" />
+          <Line
+            dataKey="ev"
+            stroke="#7f89b8"
+            strokeWidth={1.5}
+            dot={false}
+            strokeDasharray="6 3"
+            name="ev"
+            isAnimationActive={false}
+          />
+          <Line
+            dataKey="net"
+            stroke="#6c63ff"
+            strokeWidth={2}
+            dot={false}
+            name="net"
+            isAnimationActive={false}
+          />
+        </LineChart>
+      </ResponsiveContainer>
+    </div>
   )
 }
 

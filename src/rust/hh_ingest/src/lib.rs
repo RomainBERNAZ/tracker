@@ -1,3 +1,4 @@
+pub mod bankroll;
 pub mod db;
 pub mod ev;
 pub mod schema;

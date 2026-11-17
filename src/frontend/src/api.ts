@@ -270,9 +270,48 @@ export interface ClearDataResult {
   import_sessions: number
 }
 
+export interface BankrollSettings {
+  warning_buy_ins: number
+  shot_buy_ins: number
+  strong_shot_buy_ins: number
+  min_cev: number
+  min_sample: number
+  target_buy_in_cents: number | null
+}
+
+export type BankrollMovementKind = 'deposit' | 'withdrawal' | 'correction'
+
+export interface BankrollSnapshot {
+  opening_balance_cents: number
+  current_balance_cents: number
+  imported_profit_cents: number
+  movement_total_cents: number
+  created_at: string
+  settings: BankrollSettings
+  movements: {
+    id: number
+    kind: BankrollMovementKind
+    amount_cents: number
+    note: string
+    created_at: string
+  }[]
+}
+
 // ─── API calls ────────────────────────────────────────────────────────────────
 
 export const api = {
+  getBankroll: (): Promise<BankrollSnapshot | null> =>
+    invokeTauri('get_bankroll'),
+
+  initializeBankroll: (amountCents: number): Promise<BankrollSnapshot> =>
+    invokeTauri('initialize_bankroll', { amountCents }),
+
+  recordBankrollMovement: (kind: BankrollMovementKind, amountCents: number, note: string): Promise<BankrollSnapshot> =>
+    invokeTauri('record_bankroll_movement', { kind, amountCents, note }),
+
+  saveBankrollSettings: (settings: BankrollSettings): Promise<BankrollSnapshot> =>
+    invokeTauri('save_bankroll_settings', { settings }),
+
   moveWindowToPrimary: (): Promise<void> =>
     invokeTauri('move_window_to_primary'),
 

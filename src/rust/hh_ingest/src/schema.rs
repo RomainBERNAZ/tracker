@@ -123,6 +123,32 @@ CREATE TABLE IF NOT EXISTS invariant_checks (
 CREATE INDEX IF NOT EXISTS idx_inv_hand   ON invariant_checks(hand_id);
 CREATE INDEX IF NOT EXISTS idx_inv_failed ON invariant_checks(sum_invariant, chip_conservation, pot_match);
 
+-- ── Bankroll ────────────────────────────────────────────────────────────────
+CREATE TABLE IF NOT EXISTS bankroll_account (
+    id INTEGER PRIMARY KEY CHECK (id = 1),
+    opening_balance_cents INTEGER NOT NULL CHECK (opening_balance_cents >= 0),
+    created_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ','now')),
+    warning_buy_ins INTEGER NOT NULL DEFAULT 150,
+    shot_buy_ins INTEGER NOT NULL DEFAULT 300,
+    strong_shot_buy_ins INTEGER NOT NULL DEFAULT 250,
+    min_cev REAL NOT NULL DEFAULT 50,
+    min_sample INTEGER NOT NULL DEFAULT 1000,
+    target_buy_in_cents INTEGER
+);
+
+-- Retain the baseline IDs when imported history is cleared, to avoid replaying old results.
+CREATE TABLE IF NOT EXISTS bankroll_baseline (
+    tournament_id TEXT PRIMARY KEY
+);
+
+CREATE TABLE IF NOT EXISTS bankroll_movements (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    kind TEXT NOT NULL CHECK (kind IN ('deposit', 'withdrawal', 'correction')),
+    amount_cents INTEGER NOT NULL,
+    note TEXT NOT NULL,
+    created_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ','now'))
+);
+
 -- ── Import sessions ────────────────────────────────────────────────────────
 CREATE TABLE IF NOT EXISTS import_sessions (
     id              TEXT    PRIMARY KEY,   -- UUID

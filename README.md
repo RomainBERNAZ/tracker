@@ -20,11 +20,13 @@ Build a **clean, maintainable, performant** desktop application to analyze Expre
 
 ## Filtres des resultats
 
+- L'application s'ouvre sur Summary. Le menu lateral suit l'ordre Summary, Tournois, Bankroll, GTO (experimental), Import ; l'import reste accessible par `/import`.
 - Summary (Resume et Jetons) et Tournois : periode et buy-in, combinables. Les montants proposes correspondent aux tournois importes, rake inclus.
 - Coach : le buy-in de Summary s'applique aussi aux statistiques, bilans et erreurs detectees ; sa periode reste definie par ses champs de dates dedies.
 - Les dates selectionnent les tournois selon leur debut, en heure locale, et incluent toutes leurs mains, meme apres minuit.
 - Le cEV moyen est la somme du Net EV en jetons (gain realise si EV absente), divisee par le nombre de tournois selectionnes. Les deux pages utilisent tout l'historique, sans limite aux 100 derniers tournois.
 - Les comparaisons theoriques de multiplicateurs et de variance restent reservees au modele 2 EUR existant ; les resultats observes restent disponibles pour tous les buy-ins.
+- Les graphiques cumules de Resume (euros) et Jetons s'etendent jusqu'au bas de la fenetre, avec une hauteur minimale pour rester lisibles sur les petites fenetres.
 
 ## Variance des mains de depart
 
@@ -46,6 +48,16 @@ La liste donne acces au replayer et permet d'afficher toutes les confrontations 
 
 L'onglet GTO (experimental) propose une matrice 13x13 pour les formats trois joueurs et heads-up, avec selection du scenario (push, call contre push, 3bet contre open), de la position et du stack effectif.
 Les seuils sont des heuristiques indicatives, non des ranges de solveur : ils ne sont pas valides GTO et ne tiennent pas compte des ranges adverses, des sizings ni de l'ICM. Le pourcentage affiche porte sur les categories actives parmi les 169 mains, sans ponderation par leurs combinaisons.
+
+### Bankroll
+
+L'onglet Bankroll permet de saisir une fois son solde exact actuel, idealement apres avoir importe l'historique deja compris dans ce solde. Les identifiants des tournois presents sont memorises : ils ne sont pas recomptes, meme lors d'un reimport. Le solde est ensuite recalcule automatiquement a partir des resultats nets en euros des nouveaux tournois, sans cumuler les evenements d'import ni compter deux fois les doublons. Un nouvel import de tournois anciens jusque-la absents est egalement comptabilise ; si leur resultat etait deja compris dans le solde reel, effectuer une correction apres l'import.
+
+Les depots, retraits et corrections du solde sont conserves dans SQLite, avec un journal manuel distinct des gains de jeu. Une correction saisit un nouveau solde exact (pas une variation). Un retrait ne peut pas depasser le solde disponible. La suppression de tournois comptabilises retire leurs resultats du solde calcule ; les mouvements manuels et les identifiants de l'historique initial restent conserves. La page recharge les resultats a chaque ouverture ; Actualiser permet egalement de les relire.
+
+L'analyse porte sur les 1 000 derniers tournois du buy-in selectionne, ou tous buy-ins confondus. Le filtre ne change jamais le solde global. Sont affiches le cEV ajuste (meme calcul que Summary / Jetons), le resultat en euros et le buy-in moyen rake inclus. La couverture prudente utilise le plus eleve entre le dernier buy-in joue du perimetre et le buy-in moyen recent ; le niveau pour un shot est evalue uniquement sur les tournois complets du dernier buy-in, pour ne pas melanger les performances des petites et grandes limites.
+
+Les regles initiales, modifiables dans la page, alertent strictement sous 150 buy-ins. Un shot exige par defaut 1 000 tournois complets au buy-in de reference, au moins 50 cEV/tournoi, des resultats recents en euros non negatifs a ce buy-in et 300 buy-ins de la limite visee. Le financement requis passe a 250 buy-ins lorsque le cEV atteint l'objectif + 25 (75 par defaut), avec le meme echantillon minimum. La limite visee doit etre renseignee et superieure a la reference. Un cEV negatif sur un echantillon suffisant incite a revoir la limite ; des pertes en euros seules ne declenchent pas une descente si la couverture et le cEV restent suffisants. Ces indications sont des heuristiques de gestion, pas une garantie de gains.
 
 ---
 

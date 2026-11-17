@@ -3,6 +3,7 @@ use std::path::{Path, PathBuf};
 use serde::Serialize;
 
 use hh_ingest::{db, import_history_file_with_conn, ImportProgress, ImportResult, DEFAULT_HERO};
+use hh_ingest::bankroll::{self, BankrollSettings, BankrollSnapshot, MovementKind};
 use rusqlite::Connection;
 use session_read_model::{
 	list_preflop_matchups, PreflopMatchup,
@@ -325,6 +326,41 @@ pub mod commands {
 	}
 
 	#[tauri::command]
+	pub async fn get_bankroll(state: tauri::State<'_, AppState>) -> Result<Option<BankrollSnapshot>, String> {
+		let conn = state.db.lock().map_err(|e| e.to_string())?;
+		bankroll::get_bankroll(&conn).map_err(|e| e.to_string())
+	}
+
+	#[tauri::command]
+	pub async fn initialize_bankroll(
+		amount_cents: i64,
+		state: tauri::State<'_, AppState>,
+	) -> Result<BankrollSnapshot, String> {
+		let conn = state.db.lock().map_err(|e| e.to_string())?;
+		bankroll::initialize_bankroll(&conn, amount_cents).map_err(|e| e.to_string())
+	}
+
+	#[tauri::command]
+	pub async fn record_bankroll_movement(
+		kind: MovementKind,
+		amount_cents: i64,
+		note: String,
+		state: tauri::State<'_, AppState>,
+	) -> Result<BankrollSnapshot, String> {
+		let conn = state.db.lock().map_err(|e| e.to_string())?;
+		bankroll::record_movement(&conn, kind, amount_cents, &note).map_err(|e| e.to_string())
+	}
+
+	#[tauri::command]
+	pub async fn save_bankroll_settings(
+		settings: BankrollSettings,
+		state: tauri::State<'_, AppState>,
+	) -> Result<BankrollSnapshot, String> {
+		let conn = state.db.lock().map_err(|e| e.to_string())?;
+		bankroll::save_settings(&conn, &settings).map_err(|e| e.to_string())
+	}
+
+	#[tauri::command]
 	pub async fn get_tournaments(
 		limit: Option<usize>,
 		offset: Option<usize>,
@@ -481,6 +517,10 @@ pub fn run() {
 			commands::import_tournament,
 			commands::import_folder,
 			commands::get_tournaments,
+			commands::get_bankroll,
+			commands::initialize_bankroll,
+			commands::record_bankroll_movement,
+			commands::save_bankroll_settings,
 			commands::get_hands_for_tournament,
 			commands::get_hand,
 			commands::get_hand_for_replay,
