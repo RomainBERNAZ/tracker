@@ -40,6 +40,8 @@ describe('stack analysis', () => {
     expect(stackRates(all.total, 10, 'chips').cevPerTournament).toBe(26)
     expect(stackRates(short, 10, 'chips').evPer100).toBe(1000)
     expect(stackRates(short, 10, 'bb').evPer100).toBe(50)
+    expect(stackRates(short, 10, 'chips').netPer100).toBeCloseTo(1666.66667)
+    expect(stackRates(short, 10, 'bb').netPer100).toBeCloseTo(83.33333)
     expect(analyzeStacks(groups, '2', [0, 2]).total.hands).toBe(14)
   })
 
@@ -55,7 +57,7 @@ describe('stack analysis', () => {
     expect(total.missingEvHands).toBe(1)
     expect(stackRates(total, 2, 'chips').evPer100).toBe(2000)
     const empty = analyzeStacks(groups, '3', [3]).total
-    expect(stackRates(empty, 10, 'chips')).toEqual({ cevPerTournament: null, evPer100: null })
+    expect(stackRates(empty, 10, 'chips')).toEqual({ cevPerTournament: null, netPer100: null, evPer100: null })
     expect(stackRates(total, 0, 'chips').cevPerTournament).toBeNull()
   })
 })

@@ -9,9 +9,24 @@ const number = (value: number | null, digits = 1) => value == null ? '-' :
 const gain = (value: number | null) => value == null ? '-' :
   value.toLocaleString('fr-FR', { maximumFractionDigits: 2, signDisplay: 'exceptZero' })
 
-function Frequency({ count, opportunities }: { readonly count: number; readonly opportunities: number }) {
-  return <>{number(opportunities > 0 ? count * 100 / opportunities : null)}{opportunities > 0 ? ' %' : ''}
-    <small className="stack-sample">{count} / {opportunities}</small></>
+function Gain({ value }: { readonly value: number | null }) {
+  const tone = value == null || value === 0 ? 'neutral' : value > 0 ? 'positive' : 'negative'
+  return <span className={tone}>{gain(value)}</span>
+}
+
+function Frequency({ count, opportunities, metric }: {
+  readonly count: number
+  readonly opportunities: number
+  readonly metric: 'vpip' | 'pfr' | 'limp' | 'three-bet' | 'fold-three-bet'
+}) {
+  const percentage = opportunities > 0 ? count * 100 / opportunities : null
+  return <div className={`stack-frequency stack-frequency-${metric}`}>
+    <strong>{number(percentage)}{percentage != null ? ' %' : ''}</strong>
+    <span className="stack-frequency-track" aria-hidden="true">
+      {percentage != null && <span style={{ width: `${percentage}%` }} />}
+    </span>
+    <small className="stack-sample">{count} / {opportunities}</small>
+  </div>
 }
 
 export default memo(function SummaryStacks({ tournaments }: { readonly tournaments: readonly TournamentRow[] }) {
@@ -38,17 +53,43 @@ export default memo(function SummaryStacks({ tournaments }: { readonly tournamen
   const analysis = useMemo(() => analyzeStacks(snapshot?.groups ?? [], format, buckets), [snapshot, format, buckets])
   const unitLabel = unit === 'chips' ? 'jetons' : 'BB'
   const totalRates = stackRates(analysis.total, tournaments.length, unit)
+  const maxRate = Math.max(0, ...analysis.rows.map((row) => Math.abs(stackRates(row, tournaments.length, unit).evPer100 ?? 0)))
+
+  function volume(row: StackAnalysisRow) {
+    const share = analysis.total.hands > 0 ? row.hands * 100 / analysis.total.hands : null
+    return <>
+      <strong>{number(row.hands, 0)}</strong>
+      <small className="stack-sample">{share == null ? '-' : `${number(share)} % de la selection`}</small>
+      {row.hands > 0 && row.hands < 100 && <small className="stack-small-sample">Peu de mains</small>}
+    </>
+  }
 
   function performanceRow(row: StackAnalysisRow, label: string) {
-    const values = row[unit]
     const rates = stackRates(row, tournaments.length, unit)
+    const barWidth = rates.evPer100 != null && maxRate > 0 ? Math.abs(rates.evPer100) * 50 / maxRate : 0
     return <tr key={row.bucket}>
       <th scope="row">{label}</th>
-      <td>{number(row.hands, 0)}</td>
-      <td>{gain(values.net)}</td><td>{gain(values.ev)}</td>
-      <td>{gain(rates.cevPerTournament)}</td><td>{gain(rates.evPer100)}</td>
-      <td>{gain(values.sd)}</td><td>{gain(values.sd_ev)}</td>
-      <td>{gain(values.wsd)}</td><td>{gain(values.wsd_ev)}</td>
+      <td>{volume(row)}</td>
+      <td><Gain value={rates.netPer100} /></td>
+      <td className="stack-rate-cell">
+        <strong><Gain value={rates.evPer100} /></strong>
+        <div className="stack-rate-track" aria-hidden="true">
+          {rates.evPer100 != null && <span className={rates.evPer100 < 0 ? 'stack-rate-negative' : 'stack-rate-positive'}
+            style={{ width: `${barWidth}%`, left: rates.evPer100 < 0 ? `${50 - barWidth}%` : '50%' }} />}
+        </div>
+      </td>
+      <td><Gain value={row[unit].ev} /></td>
+      <td><Gain value={rates.cevPerTournament} /></td>
+    </tr>
+  }
+
+  function showdownRow(row: StackAnalysisRow, label: string) {
+    const values = row[unit]
+    return <tr key={row.bucket}>
+      <th scope="row">{label}</th>
+      <td><Gain value={values.net} /></td><td><Gain value={values.ev} /></td>
+      <td><Gain value={values.sd} /></td><td><Gain value={values.sd_ev} /></td>
+      <td><Gain value={values.wsd} /></td><td><Gain value={values.wsd_ev} /></td>
     </tr>
   }
 
@@ -56,11 +97,11 @@ export default memo(function SummaryStacks({ tournaments }: { readonly tournamen
     return <tr key={row.bucket}>
       <th scope="row">{label}</th>
       <td>{number(row.preflopHands, 0)}</td>
-      <td><Frequency count={row.vpip} opportunities={row.preflopHands} /></td>
-      <td><Frequency count={row.pfr} opportunities={row.preflopHands} /></td>
-      <td><Frequency count={row.limp} opportunities={row.preflopHands} /></td>
-      <td><Frequency count={row.threeBet} opportunities={row.threeBetOpportunities} /></td>
-      <td><Frequency count={row.foldToThreeBet} opportunities={row.foldToThreeBetOpportunities} /></td>
+      <td><Frequency count={row.vpip} opportunities={row.preflopHands} metric="vpip" /></td>
+      <td><Frequency count={row.pfr} opportunities={row.preflopHands} metric="pfr" /></td>
+      <td><Frequency count={row.limp} opportunities={row.preflopHands} metric="limp" /></td>
+      <td><Frequency count={row.threeBet} opportunities={row.threeBetOpportunities} metric="three-bet" /></td>
+      <td><Frequency count={row.foldToThreeBet} opportunities={row.foldToThreeBetOpportunities} metric="fold-three-bet" /></td>
     </tr>
   }
 
@@ -68,17 +109,18 @@ export default memo(function SummaryStacks({ tournaments }: { readonly tournamen
     <section className="summary-card">
       <h3>Analyse par stack du hero</h3>
       <p className="variance-description">
-        Stack au debut de la main, avant les blindes, divise par la grosse blinde de cette main.
-        Les bornes hautes 8, 12 et 20 BB sont incluses. Les filtres date et buy-ins de Summary s'appliquent.
-        Les filtres ci-dessous ne modifient que cet onglet.
+        Compare les profondeurs avec l'EV / 100 mains, puis regarde le volume et tes habitudes preflop.
+        Les filtres date et buy-ins de Summary s'appliquent ; ceux ci-dessous restent propres a cet onglet.
       </p>
       <div className="filters-bar">
         <div className="period-pill-bar" role="group" aria-label="Format des mains">
+          <span className="stack-filter-label">Format</span>
           {([['all', 'Tous'], ['3', '3 joueurs'], ['2', 'Heads-up']] as const).map(([key, label]) =>
             <button key={key} type="button" className={`period-pill${format === key ? ' period-pill-active' : ''}`}
               aria-pressed={format === key} onClick={() => setFormat(key)}>{label}</button>)}
         </div>
         <div className="period-pill-bar" role="group" aria-label="Profondeurs de stack">
+          <span className="stack-filter-label">Stack hero</span>
           <button type="button" className={`period-pill${buckets.length === 0 ? ' period-pill-active' : ''}`}
             aria-pressed={buckets.length === 0} onClick={() => setBuckets([])}>Toutes</button>
           {STACK_BUCKETS.map((label, bucket) =>
@@ -94,12 +136,19 @@ export default memo(function SummaryStacks({ tournaments }: { readonly tournamen
               aria-pressed={unit === key} onClick={() => setUnit(key)}>{key === 'chips' ? 'Jetons' : 'BB'}</button>)}
         </div>
       </div>
-      <p className="variance-description">
-        cEV / tournoi = Net EV de ces mains / {tournaments.length} tournois du perimetre date et buy-ins,
-        toujours en jetons : c'est une contribution additive au cEV global, pas une moyenne par tournoi ayant atteint ce stack.
-        EV / 100 mains mesure la performance par main dans la tranche.
-        En BB, chaque gain est divise par sa propre grosse blinde avant addition.
-      </p>
+      <details className="stack-method">
+        <summary>Definitions et calculs</summary>
+        <p>Stack du hero au debut de la main, avant les blindes, divise par la grosse blinde.
+          Les bornes hautes 8, 12 et 20 BB sont incluses.</p>
+        <p>Net / 100 = gain realise / mains x 100. EV / 100 = Net EV / mains x 100.
+          En BB, chaque gain est divise par sa propre grosse blinde avant addition.</p>
+        <p>Contribution cEV = Net EV de ces mains / {tournaments.length} tournois du perimetre date et buy-ins,
+          toujours en jetons. Les contributions s'additionnent au cEV global si toutes les mains sont exploitables.
+          Ce n'est pas une moyenne par tournoi ayant atteint ce stack.</p>
+        <p>Le repere "Peu de mains" apparait sous 100 mains : ce n'est pas un seuil de fiabilite statistique.
+          VPIP, PFR et limp utilisent les mains avec historique preflop ; 3-bet et fold au 3-bet utilisent les occasions,
+          comptees une seule fois par main. Les limps incluent les overlimps, pas les blindes forcees.</p>
+      </details>
     </section>
 
     {error != null ? <div className="summary-card" role="alert">
@@ -115,25 +164,40 @@ export default memo(function SummaryStacks({ tournaments }: { readonly tournamen
       {analysis.total.missingPreflopHands > 0 && <p className="variance-warning" role="status">
         {analysis.total.missingPreflopHands} mains sans historique preflop : incluses dans les gains, exclues des frequences.
       </p>}
-      <div className="stats-bar">
-        <div className="stat-card"><div className="label">Mains analysees</div><div className="value">{number(analysis.total.hands, 0)}</div></div>
-        <div className="stat-card"><div className="label">Net ({unitLabel})</div><div className="value">{gain(analysis.total[unit].net)}</div></div>
-        <div className="stat-card"><div className="label">Net EV ({unitLabel})</div><div className="value">{gain(analysis.total[unit].ev)}</div></div>
-        <div className="stat-card"><div className="label">Contribution cEV / tournoi (jetons)</div><div className="value">{gain(totalRates.cevPerTournament)}</div></div>
-        <div className="stat-card"><div className="label">EV / 100 mains ({unitLabel})</div><div className="value">{gain(totalRates.evPer100)}</div></div>
+      <div className="stats-bar stack-metrics">
+        <div className="stat-card"><div className="label">Mains analysees</div><div className="value">{number(analysis.total.hands, 0)}</div>
+          <small className="stack-sample">{tournaments.length} tournois dans le perimetre</small></div>
+        <div className="stat-card stack-metric-primary"><div className="label">EV / 100 mains ({unitLabel})</div><div className="value"><Gain value={totalRates.evPer100} /></div>
+          <small className="stack-sample">Pour comparer a volume egal</small></div>
+        <div className="stat-card"><div className="label">Net EV total ({unitLabel})</div><div className="value"><Gain value={analysis.total[unit].ev} /></div>
+          <small className="stack-sample">Contribution cEV : <Gain value={totalRates.cevPerTournament} /> jetons / tournoi</small></div>
+        <div className="stat-card"><div className="label">Ecart reel - EV ({unitLabel})</div><div className="value"><Gain value={analysis.total.hands > 0 ? analysis.total[unit].net - analysis.total[unit].ev : null} /></div>
+          <small className="stack-sample">Net reel : <Gain value={analysis.total[unit].net} /> {unitLabel}</small></div>
       </div>
       {analysis.total.hands === 0 && <p role="status">Aucune main exploitable pour ces filtres.</p>}
+      <aside className="stack-reading-guide" aria-label="Comment lire les statistiques">
+        <strong>Comment l'exploiter ?</strong>
+        <ul>
+          <li>{format === 'all' ? 'Separe d\'abord Heads-up et 3 joueurs : leur melange peut masquer des differences de jeu.' :
+            'Garde le meme format pour comparer les profondeurs.'} Pour comparer malgre les changements de blindes, utilise les BB.</li>
+          <li>L'EV / 100 compare les gains ajustes au meme volume. Verifie le nombre de mains avant de choisir une tranche a revoir.</li>
+          <li>Les frequences decrivent ton style, pas sa qualite. Des pertes, surtout depuis les blindes, ne prouvent pas une erreur :
+            il faut aussi regarder les positions et revoir les decisions.</li>
+        </ul>
+      </aside>
       <section className="summary-card">
-        <h3>Resultats par profondeur</h3>
-        <p className="variance-description">SD : hero au showdown. Sans SD : hero sans showdown, meme si les adversaires y vont.</p>
+        <div className="summary-card-header"><h3>Comparer les profondeurs</h3>
+          <div className="stack-legend"><span className="positive">+ Gain</span><span className="negative">- Perte</span></div></div>
+        <p className="variance-description">EV / 100 : performance ajustee au volume. Net EV total et contribution cEV : poids dans tes resultats.
+          Les barres partent de zero et utilisent la meme echelle dans cette selection.</p>
         <div className="stack-table-wrap" role="region" aria-label="Resultats par stack" tabIndex={0}>
-          <table className="stack-table">
+          <table className="stack-table stack-performance-table">
             <thead><tr>
               <th scope="col">Stack hero</th><th scope="col">Mains</th>
-              <th scope="col">Net ({unitLabel})</th><th scope="col">Net EV ({unitLabel})</th>
-              <th scope="col">cEV / tournoi (jetons)</th><th scope="col">EV / 100 ({unitLabel})</th>
-              <th scope="col">SD net ({unitLabel})</th><th scope="col">SD EV ({unitLabel})</th>
-              <th scope="col">Sans SD net ({unitLabel})</th><th scope="col">Sans SD EV ({unitLabel})</th>
+              <th scope="col">Net / 100<small className="stack-sample">{unitLabel}</small></th>
+              <th scope="col" className="stack-rate-cell">EV / 100<small className="stack-sample">{unitLabel}</small></th>
+              <th scope="col">Net EV total<small className="stack-sample">{unitLabel}</small></th>
+              <th scope="col" title="Net EV du segment divise par tous les tournois du perimetre">Contrib. cEV<small className="stack-sample">jetons / tournoi</small></th>
             </tr></thead>
             <tbody>{analysis.rows.map((row) => performanceRow(row, STACK_BUCKETS[row.bucket]))}</tbody>
             <tfoot>{performanceRow(analysis.total, 'Total selection')}</tfoot>
@@ -141,25 +205,41 @@ export default memo(function SummaryStacks({ tournaments }: { readonly tournamen
         </div>
       </section>
       <section className="summary-card">
-        <h3>Frequences preflop par profondeur</h3>
+        <h3>Comprendre ton jeu preflop</h3>
         <p className="variance-description">
-          VPIP, PFR et limp : pourcentage des mains avec historique preflop disponible.
-          3-bet et fold face au 3-bet : pourcentage des occasions, comptees une seule fois par main.
-          Les blindes forcees ne sont pas des actions volontaires. Les limps incluent les overlimps.
-          Les compteurs sous chaque taux indiquent le numerateur et le denominateur.
-          Un petit echantillon ou un taux atypique ne suffit pas a conclure a une erreur.
+          Une couleur par statistique, sans jugement bon / mauvais. Chaque compteur indique actions / occasions.
+          Compare notamment l'ecart VPIP - PFR pour voir la part de jeu passif, puis les limps et les reactions aux relances.
         </p>
         <div className="stack-table-wrap" role="region" aria-label="Frequences preflop par stack" tabIndex={0}>
           <table className="stack-table">
             <thead><tr>
-              <th scope="col">Stack hero</th><th scope="col">Mains preflop</th><th scope="col">VPIP</th>
-              <th scope="col">PFR</th><th scope="col">Limp</th><th scope="col">3-bet</th><th scope="col">Fold au 3-bet</th>
+              <th scope="col">Stack hero</th><th scope="col">Mains preflop</th>
+              <th scope="col" title="Mains avec investissement volontaire preflop">VPIP</th>
+              <th scope="col" title="Mains avec au moins une relance preflop">PFR</th>
+              <th scope="col" title="Premier choix : call sans relance prealable, overlimps inclus">Limp</th>
+              <th scope="col" title="Surrelances / occasions face a une premiere relance">3-bet</th>
+              <th scope="col" title="Folds / decisions observees face au 3-bet apres ton open">Fold au 3-bet</th>
             </tr></thead>
             <tbody>{analysis.rows.map((row) => preflopRow(row, STACK_BUCKETS[row.bucket]))}</tbody>
             <tfoot>{preflopRow(analysis.total, 'Total selection')}</tfoot>
           </table>
         </div>
       </section>
+      <details className="summary-card stack-details">
+        <summary>Details des gains et showdowns ({unitLabel})</summary>
+        <p className="variance-description">Totaux, pas des taux par main. SD : hero au showdown.
+          Sans SD : hero sans showdown, meme si les adversaires y vont.</p>
+        <div className="stack-table-wrap" role="region" aria-label="Gains et showdowns par stack" tabIndex={0}>
+          <table className="stack-table">
+            <thead><tr>
+              <th scope="col">Stack hero</th><th scope="col">Net reel</th><th scope="col">Net EV</th>
+              <th scope="col">SD net</th><th scope="col">SD EV</th><th scope="col">Sans SD net</th><th scope="col">Sans SD EV</th>
+            </tr></thead>
+            <tbody>{analysis.rows.map((row) => showdownRow(row, STACK_BUCKETS[row.bucket]))}</tbody>
+            <tfoot>{showdownRow(analysis.total, 'Total selection')}</tfoot>
+          </table>
+        </div>
+      </details>
     </>}
   </div>
 })

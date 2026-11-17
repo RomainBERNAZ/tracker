@@ -66,6 +66,7 @@ export function analyzeStacks(groups: readonly StackStatsGroup[], format: StackF
 export function stackRates(row: StackAnalysisRow, tournamentCount: number, unit: 'chips' | 'bb') {
   return {
     cevPerTournament: tournamentCount > 0 && row.hands > 0 ? row.chips.ev / tournamentCount : null,
+    netPer100: row.hands > 0 ? row[unit].net * 100 / row.hands : null,
     evPer100: row.hands > 0 ? row[unit].ev * 100 / row.hands : null,
   }
 }

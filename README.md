@@ -51,6 +51,15 @@ sont incluses. Il conserve les filtres date et buy-ins de Summary et propose
 une multiselection de profondeurs, un filtre heads-up / 3 joueurs et les unites
 jetons / BB. Ces filtres de mains restent propres a l'onglet.
 
+La lecture principale se concentre sur le volume, le net / 100 et l'EV / 100
+mains, avec des barres divergentes a echelle commune et des gains/pertes colores.
+Le Net EV total et la contribution cEV restent visibles ; les totaux avec/sans
+showdown sont accessibles dans un volet de details. Une couleur par statistique
+preflop permet de suivre les colonnes, sans qualifier un taux de bon ou mauvais.
+Le repere "Peu de mains" sous 100 mains est purement visuel, pas un seuil de
+fiabilite. Un guide recommande de separer HU et 3 joueurs, de comparer en BB
+et de verifier les positions et decisions avant de conclure a un leak.
+
 Les tableaux affichent les mains, VPIP, PFR, limp (overlimps inclus), 3-bet et
 fold au 3-bet, avec leurs compteurs et denominateurs. Les blindes forcees ne
 comptent pas comme actions volontaires. Les frequences sont agregees a partir
