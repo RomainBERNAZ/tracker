@@ -10,6 +10,20 @@ This is distinct from **decision cEV** (which would evaluate a decision at a spe
 
 **V0.1 focus: Realized cEV only.**
 
+### Summary chip statistics
+
+- **Net (chips)**: sum of hero's realized chip results in the selected period.
+- **NetEV (chips)**: sum of hero's all-in-adjusted results, using the realized
+  result when no adjustment is available.
+- **cEV/game**: NetEV chips divided by the number of tournaments in the selected
+  period, not realized net chips divided by that count.
+- **SD / WSD**: realized chip results on hands where hero did / did not reach
+  showdown. A hero fold counts as WSD even if the remaining opponents reach
+  showdown. SD + WSD must equal Net chips.
+
+These rules apply to both summary cards and cumulative chip curves. Existing
+imports are classified at read time; no reimport is required.
+
 ---
 
 ## Invariants (Non-Negotiable)

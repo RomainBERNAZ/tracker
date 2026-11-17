@@ -148,18 +148,27 @@ pub struct HandChipPoint {
     pub timestamp: String,
     pub realized_cev: i64,
     pub net_ev: Option<i64>,
+    /// Whether hero reached showdown, not just the other players.
     pub has_showdown: bool,
 }
 
+// A hero fold remains WSD even when the remaining opponents reach showdown.
+const HERO_SHOWDOWN_SQL: &str = r#"(COALESCE(h.has_showdown, 0) <> 0 AND NOT EXISTS (
+    SELECT 1 FROM hand_actions hero_action
+    WHERE hero_action.hand_id = h.id
+      AND hero_action.player_name = hp.player_name
+      AND hero_action.action_type = 'fold'
+))"#;
+
 /// Returns per-hand chip data ordered by timestamp for cumulative chart.
 pub fn get_chip_evolution(conn: &Connection) -> Result<Vec<HandChipPoint>, rusqlite::Error> {
-    let mut stmt = conn.prepare(
+    let mut stmt = conn.prepare(&format!(
         r#"SELECT h.timestamp, hp.realized_cev, hp.net_ev,
-                  COALESCE(h.has_showdown, 0)
+                  {HERO_SHOWDOWN_SQL}
            FROM hands h
            JOIN hand_players hp ON hp.hand_id = h.id AND hp.hero = 1
            ORDER BY h.timestamp ASC"#,
-    )?;
+    ))?;
 
     let rows = stmt.query_map([], |row| {
         Ok(HandChipPoint {
@@ -178,8 +187,8 @@ pub struct ChipSummary {
     pub net_chips: i64,
     pub net_ev_chips: i64,
     pub avg_cev_per_game: f64,
-    pub wsd_net_chips: i64,   // cEV net on hands WITHOUT showdown
-    pub sd_net_chips: i64,    // cEV net on hands WITH showdown
+    pub wsd_net_chips: i64,   // Realized chips when hero did not reach showdown
+    pub sd_net_chips: i64,    // Realized chips when hero reached showdown
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -256,14 +265,14 @@ struct PreflopHandSample {
 pub fn get_chip_summary(conn: &Connection) -> Result<ChipSummary, rusqlite::Error> {
     let (net_chips, net_ev_chips, wsd_net_chips, sd_net_chips): (i64, i64, i64, i64) =
         conn.query_row(
-            r#"SELECT
+            &format!(r#"SELECT
                 COALESCE(SUM(hp.realized_cev), 0),
                 COALESCE(SUM(COALESCE(hp.net_ev, hp.realized_cev)), 0),
-                COALESCE(SUM(CASE WHEN h.has_showdown = 0 THEN hp.realized_cev ELSE 0 END), 0),
-                COALESCE(SUM(CASE WHEN h.has_showdown = 1 THEN hp.realized_cev ELSE 0 END), 0)
+                COALESCE(SUM(CASE WHEN NOT {HERO_SHOWDOWN_SQL} THEN hp.realized_cev ELSE 0 END), 0),
+                COALESCE(SUM(CASE WHEN {HERO_SHOWDOWN_SQL} THEN hp.realized_cev ELSE 0 END), 0)
             FROM hand_players hp
             JOIN hands h ON h.id = hp.hand_id
-            WHERE hp.hero = 1"#,
+            WHERE hp.hero = 1"#),
             [],
             |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?, r.get(3)?)),
         )?;
@@ -275,7 +284,7 @@ pub fn get_chip_summary(conn: &Connection) -> Result<ChipSummary, rusqlite::Erro
     )?;
 
     let avg_cev_per_game = if total_tournaments > 0 {
-        net_chips as f64 / total_tournaments as f64
+        net_ev_chips as f64 / total_tournaments as f64
     } else {
         0.0
     };
@@ -773,7 +782,7 @@ pub fn list_tournaments(
     let lim = limit.map(|value| value as i64);
     let off = offset.unwrap_or(0) as i64;
 
-    let mut stmt = conn.prepare(
+    let mut stmt = conn.prepare(&format!(
         r#"SELECT t.id, t.player_name, t.buy_in_euros, t.prizepool_euros,
                   t.multiplier, t.finish_position, t.started_at,
                   t.duration_secs, t.net_eur,
@@ -785,15 +794,15 @@ pub fn list_tournaments(
                               NULLIF((SELECT SUM(hp2.starting_stack) FROM hand_players hp2 WHERE hp2.hand_id = h.id), 0)
                     END
                 ), 0.0) as hero_net_ev_eur_sum,
-                COALESCE(SUM(CASE WHEN h.has_showdown = 0 THEN hp.realized_cev ELSE 0 END), 0) as wsd_cev_sum,
-                COALESCE(SUM(CASE WHEN h.has_showdown = 1 THEN hp.realized_cev ELSE 0 END), 0) as sd_cev_sum
+                COALESCE(SUM(CASE WHEN NOT {HERO_SHOWDOWN_SQL} THEN hp.realized_cev ELSE 0 END), 0) as wsd_cev_sum,
+                COALESCE(SUM(CASE WHEN {HERO_SHOWDOWN_SQL} THEN hp.realized_cev ELSE 0 END), 0) as sd_cev_sum
            FROM tournaments t
            LEFT JOIN hands h ON h.tournament_id = t.id
            LEFT JOIN hand_players hp ON hp.hand_id = h.id AND hp.hero = 1
            GROUP BY t.id
            ORDER BY t.started_at DESC
            LIMIT COALESCE(?1, -1) OFFSET ?2"#,
-    )?;
+    ))?;
 
     let rows = stmt.query_map(params![lim, off], |row| {
         Ok(TournamentRow {
@@ -846,10 +855,16 @@ mod tournament_listing_tests {
             CREATE TABLE hand_players (
                 id INTEGER PRIMARY KEY,
                 hand_id TEXT NOT NULL,
+                player_name TEXT NOT NULL,
                 hero INTEGER NOT NULL,
                 net_ev INTEGER,
                 realized_cev INTEGER NOT NULL,
                 starting_stack INTEGER NOT NULL
+            );
+            CREATE TABLE hand_actions (
+                hand_id TEXT NOT NULL,
+                player_name TEXT NOT NULL,
+                action_type TEXT NOT NULL
             );
             "#,
         )
@@ -1534,6 +1549,49 @@ mod tests {
             "INSERT INTO hand_actions (hand_id, street_order, street, action_index, player_name, action_type, amount, increment_amount, to_amount) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9)",
             params!["H29", 0_i64, "preflop", 1_i64, "MRZO", "allin_call", Some(615_i64), Option::<i64>::None, Option::<i64>::None],
         ).expect("insert action 2");
+    }
+
+    #[test]
+    fn chip_statistics_use_hero_showdown_and_adjusted_average() {
+        for (has_showdown, hero_folded, expected_showdown) in [
+            (Some(1), true, false),
+            (Some(1), false, true),
+            (Some(0), false, false),
+            (None, false, false),
+        ] {
+            let conn = Connection::open_in_memory().expect("open database");
+            seed(&conn);
+            conn.execute(
+                "UPDATE hands SET has_showdown = ?1, hero_showed = 0",
+                params![has_showdown],
+            )
+            .expect("set showdown");
+            if hero_folded {
+                conn.execute(
+                    r#"INSERT INTO hand_actions
+                       (hand_id, street_order, street, action_index, player_name, action_type)
+                       VALUES ('H29', 1, 'flop', 0, 'MRZO', 'fold')"#,
+                    [],
+                )
+                .expect("insert hero fold");
+            }
+
+            let points = get_chip_evolution(&conn).expect("chip evolution");
+            assert_eq!(points.len(), 1);
+            assert_eq!(points[0].has_showdown, expected_showdown);
+
+            let summary = get_chip_summary(&conn).expect("chip summary");
+            assert_eq!(summary.net_chips, 675);
+            assert_eq!(summary.net_ev_chips, 296);
+            assert_eq!(summary.avg_cev_per_game, 296.0);
+            assert_eq!(summary.sd_net_chips, if expected_showdown { 675 } else { 0 });
+            assert_eq!(summary.wsd_net_chips, if expected_showdown { 0 } else { 675 });
+            assert_eq!(summary.sd_net_chips + summary.wsd_net_chips, summary.net_chips);
+
+            let tournaments = list_tournaments(&conn, None, None).expect("tournaments");
+            assert_eq!(tournaments[0].sd_cev_sum, summary.sd_net_chips);
+            assert_eq!(tournaments[0].wsd_cev_sum, summary.wsd_net_chips);
+        }
     }
 
     #[test]

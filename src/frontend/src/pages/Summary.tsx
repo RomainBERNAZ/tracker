@@ -14,6 +14,7 @@ import {
 } from 'recharts'
 import { api, CoachBlunderSpot, CoachFormatStats, CoachStatsSnapshot, HandChipPoint, TournamentRow } from '../api'
 import { CumulativeChart } from '../components/CumulativeChart'
+import { summarizeChips } from './summaryChips'
 
 function fmtEur(n: number) {
   const sign = n >= 0 ? '+' : ''
@@ -1031,30 +1032,10 @@ const SummaryChipsTab = memo(({ handEvolution, filteredFromMs, filteredToMs, fil
     [handEvolution, filteredFromMs, filteredToMs],
   )
 
-  const chipStats = useMemo(() => {
-    let netChips = 0
-    let netEvChips = 0
-    let wsdNetChips = 0
-    let sdNetChips = 0
-
-    filteredHands.forEach((hand) => {
-      netChips += hand.realized_cev
-      netEvChips += hand.net_ev ?? hand.realized_cev
-      if (hand.has_showdown) {
-        sdNetChips += hand.realized_cev
-      } else {
-        wsdNetChips += hand.realized_cev
-      }
-    })
-
-    return {
-      netChips,
-      netEvChips,
-      avgCevPerGame: filteredTournamentCount > 0 ? netChips / filteredTournamentCount : 0,
-      wsdNetChips,
-      sdNetChips,
-    }
-  }, [filteredHands, filteredTournamentCount])
+  const chipStats = useMemo(
+    () => summarizeChips(filteredHands, filteredTournamentCount),
+    [filteredHands, filteredTournamentCount],
+  )
 
   const chipsLuck = useMemo(() => {
     const deltas = filteredHands.map((h) => h.realized_cev - (h.net_ev ?? h.realized_cev))
