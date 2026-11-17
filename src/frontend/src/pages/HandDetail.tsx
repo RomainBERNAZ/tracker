@@ -217,7 +217,7 @@ export default function HandDetail() {
       </div>
 
       <p style={{ color: 'var(--text-dim)', marginTop: 10, fontSize: 12 }}>
-        Net EV V0.2 est calcule pour les spots all-in heads-up avec cartes showdown connues.
+        Net EV V0.2 est calculé pour les mains à tapis où les cartes du héros et des adversaires au showdown sont connues.
         Les autres mains affichent "-".
       </p>
 

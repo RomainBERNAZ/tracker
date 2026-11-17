@@ -56,7 +56,7 @@ export default memo(function Tournaments() {
   )
 
   useEffect(() => {
-    Promise.all([api.getTournaments(), api.getStats()])
+    Promise.all([api.getTournaments(100), api.getStats()])
       .then(([t, s]) => { setRows(t); setStats(s) })
       .catch(console.error)
       .finally(() => setLoading(false))

@@ -284,7 +284,7 @@ pub fn insert_hand_with_ledger(
         ])?;
     }
 
-    // ── Expected EV (V0.2) for hero in heads-up all-in spots ─────────────
+    // ── Expected EV (V0.2) for hero in contested all-in spots ────────────
     if let Some((net_ev, allin_equity)) = compute_hero_net_ev(hand, ledger, hero_name) {
         let mut stmt = conn.prepare_cached(
             r#"UPDATE hand_players

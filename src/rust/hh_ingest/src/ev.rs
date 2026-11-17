@@ -126,7 +126,7 @@ fn known_board_at_allin(hand: &ParsedHand) -> Vec<Card> {
 }
 
 pub fn compute_hero_net_ev(hand: &ParsedHand, ledger: &HandLedger, hero_name: &str) -> Option<(i64, f64)> {
-    // V0.2 scope: showdown with known hole cards for hero and opponents.
+    // V0.2 scope: all-in showdowns with known hole cards for hero and contenders.
     let showdown = hand.showdown.as_ref()?;
     if showdown.shown_hands.len() < 2 {
         return None;
@@ -141,19 +141,19 @@ pub fn compute_hero_net_ev(hand: &ParsedHand, ledger: &HandLedger, hero_name: &s
         return None;
     }
 
-    let hero_was_all_in = hand.streets.iter().any(|street| {
+    // PT4 adjusts the pot whenever a player is all-in, including a shove hero covers.
+    let has_all_in_action = hand.streets.iter().any(|street| {
         street.actions.iter().any(|action| {
-            action.player_name == hero_name
-                && matches!(
-                    action.action,
-                    hh_parser_winamax::Action::AllInBet { .. }
-                        | hh_parser_winamax::Action::AllInCall { .. }
-                        | hh_parser_winamax::Action::AllInRaise { .. }
-                )
+            matches!(
+                action.action,
+                hh_parser_winamax::Action::AllInBet { .. }
+                    | hh_parser_winamax::Action::AllInCall { .. }
+                    | hh_parser_winamax::Action::AllInRaise { .. }
+            )
         })
     });
 
-    if !hero_was_all_in {
+    if !has_all_in_action {
         return None;
     }
 
@@ -469,6 +469,37 @@ Seat 1: Cocochanel23 (big blind) showed [Ad 3s] and won 884 with Two pairs : Ace
 Seat 3: KrtASmuertAS (small blind) showed [Ks Td] and lost with High card : Ace
 "#;
 
+    const HERO_COVERS_OPPONENT_ALL_IN: &str = r#"Winamax Poker - Tournament "Expresso" buyIn: 1.86€ + 0.14€ level: 1 - HandId: #4829108511470256129-1-1780949140 - Holdem no limit (10/20) - 2026/06/08 20:05:40 UTC
+Table: 'Expresso(1124364443)#0' 2-max (real money) Seat #2 is the button
+Seat 1: Villain (500)
+Seat 2: MRZO (1000)
+*** ANTE/BLINDS ***
+MRZO posts small blind 10
+Villain posts big blind 20
+Dealt to MRZO [Ah Kd]
+*** PRE-FLOP ***
+MRZO calls 10
+Villain checks
+*** FLOP *** [2c 3d 8h]
+Villain checks
+MRZO checks
+*** TURN *** [2c 3d 8h][9s]
+Villain checks
+MRZO checks
+*** RIVER *** [2c 3d 8h 9s][Kc]
+Villain bets 480 and is all-in
+MRZO calls 480
+*** SHOW DOWN ***
+Villain shows [Qc Qs] (One pair : Queens)
+MRZO shows [Ah Kd] (One pair : Kings)
+MRZO collected 1000 from pot
+*** SUMMARY ***
+Total pot 1000 | No rake
+Board: [2c 3d 8h 9s Kc]
+Seat 1: Villain (big blind) showed [Qc Qs] and lost with One pair : Queens
+Seat 2: MRZO (small blind) showed [Ah Kd] and won 1000 with One pair : Kings
+"#;
+
     #[test]
     fn parse_card_works() {
         let c = parse_card("Kd").expect("card");
@@ -485,5 +516,32 @@ Seat 3: KrtASmuertAS (small blind) showed [Ks Td] and lost with High card : Ace
 
         let net_ev = compute_hero_net_ev(hand, &ledger, "MRZO");
         assert!(net_ev.is_none(), "hero folded before showdown, so Net EV must be absent");
+    }
+
+    #[test]
+    fn covering_an_opponents_all_in_computes_net_ev() {
+        let (hands, warnings) =
+            parse_hands(HERO_COVERS_OPPONENT_ALL_IN.as_bytes()).expect("parse hand");
+        assert!(warnings.is_empty(), "unexpected warnings: {warnings:?}");
+        let hand = hands.first().expect("parsed hand");
+        let ledger = compute_ledger(hand);
+
+        let net_ev = compute_hero_net_ev(hand, &ledger, "MRZO");
+        assert_eq!(net_ev, Some((500, 1.0)));
+    }
+
+    #[test]
+    fn showdown_without_an_all_in_has_no_net_ev() {
+        let hand_history = HERO_COVERS_OPPONENT_ALL_IN.replace(" and is all-in", "");
+        let (hands, warnings) = parse_hands(hand_history.as_bytes()).expect("parse hand");
+        assert!(warnings.is_empty(), "unexpected warnings: {warnings:?}");
+        let hand = hands.first().expect("parsed hand");
+        let ledger = compute_ledger(hand);
+
+        let net_ev = compute_hero_net_ev(hand, &ledger, "MRZO");
+        assert!(
+            net_ev.is_none(),
+            "non-all-in hands should not be EV-adjusted"
+        );
     }
 }

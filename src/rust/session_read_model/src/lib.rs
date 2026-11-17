@@ -764,13 +764,13 @@ pub fn get_coach_stats(
     })
 }
 
-/// List all tournaments, newest first.
+/// List tournaments newest first. An omitted limit returns all tournaments.
 pub fn list_tournaments(
     conn: &Connection,
     limit: Option<usize>,
     offset: Option<usize>,
 ) -> Result<Vec<TournamentRow>, rusqlite::Error> {
-    let lim = limit.unwrap_or(100) as i64;
+    let lim = limit.map(|value| value as i64);
     let off = offset.unwrap_or(0) as i64;
 
     let mut stmt = conn.prepare(
@@ -792,7 +792,7 @@ pub fn list_tournaments(
            LEFT JOIN hand_players hp ON hp.hand_id = h.id AND hp.hero = 1
            GROUP BY t.id
            ORDER BY t.started_at DESC
-           LIMIT ?1 OFFSET ?2"#,
+           LIMIT COALESCE(?1, -1) OFFSET ?2"#,
     )?;
 
     let rows = stmt.query_map(params![lim, off], |row| {
@@ -815,6 +815,60 @@ pub fn list_tournaments(
     })?;
 
     rows.collect()
+}
+
+#[cfg(test)]
+mod tournament_listing_tests {
+    use super::list_tournaments;
+    use rusqlite::{params, Connection};
+
+    #[test]
+    fn omitted_limit_returns_all_tournaments_and_explicit_limit_is_respected() {
+        let conn = Connection::open_in_memory().expect("open database");
+        conn.execute_batch(
+            r#"
+            CREATE TABLE tournaments (
+                id TEXT PRIMARY KEY,
+                player_name TEXT NOT NULL,
+                buy_in_euros REAL NOT NULL,
+                prizepool_euros REAL NOT NULL,
+                multiplier INTEGER NOT NULL,
+                finish_position INTEGER NOT NULL,
+                started_at TEXT NOT NULL,
+                duration_secs INTEGER NOT NULL,
+                net_eur REAL NOT NULL
+            );
+            CREATE TABLE hands (
+                id TEXT PRIMARY KEY,
+                tournament_id TEXT NOT NULL,
+                has_showdown INTEGER
+            );
+            CREATE TABLE hand_players (
+                id INTEGER PRIMARY KEY,
+                hand_id TEXT NOT NULL,
+                hero INTEGER NOT NULL,
+                net_ev INTEGER,
+                realized_cev INTEGER NOT NULL,
+                starting_stack INTEGER NOT NULL
+            );
+            "#,
+        )
+        .expect("create schema");
+
+        for index in 0..101 {
+            conn.execute(
+                "INSERT INTO tournaments (id, player_name, buy_in_euros, prizepool_euros, multiplier, finish_position, started_at, duration_secs, net_eur) VALUES (?1, 'MRZO', 2.0, 4.0, 2, 1, ?2, 300, 2.0)",
+                params![format!("T{index:03}"), "2026-11-15T00:00:00Z"],
+            )
+            .expect("insert tournament");
+        }
+
+        let all = list_tournaments(&conn, None, None).expect("list all tournaments");
+        assert_eq!(all.len(), 101);
+
+        let limited = list_tournaments(&conn, Some(100), None).expect("list limited tournaments");
+        assert_eq!(limited.len(), 100);
+    }
 }
 
 /// List hands for a tournament.
