@@ -1339,7 +1339,7 @@ export default memo(function Summary() {
         />
       )}
 
-      {activeTab === 'variance' && <Variance hands={filteredHands} />}
+      {activeTab === 'variance' && <Variance hands={filteredHands} tournaments={filteredTournaments} />}
 
       {activeTab === 'coach' && (
         <CoachTabPanel

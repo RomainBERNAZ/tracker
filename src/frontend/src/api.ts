@@ -164,6 +164,18 @@ export interface CoachSpot {
   reason: string
 }
 
+export interface PreflopMatchup {
+  hand_id: string
+  tournament_id: string
+  timestamp: string
+  big_blind: number
+  hero_cards: string | null
+  realized_cev: number
+  net_ev: number | null
+  allin_equity: number | null
+  opponents: { player_name: string; cards: string | null }[]
+}
+
 export interface CoachFormatStats {
   hands: number
   vpip_count: number
@@ -204,6 +216,14 @@ export interface CoachBlunderSpot {
   has_showdown: boolean
   severity: 'bad' | 'critical'
   reason: string
+}
+
+export interface GtoRange {
+  position: string
+  stack_depth: string
+  push_range: string[]
+  call_range: string[]
+  fold_range: string[]
 }
 
 export interface ImportResult {
@@ -292,6 +312,9 @@ export const api = {
   getChipEvolution: (): Promise<HandChipPoint[]> =>
     invokeTauri('get_chip_evolution_cmd'),
 
+  getPreflopMatchups: (): Promise<PreflopMatchup[]> =>
+    invokeTauri('get_preflop_matchups'),
+
   getCoachSpots: (limit?: number): Promise<CoachSpot[]> =>
     invokeTauri('get_coach_spots', { limit }),
 
@@ -306,6 +329,9 @@ export const api = {
     buyIn?: number | null,
   ): Promise<CoachBlunderSpot[]> =>
     invokeTauri('get_coach_blunders_cmd', { fromTs, toTs, limit, minSeverity, buyIn }),
+
+  getGtoRanges: (): Promise<GtoRange[]> =>
+    invokeTauri('get_gto_ranges_cmd'),
 
   clearAllData: (): Promise<ClearDataResult> =>
     invokeTauri('clear_all_data'),

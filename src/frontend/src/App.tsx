@@ -6,6 +6,7 @@ import HandList from './pages/HandList'
 import HandDetail from './pages/HandDetail'
 import Replayer from './pages/Replayer'
 import Summary from './pages/Summary'
+import GtoCharts from './pages/GtoCharts'
 import { api } from './api'
 import './App.css'
 
@@ -28,12 +29,16 @@ export default function App() {
           <NavLink to="/summary" className={({ isActive }) => isActive ? 'nav-item active' : 'nav-item'}>
             ◉ Summary
           </NavLink>
+          <NavLink to="/gto" className={({ isActive }) => isActive ? 'nav-item active' : 'nav-item'}>
+            ♠ GTO (expérimental)
+          </NavLink>
         </nav>
         <main className="content">
           <Routes>
             <Route path="/" element={<Import />} />
             <Route path="/tournaments" element={<Tournaments />} />
             <Route path="/summary" element={<Summary />} />
+            <Route path="/gto" element={<GtoCharts />} />
             <Route path="/tournaments/:id/hands" element={<HandList />} />
             <Route path="/hands/:handId" element={<HandDetail />} />
             <Route path="/hands/:handId/replay" element={<Replayer />} />

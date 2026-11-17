@@ -5,10 +5,11 @@ use serde::Serialize;
 use hh_ingest::{db, import_history_file_with_conn, ImportProgress, ImportResult, DEFAULT_HERO};
 use rusqlite::Connection;
 use session_read_model::{
+	list_preflop_matchups, PreflopMatchup,
 	get_hand_detail, get_session_stats, get_chip_summary, get_chip_evolution, get_coach_stats, list_coach_spots, list_coach_blunders,
-	list_hands_for_tournament, list_tournaments,
+	list_hands_for_tournament, list_tournaments, get_gto_ranges,
 	HandDetail, HandRow, HandChipPoint, SessionStats, ChipSummary, TournamentRow, CoachSpot, CoachStatsSnapshot, CoachBlunderSpot,
-	load_hand_for_replay, ReplayerState,
+	load_hand_for_replay, ReplayerState, GtoRange,
 };
 use tauri::{Emitter, Manager};
 use tauri_plugin_dialog::DialogExt;
@@ -23,13 +24,14 @@ fn move_window_to_primary_center(window: &tauri::WebviewWindow) -> Result<(), St
 	let monitor_pos = monitor.position();
 	let window_size = window.outer_size().map_err(|e| e.to_string())?;
 
-	let monitor_width = i32::try_from(monitor_size.width).unwrap_or(i32::MAX);
-	let monitor_height = i32::try_from(monitor_size.height).unwrap_or(i32::MAX);
-	let window_width = i32::try_from(window_size.width).unwrap_or(i32::MAX);
-	let window_height = i32::try_from(window_size.height).unwrap_or(i32::MAX);
+	let monitor_width = monitor_size.width as i32;
+	let monitor_height = monitor_size.height as i32;
+	let window_width = (window_size.width as i32).min(monitor_width);
+	let window_height = (window_size.height as i32).min(monitor_height);
 
-	let x = monitor_pos.x + ((monitor_width - window_width).max(0) / 2);
-	let y = monitor_pos.y + ((monitor_height - window_height).max(0) / 2);
+	// Center the window, but ensure it stays within bounds
+	let x = monitor_pos.x + ((monitor_width - window_width) / 2).max(0);
+	let y = monitor_pos.y + ((monitor_height - window_height) / 2).max(0);
 
 	window
 		.set_position(tauri::Position::Physical(tauri::PhysicalPosition::new(x, y)))
@@ -374,6 +376,14 @@ pub mod commands {
 	}
 
 	#[tauri::command]
+	pub async fn get_preflop_matchups(
+		state: tauri::State<'_, AppState>,
+	) -> Result<Vec<PreflopMatchup>, String> {
+		let conn = state.db.lock().map_err(|e| e.to_string())?;
+		list_preflop_matchups(&conn).map_err(|e| e.to_string())
+	}
+
+	#[tauri::command]
 	pub async fn get_chip_summary_cmd(state: tauri::State<'_, AppState>) -> Result<ChipSummary, String> {
 		let conn = state.db.lock().map_err(|e| e.to_string())?;
 		get_chip_summary(&conn).map_err(|e| e.to_string())
@@ -414,6 +424,11 @@ pub mod commands {
 	}
 
 	#[tauri::command]
+	pub async fn get_gto_ranges_cmd() -> Result<Vec<GtoRange>, String> {
+		Ok(get_gto_ranges())
+	}
+
+	#[tauri::command]
 	pub async fn move_window_to_primary(window: tauri::WebviewWindow) -> Result<(), String> {
 		move_window_to_primary_center(&window)
 	}
@@ -451,9 +466,10 @@ pub fn run() {
 				db: Mutex::new(conn),
 			});
 
-			if let Some(main_window) = app.get_webview_window("main") {
-				let _ = move_window_to_primary_center(&main_window);
-			}
+			// Let window manager handle positioning
+			// if let Some(main_window) = app.get_webview_window("main") {
+			// 	let _ = move_window_to_primary_center(&main_window);
+			// }
 
 			Ok(())
 		})
@@ -471,9 +487,11 @@ pub fn run() {
 			commands::get_stats,
 			commands::get_chip_summary_cmd,
 			commands::get_chip_evolution_cmd,
+			commands::get_preflop_matchups,
 			commands::get_coach_spots,
 			commands::get_coach_stats_cmd,
 			commands::get_coach_blunders_cmd,
+			commands::get_gto_ranges_cmd,
 			commands::clear_all_data,
 		])
 		.run(tauri::generate_context!())

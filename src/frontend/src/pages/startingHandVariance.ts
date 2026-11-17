@@ -1,9 +1,14 @@
 import type { HandChipPoint } from '../api'
 
-const RANKS = 'AKQJT98765432'
+export const HAND_RANKS = 'AKQJT98765432'
 const TOTAL_COMBINATIONS = 1326
 
-function startingHandClass(cards: string | null): string | null {
+export const STARTING_HAND_ROWS = [...HAND_RANKS].map((rowRank, row) =>
+  [...HAND_RANKS].map((colRank, col) => row === col ? rowRank + colRank
+    : row < col ? rowRank + colRank + 's' : colRank + rowRank + 'o'),
+)
+
+export function startingHandClass(cards: string | null): string | null {
   if (cards == null) return null
   const match = /^(10|[2-9TJQKA])([CDHS])\s+(10|[2-9TJQKA])([CDHS])$/i.exec(cards.trim())
   if (!match) return null
@@ -11,7 +16,7 @@ function startingHandClass(cards: string | null): string | null {
   const first = rawFirst === '10' ? 'T' : rawFirst
   const second = rawSecond === '10' ? 'T' : rawSecond
   if (first === second) return firstSuit === secondSuit ? null : `${first}${second}`
-  const ranks = RANKS.indexOf(first) < RANKS.indexOf(second) ? first + second : second + first
+  const ranks = HAND_RANKS.indexOf(first) < HAND_RANKS.indexOf(second) ? first + second : second + first
   return ranks + (firstSuit === secondSuit ? 's' : 'o')
 }
 
@@ -44,10 +49,8 @@ export function startingHandDistribution(
     sampleSize++
   }
 
-  const rows = [...RANKS].map((rowRank, row) =>
-    [...RANKS].map((colRank, col) => {
-      const combo = row === col ? rowRank + colRank
-        : row < col ? rowRank + colRank + 's' : colRank + rowRank + 'o'
+  const rows = STARTING_HAND_ROWS.map((combos, row) =>
+    combos.map((combo, col) => {
       const combinations = row === col ? 6 : row < col ? 4 : 12
       const probability = combinations / TOTAL_COMBINATIONS
       const result = results.get(combo)

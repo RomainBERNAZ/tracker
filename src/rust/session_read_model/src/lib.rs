@@ -191,6 +191,83 @@ pub fn get_chip_evolution(conn: &Connection) -> Result<Vec<HandChipPoint>, rusql
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct MatchupOpponent {
+    pub player_name: String,
+    pub cards: Option<String>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct PreflopMatchup {
+    pub hand_id: String,
+    pub tournament_id: String,
+    pub timestamp: String,
+    pub big_blind: i64,
+    pub hero_cards: Option<String>,
+    pub realized_cev: i64,
+    pub net_ev: Option<i64>,
+    pub allin_equity: Option<f64>,
+    pub opponents: Vec<MatchupOpponent>,
+}
+
+/// One row per preflop all-in confrontation, including covered shoves.
+/// Later betting or folds would no longer describe a locked preflop matchup.
+pub fn list_preflop_matchups(conn: &Connection) -> Result<Vec<PreflopMatchup>, rusqlite::Error> {
+    let mut stmt = conn.prepare(
+        r#"SELECT h.id, h.tournament_id, h.timestamp, h.big_blind,
+                  hc.card1 || ' ' || hc.card2,
+                  hp.realized_cev, hp.net_ev, hp.allin_equity,
+                  villain.player_name, shown.card1 || ' ' || shown.card2
+           FROM hands h
+           JOIN hand_players hp ON hp.hand_id = h.id AND hp.hero = 1
+           LEFT JOIN hole_cards hc ON hc.hand_id = h.id AND hc.player_name = hp.player_name
+           JOIN hand_players villain ON villain.hand_id = h.id
+                AND villain.player_name <> hp.player_name AND villain.contributions > 0
+           LEFT JOIN showdown_hole_cards shown
+                ON shown.hand_id = h.id AND shown.player_name = villain.player_name
+           WHERE hp.contributions > 0
+             AND EXISTS (
+                 SELECT 1 FROM hand_actions a WHERE a.hand_id = h.id AND a.street_order = 0
+                   AND a.action_type IN ('allin_call', 'allin_bet', 'allin_raise')
+             )
+             AND NOT EXISTS (
+                 SELECT 1 FROM hand_actions a WHERE a.hand_id = h.id
+                   AND ((a.player_name = hp.player_name AND a.action_type = 'fold')
+                     OR (a.street_order > 0 AND a.action_type IN
+                        ('fold', 'call', 'bet', 'raise', 'allin_call', 'allin_bet', 'allin_raise')))
+             )
+             AND NOT EXISTS (
+                 SELECT 1 FROM hand_actions a WHERE a.hand_id = h.id
+                   AND a.player_name = villain.player_name AND a.action_type = 'fold'
+             )
+           ORDER BY h.timestamp DESC, h.id, villain.seat_number"#,
+    )?;
+    let rows = stmt.query_map([], |row| {
+        Ok((
+            PreflopMatchup {
+                hand_id: row.get(0)?,
+                tournament_id: row.get(1)?,
+                timestamp: row.get(2)?,
+                big_blind: row.get(3)?,
+                hero_cards: row.get(4)?,
+                realized_cev: row.get(5)?,
+                net_ev: row.get(6)?,
+                allin_equity: row.get(7)?,
+                opponents: Vec::new(),
+            },
+            MatchupOpponent { player_name: row.get(8)?, cards: row.get(9)? },
+        ))
+    })?;
+    let mut hands = BTreeMap::new();
+    for row in rows {
+        let (hand, opponent) = row?;
+        hands.entry(hand.hand_id.clone()).or_insert(hand).opponents.push(opponent);
+    }
+    let mut hands: Vec<PreflopMatchup> = hands.into_values().collect();
+    hands.sort_by(|a, b| b.timestamp.cmp(&a.timestamp).then_with(|| a.hand_id.cmp(&b.hand_id)));
+    Ok(hands)
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ChipSummary {
     pub net_chips: i64,
     pub net_ev_chips: i64,
@@ -1573,6 +1650,61 @@ mod tests {
     }
 
     #[test]
+    fn preflop_matchups_include_covered_shoves_but_not_later_allins_or_betting() {
+        let conn = Connection::open_in_memory().expect("open database");
+        seed(&conn);
+        let hands = list_preflop_matchups(&conn).expect("preflop matchup");
+        assert_eq!(hands.len(), 1);
+        assert_eq!(hands[0].hero_cards.as_deref(), Some("Jd Kd"));
+        assert_eq!(hands[0].opponents[0].cards.as_deref(), Some("As Qc"));
+        assert_eq!(hands[0].realized_cev, 675);
+        assert_eq!(hands[0].net_ev, Some(296));
+        conn.execute_batch(
+            "UPDATE hand_actions SET action_type = 'call' WHERE player_name = 'MRZO';
+             UPDATE hand_players SET net_ev = realized_cev, allin_equity = NULL WHERE hero = 1;",
+        ).expect("covered shove without calculated equity");
+        let hands = list_preflop_matchups(&conn).expect("keep covered shove");
+        assert_eq!(hands.len(), 1);
+        assert_eq!(hands[0].allin_equity, None);
+        conn.execute("UPDATE hand_actions SET street_order = 1", []).expect("move all-in to flop");
+        assert!(list_preflop_matchups(&conn).expect("exclude flop").is_empty());
+        conn.execute_batch(
+            "UPDATE hand_actions SET street_order = 0;
+             INSERT INTO hand_actions (hand_id, street_order, street, action_index, player_name, action_type, amount)
+             VALUES ('H29', 1, 'flop', 0, 'MRZO', 'bet', 10);",
+        ).expect("later betting");
+        assert!(list_preflop_matchups(&conn).expect("exclude unlocked pot").is_empty());
+    }
+
+    #[test]
+    fn preflop_matchups_group_opponents_once_and_distinguish_folded_players_from_contenders() {
+        let conn = Connection::open_in_memory().expect("open database");
+        seed(&conn);
+        conn.execute_batch(
+            "INSERT INTO hand_players (hand_id, seat_number, player_name, starting_stack, ending_stack,
+                                       contributions, collected, realized_cev, hero)
+             VALUES ('H29', 3, 'Third', 500, 480, 20, 0, -20, 0);
+             INSERT INTO hand_actions (hand_id, street_order, street, action_index, player_name, action_type)
+             VALUES ('H29', 0, 'preflop', 2, 'Third', 'fold');",
+        ).expect("folded blind");
+        let hands = list_preflop_matchups(&conn).expect("duel");
+        assert_eq!(hands.len(), 1);
+        assert_eq!(hands[0].opponents.len(), 1);
+        conn.execute_batch(
+            "UPDATE hand_actions SET action_type = 'allin_call' WHERE player_name = 'Third';
+             INSERT INTO showdown_hole_cards (hand_id, player_name, card1, card2)
+             VALUES ('H29', 'Third', 'Ah', '2h');",
+        ).expect("three-way pot");
+        let hands = list_preflop_matchups(&conn).expect("multiway");
+        assert_eq!(hands.len(), 1);
+        assert_eq!(hands[0].opponents.len(), 2);
+        conn.execute("DELETE FROM showdown_hole_cards WHERE player_name = 'Third'", [])
+            .expect("unknown third player's cards");
+        let hands = list_preflop_matchups(&conn).expect("keep missing-card coverage");
+        assert_eq!(hands[0].opponents[1].cards, None);
+    }
+
+    #[test]
     fn chip_evolution_returns_only_hero_cards_and_keeps_hands_without_cards() {
         let conn = Connection::open_in_memory().expect("open database");
         seed(&conn);
@@ -1771,4 +1903,244 @@ mod tests {
             }
         assert_eq!(detail.actions.len(), 2);
     }
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct PreflopStatsRow {
+    pub position: String,  // "BTN", "SB", "BB"
+    pub total_hands: i64,
+    pub push_count: i64,    // allin_raise, allin_bet
+    pub call_count: i64,    // call, allin_call
+    pub raise_count: i64,   // raise (preflop 3bet)
+    pub fold_count: i64,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct PreflopStats {
+    pub stats: Vec<PreflopStatsRow>,
+}
+
+/// Helper to determine hero position in 3-handed game
+fn get_position_name(button_seat: i64, hero_seat: i64) -> &'static str {
+    let relative = (hero_seat - button_seat + 3) % 3;
+    match relative {
+        0 => "BTN",
+        1 => "SB",
+        2 => "BB",
+        _ => "BTN",
+    }
+}
+
+/// Extract preflop action statistics by position (3-handed only)
+pub fn get_preflop_stats_by_position(conn: &Connection) -> Result<PreflopStats, rusqlite::Error> {
+    let mut stmt = conn.prepare(
+        r#"SELECT h.id,
+                  h.button_seat,
+                  hp.seat_number,
+                  hp.player_name,
+                  a.action_type
+           FROM hands h
+           JOIN hand_players hp ON hp.hand_id = h.id AND hp.hero = 1
+           JOIN hand_actions a ON a.hand_id = h.id AND a.street_order = 0 AND a.player_name = hp.player_name
+           WHERE h.seat_count = 3
+           ORDER BY h.id, a.action_index"#,
+    )?;
+
+    let mut position_stats: BTreeMap<String, (i64, i64, i64, i64, i64)> = BTreeMap::new();
+    position_stats.insert("BTN".to_string(), (0, 0, 0, 0, 0));
+    position_stats.insert("SB".to_string(), (0, 0, 0, 0, 0));
+    position_stats.insert("BB".to_string(), (0, 0, 0, 0, 0));
+
+    let rows: Vec<(String, i64, i64, String, String)> = stmt
+        .query_map([], |row| {
+            Ok((
+                row.get(0)?,  // hand_id
+                row.get(1)?,  // button_seat
+                row.get(2)?,  // hero_seat
+                row.get(3)?,  // player_name
+                row.get(4)?,  // action_type
+            ))
+        })?
+        .collect::<Result<Vec<_>, _>>()?;
+
+    let mut seen_hands = std::collections::HashSet::new();
+
+    for (hand_id, button_seat, hero_seat, _player_name, action_type) in rows {
+        let position = get_position_name(button_seat, hero_seat);
+        let pos_key = position.to_string();
+
+        // Count once per hand for total_hands
+        let is_new_hand = seen_hands.insert(hand_id.clone());
+
+        let (total, push, call, raise, fold) = position_stats
+            .entry(pos_key)
+            .or_insert((0, 0, 0, 0, 0));
+
+        if is_new_hand {
+            *total += 1;
+        }
+
+        match action_type.as_str() {
+            "allin_raise" | "allin_bet" => {
+                *push += 1;
+            }
+            "call" | "allin_call" => {
+                *call += 1;
+            }
+            "raise" => {
+                *raise += 1;
+            }
+            "fold" => {
+                *fold += 1;
+            }
+            _ => {}
+        }
+    }
+
+    let stats: Vec<PreflopStatsRow> = position_stats
+        .into_iter()
+        .map(|(position, (total, push, call, raise, fold))| PreflopStatsRow {
+            position,
+            total_hands: total,
+            push_count: push,
+            call_count: call,
+            raise_count: raise,
+            fold_count: fold,
+        })
+        .collect();
+
+    Ok(PreflopStats { stats })
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct GtoRange {
+    pub position: String,          // "BTN", "SB", "BB"
+    pub stack_depth: String,       // "25bb+", "20bb", "15bb", "12bb", "10bb", "8bb", "6bb"
+    pub push_range: Vec<String>,   // List of combos like "AA", "AKs", "AKo", etc.
+    pub call_range: Vec<String>,   // For SB/BB
+    pub fold_range: Vec<String>,   // Marginal combos
+}
+
+/// GTO push ranges for 3-handed poker by position and stack depth
+pub fn get_gto_ranges() -> Vec<GtoRange> {
+    vec![
+        // BTN ranges (push-or-fold)
+        GtoRange {
+            position: "BTN".to_string(),
+            stack_depth: "25bb+".to_string(),
+            push_range: vec![
+                "AA", "KK", "QQ", "JJ", "TT", "99", "88",
+                "AKs", "AQs", "AJs", "ATs", "A9s", "A8s",
+                "KQs", "KJs", "QJs",
+            ].iter().map(|s| s.to_string()).collect(),
+            call_range: vec![],
+            fold_range: vec!["A2s", "A3s", "A4s", "A5s", "A6s", "A7s", "K9s", "Q9s", "J9s", "T9s", "98s", "87s", "76s", "65s", "54s", "KJo", "QJo"].iter().map(|s| s.to_string()).collect(),
+        },
+        GtoRange {
+            position: "BTN".to_string(),
+            stack_depth: "20bb".to_string(),
+            push_range: vec![
+                "AA", "KK", "QQ", "JJ", "TT", "99", "88", "77",
+                "AKs", "AQs", "AJs", "ATs", "A9s", "A8s", "A7s",
+                "KQs", "KJs", "KTs", "QJs",
+            ].iter().map(|s| s.to_string()).collect(),
+            call_range: vec![],
+            fold_range: vec![],
+        },
+        GtoRange {
+            position: "BTN".to_string(),
+            stack_depth: "15bb".to_string(),
+            push_range: vec![
+                "AA", "KK", "QQ", "JJ", "TT", "99", "88", "77", "66",
+                "AKs", "AQs", "AJs", "ATs", "A9s", "A8s", "A7s", "A6s", "A5s",
+                "KQs", "KJs", "KTs", "K9s",
+                "QJs", "QTs",
+                "JTs",
+            ].iter().map(|s| s.to_string()).collect(),
+            call_range: vec![],
+            fold_range: vec![],
+        },
+        GtoRange {
+            position: "BTN".to_string(),
+            stack_depth: "12bb".to_string(),
+            push_range: vec![
+                "AA", "KK", "QQ", "JJ", "TT", "99", "88", "77", "66", "55",
+                "AKs", "AQs", "AJs", "ATs", "A9s", "A8s", "A7s", "A6s", "A5s", "A4s", "A3s", "A2s",
+                "KQs", "KJs", "KTs", "K9s",
+                "QJs", "QTs", "Q9s",
+                "JTs", "J9s",
+                "T9s",
+            ].iter().map(|s| s.to_string()).collect(),
+            call_range: vec![],
+            fold_range: vec![],
+        },
+
+        // SB ranges (push vs BB)
+        GtoRange {
+            position: "SB".to_string(),
+            stack_depth: "25bb+".to_string(),
+            push_range: vec![
+                "AA", "KK", "QQ", "JJ", "TT", "99", "88",
+                "AKs", "AQs", "AJs", "ATs",
+                "KQs",
+            ].iter().map(|s| s.to_string()).collect(),
+            call_range: vec![
+                "77", "66", "55", "44",
+                "A9s", "A8s", "A7s", "A6s", "A5s",
+                "KJs", "KTs", "K9s",
+                "QJs", "QTs",
+                "JTs", "J9s",
+                "T9s", "T8s",
+            ].iter().map(|s| s.to_string()).collect(),
+            fold_range: vec!["A2s", "A3s", "A4s", "K2s", "Q2s", "J2s", "T2s", "92s"].iter().map(|s| s.to_string()).collect(),
+        },
+        GtoRange {
+            position: "SB".to_string(),
+            stack_depth: "15bb".to_string(),
+            push_range: vec![
+                "AA", "KK", "QQ", "JJ", "TT", "99", "88", "77", "66",
+                "AKs", "AQs", "AJs", "ATs", "A9s", "A8s",
+                "KQs", "KJs", "KTs",
+                "QJs",
+            ].iter().map(|s| s.to_string()).collect(),
+            call_range: vec![
+                "55", "44",
+                "A7s", "A6s", "A5s",
+                "K9s", "K8s",
+                "QTs", "Q9s",
+                "JTs", "J9s",
+                "T9s",
+                "98s", "87s",
+            ].iter().map(|s| s.to_string()).collect(),
+            fold_range: vec![],
+        },
+
+        // BB ranges (vs SB push)
+        GtoRange {
+            position: "BB".to_string(),
+            stack_depth: "25bb+".to_string(),
+            push_range: vec![], // BB doesn't push, BB calls/folds
+            call_range: vec![
+                "AA", "KK", "QQ", "JJ", "TT", "99", "88", "77",
+                "AKs", "AQs", "AJs", "ATs", "A9s",
+                "KQs", "KJs", "KTs",
+                "QJs",
+            ].iter().map(|s| s.to_string()).collect(),
+            fold_range: vec!["22", "33", "44", "55", "66", "A2s", "A3s", "A4s", "A5s", "A6s", "A7s", "A8s", "K2s", "Q2s", "J2s"].iter().map(|s| s.to_string()).collect(),
+        },
+        GtoRange {
+            position: "BB".to_string(),
+            stack_depth: "15bb".to_string(),
+            push_range: vec![],
+            call_range: vec![
+                "AA", "KK", "QQ", "JJ", "TT", "99", "88", "77", "66", "55",
+                "AKs", "AQs", "AJs", "ATs", "A9s", "A8s", "A7s", "A6s",
+                "KQs", "KJs", "KTs", "K9s",
+                "QJs", "QTs",
+                "JTs",
+                "T9s", "98s",
+            ].iter().map(|s| s.to_string()).collect(),
+            fold_range: vec![],
+        },
+    ]
 }

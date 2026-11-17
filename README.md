@@ -35,6 +35,18 @@ Chaque case affiche aussi le gain realise moyen par occurrence, au choix en jeto
 Les gains en BB sont calcules main par main (`gain realise / grosse blinde`), puis additionnes et moyennes. Une grosse blinde invalide exclut uniquement le gain en BB, avec un avertissement et le nombre d'occurrences exploitables ; les gains en jetons et les frequences restent disponibles. Une moyenne sans occurrence exploitable est affichee par un tiret, pas par zero.
 L'encart est limite a la largeur de la grille pour laisser le reste de la page disponible.
 
+### Comparateur de confrontations
+
+Dans Variance, deux grilles independantes permettent de selectionner librement les mains du hero et celles de vilain. Les cases `s` et `o` sont distinctes : selectionner `KJs` et `KJo` couvre KJ. Les raccourcis Toutes, Paires et les familles Ax, Kx, etc. remplacent la selection ; Ax comprend AK a A2 assorties ou non, sans AA.
+Le comparateur garde les memes tournois (periode et buy-in) et la meme unite Jetons / BB que la grille. Il porte sur les all-ins preflop sans mise ni fold ulterieur, y compris les tapis adverses couverts par le hero. Les duels et les pots a trois joueurs sont separes ; a trois, au moins un adversaire doit appartenir a la selection, et chaque main compte une seule fois.
+Le bilan reel / attendu utilise exactement les memes mains avec EV all-in effectivement calculee (Net EV et part de pot attendue disponibles), et une grosse blinde valide en mode BB. Les cartes inconnues et les EV manquantes sont signalees, sans remplacer artificiellement l'attendu par le resultat reel. La part moyenne du pot attendue tient compte des pots secondaires : ce n'est pas un taux de victoires.
+La liste donne acces au replayer et permet d'afficher toutes les confrontations par lots de 50, sans limiter les statistiques a ce premier lot.
+
+### Tableaux preflop experimentaux
+
+L'onglet GTO (experimental) propose une matrice 13x13 pour les formats trois joueurs et heads-up, avec selection du scenario (push, call contre push, 3bet contre open), de la position et du stack effectif.
+Les seuils sont des heuristiques indicatives, non des ranges de solveur : ils ne sont pas valides GTO et ne tiennent pas compte des ranges adverses, des sizings ni de l'ICM. Le pourcentage affiche porte sur les categories actives parmi les 169 mains, sans ponderation par leurs combinaisons.
+
 ---
 
 ## Phase 1: Realized cEV Foundation (Blocking)
