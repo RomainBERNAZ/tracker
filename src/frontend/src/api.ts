@@ -147,6 +147,7 @@ export interface ReplayerState {
 export interface HandChipPoint {
   tournament_id: string
   hero_cards: string | null
+  big_blind: number
   timestamp: string
   realized_cev: number
   net_ev: number | null

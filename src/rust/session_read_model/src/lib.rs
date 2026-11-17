@@ -148,6 +148,7 @@ pub struct ReplayerStep {
 pub struct HandChipPoint {
     pub tournament_id: String,
     pub hero_cards: Option<String>,
+    pub big_blind: i64,
     pub timestamp: String,
     pub realized_cev: i64,
     pub net_ev: Option<i64>,
@@ -167,7 +168,7 @@ const HERO_SHOWDOWN_SQL: &str = r#"(COALESCE(h.has_showdown, 0) <> 0 AND NOT EXI
 pub fn get_chip_evolution(conn: &Connection) -> Result<Vec<HandChipPoint>, rusqlite::Error> {
     let mut stmt = conn.prepare(&format!(
         r#"SELECT h.timestamp, hp.realized_cev, hp.net_ev,
-                  {HERO_SHOWDOWN_SQL}, h.tournament_id, hc.card1 || ' ' || hc.card2
+                  {HERO_SHOWDOWN_SQL}, h.tournament_id, hc.card1 || ' ' || hc.card2, h.big_blind
            FROM hands h
            JOIN hand_players hp ON hp.hand_id = h.id AND hp.hero = 1
            LEFT JOIN hole_cards hc ON hc.hand_id = h.id AND hc.player_name = hp.player_name
@@ -178,6 +179,7 @@ pub fn get_chip_evolution(conn: &Connection) -> Result<Vec<HandChipPoint>, rusql
         Ok(HandChipPoint {
             tournament_id: row.get(4)?,
             hero_cards: row.get(5)?,
+            big_blind: row.get(6)?,
             timestamp: row.get(0)?,
             realized_cev: row.get(1)?,
             net_ev: row.get(2)?,
@@ -1581,6 +1583,7 @@ mod tests {
         let points = get_chip_evolution(&conn).expect("hero cards");
         assert_eq!(points.len(), 1);
         assert_eq!(points[0].hero_cards.as_deref(), Some("Jd Kd"));
+        assert_eq!(points[0].big_blind, 60);
 
         conn.execute("DELETE FROM hole_cards WHERE player_name = 'MRZO'", [])
             .expect("remove unavailable hero cards");

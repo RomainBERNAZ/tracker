@@ -777,6 +777,17 @@ tr:hover td {
   min-height: 220px;
 }
 
+.variance-card {
+  width: 100%;
+  max-width: 814px;
+  align-self: flex-start;
+}
+
+.variance-header {
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
 .variance-description {
   color: var(--text-dim);
   font-size: 13px;
@@ -814,11 +825,22 @@ tr:hover td {
   cursor: help;
 }
 
-.variance-cell span {
+.variance-cell-content {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   aspect-ratio: 1;
+  gap: 2px;
+}
+
+.variance-cell-value {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: clamp(9px, 0.8vw, 11px);
+  color: var(--text);
 }
 
 .variance-cell-more {

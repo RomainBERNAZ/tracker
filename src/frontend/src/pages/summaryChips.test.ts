@@ -4,8 +4,8 @@ import { summarizeChips } from './summaryChips'
 describe('summarizeChips', () => {
   it('divides adjusted chips, not realized chips, by the filtered game count', () => {
     const stats = summarizeChips([
-      { tournament_id: 'T1', hero_cards: null, timestamp: '2026-11-15T12:00:00Z', realized_cev: -2169, net_ev: -2169, has_showdown: false },
-      { tournament_id: 'T2', hero_cards: null, timestamp: '2026-11-15T13:00:00Z', realized_cev: 10669, net_ev: 6496, has_showdown: true },
+      { tournament_id: 'T1', hero_cards: null, big_blind: 20, timestamp: '2026-11-15T12:00:00Z', realized_cev: -2169, net_ev: -2169, has_showdown: false },
+      { tournament_id: 'T2', hero_cards: null, big_blind: 50, timestamp: '2026-11-15T13:00:00Z', realized_cev: 10669, net_ev: 6496, has_showdown: true },
     ], 52)
 
     expect(stats.netChips).toBe(8500)
@@ -17,8 +17,8 @@ describe('summarizeChips', () => {
 
   it('uses realized chips for hands without an EV adjustment', () => {
     const stats = summarizeChips([
-      { tournament_id: 'T1', hero_cards: null, timestamp: '2026-11-15T12:00:00Z', realized_cev: 20, net_ev: null, has_showdown: false },
-      { tournament_id: 'T2', hero_cards: null, timestamp: '2026-11-15T13:00:00Z', realized_cev: -500, net_ev: 0, has_showdown: true },
+      { tournament_id: 'T1', hero_cards: null, big_blind: 20, timestamp: '2026-11-15T12:00:00Z', realized_cev: 20, net_ev: null, has_showdown: false },
+      { tournament_id: 'T2', hero_cards: null, big_blind: 50, timestamp: '2026-11-15T13:00:00Z', realized_cev: -500, net_ev: 0, has_showdown: true },
     ], 2)
 
     expect(stats.netEvChips).toBe(20)

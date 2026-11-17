@@ -31,6 +31,9 @@ Build a **clean, maintainable, performant** desktop application to analyze Expre
 L'onglet Variance de Summary affiche les 169 categories de mains recues par le hero dans une grille 13 x 13 (paires, suited, offsuit). Il utilise les memes filtres de periode et de buy-in que Resume et Jetons.
 Au survol ou au focus d'une case : occurrences recues, occurrences attendues et ecart. L'attendu utilise respectivement 6, 4 et 12 combinaisons sur les 1 326 distributions possibles de deux cartes.
 Les mains sans cartes de depart exploitables sont signalees et exclues du nombre de mains servant au calcul. Ces ecarts de frequence sont descriptifs, pas un test de hasard.
+Chaque case affiche aussi le gain realise moyen par occurrence, au choix en jetons ou en BB, avec le gain total au survol. Les couleurs de fond continuent a representer les frequences recues par rapport a l'attendu, pas la rentabilite.
+Les gains en BB sont calcules main par main (`gain realise / grosse blinde`), puis additionnes et moyennes. Une grosse blinde invalide exclut uniquement le gain en BB, avec un avertissement et le nombre d'occurrences exploitables ; les gains en jetons et les frequences restent disponibles. Une moyenne sans occurrence exploitable est affichee par un tiret, pas par zero.
+L'encart est limite a la largeur de la grille pour laisser le reste de la page disponible.
 
 ---
 
