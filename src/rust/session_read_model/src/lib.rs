@@ -147,6 +147,7 @@ pub struct ReplayerStep {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct HandChipPoint {
     pub tournament_id: String,
+    pub hero_cards: Option<String>,
     pub timestamp: String,
     pub realized_cev: i64,
     pub net_ev: Option<i64>,
@@ -166,15 +167,17 @@ const HERO_SHOWDOWN_SQL: &str = r#"(COALESCE(h.has_showdown, 0) <> 0 AND NOT EXI
 pub fn get_chip_evolution(conn: &Connection) -> Result<Vec<HandChipPoint>, rusqlite::Error> {
     let mut stmt = conn.prepare(&format!(
         r#"SELECT h.timestamp, hp.realized_cev, hp.net_ev,
-                  {HERO_SHOWDOWN_SQL}, h.tournament_id
+                  {HERO_SHOWDOWN_SQL}, h.tournament_id, hc.card1 || ' ' || hc.card2
            FROM hands h
            JOIN hand_players hp ON hp.hand_id = h.id AND hp.hero = 1
+           LEFT JOIN hole_cards hc ON hc.hand_id = h.id AND hc.player_name = hp.player_name
            ORDER BY h.timestamp ASC"#,
     ))?;
 
     let rows = stmt.query_map([], |row| {
         Ok(HandChipPoint {
             tournament_id: row.get(4)?,
+            hero_cards: row.get(5)?,
             timestamp: row.get(0)?,
             realized_cev: row.get(1)?,
             net_ev: row.get(2)?,
@@ -1565,6 +1568,26 @@ mod tests {
             "INSERT INTO hand_actions (hand_id, street_order, street, action_index, player_name, action_type, amount, increment_amount, to_amount) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9)",
             params!["H29", 0_i64, "preflop", 1_i64, "MRZO", "allin_call", Some(615_i64), Option::<i64>::None, Option::<i64>::None],
         ).expect("insert action 2");
+    }
+
+    #[test]
+    fn chip_evolution_returns_only_hero_cards_and_keeps_hands_without_cards() {
+        let conn = Connection::open_in_memory().expect("open database");
+        seed(&conn);
+        conn.execute(
+            "INSERT INTO hole_cards (hand_id, player_name, card1, card2) VALUES ('H29', 'Cocochanel23', 'As', 'Qc')",
+            [],
+        ).expect("insert opponent cards");
+        let points = get_chip_evolution(&conn).expect("hero cards");
+        assert_eq!(points.len(), 1);
+        assert_eq!(points[0].hero_cards.as_deref(), Some("Jd Kd"));
+
+        conn.execute("DELETE FROM hole_cards WHERE player_name = 'MRZO'", [])
+            .expect("remove unavailable hero cards");
+        let points = get_chip_evolution(&conn).expect("keep hand without hero cards");
+        assert_eq!(points.len(), 1);
+        assert_eq!(points[0].hero_cards, None);
+        assert_eq!(points[0].net_ev, Some(296));
     }
 
     #[test]

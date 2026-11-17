@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState, memo } from 'react'
+import { useEffect, useMemo, useState, memo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {
   PieChart,
@@ -16,6 +16,7 @@ import { api, CoachBlunderSpot, CoachFormatStats, CoachStatsSnapshot, HandChipPo
 import { CumulativeChart } from '../components/CumulativeChart'
 import { summarizeChips } from './summaryChips'
 import { TournamentFilters } from '../components/TournamentFilters'
+import Variance from './Variance'
 import { DEFAULT_FILTER, applyTournamentRange, computeFilteredStats, endOfDay, handsForTournaments, parseDateInput, periodToRange, tournamentBuyIn } from './tournamentFilters'
 
 function fmtEur(n: number) {
@@ -904,38 +905,6 @@ const SummaryChipsTab = memo(({ filteredHands, filteredTournamentCount }: {
   const [activeCurves, setActiveCurves] = useState<Set<ChipsCurveKey>>(
     () => new Set(['cev', 'ev'] as ChipsCurveKey[]),
   )
-  const chartRef = useRef<HTMLDivElement | null>(null)
-  const chartHeaderRef = useRef<HTMLDivElement | null>(null)
-  const chartTogglesRef = useRef<HTMLDivElement | null>(null)
-  const [chartHeight, setChartHeight] = useState(400)
-
-  useEffect(() => {
-    const el = chartRef.current
-    if (!el) return undefined
-
-    const update = () => {
-      const rect = el.getBoundingClientRect()
-      const viewportBottomPadding = 20
-      const headerHeight = chartHeaderRef.current?.offsetHeight ?? 48
-      const togglesHeight = chartTogglesRef.current?.offsetHeight ?? 56
-      const cardStaticArea = headerHeight + togglesHeight + 32
-      const available = globalThis.window.innerHeight - rect.top - viewportBottomPadding - cardStaticArea
-      const safeHeight = Math.min(560, Math.max(220, available))
-      setChartHeight(safeHeight)
-    }
-
-    update()
-    const observer = new ResizeObserver(update)
-    observer.observe(el)
-    if (chartHeaderRef.current) observer.observe(chartHeaderRef.current)
-    if (chartTogglesRef.current) observer.observe(chartTogglesRef.current)
-    globalThis.window.addEventListener('resize', update)
-    return () => {
-      globalThis.window.removeEventListener('resize', update)
-      observer.disconnect()
-    }
-  }, [])
-
   const chipStats = useMemo(
     () => summarizeChips(filteredHands, filteredTournamentCount),
     [filteredHands, filteredTournamentCount],
@@ -982,7 +951,7 @@ const SummaryChipsTab = memo(({ filteredHands, filteredTournamentCount }: {
   const fmtChips = (n: number) => `${n > 0 ? '+' : ''}${n}`
 
   return (
-    <div>
+    <div className="summary-chips-tab">
       <div className="stats-bar" style={{ marginBottom: 16 }}>
         <div className="stat-card">
           <div className="label">Net (chips)</div>
@@ -1016,8 +985,8 @@ const SummaryChipsTab = memo(({ filteredHands, filteredTournamentCount }: {
         </div>
       </div>
 
-      <div className="summary-card" ref={chartRef}>
-        <div className="summary-card-header" ref={chartHeaderRef}>
+      <div className="summary-card summary-chips-card">
+        <div className="summary-card-header">
           <h3>Évolution cumulée (chips) — {chartData.length - 1} mains</h3>
           {chipsLuck ? (
             <div
@@ -1053,42 +1022,45 @@ const SummaryChipsTab = memo(({ filteredHands, filteredTournamentCount }: {
         {chartData.length < 2 ? (
           <p style={{ color: 'var(--text-dim)', fontSize: 13 }}>Pas assez de données.</p>
         ) : (
-          <ResponsiveContainer width="100%" height={chartHeight}>
-            <LineChart data={chartData} margin={{ top: 10, right: 16, bottom: 4, left: 8 }}>
-              <CartesianGrid stroke="rgba(255,255,255,0.05)" vertical={false} />
-              <XAxis dataKey="label" tick={{ fill: '#a9b0c8', fontSize: 11 }} tickLine={false} axisLine={false} interval="preserveStartEnd" />
-              <YAxis tick={{ fill: '#a9b0c8', fontSize: 11 }} tickLine={false} axisLine={false} width={64} tickFormatter={fmtChips} />
-              <Tooltip
-                contentStyle={{ background: '#1a1d2e', border: '1px solid #2a2d3e', borderRadius: 6, fontSize: 12 }}
-                labelStyle={{ color: '#a9b0c8', marginBottom: 4 }}
-                formatter={(value, name) => {
-                  const numericValue = typeof value === 'number' ? value : Number(value ?? 0)
-                  const seriesName = String(name ?? '')
-                  const curve = CHIPS_CURVES.find((c) => c.key === seriesName)
-                  return [fmtChips(Number.isFinite(numericValue) ? numericValue : 0), curve?.label ?? seriesName]
-                }}
-                isAnimationActive={false}
-              />
-              <ReferenceLine y={0} stroke="rgba(255,255,255,0.15)" strokeDasharray="4 4" />
-              {CHIPS_CURVES.map((curve) =>
-                activeCurves.has(curve.key) ? (
-                  <Line
-                    key={curve.key}
-                    dataKey={curve.key}
-                    stroke={curve.stroke}
-                    strokeWidth={curve.key === 'cev' ? 2 : 1.5}
-                    dot={false}
-                    strokeDasharray={curve.dash}
-                    name={curve.key}
-                    isAnimationActive={false}
-                  />
-                ) : null,
-              )}
-            </LineChart>
-          </ResponsiveContainer>
+          <div className="chips-chart">
+            <ResponsiveContainer width="100%" height="100%" initialDimension={{ width: 0, height: 220 }}
+              style={{ position: 'absolute', inset: 0 }}>
+              <LineChart data={chartData} margin={{ top: 10, right: 16, bottom: 4, left: 8 }}>
+                <CartesianGrid stroke="rgba(255,255,255,0.05)" vertical={false} />
+                <XAxis dataKey="label" tick={{ fill: '#a9b0c8', fontSize: 11 }} tickLine={false} axisLine={false} interval="preserveStartEnd" />
+                <YAxis tick={{ fill: '#a9b0c8', fontSize: 11 }} tickLine={false} axisLine={false} width={64} tickFormatter={fmtChips} />
+                <Tooltip
+                  contentStyle={{ background: '#1a1d2e', border: '1px solid #2a2d3e', borderRadius: 6, fontSize: 12 }}
+                  labelStyle={{ color: '#a9b0c8', marginBottom: 4 }}
+                  formatter={(value, name) => {
+                    const numericValue = typeof value === 'number' ? value : Number(value ?? 0)
+                    const seriesName = String(name ?? '')
+                    const curve = CHIPS_CURVES.find((c) => c.key === seriesName)
+                    return [fmtChips(Number.isFinite(numericValue) ? numericValue : 0), curve?.label ?? seriesName]
+                  }}
+                  isAnimationActive={false}
+                />
+                <ReferenceLine y={0} stroke="rgba(255,255,255,0.15)" strokeDasharray="4 4" />
+                {CHIPS_CURVES.map((curve) =>
+                  activeCurves.has(curve.key) ? (
+                    <Line
+                      key={curve.key}
+                      dataKey={curve.key}
+                      stroke={curve.stroke}
+                      strokeWidth={curve.key === 'cev' ? 2 : 1.5}
+                      dot={false}
+                      strokeDasharray={curve.dash}
+                      name={curve.key}
+                      isAnimationActive={false}
+                    />
+                  ) : null,
+                )}
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
         )}
 
-        <div className="chips-curve-toggles" ref={chartTogglesRef}>
+        <div className="chips-curve-toggles">
           {CHIPS_CURVES.map((curve) => {
             const isActive = activeCurves.has(curve.key)
             return (
@@ -1116,7 +1088,7 @@ export default memo(function Summary() {
   const [handEvolution, setHandEvolution] = useState<HandChipPoint[]>([])
   const [loading, setLoading] = useState(true)
   const [filter, setFilter] = useState(DEFAULT_FILTER)
-  const [activeTab, setActiveTab] = useState<'summary' | 'chips' | 'coach'>('summary')
+  const [activeTab, setActiveTab] = useState<'summary' | 'chips' | 'variance' | 'coach'>('summary')
   const [coachFrom, setCoachFrom] = useState('')
   const [coachTo, setCoachTo] = useState('')
 
@@ -1204,7 +1176,7 @@ export default memo(function Summary() {
   if (loading) return <p style={{ color: 'var(--text-dim)' }}>Chargement…</p>
 
   return (
-    <div>
+    <div className="summary-page">
       <div className="page-header">
         <div className="summary-header-row">
           <div>
@@ -1246,6 +1218,21 @@ export default memo(function Summary() {
           }}
         >
           Jetons
+        </button>
+        <button
+          onClick={() => setActiveTab('variance')}
+          style={{
+            padding: '8px 16px',
+            background: activeTab === 'variance' ? 'rgba(255,255,255,0.1)' : 'transparent',
+            border: 'none',
+            color: activeTab === 'variance' ? 'var(--text)' : 'var(--text-dim)',
+            cursor: 'pointer',
+            borderBottom: activeTab === 'variance' ? '2px solid var(--accent)' : 'none',
+            fontSize: 14,
+            fontWeight: activeTab === 'variance' ? '600' : '400',
+          }}
+        >
+          Variance
         </button>
         <button
           onClick={() => setActiveTab('coach')}
@@ -1351,6 +1338,8 @@ export default memo(function Summary() {
           filteredTournamentCount={filteredStats.totalTournaments}
         />
       )}
+
+      {activeTab === 'variance' && <Variance hands={filteredHands} />}
 
       {activeTab === 'coach' && (
         <CoachTabPanel

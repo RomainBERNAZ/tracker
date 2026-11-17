@@ -753,6 +753,90 @@ tr:hover td {
   gap: 8px;
 }
 
+.summary-page {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.summary-chips-tab,
+.summary-chips-card {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.summary-chips-card .summary-card-header {
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chips-chart {
+  position: relative;
+  flex: 1;
+  min-height: 220px;
+}
+
+.variance-description {
+  color: var(--text-dim);
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+.variance-warning {
+  color: var(--yellow);
+  margin-bottom: 10px;
+}
+
+.variance-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  font-size: 12px;
+  color: var(--text-dim);
+  margin: 16px 0;
+}
+
+.variance-grid {
+  width: 100%;
+  max-width: 780px;
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 3px;
+}
+
+.variance-grid .variance-cell {
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  text-align: center;
+  font-size: clamp(11px, 1.2vw, 15px);
+  cursor: help;
+}
+
+.variance-cell span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+}
+
+.variance-cell-more {
+  background: rgba(34, 197, 94, 0.18);
+  color: var(--green);
+}
+
+.variance-cell-less {
+  background: rgba(239, 68, 68, 0.12);
+  color: #fca5a5;
+}
+
+.variance-grid .variance-cell:hover,
+.variance-grid .variance-cell:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+
 /* ─ Chips curve toggles ─ */
 .chips-curve-toggles {
   display: flex;

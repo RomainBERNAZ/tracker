@@ -24,9 +24,9 @@ describe('tournament filters', () => {
     const selected = applyTournamentRange(tours, range.fromMs, range.toMs, '0.5')
     expect(selected.map((t) => t.id)).toEqual(['A'])
     const hands: HandChipPoint[] = [
-      { tournament_id: 'A', timestamp: '2026-11-16T00:02:00', realized_cev: 50, net_ev: 80, has_showdown: true },
-      { tournament_id: 'B', timestamp: '2026-11-15T12:00:00', realized_cev: 100, net_ev: 100, has_showdown: false },
-      { tournament_id: 'C', timestamp: '2026-11-16T00:02:00', realized_cev: -20, net_ev: -20, has_showdown: false },
+      { tournament_id: 'A', hero_cards: null, timestamp: '2026-11-16T00:02:00', realized_cev: 50, net_ev: 80, has_showdown: true },
+      { tournament_id: 'B', hero_cards: null, timestamp: '2026-11-15T12:00:00', realized_cev: 100, net_ev: 100, has_showdown: false },
+      { tournament_id: 'C', hero_cards: null, timestamp: '2026-11-16T00:02:00', realized_cev: -20, net_ev: -20, has_showdown: false },
     ]
     const selectedHands = handsForTournaments(hands, selected)
     expect(selectedHands.map((h) => h.tournament_id)).toEqual(['A'])

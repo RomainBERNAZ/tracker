@@ -26,6 +26,12 @@ Build a **clean, maintainable, performant** desktop application to analyze Expre
 - Le cEV moyen est la somme du Net EV en jetons (gain realise si EV absente), divisee par le nombre de tournois selectionnes. Les deux pages utilisent tout l'historique, sans limite aux 100 derniers tournois.
 - Les comparaisons theoriques de multiplicateurs et de variance restent reservees au modele 2 EUR existant ; les resultats observes restent disponibles pour tous les buy-ins.
 
+## Variance des mains de depart
+
+L'onglet Variance de Summary affiche les 169 categories de mains recues par le hero dans une grille 13 x 13 (paires, suited, offsuit). Il utilise les memes filtres de periode et de buy-in que Resume et Jetons.
+Au survol ou au focus d'une case : occurrences recues, occurrences attendues et ecart. L'attendu utilise respectivement 6, 4 et 12 combinaisons sur les 1 326 distributions possibles de deux cartes.
+Les mains sans cartes de depart exploitables sont signalees et exclues du nombre de mains servant au calcul. Ces ecarts de frequence sont descriptifs, pas un test de hasard.
+
 ---
 
 ## Phase 1: Realized cEV Foundation (Blocking)
