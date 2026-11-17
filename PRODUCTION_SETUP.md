@@ -81,8 +81,11 @@ cd ../..
 
 ```bash
 # From repository root
-cargo tauri build
+pnpm --dir src/frontend tauri build --config src-tauri/tauri.conf.json
 ```
+
+Le CLI Tauri precompile est fourni par les dependances frontend :
+aucune installation separee de `tauri-cli` avec Cargo n'est necessaire.
 
 This will:
 - Build Rust backend (core modules + Tauri shell)

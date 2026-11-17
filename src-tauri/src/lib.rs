@@ -5,6 +5,7 @@ use serde::Serialize;
 use hh_ingest::{db, import_history_file_with_conn, ImportProgress, ImportResult, DEFAULT_HERO};
 use hh_ingest::bankroll::{self, BankrollSettings, BankrollSnapshot, MovementKind};
 use rusqlite::Connection;
+use session_read_model::stacks::{get_stack_stats, StackStatsSnapshot};
 use session_read_model::{
 	list_preflop_matchups, PreflopMatchup,
 	get_hand_detail, get_session_stats, get_chip_summary, get_chip_evolution, get_coach_stats, list_coach_spots, list_coach_blunders,
@@ -435,14 +436,23 @@ pub mod commands {
 	}
 
 	#[tauri::command]
+	pub async fn get_stack_stats_cmd(
+		tournament_ids: Vec<String>,
+		state: tauri::State<'_, AppState>,
+	) -> Result<StackStatsSnapshot, String> {
+		let conn = state.db.lock().map_err(|e| e.to_string())?;
+		get_stack_stats(&conn, &tournament_ids).map_err(|e| e.to_string())
+	}
+
+	#[tauri::command]
 	pub async fn get_coach_stats_cmd(
 		from_ts: Option<String>,
 		to_ts: Option<String>,
-		buy_in: Option<f64>,
+		buy_ins: Vec<f64>,
 		state: tauri::State<'_, AppState>,
 	) -> Result<CoachStatsSnapshot, String> {
 		let conn = state.db.lock().map_err(|e| e.to_string())?;
-		get_coach_stats(&conn, from_ts.as_deref(), to_ts.as_deref(), buy_in).map_err(|e| e.to_string())
+		get_coach_stats(&conn, from_ts.as_deref(), to_ts.as_deref(), &buy_ins).map_err(|e| e.to_string())
 	}
 
 	#[tauri::command]
@@ -451,11 +461,11 @@ pub mod commands {
 		to_ts: Option<String>,
 		limit: Option<usize>,
 		min_severity: Option<String>,
-		buy_in: Option<f64>,
+		buy_ins: Vec<f64>,
 		state: tauri::State<'_, AppState>,
 	) -> Result<Vec<CoachBlunderSpot>, String> {
 		let conn = state.db.lock().map_err(|e| e.to_string())?;
-		list_coach_blunders(&conn, from_ts.as_deref(), to_ts.as_deref(), limit, min_severity.as_deref(), buy_in)
+		list_coach_blunders(&conn, from_ts.as_deref(), to_ts.as_deref(), limit, min_severity.as_deref(), &buy_ins)
 			.map_err(|e| e.to_string())
 	}
 
@@ -530,6 +540,7 @@ pub fn run() {
 			commands::get_preflop_matchups,
 			commands::get_coach_spots,
 			commands::get_coach_stats_cmd,
+			commands::get_stack_stats_cmd,
 			commands::get_coach_blunders_cmd,
 			commands::get_gto_ranges_cmd,
 			commands::clear_all_data,

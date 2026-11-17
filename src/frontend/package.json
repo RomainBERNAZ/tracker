@@ -1,11 +1,12 @@
 {
   "name": "expresso-frontend",
   "private": true,
-  "version": "0.4.7",
+  "version": "0.4.8",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "tauri": "cd ../.. && tauri",
     "preview": "vite preview",
     "test": "vitest --passWithNoTests",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
@@ -20,6 +21,7 @@
     "recharts": "^3.8.1"
   },
   "devDependencies": {
+    "@tauri-apps/cli": "^2",
     "@types/react": "^18.2.55",
     "@types/react-dom": "^18.2.19",
     "@typescript-eslint/eslint-plugin": "^6.21.0",

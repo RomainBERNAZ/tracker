@@ -1,6 +1,6 @@
 import type { BankrollSettings, HandChipPoint, TournamentRow } from '../api'
 import { summarizeChips } from './summaryChips'
-import { handsForTournaments, tournamentBuyIn } from './tournamentFilters'
+import { applyTournamentRange, handsForTournaments, tournamentBuyIn } from './tournamentFilters'
 
 export function parseEuroCents(raw: string): number {
   const match = /^(\d+)(?:[.,](\d{1,2}))?$/.exec(raw.trim())
@@ -25,9 +25,9 @@ function cevSample(tournaments: readonly TournamentRow[], hands: readonly HandCh
 export function analyzeRecentBankroll(
   tournaments: readonly TournamentRow[],
   hands: readonly HandChipPoint[],
-  buyIn = '',
+  buyIns: readonly number[] = [],
 ) {
-  const selected = tournaments.filter((t) => buyIn === '' || tournamentBuyIn(t) === Number(buyIn))
+  const selected = applyTournamentRange(tournaments, null, null, buyIns)
   const dated = selected.filter((t) => Number.isFinite(new Date(t.started_at).getTime()))
   const recent = [...dated].sort((a, b) =>
     new Date(b.started_at).getTime() - new Date(a.started_at).getTime() || b.id.localeCompare(a.id),

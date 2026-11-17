@@ -18,15 +18,61 @@ Build a **clean, maintainable, performant** desktop application to analyze Expre
 - **[ADR/](./docs/adr/)** — Architecture Decision Records
 - **[CEV_SPECIFICATION.md](./docs/design/CEV_SPECIFICATION.md)** — Realized cEV math & validation rules
 
+## Releases et CI
+
+Les tags `v*` lancent les builds Linux (AppImage/deb) et Windows (MSI) en parallele,
+puis publient la release lorsque les deux plateformes ont reussi.
+Le CLI Tauri precompile est installe avec les dependances frontend et verrouille
+dans leur lockfile, sans `cargo install tauri-cli` a chaque release.
+Depuis la racine : `pnpm --dir src/frontend tauri build --config src-tauri/tauri.conf.json`.
+
+La CI et les releases utilisent les caches pnpm et Rust. Le cache Rust Linux de
+la branche `master` peut etre reutilise par les tags ; les caches crees sous un
+tag restent limites a ce tag pour les relances, notamment sous Windows.
+Un premier build, un cache absent ou un changement de toolchain reste plus lent.
+La duree reelle est a comparer dans les etapes GitHub Actions, sans garantie de temps.
+La CI de `master` execute aussi les tests frontend.
+
 ## Filtres des resultats
 
 - L'application s'ouvre sur Summary. Le menu lateral suit l'ordre Summary, Tournois, Bankroll, GTO (experimental), Import ; l'import reste accessible par `/import`.
-- Summary (Resume et Jetons) et Tournois : periode et buy-in, combinables. Les montants proposes correspondent aux tournois importes, rake inclus.
-- Coach : le buy-in de Summary s'applique aussi aux statistiques, bilans et erreurs detectees ; sa periode reste definie par ses champs de dates dedies.
+- Summary (Resume et Jetons) et Tournois : periode et buy-ins, combinables. Les montants proposes correspondent aux tournois importes, rake inclus. Les pastilles buy-in permettent de selectionner plusieurs limites simultanement ; "Tous" reinitialise la selection, et desactiver la derniere limite revient aussi a tous les buy-ins.
+- Coach : les buy-ins de Summary s'appliquent aussi aux statistiques, bilans et erreurs detectees ; sa periode reste definie par ses champs de dates dedies.
 - Les dates selectionnent les tournois selon leur debut, en heure locale, et incluent toutes leurs mains, meme apres minuit.
 - Le cEV moyen est la somme du Net EV en jetons (gain realise si EV absente), divisee par le nombre de tournois selectionnes. Les deux pages utilisent tout l'historique, sans limite aux 100 derniers tournois.
-- Les comparaisons theoriques de multiplicateurs et de variance restent reservees au modele 2 EUR existant ; les resultats observes restent disponibles pour tous les buy-ins.
+- Les comparaisons theoriques de multiplicateurs et de variance restent reservees au modele 2 EUR existant ; les cases des multiplicateurs observes restent affichees pour tous les buy-ins, meme melanges ou avec un seul tournoi, sans attendu ni ecart lorsqu'aucun modele ne s'applique.
 - Les graphiques cumules de Resume (euros) et Jetons s'etendent jusqu'au bas de la fenetre, avec une hauteur minimale pour rester lisibles sur les petites fenetres.
+
+## Statistiques par profondeur de stack
+
+L'onglet Stacks de Summary analyse le stack du hero au debut de chaque main,
+avant les blindes, en BB : 0-8, >8-12, >12-20 et >20 BB. Les bornes hautes
+sont incluses. Il conserve les filtres date et buy-ins de Summary et propose
+une multiselection de profondeurs, un filtre heads-up / 3 joueurs et les unites
+jetons / BB. Ces filtres de mains restent propres a l'onglet.
+
+Les tableaux affichent les mains, VPIP, PFR, limp (overlimps inclus), 3-bet et
+fold au 3-bet, avec leurs compteurs et denominateurs. Les blindes forcees ne
+comptent pas comme actions volontaires. Les frequences sont agregees a partir
+des compteurs, jamais en moyennant les pourcentages des groupes.
+
+Les resultats comprennent le net, le Net EV et leurs decompositions avec/sans
+showdown du hero. Une main foldee par le hero reste sans showdown meme si les
+adversaires vont au showdown. En BB, chaque gain est divise par la grosse blinde
+de sa propre main avant addition.
+
+Le cEV / tournoi est la contribution du segment : somme du Net EV de ses mains
+divisee par tous les tournois du perimetre date/buy-ins, toujours en jetons.
+Les contributions des tranches s'additionnent au cEV global lorsque toutes les
+mains sont exploitables. L'EV / 100 mains rapporte plutot le resultat au volume
+de mains du segment. La selection HU ou profondeur ne change pas le denominateur
+du cEV / tournoi.
+
+Comme dans Jetons, le gain realise remplace le Net EV absent ; le nombre de mains
+concernees est signale. Les mains sans historique preflop restent dans les gains
+mais pas dans les frequences. Les stacks/blindes invalides et les formats autres
+que 2/3 joueurs sont exclus explicitement. Les taux atypiques et les petits
+echantillons ne sont pas presentes comme des erreurs automatiques.
 
 ## Variance des mains de depart
 
@@ -55,7 +101,7 @@ L'onglet Bankroll permet de saisir une fois son solde exact actuel, idealement a
 
 Les depots, retraits et corrections du solde sont conserves dans SQLite, avec un journal manuel distinct des gains de jeu. Une correction saisit un nouveau solde exact (pas une variation). Un retrait ne peut pas depasser le solde disponible. La suppression de tournois comptabilises retire leurs resultats du solde calcule ; les mouvements manuels et les identifiants de l'historique initial restent conserves. La page recharge les resultats a chaque ouverture ; Actualiser permet egalement de les relire.
 
-L'analyse porte sur les 1 000 derniers tournois du buy-in selectionne, ou tous buy-ins confondus. Le filtre ne change jamais le solde global. Sont affiches le cEV ajuste (meme calcul que Summary / Jetons), le resultat en euros et le buy-in moyen rake inclus. La couverture prudente utilise le plus eleve entre le dernier buy-in joue du perimetre et le buy-in moyen recent ; le niveau pour un shot est evalue uniquement sur les tournois complets du dernier buy-in, pour ne pas melanger les performances des petites et grandes limites.
+L'analyse porte sur les 1 000 derniers tournois des buy-ins selectionnes, ou tous buy-ins confondus. Les memes pastilles multiselection sont disponibles dans Bankroll. Le filtre ne change jamais le solde global. Sont affiches le cEV ajuste (meme calcul que Summary / Jetons), le resultat en euros et le buy-in moyen rake inclus. La couverture prudente utilise le plus eleve entre le dernier buy-in joue du perimetre et le buy-in moyen recent ; le niveau pour un shot est evalue uniquement sur les tournois complets du dernier buy-in, pour ne pas melanger les performances des petites et grandes limites.
 
 Les regles initiales, modifiables dans la page, alertent strictement sous 150 buy-ins. Un shot exige par defaut 1 000 tournois complets au buy-in de reference, au moins 50 cEV/tournoi, des resultats recents en euros non negatifs a ce buy-in et 300 buy-ins de la limite visee. Le financement requis passe a 250 buy-ins lorsque le cEV atteint l'objectif + 25 (75 par defaut), avec le meme echantillon minimum. La limite visee doit etre renseignee et superieure a la reference. Un cEV negatif sur un echantillon suffisant incite a revoir la limite ; des pertes en euros seules ne declenchent pas une descente si la couverture et le cEV restent suffisants. Ces indications sont des heuristiques de gestion, pas une garantie de gains.
 

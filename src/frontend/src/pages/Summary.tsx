@@ -17,6 +17,7 @@ import { CumulativeChart } from '../components/CumulativeChart'
 import { summarizeChips } from './summaryChips'
 import { TournamentFilters } from '../components/TournamentFilters'
 import Variance from './Variance'
+import SummaryStacks from './SummaryStacks'
 import { DEFAULT_FILTER, applyTournamentRange, computeFilteredStats, endOfDay, handsForTournaments, parseDateInput, periodToRange, tournamentBuyIn } from './tournamentFilters'
 
 function fmtEur(n: number) {
@@ -53,7 +54,11 @@ type FilteredStats = ReturnType<typeof computeFilteredStats>
 function computeMultiplierComparison(
   totalTournaments: number,
   multiplierDist: [number, number][],
-): { rows: { mult: number; expectedCount: number; realCount: number }[]; chartMax: number } {
+  supportsTheoreticalModel: boolean,
+): { mult: number; expectedCount: number | null; realCount: number }[] {
+  if (!supportsTheoreticalModel) {
+    return multiplierDist.map(([mult, realCount]) => ({ mult, realCount, expectedCount: null }))
+  }
   const realMap = new Map<number, number>(multiplierDist)
   const totalTickets = WINAMAX_2EUR_MULTIPLIER_MODEL.reduce((acc, r) => acc + r.tickets, 0)
   const modeled = WINAMAX_2EUR_MULTIPLIER_MODEL.map((r) => ({
@@ -67,8 +72,7 @@ function computeMultiplierComparison(
   const rows = [...modeled, ...others]
     .filter((row) => row.expectedCount >= 1 || row.realCount >= 1)
     .sort((a, b) => a.mult - b.mult)
-  const chartMax = rows.reduce((acc, row) => Math.max(acc, row.expectedCount, row.realCount), 1)
-  return { rows, chartMax }
+  return rows
 }
 
 // ── Variance / luck calculation ───────────────────────────────────────────────
@@ -492,7 +496,7 @@ function useCoachData(
   coachDatesValid: boolean,
   fromMs: number | null,
   toMs: number | null,
-  buyIn: string,
+  buyIns: readonly number[],
 ) {
   const [coachSnapshot, setCoachSnapshot] = useState<CoachStatsSnapshot | null>(null)
   const [coachBlunders, setCoachBlunders] = useState<CoachBlunderSpot[]>([])
@@ -512,8 +516,8 @@ function useCoachData(
     let cancelled = false
     setCoachLoading(true)
     Promise.all([
-      api.getCoachStats(fromTs, toTs, buyIn === '' ? null : Number(buyIn)),
-      api.getCoachBlunders(fromTs, toTs, 150, 'bad', buyIn === '' ? null : Number(buyIn)),
+      api.getCoachStats(fromTs, toTs, buyIns),
+      api.getCoachBlunders(fromTs, toTs, 150, 'bad', buyIns),
     ])
       .then(([snapshot, blunders]) => {
         if (cancelled) return
@@ -533,7 +537,7 @@ function useCoachData(
     return () => {
       cancelled = true
     }
-  }, [coachDateSelected, coachDatesValid, fromMs, toMs, buyIn])
+  }, [coachDateSelected, coachDatesValid, fromMs, toMs, buyIns])
 
   return { coachSnapshot, coachBlunders, coachLoading }
 }
@@ -836,7 +840,7 @@ const SummaryPositionsPie = memo(({ wins, secondPlace, thirdPlace }: PositionsPi
 })
 
 const SummaryMultiplierChart = memo(({ sortedMultipliers }: {
-  readonly sortedMultipliers: { mult: number; expectedCount: number; realCount: number }[]
+  readonly sortedMultipliers: { mult: number; expectedCount: number | null; realCount: number }[]
 }) => {
   if (sortedMultipliers.length === 0) {
     return <p style={{ color: 'var(--text-dim)' }}>Aucune donnee</p>
@@ -845,13 +849,13 @@ const SummaryMultiplierChart = memo(({ sortedMultipliers }: {
   return (
     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(80px, 1fr))', gap: 8 }}>
       {sortedMultipliers.map((row) => {
-        const delta = row.realCount - row.expectedCount
-        const isDelta = delta !== 0
+        const delta = row.expectedCount == null ? null : row.realCount - row.expectedCount
+        const isDelta = delta != null && delta !== 0
 
         let borderColor: string
         if (!isDelta) {
           borderColor = '255,255,255'
-        } else if (delta > 0) {
+        } else if (delta != null && delta > 0) {
           borderColor = '16,185,129'
         } else {
           borderColor = '239,68,68'
@@ -874,10 +878,10 @@ const SummaryMultiplierChart = memo(({ sortedMultipliers }: {
             <div style={{ color: 'var(--text-dim)', fontSize: 11 }}>
               R: {row.realCount}
             </div>
-            <div style={{ color: 'var(--text-dim)', fontSize: 11 }}>
+            {row.expectedCount != null && <div style={{ color: 'var(--text-dim)', fontSize: 11 }}>
               A: {row.expectedCount.toFixed(1)}
-            </div>
-            {isDelta && (
+            </div>}
+            {isDelta && delta != null && (
               <div style={{ color: delta > 0 ? '#10b981' : '#ef4444', fontSize: 11, marginTop: 4, fontWeight: 500 }}>
                 {delta > 0 ? '+' : ''}{delta.toFixed(1)}
               </div>
@@ -1088,7 +1092,7 @@ export default memo(function Summary() {
   const [handEvolution, setHandEvolution] = useState<HandChipPoint[]>([])
   const [loading, setLoading] = useState(true)
   const [filter, setFilter] = useState(DEFAULT_FILTER)
-  const [activeTab, setActiveTab] = useState<'summary' | 'chips' | 'variance' | 'coach'>('summary')
+  const [activeTab, setActiveTab] = useState<'summary' | 'chips' | 'stacks' | 'variance' | 'coach'>('summary')
   const [coachFrom, setCoachFrom] = useState('')
   const [coachTo, setCoachTo] = useState('')
 
@@ -1108,8 +1112,8 @@ export default memo(function Summary() {
   )
 
   const filteredTournaments = useMemo(() => {
-    return applyTournamentRange(tournaments, filteredRange.fromMs, filteredRange.toMs, filter.buyIn)
-  }, [filteredRange.fromMs, filteredRange.toMs, tournaments, filter.buyIn])
+    return applyTournamentRange(tournaments, filteredRange.fromMs, filteredRange.toMs, filter.buyIns)
+  }, [filteredRange.fromMs, filteredRange.toMs, tournaments, filter.buyIns])
 
   const filteredHands = useMemo(
     () => handsForTournaments(handEvolution, filteredTournaments),
@@ -1133,12 +1137,12 @@ export default memo(function Summary() {
     coachDatesValid,
     coachRange.fromMs,
     coachRange.toMs,
-    filter.buyIn,
+    filter.buyIns,
   )
 
   const coachTournaments = useMemo(
-    () => applyTournamentRange(tournaments, coachRange.fromMs, coachRange.toMs, filter.buyIn),
-    [tournaments, coachRange.fromMs, coachRange.toMs, filter.buyIn],
+    () => applyTournamentRange(tournaments, coachRange.fromMs, coachRange.toMs, filter.buyIns),
+    [tournaments, coachRange.fromMs, coachRange.toMs, filter.buyIns],
   )
 
   const coachStats = useMemo(
@@ -1158,9 +1162,9 @@ export default memo(function Summary() {
   const supportsTheoreticalModel = filteredTournaments.length > 0 &&
     filteredTournaments.every((t) => tournamentBuyIn(t) === BUY_IN)
 
-  const { rows: sortedMultipliers } = useMemo(
-    () => computeMultiplierComparison(filteredStats.totalTournaments, filteredStats.multiplierDist),
-    [filteredStats.totalTournaments, filteredStats.multiplierDist],
+  const sortedMultipliers = useMemo(
+    () => computeMultiplierComparison(filteredStats.totalTournaments, filteredStats.multiplierDist, supportsTheoreticalModel),
+    [filteredStats.totalTournaments, filteredStats.multiplierDist, supportsTheoreticalModel],
   )
 
   const coachReview = useMemo(
@@ -1218,6 +1222,21 @@ export default memo(function Summary() {
           }}
         >
           Jetons
+        </button>
+        <button
+          onClick={() => setActiveTab('stacks')}
+          style={{
+            padding: '8px 16px',
+            background: activeTab === 'stacks' ? 'rgba(255,255,255,0.1)' : 'transparent',
+            border: 'none',
+            color: activeTab === 'stacks' ? 'var(--text)' : 'var(--text-dim)',
+            cursor: 'pointer',
+            borderBottom: activeTab === 'stacks' ? '2px solid var(--accent)' : 'none',
+            fontSize: 14,
+            fontWeight: activeTab === 'stacks' ? '600' : '400',
+          }}
+        >
+          Stacks
         </button>
         <button
           onClick={() => setActiveTab('variance')}
@@ -1304,14 +1323,9 @@ export default memo(function Summary() {
 
             <div className="summary-card">
               <h3>Multiplicateurs: attendus vs reels</h3>
-              {supportsTheoreticalModel ? <SummaryMultiplierChart sortedMultipliers={sortedMultipliers} /> : (
-                <>
-                  <p style={{ color: 'var(--text-dim)' }}>Le modele theorique est disponible uniquement pour les buy-ins de 2 €.</p>
-                  <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-                    {filteredStats.multiplierDist.map(([mult, count]) => <span key={mult}>x{mult} : {count}</span>)}
-                  </div>
-                </>
-              )}
+              {!supportsTheoreticalModel && filteredStats.totalTournaments > 0 &&
+                <p style={{ color: 'var(--text-dim)' }}>Le modele theorique est disponible uniquement pour les buy-ins de 2 €. Seules les occurrences reelles sont affichees.</p>}
+              <SummaryMultiplierChart sortedMultipliers={sortedMultipliers} />
             </div>
           </div>
 
@@ -1340,6 +1354,7 @@ export default memo(function Summary() {
       )}
 
       {activeTab === 'variance' && <Variance hands={filteredHands} tournaments={filteredTournaments} />}
+      {activeTab === 'stacks' && <SummaryStacks tournaments={filteredTournaments} />}
 
       {activeTab === 'coach' && (
         <CoachTabPanel

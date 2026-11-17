@@ -21,7 +21,7 @@ describe('tournament filters', () => {
 
   it('combines buy-in with inclusive local dates and retains whole tournaments across midnight', () => {
     const range = periodToRange('custom', '2026-11-15', '2026-11-15')
-    const selected = applyTournamentRange(tours, range.fromMs, range.toMs, '0.5')
+    const selected = applyTournamentRange(tours, range.fromMs, range.toMs, [0.5])
     expect(selected.map((t) => t.id)).toEqual(['A'])
     const hands: HandChipPoint[] = [
       { tournament_id: 'A', hero_cards: null, big_blind: 20, timestamp: '2026-11-16T00:02:00', realized_cev: 50, net_ev: 80, has_showdown: true },
@@ -42,14 +42,22 @@ describe('tournament filters', () => {
     expect(applyTournamentRange(tours, null, null)).toHaveLength(3)
     const range = periodToRange('custom', '2026-11-16', '')
     expect(applyTournamentRange(tours, range.fromMs, range.toMs).map((t) => t.id)).toEqual(['C'])
-    expect(computeFilteredStats(applyTournamentRange(tours, null, null, '10')).avgCev).toBe(0)
+    expect(computeFilteredStats(applyTournamentRange(tours, null, null, [10])).avgCev).toBe(0)
     const reversed = periodToRange('custom', '2026-11-16', '2026-11-15')
     expect(applyTournamentRange(tours, reversed.fromMs, reversed.toMs)).toEqual([])
   })
 
   it('filters by the paid buy-in, including rake, without floating point artifacts', () => {
     const paid = { ...tours[0], buy_in_euros: 1.86, rake_euros: 0.14 }
-    expect(applyTournamentRange([paid], null, null, '2')).toEqual([paid])
-    expect(applyTournamentRange([paid], null, null, '1.86')).toEqual([])
+    expect(applyTournamentRange([paid], null, null, [2])).toEqual([paid])
+    expect(applyTournamentRange([paid], null, null, [1.86])).toEqual([])
+  })
+
+  it('combines selected buy-ins as a union while keeping the date intersection', () => {
+    const history = [...tours, tournament('D', 5, '2026-11-15T12:00:00', 50)]
+    const range = periodToRange('custom', '2026-11-15', '2026-11-15')
+    expect(applyTournamentRange(history, range.fromMs, range.toMs, [0.5, 5]).map((t) => t.id)).toEqual(['A', 'D'])
+    expect(applyTournamentRange(history, null, null, [0.5, 5]).map((t) => t.id)).toEqual(['A', 'C', 'D'])
+    expect(applyTournamentRange(history, null, null, [])).toEqual(history)
   })
 })

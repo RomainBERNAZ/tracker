@@ -53,7 +53,7 @@ export default memo(function Tournaments() {
   const [sortDirection, setSortDirection] = useState<SortDirection>('desc')
 
   const range = useMemo(() => periodToRange(filter.period, filter.customFrom, filter.customTo), [filter.period, filter.customFrom, filter.customTo])
-  const rows = useMemo(() => applyTournamentRange(tournaments, range.fromMs, range.toMs, filter.buyIn), [tournaments, range.fromMs, range.toMs, filter.buyIn])
+  const rows = useMemo(() => applyTournamentRange(tournaments, range.fromMs, range.toMs, filter.buyIns), [tournaments, range.fromMs, range.toMs, filter.buyIns])
   const stats = useMemo(() => computeFilteredStats(rows), [rows])
   const avgCev = stats.avgCev
 

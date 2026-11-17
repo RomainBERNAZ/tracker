@@ -6,10 +6,10 @@ export interface TournamentFilter {
   period: Period
   customFrom: string
   customTo: string
-  buyIn: string
+  buyIns: readonly number[]
 }
 
-export const DEFAULT_FILTER: TournamentFilter = { period: 'all', customFrom: '', customTo: '', buyIn: '' }
+export const DEFAULT_FILTER: TournamentFilter = { period: 'all', customFrom: '', customTo: '', buyIns: [] }
 
 export function tournamentBuyIn(tournament: TournamentRow): number {
   return Math.round((tournament.buy_in_euros + tournament.rake_euros) * 1_000_000) / 1_000_000
@@ -47,10 +47,10 @@ export function periodToRange(period: Period, customFrom: string, customTo: stri
 }
 
 export function applyTournamentRange(
-  tours: readonly TournamentRow[], fromMs: number | null, toMs: number | null, buyIn = '',
+  tours: readonly TournamentRow[], fromMs: number | null, toMs: number | null, buyIns: readonly number[] = [],
 ) {
   return tours.filter((t) => {
-    if (buyIn !== '' && tournamentBuyIn(t) !== Number(buyIn)) return false
+    if (buyIns.length > 0 && !buyIns.includes(tournamentBuyIn(t))) return false
     if (fromMs == null && toMs == null) return true
     const ms = new Date(t.started_at).getTime()
     return !Number.isNaN(ms) && (fromMs == null || ms >= fromMs) && (toMs == null || ms <= toMs)

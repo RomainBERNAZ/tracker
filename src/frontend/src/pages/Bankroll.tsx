@@ -95,7 +95,7 @@ export default function Bankroll() {
     return () => { cancelled = true }
   }, [attempt])
 
-  const recent = useMemo(() => analyzeRecentBankroll(tournaments, hands, filter.buyIn), [tournaments, hands, filter.buyIn])
+  const recent = useMemo(() => analyzeRecentBankroll(tournaments, hands, filter.buyIns), [tournaments, hands, filter.buyIns])
   const assessment = account == null ? null : assessBankroll(account.current_balance_cents, recent, account.settings)
 
   async function perform(action: () => Promise<BankrollSnapshot>): Promise<boolean> {

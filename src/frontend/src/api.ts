@@ -200,6 +200,31 @@ export interface CoachStatsSnapshot {
   heads_up: CoachFormatStats
 }
 
+export interface StackChipTotals {
+  net: number
+  ev: number
+  sd: number
+  sd_ev: number
+  wsd: number
+  wsd_ev: number
+}
+
+export interface StackStatsGroup {
+  bucket: number
+  player_count: number
+  hands: number
+  preflop: CoachFormatStats
+  chips: StackChipTotals
+  bb: StackChipTotals
+  missing_ev_hands: number
+  missing_preflop_hands: number
+}
+
+export interface StackStatsSnapshot {
+  groups: StackStatsGroup[]
+  excluded_hands: number
+}
+
 export interface CoachBlunderSpot {
   hand_id: string
   tournament_id: string
@@ -357,17 +382,20 @@ export const api = {
   getCoachSpots: (limit?: number): Promise<CoachSpot[]> =>
     invokeTauri('get_coach_spots', { limit }),
 
-  getCoachStats: (fromTs?: string | null, toTs?: string | null, buyIn?: number | null): Promise<CoachStatsSnapshot> =>
-    invokeTauri('get_coach_stats_cmd', { fromTs, toTs, buyIn }),
+  getCoachStats: (fromTs?: string | null, toTs?: string | null, buyIns: readonly number[] = []): Promise<CoachStatsSnapshot> =>
+    invokeTauri('get_coach_stats_cmd', { fromTs, toTs, buyIns }),
+
+  getStackStats: (tournamentIds: readonly string[]): Promise<StackStatsSnapshot> =>
+    invokeTauri('get_stack_stats_cmd', { tournamentIds }),
 
   getCoachBlunders: (
     fromTs?: string | null,
     toTs?: string | null,
     limit?: number,
     minSeverity?: 'bad' | 'critical' | null,
-    buyIn?: number | null,
+    buyIns: readonly number[] = [],
   ): Promise<CoachBlunderSpot[]> =>
-    invokeTauri('get_coach_blunders_cmd', { fromTs, toTs, limit, minSeverity, buyIn }),
+    invokeTauri('get_coach_blunders_cmd', { fromTs, toTs, limit, minSeverity, buyIns }),
 
   getGtoRanges: (): Promise<GtoRange[]> =>
     invokeTauri('get_gto_ranges_cmd'),

@@ -3,6 +3,8 @@ use serde::{Deserialize, Serialize};
 use serde_json;
 use std::collections::BTreeMap;
 
+pub mod stacks;
+
 // ─── Read models (returned to the UI) ────────────────────────────────────────
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -451,8 +453,10 @@ pub fn list_coach_blunders(
     to_ts: Option<&str>,
     limit: Option<usize>,
     min_severity: Option<&str>,
-    buy_in: Option<f64>,
+    buy_ins: &[f64],
 ) -> Result<Vec<CoachBlunderSpot>, rusqlite::Error> {
+    let buy_ins_json = serde_json::to_string(buy_ins)
+        .map_err(|error| rusqlite::Error::ToSqlConversionFailure(Box::new(error)))?;
     let lim = limit.unwrap_or(120) as i64;
     let min_rank = min_severity.map_or(1, severity_rank);
 
@@ -480,7 +484,8 @@ pub fn list_coach_blunders(
                  SELECT t.id FROM tournaments t
                  WHERE (?1 IS NULL OR julianday(t.started_at) >= julianday(?1))
                    AND (?2 IS NULL OR julianday(t.started_at) <= julianday(?2))
-                   AND (?3 IS NULL OR ROUND(t.buy_in_euros + t.rake_euros, 6) = ?3)
+                   AND (json_array_length(?3) = 0 OR ROUND(t.buy_in_euros + t.rake_euros, 6)
+                        IN (SELECT value FROM json_each(?3)))
              )
              AND NOT EXISTS (
                  SELECT 1
@@ -495,7 +500,7 @@ pub fn list_coach_blunders(
     )?;
 
     let rows: Vec<(String, String, String, i64, i64, bool, i64, i64, Option<f64>, String, i64)> = stmt
-        .query_map(params![from_ts, to_ts, buy_in], |row| {
+        .query_map(params![from_ts, to_ts, buy_ins_json], |row| {
             Ok((
                 row.get(0)?,
                 row.get(1)?,
@@ -697,7 +702,10 @@ fn compute_preflop_stats(samples: &[PreflopHandSample], player_count: i64) -> Co
             pfr_count += 1;
         }
 
-        if let Some(first_hero_idx) = sample.actions.iter().position(|a| a.player_name == sample.hero_name) {
+        if let Some(first_hero_idx) = sample.actions.iter().position(|a| {
+            a.player_name == sample.hero_name &&
+                (is_voluntary_preflop_action(&a.action_type) || matches!(a.action_type.as_str(), "fold" | "check"))
+        }) {
             let first_hero_action = &sample.actions[first_hero_idx];
             let prior_aggressive = sample.actions[..first_hero_idx]
                 .iter()
@@ -707,37 +715,32 @@ fn compute_preflop_stats(samples: &[PreflopHandSample], player_count: i64) -> Co
             if prior_aggressive == 0 && is_call_preflop_action(&first_hero_action.action_type) {
                 limp_count += 1;
             }
-
-            if prior_aggressive == 1 {
-                three_bet_opportunities += 1;
-                if is_aggressive_preflop_action(&first_hero_action.action_type) {
-                    three_bet_count += 1;
-                }
-            }
         }
 
         let mut aggressive_count = 0_i64;
+        let mut hero_opened = false;
+        let mut three_bet_opportunity = false;
+        let mut made_three_bet = false;
         for (idx, action) in sample.actions.iter().enumerate() {
+            let hero_action = action.player_name == sample.hero_name;
+            let decision = is_voluntary_preflop_action(&action.action_type) ||
+                matches!(action.action_type.as_str(), "fold" | "check");
+            if hero_action && decision && aggressive_count == 1 && !hero_opened {
+                three_bet_opportunity = true;
+                made_three_bet |= is_aggressive_preflop_action(&action.action_type);
+            }
             if !is_aggressive_preflop_action(&action.action_type) {
                 continue;
             }
 
-            if aggressive_count == 1 && action.player_name != sample.hero_name {
-                let hero_opened = sample.actions[..idx].iter().any(|a| {
-                    a.player_name == sample.hero_name && is_aggressive_preflop_action(&a.action_type)
-                }) && sample.actions[..idx]
-                    .iter()
-                    .filter(|a| is_aggressive_preflop_action(&a.action_type))
-                    .next()
-                    .map(|a| a.player_name == sample.hero_name)
-                    .unwrap_or(false);
-
+            if aggressive_count == 1 && !hero_action {
                 if hero_opened {
-                    fold_to_three_bet_opportunities += 1;
                     if let Some(next_hero_action) = sample.actions[idx + 1..]
                         .iter()
-                        .find(|a| a.player_name == sample.hero_name)
+                        .find(|a| a.player_name == sample.hero_name &&
+                            (is_voluntary_preflop_action(&a.action_type) || matches!(a.action_type.as_str(), "fold" | "check")))
                     {
+                        fold_to_three_bet_opportunities += 1;
                         if next_hero_action.action_type == "fold" {
                             fold_to_three_bet_count += 1;
                         }
@@ -746,8 +749,13 @@ fn compute_preflop_stats(samples: &[PreflopHandSample], player_count: i64) -> Co
                 }
             }
 
+            if aggressive_count == 0 && hero_action {
+                hero_opened = true;
+            }
             aggressive_count += 1;
         }
+        three_bet_opportunities += i64::from(three_bet_opportunity);
+        three_bet_count += i64::from(made_three_bet);
     }
 
     let mut stats = CoachFormatStats {
@@ -808,8 +816,10 @@ pub fn get_coach_stats(
     conn: &Connection,
     from_ts: Option<&str>,
     to_ts: Option<&str>,
-    buy_in: Option<f64>,
+    buy_ins: &[f64],
 ) -> Result<CoachStatsSnapshot, rusqlite::Error> {
+    let buy_ins_json = serde_json::to_string(buy_ins)
+        .map_err(|error| rusqlite::Error::ToSqlConversionFailure(Box::new(error)))?;
     let mut stmt = conn.prepare(
         r#"SELECT h.id,
                   h.player_count,
@@ -826,13 +836,14 @@ pub fn get_coach_stats(
                  SELECT t.id FROM tournaments t
                  WHERE (?1 IS NULL OR julianday(t.started_at) >= julianday(?1))
                    AND (?2 IS NULL OR julianday(t.started_at) <= julianday(?2))
-                   AND (?3 IS NULL OR ROUND(t.buy_in_euros + t.rake_euros, 6) = ?3)
+                   AND (json_array_length(?3) = 0 OR ROUND(t.buy_in_euros + t.rake_euros, 6)
+                        IN (SELECT value FROM json_each(?3)))
              )
            ORDER BY h.id ASC, a.action_index ASC"#,
     )?;
 
     let rows: Vec<(String, i64, i64, String, Option<String>, Option<String>)> = stmt
-        .query_map(params![from_ts, to_ts, buy_in], |row| {
+        .query_map(params![from_ts, to_ts, buy_ins_json], |row| {
             Ok((
                 row.get(0)?,
                 row.get(1)?,
@@ -1726,6 +1737,75 @@ mod tests {
     }
 
     #[test]
+    fn stack_stats_keep_unique_hands_chip_units_and_missing_action_denominators() {
+        let conn = Connection::open_in_memory().expect("open database");
+        seed(&conn);
+        conn.execute_batch(
+            r#"
+            UPDATE hands SET has_showdown = 1;
+            INSERT INTO hand_actions (hand_id, street_order, street, action_index, player_name, action_type, amount)
+              VALUES ('H29', 0, 'preflop', -1, 'MRZO', 'post_big_blind', 60);
+            INSERT INTO hands
+              SELECT 'H30', tournament_id, table_name, game_name, buy_in_euros, rake_euros,
+                     level, small_blind, 20, button_seat, seat_count, timestamp, player_count,
+                     board_cards, 0, 0, rake_chips, total_pot FROM hands WHERE id = 'H29';
+            INSERT INTO hand_players (hand_id, seat_number, player_name, starting_stack, ending_stack,
+                                     contributions, collected, realized_cev, net_ev, allin_equity, hero)
+              SELECT 'H30', seat_number, player_name, 240, ending_stack, contributions,
+                     collected, -20, NULL, NULL, hero FROM hand_players WHERE hand_id = 'H29';
+            "#,
+        ).expect("seed missing preflop hand");
+        let result = stacks::get_stack_stats(&conn, &["T1".into(), "T1".into()]).expect("stack statistics");
+        assert_eq!(result.excluded_hands, 0);
+        assert_eq!(result.groups.len(), 1);
+        let group = &result.groups[0];
+        assert_eq!((group.bucket, group.player_count, group.hands), (1, 2, 2));
+        assert_eq!(group.preflop.hands, 1);
+        assert_eq!(group.preflop.vpip_count, 1);
+        assert_eq!(group.preflop.three_bet_opportunities, 1);
+        assert_eq!(group.preflop.limp_count, 0);
+        assert_eq!(group.missing_preflop_hands, 1);
+        assert_eq!(group.missing_ev_hands, 1);
+        assert_eq!(group.chips.net, 655.0);
+        assert_eq!(group.chips.ev, 276.0);
+        assert_eq!(group.chips.sd, 675.0);
+        assert_eq!(group.chips.wsd, -20.0);
+        assert_eq!(group.chips.sd_ev, 296.0);
+        assert_eq!(group.chips.wsd_ev, -20.0);
+        assert!((group.bb.ev - (296.0 / 60.0 - 1.0)).abs() < 1e-10);
+        assert_eq!(group.bb.net, 10.25);
+        assert!(stacks::get_stack_stats(&conn, &[]).expect("empty cohort").groups.is_empty());
+        assert!(stacks::get_stack_stats(&conn, &["T2".into()]).expect("other cohort").groups.is_empty());
+
+        conn.execute("UPDATE hands SET big_blind = 0 WHERE id = 'H30'", []).expect("invalid blind");
+        conn.execute("UPDATE hand_players SET starting_stack = 0 WHERE hand_id = 'H29' AND hero = 1", []).expect("invalid stack");
+        let invalid = stacks::get_stack_stats(&conn, &["T1".into()]).expect("explicit exclusions");
+        assert_eq!(invalid.excluded_hands, 2);
+        assert!(invalid.groups.is_empty());
+    }
+
+    #[test]
+    fn preflop_counts_ignore_forced_blinds_and_include_limp_reraises() {
+        let sample = |actions: &[(&str, &str)]| PreflopHandSample {
+            player_count: 2, level: 1, hero_name: "Hero".into(),
+            actions: actions.iter().map(|(player, action)| PreflopActionSample {
+                player_name: (*player).into(), action_type: (*action).into(),
+            }).collect(),
+        };
+        let samples = [
+            sample(&[("Hero", "post_small_blind"), ("Villain", "post_big_blind"), ("Hero", "call"), ("Villain", "raise"), ("Hero", "allin_raise")]),
+            sample(&[("Hero", "post_small_blind"), ("Hero", "raise"), ("Villain", "raise"), ("Hero", "fold")]),
+            sample(&[("Hero", "post_big_blind"), ("Villain", "fold")]),
+            sample(&[("Hero", "allin_raise"), ("Villain", "raise")]),
+        ];
+        let stats = compute_preflop_stats(&samples, 2);
+        assert_eq!(stats.hands, 4);
+        assert_eq!((stats.vpip_count, stats.pfr_count, stats.limp_count), (3, 3, 1));
+        assert_eq!((stats.three_bet_count, stats.three_bet_opportunities), (1, 1));
+        assert_eq!((stats.fold_to_three_bet_count, stats.fold_to_three_bet_opportunities), (1, 1));
+    }
+
+    #[test]
     fn coach_filters_paid_buy_in_and_whole_tournaments_before_limiting() {
         let conn = Connection::open_in_memory().expect("open database");
         seed(&conn);
@@ -1754,20 +1834,22 @@ mod tests {
 
         let from = Some("2026-06-09T00:00:00.000Z");
         let to = Some("2026-06-09T23:59:59.999Z");
-        for (buy_in, expected_hands, expected_id) in [
-            (None, 2, Some("H30")),
-            (Some(2.0), 1, Some("H29")),
-            (Some(5.0), 1, Some("H30")),
-            (Some(10.0), 0, None),
+        for (buy_ins, expected_hands, expected_id) in [
+            (&[][..], 2, Some("H30")),
+            (&[2.0][..], 1, Some("H29")),
+            (&[5.0][..], 1, Some("H30")),
+            (&[10.0][..], 0, None),
+            (&[2.0, 5.0][..], 2, Some("H30")),
+            (&[2.0, 10.0][..], 1, Some("H29")),
         ] {
-            let stats = get_coach_stats(&conn, from, to, buy_in).expect("coach statistics");
+            let stats = get_coach_stats(&conn, from, to, buy_ins).expect("coach statistics");
             assert_eq!(stats.heads_up.hands, expected_hands);
-            let spots = list_coach_blunders(&conn, from, to, Some(1), Some("bad"), buy_in)
+            let spots = list_coach_blunders(&conn, from, to, Some(1), Some("bad"), buy_ins)
                 .expect("coach blunders");
             assert_eq!(spots.first().map(|spot| spot.hand_id.as_str()), expected_id);
         }
         let next_day = get_coach_stats(
-            &conn, Some("2026-06-10T00:00:00Z"), None, None,
+            &conn, Some("2026-06-10T00:00:00Z"), None, &[],
         ).expect("exclude tournaments started the previous day");
         assert_eq!(next_day.heads_up.hands, 0);
         let evolution = get_chip_evolution(&conn).expect("chip evolution with tournament identities");

@@ -1029,6 +1029,43 @@ tr:hover td {
   margin-bottom: 10px;
 }
 
+.stack-analysis {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+  min-width: 0;
+}
+
+.stack-table-wrap {
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+.stack-table {
+  width: 100%;
+  white-space: nowrap;
+}
+
+.stack-table td,
+.stack-table th {
+  text-align: right;
+}
+
+.stack-table th:first-child {
+  text-align: left;
+}
+
+.stack-table tfoot {
+  font-weight: 600;
+}
+
+.stack-sample {
+  display: block;
+  margin-top: 4px;
+  color: var(--text-dim);
+  font-weight: 400;
+}
+
 .variance-legend {
   display: flex;
   flex-wrap: wrap;

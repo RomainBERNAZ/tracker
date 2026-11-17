@@ -50,15 +50,17 @@ jobs:
       - name: Extract build sources
         run: tar -xf source/source.tar
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
           version: 8
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+          cache-dependency-path: src/frontend/pnpm-lock.yaml
 
       - name: Setup Rust
         uses: dtolnay/rust-toolchain@stable
@@ -81,11 +83,14 @@ jobs:
       - name: Install frontend deps
         run: pnpm install --dir src/frontend --frozen-lockfile
 
-      - name: Install tauri-cli
-        run: cargo install tauri-cli --version "^2" --locked
+      - name: Cache Rust dependencies
+        uses: Swatinem/rust-cache@v2
+        with:
+          shared-key: desktop-${{ runner.os }}
+          cache-bin: false
 
       - name: Build Tauri release
-        run: cargo tauri build --config src-tauri/tauri.conf.json --bundles "${{ matrix.bundles }}"
+        run: pnpm --dir src/frontend tauri build --config src-tauri/tauri.conf.json --bundles "${{ matrix.bundles }}"
 
       - name: Upload Linux installers
         if: matrix.platform == 'linux'

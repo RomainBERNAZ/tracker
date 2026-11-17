@@ -44,7 +44,10 @@ describe('bankroll recommendation cohorts', () => {
     const missing = analyzeRecentBankroll(low.tournaments, low.hands.slice(1))
     expect(missing.sample.missing).toBe(1)
     expect(assessBankroll(500_000, missing, settings).status).toBe('observe')
-    expect(analyzeRecentBankroll([...low.tournaments, ...higher.tournaments], low.hands, '2').referenceBuyIn).toBe(2)
+    const allTournaments = [...low.tournaments, ...higher.tournaments]
+    expect(analyzeRecentBankroll(allTournaments, low.hands, [2]).referenceBuyIn).toBe(2)
+    expect(analyzeRecentBankroll(allTournaments, low.hands, [2, 5]).referenceBuyIn).toBe(5)
+    expect(analyzeRecentBankroll(allTournaments, low.hands, [5, 10]).count).toBe(1)
   })
 })
 

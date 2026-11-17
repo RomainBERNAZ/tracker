@@ -15,16 +15,28 @@ export function TournamentFilters({ tournaments, value, onChange, showPeriod = t
   const buyIns = [...new Set(tournaments.map(tournamentBuyIn))].sort((a, b) => a - b)
   return (
     <div className="filters-bar">
-      <label>
-        Buy-in{' '}
-        <select className="filter-select" value={value.buyIn} onChange={(e) => onChange({ ...value, buyIn: e.target.value })}>
-          <option value="">Tous les buy-ins</option>
-          {buyIns.map((amount) => <option key={amount} value={String(amount)}>{amount.toLocaleString('fr-FR')} €</option>)}
-        </select>
-      </label>
+      <div className="period-pill-bar" role="group" aria-label="Buy-ins">
+        <span>Buy-in</span>
+        <button type="button" className={`period-pill${value.buyIns.length === 0 ? ' period-pill-active' : ''}`}
+          aria-pressed={value.buyIns.length === 0} onClick={() => onChange({ ...value, buyIns: [] })}>
+          Tous
+        </button>
+        {buyIns.map((amount) => {
+          const selected = value.buyIns.includes(amount)
+          return (
+            <button key={amount} type="button" className={`period-pill${selected ? ' period-pill-active' : ''}`}
+              aria-pressed={selected} onClick={() => onChange({
+                ...value, buyIns: selected ? value.buyIns.filter((buyIn) => buyIn !== amount) : [...value.buyIns, amount],
+              })}>
+              {amount.toLocaleString('fr-FR')} €
+            </button>
+          )
+        })}
+      </div>
       {showPeriod && <div className="period-pill-bar" role="group" aria-label="Periode">
         {(Object.keys(PERIOD_LABELS) as Period[]).map((period) => (
           <button key={period} type="button" className={`period-pill${value.period === period ? ' period-pill-active' : ''}`}
+            aria-pressed={value.period === period}
             onClick={() => onChange({ ...value, period })}>
             {PERIOD_LABELS[period]}
           </button>
