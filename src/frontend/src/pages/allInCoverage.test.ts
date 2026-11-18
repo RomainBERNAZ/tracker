@@ -1,18 +1,51 @@
 import { describe, expect, it } from 'vitest'
-import type { PreflopDuel, PreflopMatchup } from '../api'
-import { coverageGroup, groupAllInDuels, summarizeAllInDuels } from './allInCoverage'
+import type { PreflopDuel, PreflopMatchup, TournamentRow } from '../api'
+import { coverageGroup, groupAllInDuels, summarizeAllInDuels, summarizeAllInEuros, summarizeAllInsByMultiplier } from './allInCoverage'
 
 function hand(duel: Partial<PreflopDuel> = {}, overrides: Partial<PreflopMatchup> = {}): PreflopMatchup {
   return {
     hand_id: 'H1', tournament_id: 'T1', timestamp: '2026-11-17T12:00:00Z',
-    big_blind: 20, hero_cards: null, realized_cev: 300, net_ev: 375, allin_equity: 875 / 1100,
+    big_blind: 20, total_starting_chips: 1500, hero_cards: null, realized_cev: 300, net_ev: 375, allin_equity: 875 / 1100,
     opponents: [{ player_name: 'Villain', cards: null }],
     duel: { hero_starting_stack: 1000, villain_starting_stack: 100, hero_equity: 0.25, outcome: 'loss', issues: [], ...duel },
     ...overrides,
   }
 }
 
+function tournament(id: string, multiplier: number, prizepool_euros: number, net_eur: number): TournamentRow {
+  return {
+    id, multiplier, prizepool_euros, net_eur, player_name: 'Hero', buy_in_euros: 1.86, rake_euros: 0.14,
+    finish_position: 1, started_at: '2026-11-17T12:00:00Z', duration_secs: 60, hand_count: 1,
+    hero_cev_sum: 0, hero_net_ev_eur_sum: 0, wsd_cev_sum: 0, sd_cev_sum: 0,
+  }
+}
+
 describe('preflop all-in coverage', () => {
+  it('crosses multipliers with coverage and weights the EV correction by each observed prize and chip count', () => {
+    const tournaments = [tournament('T1', 2, 4, 2), tournament('T2', 10, 20, -2), tournament('T3', 10, 20, -2)]
+    const hands = [
+      hand({}, { net_ev: 450, big_blind: 0 }),
+      hand({ hero_starting_stack: 50 }, { tournament_id: 'T2', total_starting_chips: 1000, net_ev: 200 }),
+      hand({}, { tournament_id: 'T2', total_starting_chips: 0 }),
+      hand({}, { tournament_id: 'unselected' }),
+    ]
+    const [x2, x10] = summarizeAllInsByMultiplier(hands, tournaments)
+    expect([x2.multiplier, x10.multiplier]).toEqual([2, 10])
+    expect(x2.grouped.groups.covers).toHaveLength(1)
+    expect(x10.grouped.groups.covered).toHaveLength(1)
+    expect(x10.grouped.duels).toHaveLength(2)
+    expect(x2.euros).toMatchObject({ actual: 2, correction: 0.4, adjusted: 2.4, comparedCount: 1 })
+    expect(x10.euros).toMatchObject({ actual: -4, correction: -2, adjusted: -6, comparedCount: 1 })
+    expect(summarizeAllInEuros(hands, tournaments)).toMatchObject({ actual: -2, correction: -1.6, adjusted: -3.6, comparedCount: 2 })
+  })
+
+  it('distinguishes missing EV from a measured zero correction', () => {
+    const tours = [tournament('T1', 2, 4, 2)]
+    expect(summarizeAllInEuros([hand({ hero_equity: null }, { net_ev: 300 })], tours))
+      .toEqual({ actual: 2, correction: null, adjusted: null, comparedCount: 0 })
+    expect(summarizeAllInEuros([hand({}, { net_ev: 300 })], tours))
+      .toEqual({ actual: 2, correction: 0, adjusted: 2, comparedCount: 1 })
+  })
   it('uses starting stacks, keeps equal stacks separate, and excludes multiway but not unknown cards', () => {
     const hands = [
       hand(), hand({ hero_starting_stack: 50 }),

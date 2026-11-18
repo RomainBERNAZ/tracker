@@ -145,6 +145,14 @@ sans mise ni fold ulterieur, sont retenus : un troisieme joueur ayant folde
 preflop est autorise, mais les vrais pots multiway sont exclus explicitement.
 Les cartes inconnues n'empechent pas de compter un duel.
 
+Le tableau par multiplicateur croise les volumes avec la couverture. La sélection
+d'un multiplicateur filtre les bilans et la liste des duels. Le « Net ajusté »
+conserve les multiplicateurs réels et ajoute au net des tournois l'écart
+(EV − réel) des duels convertibles, valorisé par la cagnotte divisée par
+le nombre total de jetons. L'onglet affiche le nombre de duels corrigés ;
+il s'agit d'une estimation proportionnelle, et non d'un calcul ICM pour
+les tournois qui paient plusieurs places.
+
 Chaque groupe affiche le volume, les equites moyennes hero et vilain, les
 victoires / defaites / partages et les gains nets en jetons ou BB. L'equite
 est la part attendue du pot conteste, partages inclus, moyenne par duel sans

@@ -4,16 +4,19 @@ import { createReviewState } from '../reviewState'
 import { HoleCards } from '../components/PlayingCards'
 import { ChipAmount } from '../components/ChipAmount'
 import { api, type PreflopMatchup, type TournamentRow } from '../api'
-import { COVERAGE_GROUPS, coverageGroup, duelEquity, duelGains, groupAllInDuels, summarizeAllInDuels, type CoverageGroup } from './allInCoverage'
+import { COVERAGE_GROUPS, coverageGroup, duelEquity, duelGains, groupAllInDuels, summarizeAllInDuels, summarizeAllInEuros, summarizeAllInsByMultiplier, type CoverageGroup } from './allInCoverage'
 import type { MatchupUnit } from './matchupComparison'
 
 const percentage = (value: number | null) => value == null ? '-' :
   `${(value * 100).toLocaleString('fr-FR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} %`
 const gain = (value: number | null, unit: MatchupUnit) => value == null ? '-' :
   value.toLocaleString('fr-FR', { minimumFractionDigits: unit === 'bb' ? 2 : 0, maximumFractionDigits: unit === 'bb' ? 2 : 0, signDisplay: 'exceptZero' })
+const euro = (value: number | null) => value == null ? '—' :
+  value.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR', signDisplay: 'exceptZero' })
 const outcomeLabels = { win: 'Victoire', loss: 'Defaite', split: 'Partage' } as const
 const useAllInUnit = createReviewState<MatchupUnit>(() => 'chips')
 const useAllInSelection = createReviewState<CoverageGroup | 'all'>(() => 'all')
+const useAllInMultiplier = createReviewState<number | null>(() => null)
 const useAllInPageSize = createReviewState(() => 50)
 
 function Gain({ value, unit }: { readonly value: number | null; readonly unit: MatchupUnit }) {
@@ -27,7 +30,9 @@ export default memo(function SummaryAllIns({ tournaments }: { readonly tournamen
   const [attempt, setAttempt] = useState(0)
   const [unit, setUnit] = useAllInUnit()
   const [selection, setSelection] = useAllInSelection()
-  const pageScope = JSON.stringify([tournaments.map((t) => t.id).sort(), selection])
+  const [multiplier, setMultiplier] = useAllInMultiplier()
+  const selectedMultiplier = tournaments.some((tournament) => tournament.multiplier === multiplier) ? multiplier : null
+  const pageScope = JSON.stringify([tournaments.map((t) => t.id).sort(), selection, selectedMultiplier])
   const [visibleCount, setVisibleCount] = useAllInPageSize(pageScope)
 
   useEffect(() => {
@@ -44,11 +49,15 @@ export default memo(function SummaryAllIns({ tournaments }: { readonly tournamen
     return () => { cancelled = true }
   }, [attempt])
 
-  const cohort = useMemo(() => {
-    const ids = new Set(tournaments.map((tournament) => tournament.id))
-    return hands.filter((hand) => ids.has(hand.tournament_id))
-  }, [hands, tournaments])
-  const grouped = useMemo(() => groupAllInDuels(cohort), [cohort])
+  const tournamentMultipliers = useMemo(() => new Map(tournaments.map(({ id, multiplier }) => [id, multiplier])), [tournaments])
+  const cohort = useMemo(() => hands.filter(({ tournament_id }) => tournamentMultipliers.has(tournament_id)), [hands, tournamentMultipliers])
+  const byMultiplier = useMemo(() => summarizeAllInsByMultiplier(cohort, tournaments), [cohort, tournaments])
+  const allGrouped = useMemo(() => groupAllInDuels(cohort), [cohort])
+  const allEuros = useMemo(() => summarizeAllInEuros(allGrouped.duels, tournaments), [allGrouped, tournaments])
+  const selectedCohort = byMultiplier.find((row) => row.multiplier === selectedMultiplier)
+  const grouped = selectedCohort?.grouped ?? allGrouped
+  const euros = selectedCohort?.euros ?? allEuros
+  const tournamentCount = selectedCohort?.tournaments.length ?? tournaments.length
   const cards = useMemo(() => COVERAGE_GROUPS.map((group) => ({
     ...group, stats: summarizeAllInDuels(grouped.groups[group.id], unit),
   })), [grouped, unit])
@@ -64,6 +73,15 @@ export default memo(function SummaryAllIns({ tournaments }: { readonly tournamen
         Couverture selon les stacks au debut de la main, avant les blindes.
         Memes filtres date et buy-ins que Summary.
       </p>
+      <fieldset className="filter-group">
+        <legend>Multiplicateur</legend>
+        <select className="filter-select" aria-label="Multiplicateur du tournoi"
+          value={selectedMultiplier ?? ''} disabled={byMultiplier.length === 0}
+          onChange={(event) => setMultiplier(event.target.value === '' ? null : Number(event.target.value))}>
+          <option value="">Tous les multiplicateurs</option>
+          {byMultiplier.map(({ multiplier }) => <option key={multiplier} value={multiplier}>×{multiplier}</option>)}
+        </select>
+      </fieldset>
       <fieldset className="filter-group" aria-label="Unite des resultats tapis">
         <legend>Unite des resultats</legend>
         <p className="filter-group-hint">En BB, chaque gain est divise par la grosse blinde de sa main</p>
@@ -87,11 +105,49 @@ export default memo(function SummaryAllIns({ tournaments }: { readonly tournamen
         <button type="button" className="filter-reset" onClick={() => setAttempt((value) => value + 1)}>Reessayer</button>
       </div>
     ) : <>
+      <section className="summary-card">
+        <h3>Résultat € ajusté des tapis préflop</h3>
+        <div className="stats-bar">
+          <div className="stat-card"><div className="label">Net réel des tournois</div><div className="value">{euro(euros.actual)}</div></div>
+          <div className="stat-card"><div className="label">Correction des tapis estimée</div><div className="value">{euro(euros.correction)}</div></div>
+          <div className="stat-card"><div className="label">Net ajusté (estimation)</div><div className="value">{euro(euros.adjusted)}</div></div>
+        </div>
+        <p className="stack-method">{tournamentCount} tournois · {euros.comparedCount}/{grouped.duels.length} duels convertibles en euros.
+          Une correction positive signifie que le résultat observé de ces tapis est inférieur à leur EV.</p>
+        <details className="stack-method">
+          <summary>Comment l’estimation est calculée</summary>
+          <p>Net ajusté = net réel des tournois + somme de (Net EV − net réel) × (cagnotte du tournoi ÷ total des jetons au début de la main).
+            Les multiplicateurs réellement tirés ne changent pas. Seuls les duels avec une EV et une conversion valides sont corrigés ;
+            les autres coups restent dans le net réel.</p>
+          <p>Cette conversion proportionnelle correspond au modèle où seul le premier est payé. Quand plusieurs places sont payées,
+            c’est une approximation : elle ne modélise pas les paliers de gains (ICM). Ce n’est ni une prévision ni une correction de toute la variance.</p>
+        </details>
+      </section>
+
+      {byMultiplier.length > 0 && <section className="summary-card">
+        <h3>Couverture et résultat par multiplicateur</h3>
+        <p className="stack-method">Comparaison sur toute la période et les buy-ins sélectionnés. Choisis un multiplicateur pour filtrer les bilans et la liste.</p>
+        <div className="matchup-table-wrap"><table className="matchup-table">
+          <thead><tr><th>Multiplicateur</th><th>Tournois</th>
+            {COVERAGE_GROUPS.map(({ id, label }) => <th key={id}>{label}</th>)}
+            <th>Duels convertibles</th><th>Net réel</th><th>Correction estimée</th><th>Net ajusté estimé</th></tr></thead>
+          <tbody>{byMultiplier.map((row) => <tr key={row.multiplier}>
+            <th scope="row"><button type="button" aria-pressed={selectedMultiplier === row.multiplier}
+              className={`period-pill${selectedMultiplier === row.multiplier ? ' period-pill-active' : ''}`}
+              onClick={() => setMultiplier(selectedMultiplier === row.multiplier ? null : row.multiplier)}>×{row.multiplier}</button></th>
+            <td>{row.tournaments.length}</td>
+            {COVERAGE_GROUPS.map(({ id }) => <td key={id}>{row.grouped.groups[id].length}</td>)}
+            <td>{row.euros.comparedCount}/{row.grouped.duels.length}</td>
+            <td>{euro(row.euros.actual)}</td><td>{euro(row.euros.correction)}</td><td>{euro(row.euros.adjusted)}</td>
+          </tr>)}</tbody>
+        </table></div>
+      </section>}
+
       <section className="summary-card" aria-label="Perimetre des tapis">
         <strong>{grouped.duels.length} duels classes</strong>
         <p className="variance-description">{grouped.multiway} pots multiway exclus. Les cartes inconnues n'excluent pas un duel.</p>
         {grouped.unclassified > 0 && <p className="variance-warning">{grouped.unclassified} mains non classees : stacks ou donnees du duel indisponibles.</p>}
-        {grouped.duels.length === 0 && <p>Aucun duel preflop classable pour cette periode et ces buy-ins.</p>}
+        {grouped.duels.length === 0 && <p>Aucun duel préflop classable dans ce périmètre.</p>}
       </section>
 
       <div className="allin-coverage-grid">
@@ -141,7 +197,7 @@ export default memo(function SummaryAllIns({ tournaments }: { readonly tournamen
         <p className="stack-method">{selectedHands.length} mains. Stacks de depart en {unitLabel}, avec equivalence ; gains nets du hero et equites du pot conteste.</p>
         {selectedHands.length === 0 ? <p>Aucun duel dans ce groupe.</p> : <div className="matchup-table-wrap">
           <table className="matchup-table allin-table">
-            <thead><tr><th>Main / cartes</th><th>Couverture</th><th>Stacks hero / vilain</th><th>Equites hero / vilain</th><th>Issue</th><th>Net ({unitLabel})</th><th>Net EV ({unitLabel})</th></tr></thead>
+            <thead><tr><th>Main / cartes</th><th>Multiplicateur</th><th>Couverture</th><th>Stacks hero / vilain</th><th>Equites hero / vilain</th><th>Issue</th><th>Net ({unitLabel})</th><th>Net EV ({unitLabel})</th></tr></thead>
             <tbody>{selectedHands.slice(0, visibleCount).map((hand) => {
               const equity = duelEquity(hand)
               const gains = duelGains(hand, unit)
@@ -156,6 +212,7 @@ export default memo(function SummaryAllIns({ tournaments }: { readonly tournamen
                   <div className="stack-method">{hand.opponents[0]?.player_name}</div>
                   {duel?.issues.map((issue) => <div className="variance-warning" key={issue}>{issue}</div>)}
                 </td>
+                <td>×{tournamentMultipliers.get(hand.tournament_id)}</td>
                 <td>{COVERAGE_GROUPS.find((group) => group.id === coverageGroup(hand))?.label}</td>
                 <td><div className="allin-stack-pair">
                   <div><small>Hero</small><ChipAmount value={duel?.hero_starting_stack ?? null} bigBlind={hand.big_blind} unit={unit} /></div>

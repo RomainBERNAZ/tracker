@@ -210,6 +210,7 @@ export interface PreflopDuel {
 }
 
 export interface PreflopMatchup {
+  total_starting_chips: number
   hand_id: string
   tournament_id: string
   timestamp: string

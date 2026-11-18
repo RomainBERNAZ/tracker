@@ -1,4 +1,4 @@
-import type { PreflopMatchup } from '../api'
+import type { PreflopMatchup, TournamentRow } from '../api'
 import { hasMatchupBlind, hasMatchupEv, type MatchupUnit } from './matchupComparison'
 
 export const COVERAGE_GROUPS = [
@@ -76,6 +76,7 @@ export function summarizeAllInDuels(hands: readonly PreflopMatchup[], unit: Matc
       equityCount++
       equitySum += equity
     }
+
     const gains = duelGains(hand, unit)
     if (gains.actual != null) {
       actualCount++
@@ -102,4 +103,51 @@ export function summarizeAllInDuels(hands: readonly PreflopMatchup[], unit: Matc
     delta: comparedCount > 0 ? comparedActual - expected : null,
     issues, missingBlind,
   }
+}
+
+export function summarizeAllInEuros(hands: readonly PreflopMatchup[], tournaments: readonly TournamentRow[]) {
+  const byId = new Map(tournaments.map((tournament) => [tournament.id, tournament]))
+  const actual = tournaments.reduce((sum, tournament) => sum + tournament.net_eur, 0)
+  let comparedCount = 0
+  let correction = 0
+  for (const hand of hands) {
+    const prize = byId.get(hand.tournament_id)?.prizepool_euros
+    if (prize == null || !Number.isFinite(prize) || prize <= 0 ||
+      !Number.isFinite(hand.total_starting_chips) || hand.total_starting_chips <= 0 || coverageGroup(hand) == null) continue
+    const gains = duelGains(hand, 'chips')
+    if (gains.expected == null || gains.actual == null) continue
+    correction += (gains.expected - gains.actual) * prize / hand.total_starting_chips
+    comparedCount++
+  }
+  return {
+    actual,
+    correction: comparedCount > 0 ? correction : null,
+    adjusted: comparedCount > 0 ? actual + correction : null,
+    comparedCount,
+  }
+}
+
+export function summarizeAllInsByMultiplier(hands: readonly PreflopMatchup[], tournaments: readonly TournamentRow[]) {
+  type Cohort = { tournaments: TournamentRow[]; hands: PreflopMatchup[] }
+  const cohorts = new Map<number, Cohort>()
+  const byId = new Map<string, Cohort>()
+  for (const tournament of tournaments) {
+    let cohort = cohorts.get(tournament.multiplier)
+    if (!cohort) {
+      cohort = { tournaments: [], hands: [] }
+      cohorts.set(tournament.multiplier, cohort)
+    }
+    cohort.tournaments.push(tournament)
+    byId.set(tournament.id, cohort)
+  }
+  for (const hand of hands) byId.get(hand.tournament_id)?.hands.push(hand)
+  return [...cohorts.entries()].sort(([a], [b]) => a - b).map(([multiplier, cohort]) => {
+    const grouped = groupAllInDuels(cohort.hands)
+    return {
+      multiplier,
+      tournaments: cohort.tournaments,
+      grouped,
+      euros: summarizeAllInEuros(grouped.duels, cohort.tournaments),
+    }
+  })
 }

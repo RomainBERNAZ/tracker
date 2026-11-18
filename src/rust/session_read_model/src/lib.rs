@@ -228,6 +228,7 @@ pub struct PreflopMatchup {
     pub tournament_id: String,
     pub timestamp: String,
     pub big_blind: i64,
+    pub total_starting_chips: i64,
     pub hero_cards: Option<String>,
     pub realized_cev: i64,
     pub net_ev: Option<i64>,
@@ -308,7 +309,8 @@ pub fn list_preflop_matchups(conn: &Connection) -> Result<Vec<PreflopMatchup>, r
                   (SELECT SUM(p.contributions) FROM hand_players p WHERE p.hand_id = h.id),
                   (SELECT SUM(MIN(p.contributions, MIN(hp.contributions, villain.contributions)))
                      FROM hand_players p WHERE p.hand_id = h.id),
-                  (SELECT MAX(p.contributions) FROM hand_players p WHERE p.hand_id = h.id)
+                  (SELECT MAX(p.contributions) FROM hand_players p WHERE p.hand_id = h.id),
+                  (SELECT SUM(p.starting_stack) FROM hand_players p WHERE p.hand_id = h.id)
            FROM hands h
            JOIN hand_players hp ON hp.hand_id = h.id AND hp.hero = 1
            LEFT JOIN hole_cards hc ON hc.hand_id = h.id AND hc.player_name = hp.player_name
@@ -340,6 +342,7 @@ pub fn list_preflop_matchups(conn: &Connection) -> Result<Vec<PreflopMatchup>, r
                 tournament_id: row.get(1)?,
                 timestamp: row.get(2)?,
                 big_blind: row.get(3)?,
+                total_starting_chips: row.get(21)?,
                 hero_cards: row.get(4)?,
                 realized_cev: row.get(5)?,
                 net_ev: row.get(6)?,
@@ -1797,6 +1800,7 @@ mod tests {
         let hands = list_preflop_matchups(&conn).expect("duel");
         assert_eq!(hands.len(), 1);
         assert_eq!(hands[0].opponents.len(), 1);
+        assert_eq!(hands[0].total_starting_chips, 2000);
         conn.execute_batch(
             "UPDATE hand_actions SET action_type = 'allin_call' WHERE player_name = 'Third';
              INSERT INTO showdown_hole_cards (hand_id, player_name, card1, card2)
