@@ -9,6 +9,7 @@ import Summary from './pages/Summary'
 import GtoCharts from './pages/GtoCharts'
 import Bankroll from './pages/Bankroll'
 import ShortStackAnalysis from './pages/ShortStackAnalysis'
+import HittingBoard from './pages/HittingBoard'
 import { api } from './api'
 import './App.css'
 
@@ -27,6 +28,9 @@ export default function App() {
           </NavLink>
           <NavLink to="/short-stack" className={({ isActive }) => isActive ? 'nav-item active' : 'nav-item'}>
             Short Stack Analysis
+          </NavLink>
+          <NavLink to="/hitting-board" className={({ isActive }) => isActive ? 'nav-item active' : 'nav-item'}>
+            Hitting Board
           </NavLink>
           <NavLink to="/tournaments" className={({ isActive }) => isActive ? 'nav-item active' : 'nav-item'}>
             ☰ Tournois
@@ -48,6 +52,7 @@ export default function App() {
             <Route path="/tournaments" element={<Tournaments />} />
             <Route path="/summary" element={<Summary />} />
             <Route path="/short-stack" element={<ShortStackAnalysis />} />
+            <Route path="/hitting-board" element={<HittingBoard />} />
             <Route path="/gto" element={<GtoCharts />} />
             <Route path="/bankroll" element={<Bankroll />} />
             <Route path="/tournaments/:id/hands" element={<HandList />} />

@@ -5,7 +5,7 @@ use serde::Serialize;
 use hh_ingest::{db, import_history_file_with_conn, ImportProgress, ImportResult, DEFAULT_HERO};
 use hh_ingest::bankroll::{self, BankrollSettings, BankrollSnapshot, MovementKind};
 use rusqlite::Connection;
-use session_read_model::short_stack;
+use session_read_model::{hitting_board, short_stack};
 use session_read_model::stacks::{get_stack_stats, StackStatsSnapshot};
 use session_read_model::{
 	list_preflop_matchups, PreflopMatchup,
@@ -446,6 +446,14 @@ pub mod commands {
 	}
 
 	#[tauri::command]
+	pub async fn get_hitting_board(
+		state: tauri::State<'_, AppState>,
+	) -> Result<Vec<hitting_board::TournamentStats>, String> {
+		let conn = state.db.lock().map_err(|e| e.to_string())?;
+		hitting_board::get_stats(&conn).map_err(|e| e.to_string())
+	}
+
+	#[tauri::command]
 	pub async fn get_short_stack_analysis(
 		state: tauri::State<'_, AppState>,
 	) -> Result<short_stack::Snapshot, String> {
@@ -559,6 +567,7 @@ pub fn run() {
 			commands::get_coach_spots,
 			commands::get_coach_stats_cmd,
 			commands::get_stack_stats_cmd,
+			commands::get_hitting_board,
 			commands::get_short_stack_analysis,
 			commands::get_short_stack_equities,
 			commands::get_coach_blunders_cmd,

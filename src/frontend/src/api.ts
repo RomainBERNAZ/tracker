@@ -1,4 +1,5 @@
 import { invoke } from '@tauri-apps/api/core'
+import type { TournamentFlops } from './pages/hittingBoardStats'
 
 function invokeTauri<T>(cmd: string, args?: Record<string, unknown>): Promise<T> {
   const hasTauriRuntime =
@@ -436,6 +437,8 @@ export const api = {
     invokeTauri('get_stack_stats_cmd', { tournamentIds }),
   getShortStackAnalysis: (): Promise<ShortStackSnapshot> =>
     invokeTauri('get_short_stack_analysis'),
+  getHittingBoard: (): Promise<TournamentFlops[]> =>
+    invokeTauri('get_hitting_board'),
   getShortStackEquities: (matchups: readonly ShortStackMatchup[]): Promise<(number | null)[]> =>
     invokeTauri('get_short_stack_equities', { matchups }),
 

@@ -1089,6 +1089,19 @@ tr:hover td {
   max-width: 100%;
 }
 
+.hitting-board section {
+  margin-block: 24px;
+}
+
+.hitting-board section p,
+.hitting-board details {
+  margin-block: 10px;
+}
+
+.hitting-board summary {
+  cursor: pointer;
+}
+
 .stack-table {
   width: 100%;
   white-space: nowrap;

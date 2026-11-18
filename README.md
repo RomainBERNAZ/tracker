@@ -35,7 +35,7 @@ La CI de `master` execute aussi les tests frontend.
 
 ## Filtres des resultats
 
-- L'application s'ouvre sur Summary. Le menu latéral donne aussi accès à Short Stack Analysis, Tournois, Bankroll, GTO (expérimental) et Import.
+- L'application s'ouvre sur Summary. Le menu latéral donne aussi accès à Hitting Board, Short Stack Analysis, Tournois, Bankroll, GTO (expérimental) et Import.
 - Summary (Resume et Jetons) et Tournois : periode et buy-ins, combinables. Les montants proposes correspondent aux tournois importes, rake inclus. Les pastilles buy-in permettent de selectionner plusieurs limites simultanement ; "Tous" reinitialise la selection, et desactiver la derniere limite revient aussi a tous les buy-ins.
 - Coach : les buy-ins de Summary s'appliquent aussi aux statistiques, bilans et erreurs detectees ; sa periode reste definie par ses champs de dates dedies.
 - Les dates selectionnent les tournois selon leur debut, en heure locale, et incluent toutes leurs mains, meme apres minuit.
@@ -44,6 +44,30 @@ La CI de `master` execute aussi les tests frontend.
 - Le cEV moyen est la somme du Net EV en jetons (gain realise si EV absente), divisee par le nombre de tournois selectionnes. Les deux pages utilisent tout l'historique, sans limite aux 100 derniers tournois.
 - Les comparaisons theoriques de multiplicateurs et de variance restent reservees au modele 2 EUR existant ; les cases des multiplicateurs observes restent affichees pour tous les buy-ins, meme melanges ou avec un seul tournoi, sans attendu ni ecart lorsqu'aucun modele ne s'applique.
 - Les graphiques cumules de Resume (euros) et Jetons s'etendent jusqu'au bas de la fenetre, avec une hauteur minimale pour rester lisibles sur les petites fenetres.
+
+## Hitting Board
+
+L'onglet calcule les statistiques des flops à partir des historiques importés, sans
+écrire de données. Il ne retient que les pots où Hero a effectué l'unique relance
+préflop et où deux ou trois joueurs ont vu le flop. Un call (même à tapis) avant
+la relance, par un autre joueur, en fait un iso-raise. Les folds préflop ne
+comptent pas parmi les participants au flop. La position reste celle de la
+distribution initiale.
+
+Chaque flop analysable reçoit une seule catégorie. Une paire ou un brelan
+du tableau seul est ignoré ; une vraie double paire à laquelle Hero contribue
+est classée « deux paires ou mieux ». Les gutshots simples et doubles sont
+regroupés. Un combo draw combine un tirage couleur et un tirage quinte directs.
+Les tirages sont aussi comptés séparément, y compris avec une main faite. Les
+backdoors requièrent une contribution de Hero et ne sont pas des tirages directs.
+
+La connexion est définie par « paire ou mieux, ou tirage direct ». Les filtres
+habituels de date de début de tournoi et de buy-ins s'appliquent. Si une date de début
+est choisie, la référence est tout l'historique antérieur pour les buy-ins
+sélectionnés. Les tests sont bilatéraux, regroupés par tournoi et corrigés pour les
+quatre contextes (Bonferroni). Une différence n'est testée qu'avec au moins
+50 flops, 30 tournois, 5 connexions et 5 non-connexions de chaque côté.
+Ce n'est pas une comparaison à un modèle théorique ni une preuve de malchance.
 
 ## Short Stack Analysis
 

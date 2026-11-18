@@ -1,5 +1,6 @@
-use rusqlite::{Connection, Row};
-use serde::{de::DeserializeOwned, Deserialize, Serialize};
+use super::json;
+use rusqlite::Connection;
+use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 
 #[derive(Debug, Serialize)]
@@ -80,16 +81,6 @@ impl Episode {
         self.rank = self.rank.map(|rank| rank + 1);
         self.rank
     }
-}
-
-fn json<T: DeserializeOwned>(row: &Row<'_>, index: usize) -> rusqlite::Result<T> {
-    serde_json::from_str(&row.get::<_, String>(index)?).map_err(|error| {
-        rusqlite::Error::FromSqlConversionFailure(
-            index,
-            rusqlite::types::Type::Text,
-            Box::new(error),
-        )
-    })
 }
 
 fn positions(seats: &[Player], button: i64) -> Vec<&'static str> {

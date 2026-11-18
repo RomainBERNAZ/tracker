@@ -1,10 +1,18 @@
-use rusqlite::{Connection, params};
+use rusqlite::{Connection, Row, params};
+use serde::de::DeserializeOwned;
 use serde::{Deserialize, Serialize};
 use serde_json;
 use std::collections::BTreeMap;
 
 pub mod stacks;
 pub mod short_stack;
+pub mod hitting_board;
+
+fn json<T: DeserializeOwned>(row: &Row<'_>, index: usize) -> rusqlite::Result<T> {
+    serde_json::from_str(&row.get::<_, String>(index)?).map_err(|error| {
+        rusqlite::Error::FromSqlConversionFailure(index, rusqlite::types::Type::Text, Box::new(error))
+    })
+}
 
 // ─── Read models (returned to the UI) ────────────────────────────────────────
 
