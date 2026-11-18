@@ -3,6 +3,10 @@ import type { StackChipTotals, StackStatsGroup } from '../api'
 export const STACK_BUCKETS = ['0-8 BB', '>8-12 BB', '>12-20 BB', '>20 BB'] as const
 export type StackFormat = 'all' | '2' | '3'
 
+export function toggleStackBucket(buckets: readonly number[], bucket: number) {
+  return buckets.includes(bucket) ? buckets.filter((value) => value !== bucket) : [...buckets, bucket]
+}
+
 function emptyChips(): StackChipTotals {
   return { net: 0, ev: 0, sd: 0, sd_ev: 0, wsd: 0, wsd_ev: 0 }
 }

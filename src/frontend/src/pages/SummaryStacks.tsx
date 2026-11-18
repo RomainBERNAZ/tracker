@@ -2,8 +2,9 @@ import { memo, useEffect, useMemo, useState } from 'react'
 import { createReviewState } from '../reviewState'
 import { api } from '../api'
 import type { StackStatsSnapshot, TournamentRow } from '../api'
-import { analyzeStacks, STACK_BUCKETS, stackDiagnostics, stackRates } from './stackAnalysis'
+import { analyzeStacks, STACK_BUCKETS, stackDiagnostics, stackRates, toggleStackBucket } from './stackAnalysis'
 import type { StackAnalysisRow, StackFormat } from './stackAnalysis'
+import { HandFormatFilter, HeroStackFilter } from './StackHandFilters'
 
 const number = (value: number | null, digits = 1) => value == null ? '-' :
   value.toLocaleString('fr-FR', { minimumFractionDigits: digits, maximumFractionDigits: digits })
@@ -119,15 +120,7 @@ export default memo(function SummaryStacks({ tournaments }: { readonly tournamen
         Les filtres date et buy-ins de Summary s'appliquent ; ceux ci-dessous restent propres a cet onglet.
       </p>
       <div className="filter-groups stack-filters">
-        <fieldset className="filter-group" aria-label="Format des mains">
-          <legend>Format des mains</legend>
-          <p className="filter-group-hint">Nombre de joueurs au debut de la main</p>
-          <div className="period-pill-bar">
-            {([['all', 'Tous'], ['3', '3 joueurs'], ['2', 'Heads-up']] as const).map(([key, label]) =>
-              <button key={key} type="button" className={`period-pill${format === key ? ' period-pill-active' : ''}`}
-                aria-pressed={format === key} onClick={() => setFormat(key)}>{label}</button>)}
-          </div>
-        </fieldset>
+        <HandFormatFilter format={format} onChange={setFormat} />
         <fieldset className="filter-group" aria-label="Unite des resultats stacks">
           <legend>Unite des resultats</legend>
           <p className="filter-group-hint">La contribution cEV reste en jetons</p>
@@ -137,20 +130,8 @@ export default memo(function SummaryStacks({ tournaments }: { readonly tournamen
                 aria-pressed={unit === key} onClick={() => setUnit(key)}>{key === 'chips' ? 'Jetons' : 'BB'}</button>)}
           </div>
         </fieldset>
-        <fieldset className="filter-group stack-depth-filter" aria-label="Profondeurs de stack">
-          <legend>Stack hero</legend>
-          <p className="filter-group-hint">Avant les blindes, en BB · Plusieurs tranches possibles</p>
-          <div className="period-pill-bar">
-            <button type="button" className={`period-pill${buckets.length === 0 ? ' period-pill-active' : ''}`}
-              aria-pressed={buckets.length === 0} onClick={() => setBuckets([])}>Toutes</button>
-            {STACK_BUCKETS.map((label, bucket) =>
-              <button key={bucket} type="button" className={`period-pill${buckets.includes(bucket) ? ' period-pill-active' : ''}`}
-                aria-pressed={buckets.includes(bucket)}
-                onClick={() => setBuckets((current) => current.includes(bucket) ? current.filter((value) => value !== bucket) : [...current, bucket])}>
-                {label}
-              </button>)}
-          </div>
-        </fieldset>
+        <HeroStackFilter buckets={buckets} onReset={() => setBuckets([])}
+          onToggle={(bucket) => setBuckets((current) => toggleStackBucket(current, bucket))} />
       </div>
       <details className="stack-method">
         <summary>Definitions et calculs</summary>

@@ -183,6 +183,8 @@ export interface HandChipPoint {
   tournament_id: string
   hero_cards: string | null
   big_blind: number
+  player_count: number
+  hero_stack_bucket: number | null
   timestamp: string
   realized_cev: number
   net_ev: number | null

@@ -69,6 +69,12 @@ de l'EV nette importée du coup complet.
 
 ## Statistiques par profondeur de stack
 
+Dans **Summary → Jetons**, les filtres 3 joueurs / Heads-up et Stack Hero se
+combinent avec la période et les buy-ins. Ils s'appliquent aux totaux et aux
+courbes. Les tranches sont celles de Stacks (0–8, >8–12, >12–20 et >20 BB,
+sélection multiple), mesurées avant les blindes. La contribution cEV reste
+divisée par tous les tournois du périmètre date et buy-in.
+
 L'onglet Stacks de Summary analyse le stack du hero au debut de chaque main,
 avant les blindes, en BB : 0-8, >8-12, >12-20 et >20 BB. Les bornes hautes
 sont incluses. Il conserve les filtres date et buy-ins de Summary et propose

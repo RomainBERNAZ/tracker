@@ -14,8 +14,11 @@ import {
 } from 'recharts'
 import { api, CoachBlunderSpot, CoachFormatStats, CoachStatsSnapshot, HandChipPoint, TournamentRow } from '../api'
 import { CumulativeChart } from '../components/CumulativeChart'
-import { summarizeChips } from './summaryChips'
+import { filterChipHands, summarizeChips } from './summaryChips'
 import { TournamentFilters } from '../components/TournamentFilters'
+import { HandFormatFilter, HeroStackFilter } from './StackHandFilters'
+import { toggleStackBucket } from './stackAnalysis'
+import type { StackFormat } from './stackAnalysis'
 import Variance from './Variance'
 import SummaryStacks from './SummaryStacks'
 import SummaryAllIns from './SummaryAllIns'
@@ -920,21 +923,27 @@ const CHIPS_CURVES: Array<{ key: ChipsCurveKey; label: string; stroke: string; d
 ]
 
 const useChipCurves = createReviewState<Set<ChipsCurveKey>>(() => new Set(['cev', 'ev']))
+const useChipFormat = createReviewState<StackFormat>(() => 'all')
+const useChipBuckets = createReviewState<readonly number[]>(() => [])
 
 const SummaryChipsTab = memo(({ filteredHands, filteredTournamentCount }: {
   readonly filteredHands: HandChipPoint[]
   readonly filteredTournamentCount: number
 }) => {
   const [activeCurves, setActiveCurves] = useChipCurves()
+  const [format, setFormat] = useChipFormat()
+  const [buckets, setBuckets] = useChipBuckets()
+  const selectedHands = useMemo(() => filterChipHands(filteredHands, format, buckets), [filteredHands, format, buckets])
+  const hasHandFilter = format !== 'all' || buckets.length > 0
   const chipStats = useMemo(
-    () => summarizeChips(filteredHands, filteredTournamentCount),
-    [filteredHands, filteredTournamentCount],
+    () => summarizeChips(selectedHands, filteredTournamentCount),
+    [selectedHands, filteredTournamentCount],
   )
 
   const chipsLuck = useMemo(() => {
-    const deltas = filteredHands.map((h) => h.realized_cev - (h.net_ev ?? h.realized_cev))
+    const deltas = selectedHands.map((h) => h.realized_cev - (h.net_ev ?? h.realized_cev))
     return computeEmpiricalLuck(deltas)
-  }, [filteredHands])
+  }, [selectedHands])
 
   const chartData = useMemo(() => {
     let cumCev = 0
@@ -944,7 +953,7 @@ const SummaryChipsTab = memo(({ filteredHands, filteredTournamentCount }: {
     const points: Array<{ label: string; cev: number; ev: number; wsd: number; sd: number }> = [
       { label: '', cev: 0, ev: 0, wsd: 0, sd: 0 },
     ]
-    filteredHands.forEach((h, idx) => {
+    selectedHands.forEach((h, idx) => {
       cumCev += h.realized_cev
       cumEv += h.net_ev ?? h.realized_cev
       if (h.has_showdown) {
@@ -955,7 +964,7 @@ const SummaryChipsTab = memo(({ filteredHands, filteredTournamentCount }: {
       points.push({ label: `${idx + 1}`, cev: cumCev, ev: cumEv, wsd: cumWsd, sd: cumSd })
     })
     return points
-  }, [filteredHands])
+  }, [selectedHands])
 
   function toggleCurve(key: ChipsCurveKey) {
     setActiveCurves((prev) => {
@@ -973,6 +982,16 @@ const SummaryChipsTab = memo(({ filteredHands, filteredTournamentCount }: {
 
   return (
     <div className="summary-chips-tab">
+      <div className="summary-card">
+        <div className="filter-groups">
+          <HandFormatFilter format={format} onChange={setFormat} />
+          <HeroStackFilter buckets={buckets} onReset={() => setBuckets([])}
+            onToggle={(bucket) => setBuckets((current) => toggleStackBucket(current, bucket))} />
+        </div>
+        {hasHandFilter && <p className="filter-group-hint" aria-live="polite">
+          {selectedHands.length} / {filteredHands.length} mains retenues. Dénominateur du cEV après les filtres de période et de buy-in : {filteredTournamentCount} tournoi{filteredTournamentCount === 1 ? '' : 's'}.
+        </p>}
+      </div>
       <div className="stats-bar" style={{ marginBottom: 16 }}>
         <div className="stat-card">
           <div className="label">Net (chips)</div>
@@ -987,7 +1006,7 @@ const SummaryChipsTab = memo(({ filteredHands, filteredTournamentCount }: {
           </div>
         </div>
         <div className="stat-card">
-          <div className="label">cEV moyen (chips/game)</div>
+          <div className="label">{hasHandFilter ? 'Contribution cEV (jetons / tournoi)' : 'cEV moyen (chips/game)'}</div>
           <div className={`value ${chipStats.avgCevPerGame >= 0 ? 'positive' : 'negative'}`}>
             {chipStats.avgCevPerGame > 0 ? '+' : ''}{chipStats.avgCevPerGame.toFixed(1)}
           </div>

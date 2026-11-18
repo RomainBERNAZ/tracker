@@ -67,7 +67,7 @@ struct StackAccumulator {
     missing_preflop_hands: i64,
 }
 
-fn stack_bucket(starting_stack: i64, big_blind: i64) -> Option<usize> {
+pub(super) fn stack_bucket(starting_stack: i64, big_blind: i64) -> Option<usize> {
     if starting_stack <= 0 || big_blind <= 0 {
         return None;
     }
