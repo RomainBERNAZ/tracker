@@ -19,7 +19,15 @@ import { TournamentFilters } from '../components/TournamentFilters'
 import Variance from './Variance'
 import SummaryStacks from './SummaryStacks'
 import SummaryAllIns from './SummaryAllIns'
-import { DEFAULT_FILTER, applyTournamentRange, computeFilteredStats, endOfDay, handsForTournaments, parseDateInput, periodToRange, tournamentBuyIn } from './tournamentFilters'
+import { createReviewState } from '../reviewState'
+import { DEFAULT_FILTER, applyTournamentRange, calendarDayRange, computeFilteredStats, endOfDay, formatDateInput, handsForTournaments, parseDateInput, periodToRange, tournamentBuyIn } from './tournamentFilters'
+
+const useSummaryFilter = createReviewState(() => DEFAULT_FILTER)
+const useSummaryTab = createReviewState<'summary' | 'chips' | 'stacks' | 'allins' | 'variance' | 'coach'>(() => 'summary')
+const useCoachFrom = createReviewState(() => '')
+const useCoachTo = createReviewState(() => '')
+const useCoachAction = createReviewState<'all' | 'call' | 'push'>(() => 'all')
+const useCoachSeverity = createReviewState<'all' | 'bad' | 'critical'>(() => 'all')
 
 function fmtEur(n: number) {
   const sign = n >= 0 ? '+' : ''
@@ -567,8 +575,8 @@ const CoachBlundersCard = memo(({
   readonly blunders: CoachBlunderSpot[]
   readonly onOpenReplay: (handId: string) => void
 }) => {
-  const [actionFilter, setActionFilter] = useState<'all' | 'call' | 'push'>('all')
-  const [severityFilter, setSeverityFilter] = useState<'all' | 'bad' | 'critical'>('all')
+  const [actionFilter, setActionFilter] = useCoachAction()
+  const [severityFilter, setSeverityFilter] = useCoachSeverity()
 
   const filtered = useMemo(
     () => blunders.filter((spot) => {
@@ -738,6 +746,14 @@ const CoachTabPanel = memo(({
         <div className="summary-card-header" style={{ marginBottom: 8 }}>
           <h3>Filtre coach (dates)</h3>
         </div>
+        <div className="period-pill-bar" role="group" aria-label="Raccourcis dates coach">
+          {([['today', "Aujourd'hui"], ['yesterday', 'Hier']] as const).map(([period, label]) =>
+            <button type="button" className="period-pill" key={period} onClick={() => {
+              const date = formatDateInput(calendarDayRange(period).fromMs)
+              setCoachFrom(date)
+              setCoachTo(date)
+            }}>{label}</button>)}
+        </div>
         <div className="summary-custom-dates" style={{ marginTop: 0 }}>
           <input
             className="filter-input summary-date-input"
@@ -903,13 +919,13 @@ const CHIPS_CURVES: Array<{ key: ChipsCurveKey; label: string; stroke: string; d
   { key: 'sd', label: 'Showdown', stroke: '#f59e0b', dash: '4 2' },
 ]
 
+const useChipCurves = createReviewState<Set<ChipsCurveKey>>(() => new Set(['cev', 'ev']))
+
 const SummaryChipsTab = memo(({ filteredHands, filteredTournamentCount }: {
   readonly filteredHands: HandChipPoint[]
   readonly filteredTournamentCount: number
 }) => {
-  const [activeCurves, setActiveCurves] = useState<Set<ChipsCurveKey>>(
-    () => new Set(['cev', 'ev'] as ChipsCurveKey[]),
-  )
+  const [activeCurves, setActiveCurves] = useChipCurves()
   const chipStats = useMemo(
     () => summarizeChips(filteredHands, filteredTournamentCount),
     [filteredHands, filteredTournamentCount],
@@ -1092,10 +1108,10 @@ export default memo(function Summary() {
   const [tournaments, setTournaments] = useState<TournamentRow[]>([])
   const [handEvolution, setHandEvolution] = useState<HandChipPoint[]>([])
   const [loading, setLoading] = useState(true)
-  const [filter, setFilter] = useState(DEFAULT_FILTER)
-  const [activeTab, setActiveTab] = useState<'summary' | 'chips' | 'stacks' | 'allins' | 'variance' | 'coach'>('summary')
-  const [coachFrom, setCoachFrom] = useState('')
-  const [coachTo, setCoachTo] = useState('')
+  const [filter, setFilter] = useSummaryFilter()
+  const [activeTab, setActiveTab] = useSummaryTab()
+  const [coachFrom, setCoachFrom] = useCoachFrom()
+  const [coachTo, setCoachTo] = useCoachTo()
 
   useEffect(() => {
     Promise.all([api.getTournaments(), api.getChipEvolution()])
@@ -1107,9 +1123,10 @@ export default memo(function Summary() {
       .finally(() => setLoading(false))
   }, [])
 
+  const dayAnchor = filter.period === 'today' || filter.period === 'yesterday' ? new Date().setHours(0, 0, 0, 0) : null
   const filteredRange = useMemo(
-    () => periodToRange(filter.period, filter.customFrom, filter.customTo),
-    [filter.period, filter.customFrom, filter.customTo],
+    () => periodToRange(filter.period, filter.customFrom, filter.customTo, dayAnchor ?? Date.now()),
+    [filter.period, filter.customFrom, filter.customTo, dayAnchor],
   )
 
   const filteredTournaments = useMemo(() => {

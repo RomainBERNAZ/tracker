@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
+import { useReviewBack } from '../reviewState'
 import { useNavigate, useParams } from 'react-router-dom'
 import { api, HandDetail as HandDetailModel, PlayerDetailRow } from '../api'
 
@@ -67,6 +68,7 @@ export default function HandDetail() {
   const [detail, setDetail] = useState<HandDetailModel | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const goBack = useReviewBack(detail ? `/tournaments/${encodeURIComponent(detail.hand.tournament_id)}/hands` : '/tournaments')
 
   useEffect(() => {
     if (!handId) {
@@ -99,7 +101,7 @@ export default function HandDetail() {
   if (error || !detail) {
     return (
       <div>
-        <button className="back-link" onClick={() => navigate('/tournaments')}>
+        <button className="back-link" onClick={goBack}>
           ← Retour aux tournois
         </button>
         <div className="import-result">
@@ -114,7 +116,7 @@ export default function HandDetail() {
 
   return (
     <div>
-      <button className="back-link" onClick={() => navigate(`/tournaments/${h.tournament_id}/hands`)}>
+      <button className="back-link" onClick={goBack}>
         ← Retour aux mains
       </button>
 

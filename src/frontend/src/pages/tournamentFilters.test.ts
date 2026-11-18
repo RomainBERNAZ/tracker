@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import type { HandChipPoint, TournamentRow } from '../api'
-import { applyTournamentRange, computeFilteredStats, handsForTournaments, periodToRange } from './tournamentFilters'
+import { applyTournamentRange, computeFilteredStats, formatDateInput, handsForTournaments, periodToRange } from './tournamentFilters'
 import { summarizeChips } from './summaryChips'
 
 function tournament(id: string, buyIn: number, startedAt: string, ev: number): TournamentRow {
@@ -13,6 +13,33 @@ function tournament(id: string, buyIn: number, startedAt: string, ev: number): T
 }
 
 describe('tournament filters', () => {
+  it('selects complete local calendar days for today and yesterday, including midnight boundaries', () => {
+    const now = new Date(2026, 10, 18, 12).getTime()
+    const history = [
+      tournament('before', 2, '2026-11-16T23:59:59.999', 0),
+      tournament('yesterday-start', 2, '2026-11-17T00:00:00', 0),
+      tournament('yesterday-end', 2, '2026-11-17T23:59:59.999', 0),
+      tournament('today-start', 2, '2026-11-18T00:00:00', 0),
+      tournament('today-end', 2, '2026-11-18T23:59:59.999', 0),
+      tournament('tomorrow', 2, '2026-11-19T00:00:00', 0),
+    ]
+    for (const period of ['today', 'yesterday'] as const) {
+      const range = periodToRange(period, '', '', now)
+      expect(applyTournamentRange(history, range.fromMs, range.toMs).map((t) => t.id))
+        .toEqual([`${period}-start`, `${period}-end`])
+      expect(formatDateInput(range.fromMs!)).toBe(period === 'today' ? '2026-11-18' : '2026-11-17')
+    }
+  })
+
+  it('uses calendar arithmetic across month/year and daylight-saving transitions', () => {
+    for (const [year, month, day] of [[2026, 0, 1], [2026, 2, 30], [2026, 9, 26]]) {
+      const now = new Date(year, month, day, 12).getTime()
+      const range = periodToRange('yesterday', '', '', now)
+      expect(range.fromMs).toBe(new Date(year, month, day - 1).getTime())
+      expect(range.toMs).toBe(new Date(year, month, day, 0, 0, 0, -1).getTime())
+    }
+  })
+
   const tours = [
     tournament('A', 0.5, '2026-11-15T23:59:00', 80),
     tournament('B', 2, '2026-11-15T12:00:00', 100),

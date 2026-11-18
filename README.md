@@ -39,6 +39,8 @@ La CI de `master` execute aussi les tests frontend.
 - Summary (Resume et Jetons) et Tournois : periode et buy-ins, combinables. Les montants proposes correspondent aux tournois importes, rake inclus. Les pastilles buy-in permettent de selectionner plusieurs limites simultanement ; "Tous" reinitialise la selection, et desactiver la derniere limite revient aussi a tous les buy-ins.
 - Coach : les buy-ins de Summary s'appliquent aussi aux statistiques, bilans et erreurs detectees ; sa periode reste definie par ses champs de dates dedies.
 - Les dates selectionnent les tournois selon leur debut, en heure locale, et incluent toutes leurs mains, meme apres minuit.
+- Les raccourcis Aujourd'hui et Hier selectionnent le jour calendaire local entier (changements d'heure compris), dans les filtres de dates Summary et Tournois. Coach propose les memes raccourcis pour ses dates independantes.
+- Les choix de consultation restent en memoire pendant la session : onglet Summary, periodes/buy-ins, filtres Stacks/Tapis/Variance/Coach, ranges du comparateur, tris et recherches des mains par tournoi, et selections GTO. Ouvrir un detail/replay puis revenir (bouton Retour ou retour navigateur) ne les reinitialise plus. Les listes de duels conservent aussi le nombre de lignes affichees par selection. Les donnees sont rechargees a l'ouverture ; les choix ne sont pas sauvegardes apres fermeture/rechargement de l'application.
 - Le cEV moyen est la somme du Net EV en jetons (gain realise si EV absente), divisee par le nombre de tournois selectionnes. Les deux pages utilisent tout l'historique, sans limite aux 100 derniers tournois.
 - Les comparaisons theoriques de multiplicateurs et de variance restent reservees au modele 2 EUR existant ; les cases des multiplicateurs observes restent affichees pour tous les buy-ins, meme melanges ou avec un seul tournoi, sans attendu ni ecart lorsqu'aucun modele ne s'applique.
 - Les graphiques cumules de Resume (euros) et Jetons s'etendent jusqu'au bas de la fenetre, avec une hauteur minimale pour rester lisibles sur les petites fenetres.
@@ -135,6 +137,23 @@ exclut uniquement les gains en BB. Aucun reimport n'est requis pour les stacks
 et collectes deja presents ; les equites historiques manquantes restent absentes.
 La liste filtrable par couverture donne acces aux replays par lots de 50,
 sans limiter les bilans au premier lot.
+Les mains sont dessinees avec rangs et couleurs de cartes ; les cartes inconnues
+restent masquees. Les stacks hero/vilain suivent le selecteur Jetons / BB et
+affichent aussi leur equivalence, avec une indisponibilite explicite si la blinde manque.
+
+## Lecture des replays
+
+Le replayer separe table, controles et historique regroupe par street.
+Le joueur actif est souligne, le dealer et les joueurs couches/a tapis sont identifies.
+Les cartes sont partagees avec la liste des duels ; les cartes futures du board restent
+masquees jusqu'a leur street. Jetons / BB s'applique aux stacks, au pot et aux actions,
+avec la seconde unite sous les montants de la table. Les relances distinguent
+le montant cible (« a ») de l'increment (« de »).
+Le pot fourni par le modele actuel est le total final importe, pas un pot dynamique :
+il est donc nomme explicitement ainsi. Les piles de jetons sont illustratives,
+sans pretendre representer des denominations exactes. Navigation par action,
+curseur, lecture automatique et raccourcis clavier restent disponibles ; les
+raccourcis ne capturent pas la saisie dans les controles.
 
 ## Variance des mains de depart
 

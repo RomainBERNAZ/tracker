@@ -1,5 +1,8 @@
 import { memo, useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { createReviewState } from '../reviewState'
+import { HoleCards } from '../components/PlayingCards'
+import { ChipAmount } from '../components/ChipAmount'
 import { api, type PreflopMatchup, type TournamentRow } from '../api'
 import { COVERAGE_GROUPS, coverageGroup, duelEquity, duelGains, groupAllInDuels, summarizeAllInDuels, type CoverageGroup } from './allInCoverage'
 import type { MatchupUnit } from './matchupComparison'
@@ -9,6 +12,9 @@ const percentage = (value: number | null) => value == null ? '-' :
 const gain = (value: number | null, unit: MatchupUnit) => value == null ? '-' :
   value.toLocaleString('fr-FR', { minimumFractionDigits: unit === 'bb' ? 2 : 0, maximumFractionDigits: unit === 'bb' ? 2 : 0, signDisplay: 'exceptZero' })
 const outcomeLabels = { win: 'Victoire', loss: 'Defaite', split: 'Partage' } as const
+const useAllInUnit = createReviewState<MatchupUnit>(() => 'chips')
+const useAllInSelection = createReviewState<CoverageGroup | 'all'>(() => 'all')
+const useAllInPageSize = createReviewState(() => 50)
 
 function Gain({ value, unit }: { readonly value: number | null; readonly unit: MatchupUnit }) {
   return <span className={value == null || value === 0 ? '' : value < 0 ? 'negative' : 'positive'}>{gain(value, unit)}</span>
@@ -19,9 +25,10 @@ export default memo(function SummaryAllIns({ tournaments }: { readonly tournamen
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [attempt, setAttempt] = useState(0)
-  const [unit, setUnit] = useState<MatchupUnit>('chips')
-  const [selection, setSelection] = useState<CoverageGroup | 'all'>('all')
-  const [visibleCount, setVisibleCount] = useState(50)
+  const [unit, setUnit] = useAllInUnit()
+  const [selection, setSelection] = useAllInSelection()
+  const pageScope = JSON.stringify([tournaments.map((t) => t.id).sort(), selection])
+  const [visibleCount, setVisibleCount] = useAllInPageSize(pageScope)
 
   useEffect(() => {
     let cancelled = false
@@ -46,7 +53,6 @@ export default memo(function SummaryAllIns({ tournaments }: { readonly tournamen
     ...group, stats: summarizeAllInDuels(grouped.groups[group.id], unit),
   })), [grouped, unit])
   const selectedHands = selection === 'all' ? grouped.duels : grouped.groups[selection]
-  useEffect(() => { setVisibleCount(50) }, [cohort, selection])
   const unitLabel = unit === 'bb' ? 'BB' : 'jetons'
 
   return <div className="stack-analysis">
@@ -132,7 +138,7 @@ export default memo(function SummaryAllIns({ tournaments }: { readonly tournamen
               aria-pressed={selection === id} onClick={() => setSelection(id)}>{label}</button>)}
           </div>
         </fieldset>
-        <p className="stack-method">{selectedHands.length} mains. Stacks et gains nets du hero ; equites du pot conteste.</p>
+        <p className="stack-method">{selectedHands.length} mains. Stacks de depart en {unitLabel}, avec equivalence ; gains nets du hero et equites du pot conteste.</p>
         {selectedHands.length === 0 ? <p>Aucun duel dans ce groupe.</p> : <div className="matchup-table-wrap">
           <table className="matchup-table allin-table">
             <thead><tr><th>Main / cartes</th><th>Couverture</th><th>Stacks hero / vilain</th><th>Equites hero / vilain</th><th>Issue</th><th>Net ({unitLabel})</th><th>Net EV ({unitLabel})</th></tr></thead>
@@ -142,12 +148,19 @@ export default memo(function SummaryAllIns({ tournaments }: { readonly tournamen
               const duel = hand.duel
               return <tr key={hand.hand_id}>
                 <td><Link to={`/hands/${encodeURIComponent(hand.hand_id)}/replay`}>{hand.hand_id}</Link>
-                  <div>{hand.hero_cards ?? '?'} vs {hand.opponents[0]?.cards ?? '?'}</div>
+                  <div className="allin-card-matchup">
+                    <span><small>Hero</small><HoleCards cards={hand.hero_cards} /></span>
+                    <span className="stack-method">vs</span>
+                    <span><small>Vilain</small><HoleCards cards={hand.opponents[0]?.cards ?? null} /></span>
+                  </div>
                   <div className="stack-method">{hand.opponents[0]?.player_name}</div>
                   {duel?.issues.map((issue) => <div className="variance-warning" key={issue}>{issue}</div>)}
                 </td>
                 <td>{COVERAGE_GROUPS.find((group) => group.id === coverageGroup(hand))?.label}</td>
-                <td>{duel?.hero_starting_stack.toLocaleString('fr-FR')} / {duel?.villain_starting_stack.toLocaleString('fr-FR')}</td>
+                <td><div className="allin-stack-pair">
+                  <div><small>Hero</small><ChipAmount value={duel?.hero_starting_stack ?? null} bigBlind={hand.big_blind} unit={unit} /></div>
+                  <div><small>Vilain</small><ChipAmount value={duel?.villain_starting_stack ?? null} bigBlind={hand.big_blind} unit={unit} /></div>
+                </div></td>
                 <td>{percentage(equity)} / {percentage(equity == null ? null : 1 - equity)}</td>
                 <td>{duel?.outcome == null ? 'Inconnue' : outcomeLabels[duel.outcome]}</td>
                 <td><Gain value={gains.actual} unit={unit} /></td><td><Gain value={gains.expected} unit={unit} /></td>

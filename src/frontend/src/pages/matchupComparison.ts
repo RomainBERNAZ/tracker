@@ -3,6 +3,13 @@ import { startingHandClass } from './startingHandVariance'
 
 export type MatchupUnit = 'chips' | 'bb'
 
+export function formatChipAmount(value: number | null, bigBlind: number, unit: MatchupUnit) {
+  if (value == null || !Number.isFinite(value)) return '-'
+  if (unit === 'bb' && (!Number.isFinite(bigBlind) || bigBlind <= 0)) return '- BB'
+  const amount = unit === 'bb' ? value / bigBlind : value
+  return `${amount.toLocaleString('fr-FR', { maximumFractionDigits: unit === 'bb' ? 2 : 0 })} ${unit === 'bb' ? 'BB' : 'jetons'}`
+}
+
 export function selectMatchups(
   hands: readonly PreflopMatchup[],
   heroSelection: ReadonlySet<string>,

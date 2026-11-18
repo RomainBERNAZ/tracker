@@ -1,6 +1,12 @@
 import { useState, useEffect, useMemo } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { api, HandRow } from '../api'
+import { createReviewState, useReviewBack } from '../reviewState'
+
+const useHandQuery = createReviewState(() => '')
+const useHandResult = createReviewState<'all' | 'win' | 'loss' | 'even'>(() => 'all')
+const useHandSort = createReviewState<'order' | 'cev' | 'netev' | 'pot' | 'level'>(() => 'order')
+const useHandDirection = createReviewState<'asc' | 'desc'>(() => 'asc')
 
 function cevClass(cev: number) {
   if (cev > 0) return 'positive'
@@ -28,12 +34,13 @@ function fmtEvChips(v: number | null) {
 export default function HandList() {
   const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
+  const goBack = useReviewBack('/tournaments')
   const [hands, setHands] = useState<HandRow[]>([])
   const [loading, setLoading] = useState(true)
-  const [query, setQuery] = useState('')
-  const [cevFilter, setCevFilter] = useState<'all' | 'win' | 'loss' | 'even'>('all')
-  const [sortBy, setSortBy] = useState<'order' | 'cev' | 'netev' | 'pot' | 'level'>('order')
-  const [sortDir, setSortDir] = useState<'asc' | 'desc'>('asc')
+  const [query, setQuery] = useHandQuery(id)
+  const [cevFilter, setCevFilter] = useHandResult(id)
+  const [sortBy, setSortBy] = useHandSort(id)
+  const [sortDir, setSortDir] = useHandDirection(id)
 
   useEffect(() => {
     if (!id) return
@@ -88,7 +95,7 @@ export default function HandList() {
 
   return (
     <div>
-      <button className="back-link" onClick={() => navigate('/tournaments')}>
+      <button className="back-link" onClick={goBack}>
         ← Retour aux tournois
       </button>
 

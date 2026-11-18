@@ -1,4 +1,5 @@
-import { useMemo, useState } from 'react'
+import { useMemo } from 'react'
+import { createReviewState } from '../reviewState'
 
 const RANKS = ['A', 'K', 'Q', 'J', 'T', '9', '8', '7', '6', '5', '4', '3', '2']
 const STACK_OPTIONS = [25, 20, 15, 12, 10, 8, 6, 4, 2]
@@ -6,6 +7,11 @@ const STACK_OPTIONS = [25, 20, 15, 12, 10, 8, 6, 4, 2]
 type GameFormat = 'threeWay' | 'hu'
 type ScenarioId = 'push' | 'callVsPush' | 'threeBetVsOpen'
 type Position = 'BTN' | 'SB' | 'BB'
+
+const useGtoFormat = createReviewState<GameFormat>(() => 'threeWay')
+const useGtoScenario = createReviewState<ScenarioId>(() => 'push')
+const useGtoPosition = createReviewState<Position>(() => 'BTN')
+const useGtoDepth = createReviewState(() => 12)
 
 interface Scenario {
   id: ScenarioId
@@ -249,10 +255,10 @@ function textFromThreshold(threshold: number): string {
 }
 
 export default function GtoCharts() {
-  const [format, setFormat] = useState<GameFormat>('threeWay')
-  const [scenarioId, setScenarioId] = useState<ScenarioId>('push')
-  const [position, setPosition] = useState<Position>('BTN')
-  const [stackDepth, setStackDepth] = useState<number>(12)
+  const [format, setFormat] = useGtoFormat()
+  const [scenarioId, setScenarioId] = useGtoScenario()
+  const [position, setPosition] = useGtoPosition()
+  const [stackDepth, setStackDepth] = useGtoDepth()
 
   const scenarios = useMemo(() => {
     return format === 'hu' ? HU_SCENARIOS : THREE_WAY_SCENARIOS

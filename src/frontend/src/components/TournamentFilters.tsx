@@ -3,7 +3,7 @@ import type { Period, TournamentFilter } from '../pages/tournamentFilters'
 import { tournamentBuyIn } from '../pages/tournamentFilters'
 
 const PERIOD_LABELS: Record<Period, string> = {
-  all: 'Tout', '7d': '7 jours', '30d': '30 jours', month: 'Ce mois', custom: 'Perso',
+  all: 'Tout', today: "Aujourd'hui", yesterday: 'Hier', '7d': '7 jours', '30d': '30 jours', month: 'Ce mois', custom: 'Perso',
 }
 
 export function TournamentFilters({ tournaments, value, onChange, showPeriod = true }: {

@@ -1,6 +1,6 @@
 import type { HandChipPoint, TournamentRow } from '../api'
 
-export type Period = 'all' | '7d' | '30d' | 'month' | 'custom'
+export type Period = 'all' | 'today' | 'yesterday' | '7d' | '30d' | 'month' | 'custom'
 
 export interface TournamentFilter {
   period: Period
@@ -32,7 +32,20 @@ export function endOfDay(dateMs: number): number {
   return end.getTime()
 }
 
+export function calendarDayRange(period: 'today' | 'yesterday', now = Date.now()) {
+  const day = new Date(now)
+  day.setHours(0, 0, 0, 0)
+  if (period === 'yesterday') day.setDate(day.getDate() - 1)
+  return { fromMs: day.getTime(), toMs: endOfDay(day.getTime()) }
+}
+
+export function formatDateInput(timestamp: number): string {
+  const day = new Date(timestamp)
+  return `${day.getFullYear()}-${String(day.getMonth() + 1).padStart(2, '0')}-${String(day.getDate()).padStart(2, '0')}`
+}
+
 export function periodToRange(period: Period, customFrom: string, customTo: string, now = Date.now()) {
+  if (period === 'today' || period === 'yesterday') return calendarDayRange(period, now)
   if (period === '7d') return { fromMs: now - 7 * 86_400_000, toMs: null }
   if (period === '30d') return { fromMs: now - 30 * 86_400_000, toMs: null }
   if (period === 'month') {

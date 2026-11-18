@@ -3,6 +3,7 @@ import type { FormEvent } from 'react'
 import { api } from '../api'
 import type { BankrollMovementKind, BankrollSettings, BankrollSnapshot, HandChipPoint, TournamentRow } from '../api'
 import { TournamentFilters } from '../components/TournamentFilters'
+import { createReviewState } from '../reviewState'
 import { DEFAULT_FILTER } from './tournamentFilters'
 import { analyzeRecentBankroll, assessBankroll, parseEuroCents } from './bankrollAnalysis'
 
@@ -13,6 +14,7 @@ const coverage = (value: number | null) => decimal(value == null ? null : Math.f
 const movementNames: Record<BankrollMovementKind, string> = {
   deposit: 'Dépôt', withdrawal: 'Retrait', correction: 'Correction du solde',
 }
+const useBankrollFilter = createReviewState(() => DEFAULT_FILTER)
 
 function SettingsForm({ settings, busy, onSave }: {
   readonly settings: BankrollSettings
@@ -69,7 +71,7 @@ export default function Bankroll() {
   const [kind, setKind] = useState<BankrollMovementKind>('withdrawal')
   const [amount, setAmount] = useState('')
   const [note, setNote] = useState('')
-  const [filter, setFilter] = useState(DEFAULT_FILTER)
+  const [filter, setFilter] = useBankrollFilter()
   const errorRef = useRef<HTMLParagraphElement>(null)
 
   useEffect(() => {

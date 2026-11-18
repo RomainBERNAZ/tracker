@@ -2,10 +2,15 @@ import { memo, useEffect, useMemo, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { api, TournamentRow } from '../api'
 import { TournamentFilters } from '../components/TournamentFilters'
+import { createReviewState } from '../reviewState'
 import { DEFAULT_FILTER, applyTournamentRange, computeFilteredStats, periodToRange } from './tournamentFilters'
 
 type ColumnKey = 'date' | 'tournamentId' | 'multi' | 'prizepool' | 'hands' | 'position' | 'cev' | 'net'
 type SortDirection = 'asc' | 'desc'
+
+const useTournamentFilter = createReviewState(() => DEFAULT_FILTER)
+const useTournamentSort = createReviewState<ColumnKey>(() => 'date')
+const useTournamentDirection = createReviewState<SortDirection>(() => 'desc')
 
 const INITIAL_COLUMNS: ColumnKey[] = ['date', 'tournamentId', 'multi', 'prizepool', 'hands', 'position', 'cev', 'net']
 const TOURNAMENT_ROW_HEIGHT = 41
@@ -43,16 +48,17 @@ function posTag(pos: number) {
 export default memo(function Tournaments() {
   const navigate = useNavigate()
   const [tournaments, setTournaments] = useState<TournamentRow[]>([])
-  const [filter, setFilter] = useState(DEFAULT_FILTER)
+  const [filter, setFilter] = useTournamentFilter()
   const [loading, setLoading] = useState(true)
   const [scrollTop, setScrollTop] = useState(0)
   const [viewportHeight, setViewportHeight] = useState(480)
   const tableWrapRef = useRef<HTMLDivElement | null>(null)
   const columns = INITIAL_COLUMNS
-  const [sortColumn, setSortColumn] = useState<ColumnKey>('date')
-  const [sortDirection, setSortDirection] = useState<SortDirection>('desc')
+  const [sortColumn, setSortColumn] = useTournamentSort()
+  const [sortDirection, setSortDirection] = useTournamentDirection()
 
-  const range = useMemo(() => periodToRange(filter.period, filter.customFrom, filter.customTo), [filter.period, filter.customFrom, filter.customTo])
+  const dayAnchor = filter.period === 'today' || filter.period === 'yesterday' ? new Date().setHours(0, 0, 0, 0) : null
+  const range = useMemo(() => periodToRange(filter.period, filter.customFrom, filter.customTo, dayAnchor ?? Date.now()), [filter.period, filter.customFrom, filter.customTo, dayAnchor])
   const rows = useMemo(() => applyTournamentRange(tournaments, range.fromMs, range.toMs, filter.buyIns), [tournaments, range.fromMs, range.toMs, filter.buyIns])
   const stats = useMemo(() => computeFilteredStats(rows), [rows])
   const avgCev = stats.avgCev

@@ -1,4 +1,5 @@
 import { memo, useEffect, useMemo, useState } from 'react'
+import { createReviewState } from '../reviewState'
 import { api } from '../api'
 import type { StackStatsSnapshot, TournamentRow } from '../api'
 import { analyzeStacks, STACK_BUCKETS, stackDiagnostics, stackRates } from './stackAnalysis'
@@ -29,13 +30,17 @@ function Frequency({ count, opportunities, metric }: {
   </div>
 }
 
+const useStackFormat = createReviewState<StackFormat>(() => 'all')
+const useStackBuckets = createReviewState<readonly number[]>(() => [])
+const useStackUnit = createReviewState<'chips' | 'bb'>(() => 'chips')
+
 export default memo(function SummaryStacks({ tournaments }: { readonly tournaments: readonly TournamentRow[] }) {
   const [snapshot, setSnapshot] = useState<StackStatsSnapshot | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [attempt, setAttempt] = useState(0)
-  const [format, setFormat] = useState<StackFormat>('all')
-  const [buckets, setBuckets] = useState<readonly number[]>([])
-  const [unit, setUnit] = useState<'chips' | 'bb'>('chips')
+  const [format, setFormat] = useStackFormat()
+  const [buckets, setBuckets] = useStackBuckets()
+  const [unit, setUnit] = useStackUnit()
 
   useEffect(() => {
     let cancelled = false

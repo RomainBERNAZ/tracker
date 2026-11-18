@@ -1,5 +1,6 @@
 import { memo, useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { createReviewState } from '../reviewState'
 import { api, PreflopMatchup, TournamentRow } from '../api'
 import { HAND_RANKS, STARTING_HAND_ROWS } from './startingHandVariance'
 import { hasMatchupBlind, hasMatchupEv, MatchupUnit, selectMatchups, summarizeMatchups } from './matchupComparison'
@@ -44,6 +45,11 @@ function HandRangeSelector({ label, selection, onChange }: {
 const formatGain = (value: number | null, unit: MatchupUnit) => value == null ? '—' :
   value.toLocaleString('fr-FR', { minimumFractionDigits: unit === 'bb' ? 2 : 0, maximumFractionDigits: unit === 'bb' ? 2 : 0, signDisplay: 'exceptZero' })
 
+const useHeroRange = createReviewState(() => new Set<string>())
+const useVillainRange = createReviewState(() => new Set<string>())
+const useOpponentCount = createReviewState(() => 1)
+const useMatchupPageSize = createReviewState(() => 50)
+
 export default memo(function MatchupComparator({ tournaments, unit }: {
   readonly tournaments: readonly TournamentRow[]
   readonly unit: MatchupUnit
@@ -52,10 +58,11 @@ export default memo(function MatchupComparator({ tournaments, unit }: {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [attempt, setAttempt] = useState(0)
-  const [heroSelection, setHeroSelection] = useState<Set<string>>(() => new Set())
-  const [villainSelection, setVillainSelection] = useState<Set<string>>(() => new Set())
-  const [opponentCount, setOpponentCount] = useState(1)
-  const [visibleCount, setVisibleCount] = useState(50)
+  const [heroSelection, setHeroSelection] = useHeroRange()
+  const [villainSelection, setVillainSelection] = useVillainRange()
+  const [opponentCount, setOpponentCount] = useOpponentCount()
+  const pageScope = JSON.stringify([tournaments.map((t) => t.id).sort(), [...heroSelection].sort(), [...villainSelection].sort(), opponentCount])
+  const [visibleCount, setVisibleCount] = useMatchupPageSize(pageScope)
 
   useEffect(() => {
     let cancelled = false
@@ -80,7 +87,6 @@ export default memo(function MatchupComparator({ tournaments, unit }: {
     [cohort, heroSelection, villainSelection, opponentCount],
   )
   const stats = useMemo(() => summarizeMatchups(matches, unit), [matches, unit])
-  useEffect(() => { setVisibleCount(50) }, [cohort, heroSelection, villainSelection, opponentCount])
   const selected = heroSelection.size > 0 && villainSelection.size > 0
   const unitLabel = unit === 'bb' ? 'BB' : 'jetons'
 
