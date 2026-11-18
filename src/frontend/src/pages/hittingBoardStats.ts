@@ -39,13 +39,21 @@ type Metric = keyof typeof METRICS
 export type Counts = Record<Metric, number> & { flops: number, categories: Partial<Record<Category, number>> }
 export type Position = 'BTN' | 'SB' | 'BB' | 'Middle' | 'Unknown'
 export type Coverage = Record<'context_unknown' | 'flop_unknown' | 'hero_cards_unknown' | 'position_unknown', number>
-export const CONTEXTS = [
-  { raise: 'open', players: 2, label: 'Open raise · HU' },
-  { raise: 'iso', players: 2, label: 'Iso-raise · HU' },
-  { raise: 'open', players: 3, label: 'Open raise · 3-way' },
-  { raise: 'iso', players: 3, label: 'Iso-raise · 3-way' },
-] as const
-type Context = Pick<typeof CONTEXTS[number], 'raise' | 'players'>
+export const POTS = {
+  open: 'Open raise',
+  iso: 'Iso-raise',
+  limped: 'Sans relance',
+  opponent_raise: 'Relance adverse',
+  reraised: 'Pot 3-bet ou plus',
+} as const
+export const FORMATS = { all: 'Tous', 2: 'HU', 3: '3-way' } as const
+export type Format = keyof typeof FORMATS
+type Pot = keyof typeof POTS
+type Context = { pot: Pot, players: Exclude<Format, 'all'> }
+export const POT_TYPES = Object.keys(POTS) as Pot[]
+const PLAYER_COUNTS = [2, 3] as const
+export const CONTEXTS = PLAYER_COUNTS.flatMap((players) =>
+  POT_TYPES.map((pot) => ({ pot, players, label: `${POTS[pot]} · ${FORMATS[players]}` })))
 export type TournamentFlops = {
   tournament_id: string
   coverage: Coverage
@@ -84,9 +92,11 @@ export function combineCounts(rows: readonly Counts[]): Counts {
   return sum
 }
 
-export function tournamentCounts(rows: readonly TournamentFlops[], context: Context, position?: Position): Counts[] {
+export function tournamentCounts(
+  rows: readonly TournamentFlops[], pot: Pot, format: Format, position?: Position,
+): Counts[] {
   return rows.flatMap(({ groups }) => {
-    const matches = groups.filter((group) => group.raise === context.raise && group.players === context.players
+    const matches = groups.filter((group) => group.pot === pot && (format === 'all' || group.players === format)
       && (position === undefined || group.position === position))
     return matches.length ? [combineCounts(matches.map(({ counts }) => counts))] : []
   })
@@ -112,7 +122,7 @@ export function compareConnection(current: readonly Cluster[], reference: readon
   const variance = a.variance == null || b.variance == null ? null : a.variance + b.variance
   if (delta == null || variance == null || variance <= 0) return { a, b, delta, adjustedP: null }
 
-  // Two-sided normal tail approximation and Bonferroni correction across the four contexts.
+  // Two-sided normal tail approximation and Bonferroni correction across all contexts.
   const z = Math.abs(delta) / Math.sqrt(variance)
   const t = 1 / (1 + 0.2316419 * z)
   const tail = Math.exp(-z * z / 2) / Math.sqrt(2 * Math.PI)

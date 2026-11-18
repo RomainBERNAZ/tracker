@@ -47,12 +47,14 @@ La CI de `master` execute aussi les tests frontend.
 
 ## Hitting Board
 
-L'onglet calcule les statistiques des flops à partir des historiques importés, sans
-écrire de données. Il ne retient que les pots où Hero a effectué l'unique relance
-préflop et où deux ou trois joueurs ont vu le flop. Un call (même à tapis) avant
-la relance, par un autre joueur, en fait un iso-raise. Les folds préflop ne
-comptent pas parmi les participants au flop. La position reste celle de la
-distribution initiale.
+L'onglet analyse les flops vus par Hero à partir des historiques importés, sans
+écrire de données. Le filtre Tous / HU / 3-way compte les joueurs encore dans
+le coup au flop, pas le nombre de joueurs distribués. Le graphique sépare les
+open raises et iso-raises (Hero est l'unique relanceur), les pots sans relance, les
+pots avec une seule relance adverse et les pots 3-bet ou plus, qui regroupent
+toutes les surrelances préflop. Un call (même à tapis) par un autre joueur
+avant l'unique relance de Hero en fait un iso-raise. La position reste celle
+de la distribution initiale.
 
 Chaque flop analysable reçoit une seule catégorie. Une paire ou un brelan
 du tableau seul est ignoré ; une vraie double paire à laquelle Hero contribue
@@ -65,7 +67,8 @@ La connexion est définie par « paire ou mieux, ou tirage direct ». Les filtre
 habituels de date de début de tournoi et de buy-ins s'appliquent. Si une date de début
 est choisie, la référence est tout l'historique antérieur pour les buy-ins
 sélectionnés. Les tests sont bilatéraux, regroupés par tournoi et corrigés pour les
-quatre contextes (Bonferroni). Une différence n'est testée qu'avec au moins
+dix contextes (cinq types de pots × deux formats, Bonferroni).
+Une différence n'est testée qu'avec au moins
 50 flops, 30 tournois, 5 connexions et 5 non-connexions de chaque côté.
 Ce n'est pas une comparaison à un modèle théorique ni une preuve de malchance.
 

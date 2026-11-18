@@ -3,11 +3,14 @@ use rusqlite::Connection;
 use serde::{Deserialize, Serialize};
 use std::collections::{BTreeMap, HashMap, HashSet};
 
-#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Serialize)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Serialize)]
 #[serde(rename_all = "snake_case")]
-enum Raise {
+enum Pot {
     Open,
     Iso,
+    Limped,
+    OpponentRaise,
+    Reraised,
 }
 
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Serialize)]
@@ -130,7 +133,7 @@ struct Coverage {
 
 #[derive(Serialize)]
 struct Group {
-    raise: Raise,
+    pot: Pot,
     players: usize,
     position: Position,
     counts: Counts,
@@ -259,7 +262,7 @@ fn classify(cards: [(usize, usize); 5]) -> (Option<Category>, usize, Draws) {
 enum Outcome {
     Outside,
     Unknown,
-    Eligible { iso: bool, count: usize },
+    Eligible { pot: Pot, count: usize },
 }
 
 fn is_raise(kind: &str) -> bool {
@@ -273,29 +276,19 @@ fn context(
     button: i64,
     blinds: [i64; 2],
 ) -> Outcome {
-    let mut raisers = actions
+    let raises: Vec<_> = actions
         .iter()
         .enumerate()
-        .filter(|(_, Action(_, kind))| is_raise(kind));
-    let first = raisers.next();
-    if raisers.next().is_some() {
-        return Outcome::Outside;
-    }
-    let Some((hero_index, hero)) = players.iter().enumerate().find(|(_, p)| p.hero) else {
+        .filter(|(_, Action(_, kind))| is_raise(kind))
+        .collect();
+    let Some(hero) = players.iter().find(|p| p.hero) else {
         return Outcome::Unknown;
     };
-    let Some((raise_index, Action(raiser, _))) = first else {
-        return if actions.is_empty() {
-            Outcome::Unknown
-        } else {
-            Outcome::Outside
-        };
-    };
-    if *raiser != hero.name
-        || actions
-            .iter()
-            .any(|Action(name, kind)| *name == hero.name && kind == "fold")
-    {
+    let folded: HashSet<_> = actions
+        .iter()
+        .filter_map(|Action(name, kind)| (kind == "fold").then_some(name.as_str()))
+        .collect();
+    if folded.contains(hero.name.as_str()) {
         return Outcome::Outside;
     }
     let seats: HashSet<_> = players.iter().map(|p| p.name.as_str()).collect();
@@ -316,54 +309,97 @@ fn context(
                         | "collect"
                 )
         })
-        || !later.iter().all(|name| seats.contains(name.as_str()))
+        || !later
+            .iter()
+            .all(|name| seats.contains(name.as_str()) && !folded.contains(name.as_str()))
     {
         return Outcome::Unknown;
     }
 
-    let iso = actions[..raise_index].iter().any(|Action(name, kind)| {
-        *name != hero.name && matches!(kind.as_str(), "call" | "allin_call")
-    });
-    let mut count = 1;
-    for (index, player) in players.iter().enumerate() {
-        if index == hero_index {
-            continue;
+    let count = players.len() - folded.len();
+    if !matches!(count, 2 | 3) {
+        return Outcome::Outside;
+    }
+    let pot = match raises.as_slice() {
+        [] => Pot::Limped,
+        [(_, Action(raiser, _))] if *raiser != hero.name => Pot::OpponentRaise,
+        [(index, _)]
+            if actions[..*index].iter().any(|Action(name, kind)| {
+                *name != hero.name && matches!(kind.as_str(), "call" | "allin_call")
+            }) =>
+        {
+            Pot::Iso
         }
+        [_] => Pot::Open,
+        _ => Pot::Reraised,
+    };
+    let last_raise = raises.last();
+    let blind = |index| match position(players, button, index) {
+        Position::BTN if players.len() == 2 => blinds[0],
+        Position::SB => blinds[0],
+        Position::BB => blinds[1],
+        _ => 0,
+    };
+    let short_all_in = |index: usize, player: &Player| {
+        player.stack > 0
+            && (player.stack <= blind(index)
+                || actions
+                    .iter()
+                    .any(|Action(name, kind)| *name == player.name && kind == "allin_call"))
+    };
+    // Betclic can deal the flop without emitting a check when the only live
+    // opponent is all-in for no more than an already posted blind.
+    let blind_covers_all_in = |index: usize, player: &Player| {
+        pot == Pot::Limped
+            && count == 2
+            && players.iter().enumerate().any(|(other_index, other)| {
+                other_index != index
+                    && !folded.contains(other.name.as_str())
+                    && short_all_in(other_index, other)
+                    && other.stack <= blind(index).min(player.stack)
+            })
+    };
+    if actions.is_empty()
+        && !players
+            .iter()
+            .enumerate()
+            .any(|(index, player)| blind_covers_all_in(index, player))
+    {
+        return Outcome::Unknown;
+    }
+    for (index, player) in players
+        .iter()
+        .enumerate()
+        .filter(|(_, p)| !folded.contains(p.name.as_str()))
+    {
         let acted =
             |action: &Action, expected: &str| action.0 == player.name && action.1 == expected;
-        if actions.iter().any(|action| acted(action, "fold")) {
-            if later.contains(&player.name) {
-                return Outcome::Unknown;
+        let matched = match last_raise {
+            Some((index, Action(raiser, _))) => {
+                *raiser == player.name
+                    || actions[index + 1..]
+                        .iter()
+                        .any(|action| acted(action, "call"))
+                    || actions[..*index].iter().any(|Action(name, kind)| {
+                        *name == player.name && matches!(kind.as_str(), "allin_raise" | "allin_bet")
+                    })
             }
-            continue;
-        }
-        // A short forced blind can see the flop without ever having a turn to act.
-        let forced_blind = match position(players, button, index) {
-            Position::BTN if players.len() == 2 => blinds[0],
-            Position::SB => blinds[0],
-            Position::BB => blinds[1],
-            _ => 0,
-        };
-        if later.contains(&player.name)
-            || actions.iter().any(|action| acted(action, "allin_call"))
-            || actions[raise_index + 1..]
+            None => actions
                 .iter()
-                .any(|action| acted(action, "call"))
-            || (player.stack > 0 && player.stack <= forced_blind)
+                .any(|action| acted(action, "call") || acted(action, "check")),
+        };
+        if !(matched
+            || later.contains(&player.name)
+            || short_all_in(index, player)
+            || blind_covers_all_in(index, player))
         {
-            count += 1;
-        } else {
             return Outcome::Unknown;
         }
     }
-    if matches!(count, 2 | 3) {
-        Outcome::Eligible { iso, count }
-    } else {
-        Outcome::Outside
-    }
+    Outcome::Eligible { pot, count }
 }
 
-type Groups = BTreeMap<(Raise, usize, Position), Counts>;
+type Groups = BTreeMap<(Pot, usize, Position), Counts>;
 
 pub fn get_stats(conn: &Connection) -> rusqlite::Result<Vec<TournamentStats>> {
     let mut stmt = conn.prepare(
@@ -402,7 +438,7 @@ pub fn get_stats(conn: &Connection) -> rusqlite::Result<Vec<TournamentStats>> {
             coverage.context_unknown += 1;
             continue;
         }
-        let (iso, count) = match context(
+        let (pot, count) = match context(
             &players,
             &actions,
             &later,
@@ -414,7 +450,7 @@ pub fn get_stats(conn: &Connection) -> rusqlite::Result<Vec<TournamentStats>> {
                 coverage.context_unknown += 1;
                 continue;
             }
-            Outcome::Eligible { iso, count } => (iso, count),
+            Outcome::Eligible { pot, count } => (pot, count),
         };
         let flop = board.as_ref().and_then(|b| {
             let [a, b, c, ..] = b.as_slice() else {
@@ -449,10 +485,9 @@ pub fn get_stats(conn: &Connection) -> rusqlite::Result<Vec<TournamentStats>> {
         };
         let position = position(&players, button, hero_index);
         coverage.position_unknown += u32::from(position == Position::Unknown);
-        let raise = if iso { Raise::Iso } else { Raise::Open };
         let (made, overs, draws) = classify([a, b, f1, f2, f3]);
         groups
-            .entry((raise, count, position))
+            .entry((pot, count, position))
             .or_default()
             .observe(made, overs, &draws);
     }
@@ -461,8 +496,8 @@ pub fn get_stats(conn: &Connection) -> rusqlite::Result<Vec<TournamentStats>> {
         .map(|(tournament_id, (coverage, groups))| {
             let groups = groups
                 .into_iter()
-                .map(|((raise, players, position), counts)| Group {
-                    raise,
+                .map(|((pot, players, position), counts)| Group {
+                    pot,
                     players,
                     position,
                     counts,
@@ -569,7 +604,7 @@ mod tests {
                 &[("Hero", "raise"), ("SB", "fold"), ("BB", "call")]
             ),
             Eligible {
-                iso: false,
+                pot: Pot::Open,
                 count: 2
             }
         );
@@ -584,14 +619,59 @@ mod tests {
                 ]
             ),
             Eligible {
-                iso: true,
+                pot: Pot::Iso,
                 count: 3
             }
         );
         assert_eq!(
             evaluate(
                 &players,
-                &[("Hero", "raise"), ("BB", "allin_raise"), ("Hero", "call")]
+                &[
+                    ("Hero", "raise"),
+                    ("SB", "fold"),
+                    ("BB", "allin_raise"),
+                    ("Hero", "call")
+                ]
+            ),
+            Eligible {
+                pot: Pot::Reraised,
+                count: 2
+            }
+        );
+        assert_eq!(
+            evaluate(
+                &players,
+                &[("Hero", "call"), ("SB", "call"), ("BB", "check")]
+            ),
+            Eligible {
+                pot: Pot::Limped,
+                count: 3
+            }
+        );
+        assert_eq!(
+            evaluate(
+                &players,
+                &[
+                    ("Hero", "call"),
+                    ("SB", "raise"),
+                    ("BB", "fold"),
+                    ("Hero", "call")
+                ]
+            ),
+            Eligible {
+                pot: Pot::OpponentRaise,
+                count: 2
+            }
+        );
+        assert_eq!(
+            evaluate(
+                &players,
+                &[
+                    ("Hero", "raise"),
+                    ("SB", "fold"),
+                    ("BB", "raise"),
+                    ("Hero", "fold")
+                ]
             ),
             Outside
         );
@@ -610,9 +690,30 @@ mod tests {
         assert_eq!(
             evaluate(&players, &[("Hero", "raise"), ("SB", "fold")]),
             Eligible {
-                iso: false,
+                pot: Pot::Open,
                 count: 2
             }
+        );
+        players[0].stack = 18;
+        assert_eq!(
+            evaluate(&players, &[("Hero", "allin_call"), ("SB", "fold")]),
+            Eligible {
+                pot: Pot::Limped,
+                count: 2
+            }
+        );
+        players[2].stack = 300;
+        assert_eq!(
+            evaluate(&players, &[("Hero", "allin_call"), ("SB", "fold")]),
+            Eligible {
+                pot: Pot::Limped,
+                count: 2
+            }
+        );
+        players[0].stack = 22;
+        assert_eq!(
+            evaluate(&players, &[("Hero", "allin_call"), ("SB", "fold")]),
+            Unknown
         );
     }
 

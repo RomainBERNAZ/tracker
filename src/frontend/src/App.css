@@ -1089,13 +1089,113 @@ tr:hover td {
   max-width: 100%;
 }
 
-.hitting-board section {
-  margin-block: 24px;
+.hitting-board {
+  --board-pair: #4bc7a2;
+  --board-draw: #63a8f4;
+  --board-miss: #69758b;
 }
 
-.hitting-board section p,
-.hitting-board details {
+.hitting-board .board-format {
+  margin-bottom: 12px;
+}
+
+.board-kpis {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+  margin-block: 18px;
+}
+
+.board-panel,
+.board-kpis > div {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px 16px;
+}
+
+.board-panel {
+  margin-block: 12px;
+}
+
+.board-kpis dd {
+  margin: 4px 0;
+  font-size: 24px;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+
+.board-kpis small,
+.board-panel p,
+.board-legend {
+  color: var(--text-dim);
+}
+
+.board-panel p,
+.board-panel[open] > summary,
+.board-panel details[open] > summary {
   margin-block: 10px;
+}
+
+.board-chart,
+.board-legend {
+  list-style: none;
+  padding: 0;
+  margin-block: 12px;
+}
+
+.board-legend {
+  display: flex;
+  gap: 8px 18px;
+  flex-wrap: wrap;
+}
+
+.board-legend li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.board-legend span {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+}
+
+.board-chart li {
+  display: grid;
+  grid-template-columns: minmax(135px, .75fr) minmax(64px, 2fr) minmax(128px, .8fr);
+  align-items: center;
+  gap: 12px;
+  margin-block: 10px;
+}
+
+.board-chart-value {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.board-bar {
+  display: flex;
+  height: 14px;
+  overflow: hidden;
+  border-radius: 4px;
+  background: var(--border);
+}
+
+.board-pair { background: var(--board-pair); }
+.board-draw { background: var(--board-draw); }
+.board-miss { background: var(--board-miss); }
+
+@media (max-width: 700px) {
+  .board-chart li {
+    grid-template-columns: 1fr auto;
+  }
+
+  .board-bar {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
 }
 
 .hitting-board summary {

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import type { TournamentRow } from '../api'
-import { combineCounts, compareConnection, CONTEXTS, selectPeriods, tournamentCounts } from './hittingBoardStats'
+import { combineCounts, compareConnection, selectPeriods, tournamentCounts } from './hittingBoardStats'
 import type { TournamentFlops } from './hittingBoardStats'
 import { DEFAULT_FILTER } from './tournamentFilters'
 
@@ -31,14 +31,22 @@ describe('Hitting Board', () => {
     const history: TournamentFlops[] = [{
       tournament_id: 'a', coverage: { context_unknown: 0, flop_unknown: 0, hero_cards_unknown: 0, position_unknown: 0 },
       groups: [
-        { raise: 'open', players: 3, position: 'BTN', counts },
-        { raise: 'open', players: 3, position: 'BB', counts },
-        { raise: 'open', players: 2, position: 'BTN', counts },
-        { raise: 'iso', players: 3, position: 'BTN', counts },
+        { pot: 'open', players: 3, position: 'BTN', counts },
+        { pot: 'open', players: 3, position: 'BB', counts },
+        { pot: 'open', players: 2, position: 'BTN', counts },
+        { pot: 'iso', players: 3, position: 'BTN', counts },
+        { pot: 'limped', players: 3, position: 'BB', counts },
+        { pot: 'opponent_raise', players: 2, position: 'SB', counts },
+        { pot: 'reraised', players: 2, position: 'BB', counts },
       ],
     }]
-    expect(tournamentCounts(history, CONTEXTS[2])).toMatchObject([{ flops: 4, connected: 2, categories: { top_pair: 2 } }])
-    expect(tournamentCounts(history, CONTEXTS[2], 'BTN')).toMatchObject([{ flops: 2, connected: 1 }])
+    expect(tournamentCounts(history, 'open', 3)).toMatchObject([{ flops: 4, connected: 2, categories: { top_pair: 2 } }])
+    expect(tournamentCounts(history, 'open', 3, 'BTN')).toMatchObject([{ flops: 2, connected: 1 }])
+    expect(tournamentCounts(history, 'open', 'all')).toMatchObject([{ flops: 6, connected: 3 }])
+    expect(tournamentCounts(history, 'limped', 2)).toEqual([])
+    expect(tournamentCounts(history, 'limped', 3)).toMatchObject([{ flops: 2 }])
+    expect(tournamentCounts(history, 'opponent_raise', 2)).toMatchObject([{ flops: 2 }])
+    expect(tournamentCounts(history, 'reraised', 3)).toEqual([])
   })
 
   it('flags a large decline but not a small sample or equal rates', () => {
