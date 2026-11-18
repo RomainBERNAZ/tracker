@@ -6,6 +6,7 @@ import { TournamentFilters } from '../components/TournamentFilters'
 import { createReviewState } from '../reviewState'
 import { DEFAULT_FILTER } from './tournamentFilters'
 import { analyzeRecentBankroll, assessBankroll, parseEuroCents } from './bankrollAnalysis'
+import BankrollCharts from './BankrollCharts'
 
 const money = (cents: number) => (cents / 100).toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })
 const decimal = (value: number | null, digits = 1) => value == null ? '—' :
@@ -205,6 +206,7 @@ export default function Bankroll() {
             {recent.sample.missing > 0 && <p className="variance-warning">{recent.sample.missing} tournois sans mains complètes exclus du cEV, mais conservés dans le bilan en euros.</p>}
             {(recent.invalidDates > 0 || recent.invalidBuyIns > 0) && <p className="variance-warning">Données non exploitables : {recent.invalidDates} dates et {recent.invalidBuyIns} buy-ins. Les dates invalides sont exclues de l’analyse et les buy-ins invalides de la moyenne.</p>}
           </section>
+          <BankrollCharts account={account} recentCount={recent.count} recentNet={recent.netEuro} />
           <div className="bankroll-grid">
             <form className="summary-card" onSubmit={(event) => { void movement(event) }}>
               <h3>Modifier la bankroll</h3>

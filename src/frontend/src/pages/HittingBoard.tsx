@@ -58,7 +58,7 @@ function Matrix({ samples }: { samples: Sample[] }) {
   </div>
 }
 
-function PotChart({ samples }: { samples: Sample[] }) {
+export function PotChart({ samples }: { samples: Sample[] }) {
   const segments = [
     { key: 'pair', label: 'Paire ou mieux' },
     { key: 'draw', label: 'Tirage direct sans paire' },
@@ -77,15 +77,25 @@ function PotChart({ samples }: { samples: Sample[] }) {
         return <li key={label}>
           <strong>{label}</strong>
           <div className="board-bar" role="img" aria-label={flops ? description : 'Aucun flop dans ce contexte'}>
-            {flops > 0 && segments.map(({ key }, i) => (
-              <span key={key} className={`board-${key}`} style={{ width: `${100 * values[i] / flops}%` }} />
+            {flops > 0 && segments.map(({ key, label: segmentLabel }, i) => (
+              <span key={key} className={`board-${key}`} title={`${segmentLabel} : ${rate(values[i], flops)}`}
+                style={{ width: `${100 * values[i] / flops}%` }}>
+                {values[i] / flops >= 0.1 && percent(values[i], flops)}
+              </span>
             ))}
           </div>
           <span className="board-chart-value">{flops ? `${rate(connected, flops)}` : 'Aucun flop'}</span>
+          <dl className="board-segment-details">
+            {segments.map(({ key, label: segmentLabel }, i) => <div key={key}>
+              <dt><span className={`board-swatch board-${key}`} aria-hidden="true" />{segmentLabel}</dt>
+              <dd>{rate(values[i], flops)}</dd>
+            </div>)}
+          </dl>
         </li>
       })}
     </ul>
-    <p>À droite : connexions / flops analysés. Une connexion est une paire ou mieux, ou un tirage direct.</p>
+    <p>À droite : connexions / flops analysés. Sous chaque barre : effectif et pourcentage de chaque catégorie,
+      y compris les petits segments. Une connexion est une paire ou mieux, ou un tirage direct.</p>
   </section>
 }
 
@@ -127,7 +137,7 @@ export default function HittingBoard() {
 
   return <div className="hitting-board">
     <div className="page-header">
-      <h1>Hitting Board</h1>
+      <h2>Connexion au flop</h2>
       <p>Comment Hero touche les flops qu’il voit, quel que soit le relanceur préflop.</p>
     </div>
     {error && <p role="alert">Impossible de charger les historiques : {error}{' '}

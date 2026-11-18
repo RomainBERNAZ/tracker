@@ -361,6 +361,7 @@ export interface BankrollSnapshot {
   movement_total_cents: number
   created_at: string
   settings: BankrollSettings
+  tournament_results: { id: string; started_at: string; amount_cents: number }[]
   movements: {
     id: number
     kind: BankrollMovementKind

@@ -23,6 +23,7 @@ import Variance from './Variance'
 import SummaryStacks from './SummaryStacks'
 import SummaryAllIns from './SummaryAllIns'
 import { createReviewState } from '../reviewState'
+import { WINAMAX_2EUR_MULTIPLIER_MODEL } from './expressoModel'
 import { DEFAULT_FILTER, applyTournamentRange, calendarDayRange, computeFilteredStats, endOfDay, formatDateInput, handsForTournaments, parseDateInput, periodToRange, tournamentBuyIn } from './tournamentFilters'
 
 const useSummaryFilter = createReviewState(() => DEFAULT_FILTER)
@@ -47,19 +48,6 @@ function stddev(values: number[]): number {
   const variance = values.reduce((acc, v) => acc + Math.pow(v - mean, 2), 0) / (values.length - 1)
   return Math.sqrt(variance)
 }
-
-// Winamax Expresso 2 EUR public distribution provided by user (tickets / 10,000,000 draws).
-const WINAMAX_2EUR_MULTIPLIER_MODEL: Array<{ mult: number; tickets: number }> = [
-  { mult: 500000, tickets: 1 },
-  { mult: 1000, tickets: 100 },
-  { mult: 100, tickets: 2000 },
-  { mult: 20, tickets: 10000 },
-  { mult: 10, tickets: 100000 },
-  { mult: 5, tickets: 400000 },
-  { mult: 4, tickets: 800000 },
-  { mult: 3, tickets: 3324202 },
-  { mult: 2, tickets: 5363697 },
-]
 
 type FilteredStats = ReturnType<typeof computeFilteredStats>
 

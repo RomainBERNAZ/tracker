@@ -1,4 +1,7 @@
 import { describe, expect, it } from 'vitest'
+import { createElement } from 'react'
+import { renderToStaticMarkup } from 'react-dom/server'
+import { PotChart } from './HittingBoard'
 import type { TournamentRow } from '../api'
 import { combineCounts, compareConnection, selectPeriods, tournamentCounts } from './hittingBoardStats'
 import type { TournamentFlops } from './hittingBoardStats'
@@ -13,6 +16,18 @@ function tour(id: string, started_at: string, buy_in_euros = 1.8): TournamentRow
 }
 
 describe('Hitting Board', () => {
+  it('shows each segment count and percentage without hovering, even for narrow or empty segments', () => {
+    const counts = { ...combineCounts([]), flops: 100, connected: 3, pair_plus: 1, no_pair_or_direct: 97 }
+    const html = renderToStaticMarkup(createElement(PotChart, { samples: [{ label: 'Open raise', counts }] }))
+    const detail = html.slice(html.indexOf('<dl'), html.indexOf('</dl>'))
+    expect(detail).toContain('1 / 100 · 1 %')
+    expect(detail).toContain('2 / 100 · 2 %')
+    expect(detail).toContain('97 / 100 · 97 %')
+    const empty = renderToStaticMarkup(createElement(PotChart, { samples: [{ label: 'Vide', counts: combineCounts([]) }] }))
+    expect(empty).toContain('Aucun flop')
+    expect(empty).not.toMatch(/NaN|Infinity/)
+  })
+
   it('uses the same buy-ins including rake and a non-overlapping historical comparison', () => {
     const tours = [
       tour('before', '2026-11-17T23:59:59.999'),

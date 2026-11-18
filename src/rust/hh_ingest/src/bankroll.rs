@@ -42,6 +42,13 @@ pub struct BankrollMovement {
 }
 
 #[derive(Debug, Clone, Serialize)]
+pub struct BankrollTournamentResult {
+    pub id: String,
+    pub started_at: String,
+    pub amount_cents: i64,
+}
+
+#[derive(Debug, Clone, Serialize)]
 pub struct BankrollSnapshot {
     pub opening_balance_cents: i64,
     pub current_balance_cents: i64,
@@ -50,6 +57,7 @@ pub struct BankrollSnapshot {
     pub created_at: String,
     pub settings: BankrollSettings,
     pub movements: Vec<BankrollMovement>,
+    pub tournament_results: Vec<BankrollTournamentResult>,
 }
 
 fn invalid(message: &str) -> BankrollError {
@@ -88,6 +96,7 @@ pub fn get_bankroll(conn: &Connection) -> Result<Option<BankrollSnapshot>, Bankr
                     imported_profit_cents: 0,
                     movement_total_cents: 0,
                     movements: Vec::new(),
+                    tournament_results: Vec::new(),
                 })
             },
         )
@@ -95,14 +104,30 @@ pub fn get_bankroll(conn: &Connection) -> Result<Option<BankrollSnapshot>, Bankr
     let Some(mut account) = account else {
         return Ok(None);
     };
-    account.imported_profit_cents = conn.query_row(
-        "SELECT COALESCE(SUM(CAST(ROUND(t.net_eur * 100) AS INTEGER)), 0)
+    let mut results = conn.prepare(
+        "SELECT t.id, t.started_at, CAST(ROUND(t.net_eur * 100) AS INTEGER)
          FROM tournaments t WHERE NOT EXISTS (
              SELECT 1 FROM bankroll_baseline b WHERE b.tournament_id = t.id
-         )",
-        [],
-        |row| row.get(0),
+         ) ORDER BY t.started_at, t.id",
     )?;
+    account.tournament_results = results
+        .query_map([], |row| {
+            Ok(BankrollTournamentResult {
+                id: row.get(0)?,
+                started_at: row.get(1)?,
+                amount_cents: row.get(2)?,
+            })
+        })?
+        .collect::<Result<Vec<_>, _>>()?;
+    account.imported_profit_cents =
+        account
+            .tournament_results
+            .iter()
+            .try_fold(0_i64, |total, result| {
+                total
+                    .checked_add(result.amount_cents)
+                    .ok_or_else(|| invalid("Total monetaire trop eleve."))
+            })?;
     let mut statement = conn.prepare(
         "SELECT id, kind, amount_cents, note, created_at FROM bankroll_movements ORDER BY id DESC",
     )?;
@@ -270,6 +295,10 @@ mod tests {
         );
         tournament(&conn, "after", -2.0);
         tournament(&conn, "after", -2.0);
+        let snapshot = require_bankroll(&conn).expect("history");
+        assert_eq!(snapshot.tournament_results.len(), 1);
+        assert_eq!(snapshot.tournament_results[0].id, "after");
+        assert_eq!(snapshot.tournament_results[0].amount_cents, -200);
         assert_eq!(
             require_bankroll(&conn)
                 .expect("one loss")
@@ -281,6 +310,13 @@ mod tests {
             [],
         )
         .expect("correct imported result");
+        assert_eq!(
+            require_bankroll(&conn)
+                .expect("corrected history")
+                .tournament_results[0]
+                .amount_cents,
+            420
+        );
         assert_eq!(
             require_bankroll(&conn)
                 .expect("correct result")

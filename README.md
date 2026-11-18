@@ -35,7 +35,7 @@ La CI de `master` execute aussi les tests frontend.
 
 ## Filtres des resultats
 
-- L'application s'ouvre sur Summary. Le menu latéral donne aussi accès à Hitting Board, Short Stack Analysis, Tournois, Bankroll, GTO (expérimental) et Import.
+- L'application s'ouvre sur Summary. Le menu latéral propose Summary, Advanced, Tournois, Bankroll, GTO (expérimental) et Import. Advanced, juste sous Summary, regroupe les sous-onglets « Jeu short-stack » et « Connexion au flop ». Les anciennes adresses `/short-stack` et `/hitting-board` redirigent vers ces sous-onglets.
 - Summary (Resume et Jetons) et Tournois : periode et buy-ins, combinables. Les montants proposes correspondent aux tournois importes, rake inclus. Les pastilles buy-in permettent de selectionner plusieurs limites simultanement ; "Tous" reinitialise la selection, et desactiver la derniere limite revient aussi a tous les buy-ins.
 - Coach : les buy-ins de Summary s'appliquent aussi aux statistiques, bilans et erreurs detectees ; sa periode reste definie par ses champs de dates dedies.
 - Les dates selectionnent les tournois selon leur debut, en heure locale, et incluent toutes leurs mains, meme apres minuit.
@@ -45,7 +45,12 @@ La CI de `master` execute aussi les tests frontend.
 - Les comparaisons theoriques de multiplicateurs et de variance restent reservees au modele 2 EUR existant ; les cases des multiplicateurs observes restent affichees pour tous les buy-ins, meme melanges ou avec un seul tournoi, sans attendu ni ecart lorsqu'aucun modele ne s'applique.
 - Les graphiques cumules de Resume (euros) et Jetons s'etendent jusqu'au bas de la fenetre, avec une hauteur minimale pour rester lisibles sur les petites fenetres.
 
-## Hitting Board
+## Connexion au flop (Advanced)
+
+Le graphique affiche les effectifs et pourcentages de chaque segment sous chaque
+barre, même pour les petites catégories : paire ou mieux en bleu, tirage direct
+sans paire en jaune, absence des deux en gris. Les grands segments affichent aussi
+leur pourcentage dans la barre ; le total des connexions reste à droite.
 
 L'onglet analyse les flops vus par Hero à partir des historiques importés, sans
 écrire de données. Le filtre Tous / HU / 3-way compte les joueurs encore dans
@@ -72,7 +77,7 @@ Une différence n'est testée qu'avec au moins
 50 flops, 30 tournois, 5 connexions et 5 non-connexions de chaque côté.
 Ce n'est pas une comparaison à un modèle théorique ni une preuve de malchance.
 
-## Short Stack Analysis
+## Jeu short-stack (Advanced)
 
 L'onglet compare deux périodes choisies manuellement, sans chevauchement. Les dates
 s'appliquent au début des tournois (jours locaux), et les filtres de room, buy-in,
@@ -246,6 +251,34 @@ L'onglet Bankroll permet de saisir une fois son solde exact actuel, idealement a
 Les depots, retraits et corrections du solde sont conserves dans SQLite, avec un journal manuel distinct des gains de jeu. Une correction saisit un nouveau solde exact (pas une variation). Un retrait ne peut pas depasser le solde disponible. La suppression de tournois comptabilises retire leurs resultats du solde calcule ; les mouvements manuels et les identifiants de l'historique initial restent conserves. La page recharge les resultats a chaque ouverture ; Actualiser permet egalement de les relire.
 
 L'analyse porte sur les 1 000 derniers tournois des buy-ins selectionnes, ou tous buy-ins confondus. Les memes pastilles multiselection sont disponibles dans Bankroll. Le filtre ne change jamais le solde global. Sont affiches le cEV ajuste (meme calcul que Summary / Jetons), le resultat en euros et le buy-in moyen rake inclus. La couverture prudente utilise le plus eleve entre le dernier buy-in joue du perimetre et le buy-in moyen recent ; le niveau pour un shot est evalue uniquement sur les tournois complets du dernier buy-in, pour ne pas melanger les performances des petites et grandes limites.
+
+La courbe d'evolution part du solde initial et ajoute uniquement les resultats
+non inclus dans ce solde, ainsi que les depots, retraits et variations de correction.
+Elle est reconstruite par date de debut des tournois, pas par date d'import :
+les imports anterieurs a l'initialisation sont places juste apres le point initial.
+Les mouvements manuels gardent leur date et les corrections leur variation enregistree.
+Les evenements sont espaces uniformement sur l'axe horizontal ; les dates sont
+affichees sur l'axe et au survol. Le dernier point correspond au solde global courant.
+
+Les projections partent de ce solde : prolongement du gain net moyen des
+1 000 derniers tournois du perimetre et scenario de 1 a 10 000 tournois avec cEV
+parametrable. La simulation utilise exclusivement le modele public Winamax 2 EUR
+deja present dans Summary, partage sans changer les calculs existants de Summary.
+Avec 500 jetons de depart et trois joueurs, la probabilite de victoire approchee
+est `(500 + cEV) / 1500` (cEV entre -500 et 1000).
+Le gain espere par tournoi vaut `2 * (probabilite * multiplicateur moyen - 1)` :
+le multiplicateur s'applique une seule fois au buy-in total de 2 EUR.
+Les couts sont deja inclus ; le rake n'est pas soustrait une seconde fois.
+
+500 parcours donnent une trajectoire exemple et les percentiles 5-95 % a chaque
+volume, en plus de l'esperance theorique. Un nouveau tirage ne change pas
+l'esperance. Le modele simplifie attribue tout le prizepool au vainqueur,
+meme pour les gros multiplicateurs normalement repartis ; il n'est pas actualise
+automatiquement. Les jackpots rares peuvent manquer dans les tirages et placer
+l'esperance hors de la bande. Ce n'est ni un intervalle de confiance ni une
+garantie. Il n'y a pas d'arret faute de fonds ni de changement de limite :
+une valeur negative signifie un besoin de financement. Le filtre buy-in change
+uniquement la projection recente, pas le modele 2 EUR ni l'historique global.
 
 Les regles initiales, modifiables dans la page, alertent strictement sous 150 buy-ins. Un shot exige par defaut 1 000 tournois complets au buy-in de reference, au moins 50 cEV/tournoi, des resultats recents en euros non negatifs a ce buy-in et 300 buy-ins de la limite visee. Le financement requis passe a 250 buy-ins lorsque le cEV atteint l'objectif + 25 (75 par defaut), avec le meme echantillon minimum. La limite visee doit etre renseignee et superieure a la reference. Un cEV negatif sur un echantillon suffisant incite a revoir la limite ; des pertes en euros seules ne declenchent pas une descente si la couverture et le cEV restent suffisants. Ces indications sont des heuristiques de gestion, pas une garantie de gains.
 

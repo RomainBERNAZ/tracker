@@ -187,7 +187,7 @@ export default function ShortStackAnalysis() {
   }))
 
   return <div className="short-stack-page">
-    <header className="page-header"><h1>Short Stack Analysis</h1>
+    <header className="page-header"><h2>Jeu short-stack</h2>
       <p>Les adversaires révèlent-ils des mains plus fortes lors de leur première confrontation à 5 BB ou moins ?</p></header>
     {error && <p role="alert">Impossible de charger l’analyse : {error} <button type="button" className="filter-reset" onClick={() => { setError(null); setAttempt(attempt + 1) }}>Réessayer</button></p>}
     {!snapshot && !error && <p role="status">Chargement des confrontations…</p>}
