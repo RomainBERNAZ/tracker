@@ -36,6 +36,41 @@ export interface TournamentRow {
   sd_cev_sum: number
 }
 
+export type HolePair = readonly [string, string]
+export type ShortStackMatchup = readonly [HolePair, HolePair]
+
+export interface ShortStackTournament {
+  id: string
+  started_at: string
+  buy_in: number
+  net_eur: number
+  room: string
+}
+
+export interface ShortStackEncounter {
+  hand_id: string
+  tournament_id: string
+  timestamp: string
+  villain: string
+  position: 'BTN' | 'SB' | 'BB' | '?'
+  player_count: number
+  effective_bb: number
+  villain_bb: number
+  hero_bb: number
+  rank: number | null
+  villain_actions: string[]
+  hero_actions: string[]
+  villain_cards: HolePair | null
+  hero_cards: HolePair | null
+  result: 'won' | 'lost' | 'split' | 'multiple'
+  hero_ev_bb: number | null
+}
+
+export interface ShortStackSnapshot {
+  tournaments: ShortStackTournament[]
+  encounters: ShortStackEncounter[]
+}
+
 export interface HandRow {
   id: string
   tournament_id: string
@@ -396,6 +431,10 @@ export const api = {
 
   getStackStats: (tournamentIds: readonly string[]): Promise<StackStatsSnapshot> =>
     invokeTauri('get_stack_stats_cmd', { tournamentIds }),
+  getShortStackAnalysis: (): Promise<ShortStackSnapshot> =>
+    invokeTauri('get_short_stack_analysis'),
+  getShortStackEquities: (matchups: readonly ShortStackMatchup[]): Promise<(number | null)[]> =>
+    invokeTauri('get_short_stack_equities', { matchups }),
 
   getCoachBlunders: (
     fromTs?: string | null,

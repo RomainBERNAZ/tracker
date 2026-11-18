@@ -4,6 +4,7 @@ use serde_json;
 use std::collections::BTreeMap;
 
 pub mod stacks;
+pub mod short_stack;
 
 // ─── Read models (returned to the UI) ────────────────────────────────────────
 

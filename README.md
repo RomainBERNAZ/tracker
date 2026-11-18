@@ -35,7 +35,7 @@ La CI de `master` execute aussi les tests frontend.
 
 ## Filtres des resultats
 
-- L'application s'ouvre sur Summary. Le menu lateral suit l'ordre Summary, Tournois, Bankroll, GTO (experimental), Import ; l'import reste accessible par `/import`.
+- L'application s'ouvre sur Summary. Le menu latéral donne aussi accès à Short Stack Analysis, Tournois, Bankroll, GTO (expérimental) et Import.
 - Summary (Resume et Jetons) et Tournois : periode et buy-ins, combinables. Les montants proposes correspondent aux tournois importes, rake inclus. Les pastilles buy-in permettent de selectionner plusieurs limites simultanement ; "Tous" reinitialise la selection, et desactiver la derniere limite revient aussi a tous les buy-ins.
 - Coach : les buy-ins de Summary s'appliquent aussi aux statistiques, bilans et erreurs detectees ; sa periode reste definie par ses champs de dates dedies.
 - Les dates selectionnent les tournois selon leur debut, en heure locale, et incluent toutes leurs mains, meme apres minuit.
@@ -44,6 +44,28 @@ La CI de `master` execute aussi les tests frontend.
 - Le cEV moyen est la somme du Net EV en jetons (gain realise si EV absente), divisee par le nombre de tournois selectionnes. Les deux pages utilisent tout l'historique, sans limite aux 100 derniers tournois.
 - Les comparaisons theoriques de multiplicateurs et de variance restent reservees au modele 2 EUR existant ; les cases des multiplicateurs observes restent affichees pour tous les buy-ins, meme melanges ou avec un seul tournoi, sans attendu ni ecart lorsqu'aucun modele ne s'applique.
 - Les graphiques cumules de Resume (euros) et Jetons s'etendent jusqu'au bas de la fenetre, avec une hauteur minimale pour rester lisibles sur les petites fenetres.
+
+## Short Stack Analysis
+
+L'onglet compare deux périodes choisies manuellement, sans chevauchement. Les dates
+s'appliquent au début des tournois (jours locaux), et les filtres de room, buy-in,
+format, position, stack, rang, action et révélation sont communs. Les résultats
+nets vérifient que les échantillons sont effectivement gagnant et perdant.
+
+Une observation est une paire Hero–vilain en interaction préflop, avec le minimum
+des deux stacks de départ à 5 BB ou moins. Un limp suivi d'un check ou une
+relance suivie d'un fold compte ; un walk ou un fold sans mise active de l'autre
+joueur ne compte pas. En 3-way, une main peut donner deux observations. Le rang
+est calculé par vilain et par tournoi sur l'historique complet, avant filtrage.
+Il redémarre après chaque passage observé de plus de 5 BB à 5 BB ou moins ; sans
+transition observée ou si la continuité des stacks est rompue, il reste indéterminé.
+
+Les cartes non révélées comptent dans le volume mais pas dans la répartition.
+Les IC à 95 % (Wilson), les tests Chi² ou exacts de Fisher et les écarts en points
+de pourcentage sont exploratoires : ils ne corrigent ni le biais de révélation,
+ni la dépendance entre observations du même tournoi. Le calcul à la demande
+estime l'équité **préflop en duel**, même pour une situation 3-way, et la distingue
+de l'EV nette importée du coup complet.
 
 ## Statistiques par profondeur de stack
 

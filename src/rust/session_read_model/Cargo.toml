@@ -8,3 +8,6 @@ serde    = { workspace = true }
 serde_json = { workspace = true }
 rusqlite = { workspace = true }
 chrono   = { workspace = true }
+
+[dev-dependencies]
+hh_ingest = { workspace = true }

@@ -1,0 +1,77 @@
+.short-stack-page {
+  min-width: 0;
+  display: grid;
+  gap: 1rem;
+}
+
+.short-stack-page h2 {
+  margin: 0 0 .75rem;
+  font-size: 1.15rem;
+}
+
+.short-stack-page .table-wrap {
+  height: auto;
+  max-height: 34rem;
+  margin: .75rem 0 1rem;
+}
+
+.short-stack-page table {
+  width: 100%;
+}
+
+.short-stack-page caption {
+  text-align: left;
+  font-weight: 600;
+  padding: .5rem 1rem;
+}
+
+.short-stack-page .summary-card {
+  min-width: 0;
+}
+
+.short-stack-page th, .short-stack-page td {
+  white-space: nowrap;
+}
+
+.short-stack-columns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+  gap: 1rem;
+}
+
+.short-stack-fields {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .75rem;
+  margin: .5rem 0;
+}
+
+.short-stack-fields label {
+  display: grid;
+  gap: .3rem;
+}
+
+.short-stack-interval {
+  display: block;
+  opacity: .8;
+}
+
+.short-stack-summary {
+  font-weight: 700;
+}
+
+.short-stack-warning {
+  padding: .6rem .8rem;
+  border-inline-start: .2rem solid #ef965a;
+}
+
+.short-stack-chart {
+  height: 280px;
+  min-width: 0;
+  margin: 1rem 0;
+}
+
+.short-stack-chart .recharts-tooltip-wrapper {
+  color: #172033;
+}

@@ -90,6 +90,53 @@ fn best_score_7(cards: &[Card; 7]) -> PokerRank {
     poker_cards.rank()
 }
 
+pub const PREFLOP_DUEL_SAMPLES: usize = 4096;
+
+pub fn preflop_duel_equity(hero: &[String; 2], villain: &[String; 2]) -> Option<f64> {
+    let used = [
+        parse_card(&hero[0])?,
+        parse_card(&hero[1])?,
+        parse_card(&villain[0])?,
+        parse_card(&villain[1])?,
+    ];
+    let deck = deck_without(&used);
+    if deck.len() != 48 {
+        return None;
+    }
+    let mut deck = deck.into_iter().map(to_poker_card).collect::<Vec<_>>();
+    let mut hero = [to_poker_card(used[0]); 7];
+    let mut villain = [to_poker_card(used[2]); 7];
+    hero[1] = to_poker_card(used[1]);
+    villain[1] = to_poker_card(used[3]);
+    let mut state = 0x5851_f42d_4c95_7f2d;
+    let mut score = 0.0;
+    for _ in 0..PREFLOP_DUEL_SAMPLES {
+        for i in 0..5 {
+            let j = i + (next_u64(&mut state) % (deck.len() - i) as u64) as usize;
+            deck.swap(i, j);
+            hero[i + 2] = deck[i];
+            villain[i + 2] = deck[i];
+        }
+        score += match hero.as_slice().rank().cmp(&villain.as_slice().rank()) {
+            std::cmp::Ordering::Greater => 1.0,
+            std::cmp::Ordering::Equal => 0.5,
+            std::cmp::Ordering::Less => 0.0,
+        };
+    }
+    Some(score / PREFLOP_DUEL_SAMPLES as f64)
+}
+
+#[cfg(test)]
+#[test]
+fn preflop_duel_credits_ties_and_rejects_duplicate_cards() {
+    let aces = ["As".into(), "Ah".into()];
+    let kings = ["Ks".into(), "Kh".into()];
+    let equity = preflop_duel_equity(&aces, &kings).unwrap();
+    assert!((0.79..0.85).contains(&equity));
+    assert_eq!(Some(1.0 - equity), preflop_duel_equity(&kings, &aces));
+    assert_eq!(None, preflop_duel_equity(&aces, &aces));
+}
+
 fn known_board_at_allin(all_in_street: &StreetType, final_board: &[String]) -> Option<Vec<Card>> {
     let known_card_count = match all_in_street {
         StreetType::PreFlop => 0,

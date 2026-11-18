@@ -5,6 +5,7 @@ use serde::Serialize;
 use hh_ingest::{db, import_history_file_with_conn, ImportProgress, ImportResult, DEFAULT_HERO};
 use hh_ingest::bankroll::{self, BankrollSettings, BankrollSnapshot, MovementKind};
 use rusqlite::Connection;
+use session_read_model::short_stack;
 use session_read_model::stacks::{get_stack_stats, StackStatsSnapshot};
 use session_read_model::{
 	list_preflop_matchups, PreflopMatchup,
@@ -445,6 +446,23 @@ pub mod commands {
 	}
 
 	#[tauri::command]
+	pub async fn get_short_stack_analysis(
+		state: tauri::State<'_, AppState>,
+	) -> Result<short_stack::Snapshot, String> {
+		let conn = state.db.lock().map_err(|e| e.to_string())?;
+		short_stack::get_snapshot(&conn).map_err(|e| e.to_string())
+	}
+
+	#[tauri::command]
+	pub async fn get_short_stack_equities(
+		matchups: Vec<[[String; 2]; 2]>,
+	) -> Result<Vec<Option<f64>>, String> {
+		tauri::async_runtime::spawn_blocking(move || {
+			matchups.iter().map(|[hero, villain]| hh_ingest::ev::preflop_duel_equity(hero, villain)).collect()
+		}).await.map_err(|e| e.to_string())
+	}
+
+	#[tauri::command]
 	pub async fn get_coach_stats_cmd(
 		from_ts: Option<String>,
 		to_ts: Option<String>,
@@ -541,6 +559,8 @@ pub fn run() {
 			commands::get_coach_spots,
 			commands::get_coach_stats_cmd,
 			commands::get_stack_stats_cmd,
+			commands::get_short_stack_analysis,
+			commands::get_short_stack_equities,
 			commands::get_coach_blunders_cmd,
 			commands::get_gto_ranges_cmd,
 			commands::clear_all_data,
