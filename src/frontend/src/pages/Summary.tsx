@@ -18,6 +18,7 @@ import { summarizeChips } from './summaryChips'
 import { TournamentFilters } from '../components/TournamentFilters'
 import Variance from './Variance'
 import SummaryStacks from './SummaryStacks'
+import SummaryAllIns from './SummaryAllIns'
 import { DEFAULT_FILTER, applyTournamentRange, computeFilteredStats, endOfDay, handsForTournaments, parseDateInput, periodToRange, tournamentBuyIn } from './tournamentFilters'
 
 function fmtEur(n: number) {
@@ -1092,7 +1093,7 @@ export default memo(function Summary() {
   const [handEvolution, setHandEvolution] = useState<HandChipPoint[]>([])
   const [loading, setLoading] = useState(true)
   const [filter, setFilter] = useState(DEFAULT_FILTER)
-  const [activeTab, setActiveTab] = useState<'summary' | 'chips' | 'stacks' | 'variance' | 'coach'>('summary')
+  const [activeTab, setActiveTab] = useState<'summary' | 'chips' | 'stacks' | 'allins' | 'variance' | 'coach'>('summary')
   const [coachFrom, setCoachFrom] = useState('')
   const [coachTo, setCoachTo] = useState('')
 
@@ -1239,6 +1240,21 @@ export default memo(function Summary() {
           Stacks
         </button>
         <button
+          onClick={() => setActiveTab('allins')}
+          style={{
+            padding: '8px 16px',
+            background: activeTab === 'allins' ? 'rgba(255,255,255,0.1)' : 'transparent',
+            border: 'none',
+            color: activeTab === 'allins' ? 'var(--text)' : 'var(--text-dim)',
+            cursor: 'pointer',
+            borderBottom: activeTab === 'allins' ? '2px solid var(--accent)' : 'none',
+            fontSize: 14,
+            fontWeight: activeTab === 'allins' ? '600' : '400',
+          }}
+        >
+          Tapis
+        </button>
+        <button
           onClick={() => setActiveTab('variance')}
           style={{
             padding: '8px 16px',
@@ -1355,6 +1371,7 @@ export default memo(function Summary() {
 
       {activeTab === 'variance' && <Variance hands={filteredHands} tournaments={filteredTournaments} />}
       {activeTab === 'stacks' && <SummaryStacks tournaments={filteredTournaments} />}
+      {activeTab === 'allins' && <SummaryAllIns tournaments={filteredTournaments} />}
 
       {activeTab === 'coach' && (
         <CoachTabPanel

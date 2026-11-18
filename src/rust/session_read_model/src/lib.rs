@@ -198,6 +198,23 @@ pub struct MatchupOpponent {
     pub cards: Option<String>,
 }
 
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
+#[serde(rename_all = "snake_case")]
+pub enum DuelOutcome {
+    Win,
+    Loss,
+    Split,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct PreflopDuel {
+    pub hero_starting_stack: i64,
+    pub villain_starting_stack: i64,
+    pub hero_equity: Option<f64>,
+    pub outcome: Option<DuelOutcome>,
+    pub issues: Vec<String>,
+}
+
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct PreflopMatchup {
     pub hand_id: String,
@@ -209,6 +226,65 @@ pub struct PreflopMatchup {
     pub net_ev: Option<i64>,
     pub allin_equity: Option<f64>,
     pub opponents: Vec<MatchupOpponent>,
+    pub duel: Option<PreflopDuel>,
+}
+
+fn read_preflop_duel(row: &rusqlite::Row<'_>) -> Result<PreflopDuel, rusqlite::Error> {
+    let hero_contribution: i64 = row.get(12)?;
+    let villain_contribution: i64 = row.get(13)?;
+    let hero_collected: i64 = row.get(14)?;
+    let villain_collected: i64 = row.get(15)?;
+    let total_pot: i64 = row.get(16)?;
+    let rake: i64 = row.get(17)?;
+    let total_contributions: i64 = row.get(18)?;
+    let contested_pot: i64 = row.get(19)?;
+    let maximum_contribution: i64 = row.get(20)?;
+    let mut duel = PreflopDuel {
+        hero_starting_stack: row.get(10)?,
+        villain_starting_stack: row.get(11)?,
+        hero_equity: None,
+        outcome: None,
+        issues: Vec::new(),
+    };
+    if hero_contribution <= 0 || villain_contribution <= 0 || contested_pot <= 0
+        || total_pot != total_contributions || total_pot < contested_pot || rake != 0
+        || maximum_contribution > hero_contribution.max(villain_contribution)
+        || duel.hero_starting_stack < hero_contribution
+        || duel.villain_starting_stack < villain_contribution
+    {
+        duel.issues.push("Pot ou contributions incoherents : equite du duel et resultat indisponibles.".into());
+        return Ok(duel);
+    }
+    let uncontested = total_pot - contested_pot;
+    let hero_guaranteed = if hero_contribution > villain_contribution { uncontested } else { 0 };
+    let villain_guaranteed = if villain_contribution > hero_contribution { uncontested } else { 0 };
+    let hero_share = hero_collected - hero_guaranteed;
+    let villain_share = villain_collected - villain_guaranteed;
+    // Remove guaranteed side pots before inferring the contested showdown result.
+    if hero_share >= 0 && villain_share >= 0 && hero_share + villain_share == contested_pot {
+        duel.outcome = match (hero_share, villain_share) {
+            (hero, 0) if hero > 0 => Some(DuelOutcome::Win),
+            (0, villain) if villain > 0 => Some(DuelOutcome::Loss),
+            (hero, villain) if hero > 0 && villain > 0 && (hero - villain).abs() <= 1 =>
+                Some(DuelOutcome::Split),
+            _ => None,
+        };
+    }
+    if duel.outcome.is_none() {
+        duel.issues.push("Collectes incompletes ou partage non standard : resultat du duel indisponible.".into());
+    }
+    if let Some(pot_share) = row.get::<_, Option<f64>>(7)? {
+        // Imported equity is an expected share of the entire pot, including guaranteed tiers.
+        let equity = (pot_share * total_pot as f64 - hero_guaranteed as f64) / contested_pot as f64;
+        if pot_share.is_finite() && (0.0..=1.0).contains(&pot_share)
+            && equity.is_finite() && (-1e-9..=1.0 + 1e-9).contains(&equity)
+        {
+            duel.hero_equity = Some(equity.clamp(0.0, 1.0));
+        } else {
+            duel.issues.push("Equite importee incompatible avec le pot conteste.".into());
+        }
+    }
+    Ok(duel)
 }
 
 /// One row per preflop all-in confrontation, including covered shoves.
@@ -218,7 +294,14 @@ pub fn list_preflop_matchups(conn: &Connection) -> Result<Vec<PreflopMatchup>, r
         r#"SELECT h.id, h.tournament_id, h.timestamp, h.big_blind,
                   hc.card1 || ' ' || hc.card2,
                   hp.realized_cev, hp.net_ev, hp.allin_equity,
-                  villain.player_name, shown.card1 || ' ' || shown.card2
+                  villain.player_name, shown.card1 || ' ' || shown.card2,
+                  hp.starting_stack, villain.starting_stack,
+                  hp.contributions, villain.contributions, hp.collected, villain.collected,
+                  h.total_pot, h.rake_chips,
+                  (SELECT SUM(p.contributions) FROM hand_players p WHERE p.hand_id = h.id),
+                  (SELECT SUM(MIN(p.contributions, MIN(hp.contributions, villain.contributions)))
+                     FROM hand_players p WHERE p.hand_id = h.id),
+                  (SELECT MAX(p.contributions) FROM hand_players p WHERE p.hand_id = h.id)
            FROM hands h
            JOIN hand_players hp ON hp.hand_id = h.id AND hp.hero = 1
            LEFT JOIN hole_cards hc ON hc.hand_id = h.id AND hc.player_name = hp.player_name
@@ -255,6 +338,7 @@ pub fn list_preflop_matchups(conn: &Connection) -> Result<Vec<PreflopMatchup>, r
                 net_ev: row.get(6)?,
                 allin_equity: row.get(7)?,
                 opponents: Vec::new(),
+                duel: Some(read_preflop_duel(row)?),
             },
             MatchupOpponent { player_name: row.get(8)?, cards: row.get(9)? },
         ))
@@ -265,6 +349,11 @@ pub fn list_preflop_matchups(conn: &Connection) -> Result<Vec<PreflopMatchup>, r
         hands.entry(hand.hand_id.clone()).or_insert(hand).opponents.push(opponent);
     }
     let mut hands: Vec<PreflopMatchup> = hands.into_values().collect();
+    for hand in &mut hands {
+        if hand.opponents.len() != 1 {
+            hand.duel = None;
+        }
+    }
     hands.sort_by(|a, b| b.timestamp.cmp(&a.timestamp).then_with(|| a.hand_id.cmp(&b.hand_id)));
     Ok(hands)
 }
@@ -1713,6 +1802,77 @@ mod tests {
             .expect("unknown third player's cards");
         let hands = list_preflop_matchups(&conn).expect("keep missing-card coverage");
         assert_eq!(hands[0].opponents[1].cards, None);
+        assert!(hands[0].duel.is_none());
+    }
+
+    #[test]
+    fn preflop_duels_classify_showdown_instead_of_net_profit_and_remove_guaranteed_pots() {
+        let conn = Connection::open_in_memory().expect("open database");
+        seed(&conn);
+        conn.execute_batch(
+            "UPDATE hand_players SET starting_stack = 1000, contributions = 500,
+                collected = 800, realized_cev = 300, allin_equity = 875.0 / 1100 WHERE hero = 1;
+             UPDATE hand_players SET starting_stack = 100, contributions = 100,
+                collected = 300 WHERE hero = 0;
+             INSERT INTO hand_players (hand_id, seat_number, player_name, starting_stack, ending_stack,
+                contributions, collected, realized_cev, hero)
+                VALUES ('H29', 3, 'Third', 1000, 500, 500, 0, -500, 0);
+             INSERT INTO hand_actions (hand_id, street_order, street, action_index, player_name, action_type)
+                VALUES ('H29', 0, 'preflop', 2, 'Third', 'fold');
+             UPDATE hands SET total_pot = 1100;",
+        ).expect("duel with guaranteed side pot");
+        let hands = list_preflop_matchups(&conn).expect("duel");
+        let duel = hands[0].duel.as_ref().expect("duel metadata");
+        assert_eq!(duel.hero_starting_stack, 1000);
+        assert_eq!(duel.villain_starting_stack, 100);
+        assert!(hands[0].realized_cev > 0);
+        assert_eq!(duel.outcome, Some(DuelOutcome::Loss));
+        assert!((duel.hero_equity.expect("contested equity") - 0.25).abs() < 1e-9);
+        assert!(duel.issues.is_empty());
+
+        conn.execute_batch(
+            "UPDATE hand_players SET contributions = 99 WHERE player_name = 'Third';
+             UPDATE hand_players SET collected = 550, allin_equity = 549.5 / 699 WHERE hero = 1;
+             UPDATE hand_players SET collected = 149 WHERE player_name = 'Cocochanel23';
+             UPDATE hands SET total_pot = 699;",
+        ).expect("split with an odd chip and guaranteed side pot");
+        let hands = list_preflop_matchups(&conn).expect("split");
+        let duel = hands[0].duel.as_ref().expect("duel metadata");
+        assert_eq!(duel.outcome, Some(DuelOutcome::Split));
+        assert!((duel.hero_equity.expect("split equity") - 0.5).abs() < 1e-9);
+
+        conn.execute_batch(
+            "UPDATE hand_players SET contributions = 500 WHERE player_name = 'Third';
+             UPDATE hand_players SET starting_stack = 100, contributions = 100,
+                collected = 300, realized_cev = 200, allin_equity = 75.0 / 1100 WHERE hero = 1;
+             UPDATE hand_players SET starting_stack = 1000, contributions = 500,
+                collected = 800 WHERE player_name = 'Cocochanel23';
+             UPDATE hands SET total_pot = 1100;",
+        ).expect("villain owns the guaranteed side pot");
+        let hands = list_preflop_matchups(&conn).expect("covered hero wins the duel");
+        let duel = hands[0].duel.as_ref().expect("duel metadata");
+        assert!(duel.hero_starting_stack < duel.villain_starting_stack);
+        assert_eq!(duel.outcome, Some(DuelOutcome::Win));
+        assert!((duel.hero_equity.expect("covered hero equity") - 0.25).abs() < 1e-9);
+        assert!(duel.issues.is_empty());
+    }
+
+    #[test]
+    fn preflop_duels_keep_missing_equity_separate_from_known_results_and_report_invalid_pots() {
+        let conn = Connection::open_in_memory().expect("open database");
+        seed(&conn);
+        conn.execute("UPDATE hand_players SET allin_equity = NULL WHERE hero = 1", [])
+            .expect("missing equity");
+        let hands = list_preflop_matchups(&conn).expect("duel");
+        let duel = hands[0].duel.as_ref().expect("duel metadata");
+        assert_eq!(duel.hero_equity, None);
+        assert_eq!(duel.outcome, Some(DuelOutcome::Win));
+        conn.execute("UPDATE hands SET total_pot = total_pot + 1", []).expect("invalid pot");
+        let hands = list_preflop_matchups(&conn).expect("keep unavailable duel");
+        let duel = hands[0].duel.as_ref().expect("duel metadata");
+        assert_eq!(duel.outcome, None);
+        assert_eq!(duel.hero_equity, None);
+        assert!(!duel.issues.is_empty());
     }
 
     #[test]

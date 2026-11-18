@@ -251,6 +251,50 @@ tr:hover td {
   flex-wrap: wrap;
 }
 
+.filter-groups {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.filter-group {
+  min-width: 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 14px 14px;
+  background: rgba(255, 255, 255, 0.015);
+}
+
+.filter-group legend {
+  padding: 0 6px;
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.filter-group-hint {
+  color: var(--text-dim);
+  font-size: 11px;
+  margin-bottom: 10px;
+}
+
+.filter-group .summary-custom-dates {
+  flex-wrap: wrap;
+}
+
+.filter-group .summary-custom-dates label {
+  display: grid;
+  gap: 4px;
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+.summary-page > .page-header .tournament-filters {
+  margin-top: 16px;
+  margin-bottom: 0;
+}
+
 .filter-input,
 .filter-select {
   background: #202536;
@@ -1101,11 +1145,100 @@ tr:hover td {
   background: rgba(108, 99, 255, 0.08);
 }
 
-.stack-filter-label,
 .stack-legend,
 .stack-method {
   font-size: 12px;
   color: var(--text-dim);
+}
+
+.stack-filters {
+  grid-template-columns: minmax(220px, 1fr) minmax(150px, 0.7fr) minmax(0, 2fr);
+}
+
+@media (max-width: 1100px) {
+  .stack-filters {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+  }
+
+  .stack-depth-filter {
+    grid-column: 1 / -1;
+  }
+}
+
+.stack-leak-finder {
+  border-top: 1px solid var(--border);
+  margin-top: 16px;
+  padding-top: 16px;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.stack-leak-finder h4 {
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+
+.stack-diagnostic-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+  gap: 12px;
+}
+
+.stack-diagnostic {
+  min-width: 0;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 14px;
+}
+
+.stack-diagnostic-review {
+  border-left: 3px solid var(--yellow);
+}
+
+.stack-diagnostic header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.stack-diagnostic h5 {
+  font-size: 13px;
+}
+
+.stack-diagnostic header > span,
+.stack-diagnostic-metrics,
+.stack-diagnostic-limits {
+  color: var(--text-dim);
+}
+
+.stack-diagnostic p,
+.stack-diagnostic ul {
+  margin-top: 8px;
+}
+
+.stack-diagnostic ul {
+  padding-left: 16px;
+}
+
+.stack-diagnostic li + li {
+  margin-top: 12px;
+}
+
+.stack-diagnostic-focus {
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+}
+
+.stack-diagnostic button,
+.stack-diagnostic-limited,
+.stack-diagnostic-limits {
+  margin-top: 12px;
+}
+
+.stack-diagnostic-limited {
+  color: var(--yellow);
 }
 
 .stack-legend {
@@ -1363,6 +1496,86 @@ tr:hover td {
 .matchup-metrics span {
   font-size: 12px;
   color: var(--text-dim);
+}
+
+.allin-coverage-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: 16px;
+}
+
+.allin-coverage-card {
+  min-width: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.allin-volume {
+  font-size: 28px;
+  font-weight: 600;
+  margin: 12px 0;
+}
+
+.allin-volume span,
+.allin-equities span,
+.allin-outcomes span {
+  color: var(--text-dim);
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.allin-equities,
+.allin-outcomes {
+  display: grid;
+  gap: 12px;
+  margin: 12px 0;
+}
+
+.allin-equities {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.allin-outcomes {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  padding: 12px 0;
+  border-block: 1px solid var(--border);
+}
+
+.allin-equities span,
+.allin-equities strong,
+.allin-outcomes span,
+.allin-outcomes strong {
+  display: block;
+}
+
+.allin-equities strong,
+.allin-outcomes strong {
+  font-size: 20px;
+}
+
+.allin-gains {
+  font-size: 12px;
+  margin: 16px 0;
+}
+
+.allin-gains > div {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  margin: 8px 0;
+}
+
+.allin-gains dt {
+  color: var(--text-dim);
+}
+
+.allin-gains dd {
+  margin: 0;
+  font-weight: 600;
+}
+
+.allin-table {
+  min-width: 800px;
 }
 
 .matchup-table-wrap {

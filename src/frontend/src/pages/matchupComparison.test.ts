@@ -7,7 +7,7 @@ function hand(overrides: Partial<PreflopMatchup> = {}): PreflopMatchup {
   return {
     hand_id: 'H1', tournament_id: 'T1', timestamp: '2026-11-17T12:00:00Z',
     big_blind: 20, hero_cards: 'Kd Jh', realized_cev: 100, net_ev: 200, allin_equity: 0.4,
-    opponents: [{ player_name: 'Villain', cards: 'As Tc' }], ...overrides,
+    opponents: [{ player_name: 'Villain', cards: 'As Tc' }], duel: null, ...overrides,
   }
 }
 

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import type { StackStatsGroup } from '../api'
-import { analyzeStacks, stackRates } from './stackAnalysis'
+import { analyzeStacks, stackDiagnostics, stackRates } from './stackAnalysis'
 
 function group(bucket: number, players: number, hands: number, vpip: number, ev: number): StackStatsGroup {
   return {
@@ -29,6 +29,94 @@ describe('stack analysis', () => {
     expect(mixed.bb.ev).toBe(3)
     expect(analyzeStacks(groups, '2', [0]).total.hands).toBe(4)
     expect(analyzeStacks(groups, '3', []).total.hands).toBe(2)
+  })
+
+  describe('Expresso stack diagnostics', () => {
+    it('does not let winning three-handed results hide a losing HU segment and respects filters', () => {
+      const groups = [group(0, 2, 100, 70, -100), group(0, 2, 100, 70, -100),
+        group(0, 3, 400, 280, 1000), group(2, 2, 300, 210, 100)]
+      const diagnostics = stackDiagnostics(groups, 'all', [0])
+      expect(diagnostics.map(({ playerCount, outcome }) => [playerCount, outcome]))
+        .toEqual([[2, 'negative-ev'], [3, 'no-signal']])
+      expect(diagnostics[0].row.hands).toBe(200)
+      expect(stackDiagnostics(groups, '3', [0])).toHaveLength(1)
+      expect(stackDiagnostics(groups, '2', [2])[0].row.hands).toBe(300)
+      expect(stackDiagnostics(groups, '2', [1])).toEqual([])
+    })
+
+    it('gates performance and preflop diagnoses on their available data and sample size', () => {
+      const small = group(2, 2, 199, 10, -200)
+      expect(stackDiagnostics([small], 'all', [])[0]).toMatchObject({ outcome: 'limited', findings: [] })
+      const incomplete = group(2, 2, 200, 10, -200)
+      incomplete.missing_ev_hands = 1
+      incomplete.missing_preflop_hands = 1
+      incomplete.preflop.hands = 199
+      incomplete.preflop.fold_to_three_bet_opportunities = 50
+      incomplete.preflop.fold_to_three_bet_count = 50
+      expect(stackDiagnostics([incomplete], 'all', [])[0]).toMatchObject({ outcome: 'incomplete', findings: [] })
+      incomplete.preflop.hands = 200
+      incomplete.missing_preflop_hands = 0
+      expect(stackDiagnostics([incomplete], 'all', [])[0].findings.map(({ id }) => id))
+        .toEqual(['tight-hu', 'fold-three-bet'])
+    })
+
+    it('does not call HU limping, low VPIP below 8 BB or absent 3-bets against jams leaks', () => {
+      const shallow = group(0, 2, 500, 100, 200)
+      shallow.preflop.three_bet_count = 0
+      shallow.preflop.three_bet_opportunities = 100
+      const limping = group(2, 2, 500, 400, 200)
+      limping.preflop.pfr_count = 10
+      limping.preflop.limp_count = 350
+      limping.preflop.three_bet_count = 0
+      limping.preflop.three_bet_opportunities = 100
+      expect(stackDiagnostics([shallow, limping], 'all', []).every(({ findings }) => findings.length === 0)).toBe(true)
+      const deeper = group(1, 2, 500, 100, 200)
+      expect(stackDiagnostics([deeper], 'all', [])[0].findings[0].id).toBe('tight-hu')
+      deeper.preflop.vpip_count = 200
+      expect(stackDiagnostics([deeper], 'all', [])[0].findings).toEqual([])
+      deeper.preflop.vpip_count = 100
+      deeper.player_count = 3
+      expect(stackDiagnostics([deeper], 'all', [])[0].findings).toEqual([])
+    })
+
+    it('requires observed response volume and treats shallow and deeper 3-bet continues differently', () => {
+      const sample = group(1, 3, 500, 250, 200)
+      sample.preflop.fold_to_three_bet_count = 24
+      sample.preflop.fold_to_three_bet_opportunities = 29
+      expect(stackDiagnostics([sample], 'all', [])[0].findings).toEqual([])
+      sample.preflop.fold_to_three_bet_opportunities = 30
+      expect(stackDiagnostics([sample], 'all', [])[0].findings[0].id).toBe('fold-three-bet')
+      sample.preflop.fold_to_three_bet_count = 6
+      expect(stackDiagnostics([sample], 'all', [])[0].findings).toEqual([])
+      sample.bucket = 2
+      expect(stackDiagnostics([sample], 'all', [])[0].findings[0].id).toBe('continue-three-bet')
+    })
+
+    it('distinguishes realized shortfall from negative EV without hiding opposite chip/BB signs', () => {
+      const unlucky = group(1, 2, 300, 210, 200)
+      unlucky.bb.net = -5
+      expect(stackDiagnostics([unlucky], 'all', [])[0].outcome).toBe('below-ev')
+      unlucky.bb.ev = -10
+      unlucky.bb.net = 5
+      expect(stackDiagnostics([unlucky], 'all', [])[0].outcome).toBe('negative-ev')
+      expect(unlucky.chips.ev).toBeGreaterThan(0)
+      unlucky.bb.ev = 10
+      unlucky.chips.ev = -200
+      expect(stackDiagnostics([unlucky], 'all', [])[0].outcome).toBe('negative-ev')
+      unlucky.chips.ev = 200
+      unlucky.chips.net = -100
+      expect(stackDiagnostics([unlucky], 'all', [])[0].outcome).toBe('below-ev')
+    })
+
+    it('prioritizes documented preflop signals before negative EV review and supplies depth-specific work', () => {
+      const tight = group(2, 2, 300, 30, 200)
+      const losing = group(0, 3, 300, 150, -500)
+      const diagnostics = stackDiagnostics([losing, tight], 'all', [])
+      expect(diagnostics[0].playerCount).toBe(2)
+      expect(diagnostics[0].findings[0].id).toBe('tight-hu')
+      expect(diagnostics[0].focus).toContain('pots limpes SB contre BB')
+      expect(diagnostics[1].focus).toContain('troisieme joueur')
+    })
   })
 
   it('keeps contributions additive over the entire tournament cohort, with per-hand rates separate', () => {

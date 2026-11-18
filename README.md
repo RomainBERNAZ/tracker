@@ -50,6 +50,9 @@ avant les blindes, en BB : 0-8, >8-12, >12-20 et >20 BB. Les bornes hautes
 sont incluses. Il conserve les filtres date et buy-ins de Summary et propose
 une multiselection de profondeurs, un filtre heads-up / 3 joueurs et les unites
 jetons / BB. Ces filtres de mains restent propres a l'onglet.
+Les filtres communs sont regroupes en blocs Buy-ins et Periode ; les dates
+personnalisees restent dans le bloc Periode. Les filtres Stacks separent
+Format des mains, Unite des resultats et Stack hero, avec un rappel des choix multiples.
 
 La lecture principale se concentre sur le volume, le net / 100 et l'EV / 100
 mains, avec des barres divergentes a echelle commune et des gains/pertes colores.
@@ -59,6 +62,26 @@ preflop permet de suivre les colonnes, sans qualifier un taux de bon ou mauvais.
 Le repere "Peu de mains" sous 100 mains est purement visuel, pas un seuil de
 fiabilite. Un guide recommande de separer HU et 3 joueurs, de comparer en BB
 et de verifier les positions et decisions avant de conclure a un leak.
+Sous « Total selection », le Leak finder Expresso interprete les resultats par
+profondeur et format (HU et 3 joueurs separes meme sur Tous). Il distingue une
+perte ajustee EV en BB ou en jetons, un reel perdant avec EV non negative et une EV incomplete,
+repere quelques tendances preflop extremes et propose des decisions precises
+a revoir : SB/BB, bouton a 3 joueurs, push/fold, limp/minraise/shove, reshoves et
+pots postflop selon la profondeur. Le diagnostic examine toujours les BB et les
+jetons, quel que soit l'affichage des tableaux ; la contribution cEV reste en
+jetons par tournoi. Un ecart de signe BB / jetons est explique explicitement.
+Un bouton isole le segment dans les tableaux.
+
+Ce diagnostic est heuristique, pas un solveur ni une preuve de leak. Il demande
+200 mains par segment, et 200 mains avec actions pour les pistes preflop.
+Le VPIP HU sous 40 % est signale seulement au-dessus de 8 BB. Le fold au 3-bet
+demande 30 decisions : au moins 80 % de folds, ou au plus 20 % au-dessus de 12 BB.
+Ces reperes ne sont ni des objectifs GTO ni des seuils de confiance statistique.
+Les pistes preflop passent avant les pertes EV, puis le tri utilise leur impact
+en jetons. Toute EV manquante suspend le diagnostic de performance du segment.
+Les limps HU, les pertes sans showdown et l'absence de 3-bet face aux tapis ne
+sont pas assimiles automatiquement a des erreurs. Positions, sizings, stack
+effectif et structure des gains restent a verifier dans les mains.
 
 Les tableaux affichent les mains, VPIP, PFR, limp (overlimps inclus), 3-bet et
 fold au 3-bet, avec leurs compteurs et denominateurs. Les blindes forcees ne
@@ -82,6 +105,36 @@ concernees est signale. Les mains sans historique preflop restent dans les gains
 mais pas dans les frequences. Les stacks/blindes invalides et les formats autres
 que 2/3 joueurs sont exclus explicitement. Les taux atypiques et les petits
 echantillons ne sont pas presentes comme des erreurs automatiques.
+
+## Tapis preflop et couverture
+
+L'onglet Tapis de Summary compare « Je couvre vilain », « Vilain me couvre »
+et les stacks egaux, selon les stacks au debut de la main avant les blindes.
+Il garde les filtres date et buy-ins de Summary. Seuls les tapis preflop payes,
+sans mise ni fold ulterieur, sont retenus : un troisieme joueur ayant folde
+preflop est autorise, mais les vrais pots multiway sont exclus explicitement.
+Les cartes inconnues n'empechent pas de compter un duel.
+
+Chaque groupe affiche le volume, les equites moyennes hero et vilain, les
+victoires / defaites / partages et les gains nets en jetons ou BB. L'equite
+est la part attendue du pot conteste, partages inclus, moyenne par duel sans
+ponderation par les montants ; celle de vilain vaut un moins celle du hero
+sur le meme echantillon. Ce n'est pas la probabilite de gagner sans partage.
+Les pots secondaires garantis sont retires de la part de pot importee et des
+collectes pour determiner l'equite et l'issue du duel : un duel perdu peut
+malgre tout laisser un gain net positif. Le taux de victoires utilise toutes
+les issues connues, partages inclus ; une issue inconnue n'est pas une defaite.
+
+Les echantillons disponibles sont affiches separement pour equites, issues,
+gains observes et comparaison reel / EV. Cette derniere utilise exactement
+les memes duels valides, sans remplacement d'EV manquante. Les pots incoherents,
+les collectes non standards et le rake en jetons non nul sont signales :
+les valeurs non calculables restent indisponibles, jamais inventees.
+En BB, chaque gain est divise par sa propre grosse blinde ; une blinde invalide
+exclut uniquement les gains en BB. Aucun reimport n'est requis pour les stacks
+et collectes deja presents ; les equites historiques manquantes restent absentes.
+La liste filtrable par couverture donne acces aux replays par lots de 50,
+sans limiter les bilans au premier lot.
 
 ## Variance des mains de depart
 

@@ -164,6 +164,14 @@ export interface CoachSpot {
   reason: string
 }
 
+export interface PreflopDuel {
+  hero_starting_stack: number
+  villain_starting_stack: number
+  hero_equity: number | null
+  outcome: 'win' | 'loss' | 'split' | null
+  issues: string[]
+}
+
 export interface PreflopMatchup {
   hand_id: string
   tournament_id: string
@@ -174,6 +182,7 @@ export interface PreflopMatchup {
   net_ev: number | null
   allin_equity: number | null
   opponents: { player_name: string; cards: string | null }[]
+  duel: PreflopDuel | null
 }
 
 export interface CoachFormatStats {

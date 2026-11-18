@@ -1,7 +1,7 @@
 import { memo, useEffect, useMemo, useState } from 'react'
 import { api } from '../api'
 import type { StackStatsSnapshot, TournamentRow } from '../api'
-import { analyzeStacks, STACK_BUCKETS, stackRates } from './stackAnalysis'
+import { analyzeStacks, STACK_BUCKETS, stackDiagnostics, stackRates } from './stackAnalysis'
 import type { StackAnalysisRow, StackFormat } from './stackAnalysis'
 
 const number = (value: number | null, digits = 1) => value == null ? '-' :
@@ -51,6 +51,7 @@ export default memo(function SummaryStacks({ tournaments }: { readonly tournamen
   }, [tournaments, attempt])
 
   const analysis = useMemo(() => analyzeStacks(snapshot?.groups ?? [], format, buckets), [snapshot, format, buckets])
+  const diagnostics = useMemo(() => stackDiagnostics(snapshot?.groups ?? [], format, buckets), [snapshot, format, buckets])
   const unitLabel = unit === 'chips' ? 'jetons' : 'BB'
   const totalRates = stackRates(analysis.total, tournaments.length, unit)
   const maxRate = Math.max(0, ...analysis.rows.map((row) => Math.abs(stackRates(row, tournaments.length, unit).evPer100 ?? 0)))
@@ -112,29 +113,39 @@ export default memo(function SummaryStacks({ tournaments }: { readonly tournamen
         Compare les profondeurs avec l'EV / 100 mains, puis regarde le volume et tes habitudes preflop.
         Les filtres date et buy-ins de Summary s'appliquent ; ceux ci-dessous restent propres a cet onglet.
       </p>
-      <div className="filters-bar">
-        <div className="period-pill-bar" role="group" aria-label="Format des mains">
-          <span className="stack-filter-label">Format</span>
-          {([['all', 'Tous'], ['3', '3 joueurs'], ['2', 'Heads-up']] as const).map(([key, label]) =>
-            <button key={key} type="button" className={`period-pill${format === key ? ' period-pill-active' : ''}`}
-              aria-pressed={format === key} onClick={() => setFormat(key)}>{label}</button>)}
-        </div>
-        <div className="period-pill-bar" role="group" aria-label="Profondeurs de stack">
-          <span className="stack-filter-label">Stack hero</span>
-          <button type="button" className={`period-pill${buckets.length === 0 ? ' period-pill-active' : ''}`}
-            aria-pressed={buckets.length === 0} onClick={() => setBuckets([])}>Toutes</button>
-          {STACK_BUCKETS.map((label, bucket) =>
-            <button key={bucket} type="button" className={`period-pill${buckets.includes(bucket) ? ' period-pill-active' : ''}`}
-              aria-pressed={buckets.includes(bucket)}
-              onClick={() => setBuckets((current) => current.includes(bucket) ? current.filter((value) => value !== bucket) : [...current, bucket])}>
-              {label}
-            </button>)}
-        </div>
-        <div className="period-pill-bar" role="group" aria-label="Unite des resultats stacks">
-          {(['chips', 'bb'] as const).map((key) =>
-            <button key={key} type="button" className={`period-pill${unit === key ? ' period-pill-active' : ''}`}
-              aria-pressed={unit === key} onClick={() => setUnit(key)}>{key === 'chips' ? 'Jetons' : 'BB'}</button>)}
-        </div>
+      <div className="filter-groups stack-filters">
+        <fieldset className="filter-group" aria-label="Format des mains">
+          <legend>Format des mains</legend>
+          <p className="filter-group-hint">Nombre de joueurs au debut de la main</p>
+          <div className="period-pill-bar">
+            {([['all', 'Tous'], ['3', '3 joueurs'], ['2', 'Heads-up']] as const).map(([key, label]) =>
+              <button key={key} type="button" className={`period-pill${format === key ? ' period-pill-active' : ''}`}
+                aria-pressed={format === key} onClick={() => setFormat(key)}>{label}</button>)}
+          </div>
+        </fieldset>
+        <fieldset className="filter-group" aria-label="Unite des resultats stacks">
+          <legend>Unite des resultats</legend>
+          <p className="filter-group-hint">La contribution cEV reste en jetons</p>
+          <div className="period-pill-bar">
+            {(['chips', 'bb'] as const).map((key) =>
+              <button key={key} type="button" className={`period-pill${unit === key ? ' period-pill-active' : ''}`}
+                aria-pressed={unit === key} onClick={() => setUnit(key)}>{key === 'chips' ? 'Jetons' : 'BB'}</button>)}
+          </div>
+        </fieldset>
+        <fieldset className="filter-group stack-depth-filter" aria-label="Profondeurs de stack">
+          <legend>Stack hero</legend>
+          <p className="filter-group-hint">Avant les blindes, en BB · Plusieurs tranches possibles</p>
+          <div className="period-pill-bar">
+            <button type="button" className={`period-pill${buckets.length === 0 ? ' period-pill-active' : ''}`}
+              aria-pressed={buckets.length === 0} onClick={() => setBuckets([])}>Toutes</button>
+            {STACK_BUCKETS.map((label, bucket) =>
+              <button key={bucket} type="button" className={`period-pill${buckets.includes(bucket) ? ' period-pill-active' : ''}`}
+                aria-pressed={buckets.includes(bucket)}
+                onClick={() => setBuckets((current) => current.includes(bucket) ? current.filter((value) => value !== bucket) : [...current, bucket])}>
+                {label}
+              </button>)}
+          </div>
+        </fieldset>
       </div>
       <details className="stack-method">
         <summary>Definitions et calculs</summary>
@@ -203,6 +214,71 @@ export default memo(function SummaryStacks({ tournaments }: { readonly tournamen
             <tfoot>{performanceRow(analysis.total, 'Total selection')}</tfoot>
           </table>
         </div>
+        <section className="stack-leak-finder" aria-label="Leak finder Expresso">
+          <h4>Leak finder Expresso : tes priorites de travail</h4>
+          <p className="variance-description">Pistes heuristiques, pas des erreurs prouvees ni des objectifs GTO.
+            Heads-up et 3 joueurs sont analyses separement, meme avec le filtre Tous.
+            Il examine l'EV en BB et la contribution cEV en jetons, independamment de l'unite des tableaux.
+            Les pistes preflop passent en premier, puis les segments perdants en EV, tries par impact en jetons.</p>
+          {diagnostics.length === 0 && <p>Aucune main exploitable : aucun diagnostic pour ces filtres.</p>}
+          <div className="stack-diagnostic-grid">
+            {diagnostics.filter((diagnostic) => diagnostic.outcome !== 'limited').map((diagnostic) => {
+              const { row, findings, outcome } = diagnostic
+              const rates = stackRates(row, tournaments.length, 'bb')
+              const status = findings.length > 0 ? 'Piste preflop' : outcome === 'negative-ev' ? 'Perte EV a revoir' :
+                outcome === 'below-ev' ? 'Reel sous l\'EV' : outcome === 'incomplete' ? 'EV incomplete' : 'Pas de signal automatique'
+              const performanceUnit = (outcome === 'negative-ev' ? row.bb.ev < 0 : row.bb.net < 0) ? 'bb' : 'chips'
+              const values = row[performanceUnit]
+              const resultUnit = performanceUnit === 'bb' ? 'BB' : 'jetons'
+              const showdownLoss = values.sd_ev < values.wsd_ev
+              return <article key={`${diagnostic.playerCount}-${row.bucket}`}
+                className={`stack-diagnostic${findings.length > 0 || outcome === 'negative-ev' ? ' stack-diagnostic-review' : ''}`}>
+                <header><h5>{diagnostic.playerCount === 2 ? 'Heads-up' : '3 joueurs'} · {STACK_BUCKETS[row.bucket]}</h5>
+                  <span>{status}</span></header>
+                <p className="stack-diagnostic-metrics">{number(row.hands, 0)} mains · EV / 100 : <Gain value={rates.evPer100} /> BB
+                  {' '}· Contribution cEV : <Gain value={rates.cevPerTournament} /> jetons / tournoi</p>
+                {outcome === 'negative-ev' && <>
+                  <p>{values.net >= 0 ? 'Le reel ne perd pas, mais l\'EV est negative' :
+                    'Ce segment est perdant meme apres ajustement EV'} en {resultUnit}.
+                    {' '}Cela en fait une priorite de revue, pas la preuve d'un leak.</p>
+                  <p>Le poste le plus negatif est {showdownLoss ? 'avec showdown' : 'sans showdown'} :
+                    {' '}<Gain value={showdownLoss ? values.sd_ev : values.wsd_ev} /> {resultUnit} EV.
+                    {showdownLoss ? ' Revois les calls de tapis et les gros pots arrives au showdown.' :
+                      ' Les pertes sans showdown incluent les blindes : ne conclus pas automatiquement qu\'il faut bluffer davantage.'}</p>
+                </>}
+                {outcome === 'below-ev' && <p>En {resultUnit}, le reel est perdant, mais l'EV ne l'est pas. L'ecart reel - EV
+                  est de <Gain value={values.net - values.ev} /> {resultUnit}.
+                  Ne modifie pas tes ranges sur les seules pertes realisees ; cela ne valide pas non plus toutes tes decisions.</p>}
+                {outcome === 'incomplete' && <p>{number(row.missingEvHands, 0)} mains sans EV, remplacee par le reel :
+                  diagnostic de performance suspendu. Seules les pistes preflop suffisamment documentees restent analysees.</p>}
+                {outcome === 'no-signal' && <p>L'EV de ce segment n'est negative ni en BB ni en jetons. Ce constat ne suffit pas a valider ta strategie
+                  ni a exclure des erreurs masquees dans la moyenne.</p>}
+                {outcome !== 'incomplete' && (row.bb.ev < 0) !== (row.chips.ev < 0) && <p>L'EV en BB et en jetons n'a pas le meme signe :
+                  les grosses blindes pesent davantage dans les totaux en jetons, alors que les BB normalisent chaque main.</p>}
+                {row.preflopHands < 200 && <p>Seulement {number(row.preflopHands, 0)} mains avec actions preflop :
+                  pas de diagnostic de frequences.</p>}
+                {findings.length > 0 && <ul>{findings.map((finding) =>
+                  <li key={finding.id}><strong>{finding.title}</strong><p>{finding.evidence}</p><p>{finding.action}</p></li>)}</ul>}
+                <p className="stack-diagnostic-focus"><strong>Revue Expresso : </strong>{diagnostic.focus}</p>
+                <button type="button" className="period-pill"
+                  onClick={() => { setFormat(diagnostic.playerCount === 2 ? '2' : '3'); setBuckets([row.bucket]) }}>
+                  Isoler ce segment
+                </button>
+              </article>
+            })}
+          </div>
+          {diagnostics.some((diagnostic) => diagnostic.outcome === 'limited') && <p className="stack-diagnostic-limited">
+            Volume trop faible pour un diagnostic : {diagnostics.filter((diagnostic) => diagnostic.outcome === 'limited')
+              .map(({ playerCount, row }) => `${playerCount === 2 ? 'HU' : '3 joueurs'} ${STACK_BUCKETS[row.bucket]} (${number(row.hands, 0)} mains)`).join(' ; ')}.
+          </p>}
+          <p className="stack-diagnostic-limits">Reperes de tri : 200 mains par segment et 200 mains avec actions pour les pistes preflop ;
+            30 decisions pour le fold au 3-bet (alerte a partir de 80 %, ou jusqu'a 20 % au-dessus de 12 BB).
+            Le VPIP HU sous 40 % est examine seulement au-dessus de 8 BB.
+            Ce ne sont ni des seuils de fiabilite statistique, ni des ranges a appliquer.
+            Sans positions, sizings et stack effectif dans ces agregats, aucun leak n'est confirme.
+            Un limp HU ou l'absence de 3-bet face a des opens a tapis ne sont pas signales comme des erreurs.
+            Verifie toujours le stack effectif et la structure des gains : les paliers des gros multiplicateurs peuvent changer les decisions de tapis.</p>
+        </section>
       </section>
       <section className="summary-card">
         <h3>Comprendre ton jeu preflop</h3>
