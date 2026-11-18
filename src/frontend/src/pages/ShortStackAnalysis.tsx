@@ -6,8 +6,8 @@ import type { ShortStackEncounter, ShortStackMatchup, ShortStackSnapshot, ShortS
 import { createReviewState } from '../reviewState'
 import { formatDateInput } from './tournamentFilters'
 import { applyEncounterFilters, BREAKDOWN, CATEGORIES, classify, compareDistributions,
-  eqMatchup, summarize, volumeTrend, wilson } from './shortStackAnalysis'
-import type { EncounterFilters, Sample } from './shortStackAnalysis'
+  eqMatchup, summarize, volumeTrend, wilson } from './shortStackStats'
+import type { EncounterFilters, Sample } from './shortStackStats'
 import './ShortStackAnalysis.css'
 
 type Range = { from: string, to: string }

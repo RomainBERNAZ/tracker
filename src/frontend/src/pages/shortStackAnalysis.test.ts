@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import type { ShortStackEncounter, ShortStackTournament } from '../api'
-import { applyEncounterFilters, classify, compareDistributions, eqMatchup, summarize, volumeTrend, wilson } from './shortStackAnalysis'
-import type { EncounterFilters } from './shortStackAnalysis'
+import { applyEncounterFilters, classify, compareDistributions, eqMatchup, summarize, volumeTrend, wilson } from './shortStackStats'
+import type { EncounterFilters } from './shortStackStats'
 
 const row = (changes: Partial<ShortStackEncounter> = {}): ShortStackEncounter => ({
   hand_id: 'H', tournament_id: 'T', timestamp: '2026-01-01T10:00:00Z', villain: 'V', position: 'BB',
