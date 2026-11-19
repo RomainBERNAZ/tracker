@@ -261,7 +261,9 @@ mod tests {
                 PRIMARY KEY (hand_id, tag),
                 FOREIGN KEY (hand_id) REFERENCES hand_reviews(hand_id) ON DELETE CASCADE
             );
-            CREATE TABLE coach_goal (id INTEGER PRIMARY KEY, goal TEXT NOT NULL);
+            CREATE TABLE coach_goal (
+                id INTEGER PRIMARY KEY, goal TEXT NOT NULL, updated_at TEXT NOT NULL DEFAULT 'now'
+            );
             INSERT INTO hands VALUES ('H1', 'T1', '2026-01-01T00:00:00Z', 1, 20, 3);
             INSERT INTO hand_players VALUES ('H1', 1, -40, -20);
             INSERT INTO hole_cards VALUES ('H1', 'As', 'Kd');
