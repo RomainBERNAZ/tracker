@@ -1,5 +1,5 @@
-import { useEffect, useMemo, useState, memo } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useEffect, useMemo, useState, memo, type FormEvent } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import {
   PieChart,
   Pie,
@@ -12,12 +12,16 @@ import {
   CartesianGrid,
   ReferenceLine,
 } from 'recharts'
-import { api, CoachBlunderSpot, CoachFormatStats, CoachStatsSnapshot, HandChipPoint, TournamentRow } from '../api'
+import { api } from '../api'
+import type {
+  CoachBlunderSpot, CoachFormatStats, CoachStatsSnapshot, HandChipPoint, HandReviewEntry, ShortStackSnapshot,
+  StackStatsSnapshot, TournamentRow,
+} from '../api'
 import { CumulativeChart } from '../components/CumulativeChart'
 import { filterChipHands, summarizeChips } from './summaryChips'
 import { TournamentFilters } from '../components/TournamentFilters'
 import { HandFormatFilter, HeroStackFilter } from './StackHandFilters'
-import { toggleStackBucket } from './stackAnalysis'
+import { STACK_BUCKETS, stackDiagnostics, toggleStackBucket } from './stackAnalysis'
 import type { StackFormat } from './stackAnalysis'
 import Variance from './Variance'
 import SummaryStacks from './SummaryStacks'
@@ -25,6 +29,9 @@ import SummaryAllIns from './SummaryAllIns'
 import { createReviewState } from '../reviewState'
 import { WINAMAX_2EUR_MULTIPLIER_MODEL } from './expressoModel'
 import { DEFAULT_FILTER, applyTournamentRange, calendarDayRange, computeFilteredStats, endOfDay, formatDateInput, handsForTournaments, parseDateInput, periodToRange, tournamentBuyIn } from './tournamentFilters'
+import { combineCounts } from './hittingBoardStats'
+import type { TournamentFlops } from './hittingBoardStats'
+import { summarizeAllInRunout } from './coachAnalysis'
 
 const useSummaryFilter = createReviewState(() => DEFAULT_FILTER)
 const useSummaryTab = createReviewState<'summary' | 'chips' | 'stacks' | 'allins' | 'variance' | 'coach'>(() => 'summary')
@@ -36,17 +43,6 @@ const useCoachSeverity = createReviewState<'all' | 'bad' | 'critical'>(() => 'al
 function fmtEur(n: number) {
   const sign = n >= 0 ? '+' : ''
   return `${sign}${n.toFixed(2)}€`
-}
-
-function clamp(n: number, min: number, max: number) {
-  return Math.min(max, Math.max(min, n))
-}
-
-function stddev(values: number[]): number {
-  if (values.length < 2) return 0
-  const mean = values.reduce((acc, v) => acc + v, 0) / values.length
-  const variance = values.reduce((acc, v) => acc + Math.pow(v - mean, 2), 0) / (values.length - 1)
-  return Math.sqrt(variance)
 }
 
 type FilteredStats = ReturnType<typeof computeFilteredStats>
@@ -148,56 +144,14 @@ interface PositionsPieProps {
 }
 
 interface CoachReview {
-  score: number
-  grade: 'A' | 'B' | 'C' | 'D' | 'E'
-  title: string
-  varianceLabel: string
-  varianceColor: string
-  confidenceLabel: string
-  confidence: number
-  evRoiPct: number
   realRoiPct: number
-  runDiffEur: number
-  luckZ: number | null
   allinSamples: number
-  setupUnfavorable: number
-  setupFavorable: number
-  topRangePressure: number
-  notes: string[]
-  explanation: string[]
-}
-
-function gradeFromScore(score: number): CoachReview['grade'] {
-  if (score >= 82) return 'A'
-  if (score >= 68) return 'B'
-  if (score >= 54) return 'C'
-  if (score >= 40) return 'D'
-  return 'E'
-}
-
-function varianceTone(luckZ: number | null): { label: string; color: string } {
-  if (luckZ != null && luckZ <= -1) {
-    return { label: 'Variance défavorable', color: '#ef4444' }
-  }
-  if (luckZ != null && luckZ >= 1) {
-    return { label: 'Variance favorable', color: '#10b981' }
-  }
-  return { label: 'Variance standard', color: 'var(--text-dim)' }
-}
-
-function confidenceLabelFrom(confidence: number): string {
-  if (confidence >= 0.85) return 'élevée'
-  if (confidence >= 0.5) return 'moyenne'
-  return 'faible'
-}
-
-function varianceNote(luckZ: number | null, runDiffEur: number): string {
-  const diffSign = runDiffEur >= 0 ? '+' : ''
-  if (luckZ == null) {
-    return `Variance: échantillon encore trop faible (${diffSign}${runDiffEur.toFixed(2)}€ vs EV).`
-  }
-  const zSign = luckZ >= 0 ? '+' : ''
-  return `Variance: ${zSign}${luckZ.toFixed(2)}σ (${diffSign}${runDiffEur.toFixed(2)}€ vs EV).`
+  allinMissing: number
+  realizedChips: number | null
+  expectedChips: number | null
+  deltaChips: number | null
+  bbSamples: number
+  deltaBb: number | null
 }
 
 function buildCoachReview(
@@ -205,81 +159,20 @@ function buildCoachReview(
   tournaments: TournamentRow[],
   hands: HandChipPoint[],
 ): CoachReview | null {
-  const n = stats.totalTournaments
-  if (n === 0) return null
-
+  if (stats.totalTournaments === 0) return null
   const totalBuyIn = tournaments.reduce((sum, t) => sum + tournamentBuyIn(t), 0)
-  const evRoiPct = totalBuyIn > 0 ? (stats.netEvEurTotal / totalBuyIn) * 100 : 0
   const realRoiPct = totalBuyIn > 0 ? (stats.totalNetEur / totalBuyIn) * 100 : 0
-  const runDiffEur = stats.totalNetEur - stats.netEvEurTotal
-
-  const luck = tournaments.every((t) => tournamentBuyIn(t) === BUY_IN)
-    ? computeLuck(stats.totalNetEur, stats.netEvEurTotal, n)
-    : null
-  const luckZ = luck?.zScore ?? null
-
-  const allinHands = hands.filter((h) => h.net_ev !== null)
-  const allinSamples = allinHands.length
-  const allinDeltas = allinHands.map((h) => h.realized_cev - (h.net_ev ?? h.realized_cev))
-  const showdownDeltas = allinHands.filter((h) => h.has_showdown).map((h) => h.realized_cev - (h.net_ev ?? h.realized_cev))
-
-  // Heuristic proxies for setup-like situations; thresholds are intentionally conservative.
-  const setupUnfavorable = allinDeltas.filter((d) => d <= -120).length
-  const setupFavorable = allinDeltas.filter((d) => d >= 120).length
-  const topRangePressure = showdownDeltas.filter((d) => d <= -180).length
-
-  const perTournamentNetEv = tournaments.map((t) => t.hero_net_ev_eur_sum)
-  const evStd = stddev(perTournamentNetEv)
-  const consistency = clamp(1 - evStd / 4, 0, 1)
-  const confidence = clamp(n / 40, 0.2, 1)
-
-  const setupBalance = setupFavorable - setupUnfavorable
-  const setupScore = allinSamples > 0 ? clamp(setupBalance / Math.max(8, allinSamples) * 10, -6, 6) : 0
-
-  const rawScore = 50 + (evRoiPct * 0.65) + (consistency * 12) + setupScore
-  const score = Math.round(clamp(rawScore, 0, 100))
-  const grade = gradeFromScore(score)
-  const { label: varianceLabel, color: varianceColor } = varianceTone(luckZ)
-  const confidenceLabel = confidenceLabelFrom(confidence)
-
-  let title = 'Session correcte'
-  if (score >= 75) title = 'Session solide'
-  else if (score <= 45) title = 'Session fragile'
-
-  const notes: string[] = [
-    `Qualité EV: ${evRoiPct >= 0 ? '+' : ''}${evRoiPct.toFixed(1)}% de ROI all-in EV sur ${n} tournois.`,
-    varianceNote(luckZ, runDiffEur),
-    `Setups (proxy): ${setupUnfavorable} défavorables vs ${setupFavorable} favorables sur ${allinSamples} spots all-in.`,
-  ]
-
-  if (topRangePressure > 0) {
-    notes.push(`Top range adverse probable (proxy showdown): ${topRangePressure} spot(s) marqué(s).`)
-  }
-
-  const explanation = [
-    'La note regarde surtout le ROI EV all-in, la stabilité EV par tournoi et le balance setups favorables/défavorables.',
-    'Le résultat réel n améliore pas directement la note: il sert surtout à lire la variance, pas la qualité de jeu.',
-    'La confiance est affichée séparément et ne rabaisse plus mécaniquement la note des sessions courtes.',
-  ]
+  const allIn = summarizeAllInRunout(hands)
 
   return {
-    score,
-    grade,
-    title,
-    varianceLabel,
-    varianceColor,
-    confidenceLabel,
-    confidence,
-    evRoiPct,
     realRoiPct,
-    runDiffEur,
-    luckZ,
-    allinSamples,
-    setupUnfavorable,
-    setupFavorable,
-    topRangePressure,
-    notes,
-    explanation,
+    allinSamples: allIn.comparableCount,
+    allinMissing: allIn.missingCount,
+    realizedChips: allIn.actualChips,
+    expectedChips: allIn.expectedChips,
+    deltaChips: allIn.deltaChips,
+    bbSamples: allIn.bbCount,
+    deltaBb: allIn.deltaBb,
   }
 }
 
@@ -322,81 +215,63 @@ const LuckIndicator = memo(({ net, ev, n }: { readonly net: number; readonly ev:
 
 const CoachReviewCard = memo(({
   review,
+  stats,
 }: {
   readonly review: CoachReview | null
+  readonly stats: FilteredStats
 }) => {
   if (!review) return null
 
+  const chips = (value: number | null) => value == null ? '—' :
+    `${value > 0 ? '+' : ''}${value.toLocaleString('fr-FR', { maximumFractionDigits: 0 })}`
+  const bb = (value: number | null) => value == null ? '—' :
+    `${value > 0 ? '+' : ''}${value.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
+
   return (
-    <div className="summary-card" style={{ marginBottom: 16 }}>
-      <div className="summary-card-header" style={{ marginBottom: 12 }}>
-        <h3>Coach session (V1)</h3>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-          <span style={{
-            borderRadius: 999,
-            padding: '4px 10px',
-            background: 'rgba(255,255,255,0.06)',
-            border: '1px solid rgba(255,255,255,0.12)',
-            fontSize: 12,
-            color: review.varianceColor,
-            fontWeight: 700,
-          }}>
-            {review.varianceLabel}
-          </span>
-          <span style={{
-            borderRadius: 999,
-            padding: '4px 10px',
-            background: 'rgba(255,255,255,0.06)',
-            border: '1px solid rgba(255,255,255,0.12)',
-            fontSize: 12,
-            color: 'var(--text-dim)',
-          }}>
-            Confiance {review.confidenceLabel}
-          </span>
+    <section className="summary-card coach-overview">
+      <div className="summary-card-header">
+        <div>
+          <h3>Bilan factuel de la période</h3>
+          <p className="stack-method">Pas de note globale : les résultats ne suffisent pas à juger la qualité des décisions.</p>
         </div>
       </div>
-
-      <div className="stats-bar" style={{ marginBottom: 12 }}>
-        <div className="stat-card">
-          <div className="label">Note session</div>
-          <div className="value">{review.score}/100 ({review.grade})</div>
-        </div>
-        <div className="stat-card">
-          <div className="label">Verdict</div>
-          <div className="value">{review.title}</div>
-        </div>
-        <div className="stat-card">
-          <div className="label">ROI réel</div>
+      <div className="stats-bar">
+        <div className="stat-card"><div className="label">Tournois · mains</div>
+          <div className="value">{stats.totalTournaments} · {stats.totalHands}</div></div>
+        <div className="stat-card"><div className="label">Résultat net (€)</div>
+          <div className={`value ${stats.totalNetEur >= 0 ? 'positive' : 'negative'}`}>{fmtEur(stats.totalNetEur)}</div></div>
+        <div className="stat-card"><div className="label">Net EV all-in (€)</div>
+          <div className={`value ${review.allinSamples === 0 ? 'neutral' : stats.netEvEurTotal >= 0 ? 'positive' : 'negative'}`}>
+            {review.allinSamples === 0 ? '—' : fmtEur(stats.netEvEurTotal)}
+          </div><small className="stack-sample">{review.allinSamples} mains avec EV</small></div>
+        <div className="stat-card"><div className="label">cEV moyen / tournoi</div>
+          <div className={`value ${stats.avgCev >= 0 ? 'positive' : 'negative'}`}>
+            {stats.avgCev > 0 ? '+' : ''}{stats.avgCev.toLocaleString('fr-FR', { maximumFractionDigits: 1 })} jetons
+          </div></div>
+        <div className="stat-card"><div className="label">ROI réel</div>
           <div className={`value ${review.realRoiPct >= 0 ? 'positive' : 'negative'}`}>
-            {review.realRoiPct >= 0 ? '+' : ''}{review.realRoiPct.toFixed(1)}%
-          </div>
-        </div>
-        <div className="stat-card">
-          <div className="label">ROI EV all-in</div>
-          <div className={`value ${review.evRoiPct >= 0 ? 'positive' : 'negative'}`}>
-            {review.evRoiPct >= 0 ? '+' : ''}{review.evRoiPct.toFixed(1)}%
-          </div>
-        </div>
+            {review.realRoiPct >= 0 ? '+' : ''}{review.realRoiPct.toFixed(1)} %
+          </div></div>
       </div>
-
-      <div style={{ display: 'grid', gap: 6, fontSize: 13, color: 'var(--text-dim)' }}>
-        {review.notes.map((note) => (
-          <div key={note}>• {note}</div>
-        ))}
-      </div>
-
-      <div style={{ marginTop: 12, display: 'grid', gap: 6, fontSize: 12, color: 'var(--text-dim)' }}>
-        {review.explanation.map((line) => (
-          <div key={line}>• {line}</div>
-        ))}
-      </div>
-    </div>
+      <section className="coach-runout" aria-label="Résultats réels et attendus sur les mains avec EV">
+        <div><span>Réalisé sur les mêmes mains</span><strong>{chips(review.realizedChips)} jetons</strong></div>
+        <div><span>Net EV calculée</span><strong>{chips(review.expectedChips)} jetons</strong></div>
+        <div><span>Écart réalisé − EV</span><strong>{chips(review.deltaChips)} jetons</strong></div>
+        <div><span>Écart normalisé ({review.bbSamples} mains)</span><strong>{bb(review.deltaBb)} BB</strong></div>
+      </section>
+      <p className="variance-description">
+        Écart calculé sur {review.allinSamples} mains ayant une EV disponible
+        {review.allinMissing > 0 ? ` (${review.allinMissing} autres mains non comparables)` : ''}.
+        {' '}En BB, seules les {review.bbSamples} mains avec une grosse blinde valide sont retenues.
+        Ce résultat décrit la réalisation des all-ins, pas l’ensemble des décisions ni un « run good/bad » statistiquement validé.
+      </p>
+    </section>
   )
 })
 
-function fmtPct(value: number, denominator?: number) {
-  if (denominator !== undefined && denominator <= 0) return '—'
-  return `${value.toFixed(1)}%`
+function fmtPct(count: number, denominator: number) {
+  if (denominator <= 0) return '—'
+  return `${(count * 100 / denominator).toLocaleString('fr-FR', { maximumFractionDigits: 1 })} %`
 }
 
 const CoachPreflopStatsCard = memo(({
@@ -406,107 +281,63 @@ const CoachPreflopStatsCard = memo(({
   readonly title: string
   readonly stats: CoachFormatStats
 }) => {
+  const metrics = [
+    { label: 'VPIP', count: stats.vpip_count, opportunities: stats.hands },
+    { label: 'PFR', count: stats.pfr_count, opportunities: stats.hands },
+    { label: '3-bet', count: stats.three_bet_count, opportunities: stats.three_bet_opportunities },
+    { label: 'Limp', count: stats.limp_count, opportunities: stats.hands },
+    { label: 'Fold vs 3-bet', count: stats.fold_to_three_bet_count, opportunities: stats.fold_to_three_bet_opportunities },
+  ]
+
   return (
     <div className="summary-card">
       <div className="summary-card-header" style={{ marginBottom: 12 }}>
         <h3>{title}</h3>
         <span style={{ color: 'var(--text-dim)', fontSize: 12 }}>{stats.hands} mains</span>
       </div>
-
-      <div className="stats-bar" style={{ marginBottom: 12 }}>
-        <div className="stat-card">
-          <div className="label">VPIP</div>
-          <div className="value">{fmtPct(stats.vpip_pct, stats.hands)}</div>
-        </div>
-        <div className="stat-card">
-          <div className="label">PFR</div>
-          <div className="value">{fmtPct(stats.pfr_pct, stats.hands)}</div>
-        </div>
-        <div className="stat-card">
-          <div className="label">3BET</div>
-          <div className="value">{fmtPct(stats.three_bet_pct, stats.three_bet_opportunities)}</div>
-        </div>
-        <div className="stat-card">
-          <div className="label">Limp</div>
-          <div className="value">{fmtPct(stats.limp_pct, stats.hands)}</div>
-        </div>
-        <div className="stat-card">
-          <div className="label">Fold vs 3BET</div>
-          <div className="value">{fmtPct(stats.fold_to_three_bet_pct, stats.fold_to_three_bet_opportunities)}</div>
-        </div>
-      </div>
-
-      <div style={{ display: 'grid', gap: 6, fontSize: 13, color: 'var(--text-dim)' }}>
-        {stats.feedback.map((line) => (
-          <div key={line}>• {line}</div>
+      <div className="coach-rate-grid">
+        {metrics.map((metric) => (
+          <div className="coach-rate-item" key={metric.label}>
+            <span>{metric.label}</span>
+            <strong>{fmtPct(metric.count, metric.opportunities)}</strong>
+            <small>{metric.count} / {metric.opportunities} occasions</small>
+          </div>
         ))}
       </div>
+
+      <p className="stack-method">Fréquences descriptives : sans position, stack effectif, sizing et range adverse, elles ne définissent pas une stratégie optimale.</p>
     </div>
   )
 })
 
-function buildPriorityAlerts(snapshot: CoachStatsSnapshot | null): string[] {
-  if (!snapshot) return []
-
-  const candidates: Array<{ score: number; text: string }> = []
-  const pushIf = (condition: boolean, score: number, text: string) => {
-    if (condition) candidates.push({ score, text })
-  }
-
-  pushIf(
-    snapshot.heads_up.hands >= 20 && snapshot.heads_up.vpip_pct < 55,
-    95,
-    'Priorité: trop passif en HU, ton VPIP est probablement trop bas.',
-  )
-  pushIf(
-    snapshot.heads_up.hands >= 20 && snapshot.heads_up.vpip_count > 0 && (snapshot.heads_up.pfr_count / snapshot.heads_up.vpip_count) < 0.65,
-    88,
-    'Priorité: en HU tu call/limp plus que tu n’agresses.',
-  )
-  pushIf(
-    snapshot.late_phase.hands >= 20 && snapshot.late_phase.pfr_pct < 20,
-    84,
-    'Priorité: late game assez passif, tu prends peu l’initiative préflop.',
-  )
-  pushIf(
-    snapshot.mid_phase.hands >= 20 && snapshot.mid_phase.three_bet_opportunities >= 5 && snapshot.mid_phase.three_bet_pct < 5,
-    74,
-    'Point de vigilance: en mid game tu 3-bet très peu.',
-  )
-  pushIf(
-    snapshot.early_phase.hands >= 20 && snapshot.early_phase.limp_pct > 10,
-    70,
-    'Point de vigilance: présence notable de limps en early game.',
-  )
-  pushIf(
-    snapshot.late_phase.hands >= 20 && snapshot.late_phase.fold_to_three_bet_opportunities >= 4 && snapshot.late_phase.fold_to_three_bet_pct > 65,
-    78,
-    'Point de vigilance: en late tu folds beaucoup face aux 3-bets.',
-  )
-
-  const sortedCandidates = [...candidates].sort((a, b) => b.score - a.score)
-
-  return sortedCandidates
-    .slice(0, 3)
-    .map((item) => item.text)
-}
-
 function useCoachData(
-  coachDateSelected: boolean,
+  enabled: boolean,
   coachDatesValid: boolean,
   fromMs: number | null,
   toMs: number | null,
   buyIns: readonly number[],
+  tournamentIds: readonly string[],
 ) {
   const [coachSnapshot, setCoachSnapshot] = useState<CoachStatsSnapshot | null>(null)
   const [coachBlunders, setCoachBlunders] = useState<CoachBlunderSpot[]>([])
+  const [stackSnapshot, setStackSnapshot] = useState<StackStatsSnapshot | null>(null)
+  const [shortStackSnapshot, setShortStackSnapshot] = useState<ShortStackSnapshot | null>(null)
+  const [flopSnapshot, setFlopSnapshot] = useState<TournamentFlops[]>([])
+  const [reviewEntries, setReviewEntries] = useState<Awaited<ReturnType<typeof api.getHandReviews>>>([])
   const [coachLoading, setCoachLoading] = useState(false)
+  const [coachError, setCoachError] = useState<string | null>(null)
+  const [attempt, setAttempt] = useState(0)
 
   useEffect(() => {
-    if (!coachDateSelected || !coachDatesValid) {
+    if (!enabled || !coachDatesValid) {
       setCoachSnapshot(null)
       setCoachBlunders([])
+      setStackSnapshot(null)
+      setShortStackSnapshot(null)
+      setFlopSnapshot([])
+      setReviewEntries([])
       setCoachLoading(false)
+      setCoachError(null)
       return
     }
 
@@ -515,20 +346,34 @@ function useCoachData(
 
     let cancelled = false
     setCoachLoading(true)
+    setCoachError(null)
     Promise.all([
       api.getCoachStats(fromTs, toTs, buyIns),
       api.getCoachBlunders(fromTs, toTs, 150, 'bad', buyIns),
+      api.getStackStats(tournamentIds),
+      api.getShortStackAnalysis(),
+      api.getHittingBoard(),
+      api.getHandReviews(),
     ])
-      .then(([snapshot, blunders]) => {
+      .then(([snapshot, blunders, stacks, shortStack, flops, reviews]) => {
         if (cancelled) return
         setCoachSnapshot(snapshot)
         setCoachBlunders(blunders)
+        setStackSnapshot(stacks)
+        setShortStackSnapshot(shortStack)
+        setFlopSnapshot(flops)
+        setReviewEntries(reviews)
       })
       .catch((err) => {
         console.error(err)
         if (cancelled) return
         setCoachSnapshot(null)
         setCoachBlunders([])
+        setStackSnapshot(null)
+        setShortStackSnapshot(null)
+        setFlopSnapshot([])
+        setReviewEntries([])
+        setCoachError(err instanceof Error ? err.message : String(err))
       })
       .finally(() => {
         if (!cancelled) setCoachLoading(false)
@@ -537,25 +382,213 @@ function useCoachData(
     return () => {
       cancelled = true
     }
-  }, [coachDateSelected, coachDatesValid, fromMs, toMs, buyIns])
+  }, [enabled, coachDatesValid, fromMs, toMs, buyIns, tournamentIds, attempt])
 
-  return { coachSnapshot, coachBlunders, coachLoading }
+  return {
+    coachSnapshot, coachBlunders, stackSnapshot, shortStackSnapshot, flopSnapshot,
+    reviewEntries, coachLoading, coachError, retry: () => setAttempt((value) => value + 1),
+  }
 }
 
-const CoachAlertsCard = memo(({ alerts }: { readonly alerts: string[] }) => {
-  if (alerts.length === 0) return null
+function coachRate(count: number, opportunities: number) {
+  return opportunities > 0
+    ? `${(count * 100 / opportunities).toLocaleString('fr-FR', { maximumFractionDigits: 1 })} % (${count}/${opportunities})`
+    : '—'
+}
+
+function stackStatus(outcome: ReturnType<typeof stackDiagnostics>[number]['outcome'], hasFindings: boolean) {
+  if (hasFindings) return 'Fréquence à vérifier'
+  if (outcome === 'limited') return 'Échantillon limité'
+  if (outcome === 'incomplete') return 'EV incomplète'
+  if (outcome === 'negative-ev') return 'EV négative'
+  if (outcome === 'below-ev') return 'Réel sous EV'
+  return 'Pas de signal'
+}
+
+const CoachStackStatsCard = memo(({ snapshot }: { readonly snapshot: StackStatsSnapshot }) => {
+  const diagnostics = useMemo(() => stackDiagnostics(snapshot.groups, 'all', []), [snapshot])
+  const signals = diagnostics.filter((diagnostic) =>
+    diagnostic.findings.length > 0 || diagnostic.outcome === 'negative-ev',
+  )
 
   return (
-    <div className="summary-card" style={{ marginBottom: 16 }}>
-      <div className="summary-card-header" style={{ marginBottom: 12 }}>
-        <h3>Alertes priorité session</h3>
+    <section className="summary-card coach-stack-card">
+      <h3>Jeu par profondeur et format</h3>
+      <p className="variance-description">
+        Fréquences et EV normalisées par stack, séparées entre heads-up et 3 joueurs.
+        Les taux sont des observations, pas des ranges cibles.
+      </p>
+      {snapshot.excluded_hands > 0 && <p className="variance-warning">
+        {snapshot.excluded_hands} mains exclues : format, stack ou grosse blinde invalide.
+      </p>}
+      <div className="stack-table-wrap" role="region" aria-label="Statistiques coach par stack" tabIndex={0}>
+        <table className="stack-table coach-stack-table">
+          <thead><tr>
+            <th>Format · stack</th><th>Mains</th><th>EV (BB / 100 mains)</th><th>VPIP</th><th>PFR</th>
+            <th>Limp</th><th>3-bet</th><th>Fold au 3-bet</th><th>Lecture</th>
+          </tr></thead>
+          <tbody>{diagnostics.map(({ playerCount, row, outcome, findings }) => {
+            const evPer100 = row.hands > 0 && row.missingEvHands === 0
+              ? row.bb.ev * 100 / row.hands
+              : null
+            return <tr key={`${playerCount}-${row.bucket}`}>
+              <th>{playerCount === 2 ? 'HU' : '3 joueurs'} · {STACK_BUCKETS[row.bucket]}</th>
+              <td>{row.hands}<small className="stack-sample">
+                Actions préflop {row.preflopHands} · EV absente {row.missingEvHands}
+              </small></td>
+              <td className={evPer100 == null || evPer100 === 0 ? '' : evPer100 > 0 ? 'positive' : 'negative'}>
+                {evPer100 == null ? row.hands === 0 ? '—' : 'Incomplète' :
+                  `${evPer100 > 0 ? '+' : ''}${evPer100.toLocaleString('fr-FR', { maximumFractionDigits: 2 })}`}
+              </td>
+              <td>{coachRate(row.vpip, row.preflopHands)}</td>
+              <td>{coachRate(row.pfr, row.preflopHands)}</td>
+              <td>{coachRate(row.limp, row.preflopHands)}</td>
+              <td>{coachRate(row.threeBet, row.threeBetOpportunities)}</td>
+              <td>{coachRate(row.foldToThreeBet, row.foldToThreeBetOpportunities)}</td>
+              <td>{stackStatus(outcome, findings.length > 0)}</td>
+            </tr>
+          })}</tbody>
+        </table>
       </div>
-      <div style={{ display: 'grid', gap: 8, fontSize: 13, color: 'var(--text-dim)' }}>
-        {alerts.map((alert) => (
-          <div key={alert}>• {alert}</div>
+      <div className="coach-signals">
+        <h4>Pistes à vérifier</h4>
+        {signals.length === 0 ? <p>
+          Aucun signal ne franchit les repères exploratoires sur un échantillon suffisant.
+          Cela ne prouve ni l’absence d’erreur ni la validité de ta stratégie.
+        </p> : signals.map(({ playerCount, row, outcome, findings, focus }) => (
+          <article key={`${playerCount}-${row.bucket}`}>
+            <h5>{playerCount === 2 ? 'Heads-up' : '3 joueurs'} · {STACK_BUCKETS[row.bucket]} · {row.hands} mains</h5>
+            {outcome === 'negative-ev' && <p>
+              Résultat EV négatif dans au moins une unité : {row.chips.ev.toLocaleString('fr-FR', { maximumFractionDigits: 0 })} jetons ;
+              {' '}{row.bb.ev.toLocaleString('fr-FR', { maximumFractionDigits: 2 })} BB au total
+              ({(row.bb.ev * 100 / row.hands).toLocaleString('fr-FR', { maximumFractionDigits: 2 })} BB / 100 mains).
+              C’est une priorité de review, pas une preuve de leak.
+            </p>}
+            <p>{focus}</p>
+            {findings.map((finding) => <div key={finding.id}>
+              <strong>{finding.title}</strong>
+              <p>{finding.evidence}</p>
+              <p>{finding.action}</p>
+            </div>)}
+          </article>
         ))}
+        <p className="stack-diagnostic-limits">
+          Les pistes de fréquence demandent au moins 200 mains par segment et les alertes de fold au 3-bet 30 décisions.
+          Ces seuils ne sont pas des intervalles de confiance ; revois les mains, positions, sizings et stacks effectifs avant toute conclusion.
+        </p>
       </div>
-    </div>
+    </section>
+  )
+})
+
+const CoachEvidenceCard = memo(({
+  tournaments,
+  shortStack,
+  flops,
+}: {
+  readonly tournaments: readonly TournamentRow[]
+  readonly shortStack: ShortStackSnapshot
+  readonly flops: readonly TournamentFlops[]
+}) => {
+  const selectedIds = useMemo(() => new Set(tournaments.map((tournament) => tournament.id)), [tournaments])
+  const shortStackRows = useMemo(
+    () => shortStack.encounters.filter((encounter) => selectedIds.has(encounter.tournament_id)),
+    [shortStack, selectedIds],
+  )
+  const flopCounts = useMemo(
+    () => combineCounts(flops.filter((row) => selectedIds.has(row.tournament_id))
+      .flatMap((tournament) => tournament.groups.map((group) => group.counts))),
+    [flops, selectedIds],
+  )
+  const revealed = shortStackRows.filter((row) => row.villain_cards != null).length
+  const connectedRate = flopCounts.flops > 0 ? flopCounts.connected * 100 / flopCounts.flops : null
+
+  return (
+    <section className="summary-card coach-evidence-card">
+      <h3>Autres données de review</h3>
+      <p className="variance-description">
+        Ces mesures orientent vers les analyses détaillées ; elles ne qualifient pas une décision isolée.
+      </p>
+      <div className="stats-bar">
+        <div className="stat-card"><div className="label">Interactions short-stack</div>
+          <div className="value">{shortStackRows.length}</div>
+          <small className="stack-sample">{revealed} avec cartes adverses révélées</small></div>
+        <div className="stat-card"><div className="label">Flops analysables</div>
+          <div className="value">{flopCounts.flops}</div>
+          <small className="stack-sample">
+            {connectedRate == null ? 'Connexion indisponible' : `${flopCounts.connected} connectés · ${connectedRate.toLocaleString('fr-FR', { maximumFractionDigits: 1 })} %`}
+          </small></div>
+      </div>
+      <div className="coach-analysis-links">
+        <Link to="/advanced/short-stack">Étudier le short-stack</Link>
+        <Link to="/advanced/flops">Étudier les flops</Link>
+        <Link to="/advanced/confrontations">Comparer les confrontations</Link>
+      </div>
+    </section>
+  )
+})
+
+const CoachGoalCard = memo(function CoachGoalCard() {
+  const [goal, setGoal] = useState('')
+  const [draft, setDraft] = useState('')
+  const [loading, setLoading] = useState(true)
+  const [saving, setSaving] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const [notice, setNotice] = useState('')
+
+  useEffect(() => {
+    let cancelled = false
+    api.getCoachGoal()
+      .then((value) => {
+        if (cancelled) return
+        setGoal(value)
+        setDraft(value)
+      })
+      .catch((cause: unknown) => {
+        console.error(cause)
+        if (!cancelled) setError(cause instanceof Error ? cause.message : String(cause))
+      })
+      .finally(() => { if (!cancelled) setLoading(false) })
+    return () => { cancelled = true }
+  }, [])
+
+  async function save(event: FormEvent) {
+    event.preventDefault()
+    setSaving(true)
+    setError(null)
+    setNotice('')
+    try {
+      const saved = await api.saveCoachGoal(draft)
+      setGoal(saved)
+      setDraft(saved)
+      setNotice('Objectif enregistré.')
+    } catch (cause) {
+      console.error(cause)
+      setError(cause instanceof Error ? cause.message : String(cause))
+    } finally {
+      setSaving(false)
+    }
+  }
+
+  return (
+    <form className="summary-card coach-goal-card" onSubmit={(event) => { void save(event) }}>
+      <h3>Objectif de travail</h3>
+      <p className="variance-description">Garde un axe concret pour les prochaines sessions, puis retrouve les mains correspondantes grâce aux tags.</p>
+      <label>
+        Mon objectif
+        <textarea maxLength={240} rows={2} value={draft} disabled={loading || saving}
+          onChange={(event) => setDraft(event.target.value)}
+          placeholder="Ex. revoir mes défenses de BB entre 10 et 15 BB" />
+      </label>
+      <div className="hand-review-footer">
+        <button className="btn-primary" type="submit" disabled={loading || saving || draft === goal}>
+          {saving ? 'Enregistrement…' : 'Enregistrer l’objectif'}
+        </button>
+        <span className="stack-method">{draft.length}/240 caractères</span>
+        {notice && <span className="positive" role="status">{notice}</span>}
+      </div>
+      {error && <p className="negative" role="alert">{error}</p>}
+    </form>
   )
 })
 
@@ -582,11 +615,12 @@ const CoachBlundersCard = memo(({
     return (
       <div className="summary-card" style={{ marginBottom: 16 }}>
         <div className="summary-card-header" style={{ marginBottom: 8 }}>
-          <h3>Blunders call/push (V1)</h3>
+          <h3>Spots call/push à vérifier</h3>
         </div>
         <p style={{ color: 'var(--text-dim)', fontSize: 13 }}>
-          Aucun gros raté call/push détecté sur la période.
+          Aucun spot ne correspond aux filtres de détection. Cela ne garantit pas l’absence d’erreur.
         </p>
+        <p className="stack-method">Une EV négative signalée n’est pas à elle seule une preuve de mauvaise décision : vérifie le contexte dans le replay.</p>
       </div>
     )
   }
@@ -598,8 +632,9 @@ const CoachBlundersCard = memo(({
   return (
     <div className="summary-card" style={{ marginBottom: 16 }}>
       <div className="summary-card-header" style={{ marginBottom: 12 }}>
-        <h3>Blunders call/push (V1)</h3>
+        <h3>Spots call/push à vérifier</h3>
       </div>
+      <p className="stack-method">Repérage heuristique limité aux calls/pushes préflop détectés comme EV négative. Chaque spot doit être revu dans son contexte, ce n’est pas un verdict automatique.</p>
 
       <div className="stats-bar" style={{ marginBottom: 12 }}>
         <div className="stat-card">
@@ -704,38 +739,88 @@ const CoachBlundersCard = memo(({
   )
 })
 
+const CoachReviewQueueCard = memo(({
+  reviews,
+  tournamentIds,
+}: {
+  readonly reviews: readonly HandReviewEntry[]
+  readonly tournamentIds: readonly string[]
+}) => {
+  const selectedIds = useMemo(() => new Set(tournamentIds), [tournamentIds])
+  const selectedReviews = useMemo(
+    () => reviews.filter((review) => selectedIds.has(review.tournament_id)),
+    [reviews, selectedIds],
+  )
+  const pending = selectedReviews.filter((review) => !review.reviewed).length
+  const favorites = selectedReviews.filter((review) => review.favorite).length
+
+  return (
+    <section className="summary-card coach-review-queue">
+      <div className="summary-card-header">
+        <div>
+          <h3>Ta file de review</h3>
+          <p className="stack-method">Dans les tournois de la période sélectionnée</p>
+        </div>
+        <Link className="filter-reset" to="/review">Ouvrir la file</Link>
+      </div>
+      <div className="coach-review-counts">
+        <span><strong>{pending}</strong> à revoir</span>
+        <span><strong>{selectedReviews.length}</strong> annotées</span>
+        <span><strong>{favorites}</strong> favorites</span>
+      </div>
+    </section>
+  )
+})
+
 const CoachTabPanel = memo(({
   coachFrom,
   coachTo,
   setCoachFrom,
   setCoachTo,
-  coachDateSelected,
   coachDatesValid,
   coachLoading,
+  coachError,
   coachSnapshot,
   coachReview,
-  priorityAlerts,
+  coachStats,
+  coachTournaments,
+  stackSnapshot,
+  shortStackSnapshot,
+  flopSnapshot,
+  reviewEntries,
   coachBlunders,
+  onRetry,
   onOpenReplay,
 }: {
   readonly coachFrom: string
   readonly coachTo: string
   readonly setCoachFrom: (value: string) => void
   readonly setCoachTo: (value: string) => void
-  readonly coachDateSelected: boolean
   readonly coachDatesValid: boolean
   readonly coachLoading: boolean
+  readonly coachError: string | null
   readonly coachSnapshot: CoachStatsSnapshot | null
   readonly coachReview: CoachReview | null
-  readonly priorityAlerts: string[]
+  readonly coachStats: FilteredStats
+  readonly coachTournaments: readonly TournamentRow[]
+  readonly stackSnapshot: StackStatsSnapshot | null
+  readonly shortStackSnapshot: ShortStackSnapshot | null
+  readonly flopSnapshot: readonly TournamentFlops[]
+  readonly reviewEntries: readonly HandReviewEntry[]
   readonly coachBlunders: CoachBlunderSpot[]
+  readonly onRetry: () => void
   readonly onOpenReplay: (handId: string) => void
 }) => {
+  const tournamentIds = useMemo(() => coachTournaments.map((tournament) => tournament.id), [coachTournaments])
+
   return (
     <>
-      <div className="summary-card" style={{ marginBottom: 16 }}>
-        <div className="summary-card-header" style={{ marginBottom: 8 }}>
-          <h3>Filtre coach (dates)</h3>
+      <section className="summary-card coach-filter-card">
+        <div className="summary-card-header">
+          <div>
+            <h3>Période du Coach</h3>
+            <p className="stack-method">Les buy-ins suivent les filtres de Summary.</p>
+          </div>
         </div>
         <div className="period-pill-bar" role="group" aria-label="Raccourcis dates coach">
           {([['today', "Aujourd'hui"], ['yesterday', 'Hier']] as const).map(([period, label]) =>
@@ -762,44 +847,51 @@ const CoachTabPanel = memo(({
             aria-label="Date de fin coach"
           />
         </div>
-        <p style={{ color: 'var(--text-dim)', fontSize: 12, marginTop: 8 }}>
-          Vide = pas de limite. Ces dates sont independantes de la periode Summary. Le buy-in est commun.
+        <p className="stack-method">
+          Dates indépendantes de la période Summary. Laisse les deux champs vides pour travailler sur tout l’historique.
         </p>
-      </div>
+      </section>
 
-      {!coachDateSelected && (
-        <div className="summary-card">
-          <p style={{ color: 'var(--text-dim)', fontSize: 13 }}>
-            Selectionne au moins une date pour afficher le board coach.
-          </p>
+      <CoachGoalCard />
+
+      {!coachDatesValid && (
+        <div className="summary-card" role="alert">
+          <p className="negative">Renseigne des dates valides pour afficher les analyses.</p>
         </div>
       )}
 
-      {coachDateSelected && !coachDatesValid && (
-        <div className="summary-card">
-          <p style={{ color: 'var(--red)', fontSize: 13 }}>
-            Renseigne des dates valides au format JJ/MM/AAAA.
-          </p>
+      {coachDatesValid && coachLoading && (
+        <div className="summary-card" role="status">
+          <p>Chargement des données du Coach…</p>
         </div>
       )}
 
-      {coachDateSelected && coachDatesValid && coachLoading && (
-        <div className="summary-card">
-          <p style={{ color: 'var(--text-dim)', fontSize: 13 }}>Chargement du board coach…</p>
+      {coachError && coachDatesValid && !coachLoading && (
+        <div className="summary-card" role="alert">
+          <p className="negative">Impossible de charger les analyses du Coach : {coachError}</p>
+          <button type="button" className="filter-reset" onClick={onRetry}>Réessayer</button>
         </div>
       )}
 
-      {coachDateSelected && coachDatesValid && !coachLoading && coachSnapshot && (
+      {coachDatesValid && !coachLoading && coachSnapshot && (
         <>
-          <CoachAlertsCard alerts={priorityAlerts} />
+          {coachReview && <CoachReviewCard review={coachReview} stats={coachStats} />}
+          <CoachReviewQueueCard reviews={reviewEntries} tournamentIds={tournamentIds} />
           <CoachBlundersCard blunders={coachBlunders} onOpenReplay={onOpenReplay} />
-          <CoachReviewCard review={coachReview} />
           <div className="summary-grid">
             <CoachPreflopStatsCard title="Early · 3-way niveaux 1-3" stats={coachSnapshot.early_phase} />
             <CoachPreflopStatsCard title="Mid · 3-way niveaux 4-6" stats={coachSnapshot.mid_phase} />
             <CoachPreflopStatsCard title="Late · 3-way niveaux 7+" stats={coachSnapshot.late_phase} />
             <CoachPreflopStatsCard title="Heads-up" stats={coachSnapshot.heads_up} />
           </div>
+          {stackSnapshot && <CoachStackStatsCard snapshot={stackSnapshot} />}
+          {shortStackSnapshot && (
+            <CoachEvidenceCard
+              tournaments={coachTournaments}
+              shortStack={shortStackSnapshot}
+              flops={flopSnapshot}
+            />
+          )}
         </>
       )}
     </>
@@ -1152,18 +1244,9 @@ export default memo(function Summary() {
     return { fromMs, toMs }
   }, [coachFrom, coachTo])
 
-  const coachDateSelected = coachFrom.trim().length > 0 || coachTo.trim().length > 0
   const coachDatesValid =
     (coachFrom.trim().length === 0 || coachRange.fromMs != null) &&
     (coachTo.trim().length === 0 || coachRange.toMs != null)
-
-  const { coachSnapshot, coachBlunders, coachLoading } = useCoachData(
-    coachDateSelected,
-    coachDatesValid,
-    coachRange.fromMs,
-    coachRange.toMs,
-    filter.buyIns,
-  )
 
   const coachTournaments = useMemo(
     () => applyTournamentRange(tournaments, coachRange.fromMs, coachRange.toMs, filter.buyIns),
@@ -1173,6 +1256,23 @@ export default memo(function Summary() {
   const coachStats = useMemo(
     () => computeFilteredStats(coachTournaments),
     [coachTournaments],
+  )
+
+  const coachTournamentIds = useMemo(
+    () => coachTournaments.map((tournament) => tournament.id),
+    [coachTournaments],
+  )
+
+  const {
+    coachSnapshot, coachBlunders, stackSnapshot, shortStackSnapshot, flopSnapshot,
+    reviewEntries, coachLoading, coachError, retry: retryCoachData,
+  } = useCoachData(
+    activeTab === 'coach',
+    coachDatesValid,
+    coachRange.fromMs,
+    coachRange.toMs,
+    filter.buyIns,
+    coachTournamentIds,
   )
 
   const coachHands = useMemo(
@@ -1195,11 +1295,6 @@ export default memo(function Summary() {
   const coachReview = useMemo(
     () => buildCoachReview(coachStats, coachTournaments, coachHands),
     [coachStats, coachTournaments, coachHands],
-  )
-
-  const priorityAlerts = useMemo(
-    () => buildPriorityAlerts(coachSnapshot),
-    [coachSnapshot],
   )
 
   if (loading) return <p style={{ color: 'var(--text-dim)' }}>Chargement…</p>
@@ -1393,7 +1488,7 @@ export default memo(function Summary() {
         />
       )}
 
-      {activeTab === 'variance' && <Variance hands={filteredHands} tournaments={filteredTournaments} />}
+      {activeTab === 'variance' && <Variance hands={filteredHands} />}
       {activeTab === 'stacks' && <SummaryStacks tournaments={filteredTournaments} />}
       {activeTab === 'allins' && <SummaryAllIns tournaments={filteredTournaments} />}
 
@@ -1403,13 +1498,19 @@ export default memo(function Summary() {
           coachTo={coachTo}
           setCoachFrom={setCoachFrom}
           setCoachTo={setCoachTo}
-          coachDateSelected={coachDateSelected}
           coachDatesValid={coachDatesValid}
           coachLoading={coachLoading}
+          coachError={coachError}
           coachSnapshot={coachSnapshot}
           coachReview={coachReview}
-          priorityAlerts={priorityAlerts}
+          coachStats={coachStats}
+          coachTournaments={coachTournaments}
+          stackSnapshot={stackSnapshot}
+          shortStackSnapshot={shortStackSnapshot}
+          flopSnapshot={flopSnapshot}
+          reviewEntries={reviewEntries}
           coachBlunders={coachBlunders}
+          onRetry={retryCoachData}
           onOpenReplay={(handId) => navigate(`/hands/${handId}/replay`)}
         />
       )}

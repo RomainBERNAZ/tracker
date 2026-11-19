@@ -7,6 +7,10 @@ use hh_ingest::bankroll::{self, BankrollSettings, BankrollSnapshot, MovementKind
 use rusqlite::Connection;
 use session_read_model::{hitting_board, short_stack};
 use session_read_model::stacks::{get_stack_stats, StackStatsSnapshot};
+use session_read_model::hand_reviews::{
+	get_coach_goal, get_hand_review, list_hand_reviews, save_coach_goal, save_hand_review,
+	HandReview, HandReviewEntry,
+};
 use session_read_model::{
 	list_preflop_matchups, PreflopMatchup,
 	get_hand_detail, get_session_stats, get_chip_summary, get_chip_evolution, get_coach_stats, list_coach_spots, list_coach_blunders,
@@ -400,6 +404,53 @@ pub mod commands {
 	}
 
 	#[tauri::command]
+	pub async fn get_hand_review_cmd(
+		hand_id: String,
+		state: tauri::State<'_, AppState>,
+	) -> Result<Option<HandReview>, String> {
+		let conn = state.db.lock().map_err(|e| e.to_string())?;
+		get_hand_review(&conn, &hand_id).map_err(|e| e.to_string())
+	}
+
+	#[tauri::command]
+	pub async fn save_hand_review_cmd(
+		hand_id: String,
+		note: String,
+		tags: Vec<String>,
+		favorite: bool,
+		reviewed: bool,
+		state: tauri::State<'_, AppState>,
+	) -> Result<Option<HandReview>, String> {
+		let conn = state.db.lock().map_err(|e| e.to_string())?;
+		save_hand_review(&conn, &hand_id, &note, &tags, favorite, reviewed)
+	}
+
+	#[tauri::command]
+	pub async fn list_hand_reviews_cmd(
+		state: tauri::State<'_, AppState>,
+	) -> Result<Vec<HandReviewEntry>, String> {
+		let conn = state.db.lock().map_err(|e| e.to_string())?;
+		list_hand_reviews(&conn).map_err(|e| e.to_string())
+	}
+
+	#[tauri::command]
+	pub async fn get_coach_goal_cmd(
+		state: tauri::State<'_, AppState>,
+	) -> Result<String, String> {
+		let conn = state.db.lock().map_err(|e| e.to_string())?;
+		get_coach_goal(&conn).map_err(|e| e.to_string())
+	}
+
+	#[tauri::command]
+	pub async fn save_coach_goal_cmd(
+		goal: String,
+		state: tauri::State<'_, AppState>,
+	) -> Result<String, String> {
+		let conn = state.db.lock().map_err(|e| e.to_string())?;
+		save_coach_goal(&conn, &goal)
+	}
+
+	#[tauri::command]
 	pub async fn get_stats(state: tauri::State<'_, AppState>) -> Result<SessionStats, String> {
 		let conn = state.db.lock().map_err(|e| e.to_string())?;
 		get_session_stats(&conn).map_err(|e| e.to_string())
@@ -560,6 +611,11 @@ pub fn run() {
 			commands::get_hands_for_tournament,
 			commands::get_hand,
 			commands::get_hand_for_replay,
+			commands::get_hand_review_cmd,
+			commands::save_hand_review_cmd,
+			commands::list_hand_reviews_cmd,
+			commands::get_coach_goal_cmd,
+			commands::save_coach_goal_cmd,
 			commands::get_stats,
 			commands::get_chip_summary_cmd,
 			commands::get_chip_evolution_cmd,

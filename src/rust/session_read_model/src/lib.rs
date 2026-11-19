@@ -7,6 +7,7 @@ use std::collections::BTreeMap;
 pub mod stacks;
 pub mod short_stack;
 pub mod hitting_board;
+pub mod hand_reviews;
 
 fn json<T: DeserializeOwned>(row: &Row<'_>, index: usize) -> rusqlite::Result<T> {
     serde_json::from_str(&row.get::<_, String>(index)?).map_err(|error| {

@@ -291,6 +291,26 @@ export interface CoachBlunderSpot {
   reason: string
 }
 
+export interface HandReview {
+  hand_id: string
+  note: string
+  tags: string[]
+  favorite: boolean
+  reviewed: boolean
+  updated_at: string
+}
+
+export interface HandReviewEntry extends HandReview {
+  tournament_id: string
+  timestamp: string
+  level: number
+  big_blind: number
+  player_count: number
+  hero_cev: number
+  hero_net_ev: number | null
+  hero_cards: string | null
+}
+
 export interface GtoRange {
   position: string
   stack_depth: string
@@ -415,6 +435,23 @@ export const api = {
 
   getHandForReplay: (handId: string): Promise<ReplayerState | null> =>
     invokeTauri('get_hand_for_replay', { handId }),
+
+  getHandReview: (handId: string): Promise<HandReview | null> =>
+    invokeTauri('get_hand_review_cmd', { handId }),
+
+  saveHandReview: (
+    handId: string, note: string, tags: readonly string[], favorite: boolean, reviewed: boolean,
+  ): Promise<HandReview | null> =>
+    invokeTauri('save_hand_review_cmd', { handId, note, tags, favorite, reviewed }),
+
+  getHandReviews: (): Promise<HandReviewEntry[]> =>
+    invokeTauri('list_hand_reviews_cmd'),
+
+  getCoachGoal: (): Promise<string> =>
+    invokeTauri('get_coach_goal_cmd'),
+
+  saveCoachGoal: (goal: string): Promise<string> =>
+    invokeTauri('save_coach_goal_cmd', { goal }),
 
   getStats: (): Promise<SessionStats> =>
     invokeTauri('get_stats'),

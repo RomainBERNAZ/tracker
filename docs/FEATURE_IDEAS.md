@@ -8,9 +8,9 @@ est precise ci-dessous lorsqu'une partie est implementee.
 
 ## 1. Statistiques par position et profondeur
 
-Avancement : le suivi par stack du hero est disponible dans Summary > Stacks,
-avec filtres HU / 3 joueurs, frequences preflop et resultats en jetons / BB.
-Le croisement par position BTN / SB / BB reste une piste a implementer.
+Avancement : le Coach et Summary > Stacks montrent les frequences preflop et
+resultats par profondeur, en separant HU et 3 joueurs. Le croisement par
+position BTN / SB / BB reste a implementer ; les taux restent descriptifs.
 
 Proposer un tableau par position (BTN, SB, BB), en separant les parties
 a 3 joueurs du heads-up, puis par profondeur de tapis :
@@ -33,6 +33,11 @@ Toujours afficher la taille de l'echantillon.
 
 ## 2. Mains favorites, tags et notes
 
+Avancement : notes, tags, favoris et statut « revue faite » sont disponibles
+depuis le detail et le replayer. La page « Mains a revoir » filtre les mains
+par statut, favoris et recherche, et ouvre directement le replayer. Les
+annotations sont conservees localement et survivent a un reimport.
+
 Depuis le replayer, permettre de marquer une main avec des tags :
 
 - a revoir ;
@@ -43,6 +48,11 @@ Ajouter une note personnelle et une page de review filtrable pour retrouver
 ces mains facilement.
 
 ## 3. Bilan de session oriente travail
+
+Avancement : le Coach affiche un bilan factuel, l'ecart reel / Net EV sur les
+mains comparables, les statistiques preflop et par profondeur/format, des
+spots call/push heuristiques et un acces a la file de review. La selection des
+gros pots gagnes/perdus n'est pas encore automatisee.
 
 Apres un import, proposer :
 
@@ -56,6 +66,9 @@ la decision de bonne ou mauvaise.
 
 ## 4. Entrainement a partir de ses propres mains
 
+Avancement : pas encore de mode quiz avant decision ni de comparaison avec une
+correction.
+
 Arreter le replayer juste avant une decision, sans montrer les cartes
 adverses ni le resultat.
 
@@ -68,6 +81,10 @@ automatiquement les decisions.
 
 ## 5. Suivi d'un objectif
 
+Avancement : le champ d'objectif persistant est disponible dans Coach et les
+mains peuvent etre retrouvees avec les tags. L'association automatique de
+l'objectif aux spots et le suivi des frequences restent a implementer.
+
 Permettre de definir un axe de travail, par exemple :
 travailler les defenses de BB entre 10 et 15 BB.
 
@@ -79,10 +96,10 @@ Apres chaque import :
 
 ## Ordre de priorite suggere
 
-1. Tags, notes et mains favorites.
-2. Statistiques par position et profondeur.
+1. Tags, notes et mains favorites (livre).
+2. Statistiques par position et profondeur (partiellement livre ; position a faire).
 3. Entrainement sur ses propres mains.
-4. Bilan de session oriente travail.
-5. Suivi d'un objectif.
+4. Bilan de session oriente travail (partiellement livre).
+5. Suivi d'un objectif (champ livre ; association automatique a faire).
 
 Boucle recherchee : jouer, identifier, revoir, puis retravailler.

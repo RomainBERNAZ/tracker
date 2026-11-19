@@ -662,6 +662,46 @@ mod tests {
     }
 
     #[test]
+    fn clearing_imported_history_preserves_personal_reviews_and_coach_goal() {
+        let conn = open_memory().expect("open memory db");
+        conn.execute(
+            "INSERT INTO hand_reviews (hand_id, note, favorite, reviewed) VALUES ('H1', 'Revoir le call', 1, 0)",
+            [],
+        )
+        .expect("insert personal review");
+        conn.execute(
+            "INSERT INTO hand_review_tags (hand_id, tag) VALUES ('H1', 'Call à tapis')",
+            [],
+        )
+        .expect("insert review tag");
+        conn.execute(
+            "INSERT INTO coach_goal (id, goal) VALUES (1, 'Défense BB')",
+            [],
+        )
+        .expect("insert coach goal");
+
+        clear_all_imported_data(&conn).expect("clear imported history");
+
+        let review_count: i64 = conn
+            .query_row("SELECT COUNT(*) FROM hand_reviews", [], |row| row.get(0))
+            .expect("count personal reviews");
+        let tag_count: i64 = conn
+            .query_row("SELECT COUNT(*) FROM hand_review_tags", [], |row| {
+                row.get(0)
+            })
+            .expect("count personal review tags");
+        let goal: String = conn
+            .query_row("SELECT goal FROM coach_goal WHERE id = 1", [], |row| {
+                row.get(0)
+            })
+            .expect("read coach goal");
+
+        assert_eq!(review_count, 1);
+        assert_eq!(tag_count, 1);
+        assert_eq!(goal, "Défense BB");
+    }
+
+    #[test]
     fn opening_existing_db_backfills_ev_for_a_covered_opponent_all_in() {
         let file = tempfile::NamedTempFile::new().expect("temporary database");
         {

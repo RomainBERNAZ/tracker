@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { useReviewBack } from '../reviewState'
 import { useNavigate, useParams } from 'react-router-dom'
 import { api, HandDetail as HandDetailModel, PlayerDetailRow } from '../api'
+import HandReviewPanel from '../components/HandReviewPanel'
 
 function cevClass(cev: number) {
   if (cev > 0) return 'positive'
@@ -166,6 +167,8 @@ export default function HandDetail() {
           </div>
         </div>
       </div>
+
+      <HandReviewPanel handId={h.id} />
 
       {hero && (
         <div className="import-result" style={{ marginBottom: 20 }}>

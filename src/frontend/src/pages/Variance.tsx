@@ -1,8 +1,7 @@
 import { memo, useMemo } from 'react'
 import { createReviewState } from '../reviewState'
-import type { HandChipPoint, TournamentRow } from '../api'
+import type { HandChipPoint } from '../api'
 import { startingHandDistribution } from './startingHandVariance'
-import MatchupComparator from './MatchupComparator'
 
 const formatNumber = (value: number, digits = 0) =>
   value.toLocaleString('fr-FR', { minimumFractionDigits: digits, maximumFractionDigits: digits })
@@ -12,9 +11,8 @@ const formatGain = (value: number | null, digits: number) => value == null ? 'â€
 
 const useVarianceUnit = createReviewState<'chips' | 'bb'>(() => 'chips')
 
-export default memo(function Variance({ hands, tournaments }: {
+export default memo(function Variance({ hands }: {
   readonly hands: readonly HandChipPoint[]
-  readonly tournaments: readonly TournamentRow[]
 }) {
   const [unit, setUnit] = useVarianceUnit()
   const { rows, sampleSize, excludedHands, excludedBbHands } = useMemo(() => startingHandDistribution(hands), [hands])
@@ -99,7 +97,6 @@ export default memo(function Variance({ hands, tournaments }: {
           </tbody>
         </table>
       </section>
-      <MatchupComparator tournaments={tournaments} unit={unit} />
     </div>
   )
 })

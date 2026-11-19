@@ -166,4 +166,28 @@ CREATE TABLE IF NOT EXISTS import_sessions (
     started_at      TEXT    DEFAULT (strftime('%Y-%m-%dT%H:%M:%SZ','now')),
     finished_at     TEXT
 );
+
+-- ── Personal hand reviews ──────────────────────────────────────────────────
+CREATE TABLE IF NOT EXISTS hand_reviews (
+    hand_id     TEXT    PRIMARY KEY,
+    note        TEXT    NOT NULL DEFAULT '',
+    favorite    INTEGER NOT NULL DEFAULT 0 CHECK (favorite IN (0, 1)),
+    reviewed    INTEGER NOT NULL DEFAULT 0 CHECK (reviewed IN (0, 1)),
+    updated_at  TEXT    NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ','now'))
+);
+
+CREATE TABLE IF NOT EXISTS hand_review_tags (
+    hand_id TEXT NOT NULL,
+    tag     TEXT NOT NULL,
+    PRIMARY KEY (hand_id, tag),
+    FOREIGN KEY (hand_id) REFERENCES hand_reviews(hand_id) ON DELETE CASCADE
+);
+
+CREATE INDEX IF NOT EXISTS idx_hand_reviews_status ON hand_reviews(reviewed, updated_at);
+
+CREATE TABLE IF NOT EXISTS coach_goal (
+    id         INTEGER PRIMARY KEY CHECK (id = 1),
+    goal       TEXT NOT NULL,
+    updated_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ','now'))
+);
 "#;

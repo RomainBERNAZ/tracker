@@ -2,6 +2,7 @@ import { Component, useEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { api, type ReplayerPlayer, type ReplayerState, type ReplayerStep } from '../api'
 import { ChipAmount, ChipPile } from '../components/ChipAmount'
+import HandReviewPanel from '../components/HandReviewPanel'
 import { HoleCards, PlayingCard } from '../components/PlayingCards'
 import { createReviewState, useReviewBack } from '../reviewState'
 import type { MatchupUnit } from './matchupComparison'
@@ -287,6 +288,7 @@ function ReplayerContent() {
         <ReplayTimeline steps={state.steps} currentStep={currentStep} unit={unit} bigBlind={state.big_blind} onSelect={goToStep} />
       </aside>
     </div>
+    <HandReviewPanel handId={state.hand_id} />
   </div>
 }
 

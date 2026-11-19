@@ -35,9 +35,11 @@ La CI de `master` execute aussi les tests frontend.
 
 ## Filtres des resultats
 
-- L'application s'ouvre sur Summary. Le menu latéral propose Summary, Advanced, Tournois, Bankroll, GTO (expérimental) et Import. Advanced, juste sous Summary, regroupe les sous-onglets « Jeu short-stack » et « Connexion au flop ». Les anciennes adresses `/short-stack` et `/hitting-board` redirigent vers ces sous-onglets.
+- L'application s'ouvre sur Summary. Le menu latéral regroupe le suivi (Résumé, Tournois, Bankroll), la review (Mains à revoir), les analyses avancées et l'import. Advanced rassemble « Jeu short-stack », « Connexion au flop », « Confrontations » et « Ranges exploratoires ». Les anciennes adresses `/short-stack`, `/hitting-board` et `/gto` redirigent vers les pages correspondantes.
 - Summary (Resume et Jetons) et Tournois : periode et buy-ins, combinables. Les montants proposes correspondent aux tournois importes, rake inclus. Les pastilles buy-in permettent de selectionner plusieurs limites simultanement ; "Tous" reinitialise la selection, et desactiver la derniere limite revient aussi a tous les buy-ins.
 - Coach : les buy-ins de Summary s'appliquent aussi aux statistiques, bilans et erreurs detectees ; sa periode reste definie par ses champs de dates dedies.
+- Le Coach affiche un bilan sans note globale, des fréquences préflop avec leurs dénominateurs, les statistiques par profondeur et format, ainsi que l'écart réalisé / Net EV sur les mêmes mains disposant d'une EV. Les données short-stack et flop servent de points d'entrée vers les analyses détaillées. Les spots call/push restent des pistes heuristiques à vérifier, pas des erreurs établies.
+- La review personnelle permet d'ajouter notes, tags, favoris et statut « revue faite » depuis une main ou son replay. La file est filtrable et l'objectif de travail du Coach est conservé localement. Ces annotations survivent à la suppression puis au réimport des historiques.
 - Les dates selectionnent les tournois selon leur debut, en heure locale, et incluent toutes leurs mains, meme apres minuit.
 - Les raccourcis Aujourd'hui et Hier selectionnent le jour calendaire local entier (changements d'heure compris), dans les filtres de dates Summary et Tournois. Coach propose les memes raccourcis pour ses dates independantes.
 - Les choix de consultation restent en memoire pendant la session : onglet Summary, periodes/buy-ins, filtres Stacks/Tapis/Variance/Coach, ranges du comparateur, tris et recherches des mains par tournoi, et selections GTO. Ouvrir un detail/replay puis revenir (bouton Retour ou retour navigateur) ne les reinitialise plus. Les listes de duels conservent aussi le nombre de lignes affichees par selection. Les donnees sont rechargees a l'ouverture ; les choix ne sont pas sauvegardes apres fermeture/rechargement de l'application.
@@ -232,12 +234,12 @@ Chaque case affiche aussi le gain realise moyen par occurrence, au choix en jeto
 Les gains en BB sont calcules main par main (`gain realise / grosse blinde`), puis additionnes et moyennes. Une grosse blinde invalide exclut uniquement le gain en BB, avec un avertissement et le nombre d'occurrences exploitables ; les gains en jetons et les frequences restent disponibles. Une moyenne sans occurrence exploitable est affichee par un tiret, pas par zero.
 L'encart est limite a la largeur de la grille pour laisser le reste de la page disponible.
 
-### Comparateur de confrontations
+## Comparateur de confrontations
 
-Dans Variance, deux grilles independantes permettent de selectionner librement les mains du hero et celles de vilain. Les cases `s` et `o` sont distinctes : selectionner `KJs` et `KJo` couvre KJ. Les raccourcis Toutes, Paires et les familles Ax, Kx, etc. remplacent la selection ; Ax comprend AK a A2 assorties ou non, sans AA.
-Le comparateur garde les memes tournois (periode et buy-in) et la meme unite Jetons / BB que la grille. Il porte sur les all-ins preflop sans mise ni fold ulterieur, y compris les tapis adverses couverts par le hero. Les duels et les pots a trois joueurs sont separes ; a trois, au moins un adversaire doit appartenir a la selection, et chaque main compte une seule fois.
-Le bilan reel / attendu utilise exactement les memes mains avec EV all-in effectivement calculee (Net EV et part de pot attendue disponibles), et une grosse blinde valide en mode BB. Les cartes inconnues et les EV manquantes sont signalees, sans remplacer artificiellement l'attendu par le resultat reel. La part moyenne du pot attendue tient compte des pots secondaires : ce n'est pas un taux de victoires.
-La liste donne acces au replayer et permet d'afficher toutes les confrontations par lots de 50, sans limiter les statistiques a ce premier lot.
+Le comparateur est séparé de Variance, dans **Analyses avancées → Confrontations**. Deux grilles indépendantes permettent de sélectionner librement les mains du hero et celles de vilain. Les cases `s` et `o` sont distinctes : sélectionner `KJs` et `KJo` couvre KJ. Les raccourcis Toutes, Paires et les familles Ax, Kx, etc. remplacent la sélection ; Ax comprend AK à A2 assorties ou non, sans AA.
+Les filtres de période et de buy-in ainsi que l'unité Jetons / BB sont propres à cette page. Le comparateur porte sur les all-ins préflop sans mise ni fold ultérieur, y compris les tapis adverses couverts par le hero. Les duels et les pots à trois joueurs sont séparés ; à trois, au moins un adversaire doit appartenir à la sélection, et chaque main compte une seule fois.
+Le bilan réel / attendu utilise exactement les mêmes mains avec EV all-in effectivement calculée (Net EV et part de pot attendue disponibles), et une grosse blinde valide en mode BB. Les cartes inconnues et les EV manquantes sont signalées, sans remplacer artificiellement l'attendu par le résultat réel. La part moyenne du pot attendue tient compte des pots secondaires : ce n'est pas un taux de victoires.
+La liste donne accès au replayer et permet d'afficher toutes les confrontations par lots de 50, sans limiter les statistiques à ce premier lot.
 
 ### Tableaux preflop experimentaux
 
