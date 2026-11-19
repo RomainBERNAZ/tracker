@@ -287,10 +287,15 @@ mod tests {
 
         assert_eq!(saved.tags, vec!["Défense BB"]);
         assert!(saved.favorite);
-        assert_eq!(
-            get_hand_review(&conn, "H1").expect("get review"),
-            Some(saved)
-        );
+        let fetched = get_hand_review(&conn, "H1")
+            .expect("get review")
+            .expect("review exists");
+        assert_eq!(fetched.hand_id, saved.hand_id);
+        assert_eq!(fetched.note, saved.note);
+        assert_eq!(fetched.tags, saved.tags);
+        assert_eq!(fetched.favorite, saved.favorite);
+        assert_eq!(fetched.reviewed, saved.reviewed);
+        assert_eq!(fetched.updated_at, saved.updated_at);
 
         let queue = list_hand_reviews(&conn).expect("list review queue");
         assert_eq!(queue.len(), 1);
@@ -302,10 +307,9 @@ mod tests {
     fn clearing_the_last_review_field_removes_the_queue_entry() {
         let conn = database();
         save_hand_review(&conn, "H1", "Note", &[], false, false).expect("save review");
-        assert_eq!(
-            save_hand_review(&conn, "H1", "", &[], false, false).expect("clear review"),
-            None
-        );
+        assert!(save_hand_review(&conn, "H1", "", &[], false, false)
+            .expect("clear review")
+            .is_none());
         assert!(list_hand_reviews(&conn).expect("list queue").is_empty());
     }
 
