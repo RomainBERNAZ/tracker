@@ -814,6 +814,45 @@ tr:hover td {
   background: #5bc0ff;
 }
 
+.multiplier-table-wrap {
+  overflow-x: auto;
+}
+
+.multiplier-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.multiplier-table th,
+.multiplier-table td {
+  padding: 9px 10px;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.multiplier-table th:first-child {
+  text-align: left;
+}
+
+.multiplier-table thead {
+  color: var(--text-dim);
+}
+
+.multiplier-table tbody tr {
+  border-top: 1px solid var(--border);
+}
+
+.multiplier-table tbody tr:nth-child(odd) {
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.multiplier-observed {
+  color: var(--text);
+  font-weight: 700;
+}
+
 @media (max-width: 980px) {
   .summary-grid {
     grid-template-columns: 1fr;

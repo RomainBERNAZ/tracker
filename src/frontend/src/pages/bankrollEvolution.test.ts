@@ -36,22 +36,27 @@ describe('2 EUR bankroll model', () => {
     for (const cev of [-501, 1001, NaN, Infinity]) expect(() => expressoExpectation(cev)).toThrow()
   })
   it('starts all projections at the current balance, keeps the horizon and reproduces seeded draws', () => {
-    const result = simulateBankroll(100, { games: 123, cev: 50 }, 0.25, 42)
+    const result = simulateBankroll(100, { games: 123, cev: 50 }, 42)
     const end = result.points[result.points.length - 1]
-    expect(result.points[0]).toMatchObject({ games: 0, expected: 100, recent: 100, interval: [100, 100], trajectory: 100 })
+    expect(result.points[0]).toEqual({ games: 0, expected: 100, interval: [100, 100], trajectory: 100 })
     expect(end.games).toBe(123)
     expect(end.expected).toBeCloseTo(100 + 123 * result.netPerGame)
-    expect(end.recent).toBeCloseTo(130.75)
+    expect(end).not.toHaveProperty('recent')
     expect(result.points.every((p) => p.interval[0] <= p.interval[1])).toBe(true)
-    expect(result).toEqual(simulateBankroll(100, { games: 123, cev: 50 }, 0.25, 42))
-    const other = simulateBankroll(100, { games: 123, cev: 50 }, 0.25, 43)
+    expect(result).toEqual(simulateBankroll(100, { games: 123, cev: 50 }, 42))
+    const other = simulateBankroll(100, { games: 123, cev: 50 }, 43)
     expect(result.points.map((p) => p.trajectory)).not.toEqual(other.points.map((p) => p.trajectory))
   })
-  it('keeps negative funding needs visible and does not invent a recent projection', () => {
-    const result = simulateBankroll(10, { games: 10, cev: -500 }, null, 42)
-    expect(result.points[result.points.length - 1]).toMatchObject({ games: 10, expected: -10, recent: null, interval: [-10, -10], trajectory: -10 })
-    for (const games of [0, -1, 10001, 1.5, NaN]) {
-      expect(() => simulateBankroll(100, { games, cev: 50 }, null, 42)).toThrow()
+  it('simulates all 250,000 tournaments without increasing the number of chart points or hiding negative balances', () => {
+    const result = simulateBankroll(10, { games: 250_000, cev: -500 }, 42)
+    expect(result.points.length).toBeLessThanOrEqual(101)
+    expect(result.points[result.points.length - 1]).toEqual({
+      games: 250_000, expected: -499_990, interval: [-499_990, -499_990], trajectory: -499_990,
+    })
+  }, 20_000)
+  it('rejects invalid horizons including the first volume above the cap', () => {
+    for (const games of [0, -1, 250_001, 1.5, NaN]) {
+      expect(() => simulateBankroll(100, { games, cev: 50 }, 42)).toThrow()
     }
   })
 })

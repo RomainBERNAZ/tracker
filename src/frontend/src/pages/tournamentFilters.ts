@@ -79,17 +79,33 @@ export function computeFilteredStats(tours: readonly TournamentRow[]) {
   const totalTournaments = tours.length
   const totalHands = tours.reduce((acc, t) => acc + t.hand_count, 0)
   const totalNetEur = tours.reduce((acc, t) => acc + t.net_eur, 0)
-  const netEvEurTotal = tours.reduce((acc, t) => acc + t.hero_net_ev_eur_sum, 0)
+  const adjustedAllInCount = tours.reduce((sum, t) => sum + t.adjusted_all_in_count, 0)
+  const calculatedAllInCount = tours.reduce((sum, t) => sum + t.calculated_all_in_count, 0)
+  const allInCorrection = adjustedAllInCount > 0
+    ? tours.reduce((sum, t) => sum + (t.all_in_correction_eur ?? 0), 0)
+    : null
   const multiplierMap = new Map<number, number>()
   tours.forEach((t) => multiplierMap.set(t.multiplier, (multiplierMap.get(t.multiplier) ?? 0) + 1))
   return {
-    totalTournaments, totalHands, totalNetEur, netEvEurTotal,
+    totalTournaments, totalHands, totalNetEur, allInCorrection, adjustedAllInCount, calculatedAllInCount,
     avgNetEurPerTournament: totalTournaments > 0 ? totalNetEur / totalTournaments : 0,
-    netEvEurAvg: totalTournaments > 0 ? netEvEurTotal / totalTournaments : 0,
+    adjustedNetEur: allInCorrection == null ? null : totalNetEur + allInCorrection,
     avgCev: totalTournaments > 0 ? tours.reduce((sum, t) => sum + t.hero_cev_sum, 0) / totalTournaments : 0,
     wins: tours.filter((t) => t.finish_position === 1).length,
     secondPlace: tours.filter((t) => t.finish_position === 2).length,
     thirdPlace: tours.filter((t) => t.finish_position === 3).length,
     multiplierDist: [...multiplierMap.entries()].sort((a, b) => a[0] - b[0]),
   }
+}
+
+export function cumulativeTournamentResults(tours: readonly TournamentRow[]) {
+  const sorted = [...tours].sort((a, b) => Date.parse(a.started_at) - Date.parse(b.started_at))
+  const hasAdjustment = tours.some((t) => t.all_in_correction_eur != null)
+  let net = 0
+  let correction = 0
+  return [{ label: '', net: 0, adjusted: hasAdjustment ? 0 : null }, ...sorted.map((t, i) => {
+    net += t.net_eur
+    correction += t.all_in_correction_eur ?? 0
+    return { label: String(i + 1), net, adjusted: hasAdjustment ? net + correction : null }
+  })]
 }

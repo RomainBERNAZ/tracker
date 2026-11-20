@@ -10,6 +10,7 @@ import {
   CartesianGrid,
 } from 'recharts'
 import type { TournamentRow } from '../api'
+import { cumulativeTournamentResults } from '../pages/tournamentFilters'
 
 interface Props {
   readonly tournaments: TournamentRow[]
@@ -21,20 +22,8 @@ function fmtEur(n: number) {
 }
 
 function CumulativeChartInner({ tournaments }: Props) {
-  const data = useMemo(() => {
-    const sorted = [...tournaments].sort(
-      (a, b) => new Date(a.started_at).getTime() - new Date(b.started_at).getTime(),
-    )
-    let cumNet = 0
-    let cumEV = 0
-    const points = [{ label: '', net: 0, ev: 0, index: 0 }]
-    sorted.forEach((t, idx) => {
-      cumNet += t.net_eur
-      cumEV += t.hero_net_ev_eur_sum
-      points.push({ label: `${idx + 1}`, net: cumNet, ev: cumEV, index: idx + 1 })
-    })
-    return points
-  }, [tournaments])
+  const data = useMemo(() => cumulativeTournamentResults(tournaments), [tournaments])
+  const hasAdjustment = data[0].adjusted != null
 
   if (data.length < 2) {
     return <p style={{ color: 'var(--text-dim)', fontSize: 13 }}>Pas assez de données.</p>
@@ -73,21 +62,21 @@ function CumulativeChartInner({ tournaments }: Props) {
               const seriesName = String(name ?? '')
               return [
                 fmtEur(Number.isFinite(numericValue) ? numericValue : 0),
-                seriesName === 'net' ? 'Net réel' : 'Net EV',
+                seriesName === 'net' ? 'Net réel' : 'Net ajusté des tapis',
               ]
             }}
             isAnimationActive={false}
           />
           <ReferenceLine y={0} stroke="rgba(255,255,255,0.15)" strokeDasharray="4 4" />
-          <Line
-            dataKey="ev"
+          {hasAdjustment && <Line
+            dataKey="adjusted"
             stroke="#7f89b8"
             strokeWidth={1.5}
             dot={false}
             strokeDasharray="6 3"
-            name="ev"
+            name="adjusted"
             isAnimationActive={false}
-          />
+          />}
           <Line
             dataKey="net"
             stroke="#6c63ff"

@@ -11,7 +11,7 @@ function tour(id: string, started_at: string, buy_in_euros = 1.8): TournamentRow
   return {
     id, started_at, buy_in_euros, rake_euros: 0.2, player_name: '', prizepool_euros: 4, multiplier: 2,
     finish_position: 1, duration_secs: 300, net_eur: 2, hand_count: 1,
-    hero_cev_sum: 0, hero_net_ev_eur_sum: 0, wsd_cev_sum: 0, sd_cev_sum: 0,
+    hero_cev_sum: 0, all_in_correction_eur: null, adjusted_all_in_count: 0, calculated_all_in_count: 0, wsd_cev_sum: 0, sd_cev_sum: 0,
   }
 }
 

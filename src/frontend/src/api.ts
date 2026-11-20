@@ -32,7 +32,9 @@ export interface TournamentRow {
   net_eur: number
   hand_count: number
   hero_cev_sum: number
-  hero_net_ev_eur_sum: number
+  all_in_correction_eur: number | null
+  adjusted_all_in_count: number
+  calculated_all_in_count: number
   wsd_cev_sum: number
   sd_cev_sum: number
 }

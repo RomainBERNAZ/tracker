@@ -46,14 +46,17 @@ export interface BankrollScenario {
   cev: number
 }
 
-export function simulateBankroll(
-  balance: number, scenario: BankrollScenario, recentNetPerGame: number | null,
-  seed: number,
-) {
-  if (!Number.isFinite(balance) || !Number.isInteger(scenario.games) || scenario.games < 1 || scenario.games > 10000
-    || (recentNetPerGame != null && !Number.isFinite(recentNetPerGame))) {
-    throw new Error('Le volume doit être un entier de 1 à 10 000 tournois et les montants doivent être valides.')
+export const MAX_BANKROLL_GAMES = 250_000
+
+export function isBankrollVolume(games: number) {
+  return Number.isInteger(games) && games >= 1 && games <= MAX_BANKROLL_GAMES
+}
+
+export function simulateBankroll(balance: number, scenario: BankrollScenario, seed: number) {
+  if (!isBankrollVolume(scenario.games)) {
+    throw new Error(`Le volume doit être un entier de 1 à ${MAX_BANKROLL_GAMES.toLocaleString('fr-FR')} tournois.`)
   }
+  if (!Number.isFinite(balance)) throw new Error('Le solde de départ doit être valide.')
   const { winProbability, netPerGame } = expressoExpectation(scenario.cev)
   let state = seed >>> 0
   const random = () => {
@@ -65,8 +68,7 @@ export function simulateBankroll(
   const paths = Array.from({ length: 500 }, () => balance)
   const step = Math.max(1, Math.ceil(scenario.games / 100))
   const points = [{
-    games: 0, expected: balance, recent: recentNetPerGame == null ? null : balance,
-    interval: [balance, balance], trajectory: balance,
+    games: 0, expected: balance, interval: [balance, balance], trajectory: balance,
   }]
   for (let game = 1; game <= scenario.games; game++) {
     for (let path = 0; path < paths.length; path++) {
@@ -83,7 +85,6 @@ export function simulateBankroll(
       const sorted = [...paths].sort((a, b) => a - b)
       points.push({
         games: game, expected: balance + game * netPerGame,
-        recent: recentNetPerGame == null ? null : balance + game * recentNetPerGame,
         interval: [sorted[Math.floor(0.05 * (sorted.length - 1))], sorted[Math.ceil(0.95 * (sorted.length - 1))]],
         trajectory: paths[0],
       })
@@ -91,3 +92,12 @@ export function simulateBankroll(
   }
   return { points, netPerGame, winProbability }
 }
+
+export interface BankrollSimulationRequest {
+  balance: number
+  scenario: BankrollScenario & { seed: number }
+}
+
+export type BankrollSimulationResponse =
+  | { simulation: ReturnType<typeof simulateBankroll> }
+  | { error: string }

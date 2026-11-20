@@ -39,6 +39,7 @@ const useCoachFrom = createReviewState(() => '')
 const useCoachTo = createReviewState(() => '')
 const useCoachAction = createReviewState<'all' | 'call' | 'push'>(() => 'all')
 const useCoachSeverity = createReviewState<'all' | 'bad' | 'critical'>(() => 'all')
+const MODEL_BUY_IN_EUR = 2
 
 function fmtEur(n: number) {
   const sign = n >= 0 ? '+' : ''
@@ -69,56 +70,6 @@ function computeMultiplierComparison(
     .filter((row) => row.expectedCount >= 1 || row.realCount >= 1)
     .sort((a, b) => a.mult - b.mult)
   return rows
-}
-
-// ── Variance / luck calculation ───────────────────────────────────────────────
-// σ per tournament based on the public Winamax Expresso 2€ multiplier distribution.
-// Each outcome: player wins mult×buyin (if 1st) or 0, minus the buyin.
-// EV = Σ p_i × net_i  (already known from hero_net_ev_eur_sum per tournament)
-// σ² = Σ p_i × (net_i - EV)²
-const BUY_IN = 2
-const TOTAL_TICKETS = WINAMAX_2EUR_MULTIPLIER_MODEL.reduce((acc, r) => acc + r.tickets, 0)
-
-function computePerTourneyStddev(): number {
-  // For a 3-handed Expresso where hero finishes 1st, the net is (mult * BUY_IN * 3 - BUY_IN).
-  // Only hero's net from their seat matters: buyin × mult × (1 seat out of 3 seats pot share minus buyin).
-  // Simplified: prize = mult × BUY_IN, net = prize - BUY_IN.
-  // For 2nd/3rd there is no prize in an Expresso, so net = -BUY_IN.
-  // EV = Σ p_i × net_i
-  const outcomes = WINAMAX_2EUR_MULTIPLIER_MODEL.map((r) => {
-    const p = r.tickets / TOTAL_TICKETS
-    // 3 players, hero wins 1st ~1/3 of the time they draw this mult.
-    // Prize pool = mult * 3 * BUY_IN, winner takes all.
-    const prize = r.mult * 3 * BUY_IN
-    const netWin = prize - BUY_IN     // hero's net when 1st
-    const netLoss = -BUY_IN           // hero's net when 2nd or 3rd
-    const pHeroWins = 1 / 3
-    const pHeroLoses = 2 / 3
-    // Contribution to EV from this multiplier bucket
-    const ev = p * (pHeroWins * netWin + pHeroLoses * netLoss)
-    return { p, netWin, netLoss, pHeroWins, pHeroLoses, ev }
-  })
-
-  const totalEV = outcomes.reduce((acc, o) => acc + o.ev, 0)
-
-  // Variance: E[(X - μ)²] = Σ p_bucket × (p_win × (netWin - totalEV)² + p_lose × (netLoss - totalEV)²)
-  const variance = outcomes.reduce((acc, o) => {
-    return acc + o.p * (
-      o.pHeroWins * Math.pow(o.netWin - totalEV, 2) +
-      o.pHeroLoses * Math.pow(o.netLoss - totalEV, 2)
-    )
-  }, 0)
-
-  return Math.sqrt(variance)
-}
-
-const SIGMA_PER_TOURNEY = computePerTourneyStddev()
-
-function computeLuck(net: number, ev: number, n: number): { zScore: number; sigmaTotal: number } | null {
-  if (n < 2) return null
-  const sigmaTotal = SIGMA_PER_TOURNEY * Math.sqrt(n)
-  const zScore = (net - ev) / sigmaTotal
-  return { zScore, sigmaTotal }
 }
 
 function computeEmpiricalLuck(deltaSamples: number[]): { zScore: number; sigmaTotal: number; delta: number } | null {
@@ -185,33 +136,11 @@ function luckLabel(zScore: number): { label: string; color: string } {
   return { label: pos ? 'Gros run good' : 'Gros run bad', color: pos ? '#10b981' : '#ef4444' }
 }
 
-const LuckIndicator = memo(({ net, ev, n }: { readonly net: number; readonly ev: number; readonly n: number }) => {
-  const luck = computeLuck(net, ev, n)
-  if (!luck) return null
-
-  const { zScore, sigmaTotal } = luck
-  const { label, color } = luckLabel(zScore)
-  const sign = zScore >= 0 ? '+' : ''
-  const delta = net - ev
-
-  return (
-    <div title={`σ total sur ${n} tournois: ±${sigmaTotal.toFixed(2)}€`} style={{
-      display: 'flex',
-      alignItems: 'center',
-      gap: 8,
-      padding: '4px 12px',
-      borderRadius: 999,
-      background: 'rgba(255,255,255,0.04)',
-      border: '1px solid rgba(255,255,255,0.1)',
-      fontSize: 12,
-      cursor: 'default',
-    }}>
-      <span style={{ color, fontWeight: 700, fontSize: 14 }}>{sign}{zScore.toFixed(2)}σ</span>
-      <span style={{ color, fontWeight: 500 }}>{label}</span>
-      <span style={{ color: 'var(--text-dim)', fontSize: 11 }}>(net-EV: {delta >= 0 ? '+' : ''}{delta.toFixed(2)}€)</span>
-    </div>
-  )
-})
+function AdjustedEuro({ value }: { value: number | null }) {
+  return <div className={`value ${value == null ? 'neutral' : value >= 0 ? 'positive' : 'negative'}`}>
+    {value == null ? '—' : fmtEur(value)}
+  </div>
+}
 
 const CoachReviewCard = memo(({
   review,
@@ -240,10 +169,9 @@ const CoachReviewCard = memo(({
           <div className="value">{stats.totalTournaments} · {stats.totalHands}</div></div>
         <div className="stat-card"><div className="label">Résultat net (€)</div>
           <div className={`value ${stats.totalNetEur >= 0 ? 'positive' : 'negative'}`}>{fmtEur(stats.totalNetEur)}</div></div>
-        <div className="stat-card"><div className="label">Net EV all-in (€)</div>
-          <div className={`value ${review.allinSamples === 0 ? 'neutral' : stats.netEvEurTotal >= 0 ? 'positive' : 'negative'}`}>
-            {review.allinSamples === 0 ? '—' : fmtEur(stats.netEvEurTotal)}
-          </div><small className="stack-sample">{review.allinSamples} mains avec EV</small></div>
+        <div className="stat-card"><div className="label">Net ajusté des tapis (€)</div>
+          <AdjustedEuro value={stats.adjustedNetEur} />
+          <small className="stack-sample">{stats.adjustedAllInCount} tapis corrigés</small></div>
         <div className="stat-card"><div className="label">cEV moyen / tournoi</div>
           <div className={`value ${stats.avgCev >= 0 ? 'positive' : 'negative'}`}>
             {stats.avgCev > 0 ? '+' : ''}{stats.avgCev.toLocaleString('fr-FR', { maximumFractionDigits: 1 })} jetons
@@ -939,56 +867,43 @@ const SummaryPositionsPie = memo(({ wins, secondPlace, thirdPlace }: PositionsPi
   )
 })
 
-const SummaryMultiplierChart = memo(({ sortedMultipliers }: {
+const SummaryMultiplierTable = memo(({ sortedMultipliers }: {
   readonly sortedMultipliers: { mult: number; expectedCount: number | null; realCount: number }[]
 }) => {
   if (sortedMultipliers.length === 0) {
-    return <p style={{ color: 'var(--text-dim)' }}>Aucune donnee</p>
+    return <p className="variance-description">Aucune donnée.</p>
   }
 
-  return (
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(80px, 1fr))', gap: 8 }}>
-      {sortedMultipliers.map((row) => {
-        const delta = row.expectedCount == null ? null : row.realCount - row.expectedCount
-        const isDelta = delta != null && delta !== 0
+  const showExpected = sortedMultipliers.some((row) => row.expectedCount != null)
+  const count = new Intl.NumberFormat('fr-FR')
+  const expected = new Intl.NumberFormat('fr-FR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })
+  const difference = new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 1, signDisplay: 'exceptZero' })
 
-        let borderColor: string
-        if (!isDelta) {
-          borderColor = '255,255,255'
-        } else if (delta != null && delta > 0) {
-          borderColor = '16,185,129'
-        } else {
-          borderColor = '239,68,68'
-        }
-        const borderStyle = isDelta ? `1px solid rgba(${borderColor},0.3)` : '1px solid rgba(255,255,255,0.1)'
-        
-        return (
-          <div
-            key={row.mult}
-            style={{
-              padding: 8,
-              background: 'rgba(255,255,255,0.03)',
-              borderRadius: 6,
-              textAlign: 'center',
-              fontSize: 12,
-              border: borderStyle,
-            }}
-          >
-            <div style={{ fontWeight: 600, marginBottom: 4 }}>x{row.mult}</div>
-            <div style={{ color: 'var(--text-dim)', fontSize: 11 }}>
-              R: {row.realCount}
-            </div>
-            {row.expectedCount != null && <div style={{ color: 'var(--text-dim)', fontSize: 11 }}>
-              A: {row.expectedCount.toFixed(1)}
-            </div>}
-            {isDelta && delta != null && (
-              <div style={{ color: delta > 0 ? '#10b981' : '#ef4444', fontSize: 11, marginTop: 4, fontWeight: 500 }}>
-                {delta > 0 ? '+' : ''}{delta.toFixed(1)}
-              </div>
-            )}
-          </div>
-        )
-      })}
+  return (
+    <div className="multiplier-table-wrap">
+      <table className="multiplier-table" aria-labelledby="summary-multipliers-title">
+        <thead><tr>
+          <th scope="col">Multiplicateur</th>
+          <th scope="col">Observé</th>
+          {showExpected && <><th scope="col">Attendu</th><th scope="col">Écart</th></>}
+        </tr></thead>
+        <tbody>
+          {sortedMultipliers.map((row) => {
+            const delta = row.expectedCount == null ? null : row.realCount - row.expectedCount
+            const displayedDelta = delta == null ? null : difference.format(delta)
+            return <tr key={row.mult}>
+              <th scope="row">×{count.format(row.mult)}</th>
+              <td className="multiplier-observed">{count.format(row.realCount)}</td>
+              {showExpected && <>
+                <td>{row.expectedCount == null ? '—' : expected.format(row.expectedCount)}</td>
+                <td className={displayedDelta?.startsWith('+') ? 'positive' : displayedDelta?.startsWith('-') ? 'negative' : undefined}>
+                  {displayedDelta ?? '—'}
+                </td>
+              </>}
+            </tr>
+          })}
+        </tbody>
+      </table>
     </div>
   )
 })
@@ -1285,7 +1200,7 @@ export default memo(function Summary() {
     [filteredTournaments],
   )
   const supportsTheoreticalModel = filteredTournaments.length > 0 &&
-    filteredTournaments.every((t) => tournamentBuyIn(t) === BUY_IN)
+    filteredTournaments.every((t) => tournamentBuyIn(t) === MODEL_BUY_IN_EUR)
 
   const sortedMultipliers = useMemo(
     () => computeMultiplierComparison(filteredStats.totalTournaments, filteredStats.multiplierDist, supportsTheoreticalModel),
@@ -1432,18 +1347,27 @@ export default memo(function Summary() {
                 </div>
               </div>
               <div className="stat-card">
-                <div className="label">Net EV all-in (€)</div>
-                <div className={`value ${filteredStats.netEvEurTotal >= 0 ? 'positive' : 'negative'}`}>
-                  {fmtEur(filteredStats.netEvEurTotal)}
-                </div>
+                <div className="label">Net ajusté des tapis (€)</div>
+                <AdjustedEuro value={filteredStats.adjustedNetEur} />
               </div>
               <div className="stat-card">
-                <div className="label">Net EV all-in / tournoi (€)</div>
-                <div className={`value ${filteredStats.netEvEurAvg >= 0 ? 'positive' : 'negative'}`}>
-                  {fmtEur(filteredStats.netEvEurAvg)}
-                </div>
+                <div className="label">Correction des tapis (€)</div>
+                <AdjustedEuro value={filteredStats.allInCorrection} />
               </div>
             </div>
+            <p className="variance-description">
+              {filteredStats.adjustedAllInCount} tapis corrigés sur {filteredStats.calculatedAllInCount} avec une EV calculée.
+              {' '}Une correction positive signifie que le résultat réel a été inférieur à l’attendu sur ces tapis.
+            </p>
+            <details className="stack-method">
+              <summary>Comment le net ajusté est calculé</summary>
+              <p>On part du net réel. Pour chaque tapis calculable, préflop ou postflop, on ajoute l’écart
+                entre les jetons attendus et les jetons gagnés ou perdus, valorisé à la cagnotte réelle divisée par
+                le total des jetons au début de la main. Les multiplicateurs tirés ne changent pas.</p>
+              <p>Seuls les tournois identifiés comme payant exclusivement le vainqueur sont corrigés.
+                Les autres restent au résultat net importé. Cette estimation n’isole que les tirages après les tapis
+                pris en compte, pas toute la variance ni les gains à long terme.</p>
+            </details>
           </div>
 
           <div className="summary-grid">
@@ -1457,10 +1381,10 @@ export default memo(function Summary() {
             </div>
 
             <div className="summary-card">
-              <h3>Multiplicateurs: attendus vs reels</h3>
+              <h3 id="summary-multipliers-title">Répartition des multiplicateurs</h3>
               {!supportsTheoreticalModel && filteredStats.totalTournaments > 0 &&
                 <p style={{ color: 'var(--text-dim)' }}>Le modele theorique est disponible uniquement pour les buy-ins de 2 €. Seules les occurrences reelles sont affichees.</p>}
-              <SummaryMultiplierChart sortedMultipliers={sortedMultipliers} />
+              <SummaryMultiplierTable sortedMultipliers={sortedMultipliers} />
             </div>
           </div>
 
@@ -1468,10 +1392,10 @@ export default memo(function Summary() {
             <div className="summary-card-header">
               <h3>Évolution cumulative</h3>
               <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-                {supportsTheoreticalModel && <LuckIndicator net={filteredStats.totalNetEur} ev={filteredStats.netEvEurTotal} n={filteredStats.totalTournaments} />}
                 <div className="chart-legend">
                   <span className="chart-legend-item chart-legend-net">Net réel</span>
-                  <span className="chart-legend-item chart-legend-ev">Net EV</span>
+                  {filteredStats.adjustedNetEur != null &&
+                    <span className="chart-legend-item chart-legend-ev">Net ajusté des tapis</span>}
                 </div>
               </div>
             </div>

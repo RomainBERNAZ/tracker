@@ -44,7 +44,9 @@ La CI de `master` execute aussi les tests frontend.
 - Les raccourcis Aujourd'hui et Hier selectionnent le jour calendaire local entier (changements d'heure compris), dans les filtres de dates Summary et Tournois. Coach propose les memes raccourcis pour ses dates independantes.
 - Les choix de consultation restent en memoire pendant la session : onglet Summary, periodes/buy-ins, filtres Stacks/Tapis/Variance/Coach, ranges du comparateur, tris et recherches des mains par tournoi, et selections GTO. Ouvrir un detail/replay puis revenir (bouton Retour ou retour navigateur) ne les reinitialise plus. Les listes de duels conservent aussi le nombre de lignes affichees par selection. Les donnees sont rechargees a l'ouverture ; les choix ne sont pas sauvegardes apres fermeture/rechargement de l'application.
 - Le cEV moyen est la somme du Net EV en jetons (gain realise si EV absente), divisee par le nombre de tournois selectionnes. Les deux pages utilisent tout l'historique, sans limite aux 100 derniers tournois.
-- Les comparaisons theoriques de multiplicateurs et de variance restent reservees au modele 2 EUR existant ; les cases des multiplicateurs observes restent affichees pour tous les buy-ins, meme melanges ou avec un seul tournoi, sans attendu ni ecart lorsqu'aucun modele ne s'applique.
+- La comparaison theorique des multiplicateurs reste reservee au modele 2 EUR existant ; les multiplicateurs observes restent affiches pour tous les buy-ins.
+- Le tableau des multiplicateurs aligne les occurrences observées et, lorsque le modèle est disponible, les occurrences attendues et l'écart (observé moins attendu).
+- Dans Résumé, le net ajusté part du net réel et ajoute l'écart (EV − résultat) de chaque tapis calculable, converti au prorata de la cagnotte réelle et du total de jetons. Aucun changement de multiplicateur. Correction limitée aux formats à trois joueurs reconnus avec un seul payé : [Winamax Expresso](https://www.winamax.fr/expresso) jusqu'à x20 et [Betclic Spin & Rush](https://www.betclic.fr/poker/scp-spin-and-rush) jusqu'à x10, sur les multiplicateurs connus. Les autres tournois restent au net importé. Ce n'est pas une estimation de toute la variance ni un profit attendu à long terme.
 - Les graphiques cumules de Resume (euros) et Jetons s'etendent jusqu'au bas de la fenetre, avec une hauteur minimale pour rester lisibles sur les petites fenetres.
 
 ## Connexion au flop (Advanced)
@@ -262,9 +264,9 @@ Les mouvements manuels gardent leur date et les corrections leur variation enreg
 Les evenements sont espaces uniformement sur l'axe horizontal ; les dates sont
 affichees sur l'axe et au survol. Le dernier point correspond au solde global courant.
 
-Les projections partent de ce solde : prolongement du gain net moyen des
-1 000 derniers tournois du perimetre et scenario de 1 a 10 000 tournois avec cEV
-parametrable. La simulation utilise exclusivement le modele public Winamax 2 EUR
+La simulation part du solde courant et couvre de 1 a 250 000 tournois avec cEV
+parametrable. Le bilan recent reste un constat, pas une projection.
+La simulation utilise exclusivement le modele public Winamax 2 EUR
 deja present dans Summary, partage sans changer les calculs existants de Summary.
 Avec 500 jetons de depart et trois joueurs, la probabilite de victoire approchee
 est `(500 + cEV) / 1500` (cEV entre -500 et 1000).
@@ -280,7 +282,7 @@ automatiquement. Les jackpots rares peuvent manquer dans les tirages et placer
 l'esperance hors de la bande. Ce n'est ni un intervalle de confiance ni une
 garantie. Il n'y a pas d'arret faute de fonds ni de changement de limite :
 une valeur negative signifie un besoin de financement. Le filtre buy-in change
-uniquement la projection recente, pas le modele 2 EUR ni l'historique global.
+l'analyse des tournois recents, pas la simulation 2 EUR ni l'historique global.
 
 Les regles initiales, modifiables dans la page, alertent strictement sous 150 buy-ins. Un shot exige par defaut 1 000 tournois complets au buy-in de reference, au moins 50 cEV/tournoi, des resultats recents en euros non negatifs a ce buy-in et 300 buy-ins de la limite visee. Le financement requis passe a 250 buy-ins lorsque le cEV atteint l'objectif + 25 (75 par defaut), avec le meme echantillon minimum. La limite visee doit etre renseignee et superieure a la reference. Un cEV negatif sur un echantillon suffisant incite a revoir la limite ; des pertes en euros seules ne declenchent pas une descente si la couverture et le cEV restent suffisants. Ces indications sont des heuristiques de gestion, pas une garantie de gains.
 

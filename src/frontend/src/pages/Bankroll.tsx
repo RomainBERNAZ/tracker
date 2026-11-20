@@ -206,7 +206,7 @@ export default function Bankroll() {
             {recent.sample.missing > 0 && <p className="variance-warning">{recent.sample.missing} tournois sans mains complètes exclus du cEV, mais conservés dans le bilan en euros.</p>}
             {(recent.invalidDates > 0 || recent.invalidBuyIns > 0) && <p className="variance-warning">Données non exploitables : {recent.invalidDates} dates et {recent.invalidBuyIns} buy-ins. Les dates invalides sont exclues de l’analyse et les buy-ins invalides de la moyenne.</p>}
           </section>
-          <BankrollCharts account={account} recentCount={recent.count} recentNet={recent.netEuro} />
+          <BankrollCharts account={account} />
           <div className="bankroll-grid">
             <form className="summary-card" onSubmit={(event) => { void movement(event) }}>
               <h3>Modifier la bankroll</h3>

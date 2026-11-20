@@ -11,7 +11,8 @@ function sample(count = 1000, cev = 60, net = 1, buyIn = 2) {
   const tournaments: TournamentRow[] = Array.from({ length: count }, (_, index) => ({
     id: `T${index}`, player_name: 'Hero', buy_in_euros: buyIn - 0.1, rake_euros: 0.1,
     prizepool_euros: 4, multiplier: 2, finish_position: 1, started_at: new Date(2026, 0, index + 1).toISOString(),
-    duration_secs: 60, net_eur: net, hand_count: 1, hero_cev_sum: -500, hero_net_ev_eur_sum: 0,
+    duration_secs: 60, net_eur: net, hand_count: 1, hero_cev_sum: -500,
+    all_in_correction_eur: null, adjusted_all_in_count: 0, calculated_all_in_count: 0,
     wsd_cev_sum: 0, sd_cev_sum: 0,
   }))
   const hands: HandChipPoint[] = tournaments.map((t) => ({

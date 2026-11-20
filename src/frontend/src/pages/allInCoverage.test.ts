@@ -16,7 +16,7 @@ function tournament(id: string, multiplier: number, prizepool_euros: number, net
   return {
     id, multiplier, prizepool_euros, net_eur, player_name: 'Hero', buy_in_euros: 1.86, rake_euros: 0.14,
     finish_position: 1, started_at: '2026-11-17T12:00:00Z', duration_secs: 60, hand_count: 1,
-    hero_cev_sum: 0, hero_net_ev_eur_sum: 0, wsd_cev_sum: 0, sd_cev_sum: 0,
+    hero_cev_sum: 0, all_in_correction_eur: null, adjusted_all_in_count: 0, calculated_all_in_count: 0, wsd_cev_sum: 0, sd_cev_sum: 0,
   }
 }
 

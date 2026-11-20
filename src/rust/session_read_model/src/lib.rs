@@ -31,8 +31,10 @@ pub struct TournamentRow {
     pub net_eur: f64,
     pub hand_count: i64,
     pub hero_cev_sum: i64,
-    /// Sum of hero all-in Net EV converted to euros for this tournament (V1 proportional)
-    pub hero_net_ev_eur_sum: f64,
+    /// Runout adjustment to the actual cash result, not a standalone cash result.
+    pub all_in_correction_eur: Option<f64>,
+    pub adjusted_all_in_count: i64,
+    pub calculated_all_in_count: i64,
     /// cEV sum on hands WITHOUT showdown
     pub wsd_cev_sum: i64,
     /// cEV sum on hands WITH showdown
@@ -996,18 +998,31 @@ pub fn list_tournaments(
     let lim = limit.map(|value| value as i64);
     let off = offset.unwrap_or(0) as i64;
 
+    // The imports do not store payout ladders. Only use confirmed winner-takes-all
+    // ranges for known formats (Winamax Expresso and Betclic Spin & Rush).
+    let calculated = "hp.net_ev IS NOT NULL AND hp.allin_equity BETWEEN 0.0 AND 1.0";
+    let eligible = format!(
+        r#"{calculated} AND hp.starting_stack > 0 AND t.registered_players = 3
+           AND t.prizepool_euros > 0 AND t.buy_in_euros + t.rake_euros > 0
+           AND ABS(t.prizepool_euros - t.multiplier * (t.buy_in_euros + t.rake_euros)) < 0.005
+           AND (
+               (h.table_name LIKE 'Expresso(%' AND t.multiplier IN (2, 3, 4, 5, 10, 20))
+            OR ((h.game_name = 'Spin & Rush' COLLATE NOCASE OR h.game_name LIKE 'Spin & Rush %')
+                AND t.multiplier IN (2, 3, 4, 5, 10))
+           )"#,
+    );
     let mut stmt = conn.prepare(&format!(
         r#"SELECT t.id, t.player_name, t.buy_in_euros, t.prizepool_euros,
                   t.multiplier, t.finish_position, t.started_at,
                   t.duration_secs, t.net_eur,
                   COUNT(h.id) as hand_count,
                 COALESCE(SUM(COALESCE(hp.net_ev, hp.realized_cev)), 0) as hero_cev_sum,
-                COALESCE(SUM(
-                    CASE WHEN hp.net_ev IS NULL THEN NULL
-                         ELSE CAST(hp.net_ev AS REAL) * t.prizepool_euros /
+                SUM(CASE WHEN {eligible}
+                         THEN (CAST(hp.net_ev AS REAL) - hp.realized_cev) * t.prizepool_euros /
                               NULLIF((SELECT SUM(hp2.starting_stack) FROM hand_players hp2 WHERE hp2.hand_id = h.id), 0)
-                    END
-                ), 0.0) as hero_net_ev_eur_sum,
+                    END) as all_in_correction_eur,
+                COUNT(CASE WHEN {eligible} THEN 1 END) as adjusted_all_in_count,
+                COUNT(CASE WHEN {calculated} THEN 1 END) as calculated_all_in_count,
                 COALESCE(SUM(CASE WHEN NOT {HERO_SHOWDOWN_SQL} THEN hp.realized_cev ELSE 0 END), 0) as wsd_cev_sum,
                 COALESCE(SUM(CASE WHEN {HERO_SHOWDOWN_SQL} THEN hp.realized_cev ELSE 0 END), 0) as sd_cev_sum,
                 t.rake_euros
@@ -1032,10 +1047,12 @@ pub fn list_tournaments(
             net_eur: row.get(8)?,
             hand_count: row.get(9)?,
             hero_cev_sum: row.get(10)?,
-            hero_net_ev_eur_sum: row.get(11)?,
-            wsd_cev_sum: row.get(12)?,
-            sd_cev_sum: row.get(13)?,
-            rake_euros: row.get(14)?,
+            all_in_correction_eur: row.get(11)?,
+            adjusted_all_in_count: row.get(12)?,
+            calculated_all_in_count: row.get(13)?,
+            wsd_cev_sum: row.get(14)?,
+            sd_cev_sum: row.get(15)?,
+            rake_euros: row.get(16)?,
         })
     })?;
 
@@ -1047,8 +1064,7 @@ mod tournament_listing_tests {
     use super::list_tournaments;
     use rusqlite::{params, Connection};
 
-    #[test]
-    fn omitted_limit_returns_all_tournaments_and_explicit_limit_is_respected() {
+    fn create_db() -> Connection {
         let conn = Connection::open_in_memory().expect("open database");
         conn.execute_batch(
             r#"
@@ -1059,6 +1075,7 @@ mod tournament_listing_tests {
                 rake_euros REAL NOT NULL DEFAULT 0,
                 prizepool_euros REAL NOT NULL,
                 multiplier INTEGER NOT NULL,
+                registered_players INTEGER NOT NULL DEFAULT 3,
                 finish_position INTEGER NOT NULL,
                 started_at TEXT NOT NULL,
                 duration_secs INTEGER NOT NULL,
@@ -1067,6 +1084,8 @@ mod tournament_listing_tests {
             CREATE TABLE hands (
                 id TEXT PRIMARY KEY,
                 tournament_id TEXT NOT NULL,
+                table_name TEXT NOT NULL DEFAULT '',
+                game_name TEXT NOT NULL DEFAULT '',
                 has_showdown INTEGER
             );
             CREATE TABLE hand_players (
@@ -1075,6 +1094,7 @@ mod tournament_listing_tests {
                 player_name TEXT NOT NULL,
                 hero INTEGER NOT NULL,
                 net_ev INTEGER,
+                allin_equity REAL,
                 realized_cev INTEGER NOT NULL,
                 starting_stack INTEGER NOT NULL
             );
@@ -1086,6 +1106,12 @@ mod tournament_listing_tests {
             "#,
         )
         .expect("create schema");
+        conn
+    }
+
+    #[test]
+    fn omitted_limit_returns_all_tournaments_and_explicit_limit_is_respected() {
+        let conn = create_db();
 
         for index in 0..101 {
             conn.execute(
@@ -1100,6 +1126,52 @@ mod tournament_listing_tests {
 
         let limited = list_tournaments(&conn, Some(100), None).expect("list limited tournaments");
         assert_eq!(limited.len(), 100);
+    }
+
+    #[test]
+    fn cash_adjustment_uses_only_calculated_all_ins_in_known_winner_takes_all_formats() {
+        let conn = create_db();
+        conn.execute_batch(
+            r#"
+            INSERT INTO tournaments
+                (id, player_name, buy_in_euros, prizepool_euros, multiplier, finish_position, started_at, duration_secs, net_eur)
+            VALUES
+                ('spin', 'Hero', 2, 10, 5, 2, '2026-11-18', 300, -2),
+                ('split', 'Hero', 2, 40, 20, 2, '2026-11-17', 300, -2),
+                ('expresso', 'Hero', 2, 40, 20, 1, '2026-11-16', 300, 38),
+                ('unknown', 'Hero', 2, 10, 5, 2, '2026-11-15', 300, -2);
+            INSERT INTO hands (id, tournament_id, has_showdown, table_name, game_name) VALUES
+                ('loss', 'spin', 1, 'Table 1', 'Spin & Rush 2€'),
+                ('legacy', 'spin', 0, 'Table 1', 'Spin & Rush 2€'),
+                ('equal', 'spin', 1, 'Table 1', 'Spin & Rush 2€'),
+                ('jackpot', 'split', 1, 'Table 2', 'Spin & Rush 2€'),
+                ('win', 'expresso', 1, 'Expresso(expresso)#0', 'Holdem no limit'),
+                ('other', 'unknown', 1, 'Table 3', 'Unknown');
+            INSERT INTO hand_players (hand_id, player_name, hero, net_ev, allin_equity, realized_cev, starting_stack)
+            VALUES
+                ('loss', 'Hero', 1, 200, 0.7, -400, 400),
+                ('loss', 'Opponent', 0, NULL, NULL, 400, 1100),
+                ('legacy', 'Hero', 1, -30, NULL, -30, 500),
+                ('equal', 'Hero', 1, 0, 0.5, 0, 500),
+                ('jackpot', 'Hero', 1, 200, 0.7, -400, 400),
+                ('win', 'Hero', 1, 100, 0.6, 400, 1100),
+                ('win', 'Opponent', 0, NULL, NULL, -400, 400),
+                ('other', 'Hero', 1, 200, 0.7, -400, 400);
+            "#,
+        )
+        .expect("seed results");
+
+        let rows = list_tournaments(&conn, None, None).expect("tournaments");
+        assert_eq!(rows[0].net_eur, -2.0);
+        assert_eq!(rows[0].all_in_correction_eur, Some(4.0));
+        assert_eq!(rows[0].adjusted_all_in_count, 2);
+        assert_eq!(rows[0].calculated_all_in_count, 2);
+        assert_eq!(rows[2].all_in_correction_eur, Some(-8.0));
+        for row in [&rows[1], &rows[3]] {
+            assert_eq!(row.all_in_correction_eur, None);
+            assert_eq!(row.adjusted_all_in_count, 0);
+            assert_eq!(row.calculated_all_in_count, 1);
+        }
     }
 }
 
