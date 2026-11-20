@@ -215,15 +215,18 @@ affichent aussi leur equivalence, avec une indisponibilite explicite si la blind
 
 ## Lecture des replays
 
-Le replayer separe table, controles et historique regroupe par street.
+La table et ses contrôles restent au centre du replay. Les boutons **Actions** et
+**Notes** ouvrent le même panneau, fermé par défaut.
+Dans **Tournois**, **Rejouer** ouvre la première main du tournoi. En mode Lecture,
+les mains s’enchaînent dans l’ordre ; les boutons Main précédente / suivante
+permettent aussi de naviguer manuellement.
 Le joueur actif est souligne, le dealer et les joueurs couches/a tapis sont identifies.
 Les cartes sont partagees avec la liste des duels ; les cartes futures du board restent
-masquees jusqu'a leur street. Jetons / BB s'applique aux stacks, au pot et aux actions,
-avec la seconde unite sous les montants de la table. Les relances distinguent
+masquees jusqu'a leur street. Jetons / BB s'applique aux stacks, au pot et aux actions.
+Les relances distinguent
 le montant cible (« a ») de l'increment (« de »).
 Le pot fourni par le modele actuel est le total final importe, pas un pot dynamique :
-il est donc nomme explicitement ainsi. Les piles de jetons sont illustratives,
-sans pretendre representer des denominations exactes. Navigation par action,
+il est donc nommé « Pot final ». Navigation par action,
 curseur, lecture automatique et raccourcis clavier restent disponibles ; les
 raccourcis ne capturent pas la saisie dans les controles.
 

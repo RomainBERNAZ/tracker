@@ -88,6 +88,7 @@ export default function App() {
             <Route path="/gto" element={<Navigate to="/advanced/ranges" replace />} />
             <Route path="/bankroll" element={<Bankroll />} />
             <Route path="/tournaments/:id/hands" element={<HandList />} />
+            <Route path="/tournaments/:id/replay" element={<Replayer />} />
             <Route path="/hands/:handId" element={<HandDetail />} />
             <Route path="/hands/:handId/replay" element={<Replayer />} />
           </Routes>

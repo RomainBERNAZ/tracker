@@ -1,12 +1,11 @@
-import { Component, useEffect, useRef, useState } from 'react'
+import { Component, useCallback, useEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { api, type ReplayerPlayer, type ReplayerState, type ReplayerStep } from '../api'
-import { ChipAmount, ChipPile } from '../components/ChipAmount'
 import HandReviewPanel from '../components/HandReviewPanel'
 import { HoleCards, PlayingCard } from '../components/PlayingCards'
 import { createReviewState, useReviewBack } from '../reviewState'
-import type { MatchupUnit } from './matchupComparison'
-import { replayActionLabel, replayStreetLabel, replayVisibleBoardCount } from './replayPresentation'
+import { formatChipAmount, type MatchupUnit } from './matchupComparison'
+import { nextReplayPosition, replayActionLabel, replayStreetLabel, replayVisibleBoardCount } from './replayPresentation'
 
 const useReplayUnit = createReviewState<MatchupUnit>(() => 'chips')
 const useReplaySpeed = createReviewState(() => 1000)
@@ -96,84 +95,123 @@ function ReplayTimeline({ steps, currentStep, unit, bigBlind, onSelect }: {
   </div>
 }
 
-function ReplayerContent() {
-  const { handId } = useParams<{ handId: string }>()
-  const [state, setState] = useState<ReplayerState | null>(null)
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
-  const [currentStep, setCurrentStep] = useState(0)
+function ReplayerContent({ handIds, tournamentId }: { handIds: readonly string[]; tournamentId?: string }) {
+  const [position, setPosition] = useState({ hand: 0, step: 0 })
+  const [loaded, setLoaded] = useState<{ hand: number; state: ReplayerState } | { hand: number; error: string } | null>(null)
   const [isAutoPlay, setIsAutoPlay] = useState(false)
+  const [panel, setPanel] = useState<'actions' | 'notes' | null>(null)
+  const [notesHandId, setNotesHandId] = useState<string | null>(null)
   const [playSpeedMs, setPlaySpeedMs] = useReplaySpeed()
   const [unit, setUnit] = useReplayUnit()
-  const goBack = useReviewBack(state ? `/tournaments/${encodeURIComponent(state.tournament_id)}/hands` : '/summary')
+  const { hand: handIndex, step: currentStep } = position
+  const handId = handIds[handIndex]
+  const result = loaded?.hand === handIndex ? loaded : null
+  const state = result && 'state' in result ? result.state : null
+  const goBack = useReviewBack(tournamentId ? '/tournaments' :
+    state ? `/tournaments/${encodeURIComponent(state.tournament_id)}/hands` : '/summary')
 
   useEffect(() => {
     let cancelled = false
-    setError(null)
-    setState(null)
-    setLoading(true)
-    setIsAutoPlay(false)
-    if (!handId) {
-      setError('ID de main manquant')
-      setLoading(false)
-      return
-    }
     api.getHandForReplay(handId)
       .then((data) => {
         if (cancelled) return
-        if (!data) setError('Main introuvable')
+        if (data) setLoaded({ hand: handIndex, state: normalizeReplayState(data) })
         else {
-          setState(normalizeReplayState(data))
-          setCurrentStep(0)
+          setIsAutoPlay(false)
+          setLoaded({ hand: handIndex, error: 'Main introuvable' })
         }
       })
       .catch((err: unknown) => {
         console.error(err)
-        if (!cancelled) setError(err instanceof Error ? err.message : String(err))
+        if (!cancelled) {
+          setIsAutoPlay(false)
+          setLoaded({ hand: handIndex, error: err instanceof Error ? err.message : String(err) })
+        }
       })
-      .finally(() => { if (!cancelled) setLoading(false) })
     return () => { cancelled = true }
-  }, [handId])
+  }, [handId, handIndex])
 
   const lastStep = Math.max(0, (state?.total_steps ?? 0) - 1)
+  const canPlay = state != null && (lastStep > 0 || handIndex + 1 < handIds.length)
+  const canAdvance = nextReplayPosition(handIndex, currentStep, lastStep, handIds.length) != null
+
+  const togglePlayback = useCallback(() => {
+    if (!canPlay) return
+    if (!isAutoPlay && !canAdvance) setPosition({ hand: handIndex, step: 0 })
+    if (panel === 'notes') setPanel(null)
+    setIsAutoPlay(!isAutoPlay)
+  }, [canPlay, isAutoPlay, canAdvance, handIndex, panel])
+
   useEffect(() => {
     const handle = (event: KeyboardEvent) => {
       const target = event.target
-      if (!state || state.total_steps === 0 || (target instanceof HTMLElement &&
+      if (!state || (target instanceof HTMLElement &&
         (target.closest('input, select, textarea, button, a') || target.isContentEditable))) return
       if (!['ArrowLeft', 'ArrowRight', 'Home', 'End', ' '].includes(event.key)) return
       event.preventDefault()
-      if (event.key === ' ') setIsAutoPlay((previous) => !previous)
+      if (event.key === ' ') togglePlayback()
       else {
         setIsAutoPlay(false)
-        if (event.key === 'ArrowLeft') setCurrentStep((previous) => Math.max(0, previous - 1))
-        if (event.key === 'ArrowRight') setCurrentStep((previous) => Math.min(lastStep, previous + 1))
-        if (event.key === 'Home') setCurrentStep(0)
-        if (event.key === 'End') setCurrentStep(lastStep)
+        setPosition((previous) => ({
+          ...previous,
+          step: event.key === 'Home' ? 0 : event.key === 'End' ? lastStep :
+            Math.max(0, Math.min(lastStep, previous.step + (event.key === 'ArrowLeft' ? -1 : 1))),
+        }))
       }
     }
     globalThis.addEventListener('keydown', handle)
     return () => globalThis.removeEventListener('keydown', handle)
-  }, [state, lastStep])
+  }, [state, lastStep, togglePlayback])
 
   useEffect(() => {
-    if (!isAutoPlay || !state || state.total_steps <= 1) return
-    const timer = globalThis.setInterval(() => {
-      if (currentStep >= lastStep) setIsAutoPlay(false)
-      else setCurrentStep((previous) => Math.min(lastStep, previous + 1))
+    if (!isAutoPlay || !state) return
+    const timer = globalThis.setTimeout(() => {
+      const next = nextReplayPosition(handIndex, currentStep, lastStep, handIds.length)
+      if (!next) setIsAutoPlay(false)
+      else {
+        if (next.hand !== handIndex) setLoaded(null)
+        setPosition(next)
+      }
     }, playSpeedMs)
-    return () => globalThis.clearInterval(timer)
-  }, [isAutoPlay, playSpeedMs, state, currentStep, lastStep])
+    return () => globalThis.clearTimeout(timer)
+  }, [isAutoPlay, playSpeedMs, state, currentStep, lastStep, handIndex, handIds.length])
 
   function goToStep(index: number) {
     setIsAutoPlay(false)
-    setCurrentStep(Math.max(0, Math.min(lastStep, index)))
+    setPosition({ hand: handIndex, step: Math.max(0, Math.min(lastStep, index)) })
   }
 
-  if (loading) return <p role="status">Chargement du replay...</p>
-  if (error || !state) return <div>
+  function goToHand(index: number) {
+    setIsAutoPlay(false)
+    setLoaded(null)
+    if (panel === 'notes') setPanel(null)
+    setPosition({ hand: index, step: 0 })
+  }
+
+  const header = <>
     <button className="back-link" onClick={goBack}>← Retour</button>
-    <div className="import-result" role="alert"><h3 className="negative">Replay indisponible</h3><p>{error ?? 'Main introuvable'}</p></div>
+    <header className="page-header replayer-header">
+      <div>
+        <h1>{tournamentId ? 'Replay du tournoi' : 'Replay de la main'}</h1>
+        {state && <p>Blindes {state.small_blind}/{state.big_blind} · Niveau {state.level}</p>}
+      </div>
+      {tournamentId && <div className="replayer-controls-row" aria-label="Mains du tournoi" role="group">
+        <button type="button" className="period-pill" disabled={handIndex === 0}
+          onClick={() => goToHand(handIndex - 1)}>‹ Main précédente</button>
+        <strong role="status">Main {handIndex + 1} / {handIds.length}</strong>
+        <button type="button" className="period-pill" disabled={handIndex + 1 >= handIds.length}
+          onClick={() => goToHand(handIndex + 1)}>Main suivante ›</button>
+      </div>}
+    </header>
+  </>
+
+  if (!state) return <div className="replayer-page">{header}
+    {result && 'error' in result
+      ? <p role="alert" className="negative">Replay indisponible : {result.error}</p>
+      : <div className="replayer-controls-row">
+        <p role="status">Chargement de la main…</p>
+        {isAutoPlay && <button type="button" className="period-pill" onClick={() => setIsAutoPlay(false)}>Pause</button>}
+      </div>}
   </div>
 
   const step = state.steps[currentStep] ?? null
@@ -187,35 +225,28 @@ function ReplayerContent() {
     ? [{ player: hero, slot: 0 }, ...opponents.map((player, index) => ({ player, slot: index === 0 && opponents.length === 1 ? 2 : index + 1 }))]
     : sorted.map((player, slot) => ({ player, slot }))
   const pot = step?.pot_size_after ?? null
+  const canUseBb = Number.isFinite(state.big_blind) && state.big_blind > 0
+  const displayUnit = canUseBb ? unit : 'chips'
 
   return <div className="replayer-page">
-    <button className="back-link" onClick={goBack}>← Retour</button>
-    <header className="page-header replayer-header">
-      <div><h1>Replay</h1><p className="replayer-hand-id">{state.hand_id}</p>
-        <p>Tournoi {state.tournament_id} · {state.table_name} · Niveau {state.level} · Blindes {state.small_blind}/{state.big_blind}</p>
-        <p>{new Date(state.timestamp).toLocaleString('fr-FR')}</p>
-      </div>
-      <fieldset className="filter-group" aria-label="Unite du replay">
-        <legend>Montants</legend>
-        <div className="period-pill-bar">{(['chips', 'bb'] as const).map((key) =>
-          <button type="button" key={key} className={`period-pill${unit === key ? ' period-pill-active' : ''}`}
-            aria-pressed={unit === key} onClick={() => setUnit(key)}>{key === 'chips' ? 'Jetons' : 'BB'}</button>)}</div>
-      </fieldset>
-    </header>
-    {unit === 'bb' && (!Number.isFinite(state.big_blind) || state.big_blind <= 0) &&
-      <p className="variance-warning" role="status">Grosse blinde absente ou invalide : montants en BB indisponibles. Les valeurs en jetons restent affichees en dessous.</p>}
-
-    <div className="replayer-review-layout">
-      <div className="replayer-main">
+    {header}
+    <div className={`replayer-review-layout${panel ? ' replayer-with-panel' : ''}`}>
         <section className="summary-card replayer-table-card" aria-label="Table du replay">
           <div className="summary-card-header">
-            <div className="replayer-streets" aria-label="Street courante">
-              {['preflop', 'flop', 'turn', 'river', 'showdown'].map((value) =>
-                <span key={value} className={`replayer-street-pill${street.toLowerCase() === value ? ' replayer-street-active' : ''}`}>
-                  {replayStreetLabel(value)}
-                </span>)}
+            <strong>{replayStreetLabel(street)}</strong>
+            <div className="replayer-controls-row">
+              <select className="filter-select" aria-label="Unité des montants" value={displayUnit}
+                onChange={(event) => setUnit(event.target.value === 'bb' ? 'bb' : 'chips')}>
+                <option value="chips">Jetons</option><option value="bb" disabled={!canUseBb}>BB</option>
+              </select>
+              <button type="button" className="filter-reset" aria-expanded={panel === 'actions'}
+                onClick={() => setPanel(panel === 'actions' ? null : 'actions')}>Actions</button>
+              <button type="button" className="filter-reset" aria-expanded={panel === 'notes'} onClick={() => {
+                setIsAutoPlay(false)
+                setNotesHandId(handId)
+                setPanel(panel === 'notes' ? null : 'notes')
+              }}>Notes</button>
             </div>
-            <span className="stack-method">Action {state.total_steps ? currentStep + 1 : 0}/{state.total_steps}</span>
           </div>
           <div className="replayer-felt-table" data-player-count={players.length}>
             <div className="replayer-felt-inner" />
@@ -224,13 +255,11 @@ function ReplayerContent() {
                 {[0, 1, 2, 3, 4].map((index) => <PlayingCard key={index} card={index < boardCount ? state.board[index] : null} />)}
               </div>
               <div className="replayer-pot-center">
-                <ChipPile amount={pot ?? 0} /><span>Pot final importe</span>
-                <ChipAmount value={pot} bigBlind={state.big_blind} unit={unit} />
+                <span title="Total final enregistré dans l’historique, pas le pot à cette action">Pot final</span>
+                <strong>{formatChipAmount(pot, state.big_blind, displayUnit)}</strong>
               </div>
             </div>
             {positionedPlayers.map(({ player, slot }) => {
-              const action = state.steps.slice(0, currentStep + 1).reverse()
-                .find((item) => item.actor_name === player.name && item.street === street)
               const isActor = player.name === step?.actor_name
               return <div key={player.seat_number}
                 className={`replayer-player-card replayer-seat-pos-${slot}${player.folded ? ' replayer-player-card-folded' : ''}${isActor ? ' replayer-player-card-actor' : ''}`}>
@@ -239,60 +268,77 @@ function ReplayerContent() {
                   <div className="replayer-player-badges">
                     {player.hero && <span className="replayer-seat-pill">HERO</span>}
                     {player.seat_number === state.button_pos && <span className="replayer-dealer" title="Bouton dealer">D</span>}
-                    {player.folded ? <span className="replayer-seat-pill">Couche</span> :
+                    {player.folded ? <span className="replayer-seat-pill">Couché</span> :
                       player.current_stack === 0 && <span className="replayer-seat-pill">TAPIS</span>}
                   </div>
                 </div>
                 <div className="replayer-player-body">
                   <HoleCards cards={player.hole_cards} />
-                  <div className="replayer-stack-amount"><ChipPile amount={player.current_stack} />
-                    <ChipAmount value={player.current_stack} bigBlind={state.big_blind} unit={unit} />
-                  </div>
+                  <strong className="replayer-stack-amount">{formatChipAmount(player.current_stack, state.big_blind, displayUnit)}</strong>
                 </div>
-                <p className="stack-method">Depart : <ChipAmount value={player.starting_stack} bigBlind={state.big_blind} unit={unit} /></p>
-                {action && <div className="replayer-seat-action-badge">{replayActionLabel(action, state.big_blind, unit)}</div>}
               </div>
             })}
           </div>
-          <p className="stack-method replayer-pot-note">
-            Le pot affiche est le total final importe, pas un pot recalcule a chaque action. Les piles sont illustratives, les montants font foi.
-            {state.board.length === 0 && ' Board absent de cet import : si la main va au showdown, un reimport peut etre necessaire.'}
-          </p>
-        </section>
-
-        <section className="summary-card replayer-navigation" aria-label="Navigation du replay">
-          <div className="replayer-current-action-topline">
-            <span>{replayStreetLabel(street)}</span><span>{step?.actor_name || 'Aucun joueur actif'}</span>
+          <div className="replayer-navigation" role="group" aria-label="Navigation du replay">
+            <div className="replayer-action-line">
+              <p className="replayer-current-action-description">{step ? replayActionLabel(step, state.big_blind, displayUnit) : 'Aucune action disponible'}</p>
+              <span className="stack-method">Action {state.total_steps ? currentStep + 1 : 0}/{state.total_steps}</span>
+            </div>
+            <input className="replayer-slider" type="range" min={0} max={lastStep} value={currentStep}
+              disabled={state.total_steps === 0} aria-label="Action du replay"
+              onChange={(event) => goToStep(Number(event.target.value))} />
+            <div className="replayer-controls-row">
+              <button type="button" className="period-pill" disabled={currentStep === 0} onClick={() => goToStep(0)}>« Début</button>
+              <button type="button" className="period-pill" disabled={currentStep === 0} onClick={() => goToStep(currentStep - 1)}>‹ Précédent</button>
+              <button type="button" className="period-pill period-pill-active" disabled={!canPlay && !isAutoPlay}
+                onClick={togglePlayback}>{isAutoPlay ? 'Pause' : 'Lecture'}</button>
+              <button type="button" className="period-pill" disabled={currentStep >= lastStep} onClick={() => goToStep(currentStep + 1)}>Suivant ›</button>
+              <button type="button" className="period-pill" disabled={currentStep >= lastStep} onClick={() => goToStep(lastStep)}>Fin »</button>
+              <select className="filter-select" value={playSpeedMs} onChange={(event) => setPlaySpeedMs(Number(event.target.value))} aria-label="Vitesse de lecture">
+                <option value={1400}>×0,75</option><option value={1000}>×1</option><option value={700}>×1,5</option><option value={450}>×2,2</option>
+              </select>
+            </div>
           </div>
-          <p className="replayer-current-action-description">{step ? replayActionLabel(step, state.big_blind, unit) : 'Aucune action disponible'}</p>
-          <input className="replayer-slider" type="range" min={0} max={lastStep} value={currentStep}
-            disabled={state.total_steps === 0} aria-label="Action du replay"
-            onChange={(event) => goToStep(Number(event.target.value))} />
-          <div className="replayer-controls-row">
-            <button type="button" className="period-pill" disabled={currentStep === 0} onClick={() => goToStep(0)}>« Debut</button>
-            <button type="button" className="period-pill" disabled={currentStep === 0} onClick={() => goToStep(currentStep - 1)}>‹ Precedent</button>
-            <button type="button" className="period-pill period-pill-active" disabled={state.total_steps <= 1}
-              onClick={() => setIsAutoPlay((previous) => !previous)}>{isAutoPlay ? 'Pause' : 'Lecture'}</button>
-            <button type="button" className="period-pill" disabled={currentStep >= lastStep} onClick={() => goToStep(currentStep + 1)}>Suivant ›</button>
-            <button type="button" className="period-pill" disabled={currentStep >= lastStep} onClick={() => goToStep(lastStep)}>Fin »</button>
-            <select className="filter-select" value={playSpeedMs} onChange={(event) => setPlaySpeedMs(Number(event.target.value))} aria-label="Vitesse autoplay">
-              <option value={1400}>x0.75</option><option value={1000}>x1</option><option value={700}>x1.5</option><option value={450}>x2.2</option>
-            </select>
-          </div>
-          <p className="stack-method">Clavier : ← →, Home, End, Espace (hors controles).</p>
         </section>
-      </div>
-      <aside className="summary-card replayer-history" aria-label="Historique des actions">
-        <h3>Historique des actions</h3>
-        <p className="stack-method">Cliquez une action pour la revoir. L'action active est surlignee.</p>
-        <ReplayTimeline steps={state.steps} currentStep={currentStep} unit={unit} bigBlind={state.big_blind} onSelect={goToStep} />
+      <aside className="summary-card replayer-history" aria-label="Détails du replay" hidden={panel == null}>
+        {panel === 'actions' && <>
+          <h3>Historique des actions</h3>
+          <ReplayTimeline steps={state.steps} currentStep={currentStep} unit={displayUnit} bigBlind={state.big_blind} onSelect={goToStep} />
+        </>}
+        {notesHandId === handId && <div hidden={panel !== 'notes'}><HandReviewPanel key={handId} handId={handId} embedded /></div>}
       </aside>
     </div>
-    <HandReviewPanel handId={state.hand_id} />
   </div>
 }
 
 export default function Replayer() {
-  const { handId } = useParams<{ handId: string }>()
-  return <ReplayerErrorBoundary key={handId}><ReplayerContent /></ReplayerErrorBoundary>
+  const { handId, id } = useParams<{ handId: string; id: string }>()
+  return <ReplayerErrorBoundary key={id ? `tournament:${id}` : `hand:${handId}`}>
+    {id ? <TournamentReplay tournamentId={id} /> :
+      handId ? <ReplayerContent handIds={[handId]} /> : <p role="alert">Identifiant de main manquant.</p>}
+  </ReplayerErrorBoundary>
+}
+
+function TournamentReplay({ tournamentId }: { tournamentId: string }) {
+  const goBack = useReviewBack('/tournaments')
+  const [result, setResult] = useState<{ hands: string[] } | { error: string } | null>(null)
+  useEffect(() => {
+    let cancelled = false
+    api.getHandsForTournament(tournamentId)
+      .then((hands) => { if (!cancelled) setResult({ hands: hands.map((hand) => hand.id) }) })
+      .catch((cause: unknown) => {
+        console.error(cause)
+        if (!cancelled) setResult({ error: cause instanceof Error ? cause.message : String(cause) })
+      })
+    return () => { cancelled = true }
+  }, [tournamentId])
+  if (result && 'hands' in result && result.hands.length > 0) {
+    return <ReplayerContent handIds={result.hands} tournamentId={tournamentId} />
+  }
+  return <div>
+    <button className="back-link" onClick={goBack}>← Retour</button>
+    {result == null ? <p role="status">Chargement des mains du tournoi…</p> :
+      'error' in result ? <p role="alert">Replay du tournoi indisponible : {result.error}</p> :
+        <p>Aucune main importée pour ce tournoi.</p>}
+  </div>
 }

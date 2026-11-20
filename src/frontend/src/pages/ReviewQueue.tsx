@@ -107,7 +107,7 @@ export default function ReviewQueue() {
           <p className="variance-description">
             Depuis le détail ou le replay d’une main, ajoute un tag, une note ou un favori pour la retrouver ici.
           </p>
-          {reviews.length === 0 && <Link className="btn-primary review-queue-import-link" to="/tournaments">Parcourir les tournois</Link>}
+          {reviews.length === 0 && <Link className="filter-reset review-queue-import-link" to="/tournaments">Parcourir les tournois <span aria-hidden="true">→</span></Link>}
         </section>
       ) : (
         <div className="review-queue-list">

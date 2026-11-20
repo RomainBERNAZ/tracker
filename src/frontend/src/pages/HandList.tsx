@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { Link, useParams, useNavigate } from 'react-router-dom'
 import { api, HandRow } from '../api'
 import { createReviewState, useReviewBack } from '../reviewState'
 
@@ -99,9 +99,9 @@ export default function HandList() {
         ← Retour aux tournois
       </button>
 
-      <div className="page-header">
-        <h1>Tournoi {id}</h1>
-        <p>{filteredHands.length} / {hands.length} mains</p>
+      <div className="page-header summary-header-row">
+        <div><h1>Tournoi {id}</h1><p>{filteredHands.length} / {hands.length} mains</p></div>
+        {id && hands.length > 0 && <Link className="filter-reset" to={`/tournaments/${encodeURIComponent(id)}/replay`}>Rejouer le tournoi</Link>}
       </div>
 
       <div className="filters-bar">

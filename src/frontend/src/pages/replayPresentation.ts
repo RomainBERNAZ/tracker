@@ -1,6 +1,12 @@
 import type { ReplayerStep } from '../api'
 import { formatChipAmount, type MatchupUnit } from './matchupComparison'
 
+export function nextReplayPosition(hand: number, step: number, lastStep: number, handCount: number) {
+  if (step < lastStep) return { hand, step: step + 1 }
+  if (hand + 1 < handCount) return { hand: hand + 1, step: 0 }
+  return null
+}
+
 export function replayStreetLabel(street: string) {
   const labels: Record<string, string> = { preflop: 'Preflop', flop: 'Flop', turn: 'Turn', river: 'River', showdown: 'Showdown' }
   return labels[street.toLowerCase()] ?? street

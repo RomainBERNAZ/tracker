@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import type { ReplayerStep } from '../api'
-import { replayActionLabel, replayVisibleBoardCount } from './replayPresentation'
+import { nextReplayPosition, replayActionLabel, replayVisibleBoardCount } from './replayPresentation'
 
 const step: ReplayerStep = {
   step_number: 1, actor_name: 'Hero', street: 'preflop', action_type: 'allin_raise',
@@ -9,6 +9,14 @@ const step: ReplayerStep = {
 }
 
 describe('replay action presentation', () => {
+  it('plays remaining actions before moving to the next hand and stops after the last hand', () => {
+    expect(nextReplayPosition(0, 1, 2, 2)).toEqual({ hand: 0, step: 2 })
+    expect(nextReplayPosition(0, 2, 2, 2)).toEqual({ hand: 1, step: 0 })
+    expect(nextReplayPosition(0, 0, 0, 2)).toEqual({ hand: 1, step: 0 })
+    expect(nextReplayPosition(1, 2, 2, 2)).toBeNull()
+    expect(nextReplayPosition(0, 2, 2, 1)).toBeNull()
+  })
+
   it('reveals only reached streets, retains the board at showdown, and hides it again when rewinding', () => {
     const steps = ['preflop', 'flop', 'turn', 'river', 'showdown'].map((street) => ({ ...step, street }))
     expect(steps.map((_, index) => replayVisibleBoardCount(steps, index))).toEqual([0, 3, 4, 5, 5])

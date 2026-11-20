@@ -1,5 +1,5 @@
 import { memo, useEffect, useMemo, useRef, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { api, TournamentRow } from '../api'
 import { TournamentFilters } from '../components/TournamentFilters'
 import { createReviewState } from '../reviewState'
@@ -257,28 +257,33 @@ export default memo(function Tournaments() {
                   </span>
                 </th>
               ))}
+              <th scope="col">Replay</th>
             </tr>
           </thead>
           <tbody>
             {visibleWindow.topSpacerHeight > 0 && (
               <tr className="table-spacer-row">
-                <td colSpan={columns.length} style={{ height: visibleWindow.topSpacerHeight, padding: 0, border: 0 }} />
+                <td colSpan={columns.length + 1} style={{ height: visibleWindow.topSpacerHeight, padding: 0, border: 0 }} />
               </tr>
             )}
             {visibleWindow.visibleRows.map(t => (
-              <tr key={t.id} onClick={() => navigate(`/tournaments/${t.id}/hands`)}>
+              <tr key={t.id} onClick={() => navigate(`/tournaments/${encodeURIComponent(t.id)}/hands`)}>
                 {columns.map(column => (
                   <td key={column}>{renderCell(t, column)}</td>
                 ))}
+                <td className="tournament-replay-cell">{t.hand_count > 0
+                  ? <Link className="filter-reset tournament-replay-link" to={`/tournaments/${encodeURIComponent(t.id)}/replay`}
+                    onClick={(event) => event.stopPropagation()} aria-label={`Rejouer le tournoi ${t.id}`}>Rejouer</Link>
+                  : '—'}</td>
               </tr>
             ))}
             {visibleWindow.bottomSpacerHeight > 0 && (
               <tr className="table-spacer-row">
-                <td colSpan={columns.length} style={{ height: visibleWindow.bottomSpacerHeight, padding: 0, border: 0 }} />
+                <td colSpan={columns.length + 1} style={{ height: visibleWindow.bottomSpacerHeight, padding: 0, border: 0 }} />
               </tr>
             )}
             {rows.length === 0 && (
-              <tr><td colSpan={columns.length} style={{ textAlign: 'center', color: 'var(--text-dim)', padding: 32 }}>
+              <tr><td colSpan={columns.length + 1} style={{ textAlign: 'center', color: 'var(--text-dim)', padding: 32 }}>
                 Aucun tournoi pour ces filtres
               </td></tr>
             )}

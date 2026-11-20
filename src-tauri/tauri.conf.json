@@ -1,6 +1,6 @@
 {
   "productName": "Expresso Review",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "identifier": "dev.expresso.review",
   "build": {
     "beforeDevCommand": "cd \"${GITHUB_WORKSPACE:-$(git rev-parse --show-toplevel)}/src/frontend\" && pnpm dev",

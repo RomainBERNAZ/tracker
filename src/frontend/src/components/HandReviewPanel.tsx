@@ -12,7 +12,7 @@ interface ReviewDraft {
 
 const EMPTY_REVIEW: ReviewDraft = { note: '', tags: [], favorite: false, reviewed: false }
 
-export default function HandReviewPanel({ handId }: { readonly handId: string }) {
+export default function HandReviewPanel({ handId, embedded = false }: { readonly handId: string; readonly embedded?: boolean }) {
   const [draft, setDraft] = useState<ReviewDraft>(EMPTY_REVIEW)
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
@@ -69,7 +69,8 @@ export default function HandReviewPanel({ handId }: { readonly handId: string })
   }
 
   return (
-    <section className="summary-card hand-review-panel" aria-label="Review personnelle de la main">
+    <section className={embedded ? 'hand-review-panel hand-review-panel-embedded' : 'summary-card hand-review-panel'}
+      aria-label="Review personnelle de la main">
       <div className="summary-card-header">
         <div>
           <h3>Ma review</h3>
