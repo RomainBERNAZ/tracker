@@ -215,7 +215,8 @@ affichent aussi leur equivalence, avec une indisponibilite explicite si la blind
 
 ## Lecture des replays
 
-La table et ses contrôles restent au centre du replay. Les boutons **Actions** et
+La table et ses contrôles restent au centre du replay. L’action en cours s’affiche
+près du joueur concerné, ou au centre pour une action sans joueur. Les boutons **Actions** et
 **Notes** ouvrent le même panneau, fermé par défaut.
 Dans **Tournois**, **Rejouer** ouvre la première main du tournoi. En mode Lecture,
 les mains s’enchaînent dans l’ordre ; les boutons Main précédente / suivante
@@ -233,10 +234,10 @@ raccourcis ne capturent pas la saisie dans les controles.
 ## Mains de départ
 
 L'onglet **Mains de départ** de Résumé affiche les 169 catégories de mains reçues par le héros dans une grille 13 × 13. Il utilise les mêmes filtres de période et de buy-in que Résumé et Jetons.
-Le filtre « Stack de départ maximal » garde les mains dont le stack du héros au début de la main, divisé par la grosse blinde de cette main, ne dépasse pas le seuil choisi. Les seuils sont entiers à partir de 15 BB et par demi-blinde en dessous. Les mains sans stack ou grosse blinde valide restent incluses si aucun seuil n'est sélectionné.
+Le filtre « Stack de départ maximal » garde les mains dont le stack du héros au début de la main, divisé par la grosse blinde de cette main, ne dépasse pas le seuil choisi. Les seuils sont entiers de 15 à 25 BB et par demi-blinde en dessous. « Tous les stacks » ne filtre aucune profondeur, même au-dessus de 25 BB, et conserve les mains sans stack ou grosse blinde valide.
 Au survol ou au focus d'une case : occurrences recues, occurrences attendues et ecart. L'attendu utilise respectivement 6, 4 et 12 combinaisons sur les 1 326 distributions possibles de deux cartes.
 Les mains sans cartes de depart exploitables sont signalees et exclues du nombre de mains servant au calcul. Ces ecarts de frequence sont descriptifs, pas un test de hasard.
-Chaque case affiche aussi le gain realise moyen par occurrence, au choix en jetons ou en BB, avec le gain total au survol. Les couleurs de fond continuent a representer les frequences recues par rapport a l'attendu, pas la rentabilite.
+Chaque case affiche aussi le gain réalisé moyen par occurrence, au choix en jetons ou en BB, avec le gain total au survol. Les cinq couleurs représentent la fréquence, pas la rentabilité : zone neutre jusqu’à un écart-type de l’attendu, écart modéré au-delà, et marqué à partir de deux écarts-types. L’écart-type dépend de la taille de l’échantillon.
 Les gains en BB sont calcules main par main (`gain realise / grosse blinde`), puis additionnes et moyennes. Une grosse blinde invalide exclut uniquement le gain en BB, avec un avertissement et le nombre d'occurrences exploitables ; les gains en jetons et les frequences restent disponibles. Une moyenne sans occurrence exploitable est affichee par un tiret, pas par zero.
 L'encart est limite a la largeur de la grille pour laisser le reste de la page disponible.
 

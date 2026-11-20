@@ -227,6 +227,8 @@ function ReplayerContent({ handIds, tournamentId }: { handIds: readonly string[]
   const pot = step?.pot_size_after ?? null
   const canUseBb = Number.isFinite(state.big_blind) && state.big_blind > 0
   const displayUnit = canUseBb ? unit : 'chips'
+  const actionLabel = step ? replayActionLabel(step, state.big_blind, displayUnit) : 'Aucune action disponible'
+  const actor = step && players.find((player) => player.name === step.actor_name)
 
   return <div className="replayer-page">
     {header}
@@ -258,9 +260,12 @@ function ReplayerContent({ handIds, tournamentId }: { handIds: readonly string[]
                 <span title="Total final enregistré dans l’historique, pas le pot à cette action">Pot final</span>
                 <strong>{formatChipAmount(pot, state.big_blind, displayUnit)}</strong>
               </div>
+              <div className="replayer-action-slot">
+                {!actor && <span className="replayer-seat-action-badge">{actionLabel}</span>}
+              </div>
             </div>
             {positionedPlayers.map(({ player, slot }) => {
-              const isActor = player.name === step?.actor_name
+              const isActor = player === actor
               return <div key={player.seat_number}
                 className={`replayer-player-card replayer-seat-pos-${slot}${player.folded ? ' replayer-player-card-folded' : ''}${isActor ? ' replayer-player-card-actor' : ''}`}>
                 <div className="replayer-player-topline">
@@ -276,14 +281,14 @@ function ReplayerContent({ handIds, tournamentId }: { handIds: readonly string[]
                   <HoleCards cards={player.hole_cards} />
                   <strong className="replayer-stack-amount">{formatChipAmount(player.current_stack, state.big_blind, displayUnit)}</strong>
                 </div>
+                <div className="replayer-action-slot">
+                  {isActor && <span className="replayer-seat-action-badge">{actionLabel}</span>}
+                </div>
               </div>
             })}
           </div>
           <div className="replayer-navigation" role="group" aria-label="Navigation du replay">
-            <div className="replayer-action-line">
-              <p className="replayer-current-action-description">{step ? replayActionLabel(step, state.big_blind, displayUnit) : 'Aucune action disponible'}</p>
-              <span className="stack-method">Action {state.total_steps ? currentStep + 1 : 0}/{state.total_steps}</span>
-            </div>
+            <span className="stack-method">Action {state.total_steps ? currentStep + 1 : 0}/{state.total_steps}</span>
             <input className="replayer-slider" type="range" min={0} max={lastStep} value={currentStep}
               disabled={state.total_steps === 0} aria-label="Action du replay"
               onChange={(event) => goToStep(Number(event.target.value))} />

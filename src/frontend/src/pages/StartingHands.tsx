@@ -1,7 +1,7 @@
 import { memo, useMemo } from 'react'
 import { createReviewState } from '../reviewState'
 import type { HandChipPoint } from '../api'
-import { filterStartingHandsByStack, startingHandDistribution, startingStackLimits } from './startingHandVariance'
+import { filterStartingHandsByStack, startingHandDistribution, startingHandFrequencyTone, STARTING_STACK_LIMITS } from './startingHandVariance'
 
 const formatNumber = (value: number, digits = 0) =>
   value.toLocaleString('fr-FR', { minimumFractionDigits: digits, maximumFractionDigits: digits })
@@ -11,13 +11,19 @@ const formatGain = (value: number | null, digits: number) => value == null ? '�
 
 const useStartingHandUnit = createReviewState<'chips' | 'bb'>(() => 'chips')
 const useStartingHandStackLimit = createReviewState<number | null>(() => null)
+const frequencyLabels = {
+  'much-less': 'Nettement moins',
+  less: 'Un peu moins',
+  neutral: 'Proche de l’attendu',
+  more: 'Un peu plus',
+  'much-more': 'Nettement plus',
+}
 
 export default memo(function StartingHands({ hands }: {
   readonly hands: readonly HandChipPoint[]
 }) {
   const [unit, setUnit] = useStartingHandUnit()
   const [stackLimit, setStackLimit] = useStartingHandStackLimit()
-  const stackLimits = useMemo(() => startingStackLimits(hands, stackLimit), [hands, stackLimit])
   const { rows, sampleSize, excludedHands, excludedBbHands, unknownStacks } = useMemo(() => {
     const { selectedHands, unknownStacks } = filterStartingHandsByStack(hands, stackLimit)
     return { ...startingHandDistribution(selectedHands), unknownStacks }
@@ -46,7 +52,7 @@ export default memo(function StartingHands({ hands }: {
           <select id="starting-hands-stack" className="filter-select" value={stackLimit ?? ''}
             onChange={(event) => setStackLimit(event.target.value === '' ? null : Number(event.target.value))}>
             <option value="">Tous les stacks</option>
-            {stackLimits.map((bb) => <option key={bb} value={bb}>≤ {formatNumber(bb, bb % 1 === 0 ? 0 : 1)} BB</option>)}
+            {STARTING_STACK_LIMITS.map((bb) => <option key={bb} value={bb}>≤ {formatNumber(bb, bb % 1 === 0 ? 0 : 1)} BB</option>)}
           </select>
         </div>
         <p className="variance-description">
@@ -80,11 +86,12 @@ export default memo(function StartingHands({ hands }: {
           </p>
         )}
         {sampleSize === 0 && <p className="variance-description">Aucune main exploitable pour ces filtres.</p>}
-        <div className="variance-legend">
-          <span className="positive">Fond vert : plus reçues que prévu</span>
-          <span className="negative">Fond rouge : moins reçues que prévu</span>
-          <span>— = aucune occurrence exploitable pour ce gain.</span>
+        <div className="variance-legend" role="group" aria-label="Fréquences par rapport à l’attendu">
+          {Object.entries(frequencyLabels).map(([tone, label]) => (
+            <span key={tone} className={`variance-frequency-key variance-cell-${tone}`}>{label}</span>
+          ))}
         </div>
+        <p className="variance-description">Les couleurs tiennent compte de la taille de l’échantillon. — = gain moyen indisponible.</p>
         <table className="variance-grid" aria-label={`Fréquences et gains moyens en ${unitLabel} des 169 mains de départ`}>
           <tbody>
             {rows.map((row, index) => (
@@ -93,15 +100,16 @@ export default memo(function StartingHands({ hands }: {
                   const delta = cell.observed - cell.expected
                   const average = unit === 'chips' ? cell.averageChips : cell.averageBb
                   const total = unit === 'chips' ? cell.totalChips : cell.totalBb
+                  const tone = startingHandFrequencyTone(cell.observed, cell.expected, cell.probability)
                   const details = `${cell.combo} — Reçues : ${formatNumber(cell.observed)} sur ${formatNumber(sampleSize)} mains`
                     + `\nAttendu : ${formatNumber(cell.expected, 2)} (${formatNumber(cell.probability * 100, 2)} %)`
                     + `\nÉcart : ${delta.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2, signDisplay: 'exceptZero' })}`
+                    + (sampleSize > 0 ? ` · ${frequencyLabels[tone]}` : '')
                     + `\nGain moyen par occurrence : ${formatGain(average, digits)} ${unitLabel}`
                     + `\nGain total : ${formatGain(total, digits)} ${unitLabel}`
                     + (unit === 'bb' && cell.bbHands < cell.observed
                       ? `\nGains en BB calculés sur ${formatNumber(cell.bbHands)} des ${formatNumber(cell.observed)} occurrences.`
                       : '')
-                  const tone = sampleSize === 0 || delta === 0 ? 'neutral' : delta > 0 ? 'more' : 'less'
                   return (
                     <td key={cell.combo} tabIndex={0} title={details} aria-label={details} className={`variance-cell variance-cell-${tone}`}>
                       <span className="variance-cell-content">

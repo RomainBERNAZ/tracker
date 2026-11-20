@@ -1,17 +1,24 @@
 import { describe, expect, it } from 'vitest'
-import { filterStartingHandsByStack, startingHandDistribution, startingStackLimits } from './startingHandVariance'
+import { filterStartingHandsByStack, startingHandDistribution, startingHandFrequencyTone, STARTING_STACK_LIMITS } from './startingHandVariance'
 
 const hand = (hero_cards: string | null, realized_cev = 0, big_blind = 20) =>
   ({ hero_cards, realized_cev, big_blind })
 
 describe('starting hand variance', () => {
-  it('offers integer limits through the deepest observed stack, then half blinds below 15', () => {
-    const limits = startingStackLimits([{ hero_starting_stack: 755, big_blind: 20 }], null)
-    expect(limits[0]).toBe(38)
-    expect(limits).toContain(23)
-    expect(limits.slice(limits.indexOf(17), limits.indexOf(13))).toEqual([17, 16, 15, 14.5, 14, 13.5])
-    expect(limits[limits.length - 1]).toBe(0.5)
-    expect(startingStackLimits([], 38)).toContain(38)
+  it('caps the selectable thresholds without excluding deep stacks from the unfiltered sample', () => {
+    const hands = [{ hero_starting_stack: 500, big_blind: 20 }, { hero_starting_stack: 501, big_blind: 20 }]
+    expect(Math.max(...STARTING_STACK_LIMITS)).toBe(25)
+    expect(STARTING_STACK_LIMITS.filter((bb) => bb >= 13.5 && bb <= 17)).toEqual([17, 16, 15, 14.5, 14, 13.5])
+    expect(filterStartingHandsByStack(hands, 25).selectedHands).toEqual([hands[0]])
+    expect(filterStartingHandsByStack(hands, null).selectedHands).toEqual(hands)
+  })
+
+  it('distinguishes five levels of frequency deviation while keeping near misses neutral', () => {
+    const tones = [80, 85, 95, 105, 115, 120].map((observed) => startingHandFrequencyTone(observed, 100, 0.01))
+    expect(tones).toEqual(['much-less', 'less', 'neutral', 'neutral', 'more', 'much-more'])
+    expect(startingHandFrequencyTone(0, 0, 0.01)).toBe('neutral')
+    // The same 20% excess is ordinary in the smaller sample.
+    expect(startingHandFrequencyTone(6, 5, 0.01)).toBe('neutral')
   })
 
   it('keeps exact boundaries without rounding and recalculates the sample, frequencies and gains', () => {

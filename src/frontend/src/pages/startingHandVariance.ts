@@ -10,11 +10,20 @@ function startingStackBb({ hero_starting_stack, big_blind }: StackSample) {
     Number.isFinite(big_blind) && big_blind > 0 ? hero_starting_stack / big_blind : null
 }
 
-export function startingStackLimits(hands: readonly StackSample[], selected: number | null) {
-  const max = hands.reduce((highest, hand) => Math.max(highest, startingStackBb(hand) ?? 0), Math.max(25, selected ?? 0))
-  const limits: number[] = []
-  for (let bb = Math.ceil(max); bb >= 0.5; bb -= bb > 15 ? 1 : 0.5) limits.push(bb)
-  return limits
+export const STARTING_STACK_LIMITS: readonly number[] = [
+  ...Array.from({ length: 11 }, (_, i) => 25 - i),
+  ...Array.from({ length: 29 }, (_, i) => 14.5 - i / 2),
+]
+
+export function startingHandFrequencyTone(observed: number, expected: number, probability: number) {
+  const deviation = Math.sqrt(expected * (1 - probability))
+  if (deviation === 0) return 'neutral'
+  const distance = (observed - expected) / deviation
+  if (distance <= -2) return 'much-less'
+  if (distance < -1) return 'less'
+  if (distance >= 2) return 'much-more'
+  if (distance > 1) return 'more'
+  return 'neutral'
 }
 
 export function filterStartingHandsByStack<T extends StackSample>(hands: readonly T[], maxBb: number | null) {
