@@ -25,9 +25,18 @@ describe('replay action presentation', () => {
   })
 
   it('distinguishes raise-to from the increment and never labels it as chips added', () => {
-    expect(replayActionLabel(step, 20, 'bb')).toBe('Hero relance a 5 BB (tapis)')
-    expect(replayActionLabel(step, 20, 'chips')).toBe('Hero relance a 100 jetons (tapis)')
+    expect(replayActionLabel(step, 20, 'bb')).toBe('Hero relance à 5 BB (tapis)')
+    expect(replayActionLabel(step, 20, 'chips')).toBe('Hero relance à 100 jetons (tapis)')
     expect(replayActionLabel({ ...step, to_amount: null }, 20, 'bb')).toBe('Hero relance de 3 BB (tapis)')
+  })
+
+  it('omits the player name only on the table and keeps actorless board reveals readable', () => {
+    expect(replayActionLabel(step, 20, 'bb', false)).toBe('Relance à 5 BB (tapis)')
+    expect(replayActionLabel({ ...step, action_type: 'fold' }, 20, 'bb', false)).toBe('Se couche')
+    const blind = { ...step, action_type: 'blind', description: 'Hero posts big blind 20' }
+    expect(replayActionLabel(blind, 20, 'bb', false)).toBe('posts big blind 20')
+    expect(replayActionLabel(blind, 20, 'bb')).toBe('Hero posts big blind 20')
+    expect(replayActionLabel({ ...step, actor_name: '', action_type: 'board_reveal', street: 'flop' }, 20, 'bb')).toBe('Board : Flop')
   })
 
   it('retains explicit missing amounts and handles checks, collections and unknown action types', () => {

@@ -2142,7 +2142,12 @@ tr:hover td {
 .replayer-review-layout { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; align-items: start; }
 .replayer-history { min-width: 0; align-self: start; }
 .replayer-table-card > .summary-card-header { margin-bottom: 12px; }
-.replayer-felt-table { gap: 12px; padding: 16px; }
+.replayer-felt-table {
+  min-height: clamp(450px, 66vh, 680px);
+  align-content: space-evenly;
+  gap: 14px;
+  padding: clamp(16px, 2.5vh, 26px);
+}
 .replayer-table-center {
   grid-column: 1 / -1;
   grid-row: 2;
@@ -2157,10 +2162,21 @@ tr:hover td {
   justify-self: center;
   width: min(340px, 100%);
 }
-.replayer-table-center .replayer-board-row { display: flex; gap: 8px; }
-.replayer-table-center .playing-card { width: 48px; height: 68px; }
-.replayer-table-center .playing-card-rank { font-size: 23px; }
-.replayer-table-center .playing-card-suit { font-size: 30px; }
+.replayer-table-center .replayer-board-row {
+  width: min(100%, clamp(300px, 43vh, 380px));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+}
+.replayer-table-center .playing-card { width: 100%; height: auto; aspect-ratio: 5 / 7; }
+.replayer-table-center .playing-card-rank { font-size: clamp(21px, 3.4vh, 30px); }
+.replayer-table-center .playing-card-suit { font-size: clamp(25px, 4.3vh, 38px); }
+.replayer-player-card .playing-card { width: 44px; height: 62px; }
+.replayer-player-card .playing-card-rank { font-size: 21px; }
+.replayer-player-card .playing-card-suit { font-size: 27px; }
+.replayer-player-topline, .replayer-stack-amount { font-size: 16px; }
+.replayer-felt-table .replayer-seat-action-badge { font-size: 14px; }
+.replayer-felt-table .replayer-action-slot { min-height: 28px; }
+.replayer-pot-center strong { font-size: 22px; }
 .replayer-pot-center > span:not(.chip-amount):not(.chip-pile) { color: #c6d9cd; }
 .replayer-pot-center .chip-amount small { color: #b5c8bc; }
 .replayer-player-body { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; margin-top: 8px; }

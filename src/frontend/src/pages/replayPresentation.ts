@@ -17,25 +17,32 @@ export function replayVisibleBoardCount(steps: readonly ReplayerStep[], currentS
   return steps.slice(0, currentStep + 1).reduce((count, step) => Math.max(count, counts[step.street.toLowerCase()] ?? 0), 0)
 }
 
-export function replayActionLabel(step: ReplayerStep, bigBlind: number, unit: MatchupUnit) {
+export function replayActionLabel(step: ReplayerStep, bigBlind: number, unit: MatchupUnit, showActor = true) {
   const actor = step.actor_name
   const amount = (value: number | null) => formatChipAmount(value, bigBlind, unit)
+  const label = (action: string) => showActor && actor ? `${actor} ${action}` : action[0].toUpperCase() + action.slice(1)
   switch (step.action_type) {
-    case 'fold': return `${actor} se couche`
-    case 'check': return `${actor} check`
+    case 'fold': return label('se couche')
+    case 'check': return label('check')
     case 'raise':
     case 'allin_raise': {
       const allin = step.action_type === 'allin_raise' ? ' (tapis)' : ''
-      if (step.to_amount != null) return `${actor} relance a ${amount(step.to_amount)}${allin}`
-      if (step.increment_amount != null) return `${actor} relance de ${amount(step.increment_amount)}${allin}`
-      return `${actor} relance${allin} (montant indisponible)`
+      if (step.to_amount != null) return label(`relance à ${amount(step.to_amount)}${allin}`)
+      if (step.increment_amount != null) return label(`relance de ${amount(step.increment_amount)}${allin}`)
+      return label(`relance${allin} (montant indisponible)`)
     }
-    case 'call': return `${actor} paie ${amount(step.amount)}`
-    case 'allin_call': return `${actor} paie a tapis ${amount(step.amount)}`
-    case 'bet': return `${actor} mise ${amount(step.amount)}`
-    case 'allin_bet': return `${actor} mise a tapis ${amount(step.amount)}`
-    case 'collect': return `${actor} remporte ${amount(step.amount)}`
+    case 'call': return label(`paie ${amount(step.amount)}`)
+    case 'allin_call': return label(`paie à tapis ${amount(step.amount)}`)
+    case 'bet': return label(`mise ${amount(step.amount)}`)
+    case 'allin_bet': return label(`mise à tapis ${amount(step.amount)}`)
+    case 'collect': return label(`remporte ${amount(step.amount)}`)
     case 'board_reveal': return `Board : ${replayStreetLabel(step.street)}`
-    default: return step.description || `${actor} : ${step.action_type || 'Action non renseignee'}`
+    default: {
+      const description = step.description
+      if (showActor) return description || [actor, step.action_type || 'Action non renseignée'].filter(Boolean).join(' : ')
+      const prefix = `${actor} `
+      return (actor && description.startsWith(prefix) ? description.slice(prefix.length) : description)
+        || step.action_type || 'Action non renseignée'
+    }
   }
 }

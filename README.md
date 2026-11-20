@@ -216,10 +216,11 @@ affichent aussi leur equivalence, avec une indisponibilite explicite si la blind
 ## Lecture des replays
 
 La table et ses contrôles restent au centre du replay. L’action en cours s’affiche
-près du joueur concerné, ou au centre pour une action sans joueur. Les boutons **Actions** et
+près du joueur concerné, sans répéter son pseudo, ou au centre pour une action sans joueur. Les boutons **Actions** et
 **Notes** ouvrent le même panneau, fermé par défaut.
 Dans **Tournois**, **Rejouer** ouvre la première main du tournoi. En mode Lecture,
-les mains s’enchaînent dans l’ordre ; les boutons Main précédente / suivante
+les mains s’enchaînent dans l’ordre. Le replay prépare la prochaine main et conserve
+la table affichée jusqu’à ce qu’elle soit prête. Les boutons Main précédente / suivante
 permettent aussi de naviguer manuellement.
 Le joueur actif est souligne, le dealer et les joueurs couches/a tapis sont identifies.
 Les cartes sont partagees avec la liste des duels ; les cartes futures du board restent
