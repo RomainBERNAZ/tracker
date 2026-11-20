@@ -1106,6 +1106,15 @@ tr:hover td {
   gap: 8px;
 }
 
+.variance-stack-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 12px 0;
+  font-size: 13px;
+}
+
 .variance-description {
   color: var(--text-dim);
   font-size: 13px;

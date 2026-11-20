@@ -164,6 +164,7 @@ pub struct HandChipPoint {
     pub hero_cards: Option<String>,
     pub big_blind: i64,
     pub player_count: i64,
+    pub hero_starting_stack: i64,
     pub hero_stack_bucket: Option<usize>,
     pub timestamp: String,
     pub realized_cev: i64,
@@ -194,12 +195,14 @@ pub fn get_chip_evolution(conn: &Connection) -> Result<Vec<HandChipPoint>, rusql
 
     let rows = stmt.query_map([], |row| {
         let big_blind = row.get(6)?;
+        let hero_starting_stack = row.get(8)?;
         Ok(HandChipPoint {
             tournament_id: row.get(4)?,
             hero_cards: row.get(5)?,
             big_blind,
             player_count: row.get(7)?,
-            hero_stack_bucket: stacks::stack_bucket(row.get(8)?, big_blind),
+            hero_starting_stack,
+            hero_stack_bucket: stacks::stack_bucket(hero_starting_stack, big_blind),
             timestamp: row.get(0)?,
             realized_cev: row.get(1)?,
             net_ev: row.get(2)?,
@@ -1980,6 +1983,7 @@ mod tests {
         assert_eq!(points[0].hero_cards.as_deref(), Some("Jd Kd"));
         assert_eq!(points[0].big_blind, 60);
         assert_eq!(points[0].player_count, 2);
+        assert_eq!(points[0].hero_starting_stack, 675);
         assert_eq!(points[0].hero_stack_bucket, Some(1));
 
         conn.execute("DELETE FROM hole_cards WHERE player_name = 'MRZO'", [])

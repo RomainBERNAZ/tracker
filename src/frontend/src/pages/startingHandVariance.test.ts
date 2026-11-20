@@ -1,10 +1,35 @@
 import { describe, expect, it } from 'vitest'
-import { startingHandDistribution } from './startingHandVariance'
+import { filterStartingHandsByStack, startingHandDistribution, startingStackLimits } from './startingHandVariance'
 
 const hand = (hero_cards: string | null, realized_cev = 0, big_blind = 20) =>
   ({ hero_cards, realized_cev, big_blind })
 
 describe('starting hand variance', () => {
+  it('offers integer limits through the deepest observed stack, then half blinds below 15', () => {
+    const limits = startingStackLimits([{ hero_starting_stack: 755, big_blind: 20 }], null)
+    expect(limits[0]).toBe(38)
+    expect(limits).toContain(23)
+    expect(limits.slice(limits.indexOf(17), limits.indexOf(13))).toEqual([17, 16, 15, 14.5, 14, 13.5])
+    expect(limits[limits.length - 1]).toBe(0.5)
+    expect(startingStackLimits([], 38)).toContain(38)
+  })
+
+  it('keeps exact boundaries without rounding and recalculates the sample, frequencies and gains', () => {
+    const above = { ...hand('Ah As', 500, 20), hero_starting_stack: 461 }
+    const exact = { ...hand('Ah As', 100, 20), hero_starting_stack: 460 }
+    const aboveHalf = { ...hand('Kh Kd', 30, 30), hero_starting_stack: 436 }
+    const exactHalf = { ...hand('Ac Ad', -30, 30), hero_starting_stack: 435 }
+    const unknown = { ...hand('Qs Qd', 50, 0), hero_starting_stack: 500 }
+    const hands = [above, exact, aboveHalf, exactHalf, unknown]
+    const filtered = filterStartingHandsByStack(hands, 23)
+    expect(filtered).toEqual({ selectedHands: [exact, aboveHalf, exactHalf], unknownStacks: 1 })
+    expect(filterStartingHandsByStack(hands, 14.5).selectedHands).toEqual([exactHalf])
+    expect(filterStartingHandsByStack(hands, null).selectedHands).toBe(hands)
+    const stats = startingHandDistribution(filtered.selectedHands)
+    expect(stats.sampleSize).toBe(3)
+    expect(stats.rows[0][0]).toMatchObject({ observed: 2, expected: 3 * 6 / 1326, averageChips: 35, averageBb: 2 })
+  })
+
   it('classifies every two-card deal into the 169 cells with exact theoretical weights', () => {
     const deck = [...'AKQJT98765432'].flatMap((rank) => [...'cdhs'].map((suit) => rank + suit))
     const deals = deck.flatMap((first, index) =>

@@ -1,7 +1,7 @@
 import { memo, useMemo } from 'react'
 import { createReviewState } from '../reviewState'
 import type { HandChipPoint } from '../api'
-import { startingHandDistribution } from './startingHandVariance'
+import { filterStartingHandsByStack, startingHandDistribution, startingStackLimits } from './startingHandVariance'
 
 const formatNumber = (value: number, digits = 0) =>
   value.toLocaleString('fr-FR', { minimumFractionDigits: digits, maximumFractionDigits: digits })
@@ -9,13 +9,19 @@ const formatNumber = (value: number, digits = 0) =>
 const formatGain = (value: number | null, digits: number) => value == null ? '—' :
   value.toLocaleString('fr-FR', { minimumFractionDigits: digits, maximumFractionDigits: digits, signDisplay: 'exceptZero' })
 
-const useVarianceUnit = createReviewState<'chips' | 'bb'>(() => 'chips')
+const useStartingHandUnit = createReviewState<'chips' | 'bb'>(() => 'chips')
+const useStartingHandStackLimit = createReviewState<number | null>(() => null)
 
-export default memo(function Variance({ hands }: {
+export default memo(function StartingHands({ hands }: {
   readonly hands: readonly HandChipPoint[]
 }) {
-  const [unit, setUnit] = useVarianceUnit()
-  const { rows, sampleSize, excludedHands, excludedBbHands } = useMemo(() => startingHandDistribution(hands), [hands])
+  const [unit, setUnit] = useStartingHandUnit()
+  const [stackLimit, setStackLimit] = useStartingHandStackLimit()
+  const stackLimits = useMemo(() => startingStackLimits(hands, stackLimit), [hands, stackLimit])
+  const { rows, sampleSize, excludedHands, excludedBbHands, unknownStacks } = useMemo(() => {
+    const { selectedHands, unknownStacks } = filterStartingHandsByStack(hands, stackLimit)
+    return { ...startingHandDistribution(selectedHands), unknownStacks }
+  }, [hands, stackLimit])
   const unitLabel = unit === 'chips' ? 'jetons' : 'BB'
   const digits = unit === 'chips' ? 1 : 2
 
@@ -35,11 +41,24 @@ export default memo(function Variance({ hands }: {
             </button>
           </div>
         </div>
+        <div className="variance-stack-controls">
+          <label htmlFor="starting-hands-stack">Stack de départ maximal</label>
+          <select id="starting-hands-stack" className="filter-select" value={stackLimit ?? ''}
+            onChange={(event) => setStackLimit(event.target.value === '' ? null : Number(event.target.value))}>
+            <option value="">Tous les stacks</option>
+            {stackLimits.map((bb) => <option key={bb} value={bb}>≤ {formatNumber(bb, bb % 1 === 0 ? 0 : 1)} BB</option>)}
+          </select>
+        </div>
         <p className="variance-description">
-          {formatNumber(sampleSize)} mains analysées sur la période et le buy-in sélectionnés.
-          Chaque case affiche le gain réalisé moyen par occurrence en {unitLabel}.
+          {formatNumber(sampleSize)} mains analysées avec les filtres sélectionnés.
+          {' '}Chaque case affiche le gain réalisé moyen par occurrence en {unitLabel}.
           Au survol : total gagné, moyenne et occurrences reçues par rapport à l’attendu.
         </p>
+        {unknownStacks > 0 && (
+          <p className="variance-warning" role="status">
+            {formatNumber(unknownStacks)} mains sans stack de départ ou grosse blinde valide exclues par le seuil.
+          </p>
+        )}
         <p className="variance-description">
           Paires sur la diagonale · s = même couleur · o = couleurs différentes.
           Attendu : 6, 4 ou 12 combinaisons sur 1 326, selon la catégorie.

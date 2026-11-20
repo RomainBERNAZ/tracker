@@ -230,9 +230,10 @@ il est donc nommé « Pot final ». Navigation par action,
 curseur, lecture automatique et raccourcis clavier restent disponibles ; les
 raccourcis ne capturent pas la saisie dans les controles.
 
-## Variance des mains de depart
+## Mains de départ
 
-L'onglet Variance de Summary affiche les 169 categories de mains recues par le hero dans une grille 13 x 13 (paires, suited, offsuit). Il utilise les memes filtres de periode et de buy-in que Resume et Jetons.
+L'onglet **Mains de départ** de Résumé affiche les 169 catégories de mains reçues par le héros dans une grille 13 × 13. Il utilise les mêmes filtres de période et de buy-in que Résumé et Jetons.
+Le filtre « Stack de départ maximal » garde les mains dont le stack du héros au début de la main, divisé par la grosse blinde de cette main, ne dépasse pas le seuil choisi. Les seuils sont entiers à partir de 15 BB et par demi-blinde en dessous. Les mains sans stack ou grosse blinde valide restent incluses si aucun seuil n'est sélectionné.
 Au survol ou au focus d'une case : occurrences recues, occurrences attendues et ecart. L'attendu utilise respectivement 6, 4 et 12 combinaisons sur les 1 326 distributions possibles de deux cartes.
 Les mains sans cartes de depart exploitables sont signalees et exclues du nombre de mains servant au calcul. Ces ecarts de frequence sont descriptifs, pas un test de hasard.
 Chaque case affiche aussi le gain realise moyen par occurrence, au choix en jetons ou en BB, avec le gain total au survol. Les couleurs de fond continuent a representer les frequences recues par rapport a l'attendu, pas la rentabilite.
@@ -241,7 +242,7 @@ L'encart est limite a la largeur de la grille pour laisser le reste de la page d
 
 ## Comparateur de confrontations
 
-Le comparateur est séparé de Variance, dans **Analyses avancées → Confrontations**. Deux grilles indépendantes permettent de sélectionner librement les mains du hero et celles de vilain. Les cases `s` et `o` sont distinctes : sélectionner `KJs` et `KJo` couvre KJ. Les raccourcis Toutes, Paires et les familles Ax, Kx, etc. remplacent la sélection ; Ax comprend AK à A2 assorties ou non, sans AA.
+Le comparateur se trouve dans **Analyses avancées → Confrontations**, séparément de l'onglet **Mains de départ**. Deux grilles indépendantes permettent de sélectionner librement les mains du hero et celles de vilain. Les cases `s` et `o` sont distinctes : sélectionner `KJs` et `KJo` couvre KJ. Les raccourcis Toutes, Paires et les familles Ax, Kx, etc. remplacent la sélection ; Ax comprend AK à A2 assorties ou non, sans AA.
 Les filtres de période et de buy-in ainsi que l'unité Jetons / BB sont propres à cette page. Le comparateur porte sur les all-ins préflop sans mise ni fold ultérieur, y compris les tapis adverses couverts par le hero. Les duels et les pots à trois joueurs sont séparés ; à trois, au moins un adversaire doit appartenir à la sélection, et chaque main compte une seule fois.
 Le bilan réel / attendu utilise exactement les mêmes mains avec EV all-in effectivement calculée (Net EV et part de pot attendue disponibles), et une grosse blinde valide en mode BB. Les cartes inconnues et les EV manquantes sont signalées, sans remplacer artificiellement l'attendu par le résultat réel. La part moyenne du pot attendue tient compte des pots secondaires : ce n'est pas un taux de victoires.
 La liste donne accès au replayer et permet d'afficher toutes les confrontations par lots de 50, sans limiter les statistiques à ce premier lot.

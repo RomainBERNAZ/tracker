@@ -23,7 +23,7 @@ import { TournamentFilters } from '../components/TournamentFilters'
 import { HandFormatFilter, HeroStackFilter } from './StackHandFilters'
 import { STACK_BUCKETS, stackDiagnostics, toggleStackBucket } from './stackAnalysis'
 import type { StackFormat } from './stackAnalysis'
-import Variance from './Variance'
+import StartingHands from './StartingHands'
 import SummaryStacks from './SummaryStacks'
 import SummaryAllIns from './SummaryAllIns'
 import { createReviewState } from '../reviewState'
@@ -1301,7 +1301,7 @@ export default memo(function Summary() {
             fontWeight: activeTab === 'variance' ? '600' : '400',
           }}
         >
-          Variance
+          Mains de départ
         </button>
         <button
           onClick={() => setActiveTab('coach')}
@@ -1412,7 +1412,7 @@ export default memo(function Summary() {
         />
       )}
 
-      {activeTab === 'variance' && <Variance hands={filteredHands} />}
+      {activeTab === 'variance' && <StartingHands hands={filteredHands} />}
       {activeTab === 'stacks' && <SummaryStacks tournaments={filteredTournaments} />}
       {activeTab === 'allins' && <SummaryAllIns tournaments={filteredTournaments} />}
 

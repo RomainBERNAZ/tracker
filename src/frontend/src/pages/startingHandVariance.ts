@@ -3,6 +3,34 @@ import type { HandChipPoint } from '../api'
 export const HAND_RANKS = 'AKQJT98765432'
 const TOTAL_COMBINATIONS = 1326
 
+type StackSample = Pick<HandChipPoint, 'hero_starting_stack' | 'big_blind'>
+
+function startingStackBb({ hero_starting_stack, big_blind }: StackSample) {
+  return Number.isFinite(hero_starting_stack) && hero_starting_stack > 0 &&
+    Number.isFinite(big_blind) && big_blind > 0 ? hero_starting_stack / big_blind : null
+}
+
+export function startingStackLimits(hands: readonly StackSample[], selected: number | null) {
+  const max = hands.reduce((highest, hand) => Math.max(highest, startingStackBb(hand) ?? 0), Math.max(25, selected ?? 0))
+  const limits: number[] = []
+  for (let bb = Math.ceil(max); bb >= 0.5; bb -= bb > 15 ? 1 : 0.5) limits.push(bb)
+  return limits
+}
+
+export function filterStartingHandsByStack<T extends StackSample>(hands: readonly T[], maxBb: number | null) {
+  if (maxBb == null) return { selectedHands: hands, unknownStacks: 0 }
+  let unknownStacks = 0
+  const selectedHands = hands.filter((hand) => {
+    const stack = startingStackBb(hand)
+    if (stack == null) {
+      unknownStacks++
+      return false
+    }
+    return stack <= maxBb
+  })
+  return { selectedHands, unknownStacks }
+}
+
 export const STARTING_HAND_ROWS = [...HAND_RANKS].map((rowRank, row) =>
   [...HAND_RANKS].map((colRank, col) => row === col ? rowRank + colRank
     : row < col ? rowRank + colRank + 's' : colRank + rowRank + 'o'),

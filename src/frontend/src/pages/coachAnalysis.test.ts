@@ -8,6 +8,7 @@ function hand(overrides: Partial<HandChipPoint> = {}): HandChipPoint {
     hero_cards: null,
     big_blind: 20,
     player_count: 3,
+    hero_starting_stack: 500,
     hero_stack_bucket: 0,
     timestamp: '2026-01-01T00:00:00Z',
     realized_cev: -40,

@@ -5,7 +5,7 @@ import { toggleStackBucket } from './stackAnalysis'
 
 const hand = (values: Partial<HandChipPoint> = {}): HandChipPoint => ({
   tournament_id: 'T1', hero_cards: null, big_blind: 20, timestamp: '2026-11-15T12:00:00Z',
-  realized_cev: 20, net_ev: null, has_showdown: false, player_count: 2, hero_stack_bucket: 0,
+  realized_cev: 20, net_ev: null, has_showdown: false, player_count: 2, hero_starting_stack: 500, hero_stack_bucket: 0,
   ...values,
 })
 
