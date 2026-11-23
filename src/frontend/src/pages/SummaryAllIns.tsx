@@ -4,7 +4,7 @@ import { createReviewState } from '../reviewState'
 import { HoleCards } from '../components/PlayingCards'
 import { ChipAmount } from '../components/ChipAmount'
 import { api, type PreflopMatchup, type TournamentRow } from '../api'
-import { COVERAGE_GROUPS, coverageGroup, duelEquity, duelGains, groupAllInDuels, summarizeAllInDuels, summarizeAllInEuros, summarizeAllInsByMultiplier, type CoverageGroup } from './allInCoverage'
+import { COVERAGE_GROUPS, coverageGroup, duelEquity, duelGains, groupAllInDuels, summarizeAllInDuels, summarizeAllInEuros, summarizeAllInsByMultiplier, summarizeSharedRankMatchups, type CoverageGroup } from './allInCoverage'
 import type { MatchupUnit } from './matchupComparison'
 
 const percentage = (value: number | null) => value == null ? '-' :
@@ -58,6 +58,12 @@ export default memo(function SummaryAllIns({ tournaments }: { readonly tournamen
   const grouped = selectedCohort?.grouped ?? allGrouped
   const euros = selectedCohort?.euros ?? allEuros
   const tournamentCount = selectedCohort?.tournaments.length ?? tournaments.length
+  const sharedRankStats = useMemo(
+    () => summarizeSharedRankMatchups(selectedMultiplier == null
+      ? cohort
+      : cohort.filter((hand) => tournamentMultipliers.get(hand.tournament_id) === selectedMultiplier)),
+    [cohort, selectedMultiplier, tournamentMultipliers],
+  )
   const cards = useMemo(() => COVERAGE_GROUPS.map((group) => ({
     ...group, stats: summarizeAllInDuels(grouped.groups[group.id], unit),
   })), [grouped, unit])
@@ -148,6 +154,26 @@ export default memo(function SummaryAllIns({ tournaments }: { readonly tournamen
         <p className="variance-description">{grouped.multiway} pots multiway exclus. Les cartes inconnues n'excluent pas un duel.</p>
         {grouped.unclassified > 0 && <p className="variance-warning">{grouped.unclassified} mains non classees : stacks ou donnees du duel indisponibles.</p>}
         {grouped.duels.length === 0 && <p>Aucun duel préflop classable dans ce périmètre.</p>}
+      </section>
+
+      <section className="summary-card" aria-label="Duels avec rang commun">
+        <h3>Rang commun : étais-je devant préflop ?</h3>
+        <p className="variance-description">
+          Duels tête-à-tête où les cartes connues ont au moins un rang en commun (par exemple Q6 contre K6).
+          « Devant » signifie une équité du pot contesté supérieure à 50 %.
+        </p>
+        <div className="allin-outcomes">
+          <div><strong>{sharedRankStats.count}</strong><span>Duels avec rang commun</span></div>
+          <div><strong className="positive">{sharedRankStats.ahead}</strong><span>Devant (&gt;50 %)</span></div>
+          <div><strong className="negative">{sharedRankStats.behind}</strong><span>Derrière (&lt;50 %)</span></div>
+          <div><strong>{sharedRankStats.even}</strong><span>À égalité (50 %)</span></div>
+        </div>
+        <p className="stack-method">
+          Cartes connues : {sharedRankStats.knownCardCount}/{sharedRankStats.headsUpCount} duels tête-à-tête.
+          {` ${sharedRankStats.oneSharedRank} avec un rang commun, ${sharedRankStats.twoSharedRanks} avec deux.`}
+          {sharedRankStats.unknownEquity > 0 &&
+            ` Équité indisponible pour ${sharedRankStats.unknownEquity} duel${sharedRankStats.unknownEquity > 1 ? 's' : ''} avec rang commun.`}
+        </p>
       </section>
 
       <div className="allin-coverage-grid">

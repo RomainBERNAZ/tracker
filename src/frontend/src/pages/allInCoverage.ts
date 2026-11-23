@@ -42,6 +42,61 @@ export function duelEquity(hand: PreflopMatchup): number | null {
   return equity != null && Number.isFinite(equity) && equity >= 0 && equity <= 1 ? equity : null
 }
 
+function parsedHoleCards(cards: string | null): { readonly ranks: readonly string[]; readonly physicalCards: readonly string[] } | null {
+  const tokens = cards?.trim().split(/\s+/)
+  if (!tokens || tokens.length !== 2) return null
+  const parsed = tokens.map((card) => {
+    const match = /^(10|[2-9TJQKA])([shdc])$/i.exec(card)
+    if (!match) return null
+    const rank = match[1].toUpperCase() === '10' ? 'T' : match[1].toUpperCase()
+    const suit = match[2].toLowerCase()
+    return { rank, physicalCard: `${rank}${suit}` }
+  })
+  const first = parsed[0]
+  const second = parsed[1]
+  if (first == null || second == null || first.physicalCard === second.physicalCard) return null
+  return {
+    ranks: [first.rank, second.rank],
+    physicalCards: [first.physicalCard, second.physicalCard],
+  }
+}
+
+export function summarizeSharedRankMatchups(hands: readonly PreflopMatchup[]) {
+  let headsUpCount = 0
+  let knownCardCount = 0
+  let count = 0
+  let oneSharedRank = 0
+  let twoSharedRanks = 0
+  let ahead = 0
+  let behind = 0
+  let even = 0
+  let unknownEquity = 0
+
+  for (const hand of hands) {
+    if (hand.opponents.length !== 1) continue
+    headsUpCount++
+    const hero = parsedHoleCards(hand.hero_cards)
+    const villain = parsedHoleCards(hand.opponents[0].cards)
+    if (hero == null || villain == null ||
+      new Set([...hero.physicalCards, ...villain.physicalCards]).size !== 4) continue
+    knownCardCount++
+
+    const sharedRanks = [...new Set(hero.ranks)].filter((rank) => villain.ranks.includes(rank))
+    if (sharedRanks.length === 0) continue
+    count++
+    if (sharedRanks.length === 1) oneSharedRank++
+    else twoSharedRanks++
+
+    const equity = duelEquity(hand)
+    if (equity == null) unknownEquity++
+    else if (equity > 0.5 + 1e-9) ahead++
+    else if (equity < 0.5 - 1e-9) behind++
+    else even++
+  }
+
+  return { headsUpCount, knownCardCount, count, oneSharedRank, twoSharedRanks, ahead, behind, even, unknownEquity }
+}
+
 export function duelGains(hand: PreflopMatchup, unit: MatchupUnit) {
   const valid = hand.duel != null && hand.duel.issues.length === 0 &&
     (unit === 'chips' || hasMatchupBlind(hand))

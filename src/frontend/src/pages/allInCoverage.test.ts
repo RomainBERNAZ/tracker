@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import type { PreflopDuel, PreflopMatchup, TournamentRow } from '../api'
-import { coverageGroup, groupAllInDuels, summarizeAllInDuels, summarizeAllInEuros, summarizeAllInsByMultiplier } from './allInCoverage'
+import { coverageGroup, groupAllInDuels, summarizeAllInDuels, summarizeAllInEuros, summarizeAllInsByMultiplier, summarizeSharedRankMatchups } from './allInCoverage'
 
 function hand(duel: Partial<PreflopDuel> = {}, overrides: Partial<PreflopMatchup> = {}): PreflopMatchup {
   return {
@@ -94,6 +94,23 @@ describe('preflop all-in coverage', () => {
     expect(summarizeAllInDuels(hands, 'chips')).toMatchObject({
       actual: 530, actualCount: 4, comparedCount: 3, comparedActual: 30, expected: 250, delta: -220,
       missingBlind: 0,
+    })
+  })
+
+  it('counts shared ranks in heads-up preflop duels and classifies only known equities', () => {
+    const stats = summarizeSharedRankMatchups([
+      hand({ hero_equity: 0.25 }, { hero_cards: 'Qh 6d', opponents: [{ player_name: 'V1', cards: 'Ks 6c' }] }),
+      hand({ hero_equity: 0.75 }, { hero_cards: 'Qh 6d', opponents: [{ player_name: 'V2', cards: 'Qs 3c' }] }),
+      hand({ hero_equity: 0.5 }, { hero_cards: 'Qh 6d', opponents: [{ player_name: 'V3', cards: 'Qc 6s' }] }),
+      hand({ hero_equity: null }, { hero_cards: 'Qh 6d', opponents: [{ player_name: 'V4', cards: 'Kd 6s' }] }),
+      hand({}, { hero_cards: 'Qh 6d', opponents: [{ player_name: 'V5', cards: 'Ks 3c' }] }),
+      hand({}, { hero_cards: 'Qh 6d', opponents: [{ player_name: 'V6', cards: 'Qh 3c' }] }),
+      hand({}, { hero_cards: 'Qh 6d', opponents: [{ player_name: 'V7', cards: null }] }),
+      hand({}, { hero_cards: 'Qh 6d', opponents: [{ player_name: 'V8', cards: 'Ks 6c' }, { player_name: 'V9', cards: 'Ad Ac' }] }),
+    ])
+    expect(stats).toEqual({
+      headsUpCount: 7, knownCardCount: 5, count: 4, oneSharedRank: 3, twoSharedRanks: 1,
+      ahead: 1, behind: 1, even: 1, unknownEquity: 1,
     })
   })
 
