@@ -5,6 +5,7 @@ import { HoleCards } from '../components/PlayingCards'
 import { ChipAmount } from '../components/ChipAmount'
 import { api, type PreflopMatchup, type TournamentRow } from '../api'
 import { COVERAGE_GROUPS, coverageGroup, duelEquity, duelGains, groupAllInDuels, summarizeAllInDuels, summarizeAllInEuros, summarizeAllInsByMultiplier, summarizeSharedRankMatchups, type CoverageGroup } from './allInCoverage'
+import type { SharedRankOccurrence } from './allInCoverage'
 import type { MatchupUnit } from './matchupComparison'
 
 const percentage = (value: number | null) => value == null ? '-' :
@@ -18,9 +19,23 @@ const useAllInUnit = createReviewState<MatchupUnit>(() => 'chips')
 const useAllInSelection = createReviewState<CoverageGroup | 'all'>(() => 'all')
 const useAllInMultiplier = createReviewState<number | null>(() => null)
 const useAllInPageSize = createReviewState(() => 50)
+const useSharedRankPageSize = createReviewState(() => 50)
 
 function Gain({ value, unit }: { readonly value: number | null; readonly unit: MatchupUnit }) {
   return <span className={value == null || value === 0 ? '' : value < 0 ? 'negative' : 'positive'}>{gain(value, unit)}</span>
+}
+
+function sharedRankComparisonLabel(occurrence: SharedRankOccurrence) {
+  switch (occurrence.comparison) {
+    case 'hero-dominated':
+      return `Hero ${occurrence.heroKicker} < vilain ${occurrence.villainKicker} : dominé au kicker`
+    case 'villain-dominated':
+      return `Hero ${occurrence.heroKicker} > vilain ${occurrence.villainKicker} : vilain dominé au kicker`
+    case 'same-ranks':
+      return 'Deux rangs communs'
+    case 'pair-overlap':
+      return 'Paire sur le rang commun'
+  }
 }
 
 export default memo(function SummaryAllIns({ tournaments }: { readonly tournaments: readonly TournamentRow[] }) {
@@ -34,6 +49,8 @@ export default memo(function SummaryAllIns({ tournaments }: { readonly tournamen
   const selectedMultiplier = tournaments.some((tournament) => tournament.multiplier === multiplier) ? multiplier : null
   const pageScope = JSON.stringify([tournaments.map((t) => t.id).sort(), selection, selectedMultiplier])
   const [visibleCount, setVisibleCount] = useAllInPageSize(pageScope)
+  const sharedRankPageScope = JSON.stringify([tournaments.map((t) => t.id).sort(), selectedMultiplier])
+  const [visibleSharedRankCount, setVisibleSharedRankCount] = useSharedRankPageSize(sharedRankPageScope)
 
   useEffect(() => {
     let cancelled = false
@@ -157,23 +174,45 @@ export default memo(function SummaryAllIns({ tournaments }: { readonly tournamen
       </section>
 
       <section className="summary-card" aria-label="Duels avec rang commun">
-        <h3>Rang commun : étais-je devant préflop ?</h3>
+        <h3>Occurrences de rang commun</h3>
         <p className="variance-description">
-          Duels tête-à-tête où les cartes connues ont au moins un rang en commun (par exemple Q6 contre K6).
-          « Devant » signifie une équité du pot contesté supérieure à 50 %.
+          Chaque duel préflop tête-à-tête avec un rang commun compte une fois (Q6 contre K6 partage le 6).
+          La domination est déterminée par le kicker, pas par un seuil d’équité.
         </p>
-        <div className="allin-outcomes">
-          <div><strong>{sharedRankStats.count}</strong><span>Duels avec rang commun</span></div>
-          <div><strong className="positive">{sharedRankStats.ahead}</strong><span>Devant (&gt;50 %)</span></div>
-          <div><strong className="negative">{sharedRankStats.behind}</strong><span>Derrière (&lt;50 %)</span></div>
-          <div><strong>{sharedRankStats.even}</strong><span>À égalité (50 %)</span></div>
+        <div className="stats-bar">
+          <div className="stat-card"><div className="label">Occurrences</div><div className="value">{sharedRankStats.occurrences.length}</div></div>
+          <div className="stat-card"><div className="label">Hero dominé au kicker</div><div className="value negative">{sharedRankStats.heroDominated}</div></div>
+          <div className="stat-card"><div className="label">Hero meilleur kicker</div><div className="value positive">{sharedRankStats.villainDominated}</div></div>
         </div>
         <p className="stack-method">
           Cartes connues : {sharedRankStats.knownCardCount}/{sharedRankStats.headsUpCount} duels tête-à-tête.
           {` ${sharedRankStats.oneSharedRank} avec un rang commun, ${sharedRankStats.twoSharedRanks} avec deux.`}
-          {sharedRankStats.unknownEquity > 0 &&
-            ` Équité indisponible pour ${sharedRankStats.unknownEquity} duel${sharedRankStats.unknownEquity > 1 ? 's' : ''} avec rang commun.`}
+          {` Paires sur le rang commun : ${sharedRankStats.pairOverlap}.`}
         </p>
+        {sharedRankStats.occurrences.length === 0 ? <p>Aucune occurrence de rang commun avec des cartes connues.</p> : <>
+          <div className="matchup-table-wrap"><table className="matchup-table allin-table">
+            <thead><tr><th>Main / vilain</th><th>Cartes Hero / vilain</th><th>Rang(s) commun(s)</th><th>Comparaison des kickers</th></tr></thead>
+            <tbody>{sharedRankStats.occurrences.slice(0, visibleSharedRankCount).map((occurrence) => {
+              const { hand } = occurrence
+              return <tr key={hand.hand_id}>
+                <td><Link to={`/hands/${encodeURIComponent(hand.hand_id)}/replay`}>{hand.hand_id}</Link>
+                  <div className="stack-method">{hand.opponents[0].player_name}</div>
+                </td>
+                <td><div className="allin-card-matchup">
+                  <span><small>Hero</small><HoleCards cards={hand.hero_cards} /></span>
+                  <span className="stack-method">vs</span>
+                  <span><small>Vilain</small><HoleCards cards={hand.opponents[0].cards} /></span>
+                </div></td>
+                <td>{occurrence.sharedRanks.join(', ')}</td>
+                <td>{sharedRankComparisonLabel(occurrence)}</td>
+              </tr>
+            })}</tbody>
+          </table></div>
+          {sharedRankStats.occurrences.length > visibleSharedRankCount && <button type="button" className="filter-reset"
+            onClick={() => setVisibleSharedRankCount((value) => value + 50)}>
+            Afficher les 50 suivantes ({visibleSharedRankCount}/{sharedRankStats.occurrences.length})
+          </button>}
+        </>}
       </section>
 
       <div className="allin-coverage-grid">

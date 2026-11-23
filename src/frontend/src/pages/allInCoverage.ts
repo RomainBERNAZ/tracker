@@ -61,16 +61,32 @@ function parsedHoleCards(cards: string | null): { readonly ranks: readonly strin
   }
 }
 
+const RANK_ORDER = '23456789TJQKA'
+
+export type SharedRankComparison =
+  | 'hero-dominated'
+  | 'villain-dominated'
+  | 'same-ranks'
+  | 'pair-overlap'
+
+export interface SharedRankOccurrence {
+  readonly hand: PreflopMatchup
+  readonly sharedRanks: readonly string[]
+  readonly comparison: SharedRankComparison
+  readonly heroKicker: string | null
+  readonly villainKicker: string | null
+}
+
 export function summarizeSharedRankMatchups(hands: readonly PreflopMatchup[]) {
   let headsUpCount = 0
   let knownCardCount = 0
-  let count = 0
+  let heroDominated = 0
+  let villainDominated = 0
+  let sameRanks = 0
+  let pairOverlap = 0
   let oneSharedRank = 0
   let twoSharedRanks = 0
-  let ahead = 0
-  let behind = 0
-  let even = 0
-  let unknownEquity = 0
+  const occurrences: SharedRankOccurrence[] = []
 
   for (const hand of hands) {
     if (hand.opponents.length !== 1) continue
@@ -83,18 +99,43 @@ export function summarizeSharedRankMatchups(hands: readonly PreflopMatchup[]) {
 
     const sharedRanks = [...new Set(hero.ranks)].filter((rank) => villain.ranks.includes(rank))
     if (sharedRanks.length === 0) continue
-    count++
     if (sharedRanks.length === 1) oneSharedRank++
     else twoSharedRanks++
 
-    const equity = duelEquity(hand)
-    if (equity == null) unknownEquity++
-    else if (equity > 0.5 + 1e-9) ahead++
-    else if (equity < 0.5 - 1e-9) behind++
-    else even++
+    let comparison: SharedRankComparison
+    let heroKicker: string | null = null
+    let villainKicker: string | null = null
+    if (sharedRanks.length > 1) {
+      comparison = 'same-ranks'
+      sameRanks++
+    } else {
+      const sharedRank = sharedRanks[0]
+      const heroSharedCount = hero.ranks.filter((rank) => rank === sharedRank).length
+      const villainSharedCount = villain.ranks.filter((rank) => rank === sharedRank).length
+      heroKicker = hero.ranks.find((rank) => rank !== sharedRank) ?? null
+      villainKicker = villain.ranks.find((rank) => rank !== sharedRank) ?? null
+      if (heroSharedCount !== 1 || villainSharedCount !== 1 || heroKicker == null || villainKicker == null) {
+        comparison = 'pair-overlap'
+        pairOverlap++
+      } else if (RANK_ORDER.indexOf(heroKicker) < RANK_ORDER.indexOf(villainKicker)) {
+        comparison = 'hero-dominated'
+        heroDominated++
+      } else if (RANK_ORDER.indexOf(heroKicker) > RANK_ORDER.indexOf(villainKicker)) {
+        comparison = 'villain-dominated'
+        villainDominated++
+      } else {
+        comparison = 'same-ranks'
+        sameRanks++
+      }
+    }
+
+    occurrences.push({ hand, sharedRanks, comparison, heroKicker, villainKicker })
   }
 
-  return { headsUpCount, knownCardCount, count, oneSharedRank, twoSharedRanks, ahead, behind, even, unknownEquity }
+  return {
+    headsUpCount, knownCardCount, occurrences, heroDominated, villainDominated, sameRanks,
+    pairOverlap, oneSharedRank, twoSharedRanks,
+  }
 }
 
 export function duelGains(hand: PreflopMatchup, unit: MatchupUnit) {

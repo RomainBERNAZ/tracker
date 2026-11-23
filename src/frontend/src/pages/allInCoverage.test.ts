@@ -97,20 +97,28 @@ describe('preflop all-in coverage', () => {
     })
   })
 
-  it('counts shared ranks in heads-up preflop duels and classifies only known equities', () => {
+  it('lists every heads-up duel with a shared rank and classifies kickers independently of equity', () => {
     const stats = summarizeSharedRankMatchups([
       hand({ hero_equity: 0.25 }, { hero_cards: 'Qh 6d', opponents: [{ player_name: 'V1', cards: 'Ks 6c' }] }),
-      hand({ hero_equity: 0.75 }, { hero_cards: 'Qh 6d', opponents: [{ player_name: 'V2', cards: 'Qs 3c' }] }),
-      hand({ hero_equity: 0.5 }, { hero_cards: 'Qh 6d', opponents: [{ player_name: 'V3', cards: 'Qc 6s' }] }),
-      hand({ hero_equity: null }, { hero_cards: 'Qh 6d', opponents: [{ player_name: 'V4', cards: 'Kd 6s' }] }),
-      hand({}, { hero_cards: 'Qh 6d', opponents: [{ player_name: 'V5', cards: 'Ks 3c' }] }),
-      hand({}, { hero_cards: 'Qh 6d', opponents: [{ player_name: 'V6', cards: 'Qh 3c' }] }),
-      hand({}, { hero_cards: 'Qh 6d', opponents: [{ player_name: 'V7', cards: null }] }),
-      hand({}, { hero_cards: 'Qh 6d', opponents: [{ player_name: 'V8', cards: 'Ks 6c' }, { player_name: 'V9', cards: 'Ad Ac' }] }),
+      hand({ hero_equity: 0.75 }, { hero_cards: 'Kh 6d', opponents: [{ player_name: 'V2', cards: 'Qs 6c' }] }),
+      hand({ hero_equity: 0.5 }, { hero_cards: 'Qh 6d', opponents: [{ player_name: 'V3', cards: 'Qs 6s' }] }),
+      hand({ hero_equity: null }, { hero_cards: 'Ah Ks', opponents: [{ player_name: 'V4', cards: 'Ac Kc' }] }),
+      hand({}, { hero_cards: '6h 6d', opponents: [{ player_name: 'V5', cards: '6s Kc' }] }),
+      hand({}, { hero_cards: 'Qh 6d', opponents: [{ player_name: 'V6', cards: 'Ks 3c' }] }),
+      hand({}, { hero_cards: 'Qh 6d', opponents: [{ player_name: 'V7', cards: 'Qh 3c' }] }),
+      hand({}, { hero_cards: 'Qh 6d', opponents: [{ player_name: 'V8', cards: null }] }),
+      hand({}, { hero_cards: 'Qh 6d', opponents: [{ player_name: 'V9', cards: 'Ks 6c' }, { player_name: 'V10', cards: 'Ad Ac' }] }),
     ])
     expect(stats).toEqual({
-      headsUpCount: 7, knownCardCount: 5, count: 4, oneSharedRank: 3, twoSharedRanks: 1,
-      ahead: 1, behind: 1, even: 1, unknownEquity: 1,
+      headsUpCount: 8, knownCardCount: 6, heroDominated: 1, villainDominated: 1,
+      sameRanks: 2, pairOverlap: 1, oneSharedRank: 3, twoSharedRanks: 2,
+      occurrences: [
+        expect.objectContaining({ sharedRanks: ['6'], comparison: 'hero-dominated', heroKicker: 'Q', villainKicker: 'K' }),
+        expect.objectContaining({ sharedRanks: ['6'], comparison: 'villain-dominated', heroKicker: 'K', villainKicker: 'Q' }),
+        expect.objectContaining({ sharedRanks: ['Q', '6'], comparison: 'same-ranks' }),
+        expect.objectContaining({ sharedRanks: ['A', 'K'], comparison: 'same-ranks' }),
+        expect.objectContaining({ sharedRanks: ['6'], comparison: 'pair-overlap' }),
+      ],
     })
   })
 
