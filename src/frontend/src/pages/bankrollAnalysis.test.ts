@@ -17,7 +17,8 @@ function sample(count = 1000, cev = 60, net = 1, buyIn = 2) {
   }))
   const hands: HandChipPoint[] = tournaments.map((t) => ({
     tournament_id: t.id, timestamp: '2035-01-01T12:00:00Z', hero_cards: 'As Kd',
-    big_blind: 20, player_count: 2, hero_starting_stack: 500, hero_stack_bucket: 0, realized_cev: -500, net_ev: cev, has_showdown: true,
+    hero_position: 'BTN', big_blind: 20, player_count: 2, hero_starting_stack: 500, hero_stack_bucket: 0,
+    realized_cev: -500, net_ev: cev, has_showdown: true,
   }))
   return { tournaments, hands, recent: analyzeRecentBankroll(tournaments, hands) }
 }

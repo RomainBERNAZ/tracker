@@ -185,6 +185,7 @@ export interface ReplayerState {
 export interface HandChipPoint {
   tournament_id: string
   hero_cards: string | null
+  hero_position: 'BTN' | 'SB' | 'BB' | 'Middle' | 'Unknown'
   big_blind: number
   player_count: number
   hero_starting_stack: number

@@ -162,6 +162,7 @@ pub struct ReplayerStep {
 pub struct HandChipPoint {
     pub tournament_id: String,
     pub hero_cards: Option<String>,
+    pub hero_position: String,
     pub big_blind: i64,
     pub player_count: i64,
     pub hero_starting_stack: i64,
@@ -171,6 +172,24 @@ pub struct HandChipPoint {
     pub net_ev: Option<i64>,
     /// Whether hero reached showdown, not just the other players.
     pub has_showdown: bool,
+}
+
+fn hero_position(
+    player_count: i64,
+    hero_index: i64,
+    button_index: i64,
+    button_present: bool,
+) -> &'static str {
+    if !button_present || player_count <= 0 {
+        return "Unknown";
+    }
+    match (hero_index + player_count - button_index) % player_count {
+        0 => "BTN",
+        1 if player_count == 2 => "BB",
+        1 => "SB",
+        2 => "BB",
+        _ => "Middle",
+    }
 }
 
 // A hero fold remains WSD even when the remaining opponents reach showdown.
@@ -186,7 +205,13 @@ pub fn get_chip_evolution(conn: &Connection) -> Result<Vec<HandChipPoint>, rusql
     let mut stmt = conn.prepare(&format!(
         r#"SELECT h.timestamp, hp.realized_cev, hp.net_ev,
                   {HERO_SHOWDOWN_SQL}, h.tournament_id, hc.card1 || ' ' || hc.card2,
-                  h.big_blind, h.player_count, hp.starting_stack
+                  h.big_blind, h.player_count, hp.starting_stack,
+                  (SELECT COUNT(*) FROM hand_players before_hero
+                   WHERE before_hero.hand_id = h.id AND before_hero.seat_number < hp.seat_number),
+                  (SELECT COUNT(*) FROM hand_players before_button
+                   WHERE before_button.hand_id = h.id AND before_button.seat_number < h.button_seat),
+                  EXISTS (SELECT 1 FROM hand_players button_player
+                          WHERE button_player.hand_id = h.id AND button_player.seat_number = h.button_seat)
            FROM hands h
            JOIN hand_players hp ON hp.hand_id = h.id AND hp.hero = 1
            LEFT JOIN hole_cards hc ON hc.hand_id = h.id AND hc.player_name = hp.player_name
@@ -199,6 +224,8 @@ pub fn get_chip_evolution(conn: &Connection) -> Result<Vec<HandChipPoint>, rusql
         Ok(HandChipPoint {
             tournament_id: row.get(4)?,
             hero_cards: row.get(5)?,
+            hero_position: hero_position(row.get(7)?, row.get(9)?, row.get(10)?, row.get(11)?)
+                .to_string(),
             big_blind,
             player_count: row.get(7)?,
             hero_starting_stack,
@@ -1983,6 +2010,7 @@ mod tests {
         assert_eq!(points[0].hero_cards.as_deref(), Some("Jd Kd"));
         assert_eq!(points[0].big_blind, 60);
         assert_eq!(points[0].player_count, 2);
+        assert_eq!(points[0].hero_position, "BB");
         assert_eq!(points[0].hero_starting_stack, 675);
         assert_eq!(points[0].hero_stack_bucket, Some(1));
 
@@ -1992,6 +2020,16 @@ mod tests {
         assert_eq!(points.len(), 1);
         assert_eq!(points[0].hero_cards, None);
         assert_eq!(points[0].net_ev, Some(296));
+    }
+
+    #[test]
+    fn hero_position_uses_button_relative_player_order() {
+        assert_eq!(hero_position(2, 0, 0, true), "BTN");
+        assert_eq!(hero_position(2, 1, 0, true), "BB");
+        assert_eq!(hero_position(3, 1, 0, true), "SB");
+        assert_eq!(hero_position(3, 2, 0, true), "BB");
+        assert_eq!(hero_position(5, 4, 0, true), "Middle");
+        assert_eq!(hero_position(3, 1, 0, false), "Unknown");
     }
 
     #[test]

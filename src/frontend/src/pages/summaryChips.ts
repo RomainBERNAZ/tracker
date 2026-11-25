@@ -1,11 +1,19 @@
 import type { HandChipPoint } from '../api'
 import type { StackFormat } from './stackAnalysis'
 
-export function filterChipHands(hands: readonly HandChipPoint[], format: StackFormat, buckets: readonly number[]) {
-  if (format === 'all' && buckets.length === 0) return hands
-  return hands.filter(({ player_count, hero_stack_bucket }) =>
+export type HeroPosition = HandChipPoint['hero_position']
+
+export function filterChipHands(
+  hands: readonly HandChipPoint[],
+  format: StackFormat,
+  buckets: readonly number[],
+  positions: readonly HeroPosition[] = [],
+) {
+  if (format === 'all' && buckets.length === 0 && positions.length === 0) return hands
+  return hands.filter(({ player_count, hero_stack_bucket, hero_position }) =>
     (format === 'all' || player_count === Number(format)) &&
-    (buckets.length === 0 || (hero_stack_bucket != null && buckets.includes(hero_stack_bucket))),
+    (buckets.length === 0 || (hero_stack_bucket != null && buckets.includes(hero_stack_bucket))) &&
+    (positions.length === 0 || positions.includes(hero_position)),
   )
 }
 

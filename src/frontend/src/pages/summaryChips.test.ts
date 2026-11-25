@@ -5,7 +5,8 @@ import { toggleStackBucket } from './stackAnalysis'
 
 const hand = (values: Partial<HandChipPoint> = {}): HandChipPoint => ({
   tournament_id: 'T1', hero_cards: null, big_blind: 20, timestamp: '2026-11-15T12:00:00Z',
-  realized_cev: 20, net_ev: null, has_showdown: false, player_count: 2, hero_starting_stack: 500, hero_stack_bucket: 0,
+  hero_position: 'BTN', realized_cev: 20, net_ev: null, has_showdown: false,
+  player_count: 2, hero_starting_stack: 500, hero_stack_bucket: 0,
   ...values,
 })
 
@@ -32,6 +33,17 @@ describe('filterChipHands', () => {
     expect(filterChipHands(hands, 'all', [0, 2, 3])).toEqual(hands.slice(0, 4))
     expect(filterChipHands(hands, '2', toggleStackBucket([0], 0))).toEqual(hands.slice(1))
     expect(filterChipHands(hands, 'all', [])).toEqual(hands)
+  })
+
+  it('combines selected positions with format and stack filters', () => {
+    const positioned = [
+      hand({ hero_position: 'BTN', player_count: 2 }),
+      hand({ hero_position: 'BB', player_count: 2, hero_stack_bucket: 2 }),
+      hand({ hero_position: 'SB', player_count: 3, hero_stack_bucket: 2 }),
+    ]
+    expect(filterChipHands(positioned, '2', [2], ['BB'])).toEqual([positioned[1]])
+    expect(filterChipHands(positioned, 'all', [], ['BTN', 'SB'])).toEqual([positioned[0], positioned[2]])
+    expect(filterChipHands(positioned, 'all', [], [])).toEqual(positioned)
   })
 })
 

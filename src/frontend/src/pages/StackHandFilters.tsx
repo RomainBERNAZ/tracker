@@ -1,5 +1,6 @@
 import { STACK_BUCKETS } from './stackAnalysis'
 import type { StackFormat } from './stackAnalysis'
+import type { HeroPosition } from './summaryChips'
 
 export function HandFormatFilter({ format, onChange }: {
   readonly format: StackFormat
@@ -33,6 +34,35 @@ export function HeroStackFilter({ buckets, onToggle, onReset }: {
         {STACK_BUCKETS.map((label, bucket) =>
           <button key={bucket} type="button" className={`period-pill${buckets.includes(bucket) ? ' period-pill-active' : ''}`}
             aria-pressed={buckets.includes(bucket)} onClick={() => onToggle(bucket)}>{label}</button>)}
+      </div>
+    </fieldset>
+  )
+}
+
+const HERO_POSITIONS: readonly [HeroPosition, string][] = [
+  ['BTN', 'BTN (BTN/SB en HU)'],
+  ['SB', 'SB'],
+  ['BB', 'BB'],
+  ['Middle', 'Positions intermédiaires'],
+  ['Unknown', 'Indéterminée'],
+]
+
+export function HeroPositionFilter({ positions, onToggle, onReset }: {
+  readonly positions: readonly HeroPosition[]
+  readonly onToggle: (position: HeroPosition) => void
+  readonly onReset: () => void
+}) {
+  return (
+    <fieldset className="filter-group">
+      <legend>Position de Hero</legend>
+      <p className="filter-group-hint">Position préflop · Plusieurs positions possibles</p>
+      <div className="period-pill-bar">
+        <button type="button" className={`period-pill${positions.length === 0 ? ' period-pill-active' : ''}`}
+          aria-pressed={positions.length === 0} onClick={onReset}>Toutes</button>
+        {HERO_POSITIONS.map(([position, label]) =>
+          <button key={position} type="button"
+            className={`period-pill${positions.includes(position) ? ' period-pill-active' : ''}`}
+            aria-pressed={positions.includes(position)} onClick={() => onToggle(position)}>{label}</button>)}
       </div>
     </fieldset>
   )

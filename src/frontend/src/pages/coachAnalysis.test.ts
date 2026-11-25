@@ -6,6 +6,7 @@ function hand(overrides: Partial<HandChipPoint> = {}): HandChipPoint {
   return {
     tournament_id: 'T1',
     hero_cards: null,
+    hero_position: 'BTN',
     big_blind: 20,
     player_count: 3,
     hero_starting_stack: 500,

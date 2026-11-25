@@ -64,9 +64,9 @@ describe('tournament filters', () => {
     const selected = applyTournamentRange(tours, range.fromMs, range.toMs, [0.5])
     expect(selected.map((t) => t.id)).toEqual(['A'])
     const hands: HandChipPoint[] = [
-      { tournament_id: 'A', hero_cards: null, big_blind: 20, player_count: 2, hero_starting_stack: 500, hero_stack_bucket: 0, timestamp: '2026-11-16T00:02:00', realized_cev: 50, net_ev: 80, has_showdown: true },
-      { tournament_id: 'B', hero_cards: null, big_blind: 50, player_count: 2, hero_starting_stack: 1000, hero_stack_bucket: 0, timestamp: '2026-11-15T12:00:00', realized_cev: 100, net_ev: 100, has_showdown: false },
-      { tournament_id: 'C', hero_cards: null, big_blind: 20, player_count: 3, hero_starting_stack: 80, hero_stack_bucket: 3, timestamp: '2026-11-16T00:02:00', realized_cev: -20, net_ev: -20, has_showdown: false },
+      { tournament_id: 'A', hero_cards: null, hero_position: 'BTN', big_blind: 20, player_count: 2, hero_starting_stack: 500, hero_stack_bucket: 0, timestamp: '2026-11-16T00:02:00', realized_cev: 50, net_ev: 80, has_showdown: true },
+      { tournament_id: 'B', hero_cards: null, hero_position: 'BB', big_blind: 50, player_count: 2, hero_starting_stack: 1000, hero_stack_bucket: 0, timestamp: '2026-11-15T12:00:00', realized_cev: 100, net_ev: 100, has_showdown: false },
+      { tournament_id: 'C', hero_cards: null, hero_position: 'SB', big_blind: 20, player_count: 3, hero_starting_stack: 80, hero_stack_bucket: 3, timestamp: '2026-11-16T00:02:00', realized_cev: -20, net_ev: -20, has_showdown: false },
     ]
     const selectedHands = handsForTournaments(hands, selected)
     expect(selectedHands.map((h) => h.tournament_id)).toEqual(['A'])

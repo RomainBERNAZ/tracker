@@ -19,8 +19,9 @@ import type {
 } from '../api'
 import { CumulativeChart } from '../components/CumulativeChart'
 import { filterChipHands, summarizeChips } from './summaryChips'
+import type { HeroPosition } from './summaryChips'
 import { TournamentFilters } from '../components/TournamentFilters'
-import { HandFormatFilter, HeroStackFilter } from './StackHandFilters'
+import { HandFormatFilter, HeroPositionFilter, HeroStackFilter } from './StackHandFilters'
 import { STACK_BUCKETS, stackDiagnostics, toggleStackBucket } from './stackAnalysis'
 import type { StackFormat } from './stackAnalysis'
 import StartingHands from './StartingHands'
@@ -920,6 +921,7 @@ const CHIPS_CURVES: Array<{ key: ChipsCurveKey; label: string; stroke: string; d
 const useChipCurves = createReviewState<Set<ChipsCurveKey>>(() => new Set(['cev', 'ev']))
 const useChipFormat = createReviewState<StackFormat>(() => 'all')
 const useChipBuckets = createReviewState<readonly number[]>(() => [])
+const useChipPositions = createReviewState<readonly HeroPosition[]>(() => [])
 
 const SummaryChipsTab = memo(({ filteredHands, filteredTournamentCount }: {
   readonly filteredHands: HandChipPoint[]
@@ -928,8 +930,12 @@ const SummaryChipsTab = memo(({ filteredHands, filteredTournamentCount }: {
   const [activeCurves, setActiveCurves] = useChipCurves()
   const [format, setFormat] = useChipFormat()
   const [buckets, setBuckets] = useChipBuckets()
-  const selectedHands = useMemo(() => filterChipHands(filteredHands, format, buckets), [filteredHands, format, buckets])
-  const hasHandFilter = format !== 'all' || buckets.length > 0
+  const [positions, setPositions] = useChipPositions()
+  const selectedHands = useMemo(
+    () => filterChipHands(filteredHands, format, buckets, positions),
+    [filteredHands, format, buckets, positions],
+  )
+  const hasHandFilter = format !== 'all' || buckets.length > 0 || positions.length > 0
   const chipStats = useMemo(
     () => summarizeChips(selectedHands, filteredTournamentCount),
     [selectedHands, filteredTournamentCount],
@@ -982,6 +988,9 @@ const SummaryChipsTab = memo(({ filteredHands, filteredTournamentCount }: {
           <HandFormatFilter format={format} onChange={setFormat} />
           <HeroStackFilter buckets={buckets} onReset={() => setBuckets([])}
             onToggle={(bucket) => setBuckets((current) => toggleStackBucket(current, bucket))} />
+          <HeroPositionFilter positions={positions} onReset={() => setPositions([])}
+            onToggle={(position) => setPositions((current) => current.includes(position)
+              ? current.filter((selected) => selected !== position) : [...current, position])} />
         </div>
         {hasHandFilter && <p className="filter-group-hint" aria-live="polite">
           {selectedHands.length} / {filteredHands.length} mains retenues. Dénominateur du cEV après les filtres de période et de buy-in : {filteredTournamentCount} tournoi{filteredTournamentCount === 1 ? '' : 's'}.
