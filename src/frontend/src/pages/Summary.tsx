@@ -18,7 +18,7 @@ import type {
   StackStatsSnapshot, TournamentRow,
 } from '../api'
 import { CumulativeChart } from '../components/CumulativeChart'
-import { filterChipHands, summarizeChips } from './summaryChips'
+import { filterChipHands, restrictPositionsToFormat, summarizeChips } from './summaryChips'
 import type { HeroPosition } from './summaryChips'
 import { TournamentFilters } from '../components/TournamentFilters'
 import { HandFormatFilter, HeroPositionFilter, HeroStackFilter } from './StackHandFilters'
@@ -29,7 +29,11 @@ import SummaryStacks from './SummaryStacks'
 import SummaryAllIns from './SummaryAllIns'
 import { createReviewState } from '../reviewState'
 import { WINAMAX_2EUR_MULTIPLIER_MODEL } from './expressoModel'
-import { DEFAULT_FILTER, applyTournamentRange, calendarDayRange, computeFilteredStats, endOfDay, formatDateInput, handsForTournaments, parseDateInput, periodToRange, tournamentBuyIn } from './tournamentFilters'
+import {
+  DEFAULT_FILTER, applyTournamentRange, calendarDayRange, computeFilteredStats, computeTournamentFinancialMetrics,
+  endOfDay, formatDateInput, handsForTournaments, inferTablingCounts, parseDateInput, periodToRange,
+  summarizeByTablingCount, tournamentBuyIn,
+} from './tournamentFilters'
 import { combineCounts } from './hittingBoardStats'
 import type { TournamentFlops } from './hittingBoardStats'
 import { summarizeAllInRunout } from './coachAnalysis'
@@ -45,6 +49,23 @@ const MODEL_BUY_IN_EUR = 2
 function fmtEur(n: number) {
   const sign = n >= 0 ? '+' : ''
   return `${sign}${n.toFixed(2)}€`
+}
+
+function fmtPercent(n: number | null) {
+  if (n == null) return '—'
+  const sign = n > 0 ? '+' : ''
+  return `${sign}${n.toLocaleString('fr-FR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} %`
+}
+
+function fmtHourlyRate(n: number | null) {
+  if (n == null) return '—'
+  const sign = n > 0 ? '+' : ''
+  return `${sign}${n.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} €/h`
+}
+
+function resultClass(value: number | null) {
+  if (value == null) return 'neutral'
+  return value >= 0 ? 'positive' : 'negative'
 }
 
 type FilteredStats = ReturnType<typeof computeFilteredStats>
@@ -112,12 +133,11 @@ function buildCoachReview(
   hands: HandChipPoint[],
 ): CoachReview | null {
   if (stats.totalTournaments === 0) return null
-  const totalBuyIn = tournaments.reduce((sum, t) => sum + tournamentBuyIn(t), 0)
-  const realRoiPct = totalBuyIn > 0 ? (stats.totalNetEur / totalBuyIn) * 100 : 0
+  const { roiPct } = computeTournamentFinancialMetrics(tournaments)
   const allIn = summarizeAllInRunout(hands)
 
   return {
-    realRoiPct,
+    realRoiPct: roiPct ?? 0,
     allinSamples: allIn.comparableCount,
     allinMissing: allIn.missingCount,
     realizedChips: allIn.actualChips,
@@ -909,6 +929,40 @@ const SummaryMultiplierTable = memo(({ sortedMultipliers }: {
   )
 })
 
+const SummaryTablingTable = memo(({ rows }: {
+  readonly rows: ReturnType<typeof summarizeByTablingCount>
+}) => (
+  <div className="summary-card" style={{ marginBottom: 16 }}>
+    <h3>Résultats selon le nombre de tables</h3>
+    <p className="variance-description">
+      Chaque tournoi est classé selon le nombre de tournois actifs à son démarrage.
+      Les durées qui se chevauchent sont fusionnées pour calculer le taux horaire.
+    </p>
+    {rows.length === 0 ? <p className="variance-description">Aucune donnée.</p> : (
+      <div className="multiplier-table-wrap">
+        <table className="multiplier-table">
+          <thead><tr>
+            <th scope="col">Tables au départ</th>
+            <th scope="col">Tournois</th>
+            <th scope="col">Net</th>
+            <th scope="col">ROI</th>
+            <th scope="col">Taux horaire</th>
+          </tr></thead>
+          <tbody>
+            {rows.map((row) => <tr key={row.tableCount ?? 'unknown'}>
+              <th scope="row">{row.tableCount ?? 'Indéterminé'}</th>
+              <td>{row.tournamentCount}</td>
+              <td className={row.netEur >= 0 ? 'positive' : 'negative'}>{fmtEur(row.netEur)}</td>
+              <td>{fmtPercent(row.roiPct)}</td>
+              <td>{fmtHourlyRate(row.hourlyRateEur)}</td>
+            </tr>)}
+          </tbody>
+        </table>
+      </div>
+    )}
+  </div>
+))
+
 type ChipsCurveKey = 'cev' | 'ev' | 'wsd' | 'sd'
 
 const CHIPS_CURVES: Array<{ key: ChipsCurveKey; label: string; stroke: string; dash?: string }> = [
@@ -985,10 +1039,13 @@ const SummaryChipsTab = memo(({ filteredHands, filteredTournamentCount }: {
     <div className="summary-chips-tab">
       <div className="summary-card">
         <div className="filter-groups">
-          <HandFormatFilter format={format} onChange={setFormat} />
+          <HandFormatFilter format={format} onChange={(nextFormat) => {
+            setFormat(nextFormat)
+            setPositions((current) => restrictPositionsToFormat(current, nextFormat))
+          }} />
           <HeroStackFilter buckets={buckets} onReset={() => setBuckets([])}
             onToggle={(bucket) => setBuckets((current) => toggleStackBucket(current, bucket))} />
-          <HeroPositionFilter positions={positions} onReset={() => setPositions([])}
+          <HeroPositionFilter format={format} positions={positions} onReset={() => setPositions([])}
             onToggle={(position) => setPositions((current) => current.includes(position)
               ? current.filter((selected) => selected !== position) : [...current, position])} />
         </div>
@@ -1208,6 +1265,15 @@ export default memo(function Summary() {
     () => computeFilteredStats(filteredTournaments),
     [filteredTournaments],
   )
+  const financialMetrics = useMemo(
+    () => computeTournamentFinancialMetrics(filteredTournaments),
+    [filteredTournaments],
+  )
+  const tablingCounts = useMemo(() => inferTablingCounts(tournaments), [tournaments])
+  const tablingStats = useMemo(
+    () => summarizeByTablingCount(filteredTournaments, tablingCounts),
+    [filteredTournaments, tablingCounts],
+  )
   const supportsTheoreticalModel = filteredTournaments.length > 0 &&
     filteredTournaments.every((t) => tournamentBuyIn(t) === MODEL_BUY_IN_EUR)
 
@@ -1356,6 +1422,18 @@ export default memo(function Summary() {
                 </div>
               </div>
               <div className="stat-card">
+                <div className="label">ROI réel</div>
+                <div className={`value ${resultClass(financialMetrics.roiPct)}`}>
+                  {fmtPercent(financialMetrics.roiPct)}
+                </div>
+              </div>
+              <div className="stat-card">
+                <div className="label">Taux horaire actif</div>
+                <div className={`value ${resultClass(financialMetrics.hourlyRateEur)}`}>
+                  {fmtHourlyRate(financialMetrics.hourlyRateEur)}
+                </div>
+              </div>
+              <div className="stat-card">
                 <div className="label">Net ajusté des tapis (€)</div>
                 <AdjustedEuro value={filteredStats.adjustedNetEur} />
               </div>
@@ -1364,6 +1442,10 @@ export default memo(function Summary() {
                 <AdjustedEuro value={filteredStats.allInCorrection} />
               </div>
             </div>
+            <p className="variance-description">
+              ROI = net / buy-ins engagés (rake inclus). Le taux horaire utilise les durées importées ;
+              si une durée manque, il n’est pas calculé.
+            </p>
             <p className="variance-description">
               {filteredStats.adjustedAllInCount} tapis corrigés sur {filteredStats.calculatedAllInCount} avec une EV calculée.
               {' '}Une correction positive signifie que le résultat réel a été inférieur à l’attendu sur ces tapis.
@@ -1378,6 +1460,8 @@ export default memo(function Summary() {
                 pris en compte, pas toute la variance ni les gains à long terme.</p>
             </details>
           </div>
+
+          <SummaryTablingTable rows={tablingStats} />
 
           <div className="summary-grid">
             <div className="summary-card">

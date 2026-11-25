@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import type { HandChipPoint } from '../api'
-import { filterChipHands, summarizeChips } from './summaryChips'
+import { filterChipHands, positionsForFormat, restrictPositionsToFormat, summarizeChips } from './summaryChips'
 import { toggleStackBucket } from './stackAnalysis'
 
 const hand = (values: Partial<HandChipPoint> = {}): HandChipPoint => ({
@@ -11,6 +11,14 @@ const hand = (values: Partial<HandChipPoint> = {}): HandChipPoint => ({
 })
 
 describe('filterChipHands', () => {
+  it('exposes only the available Expresso positions for each format', () => {
+    expect(positionsForFormat('2')).toEqual(['BTN', 'BB'])
+    expect(positionsForFormat('3')).toEqual(['BTN', 'SB', 'BB'])
+    expect(positionsForFormat('all')).toEqual(['BTN', 'SB', 'BB'])
+    expect(restrictPositionsToFormat(['SB', 'BB'], '2')).toEqual(['BB'])
+    expect(restrictPositionsToFormat(['BB'], '3')).toEqual(['BB'])
+  })
+
   const hands = [
     hand({ player_count: 3 }),
     hand({ realized_cev: -10, net_ev: 30, has_showdown: true }),

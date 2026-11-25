@@ -98,6 +98,107 @@ export function computeFilteredStats(tours: readonly TournamentRow[]) {
   }
 }
 
+export interface TournamentFinancialMetrics {
+  netEur: number
+  totalBuyInEur: number
+  roiPct: number | null
+  activeHours: number | null
+  hourlyRateEur: number | null
+}
+
+function activeDurationSecs(tours: readonly TournamentRow[]): number | null {
+  if (tours.length === 0) return null
+  const intervals = tours.map((tournament) => {
+    const startMs = Date.parse(tournament.started_at)
+    const durationMs = tournament.duration_secs * 1_000
+    return { startMs, endMs: startMs + durationMs, durationMs }
+  })
+  if (intervals.some(({ startMs, durationMs }) =>
+    !Number.isFinite(startMs) || !Number.isFinite(durationMs) || durationMs <= 0)) return null
+
+  intervals.sort((a, b) => a.startMs - b.startMs)
+  let totalMs = 0
+  let startMs = intervals[0].startMs
+  let endMs = intervals[0].endMs
+  for (const interval of intervals.slice(1)) {
+    if (interval.startMs <= endMs) {
+      endMs = Math.max(endMs, interval.endMs)
+    } else {
+      totalMs += endMs - startMs
+      startMs = interval.startMs
+      endMs = interval.endMs
+    }
+  }
+  totalMs += endMs - startMs
+  return totalMs / 1_000
+}
+
+export function computeTournamentFinancialMetrics(tours: readonly TournamentRow[]): TournamentFinancialMetrics {
+  const totalNetEur = tours.reduce((sum, tournament) => sum + tournament.net_eur, 0)
+  const totalBuyInEur = tours.reduce((sum, tournament) => sum + tournamentBuyIn(tournament), 0)
+  const activeSecs = activeDurationSecs(tours)
+  return {
+    netEur: totalNetEur,
+    totalBuyInEur,
+    roiPct: totalBuyInEur > 0 ? (totalNetEur / totalBuyInEur) * 100 : null,
+    activeHours: activeSecs == null ? null : activeSecs / 3_600,
+    hourlyRateEur: activeSecs == null || activeSecs <= 0 ? null : totalNetEur / (activeSecs / 3_600),
+  }
+}
+
+export function inferTablingCounts(tours: readonly TournamentRow[]): Map<string, number | null> {
+  const timed = tours.flatMap((tournament) => {
+    const startMs = Date.parse(tournament.started_at)
+    const durationMs = tournament.duration_secs * 1_000
+    return Number.isFinite(startMs) && Number.isFinite(durationMs) && durationMs > 0
+      ? [{ tournament, startMs, endMs: startMs + durationMs }]
+      : []
+  }).sort((a, b) => a.startMs - b.startMs)
+  const counts = new Map<string, number | null>(tours.map(({ id }) => [id, null]))
+  const endTimes = timed.map(({ endMs }) => endMs).sort((a, b) => a - b)
+  let activeCount = 0
+  let ended = 0
+  let index = 0
+
+  while (index < timed.length) {
+    const startMs = timed[index].startMs
+    while (ended < endTimes.length && endTimes[ended] <= startMs) {
+      activeCount -= 1
+      ended += 1
+    }
+    let groupEnd = index + 1
+    while (groupEnd < timed.length && timed[groupEnd].startMs === startMs) groupEnd += 1
+    const concurrentCount = activeCount + groupEnd - index
+    for (let i = index; i < groupEnd; i += 1) counts.set(timed[i].tournament.id, concurrentCount)
+    activeCount += groupEnd - index
+    index = groupEnd
+  }
+  return counts
+}
+
+export function summarizeByTablingCount(
+  tours: readonly TournamentRow[],
+  counts: ReadonlyMap<string, number | null>,
+) {
+  const groups = new Map<number | null, TournamentRow[]>()
+  for (const tournament of tours) {
+    const count = counts.get(tournament.id) ?? null
+    const group = groups.get(count)
+    if (group) group.push(tournament)
+    else groups.set(count, [tournament])
+  }
+  return [...groups.entries()]
+    .map(([tableCount, tournaments]) => ({
+      tableCount,
+      tournamentCount: tournaments.length,
+      ...computeTournamentFinancialMetrics(tournaments),
+    }))
+    .sort((a, b) => {
+      if (a.tableCount == null) return b.tableCount == null ? 0 : 1
+      return b.tableCount == null ? -1 : a.tableCount - b.tableCount
+    })
+}
+
 export function cumulativeTournamentResults(tours: readonly TournamentRow[]) {
   const sorted = [...tours].sort((a, b) => Date.parse(a.started_at) - Date.parse(b.started_at))
   const hasAdjustment = tours.some((t) => t.all_in_correction_eur != null)

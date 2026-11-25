@@ -1,6 +1,9 @@
 import { describe, expect, it } from 'vitest'
 import type { HandChipPoint, TournamentRow } from '../api'
-import { applyTournamentRange, computeFilteredStats, cumulativeTournamentResults, formatDateInput, handsForTournaments, periodToRange } from './tournamentFilters'
+import {
+  applyTournamentRange, computeFilteredStats, computeTournamentFinancialMetrics, cumulativeTournamentResults,
+  formatDateInput, handsForTournaments, inferTablingCounts, periodToRange, summarizeByTablingCount,
+} from './tournamentFilters'
 import { summarizeChips } from './summaryChips'
 
 function tournament(id: string, buyIn: number, startedAt: string, ev: number): TournamentRow {
@@ -99,5 +102,37 @@ describe('tournament filters', () => {
     expect(applyTournamentRange(history, range.fromMs, range.toMs, [0.5, 5]).map((t) => t.id)).toEqual(['A', 'D'])
     expect(applyTournamentRange(history, null, null, [0.5, 5]).map((t) => t.id)).toEqual(['A', 'C', 'D'])
     expect(applyTournamentRange(history, null, null, [])).toEqual(history)
+  })
+
+  it('calculates ROI including rake and hourly rate without double-counting overlapping tournaments', () => {
+    const first = { ...tournament('first', 1.86, '2026-11-15T12:00:00Z', 0), rake_euros: 0.14, net_eur: 1 }
+    const second = { ...tournament('second', 2, '2026-11-15T12:02:00Z', 0), net_eur: -1 }
+    const later = { ...tournament('later', 2, '2026-11-15T12:10:00Z', 0), net_eur: 2 }
+    expect(computeTournamentFinancialMetrics([first, second, later])).toMatchObject({
+      netEur: 2, totalBuyInEur: 6, activeHours: 12 / 60, hourlyRateEur: 10,
+    })
+    expect(computeTournamentFinancialMetrics([first, second, later]).roiPct).toBeCloseTo(100 / 3)
+  })
+
+  it('infers simultaneous tabling at tournament start and groups filtered tournament metrics', () => {
+    const start = Date.parse('2026-11-15T12:00:00Z')
+    const history = [
+      { ...tournament('A', 1, new Date(start).toISOString(), 0), duration_secs: 20 },
+      { ...tournament('B', 1, new Date(start).toISOString(), 0), duration_secs: 10 },
+      { ...tournament('C', 1, new Date(start + 2_000).toISOString(), 0), duration_secs: 10 },
+      { ...tournament('D', 1, new Date(start + 10_000).toISOString(), 0), duration_secs: 10 },
+      { ...tournament('E', 1, 'invalid', 0), duration_secs: 10 },
+    ]
+    const counts = inferTablingCounts(history)
+    expect(history.map(({ id }) => counts.get(id))).toEqual([2, 2, 3, 3, null])
+    expect(summarizeByTablingCount(history, counts).map(({ tableCount, tournamentCount }) =>
+      [tableCount, tournamentCount])).toEqual([[2, 2], [3, 2], [null, 1]])
+  })
+
+  it('leaves hourly rate unavailable when a tournament duration cannot be measured', () => {
+    const unknownDuration = { ...tours[0], duration_secs: 0 }
+    expect(computeTournamentFinancialMetrics([unknownDuration])).toMatchObject({
+      netEur: 0.5, totalBuyInEur: 0.5, roiPct: 100, activeHours: null, hourlyRateEur: null,
+    })
   })
 })

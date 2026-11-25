@@ -105,11 +105,21 @@ de l'EV nette importée du coup complet.
 
 ## Statistiques par profondeur de stack
 
-Dans **Summary → Jetons**, les filtres 3 joueurs / Heads-up et Stack Hero se
-combinent avec la période et les buy-ins. Ils s'appliquent aux totaux et aux
-courbes. Les tranches sont celles de Stacks (0–8, >8–12, >12–20 et >20 BB,
-sélection multiple), mesurées avant les blindes. La contribution cEV reste
-divisée par tous les tournois du périmètre date et buy-in.
+Dans **Summary → Jetons**, les filtres 3 joueurs / Heads-up, position de Hero
+et Stack Hero se combinent avec la période et les buy-ins. Les positions proposées
+s'adaptent au format : BTN/SB et BB en Heads-up, BTN, SB et BB à 3 joueurs.
+Ils s'appliquent aux totaux et aux courbes. Les tranches sont celles de Stacks
+(0–8, >8–12, >12–20 et >20 BB, sélection multiple), mesurées avant les blindes.
+La contribution cEV reste divisée par tous les tournois du périmètre date et buy-in.
+
+Dans **Résumé**, le ROI réel est le résultat net divisé par les buy-ins engagés,
+rake inclus. Le taux horaire rapporte le résultat net au temps actif calculé sur
+l'union des durées des tournois, sans compter deux fois les chevauchements ; il
+reste indisponible si une durée du groupe est manquante ou invalide. Le tableau
+« Résultats selon le nombre de tables » classe chaque tournoi selon le nombre de
+tournois actifs à son démarrage, déduit de l'historique importé complet. Les filtres
+de période et de buy-in sélectionnent les résultats du tableau, pas le calcul du
+nombre de tables.
 
 L'onglet Stacks de Summary analyse le stack du hero au debut de chaque main,
 avant les blindes, en BB : 0-8, >8-12, >12-20 et >20 BB. Les bornes hautes

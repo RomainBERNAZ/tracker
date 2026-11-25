@@ -3,6 +3,18 @@ import type { StackFormat } from './stackAnalysis'
 
 export type HeroPosition = HandChipPoint['hero_position']
 
+export function positionsForFormat(format: StackFormat): readonly HeroPosition[] {
+  return format === '2' ? ['BTN', 'BB'] : ['BTN', 'SB', 'BB']
+}
+
+export function restrictPositionsToFormat(
+  positions: readonly HeroPosition[],
+  format: StackFormat,
+): HeroPosition[] {
+  const available = positionsForFormat(format)
+  return positions.filter((position) => available.includes(position))
+}
+
 export function filterChipHands(
   hands: readonly HandChipPoint[],
   format: StackFormat,

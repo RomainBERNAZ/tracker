@@ -1,5 +1,6 @@
 import { STACK_BUCKETS } from './stackAnalysis'
 import type { StackFormat } from './stackAnalysis'
+import { positionsForFormat } from './summaryChips'
 import type { HeroPosition } from './summaryChips'
 
 export function HandFormatFilter({ format, onChange }: {
@@ -39,19 +40,20 @@ export function HeroStackFilter({ buckets, onToggle, onReset }: {
   )
 }
 
-const HERO_POSITIONS: readonly [HeroPosition, string][] = [
-  ['BTN', 'BTN (BTN/SB en HU)'],
-  ['SB', 'SB'],
-  ['BB', 'BB'],
-  ['Middle', 'Positions intermédiaires'],
-  ['Unknown', 'Indéterminée'],
-]
-
-export function HeroPositionFilter({ positions, onToggle, onReset }: {
+export function HeroPositionFilter({ format, positions, onToggle, onReset }: {
+  readonly format: StackFormat
   readonly positions: readonly HeroPosition[]
   readonly onToggle: (position: HeroPosition) => void
   readonly onReset: () => void
 }) {
+  const availablePositions = positionsForFormat(format)
+  const labels: Record<HeroPosition, string> = {
+    BTN: format === '2' ? 'BTN / SB' : 'BTN',
+    SB: 'SB',
+    BB: 'BB',
+    Middle: 'Positions intermédiaires',
+    Unknown: 'Indéterminée',
+  }
   return (
     <fieldset className="filter-group">
       <legend>Position de Hero</legend>
@@ -59,10 +61,10 @@ export function HeroPositionFilter({ positions, onToggle, onReset }: {
       <div className="period-pill-bar">
         <button type="button" className={`period-pill${positions.length === 0 ? ' period-pill-active' : ''}`}
           aria-pressed={positions.length === 0} onClick={onReset}>Toutes</button>
-        {HERO_POSITIONS.map(([position, label]) =>
+        {availablePositions.map((position) =>
           <button key={position} type="button"
             className={`period-pill${positions.includes(position) ? ' period-pill-active' : ''}`}
-            aria-pressed={positions.includes(position)} onClick={() => onToggle(position)}>{label}</button>)}
+            aria-pressed={positions.includes(position)} onClick={() => onToggle(position)}>{labels[position]}</button>)}
       </div>
     </fieldset>
   )
