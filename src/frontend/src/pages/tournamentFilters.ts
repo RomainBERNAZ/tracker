@@ -104,6 +104,35 @@ export interface TournamentFinancialMetrics {
   roiPct: number | null
   activeHours: number | null
   hourlyRateEur: number | null
+  timedTournamentCount: number
+  excludedTournamentCount: number
+}
+
+function hasUsableTiming(tournament: TournamentRow): boolean {
+  return Number.isFinite(Date.parse(tournament.started_at)) &&
+    Number.isFinite(tournament.duration_secs) && tournament.duration_secs > 0
+}
+
+export function recoverBetclicDurations(tours: readonly TournamentRow[], hands: readonly HandChipPoint[]) {
+  const bounds = new Map<string, { first: number; last: number }>()
+  for (const hand of hands) {
+    const time = Date.parse(hand.timestamp)
+    if (!Number.isFinite(time)) continue
+    const current = bounds.get(hand.tournament_id)
+    if (current) {
+      current.first = Math.min(current.first, time)
+      current.last = Math.max(current.last, time)
+    } else {
+      bounds.set(hand.tournament_id, { first: time, last: time })
+    }
+  }
+  return tours.map((tournament) => {
+    if (tournament.room !== 'betclic' || hasUsableTiming(tournament)) return tournament
+    const range = bounds.get(tournament.id)
+    if (!range || range.last - range.first < 1000) return tournament
+    return { ...tournament, started_at: new Date(range.first).toISOString(),
+      duration_secs: (range.last - range.first) / 1000 }
+  })
 }
 
 function activeDurationSecs(tours: readonly TournamentRow[]): number | null {
@@ -136,13 +165,17 @@ function activeDurationSecs(tours: readonly TournamentRow[]): number | null {
 export function computeTournamentFinancialMetrics(tours: readonly TournamentRow[]): TournamentFinancialMetrics {
   const totalNetEur = tours.reduce((sum, tournament) => sum + tournament.net_eur, 0)
   const totalBuyInEur = tours.reduce((sum, tournament) => sum + tournamentBuyIn(tournament), 0)
-  const activeSecs = activeDurationSecs(tours)
+  const timed = tours.filter(hasUsableTiming)
+  const activeSecs = activeDurationSecs(timed)
+  const timedNetEur = timed.reduce((sum, tournament) => sum + tournament.net_eur, 0)
   return {
     netEur: totalNetEur,
     totalBuyInEur,
     roiPct: totalBuyInEur > 0 ? (totalNetEur / totalBuyInEur) * 100 : null,
     activeHours: activeSecs == null ? null : activeSecs / 3_600,
-    hourlyRateEur: activeSecs == null || activeSecs <= 0 ? null : totalNetEur / (activeSecs / 3_600),
+    hourlyRateEur: activeSecs == null || activeSecs <= 0 ? null : timedNetEur / (activeSecs / 3_600),
+    timedTournamentCount: timed.length,
+    excludedTournamentCount: tours.length - timed.length,
   }
 }
 

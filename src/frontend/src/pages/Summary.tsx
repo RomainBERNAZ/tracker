@@ -32,7 +32,7 @@ import { multiplierComparison } from './multiplierComparison'
 import {
   DEFAULT_FILTER, applyTournamentRange, calendarDayRange, computeFilteredStats, computeTournamentFinancialMetrics,
   endOfDay, formatDateInput, handsForTournaments, inferTablingCounts, parseDateInput, periodToRange,
-  summarizeByTablingCount,
+  summarizeByTablingCount, recoverBetclicDurations,
 } from './tournamentFilters'
 import { combineCounts } from './hittingBoardStats'
 import type { TournamentFlops } from './hittingBoardStats'
@@ -834,17 +834,19 @@ const SummaryPositions = memo(({ wins, secondPlace, thirdPlace }: PositionsPiePr
   }
 
   return (
-    <div className="summary-positions">
-      {data.map((d) => <div key={d.name}>
-        <span style={{ color: d.fill }}>{d.name}</span>
-        <strong>{d.value.toLocaleString('fr-FR')}</strong>
-        <span>{fmtPct(d.value, totalTournaments)}</span>
+    <div className="summary-position-chart" role="img" aria-label="Répartition des positions d'arrivée">
+      {data.map((d) => <div className="summary-position-row" key={d.name}>
+        <strong>{d.name}</strong>
+        <div className="summary-bar-track">
+          <div className="summary-bar" style={{ width: `${d.value * 100 / totalTournaments}%`, background: d.fill }} />
+        </div>
+        <span>{d.value.toLocaleString('fr-FR')} · {fmtPct(d.value, totalTournaments)}</span>
       </div>)}
     </div>
   )
 })
 
-const SummaryMultiplierTable = memo(({ sortedMultipliers }: {
+const SummaryMultiplierChart = memo(({ sortedMultipliers }: {
   readonly sortedMultipliers: { mult: number; expectedCount: number | null; realCount: number }[]
 }) => {
   if (sortedMultipliers.length === 0) {
@@ -854,46 +856,45 @@ const SummaryMultiplierTable = memo(({ sortedMultipliers }: {
   const showExpected = sortedMultipliers.some((row) => row.expectedCount != null)
   const count = new Intl.NumberFormat('fr-FR')
   const expected = new Intl.NumberFormat('fr-FR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })
-  const difference = new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 1, signDisplay: 'exceptZero' })
+  const maximum = Math.max(1, ...sortedMultipliers.map((row) => Math.max(row.realCount, row.expectedCount ?? 0)))
 
   return (
-    <div className="multiplier-table-wrap">
-      <table className="multiplier-table" aria-labelledby="summary-multipliers-title">
-        <thead><tr>
-          <th scope="col">Multiplicateur</th>
-          <th scope="col">Observé</th>
-          {showExpected && <><th scope="col">Attendu</th><th scope="col">Écart</th></>}
-        </tr></thead>
-        <tbody>
-          {sortedMultipliers.map((row) => {
-            const delta = row.expectedCount == null ? null : row.realCount - row.expectedCount
-            const displayedDelta = delta == null ? null : difference.format(delta)
-            return <tr key={row.mult}>
-              <th scope="row">×{count.format(row.mult)}</th>
-              <td className="multiplier-observed">{count.format(row.realCount)}</td>
-              {showExpected && <>
-                <td>{row.expectedCount == null ? '—' : expected.format(row.expectedCount)}</td>
-                <td className={displayedDelta?.startsWith('+') ? 'positive' : displayedDelta?.startsWith('-') ? 'negative' : undefined}>
-                  {displayedDelta ?? '—'}
-                </td>
-              </>}
-            </tr>
-          })}
-        </tbody>
-      </table>
+    <div className="summary-multiplier-chart" aria-labelledby="summary-multipliers-title">
+      <div className="summary-bar-legend">
+        <span><i className="summary-observed" />Observé</span>
+        {showExpected && <span><i className="summary-expected" />Attendu</span>}
+        {showExpected && <span>Observé / attendu (écart)</span>}
+      </div>
+      <div className="summary-multiplier-rows">
+        {sortedMultipliers.map((row) => <div className="summary-multiplier-row" key={row.mult}>
+          <strong>×{count.format(row.mult)}</strong>
+          <div className="summary-multiplier-bars">
+            <div className="summary-bar-track"><div className="summary-bar summary-observed" style={{ width: `${row.realCount * 100 / maximum}%` }} /></div>
+            {showExpected && <div className="summary-bar-track"><div className="summary-bar summary-expected" style={{ width: `${(row.expectedCount ?? 0) * 100 / maximum}%` }} /></div>}
+          </div>
+          <span>{count.format(row.realCount)}{row.expectedCount != null &&
+            ` / ${expected.format(row.expectedCount)} (${row.realCount - row.expectedCount >= 0 ? '+' : ''}${expected.format(row.realCount - row.expectedCount)})`}</span>
+        </div>)}
+      </div>
     </div>
   )
 })
 
-const SummaryTablingTable = memo(({ rows }: {
+const SummaryTablingTable = memo(({ rows, tournaments }: {
   readonly rows: ReturnType<typeof summarizeByTablingCount>
+  readonly tournaments: readonly TournamentRow[]
 }) => (
   <div className="summary-card summary-tabling-card">
     <h3>Résultats selon le nombre de tables</h3>
     <p className="variance-description">
       Nombre de tables le plus fréquent pendant le tournoi (égalité : nombre le plus élevé).
-      « Indéterminé » : date invalide ou durée nulle ; les durées manquantes ne sont pas comptées.
+      Les durées inconnues ne comptent pas dans le nombre de tables.
     </p>
+    {rows.some((row) => row.tableCount == null) && <p className="summary-timing-warning">
+      Indéterminé : {tournaments.filter((t) => !Number.isFinite(Date.parse(t.started_at))).length} date(s) invalides ;
+      {' '}{tournaments.filter((t) => Number.isFinite(Date.parse(t.started_at)) && (!Number.isFinite(t.duration_secs) || t.duration_secs <= 0)).length} durée(s) nulles ou absentes.
+      Sur Betclic, la reconstitution nécessite deux mains horodatées distinctes.
+    </p>}
     {rows.length === 0 ? <p className="variance-description">Aucune donnée.</p> : (
       <div className="multiplier-table-wrap">
         <table className="multiplier-table">
@@ -912,7 +913,8 @@ const SummaryTablingTable = memo(({ rows }: {
               <td className={resultClass(row.avgCev)}>{row.avgCev.toLocaleString('fr-FR', { maximumFractionDigits: 1 })}</td>
               <td className={row.netEur >= 0 ? 'positive' : 'negative'}>{fmtEur(row.netEur)}</td>
               <td>{fmtPercent(row.roiPct)}</td>
-              <td>{fmtHourlyRate(row.hourlyRateEur)}</td>
+              <td>{fmtHourlyRate(row.hourlyRateEur)}{row.excludedTournamentCount > 0 &&
+                <small className="stack-sample">{row.timedTournamentCount}/{row.tournamentCount} tournois</small>}</td>
             </tr>)}
           </tbody>
         </table>
@@ -1154,20 +1156,30 @@ export default memo(function Summary() {
   const [tournaments, setTournaments] = useState<TournamentRow[]>([])
   const [handEvolution, setHandEvolution] = useState<HandChipPoint[]>([])
   const [loading, setLoading] = useState(true)
+  const [loadError, setLoadError] = useState<string | null>(null)
+  const [loadAttempt, setLoadAttempt] = useState(0)
   const [filter, setFilter] = useSummaryFilter()
   const [activeTab, setActiveTab] = useSummaryTab()
   const [coachFrom, setCoachFrom] = useCoachFrom()
   const [coachTo, setCoachTo] = useCoachTo()
 
   useEffect(() => {
+    let cancelled = false
+    setLoading(true)
+    setLoadError(null)
     Promise.all([api.getTournaments(), api.getChipEvolution()])
       .then(([t, evolution]) => {
+        if (cancelled) return
         setTournaments(t)
         setHandEvolution(evolution)
       })
-      .catch(console.error)
-      .finally(() => setLoading(false))
-  }, [])
+      .catch((error: unknown) => {
+        console.error(error)
+        if (!cancelled) setLoadError(error instanceof Error ? error.message : String(error))
+      })
+      .finally(() => { if (!cancelled) setLoading(false) })
+    return () => { cancelled = true }
+  }, [loadAttempt])
 
   const dayAnchor = filter.period === 'today' || filter.period === 'yesterday' ? new Date().setHours(0, 0, 0, 0) : null
   const filteredRange = useMemo(
@@ -1231,14 +1243,22 @@ export default memo(function Summary() {
     () => computeFilteredStats(filteredTournaments),
     [filteredTournaments],
   )
-  const financialMetrics = useMemo(
-    () => computeTournamentFinancialMetrics(filteredTournaments),
-    [filteredTournaments],
+  const timedTournaments = useMemo(
+    () => recoverBetclicDurations(tournaments, handEvolution),
+    [tournaments, handEvolution],
   )
-  const tablingCounts = useMemo(() => inferTablingCounts(tournaments), [tournaments])
+  const filteredTimedTournaments = useMemo(() => {
+    const ids = new Set(filteredTournaments.map((tournament) => tournament.id))
+    return timedTournaments.filter((tournament) => ids.has(tournament.id))
+  }, [timedTournaments, filteredTournaments])
+  const financialMetrics = useMemo(
+    () => computeTournamentFinancialMetrics(filteredTimedTournaments),
+    [filteredTimedTournaments],
+  )
+  const tablingCounts = useMemo(() => inferTablingCounts(timedTournaments), [timedTournaments])
   const tablingStats = useMemo(
-    () => summarizeByTablingCount(filteredTournaments, tablingCounts),
-    [filteredTournaments, tablingCounts],
+    () => summarizeByTablingCount(filteredTimedTournaments, tablingCounts),
+    [filteredTimedTournaments, tablingCounts],
   )
   const multiplierStats = useMemo(() => multiplierComparison(filteredTournaments), [filteredTournaments])
 
@@ -1248,6 +1268,10 @@ export default memo(function Summary() {
   )
 
   if (loading) return <p style={{ color: 'var(--text-dim)' }}>Chargement…</p>
+  if (loadError) return <div role="alert">
+    <p className="negative">Impossible de charger le résumé : {loadError}</p>
+    <button type="button" className="filter-reset" onClick={() => setLoadAttempt((attempt) => attempt + 1)}>Réessayer</button>
+  </div>
 
   return (
     <div className="summary-page">
@@ -1392,6 +1416,9 @@ export default memo(function Summary() {
                 <div className={`value ${resultClass(financialMetrics.hourlyRateEur)}`}>
                   {fmtHourlyRate(financialMetrics.hourlyRateEur)}
                 </div>
+                {financialMetrics.excludedTournamentCount > 0 && <small className="stack-sample">
+                  Partiel : {financialMetrics.timedTournamentCount}/{filteredStats.totalTournaments} tournois
+                </small>}
               </div>
               <div className="stat-card">
                 <div className="label">Net ajusté des tapis (€)</div>
@@ -1404,8 +1431,9 @@ export default memo(function Summary() {
             </div>
             <details className="stack-method">
               <summary>Comprendre les résultats</summary>
-              <p>ROI = net / buy-ins engagés (rake inclus). Le taux horaire utilise les durées importées ;
-                si une durée manque, il n’est pas calculé.</p>
+              <p>ROI = net / buy-ins engagés (rake inclus). Le taux horaire est le net des tournois
+                mesurables divisé par leur durée active cumulée, sans double-compter les chevauchements.
+                Il est partiel si des dates ou durées manquent.</p>
               <p>{filteredStats.adjustedAllInCount} tapis corrigés sur {filteredStats.calculatedAllInCount} avec une EV calculée.
                 Une correction positive signifie que le résultat réel a été inférieur à l’attendu sur ces tapis.</p>
               <p>On part du net réel. Pour chaque tapis calculable, préflop ou postflop, on ajoute l’écart
@@ -1418,7 +1446,7 @@ export default memo(function Summary() {
           </div>
 
           <div className="summary-overview-grid">
-          <SummaryTablingTable rows={tablingStats} />
+          <SummaryTablingTable rows={tablingStats} tournaments={filteredTimedTournaments} />
           <div className="summary-overview-distributions">
             <div className="summary-card">
               <h3>Positions</h3>
@@ -1433,7 +1461,7 @@ export default memo(function Summary() {
               <h3 id="summary-multipliers-title">Répartition des multiplicateurs</h3>
               {multiplierStats.unmodeled > 0 &&
                 <p className="variance-description">{multiplierStats.unmodeled} tournois sans modèle connu : seuls les résultats observés sont affichés.</p>}
-              <SummaryMultiplierTable sortedMultipliers={multiplierStats.rows} />
+              <SummaryMultiplierChart sortedMultipliers={multiplierStats.rows} />
             </div>
           </div>
 

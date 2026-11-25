@@ -3,6 +3,7 @@ import type { HandChipPoint, TournamentRow } from '../api'
 import {
   applyTournamentRange, computeFilteredStats, computeTournamentFinancialMetrics, cumulativeTournamentResults,
   formatDateInput, handsForTournaments, inferTablingCounts, periodToRange, summarizeByTablingCount,
+  recoverBetclicDurations,
 } from './tournamentFilters'
 import { summarizeChips } from './summaryChips'
 
@@ -155,5 +156,35 @@ describe('tournament filters', () => {
     expect(computeTournamentFinancialMetrics([unknownDuration])).toMatchObject({
       netEur: 0.5, totalBuyInEur: 0.5, roiPct: 100, activeHours: null, hourlyRateEur: null,
     })
+  })
+
+  it('calculates a clearly identified partial hourly rate from measurable tournaments only', () => {
+    const measured = { ...tournament('known', 2, '2026-11-15T12:00:00Z', 0), duration_secs: 300, net_eur: 1 }
+    const unknown = { ...tournament('unknown', 2, '2026-11-15T12:01:00Z', 0), duration_secs: 0, net_eur: -2 }
+    expect(computeTournamentFinancialMetrics([measured, unknown])).toMatchObject({
+      netEur: -1, activeHours: 1 / 12, hourlyRateEur: 12, timedTournamentCount: 1,
+      excludedTournamentCount: 1,
+    })
+  })
+
+  it('recovers missing Betclic duration only when at least two distinct hand times are available', () => {
+    const first = { ...tournament('known', 2, '2026-11-15T12:00:00Z', 0), room: 'betclic' as const, duration_secs: 0 }
+    const unknown = { ...first, id: 'single' }
+    const winamax = { ...first, id: 'winamax', room: 'winamax' as const }
+    const hand = (tournament_id: string, timestamp: string): HandChipPoint => ({
+      tournament_id, timestamp, hero_cards: null, hero_position: 'BTN', big_blind: 20,
+      player_count: 3, hero_starting_stack: 500, hero_stack_bucket: 0, realized_cev: 0,
+      net_ev: 0, has_showdown: false,
+    })
+    const hands = [
+      hand('known', '2026-11-15T12:01:00Z'), hand('known', '2026-11-15T12:04:00Z'),
+      hand('single', '2026-11-15T12:02:00Z'),
+      hand('winamax', '2026-11-15T12:01:00Z'), hand('winamax', '2026-11-15T12:04:00Z'),
+    ]
+    const result = recoverBetclicDurations([first, unknown, winamax], hands)
+    expect(result[0]).toMatchObject({ started_at: '2026-11-15T12:01:00.000Z', duration_secs: 180 })
+    expect(result[1].duration_secs).toBe(0)
+    expect(result[2].duration_secs).toBe(0)
+    expect(inferTablingCounts(result).get('known')).toBe(1)
   })
 })
