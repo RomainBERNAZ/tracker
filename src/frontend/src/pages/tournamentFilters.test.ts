@@ -114,7 +114,7 @@ describe('tournament filters', () => {
     expect(computeTournamentFinancialMetrics([first, second, later]).roiPct).toBeCloseTo(100 / 3)
   })
 
-  it('infers simultaneous tabling at tournament start and groups filtered tournament metrics', () => {
+  it('classifies tournaments by the number of tables active for most of their duration', () => {
     const start = Date.parse('2026-11-15T12:00:00Z')
     const history = [
       { ...tournament('A', 1, new Date(start).toISOString(), 0), duration_secs: 20 },
@@ -124,9 +124,30 @@ describe('tournament filters', () => {
       { ...tournament('E', 1, 'invalid', 0), duration_secs: 10 },
     ]
     const counts = inferTablingCounts(history)
-    expect(history.map(({ id }) => counts.get(id))).toEqual([2, 2, 3, 3, null])
+    expect(history.map(({ id }) => counts.get(id))).toEqual([3, 3, 3, 2, null])
     expect(summarizeByTablingCount(history, counts).map(({ tableCount, tournamentCount }) =>
-      [tableCount, tournamentCount])).toEqual([[2, 2], [3, 2], [null, 1]])
+      [tableCount, tournamentCount])).toEqual([[2, 1], [3, 3], [null, 1]])
+  })
+
+  it('reports the average cEV per tournament for each table-count group', () => {
+    const history = [
+      tournament('A', 2, '2026-11-15T12:00:00Z', 80),
+      tournament('B', 2, '2026-11-15T12:00:00Z', -20),
+    ]
+    const counts = inferTablingCounts(history)
+    expect(summarizeByTablingCount(history, counts)[0]).toMatchObject({
+      tableCount: 2, tournamentCount: 2, avgCev: 30,
+    })
+  })
+
+  it('does not count zero-duration tournaments or overlapping endpoints as active tables', () => {
+    const history = [
+      { ...tournament('first', 2, '2026-11-15T12:00:00Z', 0), duration_secs: 10 },
+      { ...tournament('second', 2, '2026-11-15T12:00:10Z', 0), duration_secs: 10 },
+      { ...tournament('unknown', 2, '2026-11-15T12:00:05Z', 0), duration_secs: 0 },
+    ]
+    const counts = inferTablingCounts(history)
+    expect(history.map(({ id }) => counts.get(id))).toEqual([1, 1, null])
   })
 
   it('leaves hourly rate unavailable when a tournament duration cannot be measured', () => {

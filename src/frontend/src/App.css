@@ -1090,6 +1090,83 @@ tr:hover td {
   min-height: 220px;
 }
 
+.summary-overview {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.summary-gains-card .stats-bar {
+  gap: 6px;
+}
+
+.summary-gains-card .stat-card {
+  flex: 1 1 120px;
+  padding: 8px;
+}
+
+.summary-gains-card .stat-card .value {
+  font-size: 17px;
+}
+
+.summary-overview-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(530px, 42%);
+  grid-template-areas: "chart tables" "chart distributions";
+  grid-template-rows: auto 1fr;
+  gap: 12px;
+  flex: 1;
+}
+
+.summary-overview-grid .summary-euro-card {
+  grid-area: chart;
+  margin: 0;
+  min-height: 350px;
+}
+
+.summary-tabling-card {
+  grid-area: tables;
+}
+
+.summary-overview-distributions {
+  grid-area: distributions;
+  display: grid;
+  grid-template-columns: minmax(130px, 0.6fr) minmax(0, 1.4fr);
+  gap: 12px;
+  align-content: start;
+}
+
+.summary-overview .summary-card {
+  padding: 12px;
+  min-width: 0;
+}
+
+.summary-overview .multiplier-table th,
+.summary-overview .multiplier-table td {
+  padding: 4px 6px;
+  font-size: 12px;
+}
+
+.summary-positions {
+  display: grid;
+  gap: 9px;
+  font-size: 12px;
+}
+
+.summary-positions div {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+@media (max-width: 1100px) {
+  .summary-overview-grid {
+    grid-template-columns: 1fr;
+    grid-template-areas: "chart" "tables" "distributions";
+  }
+}
+
 .variance-layout {
   display: flex;
   flex-wrap: wrap;

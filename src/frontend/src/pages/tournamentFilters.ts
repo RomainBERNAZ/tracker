@@ -146,32 +146,52 @@ export function computeTournamentFinancialMetrics(tours: readonly TournamentRow[
   }
 }
 
+function dominantTableCount(byCount: ReadonlyMap<number, number>): number | null {
+  let bestCount = 0
+  let bestDuration = 0
+  for (const [count, duration] of byCount) {
+    if (duration > bestDuration || (duration === bestDuration && count > bestCount)) {
+      bestCount = count
+      bestDuration = duration
+    }
+  }
+  return bestCount || null
+}
+
 export function inferTablingCounts(tours: readonly TournamentRow[]): Map<string, number | null> {
-  const timed = tours.flatMap((tournament) => {
+  const events = tours.flatMap((tournament) => {
     const startMs = Date.parse(tournament.started_at)
     const durationMs = tournament.duration_secs * 1_000
     return Number.isFinite(startMs) && Number.isFinite(durationMs) && durationMs > 0
-      ? [{ tournament, startMs, endMs: startMs + durationMs }]
+      ? [{ time: startMs, id: tournament.id, start: true },
+        { time: startMs + durationMs, id: tournament.id, start: false }]
       : []
-  }).sort((a, b) => a.startMs - b.startMs)
+  }).sort((a, b) => a.time - b.time)
   const counts = new Map<string, number | null>(tours.map(({ id }) => [id, null]))
-  const endTimes = timed.map(({ endMs }) => endMs).sort((a, b) => a - b)
-  let activeCount = 0
-  let ended = 0
+  const active = new Set<string>()
+  const durations = new Map<string, Map<number, number>>()
   let index = 0
-
-  while (index < timed.length) {
-    const startMs = timed[index].startMs
-    while (ended < endTimes.length && endTimes[ended] <= startMs) {
-      activeCount -= 1
-      ended += 1
+  let previousTime = events[0]?.time ?? 0
+  while (index < events.length) {
+    const time = events[index].time
+    const elapsed = time - previousTime
+    for (const id of active) {
+      const byCount = durations.get(id)!
+      byCount.set(active.size, (byCount.get(active.size) ?? 0) + elapsed)
     }
-    let groupEnd = index + 1
-    while (groupEnd < timed.length && timed[groupEnd].startMs === startMs) groupEnd += 1
-    const concurrentCount = activeCount + groupEnd - index
-    for (let i = index; i < groupEnd; i += 1) counts.set(timed[i].tournament.id, concurrentCount)
-    activeCount += groupEnd - index
-    index = groupEnd
+    while (index < events.length && events[index].time === time) {
+      const event = events[index++]
+      if (event.start) {
+        active.add(event.id)
+        durations.set(event.id, new Map())
+      } else {
+        active.delete(event.id)
+      }
+    }
+    previousTime = time
+  }
+  for (const [id, byCount] of durations) {
+    counts.set(id, dominantTableCount(byCount))
   }
   return counts
 }
@@ -191,6 +211,7 @@ export function summarizeByTablingCount(
     .map(([tableCount, tournaments]) => ({
       tableCount,
       tournamentCount: tournaments.length,
+      avgCev: tournaments.reduce((sum, tournament) => sum + tournament.hero_cev_sum, 0) / tournaments.length,
       ...computeTournamentFinancialMetrics(tournaments),
     }))
     .sort((a, b) => {

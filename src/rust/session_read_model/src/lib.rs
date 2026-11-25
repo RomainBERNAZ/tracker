@@ -20,6 +20,7 @@ fn json<T: DeserializeOwned>(row: &Row<'_>, index: usize) -> rusqlite::Result<T>
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TournamentRow {
     pub id: String,
+    pub room: Option<String>,
     pub player_name: String,
     pub buy_in_euros: f64,
     pub rake_euros: f64,
@@ -1055,7 +1056,14 @@ pub fn list_tournaments(
                 COUNT(CASE WHEN {calculated} THEN 1 END) as calculated_all_in_count,
                 COALESCE(SUM(CASE WHEN NOT {HERO_SHOWDOWN_SQL} THEN hp.realized_cev ELSE 0 END), 0) as wsd_cev_sum,
                 COALESCE(SUM(CASE WHEN {HERO_SHOWDOWN_SQL} THEN hp.realized_cev ELSE 0 END), 0) as sd_cev_sum,
-                t.rake_euros
+                t.rake_euros,
+                CASE
+                  WHEN MAX(CASE WHEN h.game_name = 'Spin & Rush' COLLATE NOCASE OR h.game_name LIKE 'Spin & Rush %' THEN 1 ELSE 0 END) = 1
+                   AND MAX(CASE WHEN h.table_name LIKE 'Expresso(%' THEN 1 ELSE 0 END) = 0 THEN 'betclic'
+                  WHEN MAX(CASE WHEN h.table_name LIKE 'Expresso(%' THEN 1 ELSE 0 END) = 1
+                   AND MAX(CASE WHEN h.game_name = 'Spin & Rush' COLLATE NOCASE OR h.game_name LIKE 'Spin & Rush %' THEN 1 ELSE 0 END) = 0 THEN 'winamax'
+                  ELSE NULL
+                END
            FROM tournaments t
            LEFT JOIN hands h ON h.tournament_id = t.id
            LEFT JOIN hand_players hp ON hp.hand_id = h.id AND hp.hero = 1
@@ -1067,6 +1075,7 @@ pub fn list_tournaments(
     let rows = stmt.query_map(params![lim, off], |row| {
         Ok(TournamentRow {
             id: row.get(0)?,
+            room: row.get(17)?,
             player_name: row.get(1)?,
             buy_in_euros: row.get(2)?,
             prizepool_euros: row.get(3)?,
@@ -1192,6 +1201,9 @@ mod tournament_listing_tests {
         .expect("seed results");
 
         let rows = list_tournaments(&conn, None, None).expect("tournaments");
+        assert_eq!(rows[0].room.as_deref(), Some("betclic"));
+        assert_eq!(rows[2].room.as_deref(), Some("winamax"));
+        assert_eq!(rows[3].room, None);
         assert_eq!(rows[0].net_eur, -2.0);
         assert_eq!(rows[0].all_in_correction_eur, Some(4.0));
         assert_eq!(rows[0].adjusted_all_in_count, 2);

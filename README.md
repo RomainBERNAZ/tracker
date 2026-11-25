@@ -44,7 +44,7 @@ La CI de `master` execute aussi les tests frontend.
 - Les raccourcis Aujourd'hui et Hier selectionnent le jour calendaire local entier (changements d'heure compris), dans les filtres de dates Summary et Tournois. Coach propose les memes raccourcis pour ses dates independantes.
 - Les choix de consultation restent en memoire pendant la session : onglet Summary, periodes/buy-ins, filtres Stacks/Tapis/Variance/Coach, ranges du comparateur, tris et recherches des mains par tournoi, et selections GTO. Ouvrir un detail/replay puis revenir (bouton Retour ou retour navigateur) ne les reinitialise plus. Les listes de duels conservent aussi le nombre de lignes affichees par selection. Les donnees sont rechargees a l'ouverture ; les choix ne sont pas sauvegardes apres fermeture/rechargement de l'application.
 - Le cEV moyen est la somme du Net EV en jetons (gain realise si EV absente), divisee par le nombre de tournois selectionnes. Les deux pages utilisent tout l'historique, sans limite aux 100 derniers tournois.
-- La comparaison theorique des multiplicateurs reste reservee au modele 2 EUR existant ; les multiplicateurs observes restent affiches pour tous les buy-ins.
+- La comparaison théorique des multiplicateurs utilise les grilles publiques Betclic Spin & Rush (0,20 à 100 € et 200 €) et Winamax Expresso 2 €. Les attentes sont additionnées selon la salle et le buy-in de chaque tournoi. Si une salle ou un modèle n'est pas reconnu, seules les occurrences observées sont affichées.
 - Le tableau des multiplicateurs aligne les occurrences observées et, lorsque le modèle est disponible, les occurrences attendues et l'écart (observé moins attendu).
 - Dans Résumé, le net ajusté part du net réel et ajoute l'écart (EV − résultat) de chaque tapis calculable, converti au prorata de la cagnotte réelle et du total de jetons. Aucun changement de multiplicateur. Correction limitée aux formats à trois joueurs reconnus avec un seul payé : [Winamax Expresso](https://www.winamax.fr/expresso) jusqu'à x20 et [Betclic Spin & Rush](https://www.betclic.fr/poker/scp-spin-and-rush) jusqu'à x10, sur les multiplicateurs connus. Les autres tournois restent au net importé. Ce n'est pas une estimation de toute la variance ni un profit attendu à long terme.
 - Les graphiques cumules de Resume (euros) et Jetons s'etendent jusqu'au bas de la fenetre, avec une hauteur minimale pour rester lisibles sur les petites fenetres.
@@ -117,9 +117,13 @@ rake inclus. Le taux horaire rapporte le résultat net au temps actif calculé s
 l'union des durées des tournois, sans compter deux fois les chevauchements ; il
 reste indisponible si une durée du groupe est manquante ou invalide. Le tableau
 « Résultats selon le nombre de tables » classe chaque tournoi selon le nombre de
-tournois actifs à son démarrage, déduit de l'historique importé complet. Les filtres
-de période et de buy-in sélectionnent les résultats du tableau, pas le calcul du
-nombre de tables.
+tables le plus longtemps simultanément actives pendant ce tournoi ; en cas
+d'égalité, le nombre le plus élevé est retenu. Le cEV moyen est calculé par groupe.
+Les dates invalides et durées nulles restent indéterminées et ne participent pas
+au calcul des autres tournois : un historique incomplet peut sous-estimer le nombre
+de tables. Les durées Betclic couvrent les première et dernière mains importées,
+pas nécessairement toute la durée réelle. Les filtres de période et de buy-in
+sélectionnent les résultats du tableau, pas le calcul du nombre de tables.
 
 L'onglet Stacks de Summary analyse le stack du hero au debut de chaque main,
 avant les blindes, en BB : 0-8, >8-12, >12-20 et >20 BB. Les bornes hautes

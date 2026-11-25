@@ -21,6 +21,7 @@ function invokeTauri<T>(cmd: string, args?: Record<string, unknown>): Promise<T>
 
 export interface TournamentRow {
   id: string
+  room?: 'betclic' | 'winamax' | null
   player_name: string
   buy_in_euros: number
   rake_euros: number

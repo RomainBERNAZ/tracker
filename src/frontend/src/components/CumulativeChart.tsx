@@ -7,10 +7,12 @@ import {
   YAxis,
   Tooltip,
   ReferenceLine,
+  ReferenceDot,
   CartesianGrid,
 } from 'recharts'
 import type { TournamentRow } from '../api'
 import { cumulativeTournamentResults } from '../pages/tournamentFilters'
+import { endLabel } from './EndLabel'
 
 interface Props {
   readonly tournaments: TournamentRow[]
@@ -24,6 +26,7 @@ function fmtEur(n: number) {
 function CumulativeChartInner({ tournaments }: Props) {
   const data = useMemo(() => cumulativeTournamentResults(tournaments), [tournaments])
   const hasAdjustment = data[0].adjusted != null
+  const last = data[data.length - 1]
 
   if (data.length < 2) {
     return <p style={{ color: 'var(--text-dim)', fontSize: 13 }}>Pas assez de données.</p>
@@ -33,7 +36,7 @@ function CumulativeChartInner({ tournaments }: Props) {
     <div className="summary-euro-chart">
       <ResponsiveContainer width="100%" height="100%" initialDimension={{ width: 0, height: 220 }}
         style={{ position: 'absolute', inset: 0 }}>
-        <LineChart data={data} margin={{ top: 16, right: 16, bottom: 8, left: 8 }}>
+        <LineChart data={data} margin={{ top: 16, right: 110, bottom: 8, left: 8 }}>
           <CartesianGrid stroke="rgba(255,255,255,0.05)" vertical={false} />
           <XAxis
             dataKey="label"
@@ -85,6 +88,10 @@ function CumulativeChartInner({ tournaments }: Props) {
             name="net"
             isAnimationActive={false}
           />
+          {last.adjusted != null && <ReferenceDot x={last.label} y={last.adjusted} r={2} fill="#7f89b8" stroke="none"
+            label={endLabel(fmtEur(last.adjusted), '#aeb8ee', last.adjusted >= last.net ? -8 : 8)} />}
+          <ReferenceDot x={last.label} y={last.net} r={2} fill="#6c63ff" stroke="none"
+            label={endLabel(fmtEur(last.net), '#a7a1ff', last.adjusted == null ? 0 : last.net > last.adjusted ? -8 : 8)} />
         </LineChart>
       </ResponsiveContainer>
     </div>

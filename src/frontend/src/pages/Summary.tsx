@@ -1,8 +1,6 @@
 import { useEffect, useMemo, useState, memo, type FormEvent } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import {
-  PieChart,
-  Pie,
   ResponsiveContainer,
   Tooltip,
   LineChart,
@@ -11,6 +9,7 @@ import {
   YAxis,
   CartesianGrid,
   ReferenceLine,
+  ReferenceDot,
 } from 'recharts'
 import { api } from '../api'
 import type {
@@ -18,6 +17,7 @@ import type {
   StackStatsSnapshot, TournamentRow,
 } from '../api'
 import { CumulativeChart } from '../components/CumulativeChart'
+import { endLabel } from '../components/EndLabel'
 import { filterChipHands, restrictPositionsToFormat, summarizeChips } from './summaryChips'
 import type { HeroPosition } from './summaryChips'
 import { TournamentFilters } from '../components/TournamentFilters'
@@ -28,11 +28,11 @@ import StartingHands from './StartingHands'
 import SummaryStacks from './SummaryStacks'
 import SummaryAllIns from './SummaryAllIns'
 import { createReviewState } from '../reviewState'
-import { WINAMAX_2EUR_MULTIPLIER_MODEL } from './expressoModel'
+import { multiplierComparison } from './multiplierComparison'
 import {
   DEFAULT_FILTER, applyTournamentRange, calendarDayRange, computeFilteredStats, computeTournamentFinancialMetrics,
   endOfDay, formatDateInput, handsForTournaments, inferTablingCounts, parseDateInput, periodToRange,
-  summarizeByTablingCount, tournamentBuyIn,
+  summarizeByTablingCount,
 } from './tournamentFilters'
 import { combineCounts } from './hittingBoardStats'
 import type { TournamentFlops } from './hittingBoardStats'
@@ -44,7 +44,6 @@ const useCoachFrom = createReviewState(() => '')
 const useCoachTo = createReviewState(() => '')
 const useCoachAction = createReviewState<'all' | 'call' | 'push'>(() => 'all')
 const useCoachSeverity = createReviewState<'all' | 'bad' | 'critical'>(() => 'all')
-const MODEL_BUY_IN_EUR = 2
 
 function fmtEur(n: number) {
   const sign = n >= 0 ? '+' : ''
@@ -69,30 +68,6 @@ function resultClass(value: number | null) {
 }
 
 type FilteredStats = ReturnType<typeof computeFilteredStats>
-
-function computeMultiplierComparison(
-  totalTournaments: number,
-  multiplierDist: [number, number][],
-  supportsTheoreticalModel: boolean,
-): { mult: number; expectedCount: number | null; realCount: number }[] {
-  if (!supportsTheoreticalModel) {
-    return multiplierDist.map(([mult, realCount]) => ({ mult, realCount, expectedCount: null }))
-  }
-  const realMap = new Map<number, number>(multiplierDist)
-  const totalTickets = WINAMAX_2EUR_MULTIPLIER_MODEL.reduce((acc, r) => acc + r.tickets, 0)
-  const modeled = WINAMAX_2EUR_MULTIPLIER_MODEL.map((r) => ({
-    mult: r.mult,
-    expectedCount: totalTournaments > 0 ? (totalTournaments * r.tickets) / totalTickets : 0,
-    realCount: realMap.get(r.mult) ?? 0,
-  }))
-  const others = multiplierDist
-    .filter(([mult]) => !WINAMAX_2EUR_MULTIPLIER_MODEL.some((r) => r.mult === mult))
-    .map(([mult, realCount]) => ({ mult, expectedCount: 0, realCount }))
-  const rows = [...modeled, ...others]
-    .filter((row) => row.expectedCount >= 1 || row.realCount >= 1)
-    .sort((a, b) => a.mult - b.mult)
-  return rows
-}
 
 function computeEmpiricalLuck(deltaSamples: number[]): { zScore: number; sigmaTotal: number; delta: number } | null {
   const n = deltaSamples.length
@@ -847,43 +822,24 @@ const CoachTabPanel = memo(({
   )
 })
 
-const SummaryPositionsPie = memo(({ wins, secondPlace, thirdPlace }: PositionsPieProps) => {
-  const data = useMemo(() => [
-    { name: '1st', value: wins, fill: '#10b981' },
-    { name: '2nd', value: secondPlace, fill: '#6b7280' },
-    { name: '3rd', value: thirdPlace, fill: '#ef4444' },
-  ].filter((d) => d.value > 0), [wins, secondPlace, thirdPlace])
-
+const SummaryPositions = memo(({ wins, secondPlace, thirdPlace }: PositionsPieProps) => {
+  const data = [
+    { name: '1er', value: wins, fill: '#10b981' },
+    { name: '2e', value: secondPlace, fill: '#a9b0c8' },
+    { name: '3e', value: thirdPlace, fill: '#ef4444' },
+  ]
   const totalTournaments = wins + secondPlace + thirdPlace
   if (totalTournaments === 0) {
-    return <p style={{ color: 'var(--text-dim)' }}>Aucune données</p>
+    return <p style={{ color: 'var(--text-dim)' }}>Aucune donnée</p>
   }
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
-      <ResponsiveContainer width="100%" height={120}>
-        <PieChart>
-          <Pie
-            data={data}
-            cx="50%"
-            cy="50%"
-            innerRadius={35}
-            outerRadius={55}
-            paddingAngle={1}
-            dataKey="value"
-            isAnimationActive={false}
-          />
-          <Tooltip formatter={(value) => [String(value ?? ''), 'Tournois']} />
-        </PieChart>
-      </ResponsiveContainer>
-      <div style={{ display: 'flex', gap: 16, fontSize: 12, justifyContent: 'center' }}>
-        {data.map((d) => (
-          <div key={d.name} style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-            <div style={{ width: 8, height: 8, borderRadius: 2, background: d.fill }} />
-            <span style={{ color: 'var(--text-dim)' }}>{d.name} {d.value}</span>
-          </div>
-        ))}
-      </div>
+    <div className="summary-positions">
+      {data.map((d) => <div key={d.name}>
+        <span style={{ color: d.fill }}>{d.name}</span>
+        <strong>{d.value.toLocaleString('fr-FR')}</strong>
+        <span>{fmtPct(d.value, totalTournaments)}</span>
+      </div>)}
     </div>
   )
 })
@@ -932,18 +888,19 @@ const SummaryMultiplierTable = memo(({ sortedMultipliers }: {
 const SummaryTablingTable = memo(({ rows }: {
   readonly rows: ReturnType<typeof summarizeByTablingCount>
 }) => (
-  <div className="summary-card" style={{ marginBottom: 16 }}>
+  <div className="summary-card summary-tabling-card">
     <h3>Résultats selon le nombre de tables</h3>
     <p className="variance-description">
-      Chaque tournoi est classé selon le nombre de tournois actifs à son démarrage.
-      Les durées qui se chevauchent sont fusionnées pour calculer le taux horaire.
+      Nombre de tables le plus fréquent pendant le tournoi (égalité : nombre le plus élevé).
+      « Indéterminé » : date invalide ou durée nulle ; les durées manquantes ne sont pas comptées.
     </p>
     {rows.length === 0 ? <p className="variance-description">Aucune donnée.</p> : (
       <div className="multiplier-table-wrap">
         <table className="multiplier-table">
           <thead><tr>
-            <th scope="col">Tables au départ</th>
+            <th scope="col">Tables</th>
             <th scope="col">Tournois</th>
+            <th scope="col">cEV / tournoi</th>
             <th scope="col">Net</th>
             <th scope="col">ROI</th>
             <th scope="col">Taux horaire</th>
@@ -952,6 +909,7 @@ const SummaryTablingTable = memo(({ rows }: {
             {rows.map((row) => <tr key={row.tableCount ?? 'unknown'}>
               <th scope="row">{row.tableCount ?? 'Indéterminé'}</th>
               <td>{row.tournamentCount}</td>
+              <td className={resultClass(row.avgCev)}>{row.avgCev.toLocaleString('fr-FR', { maximumFractionDigits: 1 })}</td>
               <td className={row.netEur >= 0 ? 'positive' : 'negative'}>{fmtEur(row.netEur)}</td>
               <td>{fmtPercent(row.roiPct)}</td>
               <td>{fmtHourlyRate(row.hourlyRateEur)}</td>
@@ -1034,6 +992,9 @@ const SummaryChipsTab = memo(({ filteredHands, filteredTournamentCount }: {
   }
 
   const fmtChips = (n: number) => `${n > 0 ? '+' : ''}${n}`
+  const lastPoint = chartData[chartData.length - 1]
+  const visibleCurves = CHIPS_CURVES.filter((curve) => activeCurves.has(curve.key))
+    .sort((a, b) => lastPoint[b.key] - lastPoint[a.key])
 
   return (
     <div className="summary-chips-tab">
@@ -1126,7 +1087,7 @@ const SummaryChipsTab = memo(({ filteredHands, filteredTournamentCount }: {
           <div className="chips-chart">
             <ResponsiveContainer width="100%" height="100%" initialDimension={{ width: 0, height: 220 }}
               style={{ position: 'absolute', inset: 0 }}>
-              <LineChart data={chartData} margin={{ top: 10, right: 16, bottom: 4, left: 8 }}>
+              <LineChart data={chartData} margin={{ top: 20, right: 105, bottom: 12, left: 8 }}>
                 <CartesianGrid stroke="rgba(255,255,255,0.05)" vertical={false} />
                 <XAxis dataKey="label" tick={{ fill: '#a9b0c8', fontSize: 11 }} tickLine={false} axisLine={false} interval="preserveStartEnd" />
                 <YAxis tick={{ fill: '#a9b0c8', fontSize: 11 }} tickLine={false} axisLine={false} width={64} tickFormatter={fmtChips} />
@@ -1156,6 +1117,11 @@ const SummaryChipsTab = memo(({ filteredHands, filteredTournamentCount }: {
                     />
                   ) : null,
                 )}
+                {visibleCurves.map((curve, index) => (
+                  <ReferenceDot key={curve.key} x={lastPoint.label}
+                    y={lastPoint[curve.key]} r={2} fill={curve.stroke} stroke="none"
+                    label={endLabel(fmtChips(lastPoint[curve.key]), curve.stroke, (index - (visibleCurves.length - 1) / 2) * 15)} />
+                ))}
               </LineChart>
             </ResponsiveContainer>
           </div>
@@ -1274,13 +1240,7 @@ export default memo(function Summary() {
     () => summarizeByTablingCount(filteredTournaments, tablingCounts),
     [filteredTournaments, tablingCounts],
   )
-  const supportsTheoreticalModel = filteredTournaments.length > 0 &&
-    filteredTournaments.every((t) => tournamentBuyIn(t) === MODEL_BUY_IN_EUR)
-
-  const sortedMultipliers = useMemo(
-    () => computeMultiplierComparison(filteredStats.totalTournaments, filteredStats.multiplierDist, supportsTheoreticalModel),
-    [filteredStats.totalTournaments, filteredStats.multiplierDist, supportsTheoreticalModel],
-  )
+  const multiplierStats = useMemo(() => multiplierComparison(filteredTournaments), [filteredTournaments])
 
   const coachReview = useMemo(
     () => buildCoachReview(coachStats, coachTournaments, coachHands),
@@ -1397,8 +1357,8 @@ export default memo(function Summary() {
 
       {/* Summary Tab */}
       {activeTab === 'summary' && (
-        <>
-          <div className="summary-card" style={{ marginBottom: 16 }}>
+        <div className="summary-overview">
+          <div className="summary-card summary-gains-card">
             <h3>Gains (€)</h3>
             <div className="stats-bar" style={{ marginBottom: 0 }}>
               <div className="stat-card">
@@ -1442,16 +1402,12 @@ export default memo(function Summary() {
                 <AdjustedEuro value={filteredStats.allInCorrection} />
               </div>
             </div>
-            <p className="variance-description">
-              ROI = net / buy-ins engagés (rake inclus). Le taux horaire utilise les durées importées ;
-              si une durée manque, il n’est pas calculé.
-            </p>
-            <p className="variance-description">
-              {filteredStats.adjustedAllInCount} tapis corrigés sur {filteredStats.calculatedAllInCount} avec une EV calculée.
-              {' '}Une correction positive signifie que le résultat réel a été inférieur à l’attendu sur ces tapis.
-            </p>
             <details className="stack-method">
-              <summary>Comment le net ajusté est calculé</summary>
+              <summary>Comprendre les résultats</summary>
+              <p>ROI = net / buy-ins engagés (rake inclus). Le taux horaire utilise les durées importées ;
+                si une durée manque, il n’est pas calculé.</p>
+              <p>{filteredStats.adjustedAllInCount} tapis corrigés sur {filteredStats.calculatedAllInCount} avec une EV calculée.
+                Une correction positive signifie que le résultat réel a été inférieur à l’attendu sur ces tapis.</p>
               <p>On part du net réel. Pour chaque tapis calculable, préflop ou postflop, on ajoute l’écart
                 entre les jetons attendus et les jetons gagnés ou perdus, valorisé à la cagnotte réelle divisée par
                 le total des jetons au début de la main. Les multiplicateurs tirés ne changent pas.</p>
@@ -1461,12 +1417,12 @@ export default memo(function Summary() {
             </details>
           </div>
 
+          <div className="summary-overview-grid">
           <SummaryTablingTable rows={tablingStats} />
-
-          <div className="summary-grid">
+          <div className="summary-overview-distributions">
             <div className="summary-card">
               <h3>Positions</h3>
-              <SummaryPositionsPie
+              <SummaryPositions
                 wins={filteredStats.wins}
                 secondPlace={filteredStats.secondPlace}
                 thirdPlace={filteredStats.thirdPlace}
@@ -1475,9 +1431,9 @@ export default memo(function Summary() {
 
             <div className="summary-card">
               <h3 id="summary-multipliers-title">Répartition des multiplicateurs</h3>
-              {!supportsTheoreticalModel && filteredStats.totalTournaments > 0 &&
-                <p style={{ color: 'var(--text-dim)' }}>Le modele theorique est disponible uniquement pour les buy-ins de 2 €. Seules les occurrences reelles sont affichees.</p>}
-              <SummaryMultiplierTable sortedMultipliers={sortedMultipliers} />
+              {multiplierStats.unmodeled > 0 &&
+                <p className="variance-description">{multiplierStats.unmodeled} tournois sans modèle connu : seuls les résultats observés sont affichés.</p>}
+              <SummaryMultiplierTable sortedMultipliers={multiplierStats.rows} />
             </div>
           </div>
 
@@ -1494,7 +1450,8 @@ export default memo(function Summary() {
             </div>
             <CumulativeChart tournaments={filteredTournaments} />
           </div>
-        </>
+          </div>
+        </div>
       )}
 
       {/* Chips Tab */}
